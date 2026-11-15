@@ -3,7 +3,7 @@ title: SKH Research Group
 description: Energy Storage Innovation Laboratory, Chulalongkorn University.
 author: Soorathep Kheawhom
 
-baseurl: "/course-2105623"            # site is served at the ROOT of www.skhgroup.net (see CNAME)
+baseurl: "/course-2105623"            # GitHub Pages project-site prefix; no CNAME
 home_url: "index.html"    # the one-pager the nav links back to
 url: "https://soorathep.github.io"
 
@@ -27,6 +27,8 @@ plugins:
 # jekyll-optional-front-matter, so any .md file left in scope is rendered, and a
 # stray Liquid tag inside a guide can break the whole build.
 exclude:
+  - AGENTS.md
+  - ARCHIVING.md
   - MAINTENANCE.md
   - NEW_PAPER_GUIDE.md
   - PEOPLE_GUIDE.md
