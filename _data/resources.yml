@@ -1,0 +1,203 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Files and tools for lab members, shown on /resources/.
+#
+# Structure = CATEGORIES, each holding one or more RESOURCES. The page renders a
+# jump-to index of the categories, then a section per category. Add a whole new
+# topic by adding a category block; add one more file-set to an existing topic by
+# adding an item under it. Empty categories simply do not appear.
+#
+#   - category: Section name
+#     blurb: One line describing the section.        # optional
+#     items:
+#       - title: Resource name
+#         howto: palette                             # optional — shows a rich how-to panel
+#         description: What it is and when to use it.
+#         files:
+#           - label: Short name
+#             file: filename.pdf                     # must sit inside  files/
+#             kind: PDF                              # PDF | PY | MD | ZIP | XLSX | DOCX ...
+#             desc: One line about this file.
+#
+# To add a file: drop it in  files/  and add it under the right category.
+# ─────────────────────────────────────────────────────────────────────────────
+
+- category: Experimental design
+  blurb: How we plan experiments — start from what you want to know, then let the question set the design.
+  items:
+    - title: Start from the question, not the technique
+      howto: expdesign
+      description: >
+        The habit the group is built on: decide what you want to know, phrase it so it could come
+        out either way, and choose the experiment that most directly separates the possible answers.
+        Use the AI prompt pack to think a design through — or to check a write-up. Worked case
+        studies will be added here over time.
+      files:
+        - label: "AI prompt pack: design &amp; reporting"
+          file: skh-experiment-design-ai-prompt.md
+          kind: MD
+          desc: Paste into ChatGPT / Claude to plan an experiment ("design mode") or check a draft against the reporting checklist ("report mode").
+    - title: "Battery reporting checklist: what to report, what to do"
+      howto: batterychecklist
+      description: >
+        Before you plot a battery result, make sure it can be trusted and compared. This is a simple
+        summary of what every battery figure and Methods section must disclose, distilled from the
+        reporting guidelines of Joule, ACS Energy Letters, Advanced Energy Materials, and the Nature
+        journals — the same items most journals expect.
+      files:
+        - label: Battery reporting checklist
+          file: battery-reporting-checklist.md
+          kind: MD
+          desc: The full checklist with journal notes and sources — print it or keep it open while you write up.
+    - title: "GITT &amp; PITT: what they measure, how to run &amp; calculate"
+      howto: gittpitt
+      description: >
+        Two intermittent titration techniques for insertion electrodes. What each one answers
+        (diffusion coefficient, OCV, resistance vs SOC), how to design the pulses/steps, the actual
+        equations, and the caveats — the absolute diffusion coefficient is only a relative measure.
+        Includes references for students to read.
+      files:
+        - label: GITT &amp; PITT guide
+          file: gitt-pitt-guide.md
+          kind: MD
+          desc: Full write-up with equations, design conditions, reporting, caveats, and a reading list.
+        - label: "gitt_pitt.py: analysis script"
+          file: gitt_pitt.py
+          kind: PY
+          desc: "Loads a GITT run, finds each pulse, computes D vs SOC (Weppner–Huggins) and plots it; PITT long-time D too. Runs a demo out of the box: python gitt_pitt.py"
+    - title: "Galvanostatic charge–discharge (GCD): run, calculate &amp; report"
+      howto: gcd
+      description: >
+        Constant-current cycling, the workhorse test: specific capacity, Coulombic efficiency, the
+        voltage profile (energy, average voltage), capacity retention and rate capability, plus
+        capacitance and ESR for capacitors — with how to choose the current/window and report multiple
+        cycles and samples. Script, worked example, and references included.
+      files:
+        - label: GCD guide
+          file: gcd-guide.md
+          kind: MD
+          desc: Full write-up — parameters, equations, multi-cycle/multi-sample reporting, caveats, reading list.
+        - label: "gcd.py: analysis script"
+          file: gcd.py
+          kind: PY
+          desc: "Specific capacity, CE, energy, retention, and supercapacitor C/ESR, with a voltage-profile + capacity/CE-vs-cycle plot. Demo: python gcd.py"
+    - title: "Cyclic voltammetry (CV): run, calculate &amp; report"
+      howto: cv
+      description: >
+        Sweep the potential and read the current: redox potentials, reversibility, whether the
+        current is diffusion- or surface-controlled (b-value), the diffusion coefficient
+        (Randles–Ševčík), the capacitive/diffusive split (Dunn), and capacitance — plus how to choose
+        scan rates and windows and how to report multiple cycles and samples. Script, worked example,
+        and references included.
+      files:
+        - label: CV guide
+          file: cv-guide.md
+          kind: MD
+          desc: Full write-up — parameters, equations, multi-cycle/multi-sample reporting, caveats, reading list.
+        - label: "cv.py: analysis script"
+          file: cv.py
+          kind: PY
+          desc: "D (Randles–Ševčík), b-value, Dunn capacitive/diffusive split, capacitance, and a CV overlay + i_p-vs-√v plot. Demo: python cv.py"
+    - title: "EIS &amp; DRT: measure, analyse, plot &amp; report"
+      howto: eisdrt
+      description: >
+        Impedance spectroscopy and the distribution of relaxation times, kept simple: what each
+        frequency region means, how to run and validate the measurement (Kramers–Kronig), how DRT
+        deconvolutes overlapping processes, how to plot Nyquist/Bode/DRT correctly, and how to report
+        replicates and multiple samples. Includes references for students.
+      files:
+        - label: EIS &amp; DRT guide
+          file: eis-drt-guide.md
+          kind: MD
+          desc: Full guide with equations, validation, plotting rules, multi-sample reporting, caveats, and a reading list.
+        - label: "eis.py: plotting &amp; reading script"
+          file: eis.py
+          kind: PY
+          desc: "Draws a correct Nyquist (equal axes) + Bode, reads R_s and R_ct, and shows an illustrative DRT; points to pyDRTtools for the real DRT. Runs a demo: python eis.py"
+        - label: "eis_fit.py: equivalent-circuit fit"
+          file: eis_fit.py
+          kind: PY
+          desc: "Fits Rs–(R∥CPE)–…–Warburg circuits (complex least-squares) with values ± uncertainty and χ², plus a data-vs-fit + residual plot and model-selection guidance. Demo: python eis_fit.py"
+        - label: "drt_pyDRTtools.py: real DRT"
+          file: drt_pyDRTtools.py
+          kind: PY
+          desc: "A real DRT pipeline with pyDRTtools: load EIS → compute the DRT with λ chosen by the L-curve → find the peaks (τ, f, R) → plot. Demo: python drt_pyDRTtools.py (pip install pyDRTtools cvxopt scikit-learn)"
+
+- category: Computational modelling
+  blurb: Molecular simulation and centrally managed cloud computing for defined mechanistic questions across the CTI chain.
+  items:
+    - title: Counting particles in SEM images with Cellpose
+      description: >
+        Counting particles by hand is slow and drifts between operators, which is why two
+        people rarely report the same size distribution from one micrograph. Cellpose-SAM
+        segments particles without any training, and scikit-image turns the masks into
+        measurements. The script runs the whole path: it removes the instrument banner,
+        segments, filters by circularity so that only the particles you mean are counted,
+        and writes a CSV of per-particle measurements together with a figure in the lab
+        palette. Always record the pixel size. Without it the numbers are pixels rather
+        than nanometres, and nothing can be compared between images.
+      files:
+        - label: "Python script: cellpose_sem_count.py"
+          file: cellpose_sem_count.py
+          kind: PY
+          desc: "Segment, filter by shape, measure. Outputs a per-particle CSV plus an outline overlay and size distribution in the lab palette. Install with: pip install cellpose scikit-image pandas matplotlib. Pass --pixel-size in nm per pixel; without it the numbers are in pixels."
+    - title: Molecular simulation &amp; cloud computing
+      howto: computational
+
+- category: Figures &amp; design
+  blurb: Colour, style, and templates for figures, posters, and slide decks.
+  items:
+    - title: "Lab figure palette: Teal &amp; Amber"
+      howto: palette
+      description: >
+        The colour system for every figure we publish: papers, theses, posters, and slides.
+        Drawing every figure from the same colours — in the same order and with the same
+        meanings — is what makes our output recognisable, and it keeps figures readable for
+        colour-blind readers and in greyscale, which most journals require. Start with the
+        style guide, pin up the reference sheet, and apply it with the Python module or the
+        AI prompt.
+      files:
+        - label: Style guide
+          file: lab_palette_guide.pdf
+          kind: PDF
+          desc: Full specification — exact colour values, semantic roles, accessibility validation, and per-tool setup (Python, R, Illustrator, LaTeX, CSS).
+        - label: Reference sheet
+          file: lab_palette_sheet.pdf
+          kind: PDF
+          desc: One-page swatch card with every value and rule — print it and pin it up by your desk.
+        - label: "Python module: labpalette.py"
+          file: labpalette.py
+          kind: PY
+          desc: "matplotlib / seaborn house style in one call: import labpalette as lp; lp.apply(). Colour cycle, colormaps, fonts, and 600 dpi export."
+        - label: AI prompt pack
+          file: skh-figure-palette-ai-prompt.md
+          kind: MD
+          desc: Paste into ChatGPT / Claude / Gemini so any figure it generates uses the palette correctly — colours, order, ramps, and rules.
+
+
+# ── More categories — uncomment and fill in as you add resources ──────────────
+#
+# - category: Writing &amp; thesis
+#   blurb: Manuscript and thesis templates, checklists, and submission guides.
+#   items:
+#     - title: Thesis template
+#       description: The department-formatted LaTeX/Word thesis template.
+#       files:
+#         - label: LaTeX template
+#           file: thesis-template.zip
+#           kind: ZIP
+#           desc: Title page, chapter structure, and bibliography style pre-set.
+#
+# - category: Lab protocols
+#   blurb: Standard operating procedures and safety documents.
+#   items:
+#     - title: Coin-cell assembly SOP
+#       description: Step-by-step protocol for assembling and crimping coin cells.
+#       files:
+#         - label: SOP
+#           file: coin-cell-sop.pdf
+#           kind: PDF
+#           desc: Materials, torque settings, and troubleshooting.
+#
+# - category: Code &amp; analysis
+#   blurb: Shared scripts and notebooks for common analyses.
+#   items: []

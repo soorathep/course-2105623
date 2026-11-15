@@ -1,0 +1,269 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# 2105603 Advanced Chemical Engineering Thermodynamics — course page data.
+# Drives /teaching/2105603/. Same pattern as rcs2026.yml.
+#
+# modules   one entry per teaching module. `slides` is the rendered Quarto deck
+#           in teaching/2105603/; `files` are downloads in
+#           teaching/2105603/files/.
+#
+# NOTE Deliberately no weekly schedule and no assessment table here. Both are
+#      still under discussion between the co-instructors, and nothing goes on a
+#      public course page until it comes from the registered syllabus rather
+#      than from a draft. To add them back, put a `weeks:` or `assessment:`
+#      list here and uncomment the matching block in index.html.
+# ─────────────────────────────────────────────────────────────────────────────
+code: "2105603"
+credits: "3 (3-0-9)"
+semester: "Semester 1 / 2026"
+sections: "Graduate · M.Eng. and Ph.D. Chemical Engineering"
+instructors: "Chanon Pornrungroj · Soorathep Kheawhom"
+
+description: >-
+  Introduction to molecular thermodynamics, equations of state, equations for
+  activity coefficients, thermodynamic property determination, multicomponent
+  phase equilibrium, process analysis, and chemical equilibrium.
+
+modules:
+  - id: eos
+    n: 1
+    title: Evolution of Equations of State
+    subtitle: A physics-driven perspective
+    slides: eos.html
+    blurb: >-
+      Fifty-six slides tracing one argument: every equation of state was written
+      because the previous one omitted physics that turned out to matter. Ideal
+      gas to van der Waals to the cubics to SAFT to electrolyte models, with the
+      cost of each addition made explicit.
+    files:
+      - kind: Notes
+        file: EOS_Lecture_Notes.pdf
+        label: Lecture notes
+        desc: Full derivations behind every slide, 87 pages
+      - kind: Examples
+        file: EOS_Worked_Examples.pdf
+        label: Worked examples
+        desc: Four problems worked end to end with the arithmetic shown
+      - kind: Slides
+        file: eos-slides.pdf
+        label: Slides as PDF
+        desc: For annotating or printing; the browser version is the primary one
+      - kind: Code
+        file: eos-notebooks.zip
+        label: Jupyter notebooks
+        desc: Three runnable notebooks — cubic EOS from scratch, the Maxwell construction, cubic against PC-SAFT
+      - kind: Code
+        file: EOS_Python_Toolkit.zip
+        label: Figure toolkit
+        desc: Every figure in the deck, with the Python that generates it
+    checks:
+      - q: "Van der Waals predicts Z<sub>c</sub> = 3/8 for every substance, while real values run from about 0.23 to 0.31. Which assumption forces a single number, and why did SRK and PR not repair it?"
+        a: "Both parameters are fixed by the critical point alone, so the equation carries nothing about molecular shape or polarity — the role the acentric factor was later invented for. SRK and PR did not repair it; they fix Z<sub>c</sub> at 1/3 and 0.307 instead. A cubic can be made to reproduce Z<sub>c</sub> only by giving up accuracy elsewhere, and vapour pressure was judged worth more."
+      - q: "SRK and PR use the same mixing rules and the same critical constants. What did Peng and Robinson change, and which property improved?"
+        a: "The volume dependence of the attractive term: the denominator becomes v(v+b) + b(v−b) rather than v(v+b). Saturated liquid density improves substantially; vapour pressure barely moves. That is why PR became the standard wherever liquid density feeds equipment sizing."
+      - q: "The virial equation is exact. Why is it still useless for a liquid?"
+        a: "It is exact as an infinite series in density. Truncated after B or C it is limited to densities where the neglected terms are small — roughly up to half the critical density. A liquid is far outside that, and the higher coefficients are neither known nor usefully convergent there."
+      - q: "An equation of state reproduces vapour pressure to 1 per cent and saturated liquid density to 15 per cent. Name one design calculation it is fine for and one it will ruin."
+        a: "Fine for stage-by-stage distillation, which is driven by K-values and therefore by vapour pressure. Ruinous for anything sized by volume — vessel and line sizing, relief capacity, storage inventory, or a level inferred from density."
+
+  - id: fugacity
+    n: 2
+    title: Fugacity, Chemical Potential and the Equilibrium Criterion
+    subtitle: Why pressure is not the driving force
+    slides: fugacity.html
+    blurb: >-
+      Chemical potential is the true driving force, it is unusable in raw form,
+      and fugacity is the quantity constructed to make it usable. The module
+      ends by deriving the Maxwell equal-area construction — presented in
+      Module 1 as a recipe to be accepted — from equality of fugacity.
+    files:
+      - kind: Notebook
+        file: M2_fugacity_and_the_criterion.ipynb
+        colab: true
+        label: Fugacity notebook
+        desc: The equal-area construction of Module 1, derived numerically from equality of fugacity, and phi computed twice by routes that share no code. Runs in Colab.
+      - kind: Slides
+        file: fugacity-slides.pdf
+        label: Slides as PDF
+        desc: For annotating or printing; the browser version is the primary one
+      - kind: Code
+        file: Module2_Figure_Toolkit.zip
+        label: Figure toolkit
+        desc: Every figure in the deck, with the Python that generates it
+    checks:
+      - q: "Chemical potential is the true driving force. Why can it not be used as the working variable?"
+        a: "It has no absolute value — only differences from a reference are defined — and for an ideal gas it runs to −∞ as pressure goes to zero. A quantity with no zero and an infinite limit cannot be tabulated or compared across substances."
+      - q: "Fugacity has units of pressure and equals pressure for an ideal gas. Does that make it a corrected pressure?"
+        a: "No. It is defined by RT&nbsp;d&nbsp;ln&nbsp;f = dμ at constant T, with f/P → 1 as P → 0. The units and the ideal-gas limit follow from that choice of reference; they are not the meaning. Two phases in contact are at the same pressure whether or not they are at equilibrium — it is equal fugacity that identifies equilibrium."
+      - q: "When does the Poynting factor matter, and what decides the answer?"
+        a: "The liquid molar volume. The exponent is v<sup>L</sup>(P − P<sup>sat</sup>)/RT, so a compact liquid such as water needs several times the pressure above saturation that a bulky one such as n-hexane does before the correction reaches 1 per cent. Negligible near saturation, never negligible at high pressure."
+      - q: "Module 1 presented the Maxwell equal-area construction as a rule to accept. What makes it true?"
+        a: "Equality of fugacity between the two roots of the same isotherm. Write that condition out, integrate, and the equal-area statement drops out — the two are one equation reached from opposite ends, not two independent facts. The Module 2 notebook does this numerically and the two pressures agree to eleven figures."
+
+  - id: solution
+    n: 3
+    title: Solution Thermodynamics
+    subtitle: Partial molar properties, activity, and the constraint that ties them
+    slides: solution.html
+    blurb: >-
+      The mixture toolkit with the rigour Module 1 applied to pure fluids:
+      partial molar properties, fugacity in a mixture, excess properties,
+      activity and its reference state, and the Gibbs-Duhem constraint that
+      makes an activity coefficient model a choice of excess Gibbs energy
+      rather than an item on a list to memorise.
+    files:
+      - kind: Notebook
+        file: M3_solution_thermodynamics.ipynb
+        colab: true
+        label: Solution thermodynamics notebook
+        desc: Tangent intercepts, a partial molar volume driven negative, and a two-branch fit that beats the legal model on every point and is still forbidden. Runs in Colab.
+      - kind: Slides
+        file: solution-slides.pdf
+        label: Slides as PDF
+        desc: For annotating or printing; the browser version is the primary one
+      - kind: Code
+        file: Module3_Figure_Toolkit.zip
+        label: Figure toolkit
+        desc: Every figure in the deck, with the Python that generates it
+    checks:
+      - q: "A partial molar volume can be negative. Is volume being destroyed?"
+        a: "No. It says that adding a mole of that species at fixed T, P and other amounts <em>decreases</em> the total volume, because the added species orders and compresses the solvent around it — electrostriction, for small ions. It is a derivative of a mixture property, not a property of the molecule."
+      - q: "You fit ln γ<sub>1</sub> and ln γ<sub>2</sub> separately and each fits its own branch better than a single G<sup>E</sup> model does. What is wrong with that?"
+        a: "Gibbs-Duhem forbids it: at fixed T and P, x<sub>1</sub>&nbsp;d&nbsp;ln&nbsp;γ<sub>1</sub> + x<sub>2</sub>&nbsp;d&nbsp;ln&nbsp;γ<sub>2</sub> = 0, so choosing one fixes the other. A better pointwise fit that breaks the constraint is not a better model — it is a pair of curves that cannot both be true. Fit quality will never tell you this; only the residual will."
+      - q: "The same fugacity data gives two different activity coefficients depending on the reference state. How are they related, and when would you choose Henry?"
+        a: "γ*(Henry) = γ(Lewis-Randall) / γ<sup>∞</sup>. Choose Henry when the pure liquid does not exist at the conditions of interest — a dissolved gas, or a solute above its critical temperature — because Lewis-Randall then needs a hypothetical reference state."
+      - q: "G<sup>E</sup> is positive for a mixture. Does that mean the molecules dislike each other?"
+        a: "Not by itself. G<sup>E</sup> = H<sup>E</sup> − TS<sup>E</sup>, and the excess entropy term can carry all of it. Near room temperature ethanol/water has a positive G<sup>E</sup> with a <em>negative</em> H<sup>E</sup> — mixing releases heat — and the positive value comes entirely from −TS<sup>E</sup>. Separating them needs the temperature dependence."
+
+  - id: vle
+    n: 4
+    title: Vapour-Liquid Equilibrium of Mixtures
+    subtitle: Building an activity coefficient model from data
+    slides: vle.html
+    lab: labs/?module=vle
+    blurb: >-
+      Four descriptions of the same equilibrium; the four classes of binary
+      solution — ideal, positive deviation, negative deviation and partial
+      miscibility — with the criterion that decides which one you have; then the full
+      working cycle — what a VLE apparatus measures and how well, whether a
+      published dataset can be believed, which model fitted against which
+      objective, and how that model is carried into an equation of state. The
+      module where the course stops being about equations and starts being
+      about evidence.
+    files:
+      - kind: Examples
+        file: VLE_Worked_Examples.pdf
+        label: Worked examples
+        desc: A notation card, then eight problems worked end to end with the arithmetic shown — gamma from one measured row, classifying a system, the area test by trapezoid, bubble and dew to convergence, a two-parameter fit by hand, K-values and Fenske, and a fugacity coefficient from Peng-Robinson. Every answer checked against vlekit. 34 pages.
+      - kind: Code
+        file: vlekit.zip
+        label: vlekit
+        desc: The toolkit used from here to the end of the course — data reduction, five consistency tests, regression with bootstrap, UNIFAC, flash, stability, Peng-Robinson mixtures, the Huron-Vidal and Wong-Sandler mixing rules, five published VLE datasets and reaction equilibrium. 335 tests.
+      - kind: Notebook
+        file: M4_VLE_regression_and_consistency.ipynb
+        colab: true
+        label: Capstone notebook
+        desc: One dataset end to end, from measurement to a written domain of validity. Runs in Colab.
+      - kind: Notebook
+        file: M4B_VLE_case_study.ipynb
+        colab: true
+        label: Case-study notebook
+        desc: Four published binaries worked as case studies — the four solution types derived rather than listed, both azeotropes located, all four bubble and dew calculations written from scratch, and the same model carried into Peng-Robinson by Huron-Vidal and Wong-Sandler. Runs in Colab.
+      - kind: Notes
+        file: vle-mixing-rules-note.pdf
+        label: EoS-G<sup>E</sup> mixing rules
+        desc: Huron-Vidal and Wong-Sandler, four pages. The algebra behind the lectured section, for reference.
+      - kind: Slides
+        file: vle-slides.pdf
+        label: Slides as PDF
+        desc: For annotating or printing; the browser version is the primary one
+      - kind: Code
+        file: VLE_Figure_Toolkit.zip
+        label: Figure toolkit
+        desc: Every figure in the deck, with the Python that generates it
+    checks:
+      - q: "A published isothermal P-x-y set passes the area test and fails the point test. Which do you believe?"
+        a: "The point test. The area test integrates ln(γ<sub>1</sub>/γ<sub>2</sub>) across the whole range, so equal and opposite errors cancel and a systematically wrong dataset can pass. The point test looks at each residual and cannot cancel. Passing the integral while failing point by point means the errors have structure."
+      - q: "Two models fit one dataset equally well but predict infinite-dilution activity coefficients differing by a factor of two. What went wrong?"
+        a: "Nothing in the fitting. The data do not constrain the dilute ends, and the disagreement is an honest measure of what they can support. Quoting γ<sup>∞</sup> from such a fit is extrapolation reported as a result."
+      - q: "Why does the choice of objective function change the fitted parameters, and how do you decide which to use?"
+        a: "Each objective minimises a different residual — in P, in y, in γ, in ln γ — and so weights the composition range differently. Decide by what the model is for: fit in P if you will predict pressures. Never rank models across objectives by a single fit statistic, because the statistics are not measuring the same quantity."
+      - q: "Two binaries both show positive deviation from Raoult's law. One azeotropes and one does not. What decides it?"
+        a: "The size of the deviation relative to the ratio of pure vapour pressures. An azeotrope needs γ<sub>1</sub>/γ<sub>2</sub> = P<sub>2</sub><sup>sat</sup>/P<sub>1</sub><sup>sat</sup> to have a root between 0 and 1, so at the ends it is γ<sub>1</sub><sup>∞</sup> against P<sub>2</sub><sup>sat</sup>/P<sub>1</sub><sup>sat</sup>. If the components boil far enough apart, no achievable deviation closes the gap — which is why methanol/water does not azeotrope and ethanol/water does."
+      - q: "On chloroform/2-butanone, classical van der Waals mixing with a fitted k<sub>ij</sub> beats Huron-Vidal — 1.34 per cent against 2.08. So why use the G<sup>E</sup> mixing rules at all?"
+        a: "Because one binary at one temperature is not the claim. The G<sup>E</sup> rules carry a fitted activity model into the equation of state, so the same parameters work for strongly non-ideal and asymmetric mixtures where a single k<sub>ij</sub> has no shape to give. Wong-Sandler additionally keeps the second virial coefficient quadratic in composition, which is what lets it extrapolate in temperature and pressure; Huron-Vidal violates that by 2.2 per cent of the excess second virial on this system and 22.9 per cent on ethanol/water."
+      - q: "A process simulator asks you for binary interaction parameters and never asks for a ternary one, even for a ten-component column. Why is that enough?"
+        a: "Because the local-composition models — Wilson, NRTL, UNIQUAC — are built from pairwise interactions, so the N-component expression is assembled from the N(N−1)/2 binary parameter sets with nothing further fitted. Margules and van Laar have no such extension. It is the practical reason the local-composition forms displaced the empirical ones, and it is also a prediction: the ternary is not validated by the binary data it was built from."
+      - q: "What does Barker's method use, and why would you prefer it?"
+        a: "Only T, P and x — the vapour composition is computed rather than measured. Prefer it because y is the hardest of the four to measure and carries the largest error, so a fit that never touches it can be more trustworthy than one that does."
+
+  - id: stability
+    n: 5
+    title: Phase Stability and Complex Equilibria
+    subtitle: The question a flash calculation cannot ask
+    slides: stability.html
+    blurb: >-
+      A flash solves the equilibrium equations it was given, and those equations
+      have solutions that are not the global minimum. This module supplies the
+      missing test — the tangent plane criterion — and then follows it into
+      liquid-liquid equilibrium, distillation boundaries and retrograde
+      condensation.
+    files:
+      - kind: Notebook
+        file: M5_stability_and_LLE.ipynb
+        colab: true
+        label: Stability notebook
+        desc: A bubble point that is wrong by 5 per cent and does not say so, then the test that catches it. Runs in Colab.
+      - kind: Slides
+        file: stability-slides.pdf
+        label: Slides as PDF
+        desc: For annotating or printing; the browser version is the primary one
+      - kind: Code
+        file: Stability_Figure_Toolkit.zip
+        label: Figure toolkit
+        desc: Every figure in the deck, with the Python that generates it
+    checks:
+      - q: "A flash converges cleanly and reports two phases. What has it not checked?"
+        a: "Whether that answer is the global minimum of the Gibbs energy. The equations have several solutions and the flash finds whichever lies near its initial guess. A local minimum converges just as cleanly, with no warning."
+      - q: "State the tangent plane criterion, and say what makes it a criterion rather than one more equation to solve."
+        a: "The feed is stable if and only if TPD(w) ≥ 0 for <em>every</em> trial composition w. It quantifies over all w rather than solving for a particular one — which is also why the difficulty lies in the search, not in the formula."
+      - q: "Binodal and spinodal both mark a miscibility gap. What is the difference, and which region traps a flash?"
+        a: "The binodal is where two compositions share a common tangent — equal chemical potentials. The spinodal is where the curvature of G changes sign. Between them the mixture is metastable: stable against small perturbations, unstable against large ones. That is the region where a flash returns a locally sound, globally wrong answer."
+      - q: "Retrograde condensation forms liquid as pressure falls. Which feature of the phase envelope permits it?"
+        a: "The stretch between the critical point and the cricondentherm, where the dew-point branch turns back on itself so an isothermal path crosses it twice. It follows from the shape of the envelope, not from anomalous fluid behaviour."
+
+  - id: reaction
+    n: 6
+    title: Chemical Equilibrium
+    subtitle: The same criterion, under a different constraint
+    slides: reaction.html
+    blurb: >-
+      Nothing new is introduced. The equilibrium criterion, the fugacity
+      coefficient and the activity coefficient from the earlier modules are
+      applied to a new constraint, and the module ends where the whole course
+      has been heading: one constrained minimisation of the Gibbs energy, which
+      is what an equilibrium reactor block in a process simulator solves.
+    files:
+      - kind: Notebook
+        file: M6_chemical_equilibrium.ipynb
+        colab: true
+        label: Chemical equilibrium notebook
+        desc: One equilibrium solved twice, by extent and by Gibbs minimisation, and required to agree. Then Pitzer and a cell voltage. Runs in Colab; allow about six minutes.
+      - kind: Slides
+        file: reaction-slides.pdf
+        label: Slides as PDF
+        desc: For annotating or printing; the browser version is the primary one
+      - kind: Code
+        file: Reaction_Figure_Toolkit.zip
+        label: Figure toolkit
+        desc: Every figure in the deck, with the Python that generates it
+    checks:
+      - q: "Reaction extent and Gibbs energy minimisation must agree. What does each need that the other does not?"
+        a: "Extent needs you to have written the reactions: the stoichiometry is your input, and a product you did not think of cannot appear. Minimisation needs only a species list and an element balance, and will find products you did not anticipate — which is exactly why a simulator's equilibrium reactor uses it."
+      - q: "Why can you not take <code>carbon</code> from a property database when you mean graphite?"
+        a: "Because the name resolves to a different allotrope, with a different standard entropy and no defined formation enthalpy. Graphite is the reference state with ΔH<sub>f</sub> = 0 by definition, and the substitution shifts every ΔG in which solid carbon appears. The Module 6 notebook makes you check this against the Boudouard reaction."
+      - q: "In the Debye-Hückel limiting law γ<sub>±</sub> falls monotonically, but real electrolytes show a minimum and then rise. What is missing?"
+        a: "Everything except long-range electrostatics. The rise comes from short-range ion-ion repulsion and from the loss of free solvent as ions are hydrated — the terms Pitzer's virial-like expansion adds on top of the Debye-Hückel core."
+      - q: "A cell voltage computed from standard potentials disagrees with the measurement. Which two corrections do you apply first?"
+        a: "Activity instead of concentration inside the Nernst term, and the temperature dependence of E° through ΔS. At practical concentrations both are larger than the measurement error."
+
+

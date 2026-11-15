@@ -1,0 +1,56 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Lab activities shown on /activities/ — one block per event (trip, party, etc.).
+# Newest first. Each event is a titled album of photos.
+# The home page randomly chooses an event, then one photo, on each page load.
+# New albums join automatically. Titles and dates also label home-page photos.
+#
+# ── Fields ───────────────────────────────────────────────────────────────────
+#   title    required. Name of the activity, e.g. "Group trip to Chiang Mai".
+#   date     free text, e.g. "June 2026".
+#   caption  optional one line about the event.
+#   photos   list of image filenames in img/activities/ (any aspect ratio;
+#            the gallery crops thumbnails to a tidy grid and shows the full
+#            image when clicked).
+#
+# ── How to add an activity ───────────────────────────────────────────────────
+#   1. Drop the photos into  img/activities/
+#   2. Copy the template block below to the top, fill it in, list the filenames.
+# ─────────────────────────────────────────────────────────────────────────────
+
+- title: "Techsauce Global Summit 2026 — organic flow battery showcase"
+  date: August 2026
+  caption: The group exhibited its next-generation organic redox flow battery — a water-soluble ammonium–anthraquinone electrolyte, AQDS(NH₄)₂, offered as a low-cost, earth-abundant alternative to vanadium — in the Environment & Sustainability zone at Techsauce Global Summit 2026, Queen Sirikit National Convention Center, Bangkok (26–28 August).
+  photos:
+    - techsauce-2026-1.jpg
+    - techsauce-2026-2.jpg
+    - techsauce-2026-3.jpg
+    - techsauce-2026-4.jpg
+
+- title: "Distinguished Seminar — Publishing with Purpose (Wiley)"
+  date: 27 July 2026
+  caption: The group attended Dr. Partha Pratim Pal's seminar on navigating today's scholarly publishing landscape — editorial screening, peer review, publication ethics, open science, and AI in publishing.
+  photos:
+    - seminar-wiley-2026.jpg
+
+- title: Lab outing with the Chanon group
+  date: 25 July 2026
+  caption: A joint outing with Chanon's lab — whitewater rafting and ATV riding.
+  photos:
+    - outing-chanon-2026-1.jpg
+    - outing-chanon-2026-2.jpg
+    - outing-chanon-2026-3.jpg
+
+- title: "Celebrating the graduation of Vipada Aupama and Myo Thandar Hlaing"
+  date: 1 October 2025
+  caption: The group gathered in front of the lab to celebrate the graduation of Dr. Vipada Aupama and Myo Thandar Hlaing.
+  photos:
+    - vipada-graduation-2025.jpg
+
+# ── Template (copy to the top to add an activity) ────────────────────────────
+# - title: Group trip to Chiang Mai
+#   date: June 2026
+#   caption: Annual lab retreat — hiking, food, and a group photo at Doi Suthep.
+#   photos:
+#     - chiangmai-2026-1.jpg
+#     - chiangmai-2026-2.jpg
+#     - chiangmai-2026-3.jpg

@@ -1,0 +1,76 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Standalone seminars and invited talks, shown on /teaching/seminars/.
+# One entry per talk, newest first is handled by the page (sorted by date).
+#   title    required.
+#   date     required. YYYY-MM-DD — drives the ordering and the displayed date.
+#   venue    optional. Where it was given.
+#   note     optional one line.
+#   slides   optional. Filename of the rendered deck in teaching/seminars/.
+#            Present = the title becomes a link. Source lives in
+#            _teaching-src/seminars/.
+#   handout  optional. Filename of a PDF sitting in teaching/seminars/.
+#            Present = a "Participant handout (PDF)" link appears under the note.
+#   package  optional. Complete download with file, label and note.
+#   download_groups  optional. Named groups of links, each with label and file.
+#   source_files     optional. Editable sources with label and raw download URL.
+# ─────────────────────────────────────────────────────────────────────────────
+
+- title: "Beyond Ionic Conductivity: Coordination-Transport-Interface Design Rules for Durable Sodium Batteries"
+  date: 2026-09-14
+  venue: "ACSSI 2026, Plenary Lecture 2, Rajamontien 4, Montien Hotel Surawong, Bangkok, Thailand"
+  slides: acssi-2026-plenary.html
+  note: "Scheduled for Monday, September 14, 2026, 11:00–11:40 AM (Bangkok time, UTC+7). Soorathep Kheawhom will discuss how coordination, transport and interfaces shape sodium-battery durability, drawing on three recent papers from the group and collaborators."
+  download_groups:
+    - title: Presentation materials
+      links:
+        - label: View the slides online
+          file: acssi-2026-plenary.html
+        - label: Download the slides (PDF, 24 pages)
+          file: acssi-2026-plenary.pdf
+
+- title: "Beyond the Summary: How to Plan, Structure, and Place a High-Impact Review Article"
+  date: 2026-09-09
+  venue: MMS3 Talk, Department of Chemical Engineering, Chulalongkorn University
+  slides: review-articles.html
+  handout: Beyond_the_Summary_Handout_Updated.pdf
+  note: Plan a review that adds understanding beyond a summary. Compare review types, choose a viable question, document searching and selection with PRISMA, build an evidence matrix, and connect the evidence to defensible research gaps and review novelty. Includes two recently published review examples, participant worksheets, and completed English battery-recycling worksheet examples.
+  package:
+    file: MMS3_Quarto_Package.zip
+    label: Download the complete MMS3 package
+    note: ZIP · 8.1 MB · PDF and HTML materials, completed worksheet examples, editable Quarto sources, fonts and graphics.
+  download_groups:
+    - title: Slides
+      links:
+        - label: View slides online
+          file: review-articles.html
+        - label: Slide deck (PDF · 50 pages)
+          file: Beyond_the_Summary_Updated.pdf
+    - title: Participant handout & worksheets
+      links:
+        - label: Complete handout (PDF · 14 pages)
+          file: Beyond_the_Summary_Handout_Updated.pdf
+        - label: Worksheets A & B — prior reviews and proposal (p. 9)
+          file: Beyond_the_Summary_Handout_Updated.pdf#page=9
+        - label: Worksheet C — evidence, gaps and novelty (p. 13)
+          file: Beyond_the_Summary_Handout_Updated.pdf#page=13
+        - label: Worked evidence-matrix example (p. 12)
+          file: Beyond_the_Summary_Handout_Updated.pdf#page=12
+    - title: Worked worksheets · Battery recycling (English)
+      links:
+        - label: Completed Worksheets A, B & C (English PDF · 5 pages)
+          file: worksheets/MMS3_Battery_Recycling_Worked_Worksheets.pdf
+        - label: Read the English examples online
+          file: worksheets/MMS3_Battery_Recycling_Worked_Worksheets.html
+        - label: Download English examples with Quarto sources (ZIP)
+          file: worksheets/MMS3_Battery_Recycling_Worked_Worksheets.zip
+  source_files:
+    - label: Slide source (.qmd)
+      url: https://raw.githubusercontent.com/soorathep/Test/main/teaching/seminars/Beyond_the_Summary_Updated.qmd
+    - label: English worked worksheet source (.qmd)
+      url: https://raw.githubusercontent.com/soorathep/Test/main/teaching/seminars/worksheets/MMS3_Battery_Recycling_Worked_Worksheets.qmd
+
+- title: Making Conferences Work for You
+  date: 2026-08-17
+  venue: Department of Chemical Engineering, Chulalongkorn University
+  slides: conferences.html
+  note: Choosing a meeting that matches the stage your work is at, planning backward from the abstract deadline, designing a talk and a poster for the time you are given, handling questions in English, and what to do in the first 48 hours after you return.

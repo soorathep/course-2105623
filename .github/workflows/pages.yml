@@ -1,0 +1,42 @@
+name: Build and deploy course
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+      - name: Preserve downloadable Quarto source
+        run: |
+          if [ -f teaching/2105623/milp/slides.qmd ]; then sudo cp teaching/2105623/milp/slides.qmd _site/teaching/2105623/milp/slides.qmd; fi
+      - name: Project-site links and size check
+        run: |
+          sudo python3 tools/fix_site_links.py course-2105623 2105623
+          size=$(du --apparent-size --block-size=1 --summarize _site | cut -f1)
+          echo "Published site size: $size bytes"
+          test "$size" -le 1000000000
+      - uses: actions/upload-pages-artifact@v3
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
