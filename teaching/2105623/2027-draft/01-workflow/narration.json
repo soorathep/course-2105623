@@ -1,0 +1,1271 @@
+{
+ "voice": "en-US-GuyNeural",
+ "rate": "-5%",
+ "provider": "Microsoft Edge neural speech (edge-tts)",
+ "synthetic_voice": true,
+ "total_seconds": 1081.4,
+ "slides": [
+  {
+   "n": 1,
+   "file": "audio/slide-01.mp3",
+   "duration": 21.144,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.932,
+     "en": "Welcome to Optimization of Chemical Processes.",
+     "th": "ยินดีต้อนรับสู่วิชา Optimization of Chemical Processes"
+    },
+    {
+     "s": 3.932,
+     "e": 11.026,
+     "en": "This first session is about the optimization workflow: how to go from a sentence about a plant to an answer you can defend.",
+     "th": "คาบแรกนี้ว่าด้วย workflow ของการทำ optimization คือการเดินจากประโยคที่บรรยายโรงงาน ไปสู่คำตอบที่ปกป้องได้"
+    },
+    {
+     "s": 11.026,
+     "e": 15.526,
+     "en": "You can use these slides in class, or on your own with this narration.",
+     "th": "สไลด์ชุดนี้ใช้ได้ทั้งในห้องเรียน และเรียนด้วยตนเองพร้อมเสียงบรรยายนี้"
+    },
+    {
+     "s": 15.526,
+     "e": 21.079,
+     "en": "Press P at any time to pause, and C to switch the captions between English and Thai.",
+     "th": "กด P เมื่อใดก็ได้เพื่อหยุดชั่วคราว และกด C เพื่อสลับคำบรรยายระหว่างภาษาอังกฤษกับภาษาไทย"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "file": "audio/slide-02.mp3",
+   "duration": 32.736,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.221,
+     "en": "Here is the plan for today's three hours.",
+     "th": "นี่คือแผนของสามชั่วโมงวันนี้"
+    },
+    {
+     "s": 3.221,
+     "e": 7.421,
+     "en": "We start with a short activity so that we know who is in the room.",
+     "th": "เราเริ่มด้วยกิจกรรมสั้น ๆ เพื่อให้รู้ว่าใครอยู่ในห้องบ้าง"
+    },
+    {
+     "s": 7.421,
+     "e": 14.026,
+     "en": "Part one states the problem precisely and introduces the five-stage workflow and how to verify a result.",
+     "th": "ส่วนที่หนึ่งนิยามปัญหาอย่างแม่นยำ แนะนำ workflow ห้าขั้น และวิธีตรวจสอบผลลัพธ์"
+    },
+    {
+     "s": 14.026,
+     "e": 20.671,
+     "en": "Part two covers classification, certificates, geometry, formulation and model validity.",
+     "th": "ส่วนที่สองว่าด้วยการจัดประเภทปัญหา certificate เรขาคณิต formulation และความถูกต้องของโมเดล"
+    },
+    {
+     "s": 20.671,
+     "e": 28.184,
+     "en": "After the break, a second activity brings your own research into the room, and part three covers tools and how the course runs.",
+     "th": "หลังพัก กิจกรรมที่สองจะนำงานวิจัยของคุณเข้ามาในห้อง และส่วนที่สามว่าด้วยเครื่องมือและการดำเนินวิชา"
+    },
+    {
+     "s": 28.184,
+     "e": 32.671,
+     "en": "The last forty minutes are Lab 1, followed by the Exit Ticket.",
+     "th": "สี่สิบนาทีสุดท้ายคือ Lab 1 ตามด้วย Exit Ticket"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "file": "audio/slide-03.mp3",
+   "duration": 34.224,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.866,
+     "en": "Every session in this course has the same four parts.",
+     "th": "ทุกคาบในวิชานี้มีสี่ส่วนเหมือนกัน"
+    },
+    {
+     "s": 3.866,
+     "e": 8.342,
+     "en": "The slides, with English narration and captions in English or Thai.",
+     "th": "สไลด์ พร้อมเสียงบรรยายภาษาอังกฤษ และคำบรรยายภาษาอังกฤษหรือไทย"
+    },
+    {
+     "s": 8.342,
+     "e": 17.474,
+     "en": "Demos on the slides, where you move a slider or press a button. Press D on any slide marked D Python to see and run the code behind it.",
+     "th": "Demo บนสไลด์ ที่ให้เลื่อนแถบหรือกดปุ่ม กด D บนหน้าที่มีป้าย D Python เพื่อดูและรันโค้ดเบื้องหลัง"
+    },
+    {
+     "s": 17.474,
+     "e": 22.079,
+     "en": "A lab page that you work through yourself, on a laptop or a phone.",
+     "th": "หน้า lab ที่คุณทำเองบนโน้ตบุ๊กหรือโทรศัพท์"
+    },
+    {
+     "s": 22.079,
+     "e": 27.092,
+     "en": "And an Exit Ticket with feedback, through the QR code on the last slide.",
+     "th": "และ Exit Ticket พร้อม feedback ผ่าน QR code ในหน้าสุดท้าย"
+    },
+    {
+     "s": 27.092,
+     "e": 34.158,
+     "en": "If a class is cancelled, for example on a public holiday, you can do the whole session on your own in the same order.",
+     "th": "ถ้าคาบใดถูกยกเลิก เช่น ตรงกับวันหยุดราชการ คุณทำทั้งคาบได้ด้วยตนเองตามลำดับเดียวกัน"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "file": "audio/slide-04.mp3",
+   "duration": 19.08,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.353,
+     "en": "Here is the idea behind the whole course.",
+     "th": "นี่คือแนวคิดเบื้องหลังของทั้งวิชา"
+    },
+    {
+     "s": 3.353,
+     "e": 7.092,
+     "en": "A solver will always answer the question you asked it.",
+     "th": "solver จะตอบคำถามที่คุณถามเสมอ"
+    },
+    {
+     "s": 7.092,
+     "e": 11.842,
+     "en": "Our job is to make sure that the question we asked is the question we meant.",
+     "th": "หน้าที่ของเราคือทำให้แน่ใจว่าคำถามที่ถามคือคำถามที่เราตั้งใจจะถาม"
+    },
+    {
+     "s": 11.842,
+     "e": 19.026,
+     "en": "Very little of this course is about arithmetic. Most of it is about formulation and evidence.",
+     "th": "เนื้อหาของวิชานี้ไม่ค่อยเกี่ยวกับการคำนวณ แต่เกือบทั้งหมดเกี่ยวกับการตั้งโจทย์และหลักฐาน"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "file": "audio/slide-05.mp3",
+   "duration": 44.4,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.866,
+     "en": "By the end of today you should be able to do six things.",
+     "th": "เมื่อจบวันนี้ คุณควรทำได้หกอย่าง"
+    },
+    {
+     "s": 3.866,
+     "e": 11.658,
+     "en": "State a problem in standard form, and say precisely what a solution, the optimal value, and a local or global optimum are.",
+     "th": "เขียนปัญหาในรูปมาตรฐาน และบอกได้อย่างแม่นยำว่าคำตอบ ค่าเหมาะสมที่สุด และ optimum แบบ local หรือ global คืออะไร"
+    },
+    {
+     "s": 11.658,
+     "e": 19.237,
+     "en": "Write a specification with units before any algebra, and check a model for dimensional consistency and conservation.",
+     "th": "เขียน specification พร้อมหน่วยก่อนเขียนสมการ และตรวจโมเดลด้วยความสอดคล้องของหน่วยและการอนุรักษ์มวล"
+    },
+    {
+     "s": 19.237,
+     "e": 25.908,
+     "en": "Classify a problem by convexity and integrality, and say what a solver can certify for each class.",
+     "th": "จัดประเภทปัญหาตาม convexity และ integrality และบอกได้ว่า solver พิสูจน์อะไรได้ในแต่ละประเภท"
+    },
+    {
+     "s": 25.908,
+     "e": 33.329,
+     "en": "Verify a linear program with a primal-dual certificate, and read certificates of infeasibility and unboundedness.",
+     "th": "ตรวจ linear program ด้วย primal-dual certificate และอ่าน certificate ของ infeasibility และ unboundedness ได้"
+    },
+    {
+     "s": 33.329,
+     "e": 38.921,
+     "en": "Explain why formulation, scaling and model validity matter as much as the solver.",
+     "th": "อธิบายว่าทำไม formulation การปรับสเกล และความถูกต้องของโมเดล สำคัญพอ ๆ กับ solver"
+    },
+    {
+     "s": 38.921,
+     "e": 44.329,
+     "en": "And find planted errors in a flowsheet model with checks that do not need the right answer.",
+     "th": "และหาข้อผิดที่ฝังไว้ในโมเดล flowsheet ด้วยการตรวจที่ไม่ต้องรู้คำตอบที่ถูกล่วงหน้า"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "file": "audio/slide-06.mp3",
+   "duration": 21.624,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.563,
+     "en": "Our first activity is the one-minute pitch.",
+     "th": "กิจกรรมแรกคือ one-minute pitch"
+    },
+    {
+     "s": 3.563,
+     "e": 11.368,
+     "en": "Everybody speaks for one minute and answers four questions: your name, where you graduated, who you work with now, and why you are here.",
+     "th": "ทุกคนพูดหนึ่งนาที ตอบสี่คำถาม คือชื่อ จบจากที่ไหน ตอนนี้ทำงานกับใคร และมาเรียนวิชานี้เพราะอะไร"
+    },
+    {
+     "s": 11.368,
+     "e": 15.382,
+     "en": "The last question is the one that matters most for the course.",
+     "th": "คำถามสุดท้ายสำคัญที่สุดสำหรับวิชานี้"
+    },
+    {
+     "s": 15.382,
+     "e": 21.566,
+     "en": "If you are studying on your own, pause the narration now and write your four answers in two sentences each.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้หยุดเสียงบรรยายตอนนี้ แล้วเขียนคำตอบทั้งสี่ข้อ ข้อละสองประโยค"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "file": "audio/slide-07.mp3",
+   "duration": 48.432,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.116,
+     "en": "Let us state the problem precisely.",
+     "th": "เรามานิยามปัญหาให้แม่นยำกัน"
+    },
+    {
+     "s": 3.116,
+     "e": 13.368,
+     "en": "We minimize f of x over x in a simple set X, subject to inequality constraints g of x less than or equal to zero and equality constraints h of x equal to zero.",
+     "th": "เราหาค่าต่ำสุดของ f ของ x เมื่อ x อยู่ในเซตอย่างง่าย X ภายใต้ข้อจำกัดอสมการ g ของ x น้อยกว่าหรือเท่ากับศูนย์ และข้อจำกัดสมการ h ของ x เท่ากับศูนย์"
+    },
+    {
+     "s": 13.368,
+     "e": 18.434,
+     "en": "The feasible set F contains every x that satisfies all the constraints.",
+     "th": "feasible set F คือเซตของ x ทุกตัวที่ผ่านข้อจำกัดทั้งหมด"
+    },
+    {
+     "s": 18.434,
+     "e": 22.842,
+     "en": "The optimal value v star is the infimum of f over F.",
+     "th": "ค่าเหมาะสมที่สุด v star คือ infimum ของ f บน F"
+    },
+    {
+     "s": 22.842,
+     "e": 30.526,
+     "en": "A global solution attains that value. A local solution is only best among nearby feasible points.",
+     "th": "คำตอบแบบ global ให้ค่านั้นได้จริง ส่วนคำตอบแบบ local ดีที่สุดเฉพาะเมื่อเทียบกับจุดที่ feasible ใกล้ ๆ เท่านั้น"
+    },
+    {
+     "s": 30.526,
+     "e": 39.737,
+     "en": "Notice that the infimum need not be attained. The exponential function has an infimum of zero on the real line, but no minimizer.",
+     "th": "สังเกตว่า infimum อาจไม่ถูกบรรลุ ฟังก์ชัน exponential มี infimum เท่ากับศูนย์บนเส้นจำนวนจริง แต่ไม่มีจุดต่ำสุด"
+    },
+    {
+     "s": 39.737,
+     "e": 48.355,
+     "en": "A solver returns a point and a status. Whether that point is global, local, or neither depends on the class of the problem.",
+     "th": "solver คืนค่าเป็นจุดหนึ่งพร้อมสถานะ จุดนั้นจะเป็น global local หรือไม่ใช่ทั้งสอง ขึ้นกับประเภทของปัญหา"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "file": "audio/slide-08.mp3",
+   "duration": 28.872,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.918,
+     "en": "Every model in this course is built in five stages.",
+     "th": "ทุกโมเดลในวิชานี้สร้างผ่านห้าขั้น"
+    },
+    {
+     "s": 3.918,
+     "e": 13.737,
+     "en": "The verbal problem in prose; the specification, with sets, data, decisions and units; the algebra; the code; and the interpretation of the result.",
+     "th": "ปัญหาที่เขียนเป็นร้อยแก้ว specification ที่มีเซต ข้อมูล ตัวแปรตัดสินใจ และหน่วย สมการ โค้ด และการตีความผลลัพธ์"
+    },
+    {
+     "s": 13.737,
+     "e": 19.5,
+     "en": "Each stage takes the artifact of the one before and makes it more formal and less ambiguous.",
+     "th": "แต่ละขั้นรับผลงานจากขั้นก่อนหน้า แล้วทำให้เป็นทางการมากขึ้นและกำกวมน้อยลง"
+    },
+    {
+     "s": 19.5,
+     "e": 28.803,
+     "en": "The most common failure is to skip stage two and write code straight from a paragraph. The model runs, returns a number, and is wrong.",
+     "th": "ความผิดพลาดที่พบบ่อยที่สุดคือข้ามขั้นที่สอง แล้วเขียนโค้ดจากย่อหน้าตรง ๆ โมเดลรันได้ ให้ตัวเลขออกมา แต่ผิด"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "file": "audio/slide-09.mp3",
+   "duration": 31.368,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.866,
+     "en": "This table lists what each stage produces and how it typically fails.",
+     "th": "ตารางนี้แสดงว่าแต่ละขั้นได้ผลงานอะไร และมักผิดพลาดอย่างไร"
+    },
+    {
+     "s": 4.866,
+     "e": 12.816,
+     "en": "At stage two, the typical failures are a missing constraint, an unstated assumption, or a parameter treated as a variable.",
+     "th": "ในขั้นที่สอง ความผิดพลาดที่พบบ่อยคือข้อจำกัดหายไป สมมติฐานที่ไม่ได้เขียนไว้ หรือการใช้พารามิเตอร์เหมือนเป็นตัวแปร"
+    },
+    {
+     "s": 12.816,
+     "e": 19.039,
+     "en": "At stage four, they are data typed into formulas, an off-by-one index, or a sign error.",
+     "th": "ในขั้นที่สี่ คือการพิมพ์ข้อมูลลงในสูตร index คลาดไปหนึ่ง หรือเครื่องหมายผิด"
+    },
+    {
+     "s": 19.039,
+     "e": 28.132,
+     "en": "Three rules hold for the whole course: write stage two before any algebra, give every symbol a unit, and never quote a number before reading the solver status.",
+     "th": "กฎสามข้อที่ใช้ตลอดวิชา คือเขียนขั้นที่สองก่อนสมการ ทุกสัญลักษณ์ต้องมีหน่วย และห้ามรายงานตัวเลขก่อนอ่านสถานะของ solver"
+    },
+    {
+     "s": 28.132,
+     "e": 31.316,
+     "en": "Lab 1 today is built on these rules.",
+     "th": "Lab 1 วันนี้สร้างบนกฎเหล่านี้"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "file": "audio/slide-10.mp3",
+   "duration": 26.4,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.445,
+     "en": "Here is stage one for our lecture example.",
+     "th": "นี่คือขั้นที่หนึ่งของตัวอย่างในการบรรยาย"
+    },
+    {
+     "s": 3.445,
+     "e": 12.211,
+     "en": "A unit supplying the zinc-air battery industry makes an electrolyte additive and a binder solution on shared equipment, and plans one week at a time.",
+     "th": "หน่วยผลิตที่ส่งให้อุตสาหกรรมแบตเตอรี่สังกะสี-อากาศ ผลิต electrolyte additive และ binder solution บนอุปกรณ์ร่วมกัน และวางแผนทีละสัปดาห์"
+    },
+    {
+     "s": 12.211,
+     "e": 19.579,
+     "en": "The table gives the hours each tonne needs on three shared resources, the hours available per week, and the margin per tonne.",
+     "th": "ตารางแสดงจำนวนชั่วโมงที่แต่ละตันต้องใช้บนทรัพยากรร่วมสามอย่าง ชั่วโมงที่มีต่อสัปดาห์ และ margin ต่อตัน"
+    },
+    {
+     "s": 19.579,
+     "e": 26.329,
+     "en": "Everything produced can be sold. We want the weekly plan with the largest total margin.",
+     "th": "ผลิตเท่าไรก็ขายได้หมด เราต้องการแผนรายสัปดาห์ที่ให้ margin รวมสูงสุด"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "file": "audio/slide-11.mp3",
+   "duration": 29.136,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.747,
+     "en": "Stage two is the specification, written before any algebra.",
+     "th": "ขั้นที่สองคือ specification ที่เขียนก่อนสมการ"
+    },
+    {
+     "s": 4.747,
+     "e": 16.803,
+     "en": "Each object has a type, a symbol, a meaning and a unit: sets for products and resources, parameters for margins, hours per tonne and hours available, and the decision variable x, in tonnes per week.",
+     "th": "ทุกสิ่งมีประเภท สัญลักษณ์ ความหมาย และหน่วย ได้แก่เซตของผลิตภัณฑ์และทรัพยากร พารามิเตอร์ของ margin ชั่วโมงต่อตัน และชั่วโมงที่มี และตัวแปรตัดสินใจ x หน่วยเป็นตันต่อสัปดาห์"
+    },
+    {
+     "s": 16.803,
+     "e": 20.211,
+     "en": "The restrictions are written in words and numbered.",
+     "th": "ข้อจำกัดเขียนเป็นคำและใส่หมายเลข"
+    },
+    {
+     "s": 20.211,
+     "e": 29.079,
+     "en": "Restriction three, that everything made can be sold, is an assumption. Writing it down is what allows someone to challenge it later.",
+     "th": "ข้อจำกัดที่สาม ที่ว่าผลิตเท่าไรก็ขายได้หมด เป็นสมมติฐาน การเขียนไว้ทำให้คนอื่นตั้งคำถามกับมันได้ในภายหลัง"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "file": "audio/slide-12.mp3",
+   "duration": 34.992,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.839,
+     "en": "Stage three is the algebra.",
+     "th": "ขั้นที่สามคือสมการ"
+    },
+    {
+     "s": 2.839,
+     "e": 11.763,
+     "en": "We maximize four hundred x one plus three hundred x two, in US dollars per week, subject to three resource limits and non-negativity.",
+     "th": "เราหาค่าสูงสุดของ สี่ร้อย x หนึ่ง บวก สามร้อย x สอง หน่วยดอลลาร์สหรัฐต่อสัปดาห์ ภายใต้ข้อจำกัดทรัพยากรสามข้อ และตัวแปรไม่ติดลบ"
+    },
+    {
+     "s": 11.763,
+     "e": 16.013,
+     "en": "Now the thirty-second habit: check the units of every term.",
+     "th": "ต่อไปคือนิสัยสามสิบวินาที ตรวจหน่วยของทุกพจน์"
+    },
+    {
+     "s": 16.013,
+     "e": 25.947,
+     "en": "Hours per tonne times tonnes per week gives hours per week, the units of each right-hand side. Dollars per tonne times tonnes per week gives dollars per week.",
+     "th": "ชั่วโมงต่อตันคูณตันต่อสัปดาห์ ได้ชั่วโมงต่อสัปดาห์ ซึ่งเป็นหน่วยของด้านขวาของแต่ละข้อจำกัด ดอลลาร์ต่อตันคูณตันต่อสัปดาห์ ได้ดอลลาร์ต่อสัปดาห์"
+    },
+    {
+     "s": 25.947,
+     "e": 34.921,
+     "en": "A units check catches more modeling errors than any other single habit. Lab 1 contains a units error that you will find this way.",
+     "th": "การตรวจหน่วยจับข้อผิดของโมเดลได้มากกว่านิสัยอื่นใด Lab 1 มีข้อผิดเรื่องหน่วยที่คุณจะหาเจอด้วยวิธีนี้"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "file": "audio/slide-13.mp3",
+   "duration": 27.48,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.55,
+     "en": "Stage four is the code.",
+     "th": "ขั้นที่สี่คือโค้ด"
+    },
+    {
+     "s": 2.55,
+     "e": 7.803,
+     "en": "Here the model is solved with linprog from SciPy, using the HiGHS solver.",
+     "th": "ที่นี่เราแก้โมเดลด้วย linprog ของ SciPy โดยใช้ solver ชื่อ HiGHS"
+    },
+    {
+     "s": 7.803,
+     "e": 16.697,
+     "en": "linprog minimizes, so the margins enter with a minus sign. Maximizing z is the same as minimizing minus z.",
+     "th": "linprog หาค่าต่ำสุด margin จึงใส่เครื่องหมายลบ การหาค่าสูงสุดของ z เท่ากับการหาค่าต่ำสุดของลบ z"
+    },
+    {
+     "s": 16.697,
+     "e": 23.592,
+     "en": "The data are kept apart from the model logic. Never type a number inside a formula.",
+     "th": "ข้อมูลแยกจากตรรกะของโมเดล อย่าพิมพ์ตัวเลขลงในสูตร"
+    },
+    {
+     "s": 23.592,
+     "e": 27.408,
+     "en": "Press D to open this code and run it in your browser.",
+     "th": "กด D เพื่อเปิดโค้ดนี้และรันในเบราว์เซอร์"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "file": "audio/slide-14.mp3",
+   "duration": 35.64,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.289,
+     "en": "Stage five is interpretation. Read the status first, then the numbers.",
+     "th": "ขั้นที่ห้าคือการตีความ อ่านสถานะก่อน แล้วจึงอ่านตัวเลข"
+    },
+    {
+     "s": 6.289,
+     "e": 15.342,
+     "en": "The status is optimal. The plan is six tonnes of additive and three tonnes of binder, for three thousand three hundred dollars per week.",
+     "th": "สถานะคือ optimal แผนคือ additive หกตัน และ binder สามตัน ได้สามพันสามร้อยดอลลาร์ต่อสัปดาห์"
+    },
+    {
+     "s": 15.342,
+     "e": 21.921,
+     "en": "The reactor and packaging are fully used. Separation has four hours to spare.",
+     "th": "reactor และ packaging ถูกใช้เต็ม ส่วน separation เหลือสี่ชั่วโมง"
+    },
+    {
+     "s": 21.921,
+     "e": 30.316,
+     "en": "The shadow price says what one more hour of each resource is worth: one hundred dollars for the reactor and for packaging, and zero for separation.",
+     "th": "shadow price บอกว่าชั่วโมงเพิ่มอีกหนึ่งชั่วโมงของแต่ละทรัพยากรมีค่าเท่าไร คือหนึ่งร้อยดอลลาร์สำหรับ reactor และ packaging และศูนย์สำหรับ separation"
+    },
+    {
+     "s": 30.316,
+     "e": 35.579,
+     "en": "Do not buy separation hours. They would not change the plan.",
+     "th": "อย่าซื้อชั่วโมงของ separation เพราะไม่ทำให้แผนเปลี่ยน"
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "file": "audio/slide-15.mp3",
+   "duration": 44.16,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.866,
+     "en": "Now, how do we know that this plan is optimal without trusting the solver?",
+     "th": "ทีนี้ เราจะรู้ได้อย่างไรว่าแผนนี้ดีที่สุด โดยไม่ต้องเชื่อ solver"
+    },
+    {
+     "s": 4.866,
+     "e": 7.882,
+     "en": "We check a primal-dual certificate.",
+     "th": "เราตรวจ primal-dual certificate"
+    },
+    {
+     "s": 7.882,
+     "e": 14.145,
+     "en": "First, the plan is feasible: A times x star is within b, and x star is non-negative.",
+     "th": "ข้อแรก แผนนี้ feasible คือ A คูณ x star ไม่เกิน b และ x star ไม่ติดลบ"
+    },
+    {
+     "s": 14.145,
+     "e": 22.005,
+     "en": "Second, the dual vector y, one hundred, zero, one hundred, is non-negative, and A transpose y is at least the margin vector c.",
+     "th": "ข้อสอง เวกเตอร์ dual y ซึ่งเท่ากับ หนึ่งร้อย ศูนย์ หนึ่งร้อย ไม่ติดลบ และ A transpose คูณ y มีค่าไม่น้อยกว่าเวกเตอร์ margin c"
+    },
+    {
+     "s": 22.005,
+     "e": 27.447,
+     "en": "Third, c transpose x star equals b transpose y: both are three thousand three hundred.",
+     "th": "ข้อสาม c transpose x star เท่ากับ b transpose y คือสามพันสามร้อยทั้งคู่"
+    },
+    {
+     "s": 27.447,
+     "e": 34.829,
+     "en": "By weak duality, every feasible plan earns at most b transpose y, so equality proves that both are optimal.",
+     "th": "ตาม weak duality ทุกแผนที่ feasible ได้ไม่เกิน b transpose y ความเท่ากันจึงพิสูจน์ว่าทั้งสองเป็น optimal"
+    },
+    {
+     "s": 34.829,
+     "e": 44.105,
+     "en": "This takes three matrix-vector products and no solver. The same idea, in different forms, is the evidence we will ask for all term.",
+     "th": "ใช้แค่การคูณเมทริกซ์กับเวกเตอร์สามครั้ง ไม่ต้องใช้ solver แนวคิดเดียวกันนี้ในรูปแบบต่าง ๆ คือหลักฐานที่เราจะขอตลอดเทอม"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "file": "audio/slide-16.mp3",
+   "duration": 37.08,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.934,
+     "en": "Shadow prices are local. This demo shows why.",
+     "th": "shadow price ใช้ได้เฉพาะช่วง demo นี้แสดงเหตุผล"
+    },
+    {
+     "s": 4.934,
+     "e": 10.816,
+     "en": "Move the packaging hours with the slider and watch the plan, the margin and the shadow prices.",
+     "th": "เลื่อนแถบเพื่อเปลี่ยนชั่วโมงของ packaging แล้วดูแผน margin และ shadow price"
+    },
+    {
+     "s": 10.816,
+     "e": 15.513,
+     "en": "From nine to ten hours, each extra hour earns one hundred dollars.",
+     "th": "จากเก้าถึงสิบชั่วโมง ทุกชั่วโมงที่เพิ่มได้หนึ่งร้อยดอลลาร์"
+    },
+    {
+     "s": 15.513,
+     "e": 23.553,
+     "en": "Above ten hours packaging is no longer the limit, so its shadow price drops to zero and the margin stays at three thousand four hundred.",
+     "th": "เกินสิบชั่วโมง packaging ไม่ใช่ตัวจำกัดอีกต่อไป shadow price จึงลดเป็นศูนย์ และ margin คงที่ที่สามพันสี่ร้อย"
+    },
+    {
+     "s": 23.553,
+     "e": 37.013,
+     "en": "The optimal value is a piecewise linear, concave function of the right-hand side. A shadow price is the slope of one piece, valid only on its interval. Session 6 makes this exact.",
+     "th": "ค่าเหมาะสมที่สุดเป็นฟังก์ชันเชิงเส้นเป็นช่วงและเว้าของด้านขวา shadow price คือความชันของช่วงหนึ่ง ใช้ได้เฉพาะในช่วงนั้น คาบที่ 6 จะทำให้เรื่องนี้แม่นยำ"
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "file": "audio/slide-17.mp3",
+   "duration": 31.344,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.826,
+     "en": "Every optimization problem is made of four things.",
+     "th": "ทุกปัญหา optimization ประกอบด้วยสี่สิ่ง"
+    },
+    {
+     "s": 3.826,
+     "e": 15.211,
+     "en": "Decision variables, which you are free to choose. Parameters, which are fixed before you solve. One objective. And the constraints.",
+     "th": "ตัวแปรตัดสินใจที่คุณเลือกได้ พารามิเตอร์ที่ถูกกำหนดก่อนแก้ปัญหา objective หนึ่งตัว และข้อจำกัด"
+    },
+    {
+     "s": 15.211,
+     "e": 19.697,
+     "en": "A quantity you cannot change is a parameter, not a variable.",
+     "th": "ปริมาณที่คุณเปลี่ยนไม่ได้คือพารามิเตอร์ ไม่ใช่ตัวแปร"
+    },
+    {
+     "s": 19.697,
+     "e": 31.276,
+     "en": "Whether a requirement is hard or soft is your modeling decision. A safety limit is hard. A delivery date is usually soft, with a penalty for being late.",
+     "th": "การที่ข้อกำหนดหนึ่งเป็นแบบ hard หรือ soft เป็นการตัดสินใจของผู้สร้างโมเดล ขีดจำกัดด้านความปลอดภัยเป็น hard กำหนดส่งของมักเป็น soft โดยมีค่าปรับเมื่อส่งช้า"
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "file": "audio/slide-18.mp3",
+   "duration": 38.496,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.129,
+     "en": "The class of a problem decides what a solver can promise.",
+     "th": "ประเภทของปัญหาเป็นตัวกำหนดว่า solver สัญญาอะไรได้"
+    },
+    {
+     "s": 4.129,
+     "e": 13.539,
+     "en": "For a linear program, the solver returns a global optimum, or proves infeasibility or unboundedness, and each outcome comes with evidence you can check.",
+     "th": "สำหรับ linear program solver ให้ global optimum หรือพิสูจน์ว่า infeasible หรือ unbounded และทุกผลลัพธ์มีหลักฐานที่ตรวจได้"
+    },
+    {
+     "s": 13.539,
+     "e": 18.816,
+     "en": "For a convex nonlinear program, a KKT point is a global optimum.",
+     "th": "สำหรับ nonlinear program ที่ convex จุด KKT คือ global optimum"
+    },
+    {
+     "s": 18.816,
+     "e": 24.355,
+     "en": "For a nonconvex program, a KKT point is only a candidate local optimum.",
+     "th": "สำหรับปัญหาที่ไม่ convex จุด KKT เป็นเพียงผู้สมัครของ local optimum"
+    },
+    {
+     "s": 24.355,
+     "e": 31.079,
+     "en": "For a mixed-integer program, the solver reports the best plan found and a bound, and the gap between them.",
+     "th": "สำหรับ mixed-integer program solver รายงานแผนที่ดีที่สุดที่พบ ค่า bound และ gap ระหว่างทั้งสอง"
+    },
+    {
+     "s": 31.079,
+     "e": 38.434,
+     "en": "So the first question to ask is not linear or nonlinear. It is convex or nonconvex.",
+     "th": "คำถามแรกจึงไม่ใช่ว่าเป็นเชิงเส้นหรือไม่ แต่เป็นว่า convex หรือไม่"
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "file": "audio/slide-19.mp3",
+   "duration": 30.48,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.918,
+     "en": "Now suppose each product can only be made in whole batches of four tonnes.",
+     "th": "สมมติว่าผลิตภัณฑ์แต่ละชนิดต้องผลิตเป็น batch ละสี่ตันเท่านั้น"
+    },
+    {
+     "s": 4.918,
+     "e": 12.474,
+     "en": "Rounding the LP answer, six and three, down to whole batches gives four and zero, and only one thousand six hundred dollars.",
+     "th": "การปัดคำตอบ LP คือหกและสาม ลงเป็น batch เต็มได้สี่และศูนย์ ได้เพียงหนึ่งพันหกร้อยดอลลาร์"
+    },
+    {
+     "s": 12.474,
+     "e": 17.5,
+     "en": "The best batch plan is eight and zero, at three thousand two hundred dollars.",
+     "th": "แผน batch ที่ดีที่สุดคือแปดและศูนย์ ได้สามพันสองร้อยดอลลาร์"
+    },
+    {
+     "s": 17.5,
+     "e": 27.434,
+     "en": "A mixed-integer solver would report the LP bound of three thousand three hundred and the incumbent of three thousand two hundred: a gap of three percent, proved rather than guessed.",
+     "th": "solver แบบ mixed-integer จะรายงาน LP bound สามพันสามร้อย และ incumbent สามพันสองร้อย คือ gap สามเปอร์เซ็นต์ ซึ่งเป็นค่าที่พิสูจน์แล้ว ไม่ใช่การเดา"
+    },
+    {
+     "s": 27.434,
+     "e": 30.421,
+     "en": "Rounding is not an integer method.",
+     "th": "การปัดเศษไม่ใช่วิธีหาคำตอบจำนวนเต็ม"
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "file": "audio/slide-20.mp3",
+   "duration": 41.52,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.524,
+     "en": "In this demo we break the model on purpose.",
+     "th": "ใน demo นี้เราทำให้โมเดลพังโดยตั้งใจ"
+    },
+    {
+     "s": 3.524,
+     "e": 13.013,
+     "en": "Press the second button to add a supply contract of at least twelve tonnes per week. Packaging allows at most nine, so the model is infeasible.",
+     "th": "กดปุ่มที่สองเพื่อเพิ่มสัญญาซื้อขายอย่างน้อยสิบสองตันต่อสัปดาห์ แต่ packaging รองรับได้ไม่เกินเก้าตัน โมเดลจึง infeasible"
+    },
+    {
+     "s": 13.013,
+     "e": 23.145,
+     "en": "The certificate is simple: add the packaging row and the contract row, and you get zero less than or equal to minus three. No plan can satisfy both.",
+     "th": "certificate ง่ายมาก รวมแถว packaging กับแถวสัญญาเข้าด้วยกัน จะได้ ศูนย์ น้อยกว่าหรือเท่ากับ ลบสาม ไม่มีแผนใดผ่านทั้งสองข้อได้"
+    },
+    {
+     "s": 23.145,
+     "e": 29.395,
+     "en": "Press the third button: the three resource rows are deleted by mistake, and the model is unbounded.",
+     "th": "กดปุ่มที่สาม แถวทรัพยากรทั้งสามถูกลบโดยไม่ตั้งใจ และโมเดล unbounded"
+    },
+    {
+     "s": 29.395,
+     "e": 41.461,
+     "en": "Here the certificate is a direction, one and one, that keeps every constraint and improves the margin by seven hundred per unit. A physical model with an improving ray has lost a constraint.",
+     "th": "ที่นี่ certificate คือทิศทาง หนึ่ง หนึ่ง ที่ไม่ละเมิดข้อจำกัดใด และเพิ่ม margin เจ็ดร้อยต่อหน่วย โมเดลทางกายภาพที่มีทิศทางเช่นนี้แปลว่าข้อจำกัดหายไป"
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "file": "audio/slide-21.mp3",
+   "duration": 35.448,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.3,
+     "en": "Why does the optimum of a linear program sit at a corner?",
+     "th": "ทำไม optimum ของ linear program จึงอยู่ที่มุม"
+    },
+    {
+     "s": 4.3,
+     "e": 11.368,
+     "en": "The feasible region is the intersection of five half-planes, so it is convex, with flat faces and corners.",
+     "th": "บริเวณ feasible คือส่วนตัดของ half-plane ห้าอัน จึง convex มีผิวเรียบและมีมุม"
+    },
+    {
+     "s": 11.368,
+     "e": 20.171,
+     "en": "The dashed line joins all plans with the same margin. Move the slider to push it along the gradient, four hundred, three hundred.",
+     "th": "เส้นประเชื่อมแผนทุกแผนที่ให้ margin เท่ากัน เลื่อนแถบเพื่อดันเส้นไปตามทิศ gradient สี่ร้อย สามร้อย"
+    },
+    {
+     "s": 20.171,
+     "e": 26.461,
+     "en": "The last feasible point the line touches is the corner six, three, at three thousand three hundred.",
+     "th": "จุด feasible สุดท้ายที่เส้นแตะคือมุม หก สาม ที่สามพันสามร้อย"
+    },
+    {
+     "s": 26.461,
+     "e": 35.382,
+     "en": "An LP with a finite optimum always has an optimal vertex. Session 7 turns this picture into the simplex method.",
+     "th": "LP ที่มี optimum จำกัดจะมี vertex ที่เป็น optimum เสมอ คาบที่ 7 จะเปลี่ยนภาพนี้เป็นวิธี simplex"
+    }
+   ]
+  },
+  {
+   "n": 22,
+   "file": "audio/slide-22.mp3",
+   "duration": 41.232,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.418,
+     "en": "The same physics can be written as an easy or a hard problem.",
+     "th": "ฟิสิกส์เดียวกันเขียนเป็นปัญหาง่ายหรือยากก็ได้"
+    },
+    {
+     "s": 4.418,
+     "e": 13.842,
+     "en": "A quality ratio is nonlinear and undefined at zero flow. Multiplying through by the total flow gives an exact linear constraint.",
+     "th": "อัตราส่วนคุณภาพเป็นแบบไม่เชิงเส้นและไม่นิยามเมื่ออัตราไหลเป็นศูนย์ การคูณตลอดด้วยอัตราไหลรวมให้ข้อจำกัดเชิงเส้นที่ถูกต้อง"
+    },
+    {
+     "s": 13.842,
+     "e": 23.763,
+     "en": "An on-off unit with a big-M that is far too large gives a weak bound. The tightest valid M gives a much better one, as we will see in Session 3.",
+     "th": "หน่วยแบบเปิดปิดที่ใช้ big-M ใหญ่เกินไปให้ bound ที่อ่อน ค่า M ที่แน่นที่สุดที่ยังถูกต้องให้ bound ที่ดีกว่ามาก ดังที่จะเห็นในคาบที่ 3"
+    },
+    {
+     "s": 23.763,
+     "e": 30.842,
+     "en": "Poor scaling, with variables from ten to the minus three to ten to the six, makes solver tolerances meaningless.",
+     "th": "สเกลที่ไม่ดี เช่นตัวแปรตั้งแต่สิบยกกำลังลบสามถึงสิบยกกำลังหก ทำให้ค่า tolerance ของ solver ไม่มีความหมาย"
+    },
+    {
+     "s": 30.842,
+     "e": 36.776,
+     "en": "And mixing streams with flow times composition creates bilinear terms and local optima.",
+     "th": "และการผสมกระแสที่มีอัตราไหลคูณองค์ประกอบ ทำให้เกิดพจน์ bilinear และ local optimum"
+    },
+    {
+     "s": 36.776,
+     "e": 41.158,
+     "en": "Formulation is part of the model, not a detail of the code.",
+     "th": "formulation เป็นส่วนหนึ่งของโมเดล ไม่ใช่รายละเอียดของโค้ด"
+    }
+   ]
+  },
+  {
+   "n": 23,
+   "file": "audio/slide-23.mp3",
+   "duration": 33.792,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.142,
+     "en": "Optimization error is not the same as model error.",
+     "th": "ความผิดพลาดของ optimization ไม่เหมือนกับความผิดพลาดของโมเดล"
+    },
+    {
+     "s": 4.142,
+     "e": 11.632,
+     "en": "An optimizer pushes the model to its boundaries, exactly where a fitted correlation or a linearization is least accurate.",
+     "th": "optimizer ดันโมเดลไปที่ขอบเขต ซึ่งเป็นจุดที่ correlation ที่ fit มา หรือการทำให้เป็นเชิงเส้น แม่นยำน้อยที่สุด"
+    },
+    {
+     "s": 11.632,
+     "e": 19.803,
+     "en": "A certificate proves that a point is optimal for the model. It says nothing about whether the model describes the plant.",
+     "th": "certificate พิสูจน์ว่าจุดหนึ่งเหมาะสมที่สุดสำหรับโมเดล แต่ไม่ได้บอกเลยว่าโมเดลอธิบายโรงงานได้ถูกต้องหรือไม่"
+    },
+    {
+     "s": 19.803,
+     "e": 29.974,
+     "en": "So ask two questions: does the optimum stay inside the range where the data and correlations are valid, and how much does it move when each uncertain parameter moves by its error bar?",
+     "th": "จึงต้องถามสองคำถาม คือ optimum อยู่ในช่วงที่ข้อมูลและ correlation ยังใช้ได้หรือไม่ และ optimum เปลี่ยนไปเท่าไร เมื่อพารามิเตอร์ที่ไม่แน่นอนแต่ละตัวเปลี่ยนตามช่วงความคลาดเคลื่อน"
+    },
+    {
+     "s": 29.974,
+     "e": 33.737,
+     "en": "The table shows which check catches which kind of error.",
+     "th": "ตารางแสดงว่าการตรวจแบบใดจับความผิดพลาดแบบใดได้"
+    }
+   ]
+  },
+  {
+   "n": 24,
+   "file": "audio/slide-24.mp3",
+   "duration": 29.616,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.537,
+     "en": "Report results so that others can check them.",
+     "th": "รายงานผลให้ผู้อื่นตรวจซ้ำได้"
+    },
+    {
+     "s": 3.537,
+     "e": 15.632,
+     "en": "State the problem class and size, the data sources and units, the solver with its version and tolerances, and the status with its evidence: a duality gap, a MILP gap, or a KKT residual.",
+     "th": "ระบุประเภทและขนาดของปัญหา แหล่งข้อมูลและหน่วย solver พร้อมรุ่นและค่า tolerance และสถานะพร้อมหลักฐาน เช่น duality gap, MILP gap หรือ KKT residual"
+    },
+    {
+     "s": 15.632,
+     "e": 20.737,
+     "en": "Add the verification you did, and a script that reproduces every number.",
+     "th": "เพิ่มการตรวจสอบที่ทำ และสคริปต์ที่สร้างตัวเลขทุกตัวซ้ำได้"
+    },
+    {
+     "s": 20.737,
+     "e": 29.566,
+     "en": "This is the standard for assignments, the project, and your thesis. A number without its status and evidence is not a result.",
+     "th": "นี่คือมาตรฐานสำหรับการบ้าน โปรเจกต์ และวิทยานิพนธ์ ตัวเลขที่ไม่มีสถานะและหลักฐานยังไม่ใช่ผลลัพธ์"
+    }
+   ]
+  },
+  {
+   "n": 25,
+   "file": "audio/slide-25.mp3",
+   "duration": 7.608,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.432,
+     "en": "Take a ten-minute break.",
+     "th": "พักสิบนาที"
+    },
+    {
+     "s": 2.432,
+     "e": 7.539,
+     "en": "When you come back, we start with Activity 2, then tools, then Lab 1.",
+     "th": "เมื่อกลับมา เราจะเริ่มที่ Activity 2 ต่อด้วยเครื่องมือ แล้วจึงเป็น Lab 1"
+    }
+   ]
+  },
+  {
+   "n": 26,
+   "file": "audio/slide-26.mp3",
+   "duration": 32.616,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.8,
+     "en": "Activity 2 brings your own research into the room.",
+     "th": "Activity 2 นำงานวิจัยของคุณเข้ามาในห้อง"
+    },
+    {
+     "s": 3.8,
+     "e": 19.289,
+     "en": "Write a card with five lines: one decision you or your group actually has to make; the variables and the objective, with units; two constraints written as equations or inequalities; the class of the problem; and which data are most uncertain, with the evidence a solver could give you.",
+     "th": "เขียนการ์ดห้าบรรทัด คือการตัดสินใจหนึ่งเรื่องที่คุณหรือกลุ่มต้องตัดสินจริง ตัวแปรและ objective พร้อมหน่วย ข้อจำกัดสองข้อในรูปสมการหรืออสมการ ประเภทของปัญหา และข้อมูลใดไม่แน่นอนที่สุด พร้อมหลักฐานที่ solver ให้ได้"
+    },
+    {
+     "s": 19.289,
+     "e": 26.329,
+     "en": "Spend five minutes alone, then swap with a partner and find one thing left undefined or one unit that does not balance.",
+     "th": "ใช้เวลาห้านาทีคนเดียว แล้วแลกกับเพื่อน หาสิ่งที่ยังไม่ได้นิยามหนึ่งอย่าง หรือหน่วยที่ไม่สมดุลหนึ่งจุด"
+    },
+    {
+     "s": 26.329,
+     "e": 32.553,
+     "en": "If you are studying on your own, pause the narration now, write the card, and keep it for Session 2.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้หยุดเสียงบรรยายตอนนี้ เขียนการ์ด แล้วเก็บไว้ใช้ในคาบที่ 2"
+    }
+   ]
+  },
+  {
+   "n": 27,
+   "file": "audio/slide-27.mp3",
+   "duration": 34.704,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.247,
+     "en": "Optimization software has two layers, and neither knows what the other knows.",
+     "th": "ซอฟต์แวร์ optimization มีสองชั้น และแต่ละชั้นไม่รู้สิ่งที่อีกชั้นรู้"
+    },
+    {
+     "s": 5.247,
+     "e": 16.303,
+     "en": "The modeling layer is where you write the model: a spreadsheet for small problems, or Python with SciPy and Pyomo when the model must scale, be solved many times, or be tested automatically.",
+     "th": "ชั้น modeling คือที่ที่คุณเขียนโมเดล spreadsheet สำหรับปัญหาเล็ก หรือ Python กับ SciPy และ Pyomo เมื่อโมเดลต้องขยายขนาด แก้ซ้ำหลายครั้ง หรือทดสอบอัตโนมัติ"
+    },
+    {
+     "s": 16.303,
+     "e": 23.421,
+     "en": "The solver layer, such as HiGHS for linear and mixed-integer problems and Ipopt for nonlinear ones, does the search.",
+     "th": "ชั้น solver เช่น HiGHS สำหรับปัญหาเชิงเส้นและ mixed-integer และ Ipopt สำหรับปัญหาไม่เชิงเส้น ทำหน้าที่ค้นหาคำตอบ"
+    },
+    {
+     "s": 23.421,
+     "e": 27.079,
+     "en": "No solver can tell you that your model is wrong.",
+     "th": "ไม่มี solver ใดบอกคุณได้ว่าโมเดลของคุณผิด"
+    },
+    {
+     "s": 27.079,
+     "e": 34.632,
+     "en": "In this course, the labs run in the browser with Python, so nothing has to be installed, and no commercial solver is needed.",
+     "th": "ในวิชานี้ lab รันในเบราว์เซอร์ด้วย Python จึงไม่ต้องติดตั้งอะไร และไม่ต้องใช้ solver เชิงพาณิชย์"
+    }
+   ]
+  },
+  {
+   "n": 28,
+   "file": "audio/slide-28.mp3",
+   "duration": 23.16,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.103,
+     "en": "Here is the cheapest verification available: solve the same model by independent routes.",
+     "th": "นี่คือการตรวจสอบที่ถูกที่สุด คือแก้โมเดลเดียวกันด้วยวิธีที่เป็นอิสระต่อกัน"
+    },
+    {
+     "s": 6.103,
+     "e": 12.908,
+     "en": "Graphically, by listing the vertices in Python, and with a solver, we get the same plan and the same margin.",
+     "th": "ทั้งด้วยกราฟ ด้วยการไล่ vertex ใน Python และด้วย solver เราได้แผนเดียวกันและ margin เท่ากัน"
+    },
+    {
+     "s": 12.908,
+     "e": 18.947,
+     "en": "Two independent routes that agree are evidence. One solver run is not.",
+     "th": "สองวิธีที่เป็นอิสระและให้ผลตรงกันคือหลักฐาน การรัน solver ครั้งเดียวไม่ใช่"
+    },
+    {
+     "s": 18.947,
+     "e": 23.092,
+     "en": "Every result in this course should come with a check of this kind.",
+     "th": "ทุกผลลัพธ์ในวิชานี้ควรมีการตรวจแบบนี้ประกอบ"
+    }
+   ]
+  },
+  {
+   "n": 29,
+   "file": "audio/slide-29.mp3",
+   "duration": 32.808,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.392,
+     "en": "This is the map of the fifteen sessions, each with its own lab.",
+     "th": "นี่คือแผนที่ของสิบห้าคาบ แต่ละคาบมี lab ของตัวเอง"
+    },
+    {
+     "s": 4.392,
+     "e": 11.803,
+     "en": "The first four sessions build models: linear programs, discrete decisions, and multiperiod models with storage.",
+     "th": "สี่คาบแรกเป็นการสร้างโมเดล ได้แก่ linear program การตัดสินใจแบบไม่ต่อเนื่อง และโมเดลหลายช่วงเวลาที่มีการเก็บสต็อก"
+    },
+    {
+     "s": 11.803,
+     "e": 20.513,
+     "en": "Sessions five to nine cover the theory and the algorithms: convexity, duality, KKT conditions, and solvers for nonlinear problems.",
+     "th": "คาบที่ห้าถึงเก้าว่าด้วยทฤษฎีและอัลกอริทึม ได้แก่ convexity, duality, เงื่อนไข KKT และ solver สำหรับปัญหาไม่เชิงเส้น"
+    },
+    {
+     "s": 20.513,
+     "e": 32.75,
+     "en": "Sessions ten to fourteen apply them: parameter estimation, dynamic optimization, uncertainty, multiple objectives, and data-driven methods. Session fifteen is for projects.",
+     "th": "คาบที่สิบถึงสิบสี่เป็นการประยุกต์ ได้แก่ parameter estimation, dynamic optimization, ความไม่แน่นอน หลายวัตถุประสงค์ และวิธีที่ขับเคลื่อนด้วยข้อมูล คาบที่สิบห้าสำหรับโปรเจกต์"
+    }
+   ]
+  },
+  {
+   "n": 30,
+   "file": "audio/slide-30.mp3",
+   "duration": 34.32,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.789,
+     "en": "This slide shows how you are graded. The weights are from last year and will be confirmed for this year.",
+     "th": "หน้านี้แสดงวิธีให้คะแนน สัดส่วนเป็นของปีที่แล้วและจะยืนยันสำหรับปีนี้"
+    },
+    {
+     "s": 6.789,
+     "e": 13.434,
+     "en": "Generative AI is permitted for assignments and the project, and using it to draft models is expected.",
+     "th": "อนุญาตให้ใช้ generative AI ในการบ้านและโปรเจกต์ และคาดหวังให้ใช้ช่วยร่างโมเดล"
+    },
+    {
+     "s": 13.434,
+     "e": 22.5,
+     "en": "You must disclose what was drafted by AI and which tests validated it. An unverified model earns no credit for correctness.",
+     "th": "คุณต้องเปิดเผยว่าส่วนใดร่างโดย AI และใช้การทดสอบใดยืนยัน โมเดลที่ไม่ได้ตรวจสอบจะไม่ได้คะแนนความถูกต้อง"
+    },
+    {
+     "s": 22.5,
+     "e": 25.974,
+     "en": "AI is not permitted in examinations.",
+     "th": "ไม่อนุญาตให้ใช้ AI ในการสอบ"
+    },
+    {
+     "s": 25.974,
+     "e": 34.25,
+     "en": "A solver answers the question you asked, and so does a language model. Checking is your job, and it carries the marks.",
+     "th": "solver ตอบคำถามที่คุณถาม language model ก็เช่นกัน การตรวจสอบเป็นหน้าที่ของคุณ และเป็นส่วนที่ได้คะแนน"
+    }
+   ]
+  },
+  {
+   "n": 31,
+   "file": "audio/slide-31.mp3",
+   "duration": 41.376,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.079,
+     "en": "Now it is your turn. Open the lab page with the QR code or the link.",
+     "th": "ถึงตาคุณแล้ว เปิดหน้า lab ด้วย QR code หรือลิงก์"
+    },
+    {
+     "s": 6.079,
+     "e": 14.395,
+     "en": "A colleague has written a linear model of a recycle process, where A is converted to B, with an inert, two fresh feeds and a purge.",
+     "th": "เพื่อนร่วมงานเขียน linear model ของกระบวนการที่มี recycle โดย A เปลี่ยนเป็น B มี inert มี feed ใหม่สองแหล่ง และมี purge"
+    },
+    {
+     "s": 14.395,
+     "e": 22.132,
+     "en": "The solver says optimal, but the model contains three planted errors: a units error, a missing equation, and a sign error.",
+     "th": "solver บอกว่า optimal แต่โมเดลมีข้อผิดที่ฝังไว้สามจุด คือหน่วยผิด สมการหายไป และเครื่องหมายผิด"
+    },
+    {
+     "s": 22.132,
+     "e": 34.092,
+     "en": "Find them with checks that do not need the answer: dimensional consistency and plant-wide conservation. Then repair the model, certify the optimum with the duals, and change one condition.",
+     "th": "หาข้อผิดด้วยการตรวจที่ไม่ต้องรู้คำตอบ คือความสอดคล้องของหน่วย และการอนุรักษ์มวลทั้งโรงงาน จากนั้นแก้โมเดล ยืนยัน optimum ด้วย dual และเปลี่ยนเงื่อนไขหนึ่งอย่าง"
+    },
+    {
+     "s": 34.092,
+     "e": 41.303,
+     "en": "You have forty minutes. If you are studying on your own, pause the narration now and open the lab.",
+     "th": "คุณมีเวลาสี่สิบนาที ถ้าเรียนด้วยตนเอง ให้หยุดเสียงบรรยายตอนนี้แล้วเปิด lab"
+    }
+   ]
+  },
+  {
+   "n": 32,
+   "file": "audio/slide-32.mp3",
+   "duration": 31.248,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.761,
+     "en": "Here is what to take from today.",
+     "th": "นี่คือสิ่งที่ควรได้จากวันนี้"
+    },
+    {
+     "s": 2.761,
+     "e": 10.039,
+     "en": "Write the specification with units before the algebra, and check dimensions and conservation before you quote any number.",
+     "th": "เขียน specification พร้อมหน่วยก่อนสมการ และตรวจหน่วยและการอนุรักษ์มวลก่อนรายงานตัวเลขใด ๆ"
+    },
+    {
+     "s": 10.039,
+     "e": 14.592,
+     "en": "Convexity and integrality decide what a solver can certify.",
+     "th": "convexity และ integrality เป็นตัวกำหนดว่า solver พิสูจน์อะไรได้"
+    },
+    {
+     "s": 14.592,
+     "e": 21.842,
+     "en": "An LP optimum is proved by a primal-dual pair, and infeasibility and unboundedness have certificates too.",
+     "th": "optimum ของ LP พิสูจน์ได้ด้วยคู่ primal-dual และ infeasibility กับ unboundedness ก็มี certificate เช่นกัน"
+    },
+    {
+     "s": 21.842,
+     "e": 25.855,
+     "en": "Formulation and scaling change how hard a problem is.",
+     "th": "formulation และการปรับสเกลเปลี่ยนความยากของปัญหา"
+    },
+    {
+     "s": 25.855,
+     "e": 31.171,
+     "en": "And a certificate proves optimality for the model, not the validity of the model.",
+     "th": "และ certificate พิสูจน์ความเหมาะสมที่สุดสำหรับโมเดล ไม่ได้พิสูจน์ความถูกต้องของโมเดล"
+    }
+   ]
+  },
+  {
+   "n": 33,
+   "file": "audio/slide-33.mp3",
+   "duration": 20.256,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.892,
+     "en": "Before Session 2, finish Lab 1 if you did not finish it in class.",
+     "th": "ก่อนคาบที่ 2 ให้ทำ Lab 1 ให้เสร็จ ถ้ายังทำไม่เสร็จในห้อง"
+    },
+    {
+     "s": 4.892,
+     "e": 11.513,
+     "en": "Keep your Activity 2 card. Session 2 builds linear models from cards like it.",
+     "th": "เก็บการ์ดจาก Activity 2 ไว้ คาบที่ 2 จะสร้าง linear model จากการ์ดแบบนี้"
+    },
+    {
+     "s": 11.513,
+     "e": 20.184,
+     "en": "Read chapter one of Boyd and Vandenberghe, Convex Optimization, which is free online, chapters one and two of Williams, and chapter one of Rao.",
+     "th": "อ่านบทที่หนึ่งของ Boyd และ Vandenberghe เรื่อง Convex Optimization ซึ่งอ่านฟรีออนไลน์ บทที่หนึ่งและสองของ Williams และบทที่หนึ่งของ Rao"
+    }
+   ]
+  },
+  {
+   "n": 34,
+   "file": "audio/slide-34.mp3",
+   "duration": 24.576,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.405,
+     "en": "Finally, the Exit Ticket and feedback.",
+     "th": "สุดท้ายคือ Exit Ticket และ feedback"
+    },
+    {
+     "s": 3.405,
+     "e": 6.776,
+     "en": "Scan the QR code and choose Session 1.",
+     "th": "สแกน QR code แล้วเลือก Session 1"
+    },
+    {
+     "s": 6.776,
+     "e": 15.566,
+     "en": "Paste the answers that the lab page copied for you, and tell us about the pace, your confidence, how far you got in the lab, and what is still unclear.",
+     "th": "วางคำตอบที่หน้า lab คัดลอกไว้ให้ และบอกเราเรื่องความเร็ว ความมั่นใจ ความคืบหน้าใน lab และสิ่งที่ยังไม่เข้าใจ"
+    },
+    {
+     "s": 15.566,
+     "e": 21.289,
+     "en": "If you studied on your own, choose On my own. The form is anonymous.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้เลือก On my own แบบฟอร์มนี้ไม่ระบุตัวตน"
+    },
+    {
+     "s": 21.289,
+     "e": 24.5,
+     "en": "Thank you, and see you in Session 2.",
+     "th": "ขอบคุณ แล้วพบกันในคาบที่ 2"
+    }
+   ]
+  }
+ ]
+}
