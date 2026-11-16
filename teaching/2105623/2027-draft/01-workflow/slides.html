@@ -11,7 +11,7 @@
 *{box-sizing:border-box}
 html,body{margin:0;height:100%;background:#2b3138;font-family:"Helvetica Neue",Helvetica,Arial,"DejaVu Sans",sans-serif;color:var(--ink)}
 #viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
-#stage{width:1280px;height:720px;background:#fff;position:relative;transform-origin:center center;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+#stage{width:1280px;height:720px;flex:0 0 auto;overflow:hidden;background:#fff;position:relative;transform-origin:center center;box-shadow:0 10px 40px rgba(0,0,0,.35)}
 .slide{position:absolute;inset:0;padding:40px 64px 58px;display:none;flex-direction:column}
 .slide.on{display:flex}
 .kicker{color:var(--amber);font-weight:700;letter-spacing:.14em;font-size:15px;text-transform:uppercase;margin:0}
@@ -73,8 +73,9 @@ footer{position:absolute;left:64px;right:64px;bottom:20px;border-top:1px solid v
 #help{position:fixed;right:12px;bottom:12px;color:#c9d1d6;font-size:12px}
 
 /* narration and captions */
-#cap{position:absolute;left:50%;transform:translateX(-50%);bottom:52px;max-width:1060px;width:max-content;background:rgba(28,36,43,.88);color:#fff;font-size:24px;line-height:1.38;padding:8px 18px;border-radius:10px;text-align:center;display:none;z-index:4;font-family:"Helvetica Neue",Arial,"Sukhumvit Set","Thonburi","Noto Sans Thai","Sarabun",sans-serif}
-#nbar{position:fixed;left:50%;transform:translateX(-50%);bottom:10px;display:flex;gap:6px;align-items:center;background:rgba(28,36,43,.9);color:#e8eef2;padding:6px 10px;border-radius:12px;z-index:8;font:13px "Helvetica Neue",Arial,sans-serif;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+#dock{position:fixed;left:0;right:0;display:none;flex-direction:column;align-items:center;gap:6px;padding:0 8px;z-index:8}
+#cap{display:none;color:#F3F0EB;line-height:1.45;text-align:center;overflow:hidden;padding:2px 6px;font-family:"Helvetica Neue",Arial,"Sukhumvit Set","Thonburi","Noto Sans Thai","Sarabun",sans-serif}
+#nbar{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;align-items:center;background:rgba(28,36,43,.9);color:#e8eef2;padding:6px 10px;border-radius:12px;font:13px "Helvetica Neue",Arial,sans-serif;box-shadow:0 4px 14px rgba(0,0,0,.3)}
 #nbar button,#nbar select{white-space:nowrap;font:inherit;font-size:14px;background:#2f3a44;color:#fff;border:1px solid #4a5763;border-radius:8px;padding:5px 10px;cursor:pointer}
 #nbar button.on{background:#0F6E6B;border-color:#0F6E6B}
 #nbar .t{min-width:88px;text-align:center;font-variant-numeric:tabular-nums;color:#c9d1d6}
@@ -82,15 +83,14 @@ footer{position:absolute;left:64px;right:64px;bottom:20px;border-top:1px solid v
 #startov{position:absolute;inset:0;background:rgba(243,240,235,.92);display:none;align-items:center;justify-content:center;flex-direction:column;z-index:6;gap:14px}
 #startov button{font:inherit;font-size:24px;padding:14px 28px;border-radius:12px;border:none;background:#0F6E6B;color:#fff;cursor:pointer}
 #startov p{color:#333F4A;font-size:18px;margin:0}
-@media print{#nbar,#cap,#startov{display:none!important}}
+@media print{#dock,#startov{display:none!important}}
 @media print{#viewport{position:static;display:block}#stage{transform:none!important;box-shadow:none}.slide{display:flex!important;position:relative;page-break-after:always;height:720px}#drawer,#help,#notes,.dhint{display:none}}
 </style>
 </head>
 <body>
 <div id="viewport"><div id="stage">
 <div id="slides"></div>
-<div id="cap" aria-live="polite"></div>
-<div id="startov"><button id="startBtn">▶ Start the narrated session</button><p>English narration with captions. P pauses, C switches captions (English, ไทย, off).</p></div>
+<div id="startov"><button id="startBtn">▶ Start the narrated session</button><p>English narration with captions below the slide. You move to the next slide yourself.</p><p>→ or Next: next slide · P: pause · C: captions (English, ไทย, off)</p></div>
 <aside id="drawer" aria-label="Python for this slide">
   <h2 id="dTitle">Python</h2>
   <div class="sub" id="dSub"></div>
@@ -101,7 +101,8 @@ footer{position:absolute;left:64px;right:64px;bottom:20px;border-top:1px solid v
 </aside>
 </div></div>
 <div id="notes"></div>
-<div id="nbar" style="display:none"><button id="nPlay" title="Play or pause the narration (P)">▶ Play</button><button id="nStop" title="Stop and go back to the start of this slide">■ Stop</button><span class="t" id="nTime">0:00 / 0:00</span><button id="nAuto" title="Go to the next slide when the narration ends (A)">Auto-advance</button><select id="nSpeed" title="Speed"><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select><button id="nCC" title="Captions: off, English, Thai (C)">CC off</button><span class="msg" id="nMsg"></span></div>
+<div id="dock"><div id="cap" aria-live="polite"></div>
+<div id="nbar"><button id="nPrev" title="Previous slide (←)">‹ Back</button><button id="nPlay" title="Play or pause the narration (P)">▶ Play</button><button id="nStop" title="Stop and go back to the start of this slide">■ Stop</button><span class="t" id="nTime">0:00 / 0:00</span><select id="nSpeed" title="Speed"><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select><button id="nCC" title="Captions: off, English, Thai (C)">CC off</button><button id="nNext" title="Next slide (→)">Next ›</button><span class="msg" id="nMsg"></span></div></div>
 <audio id="narr" preload="none"></audio>
 <div id="help">← → move · P narration · C captions · D Python · F full screen · N notes</div>
 <script>
@@ -488,7 +489,16 @@ function build(){const host=document.getElementById("slides");host.innerHTML="";
 function drawAll(){S.forEach(s=>{if(s.draw)try{s.draw()}catch(e){console.error(e)}})}
 function show(i){cur=Math.max(0,Math.min(N-1,i));document.querySelectorAll(".slide").forEach((el,k)=>el.classList.toggle("on",k===cur));
  history.replaceState(null,"",location.search+"#"+(cur+1));fillDrawer();if(window.onSlideChange)onSlideChange(cur);const n=document.getElementById("notes");n.textContent=S[cur].notes||"No notes for this slide."}
-function fit(){const vp=document.getElementById("viewport");const k=Math.min(vp.clientWidth/1280,vp.clientHeight/720)*0.98;document.getElementById("stage").style.transform=`scale(${k})`}
+let CAP_ON=false;   // set by the narration player; reserves a caption band under the slide
+function fit(){const W=innerWidth,H=innerHeight,vp=document.getElementById("viewport"),dock=document.getElementById("dock"),cap=document.getElementById("cap");
+ const hasDock=dock.style.display==="flex",barH=hasDock?document.getElementById("nbar").offsetHeight:0;
+ let k=Math.min(W/1280,H/720)*0.98,capH=0,fs=0,dockH=0;
+ for(let it=0;it<3;it++){if(hasDock&&CAP_ON){const lines=k<0.6?4:2;fs=Math.max(12,Math.min(22,24*k));capH=Math.ceil(lines*fs*1.45)+4}else capH=0;
+  dockH=hasDock?capH+barH+(capH?6:0)+14:0;k=Math.min(W/1280,Math.max(120,H-dockH)/720)*0.98}
+ const h=720*k,pad=10,top=Math.max(0,(H-h-dockH)/2);
+ vp.style.top=(top-pad)+"px";vp.style.bottom="auto";vp.style.height=(h+2*pad)+"px";
+ document.getElementById("stage").style.transform=`scale(${k})`;
+ if(hasDock){dock.style.top=(top+h+6)+"px";cap.style.display=CAP_ON?"block":"none";cap.style.width=Math.min(1280*k,W-16)+"px";cap.style.height=capH+"px";cap.dataset.fs=fs;if(window.capRefit)capRefit()}}
 function fillDrawer(){const p=S[cur].py,dr=document.getElementById("drawer");
  if(!p){document.getElementById("dTitle").textContent="No Python on this slide";document.getElementById("dSub").textContent="Slides with a 'D · Python' tag have code and output.";document.getElementById("dCode").value="";document.getElementById("dOut").textContent="";return}
  document.getElementById("dTitle").textContent=p.title;document.getElementById("dSub").textContent=p.sub||"";document.getElementById("dCode").value=p.code;
@@ -500,7 +510,6 @@ document.addEventListener("keydown",e=>{if(["INPUT","TEXTAREA"].includes(e.targe
  else if(k==="f"||k==="F"){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
  else if(k==="p"||k==="P"){if(window.narrToggle)narrToggle()}
  else if(k==="c"||k==="C"){if(window.ccCycle)ccCycle()}
- else if(k==="a"||k==="A"){if(window.autoToggle)autoToggle()}
  else if(k==="n"||k==="N"){const n=document.getElementById("notes");n.style.display=n.style.display==="block"?"none":"block"}});
 document.getElementById("stage").addEventListener("click",e=>{if(e.target.closest("button,input,select,#drawer,a,#startov"))return;const r=e.currentTarget.getBoundingClientRect();(e.clientX-r.left)>r.width*0.5?show(cur+1):show(cur-1)});
 addEventListener("resize",fit);
@@ -533,12 +542,12 @@ const NARR = {
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 1081.4,
+ "total_seconds": 1086.4,
  "slides": [
   {
    "n": 1,
    "file": "audio/slide-01.mp3",
-   "duration": 21.144,
+   "duration": 26.544,
    "hold": false,
    "cues": [
     {
@@ -564,6 +573,12 @@ const NARR = {
      "e": 21.079,
      "en": "Press P at any time to pause, and C to switch the captions between English and Thai.",
      "th": "กด P เมื่อใดก็ได้เพื่อหยุดชั่วคราว และกด C เพื่อสลับคำบรรยายระหว่างภาษาอังกฤษกับภาษาไทย"
+    },
+    {
+     "s": 21.079,
+     "e": 26.487,
+     "en": "When the narration for a slide ends, press the right arrow key, or Next, to go on.",
+     "th": "เมื่อเสียงบรรยายของแต่ละหน้าจบ กดลูกศรขวาหรือปุ่ม Next เพื่อไปหน้าถัดไป"
     }
    ]
   },
@@ -740,7 +755,7 @@ const NARR = {
   {
    "n": 6,
    "file": "audio/slide-06.mp3",
-   "duration": 21.624,
+   "duration": 22.368,
    "hold": true,
    "cues": [
     {
@@ -763,9 +778,9 @@ const NARR = {
     },
     {
      "s": 15.382,
-     "e": 21.566,
-     "en": "If you are studying on your own, pause the narration now and write your four answers in two sentences each.",
-     "th": "ถ้าคุณเรียนด้วยตนเอง ให้หยุดเสียงบรรยายตอนนี้ แล้วเขียนคำตอบทั้งสี่ข้อ ข้อละสองประโยค"
+     "e": 22.303,
+     "en": "If you are studying on your own, stop here and write your four answers in two sentences each, then go to the next slide.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้หยุดที่หน้านี้ เขียนคำตอบทั้งสี่ข้อ ข้อละสองประโยค แล้วจึงไปหน้าถัดไป"
     }
    ]
   },
@@ -1482,7 +1497,7 @@ const NARR = {
   {
    "n": 26,
    "file": "audio/slide-26.mp3",
-   "duration": 32.616,
+   "duration": 32.088,
    "hold": true,
    "cues": [
     {
@@ -1505,9 +1520,9 @@ const NARR = {
     },
     {
      "s": 26.329,
-     "e": 32.553,
-     "en": "If you are studying on your own, pause the narration now, write the card, and keep it for Session 2.",
-     "th": "ถ้าคุณเรียนด้วยตนเอง ให้หยุดเสียงบรรยายตอนนี้ เขียนการ์ด แล้วเก็บไว้ใช้ในคาบที่ 2"
+     "e": 32.026,
+     "en": "If you are studying on your own, stop here, write the card, and keep it for Session 2.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้หยุดที่หน้านี้ เขียนการ์ด แล้วเก็บไว้ใช้ในคาบที่ 2"
     }
    ]
   },
@@ -1654,7 +1669,7 @@ const NARR = {
   {
    "n": 31,
    "file": "audio/slide-31.mp3",
-   "duration": 41.376,
+   "duration": 40.824,
    "hold": true,
    "cues": [
     {
@@ -1683,9 +1698,9 @@ const NARR = {
     },
     {
      "s": 34.092,
-     "e": 41.303,
-     "en": "You have forty minutes. If you are studying on your own, pause the narration now and open the lab.",
-     "th": "คุณมีเวลาสี่สิบนาที ถ้าเรียนด้วยตนเอง ให้หยุดเสียงบรรยายตอนนี้แล้วเปิด lab"
+     "e": 40.763,
+     "en": "You have forty minutes. If you are studying on your own, stop here and open the lab.",
+     "th": "คุณมีเวลาสี่สิบนาที ถ้าเรียนด้วยตนเอง ให้หยุดที่หน้านี้แล้วเปิด lab"
     }
    ]
   },
@@ -1801,29 +1816,33 @@ const NARR = {
 };
 (function(){if(!NARR)return;
  const au=document.getElementById("narr"),bar=document.getElementById("nbar"),cap=document.getElementById("cap"),play=document.getElementById("nPlay"),tm=document.getElementById("nTime"),msg=document.getElementById("nMsg");
- bar.style.display="flex";document.getElementById("viewport").style.bottom="70px";document.getElementById("help").style.display="none";fit();let on=false,auto=false,lang="off",slideIdx=-1,advancing=false;
+ document.getElementById("dock").style.display="flex";document.getElementById("help").style.display="none";let on=false,lang="off",slideIdx=-1;
  const ls=(k,v)=>{try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}};
  lang=ls("cc-lang")||"off";const sp=ls("narr-speed");if(sp)document.getElementById("nSpeed").value=sp;
  const fmtT=t=>isFinite(t)?`${Math.floor(t/60)}:${String(Math.floor(t%60)).padStart(2,"0")}`:"0:00";
  const S_=i=>NARR.slides[i];
  function load(i){slideIdx=i;const s=S_(i);if(!s){au.removeAttribute("src");return}au.src=s.file;au.playbackRate=+document.getElementById("nSpeed").value;tm.textContent=`0:00 / ${fmtT(s.duration)}`;showCap(0)}
  function setPlayUI(){play.textContent=au.paused?"▶ Play":"❚❚ Pause";play.classList.toggle("on",!au.paused)}
- function showCap(t){const s=S_(slideIdx);if(lang==="off"||!s){cap.style.display="none";return}let c=null;for(const q of s.cues){if(t>=q.s-0.05)c=q;else break}
-  if(!c||(au.paused&&au.currentTime===0&&!on)){cap.style.display="none";return}cap.textContent=lang==="th"?c.th:c.en;cap.style.display="block"}
- function ccUI(){const b=document.getElementById("nCC");b.textContent=lang==="off"?"CC off":lang==="en"?"CC English":"CC ไทย";b.classList.toggle("on",lang!=="off");showCap(au.currentTime||0)}
+ // captions sit in their own band under the slide; long lines shrink to fit the band
+ window.capRefit=()=>{let f=parseFloat(cap.dataset.fs)||18;cap.style.fontSize=f+"px";while(cap.scrollHeight>cap.clientHeight+1&&f>11){f-=1;cap.style.fontSize=f+"px"}};
+ function showCap(t){const s=S_(slideIdx);let c=null;if(s&&lang!=="off"){for(const q of s.cues){if(t>=q.s-0.05)c=q;else break}}
+  const txt=(!c||(au.paused&&au.currentTime===0&&!on))?"":(lang==="th"?c.th:c.en);if(cap.textContent!==txt){cap.textContent=txt;capRefit()}}
+ function ccUI(){const b=document.getElementById("nCC");b.textContent=lang==="off"?"CC off":lang==="en"?"CC English":"CC ไทย";b.classList.toggle("on",lang!=="off");CAP_ON=lang!=="off";fit();showCap(au.currentTime||0)}
  window.ccCycle=()=>{lang=lang==="off"?"en":lang==="en"?"th":"off";ls("cc-lang",lang);ccUI()};
- window.autoToggle=()=>{auto=!auto;document.getElementById("nAuto").classList.toggle("on",auto);msg.textContent=""};
- window.narrToggle=()=>{if(au.paused){on=true;if(slideIdx!==cur)load(cur);msg.textContent="";au.play().catch(()=>{msg.textContent="Press Play again to start audio."})}else au.pause()};
- window.onSlideChange=i=>{const cont=(on&&!au.paused)||advancing;advancing=false;au.pause();load(i);if(cont)au.play().catch(()=>{})};
+ // "on" means the student is listening: it starts with Play and ends with Pause or Stop.
+ // Slides change only when the student moves; the new slide's narration then starts if "on".
+ window.narrToggle=()=>{if(au.paused){on=true;if(slideIdx!==cur)load(cur);if(au.ended)au.currentTime=0;msg.textContent="";au.play().catch(()=>{msg.textContent="Press Play again to start audio."})}else{on=false;au.pause()}};
+ window.onSlideChange=i=>{au.pause();msg.textContent="";load(i);if(on)au.play().catch(()=>{})};
  document.getElementById("nPlay").onclick=narrToggle;
  document.getElementById("nStop").onclick=()=>{au.pause();au.currentTime=0;on=false;setPlayUI();showCap(0);tm.textContent=`0:00 / ${fmtT((S_(cur)||{}).duration)}`};
- document.getElementById("nAuto").onclick=autoToggle;document.getElementById("nCC").onclick=ccCycle;
+ document.getElementById("nCC").onclick=ccCycle;
+ document.getElementById("nPrev").onclick=()=>show(cur-1);document.getElementById("nNext").onclick=()=>show(cur+1);
  document.getElementById("nSpeed").onchange=e=>{au.playbackRate=+e.target.value;ls("narr-speed",e.target.value)};
  au.addEventListener("play",setPlayUI);au.addEventListener("pause",setPlayUI);
  au.addEventListener("timeupdate",()=>{tm.textContent=`${fmtT(au.currentTime)} / ${fmtT((S_(slideIdx)||{}).duration)}`;showCap(au.currentTime)});
- au.addEventListener("ended",()=>{setPlayUI();const s=S_(slideIdx);if(!auto)return;if(s&&s.hold){msg.textContent="Paused for the activity. Press Play to continue.";return}if(cur<N-1){advancing=true;show(cur+1)}});
+ au.addEventListener("ended",()=>{setPlayUI();const s=S_(slideIdx);msg.textContent=s&&s.hold?"Activity: do it now, then press Next ›":cur<N-1?"Press Next › or → for the next slide":"End of the session"});
  const q=new URLSearchParams(location.search);
- if(q.get("narrate")==="1"){const ov=document.getElementById("startov");ov.style.display="flex";document.getElementById("startBtn").onclick=()=>{ov.style.display="none";if(lang==="off"){lang="en";ls("cc-lang",lang)}ccUI();auto=true;document.getElementById("nAuto").classList.add("on");on=true;load(cur);au.play().catch(()=>{})}}
+ if(q.get("narrate")==="1"){const ov=document.getElementById("startov");ov.style.display="flex";document.getElementById("startBtn").onclick=()=>{ov.style.display="none";if(lang==="off"){lang="en";ls("cc-lang",lang)}ccUI();on=true;load(cur);au.play().catch(()=>{})}}
  ccUI();setTimeout(()=>{if(slideIdx<0)load(cur)},0);
 })();
 

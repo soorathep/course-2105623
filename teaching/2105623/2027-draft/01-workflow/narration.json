@@ -3,12 +3,12 @@
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 1081.4,
+ "total_seconds": 1086.4,
  "slides": [
   {
    "n": 1,
    "file": "audio/slide-01.mp3",
-   "duration": 21.144,
+   "duration": 26.544,
    "hold": false,
    "cues": [
     {
@@ -34,6 +34,12 @@
      "e": 21.079,
      "en": "Press P at any time to pause, and C to switch the captions between English and Thai.",
      "th": "กด P เมื่อใดก็ได้เพื่อหยุดชั่วคราว และกด C เพื่อสลับคำบรรยายระหว่างภาษาอังกฤษกับภาษาไทย"
+    },
+    {
+     "s": 21.079,
+     "e": 26.487,
+     "en": "When the narration for a slide ends, press the right arrow key, or Next, to go on.",
+     "th": "เมื่อเสียงบรรยายของแต่ละหน้าจบ กดลูกศรขวาหรือปุ่ม Next เพื่อไปหน้าถัดไป"
     }
    ]
   },
@@ -210,7 +216,7 @@
   {
    "n": 6,
    "file": "audio/slide-06.mp3",
-   "duration": 21.624,
+   "duration": 22.368,
    "hold": true,
    "cues": [
     {
@@ -233,9 +239,9 @@
     },
     {
      "s": 15.382,
-     "e": 21.566,
-     "en": "If you are studying on your own, pause the narration now and write your four answers in two sentences each.",
-     "th": "ถ้าคุณเรียนด้วยตนเอง ให้หยุดเสียงบรรยายตอนนี้ แล้วเขียนคำตอบทั้งสี่ข้อ ข้อละสองประโยค"
+     "e": 22.303,
+     "en": "If you are studying on your own, stop here and write your four answers in two sentences each, then go to the next slide.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้หยุดที่หน้านี้ เขียนคำตอบทั้งสี่ข้อ ข้อละสองประโยค แล้วจึงไปหน้าถัดไป"
     }
    ]
   },
@@ -952,7 +958,7 @@
   {
    "n": 26,
    "file": "audio/slide-26.mp3",
-   "duration": 32.616,
+   "duration": 32.088,
    "hold": true,
    "cues": [
     {
@@ -975,9 +981,9 @@
     },
     {
      "s": 26.329,
-     "e": 32.553,
-     "en": "If you are studying on your own, pause the narration now, write the card, and keep it for Session 2.",
-     "th": "ถ้าคุณเรียนด้วยตนเอง ให้หยุดเสียงบรรยายตอนนี้ เขียนการ์ด แล้วเก็บไว้ใช้ในคาบที่ 2"
+     "e": 32.026,
+     "en": "If you are studying on your own, stop here, write the card, and keep it for Session 2.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้หยุดที่หน้านี้ เขียนการ์ด แล้วเก็บไว้ใช้ในคาบที่ 2"
     }
    ]
   },
@@ -1124,7 +1130,7 @@
   {
    "n": 31,
    "file": "audio/slide-31.mp3",
-   "duration": 41.376,
+   "duration": 40.824,
    "hold": true,
    "cues": [
     {
@@ -1153,9 +1159,9 @@
     },
     {
      "s": 34.092,
-     "e": 41.303,
-     "en": "You have forty minutes. If you are studying on your own, pause the narration now and open the lab.",
-     "th": "คุณมีเวลาสี่สิบนาที ถ้าเรียนด้วยตนเอง ให้หยุดเสียงบรรยายตอนนี้แล้วเปิด lab"
+     "e": 40.763,
+     "en": "You have forty minutes. If you are studying on your own, stop here and open the lab.",
+     "th": "คุณมีเวลาสี่สิบนาที ถ้าเรียนด้วยตนเอง ให้หยุดที่หน้านี้แล้วเปิด lab"
     }
    ]
   },
