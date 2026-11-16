@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>2105623 · Session 4 · Multiperiod optimization</title>
+<style>
+:root{--teal:#0F6E6B;--amber:#E29A2D;--rust:#BE654C;--sky:#5A91BE;--sage:#83A462;--plum:#995A90;--graphite:#333F4A;--sand:#DFC98F;
+--ink:#1C242B;--slate:#66727C;--mist:#B9C1C6;--paper:#F3F0EB;--mono:Menlo,Consolas,"DejaVu Sans Mono",monospace}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#2b3138;font-family:"Helvetica Neue",Helvetica,Arial,"DejaVu Sans",sans-serif;color:var(--ink)}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#stage{width:1280px;height:720px;background:#fff;position:relative;transform-origin:center center;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.slide{position:absolute;inset:0;padding:40px 64px 58px;display:none;flex-direction:column}
+.slide.on{display:flex}
+.kicker{color:var(--amber);font-weight:700;letter-spacing:.14em;font-size:15px;text-transform:uppercase;margin:0}
+h1{color:var(--teal);font-size:42px;line-height:1.12;margin:6px 0 22px;font-weight:800}
+.body{flex:1;display:flex;gap:28px;min-height:0}
+.col{flex:1;min-width:0;display:flex;flex-direction:column}
+.w40{flex:0 0 40%}.w45{flex:0 0 45%}.w55{flex:0 0 55%}.w60{flex:0 0 60%}
+ul.b{list-style:none;margin:0;padding:0;font-size:24px;line-height:1.36}
+ul.b>li{position:relative;padding-left:30px;margin:0 0 16px}
+ul.b>li::before{content:"";position:absolute;left:2px;top:.5em;width:11px;height:11px;background:var(--amber)}
+ul.b.sm{font-size:21px}ul.b.sm>li{margin-bottom:11px}
+ul.b.xs{font-size:19px}ul.b.xs>li{margin-bottom:8px}
+.hl{color:var(--teal);font-weight:700}
+.panel{background:var(--paper);border-radius:14px;padding:16px 18px;min-height:0;display:flex;flex-direction:column}
+.panel.grow{flex:1}
+.math{font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:25px;line-height:1.75}
+.math .lbl{font-family:"Helvetica Neue",Arial,sans-serif;font-size:16px;color:var(--slate);display:inline-block;width:150px}
+.code{font-family:var(--mono);font-size:17px;line-height:1.5;white-space:pre;color:var(--graphite)}
+.note{font-size:18px;color:var(--slate);margin-top:10px;line-height:1.4}
+.big{font-size:56px;font-weight:800;color:var(--teal)}
+table.t{border-collapse:collapse;font-size:19px;width:100%}
+table.t th{background:var(--paper);text-align:left;padding:7px 10px;border-bottom:2px solid var(--mist);font-weight:700}
+table.t td{padding:6px 10px;border-bottom:1px solid #e3e6e8}
+table.t td.n,table.t th.n{text-align:right;font-variant-numeric:tabular-nums}
+.act{border:3px solid var(--amber);border-radius:16px;padding:22px 28px;background:#fdf6ea}
+.act .tag{display:inline-block;background:var(--amber);color:#fff;font-weight:800;letter-spacing:.1em;font-size:15px;padding:4px 10px;border-radius:6px;margin-bottom:12px}
+.ctrl{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 8px;align-items:center;font-size:16px;color:var(--slate)}
+.ctrl button{font:inherit;font-size:15px;padding:5px 11px;border-radius:8px;border:1.5px solid var(--teal);background:#fff;color:var(--teal);cursor:pointer}
+.ctrl button.on{background:var(--teal);color:#fff}
+.ctrl input[type=range]{width:220px;accent-color:var(--teal)}
+.kpi{display:flex;gap:14px;margin-top:8px}
+.kpi div{background:#fff;border-radius:10px;padding:8px 12px;font-size:15px;color:var(--slate);flex:1}
+.kpi b{display:block;font-size:24px;color:var(--ink)}
+.kpi b.a{color:var(--amber)}
+svg.ch{width:100%;height:100%;display:block}
+.chart{flex:1;min-height:0}
+footer{position:absolute;left:64px;right:64px;bottom:20px;border-top:1px solid var(--mist);padding-top:7px;display:flex;justify-content:space-between;font-size:13px;color:var(--slate)}
+.title-slide{justify-content:center}
+.title-slide h1{font-size:64px;margin-bottom:12px}
+.title-slide .sub{font-size:28px;color:var(--graphite);margin-bottom:40px}
+.title-slide .meta{font-size:19px;color:var(--slate);line-height:1.6}
+.pill{display:inline-block;border-radius:999px;padding:2px 10px;font-size:13px;font-weight:700;letter-spacing:.06em}
+.pill.rec{background:var(--paper);color:var(--slate)}.pill.live{background:var(--amber);color:#fff}
+.dhint{position:absolute;right:64px;top:42px;font-size:13px;color:var(--slate);border:1px solid var(--mist);border-radius:8px;padding:3px 8px}
+/* Python drawer */
+#drawer{position:absolute;top:0;right:0;bottom:0;width:47%;background:#fbfaf7;border-left:3px solid var(--teal);box-shadow:-8px 0 24px rgba(0,0,0,.15);
+ transform:translateX(102%);transition:transform .25s;display:flex;flex-direction:column;padding:22px 24px 18px;z-index:5}
+#drawer.open{transform:none}
+#drawer h2{margin:0 0 4px;color:var(--teal);font-size:22px}
+#drawer .sub{font-size:14px;color:var(--slate);margin-bottom:10px}
+#drawer textarea{width:100%;height:190px;resize:vertical;border:none;margin:0;background:var(--paper);border-radius:10px;padding:12px 14px;font-family:var(--mono);font-size:13px;line-height:1.45;color:var(--ink);white-space:pre-wrap;outline:none}
+#drawer pre{margin:0;background:var(--paper);border-radius:10px;padding:12px 14px;font-family:var(--mono);font-size:13.5px;line-height:1.45;overflow:auto;white-space:pre}
+#drawer .out{margin-top:10px;flex:1;min-height:0;display:flex;flex-direction:column}
+#drawer .out pre{flex:1;background:#1f262d;color:#e8eef2}
+#drawer .bar{display:flex;gap:8px;align-items:center;margin-top:10px;font-size:13px;color:var(--slate)}
+#drawer button{font:inherit;font-size:14px;padding:6px 12px;border-radius:8px;border:none;background:var(--teal);color:#fff;cursor:pointer}
+#drawer button.ghost{background:#fff;color:var(--teal);border:1.5px solid var(--teal)}
+#notes{position:fixed;left:12px;bottom:12px;max-width:520px;background:#fffef8;border:1px solid var(--mist);border-radius:10px;padding:10px 14px;font-size:14px;line-height:1.45;display:none;z-index:9}
+#help{position:fixed;right:12px;bottom:12px;color:#c9d1d6;font-size:12px}
+@media print{#viewport{position:static;display:block}#stage{transform:none!important;box-shadow:none}.slide{display:flex!important;position:relative;page-break-after:always;height:720px}#drawer,#help,#notes,.dhint{display:none}}
+</style>
+</head>
+<body>
+<div id="viewport"><div id="stage">
+<div id="slides"></div>
+<aside id="drawer" aria-label="Python for this slide">
+  <h2 id="dTitle">Python</h2>
+  <div class="sub" id="dSub"></div>
+  <textarea id="dCode" spellcheck="false"></textarea>
+  <div class="out"><div class="bar" style="margin:0 0 6px"><span>Output</span><span id="dMode" class="pill rec">RECORDED RUN</span></div><pre id="dOut"></pre></div>
+  <div class="bar"><button id="runCode">Run this code</button><button class="ghost" id="runLive">Recompute all slides</button><button class="ghost" id="useRec">Recorded run</button></div>
+  <div class="bar" id="liveMsg" style="min-height:18px"></div>
+</aside>
+</div></div>
+<div id="notes"></div>
+<div id="help">← → move · D Python · F full screen · N notes</div>
+<script>
+const RECORDED = {"meta":{"numpy":"2.5.3","scipy":"1.18.1","python":"3.13.18"},"data":{"hours":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23],"tou_weekday":[2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,5.7982,5.7982,5.7982,5.7982,5.7982,5.7982,5.7982,5.7982,5.7982,5.7982,5.7982,5.7982,5.7982,2.6369,2.6369],"load_weekday":[55.0,55.0,55.0,55.0,55.0,58.0,65.0,85.0,120.0,130.0,135.0,140.0,110.0,135.0,140.0,135.0,130.0,115.0,100.0,95.0,90.0,80.0,65.0,60.0],"load_saturday":[55.0,55.0,55.0,55.0,55.0,55.0,60.0,75.0,99.0,104.0,109.0,109.0,99.0,104.0,109.0,104.0,99.0,85.0,75.0,70.0,65.0,60.0,58.0,55.0],"pv_clear":[0.0,0.0,0.0,0.0,0.0,0.0,11.3378,45.8999,83.9269,118.4204,144.351,158.2228,158.2228,144.351,118.4204,83.9269,45.8999,11.3378,0.0,0.0,0.0,0.0,0.0,0.0],"pv_cloudy":[0.0,0.0,0.0,0.0,0.0,0.0,11.3378,45.8999,83.9269,118.4204,144.351,158.2228,110.756,50.5229,35.5261,41.9635,36.7199,11.3378,0.0,0.0,0.0,0.0,0.0,0.0],"battery":{"E":200.0,"P":100.0,"eta_c":0.95,"eta_d":0.95,"soc_min":20.0,"soc0":100.0,"wear":0.05},"oils":["VEG1","VEG2","OIL1","OIL2","OIL3"],"months":["Jan","Feb","Mar","Apr","May","Jun"],"price":[[110.0,120.0,130.0,110.0,115.0],[130.0,130.0,110.0,90.0,115.0],[110.0,140.0,130.0,100.0,95.0],[120.0,110.0,120.0,120.0,125.0],[100.0,120.0,150.0,110.0,105.0],[90.0,100.0,140.0,80.0,135.0]],"hardness":[8.8,6.1,2.0,4.2,5.0]},"food":{"reference":{"status":"optimal","profit":107842.59259259261,"solver_objective":107842.59259259258,"buy":[[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,250.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,500.0],[659.259259,540.740741,0.0,750.0,0.0]],"use":[[159.259259,40.740741,0.0,250.0,0.0],[159.259259,40.740741,0.0,250.0,0.0],[22.222222,177.777778,0.0,0.0,250.0],[159.259259,40.740741,0.0,250.0,0.0],[0.0,200.0,0.0,0.0,250.0],[159.259259,40.740741,0.0,250.0,0.0]],"stock":[[340.740741,459.259259,500.0,250.0,500.0],[181.481481,418.518519,500.0,250.0,500.0],[159.259259,240.740741,500.0,250.0,250.0],[0.0,200.0,500.0,0.0,250.0],[0.0,0.0,500.0,0.0,500.0],[500.0,500.0,500.0,500.0,500.0]],"product":[450.0,450.0,450.0,450.0,450.0,450.0],"hardness":[6.0,6.0,5.622222,6.0,5.488889,6.0],"checks":{"max_stock_balance_residual_t":0.0,"hardness_within_3_to_6":true,"veg_capacity_ok":true,"nonveg_capacity_ok":true,"objective_residual_gbp":2.9103830456733704e-11},"capacity_value_gbp_per_t":{"veg":[75.0,70.0,65.0,60.0,55.0,49.6296],"nonveg":[65.0,60.0,55.0,50.0,45.0,76.6667]}},"holding_sweep":[{"h":0,"profit":164092.59259259258,"stock_total":11250.0,"buy":[[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,750.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[659.259259,540.740741,0.0,750.0,0.0]],"stock":[[340.740741,459.259259,500.0,250.0,500.0],[181.481481,418.518519,500.0,750.0,500.0],[159.259259,240.740741,500.0,500.0,500.0],[0.0,200.0,500.0,250.0,500.0],[0.0,0.0,500.0,0.0,500.0],[500.0,500.0,500.0,500.0,500.0]]},{"h":1,"profit":152842.59259259258,"stock_total":11250.0,"buy":[[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,750.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[659.259259,540.740741,0.0,750.0,0.0]],"stock":[[340.740741,459.259259,500.0,250.0,500.0],[181.481481,418.518519,500.0,750.0,500.0],[159.259259,240.740741,500.0,500.0,500.0],[0.0,200.0,500.0,250.0,500.0],[0.0,0.0,500.0,0.0,500.0],[500.0,500.0,500.0,500.0,500.0]]},{"h":2,"profit":141592.59259259258,"stock_total":11250.0,"buy":[[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,750.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[659.259259,540.740741,0.0,750.0,0.0]],"stock":[[340.740741,459.259259,500.0,250.0,500.0],[181.481481,418.518519,500.0,750.0,500.0],[159.259259,240.740741,500.0,500.0,500.0],[0.0,200.0,500.0,250.0,500.0],[0.0,0.0,500.0,0.0,500.0],[500.0,500.0,500.0,500.0,500.0]]},{"h":3,"profit":130342.59259259258,"stock_total":11250.0,"buy":[[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,750.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[659.259259,540.740741,0.0,750.0,0.0]],"stock":[[340.740741,459.259259,500.0,250.0,500.0],[181.481481,418.518519,500.0,750.0,500.0],[159.259259,240.740741,500.0,500.0,500.0],[0.0,200.0,500.0,250.0,500.0],[0.0,0.0,500.0,0.0,500.0],[500.0,500.0,500.0,500.0,500.0]]},{"h":4,"profit":119092.59259259258,"stock_total":11250.0,"buy":[[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,750.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[659.259259,540.740741,0.0,750.0,0.0]],"stock":[[340.740741,459.259259,500.0,250.0,500.0],[181.481481,418.518519,500.0,750.0,500.0],[159.259259,240.740741,500.0,500.0,500.0],[0.0,200.0,500.0,250.0,500.0],[0.0,0.0,500.0,0.0,500.0],[500.0,500.0,500.0,500.0,500.0]]},{"h":5,"profit":107842.59259259261,"stock_total":9750.0,"buy":[[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,250.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,500.0],[659.259259,540.740741,0.0,750.0,0.0]],"stock":[[340.740741,459.259259,500.0,250.0,500.0],[181.481481,418.518519,500.0,250.0,500.0],[159.259259,240.740741,500.0,250.0,250.0],[0.0,200.0,500.0,0.0,250.0],[0.0,0.0,500.0,0.0,500.0],[500.0,500.0,500.0,500.0,500.0]]},{"h":6,"profit":98842.59259259258,"stock_total":9000.0,"buy":[[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,750.0],[659.259259,540.740741,0.0,750.0,0.0]],"stock":[[414.814815,385.185185,500.0,500.0,250.0],[255.555556,344.444444,500.0,250.0,250.0],[170.37037,229.62963,500.0,250.0,0.0],[11.111111,188.888889,500.0,0.0,0.0],[0.0,0.0,500.0,0.0,500.0],[500.0,500.0,500.0,500.0,500.0]]},{"h":7,"profit":89842.59259259258,"stock_total":9000.0,"buy":[[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,750.0],[659.259259,540.740741,0.0,750.0,0.0]],"stock":[[414.814815,385.185185,500.0,500.0,250.0],[255.555556,344.444444,500.0,250.0,250.0],[170.37037,229.62963,500.0,250.0,0.0],[11.111111,188.888889,500.0,0.0,0.0],[0.0,0.0,500.0,0.0,500.0],[500.0,500.0,500.0,500.0,500.0]]},{"h":8,"profit":80842.59259259258,"stock_total":9000.0,"buy":[[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,750.0],[659.259259,540.740741,0.0,750.0,0.0]],"stock":[[414.814815,385.185185,500.0,500.0,250.0],[255.555556,344.444444,500.0,250.0,250.0],[170.37037,229.62963,500.0,250.0,0.0],[11.111111,188.888889,500.0,0.0,0.0],[0.0,0.0,500.0,0.0,500.0],[500.0,500.0,500.0,500.0,500.0]]},{"h":9,"profit":71842.59259259258,"stock_total":9000.0,"buy":[[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,750.0],[659.259259,540.740741,0.0,750.0,0.0]],"stock":[[414.814815,385.185185,500.0,500.0,250.0],[255.555556,344.444444,500.0,250.0,250.0],[170.37037,229.62963,500.0,250.0,0.0],[11.111111,188.888889,500.0,0.0,0.0],[0.0,0.0,500.0,0.0,500.0],[500.0,500.0,500.0,500.0,500.0]]},{"h":10,"profit":62842.592592592584,"stock_total":9000.0,"buy":[[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,750.0],[659.259259,540.740741,0.0,750.0,0.0]],"stock":[[414.814815,385.185185,500.0,500.0,250.0],[255.555556,344.444444,500.0,250.0,250.0],[170.37037,229.62963,500.0,250.0,0.0],[11.111111,188.888889,500.0,0.0,0.0],[0.0,0.0,500.0,0.0,500.0],[500.0,500.0,500.0,500.0,500.0]]}],"no_carryover":{"status":"optimal","profit":44648.148148148146,"solver_objective":44648.148148148146,"buy":[[159.259259,40.740741,0.0,250.0,0.0],[0.0,200.0,0.0,250.0,0.0],[159.259259,40.740741,0.0,250.0,0.0],[0.0,200.0,0.0,250.0,0.0],[159.259259,40.740741,0.0,250.0,0.0],[159.259259,40.740741,0.0,250.0,0.0]],"use":[[159.259259,40.740741,0.0,250.0,0.0],[0.0,200.0,0.0,250.0,0.0],[159.259259,40.740741,0.0,250.0,0.0],[0.0,200.0,0.0,250.0,0.0],[159.259259,40.740741,0.0,250.0,0.0],[159.259259,40.740741,0.0,250.0,0.0]],"stock":[[500.0,500.0,500.0,500.0,500.0],[500.0,500.0,500.0,500.0,500.0],[500.0,500.0,500.0,500.0,500.0],[500.0,500.0,500.0,500.0,500.0],[500.0,500.0,500.0,500.0,500.0],[500.0,500.0,500.0,500.0,500.0]],"product":[450.0,450.0,450.0,450.0,450.0,450.0],"hardness":[6.0,5.044444,6.0,5.044444,6.0,6.0],"checks":{"max_stock_balance_residual_t":0.0,"hardness_within_3_to_6":true,"veg_capacity_ok":true,"nonveg_capacity_ok":true,"objective_residual_gbp":0.0},"capacity_value_gbp_per_t":{"veg":[29.6296,20.0,8.8889,40.0,29.2593,49.6296],"nonveg":[46.6667,60.0,70.0,30.0,53.3333,76.6667]}},"no_terminal":{"status":"optimal","profit":358249.99999999994,"solver_objective":358249.99999999994,"buy":[[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0],[200.0,0.0,0.0,0.0,0.0]],"use":[[85.185185,114.814815,0.0,0.0,250.0],[55.555556,144.444444,200.0,50.0,0.0],[0.0,200.0,0.0,0.0,250.0],[159.259259,40.740741,0.0,250.0,0.0],[200.0,0.0,50.0,200.0,0.0],[200.0,0.0,250.0,0.0,0.0]],"stock":[[414.814815,385.185185,500.0,500.0,250.0],[359.259259,240.740741,300.0,450.0,250.0],[359.259259,40.740741,300.0,450.0,0.0],[200.0,0.0,300.0,200.0,0.0],[0.0,0.0,250.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0]],"product":[450.0,450.0,450.0,450.0,450.0,450.0],"hardness":[6.0,4.4,5.488889,6.0,6.0,5.022222],"checks":{"max_stock_balance_residual_t":3.979039320256561e-13,"hardness_within_3_to_6":true,"veg_capacity_ok":true,"nonveg_capacity_ok":true,"objective_residual_gbp":0.0},"capacity_value_gbp_per_t":{"veg":[85.0,80.0,75.0,70.0,65.0,60.0],"nonveg":[170.0,165.0,160.0,155.0,150.0,145.0]}}},"storage":{"base":{"imp":[55.0,55.0,55.0,55.0,55.0,58.0,53.662248,39.100121,69.019065,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,89.415026,100.0,95.0,90.0,80.0,65.0,144.210526],"exp":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"ch":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,32.945978,0.0,9.351045,18.222819,48.222819,9.351045,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,84.210526],"dis":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,11.57957,0.0,0.0,0.0,0.0,21.57957,51.073087,84.100121,14.247222,0.0,0.0,0.0,0.0,0.0,0.0],"cur":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"soc":[100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,131.298679,119.109658,127.993151,145.304829,191.116507,200.0,177.284663,123.523519,34.997076,20.0,20.0,20.0,20.0,20.0,20.0,100.0],"status":"optimal","cost":4500.274581998432,"energy_cost":4491.145603497312,"simultaneous_kw":0.0,"checks":{"max_power_balance_residual_kw":0.0,"max_soc_balance_residual_kwh":1.4210854715202004e-14,"objective_residual_thb":9.094947017729282e-13,"soc_end_kwh":100.0},"marginal_thb_per_kwh":[2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.9718,2.6369,2.6369,2.6369,2.6369,5.7982,5.7982,5.7982,5.7982,5.7982,5.7982,5.7982,5.7982,2.6369,2.6369]},"no_battery_cost":5240.848480852495,"no_terminal":{"imp":[55.0,55.0,55.0,55.0,55.0,58.0,53.662248,39.100121,69.019065,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,89.415026,100.0,95.0,90.0,80.0,65.0,60.0],"exp":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"ch":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,32.945978,0.0,9.351045,18.222819,48.222819,9.351045,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"dis":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,11.57957,0.0,0.0,0.0,0.0,21.57957,51.073087,84.100121,14.247222,0.0,0.0,0.0,0.0,0.0,0.0],"cur":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"soc":[100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,131.298679,119.109658,127.993151,145.304829,191.116507,200.0,177.284663,123.523519,34.997076,20.0,20.0,20.0,20.0,20.0,20.0,20.0],"status":"optimal","cost":4278.219845156326,"energy_cost":4269.090866655206,"simultaneous_kw":-0.0,"checks":{"max_power_balance_residual_kw":0.0,"max_soc_balance_residual_kwh":1.4210854715202004e-14,"objective_residual_thb":1.8189894035458565e-12,"soc_end_kwh":20.0},"marginal_thb_per_kwh":[2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.9718,2.6369,2.6369,2.6369,2.6369,5.7982,5.7982,5.7982,5.7982,5.7982,5.7982,5.7982,5.7982,2.6369,2.6369]},"base_binary":{"imp":[55.0,55.0,55.0,55.0,55.0,90.945978,53.662248,39.100121,36.073087,0.0,0.0,0.0,0.0,0.0,21.57957,0.0,0.0,67.835456,100.0,95.0,90.0,80.0,65.0,144.210526],"exp":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"ch":[0.0,0.0,0.0,0.0,0.0,32.945978,0.0,0.0,0.0,0.0,9.351045,18.222819,48.222819,9.351045,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,84.210526],"dis":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,11.57957,0.0,0.0,0.0,0.0,0.0,51.073087,84.100121,35.826792,0.0,0.0,0.0,0.0,0.0,0.0],"cur":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"soc":[100.0,100.0,100.0,100.0,100.0,131.298679,131.298679,131.298679,131.298679,119.109658,127.993151,145.304829,191.116507,200.0,200.0,146.238856,57.712413,20.0,20.0,20.0,20.0,20.0,20.0,100.0],"status":"optimal","cost":4500.274581998432,"energy_cost":4491.145603497312,"simultaneous_kw":0.0,"checks":{"max_power_balance_residual_kw":0.0,"max_soc_balance_residual_kwh":1.4210854715202004e-14,"objective_residual_thb":0.0,"soc_end_kwh":100.0},"marginal_thb_per_kwh":null},"saturday_lp_no_curtail":{"imp":[0.0,34.0,55.0,55.0,55.0,55.0,48.662248,29.100121,15.073087,0.0,0.0,0.0,0.0,0.0,0.0,0.0,51.835456,0.0,75.0,70.0,65.0,60.0,58.0,55.0],"exp":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"ch":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,61.504071,100.0,49.222819,59.222819,100.0,9.42043,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"dis":[55.0,21.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,47.083641,64.648955,0.0,0.0,59.648955,0.0,20.073087,1.264665,73.662248,0.0,0.0,0.0,0.0,0.0,0.0],"cur":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"soc":[42.105263,20.0,20.0,20.0,20.0,20.0,20.0,20.0,20.0,28.86714,55.815609,102.577287,158.838965,191.050592,200.0,178.870435,177.539208,100.0,100.0,100.0,100.0,100.0,100.0,100.0],"status":"optimal","cost":2078.30710548851,"energy_cost":2061.188027939683,"simultaneous_kw":64.64895495394654,"checks":{"max_power_balance_residual_kw":7.105427357601002e-15,"max_soc_balance_residual_kwh":2.842170943040401e-14,"objective_residual_thb":9.094947017729282e-13,"soc_end_kwh":100.0},"marginal_thb_per_kwh":[2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,-0.4628,-0.4628,-0.4628,-0.4628,-0.4628,-0.4628,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369]},"saturday_milp_no_curtail":{"status":"infeasible","cost":null},"saturday_lp_curtail":{"imp":[0.0,34.0,55.0,55.0,55.0,55.0,48.662248,29.100121,15.073087,0.0,0.0,0.0,0.0,0.0,0.0,0.0,51.835456,0.0,75.0,70.0,65.0,60.0,58.0,55.0],"exp":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"ch":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,31.256571,49.222819,59.222819,40.351045,9.42043,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"dis":[55.0,21.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,20.073087,1.264665,73.662248,0.0,0.0,0.0,0.0,0.0,0.0],"cur":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,14.42043,4.094474,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"soc":[42.105263,20.0,20.0,20.0,20.0,20.0,20.0,20.0,20.0,20.0,49.693742,96.45542,152.717099,191.050592,200.0,178.870435,177.539208,100.0,100.0,100.0,100.0,100.0,100.0,100.0],"status":"optimal","cost":2069.738027939683,"energy_cost":2061.188027939683,"simultaneous_kw":0.0,"checks":{"max_power_balance_residual_kw":0.0,"max_soc_balance_residual_kwh":2.842170943040401e-14,"objective_residual_thb":9.094947017729282e-13,"soc_end_kwh":100.0},"marginal_thb_per_kwh":[2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369]}},"uncertainty":{"perfect":{"imp":[55.0,55.0,55.0,55.0,55.0,58.0,53.662248,39.100121,125.836956,0.0,0.0,0.0,0.0,0.0,17.951005,93.036544,93.280097,103.662248,100.0,95.0,90.0,80.0,65.0,144.210526],"exp":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"ch":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,89.763869,0.0,9.351045,18.222819,0.755973,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,84.210526],"dis":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,11.57957,0.0,0.0,0.0,84.477134,86.522866,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"cur":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"soc":[100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,185.275675,173.086654,181.970147,199.281825,200.0,111.076701,20.0,20.0,20.0,20.0,20.0,20.0,20.0,20.0,20.0,100.0],"status":"optimal","cost":5917.090583068971,"energy_cost":5907.96160456785,"simultaneous_kw":0.0,"checks":{"max_power_balance_residual_kw":1.4210854715202004e-14,"max_soc_balance_residual_kwh":1.4210854715202004e-14,"objective_residual_thb":1.8189894035458565e-12,"soc_end_kwh":100.0},"marginal_thb_per_kwh":[2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.6369,2.9718,2.6369,2.6369,2.6369,5.7982,5.7982,5.7982,5.7982,5.7982,5.7982,5.7982,5.7982,5.7982,2.6369,2.6369]},"open_loop":{"cost":6096.708979431394,"imp":[55.0,55.0,55.0,55.0,55.0,58.0,53.662248,39.100121,69.019065,0.0,0.0,0.0,47.466846,93.828179,82.894301,41.963457,9.179976,89.415026,100.0,95.0,90.0,80.0,65.0,144.210526]},"rolling":{"ch":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,32.945978,0.0,9.351045,18.222819,0.755973,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,84.210526,0.0],"dis":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,11.57957,0.0,0.0,0.0,0.0,100.0,19.721853,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"imp":[55.0,55.0,55.0,55.0,55.0,58.0,53.662248,39.100121,69.019065,0.0,0.0,0.0,0.0,84.477134,4.473871,73.31469,93.280097,103.662248,100.0,95.0,90.0,80.0,149.210526,60.0],"soc":[100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,131.298679,119.109658,127.993151,145.304829,146.023003,146.023003,40.759845,20.0,20.0,20.0,20.0,20.0,20.0,20.0,100.0,100.0],"cost":6062.024528001999},"no_battery_cost":6507.8413855923245}};
+const LAB_FILE = "multiperiod_lab.py?v=lab4-8bb5b92f";
+const LAB_SRC = "\"\"\"2105623 Lab 4: multiperiod optimization.\n\nTwo time-indexed models, each solved with SciPy's HiGHS interface so that the\nsame file runs in the browser (Pyodide) and in desktop Python:\n\n  Part A  Food Manufacture: six-month oil blending with storage\n          (data from H. P. Williams, Model Building in Mathematical\n          Programming, 5th ed., Section 12.1).\n  Part B  24-hour dispatch of a battery beside rooftop PV under a\n          time-of-use tariff (PEA Tariff 2.2.2, energy charge only;\n          load and PV profiles are synthetic teaching data).\n\nRun   python multiperiod_lab.py          print every part\n      python multiperiod_lab.py --step   pause after each part\n      python multiperiod_lab.py --json   write the recorded results file\n\nEvery result is checked by recomputing balances and the objective from the\nsolution itself. A solver status of \"optimal\" is not treated as evidence.\n\"\"\"\nimport json\nimport sys\n\nimport numpy as np\nfrom scipy.optimize import Bounds, LinearConstraint, linprog, milp\n\n# ---------------------------------------------------------------------------\n# Part A. Food Manufacture (Williams 12.1)\n# ---------------------------------------------------------------------------\nMONTHS = [\"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\"]\nOILS = [\"VEG1\", \"VEG2\", \"OIL1\", \"OIL2\", \"OIL3\"]\nIS_VEG = np.array([1, 1, 0, 0, 0], dtype=bool)\nHARDNESS = np.array([8.8, 6.1, 2.0, 4.2, 5.0])\nPRICE = np.array([          # GBP per tonne, rows = months, columns = oils\n    [110, 120, 130, 110, 115],\n    [130, 130, 110, 90, 115],\n    [110, 140, 130, 100, 95],\n    [120, 110, 120, 120, 125],\n    [100, 120, 150, 110, 105],\n    [90, 100, 140, 80, 135],\n], dtype=float)\nSELL = 150.0                # GBP per tonne of product\nINITIAL_STOCK = 500.0       # tonnes of each oil at the start\nMAX_STOCK = 1000.0          # tonnes of each oil\n\n\ndef food_manufacture(storage_cost=5.0, veg_capacity=200.0, nonveg_capacity=250.0,\n                     terminal=True, carryover=True):\n    \"\"\"Maximize profit over six months. Returns plan, profit, checks and duals.\"\"\"\n    nI, nT = len(OILS), len(MONTHS)\n    n = 3 * nI * nT                                   # buy, use, stock\n\n    def b(i, t): return i * nT + t                    # buy[i, t]\n    def u(i, t): return nI * nT + i * nT + t          # use[i, t]\n    def s(i, t): return 2 * nI * nT + i * nT + t      # stock[i, t] at month end\n\n    c = np.zeros(n)                                   # minimize -profit\n    for i in range(nI):\n        for t in range(nT):\n            c[b(i, t)] = PRICE[t, i]\n            c[u(i, t)] = -SELL\n            c[s(i, t)] = storage_cost\n\n    A_eq, b_eq = [], []                               # stock balance\n    for i in range(nI):\n        for t in range(nT):\n            row = np.zeros(n)\n            row[b(i, t)], row[u(i, t)], row[s(i, t)] = 1, -1, -1\n            if t == 0:\n                b_eq.append(-INITIAL_STOCK)\n            else:\n                row[s(i, t - 1)] = 1\n                b_eq.append(0.0)\n            A_eq.append(row)\n\n    A_ub, b_ub, ub_names = [], [], []\n    for t in range(nT):\n        veg, nonveg, hmax, hmin = (np.zeros(n) for _ in range(4))\n        for i in range(nI):\n            (veg if IS_VEG[i] else nonveg)[u(i, t)] = 1\n            hmax[u(i, t)] = HARDNESS[i] - 6.0         # hardness <= 6\n            hmin[u(i, t)] = 3.0 - HARDNESS[i]         # hardness >= 3\n        A_ub += [veg, nonveg, hmax, hmin]\n        b_ub += [veg_capacity, nonveg_capacity, 0.0, 0.0]\n        ub_names += [f\"veg_cap_{t}\", f\"nonveg_cap_{t}\", f\"hard_max_{t}\", f\"hard_min_{t}\"]\n\n    bounds = [(0, None)] * (2 * nI * nT)\n    for i in range(nI):\n        for t in range(nT):\n            lo, hi = 0.0, MAX_STOCK\n            if not carryover:\n                lo = hi = INITIAL_STOCK\n            if terminal and t == nT - 1:\n                lo = hi = INITIAL_STOCK\n            bounds.append((lo, hi))\n\n    res = linprog(c, A_ub=np.array(A_ub), b_ub=b_ub, A_eq=np.array(A_eq), b_eq=b_eq,\n                  bounds=bounds, method=\"highs\")\n    if res.status != 0:\n        return {\"status\": res.message, \"profit\": None}\n    x = res.x\n    buy = np.array([[x[b(i, t)] for i in range(nI)] for t in range(nT)])\n    use = np.array([[x[u(i, t)] for i in range(nI)] for t in range(nT)])\n    stock = np.array([[x[s(i, t)] for i in range(nI)] for t in range(nT)])\n    product = use.sum(axis=1)\n\n    # Independent audit from the solution values only\n    prev = np.full(nI, INITIAL_STOCK)\n    balance = []\n    for t in range(nT):\n        balance.append(np.abs(prev + buy[t] - use[t] - stock[t]).max())\n        prev = stock[t]\n    quality = (use @ HARDNESS) / np.where(product > 0, product, 1)\n    profit = SELL * product.sum() - (PRICE * buy).sum() - storage_cost * stock.sum()\n    marg = res.ineqlin.marginals                      # d(-profit)/d(rhs)\n    duals = {name: -m for name, m in zip(ub_names, marg)}\n    return {\n        \"status\": \"optimal\",\n        \"profit\": profit,\n        \"solver_objective\": -res.fun,\n        \"buy\": (buy.round(6) + 0.0).tolist(), \"use\": (use.round(6) + 0.0).tolist(),\n        \"stock\": (stock.round(6) + 0.0).tolist(), \"product\": (product.round(6) + 0.0).tolist(),\n        \"hardness\": quality.round(6).tolist(),\n        \"checks\": {\n            \"max_stock_balance_residual_t\": float(max(balance)),\n            \"hardness_within_3_to_6\": bool(np.all((quality > 3 - 1e-7) & (quality < 6 + 1e-7))),\n            \"veg_capacity_ok\": bool(np.all(use[:, IS_VEG].sum(axis=1) <= veg_capacity + 1e-7)),\n            \"nonveg_capacity_ok\": bool(np.all(use[:, ~IS_VEG].sum(axis=1) <= nonveg_capacity + 1e-7)),\n            \"objective_residual_gbp\": float(abs(profit - (-res.fun))),\n        },\n        \"capacity_value_gbp_per_t\": {\n            \"veg\": [round(duals[f\"veg_cap_{t}\"], 4) for t in range(nT)],\n            \"nonveg\": [round(duals[f\"nonveg_cap_{t}\"], 4) for t in range(nT)],\n        },\n    }\n\n\n# ---------------------------------------------------------------------------\n# Part B. Battery beside rooftop PV under a time-of-use tariff\n# ---------------------------------------------------------------------------\nHOURS = np.arange(24)                                 # hour t covers t:00 to t+1:00\nPEAK, OFFPEAK = 5.7982, 2.6369                        # THB/kWh, PEA 2.2.2, no Ft or VAT\nTOU_WEEKDAY = np.where((HOURS >= 9) & (HOURS < 22), PEAK, OFFPEAK)\nTOU_SATURDAY = np.full(24, OFFPEAK)                   # weekends are off-peak all day\nLOAD_WEEKDAY = np.array([55, 55, 55, 55, 55, 58, 65, 85, 120, 130, 135, 140,\n                         110, 135, 140, 135, 130, 115, 100, 95, 90, 80, 65, 60], float)\nLOAD_SATURDAY = np.array([55, 55, 55, 55, 55, 55, 60, 75, 99, 104, 109, 109,\n                          99, 104, 109, 104, 99, 85, 75, 70, 65, 60, 58, 55], float)\nCLOUD = np.ones(24)\nCLOUD[12:17] = [0.7, 0.35, 0.3, 0.5, 0.8]             # cloudy afternoon\nBATTERY = {\"E\": 200.0, \"P\": 100.0, \"eta_c\": 0.95, \"eta_d\": 0.95,\n           \"soc_min\": 20.0, \"soc0\": 100.0, \"wear\": 0.05}   # wear: THB per kWh discharged\n\n\ndef pv_profile(kwp=200.0, cloud=None):\n    \"\"\"Clear-sky PV output in kW for each hour (synthetic, sunrise 6:00, sunset 18:00).\"\"\"\n    mid = HOURS + 0.5\n    shape = np.clip(np.sin(np.pi * (mid - 6.0) / 12.0), 0, None) ** 1.3\n    pv = 0.8 * kwp * shape\n    return pv * (CLOUD if cloud is True else (cloud if cloud is not None else 1.0))\n\n\ndef dispatch(load, pv, price, export=False, export_price=0.0, curtail=True,\n             terminal=True, binary=False, soc_start=None, soc_end=None, battery=None):\n    \"\"\"Least-cost 1-hour dispatch. Variables per hour: import, export, charge,\n    discharge, curtailment, state of charge (kWh at the end of the hour).\"\"\"\n    bat = dict(BATTERY, **(battery or {}))\n    load, pv, price = (np.asarray(a, float) for a in (load, pv, price))\n    n = len(load)\n    soc_start = bat[\"soc0\"] if soc_start is None else soc_start\n    soc_end = bat[\"soc0\"] if soc_end is None else soc_end\n    IMP, EXP, CH, DIS, CUR, SOC, Y = (k * n for k in range(7))\n    nv = 7 * n if binary else 6 * n\n\n    c = np.zeros(nv)\n    c[IMP:IMP + n] = price\n    c[EXP:EXP + n] = -export_price\n    c[DIS:DIS + n] = bat[\"wear\"]\n\n    rows, lo, hi, names = [], [], [], []\n    for t in range(n):                                # power balance (kW, 1 h)\n        r = np.zeros(nv)\n        r[IMP + t], r[DIS + t], r[CH + t], r[EXP + t], r[CUR + t] = 1, 1, -1, -1, -1\n        rows.append(r); lo.append(load[t] - pv[t]); hi.append(load[t] - pv[t]); names.append((\"power\", t))\n    for t in range(n):                                # state-of-charge balance\n        r = np.zeros(nv)\n        r[SOC + t], r[CH + t], r[DIS + t] = 1, -bat[\"eta_c\"], 1 / bat[\"eta_d\"]\n        rhs = soc_start if t == 0 else 0.0\n        if t > 0:\n            r[SOC + t - 1] = -1\n        rows.append(r); lo.append(rhs); hi.append(rhs); names.append((\"soc\", t))\n    if binary:                                        # y = 1 charge allowed, y = 0 discharge allowed\n        for t in range(n):\n            r = np.zeros(nv); r[CH + t], r[Y + t] = 1, -bat[\"P\"]\n            rows.append(r); lo.append(-np.inf); hi.append(0.0); names.append((\"ychg\", t))\n            r = np.zeros(nv); r[DIS + t], r[Y + t] = 1, bat[\"P\"]\n            rows.append(r); lo.append(-np.inf); hi.append(bat[\"P\"]); names.append((\"ydis\", t))\n\n    lb, ub = np.zeros(nv), np.full(nv, np.inf)\n    ub[EXP:EXP + n] = np.inf if export else 0.0\n    ub[CH:CH + n] = bat[\"P\"]\n    ub[DIS:DIS + n] = bat[\"P\"]\n    ub[CUR:CUR + n] = pv if curtail else 0.0\n    lb[SOC:SOC + n], ub[SOC:SOC + n] = bat[\"soc_min\"], bat[\"E\"]\n    if terminal:\n        lb[SOC + n - 1] = max(soc_end, bat[\"soc_min\"])\n    if binary:\n        ub[Y:Y + n] = 1.0\n\n    A = np.array(rows)\n    if binary:\n        integ = np.zeros(nv); integ[Y:Y + n] = 1\n        res = milp(c, constraints=LinearConstraint(A, lo, hi), bounds=Bounds(lb, ub),\n                   integrality=integ)\n        ok, x, marg = res.status == 0, res.x, None\n    else:\n        eq = [i for i, (a, z) in enumerate(zip(lo, hi)) if a == z]\n        res = linprog(c, A_eq=A[eq], b_eq=np.array(lo)[eq], bounds=list(zip(lb, ub)),\n                      method=\"highs\")\n        ok, x = res.status == 0, res.x\n        marg = res.eqlin.marginals[:n] if ok else None\n    if not ok:\n        return {\"status\": \"infeasible\" if res.status == 2 else str(res.message), \"cost\": None}\n\n    g = {k: x[o:o + n] for k, o in ((\"imp\", IMP), (\"exp\", EXP), (\"ch\", CH), (\"dis\", DIS),\n                                     (\"cur\", CUR), (\"soc\", SOC))}\n    soc_prev = np.concatenate([[soc_start], g[\"soc\"][:-1]])\n    power_res = g[\"imp\"] + pv - g[\"cur\"] + g[\"dis\"] - load - g[\"ch\"] - g[\"exp\"]\n    soc_res = soc_prev + bat[\"eta_c\"] * g[\"ch\"] - g[\"dis\"] / bat[\"eta_d\"] - g[\"soc\"]\n    cost = float(price @ g[\"imp\"] - export_price * g[\"exp\"].sum() + bat[\"wear\"] * g[\"dis\"].sum())\n    out = {k: (np.round(v, 6) + 0.0).tolist() for k, v in g.items()}\n    out.update({\n        \"status\": \"optimal\",\n        \"cost\": cost,\n        \"energy_cost\": float(price @ g[\"imp\"]),\n        \"simultaneous_kw\": float(np.minimum(g[\"ch\"], g[\"dis\"]).max()),\n        \"checks\": {\n            \"max_power_balance_residual_kw\": float(np.abs(power_res).max()),\n            \"max_soc_balance_residual_kwh\": float(np.abs(soc_res).max()),\n            \"objective_residual_thb\": float(abs(cost - res.fun)),\n            \"soc_end_kwh\": float(g[\"soc\"][-1]),\n        },\n        \"marginal_thb_per_kwh\": None if marg is None else np.round(marg, 4).tolist(),\n    })\n    return out\n\n\ndef no_battery_cost(load, pv, price):\n    \"\"\"Cost when the site has PV but no battery; surplus PV is curtailed.\"\"\"\n    imp = np.clip(np.asarray(load) - np.asarray(pv), 0, None)\n    return float(np.asarray(price) @ imp)\n\n\ndef rolling_horizon(load, pv_actual, pv_forecast, price):\n    \"\"\"Re-plan every hour to the end of the day. The current hour uses the\n    measured PV, later hours use the forecast. Only the first hour is applied.\"\"\"\n    bat = BATTERY\n    soc, cost, applied = bat[\"soc0\"], 0.0, {\"ch\": [], \"dis\": [], \"imp\": [], \"soc\": []}\n    for h in range(len(load)):\n        pv_view = np.concatenate([[pv_actual[h]], pv_forecast[h + 1:]])\n        plan = dispatch(load[h:], pv_view, price[h:], soc_start=soc, soc_end=bat[\"soc0\"])\n        ch, dis, imp = plan[\"ch\"][0], plan[\"dis\"][0], plan[\"imp\"][0]\n        soc = soc + bat[\"eta_c\"] * ch - dis / bat[\"eta_d\"]\n        cost += price[h] * imp + bat[\"wear\"] * dis\n        for k, v in ((\"ch\", ch), (\"dis\", dis), (\"imp\", imp), (\"soc\", soc)):\n            applied[k].append(round(float(v), 6) + 0.0)\n    applied[\"cost\"] = float(cost)\n    return applied\n\n\ndef open_loop(load, pv_actual, pv_forecast, price):\n    \"\"\"Fix the battery schedule from the morning forecast; the grid absorbs the error.\"\"\"\n    plan = dispatch(load, pv_forecast, price)\n    ch, dis = np.array(plan[\"ch\"]), np.array(plan[\"dis\"])\n    net = np.asarray(load) - np.asarray(pv_actual) + ch - dis\n    imp = np.clip(net, 0, None)\n    return {\"cost\": float(np.asarray(price) @ imp + BATTERY[\"wear\"] * dis.sum()),\n            \"imp\": (np.round(imp, 6) + 0.0).tolist()}\n\n\n# ---------------------------------------------------------------------------\n# Everything the slides show, in one dictionary\n# ---------------------------------------------------------------------------\ndef classroom_results():\n    pv_clear, pv_cloudy = pv_profile(), pv_profile(cloud=True)\n    R = {\"meta\": {\"numpy\": np.__version__, \"scipy\": __import__(\"scipy\").__version__,\n                  \"python\": sys.version.split()[0]},\n         \"data\": {\"hours\": HOURS.tolist(), \"tou_weekday\": TOU_WEEKDAY.tolist(),\n                  \"load_weekday\": LOAD_WEEKDAY.tolist(), \"load_saturday\": LOAD_SATURDAY.tolist(),\n                  \"pv_clear\": np.round(pv_clear, 4).tolist(),\n                  \"pv_cloudy\": np.round(pv_cloudy, 4).tolist(), \"battery\": BATTERY,\n                  \"oils\": OILS, \"months\": MONTHS, \"price\": PRICE.tolist(),\n                  \"hardness\": HARDNESS.tolist()}}\n    # Part A\n    R[\"food\"] = {\"reference\": food_manufacture()}\n    R[\"food\"][\"holding_sweep\"] = []\n    for h in range(0, 11):\n        run = food_manufacture(storage_cost=h)\n        R[\"food\"][\"holding_sweep\"].append(\n            {\"h\": h, \"profit\": run[\"profit\"], \"stock_total\": float(np.sum(run[\"stock\"])),\n             \"buy\": run[\"buy\"], \"stock\": run[\"stock\"]})\n    R[\"food\"][\"no_carryover\"] = food_manufacture(carryover=False)\n    R[\"food\"][\"no_terminal\"] = food_manufacture(terminal=False)\n    # Part B\n    base = dispatch(LOAD_WEEKDAY, pv_clear, TOU_WEEKDAY)\n    R[\"storage\"] = {\n        \"base\": base,\n        \"no_battery_cost\": no_battery_cost(LOAD_WEEKDAY, pv_clear, TOU_WEEKDAY),\n        \"no_terminal\": dispatch(LOAD_WEEKDAY, pv_clear, TOU_WEEKDAY, terminal=False),\n        \"base_binary\": dispatch(LOAD_WEEKDAY, pv_clear, TOU_WEEKDAY, binary=True),\n        \"saturday_lp_no_curtail\": dispatch(LOAD_SATURDAY, pv_clear, TOU_SATURDAY, curtail=False),\n        \"saturday_milp_no_curtail\": dispatch(LOAD_SATURDAY, pv_clear, TOU_SATURDAY, curtail=False, binary=True),\n        \"saturday_lp_curtail\": dispatch(LOAD_SATURDAY, pv_clear, TOU_SATURDAY, curtail=True),\n    }\n    R[\"uncertainty\"] = {\n        \"perfect\": dispatch(LOAD_WEEKDAY, pv_cloudy, TOU_WEEKDAY),\n        \"open_loop\": open_loop(LOAD_WEEKDAY, pv_cloudy, pv_clear, TOU_WEEKDAY),\n        \"rolling\": rolling_horizon(LOAD_WEEKDAY, pv_cloudy, pv_clear, TOU_WEEKDAY),\n        \"no_battery_cost\": no_battery_cost(LOAD_WEEKDAY, pv_cloudy, TOU_WEEKDAY),\n    }\n    return R\n\n\ndef _print_parts(R, step=False):\n    def pause():\n        if step:\n            input(\"\\nPress Enter for the next part ...\")\n    f = R[\"food\"][\"reference\"]\n    print(\"PART 1  Food Manufacture, reference plan\")\n    print(f\"  profit = {f['profit']:,.2f} GBP (solver {f['solver_objective']:,.2f})\")\n    for m, p, h in zip(MONTHS, f[\"product\"], f[\"hardness\"]):\n        print(f\"  {m}: product {p:7.2f} t  hardness {h:5.3f}\")\n    print(\"  checks:\", f[\"checks\"]); pause()\n    print(\"\\nPART 2  What storage is worth\")\n    print(f\"  no carryover : {R['food']['no_carryover']['profit']:,.2f} GBP\")\n    print(f\"  no terminal  : {R['food']['no_terminal']['profit']:,.2f} GBP  (end effect)\")\n    for row in R[\"food\"][\"holding_sweep\"]:\n        print(f\"  holding {row['h']:2d} GBP/t-month: profit {row['profit']:11,.2f}  \"\n              f\"total month-end stock {row['stock_total']:8.1f} t\")\n    pause()\n    s = R[\"storage\"]\n    print(\"\\nPART 3  Weekday dispatch with TOU\")\n    print(f\"  no battery {s['no_battery_cost']:.2f} THB, with battery {s['base']['cost']:.2f} THB\")\n    print(\"  checks:\", s[\"base\"][\"checks\"]); pause()\n    print(\"\\nPART 4  Terminal condition\")\n    print(f\"  without SoC(24) >= SoC(0): {s['no_terminal']['cost']:.2f} THB, \"\n          f\"ends at {s['no_terminal']['checks']['soc_end_kwh']:.1f} kWh\"); pause()\n    print(\"\\nPART 5  Charge and discharge in the same hour\")\n    print(f\"  base LP simultaneous {s['base']['simultaneous_kw']:.3f} kW; MILP cost {s['base_binary']['cost']:.2f}\")\n    print(f\"  Saturday, no curtailment, LP  : simultaneous {s['saturday_lp_no_curtail']['simultaneous_kw']:.2f} kW\")\n    print(f\"  Saturday, no curtailment, MILP: {s['saturday_milp_no_curtail']['status']}\")\n    hc = s[\"saturday_lp_curtail\"]\n    print(f\"  Saturday with curtailment, LP: simultaneous {hc['simultaneous_kw']:.3f} kW, \"\n          f\"curtailed {sum(hc['cur']):.1f} kWh\"); pause()\n    u = R[\"uncertainty\"]\n    print(\"\\nPART 6  Forecast error and re-planning (cloudy afternoon)\")\n    print(f\"  no battery {u['no_battery_cost']:.2f} | fixed morning plan {u['open_loop']['cost']:.2f} | \"\n          f\"re-plan hourly {u['rolling']['cost']:.2f} | perfect forecast {u['perfect']['cost']:.2f} THB\")\n\n\nif __name__ == \"__main__\":\n    results = classroom_results()\n    if \"--json\" in sys.argv:\n        with open(\"lab4-results.json\", \"w\") as fh:\n            json.dump(results, fh, indent=1)\n        print(\"wrote lab4-results.json\")\n    else:\n        _print_parts(results, step=\"--step\" in sys.argv)\n";   // embedded copy, so live Python also works when the file is opened locally
+let R = RECORDED, MODE = "recorded";
+const C = {teal:"#0F6E6B",amber:"#E29A2D",rust:"#BE654C",sky:"#5A91BE",sage:"#83A462",plum:"#995A90",graphite:"#333F4A",sand:"#DFC98F",ink:"#1C242B",slate:"#66727C",mist:"#B9C1C6",paper:"#F3F0EB"};
+const OILC = [C.teal,C.sage,C.amber,C.rust,C.plum];
+const fmt = (x,d=0)=>x==null?"–":Number(x).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});
+
+/* ---------- tiny SVG chart helpers ---------- */
+function svgEl(w,h){return `<svg class="ch" viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid meet" font-family="Helvetica Neue,Arial,sans-serif">`}
+function niceStep(r,n=5){const raw=r/n,p=Math.pow(10,Math.floor(Math.log10(raw||1)));for(const m of [1,2,2.5,5,10]){if(m*p>=raw-1e-12)return m*p}return 10*p}
+function scale(o,lo,hi){const st=niceStep(hi-lo);o.step=st;o.ymin=Math.floor(lo/st+1e-9)*st;o.ymax=Math.ceil(hi/st-1e-9)*st;o.ticks=Math.round((o.ymax-o.ymin)/st);return o}
+function niceMax(v){const p=Math.pow(10,Math.floor(Math.log10(v||1)));for(const m of [1,1.2,1.5,2,2.5,3,4,5,6,8,10]){if(m*p>=v)return m*p}return 10*p}
+function axes(o){ // o: w,h,l,r,t,b,ymin,ymax,xlabels,ylab,ticks
+  const {w,h,l,r,t,b,ymin,ymax}=o, X=w-l-r, Y=h-t-b, n=o.ticks||5; let s="";
+  for(let k=0;k<=n;k++){const v=ymin+(ymax-ymin)*k/n, y=t+Y-(v-ymin)/(ymax-ymin)*Y;
+    s+=`<line x1="${l}" x2="${w-r}" y1="${y}" y2="${y}" stroke="${C.mist}" stroke-width="0.8" opacity=".7"/><text x="${l-8}" y="${y+5}" font-size="16" text-anchor="end" fill="${C.ink}">${fmt(v, (o.step||1)<1?1:0)}</text>`}
+  s+=`<line x1="${l}" x2="${l}" y1="${t}" y2="${t+Y}" stroke="${C.graphite}" stroke-width="1.5"/>`;
+  const z=t+Y-(0-ymin)/(ymax-ymin)*Y; s+=`<line x1="${l}" x2="${w-r}" y1="${Math.min(t+Y,Math.max(t,z))}" y2="${Math.min(t+Y,Math.max(t,z))}" stroke="${C.graphite}" stroke-width="1.5"/>`;
+  if(o.ylab)s+=`<text transform="translate(${16},${t+Y/2}) rotate(-90)" font-size="17" text-anchor="middle" fill="${C.ink}">${o.ylab}</text>`;
+  return s}
+function ymap(o,v){const Y=o.h-o.t-o.b;return o.t+Y-(v-o.ymin)/(o.ymax-o.ymin)*Y}
+function legend(items,x,y){let s="";items.forEach((it,i)=>{const yy=y+i*22;s+=it.line?`<line x1="${x}" x2="${x+22}" y1="${yy}" y2="${yy}" stroke="${it.c}" stroke-width="3" ${it.dash?'stroke-dasharray="6 4"':''}/>`:`<rect x="${x}" y="${yy-8}" width="16" height="16" fill="${it.c}" ${it.op?`opacity="${it.op}"`:''}/>`;s+=`<text x="${x+28}" y="${yy+5}" font-size="16" fill="${C.ink}">${it.t}</text>`});return s}
+function legendRow(items,x,y){let s="",xx=x;items.forEach(it=>{s+=it.line?`<line x1="${xx}" x2="${xx+20}" y1="${y}" y2="${y}" stroke="${it.c}" stroke-width="3" ${it.dash?'stroke-dasharray="6 4"':''}/>`:`<rect x="${xx}" y="${y-7}" width="14" height="14" fill="${it.c}" ${it.op?`opacity="${it.op}"`:''}/>`;s+=`<text x="${xx+26}" y="${y+5}" font-size="16" fill="${C.ink}">${it.t}</text>`;xx+=38+it.t.length*8.2});return s}
+
+/* Food Manufacture: stacked bars of a [month][oil] matrix, optional line */
+function foodChart(mat,ylab,opt={}){
+  const w=640,h=380,o={w,h,l:70,r:16,t:30,b:44};
+  const tot=mat.map(r=>r.reduce((a,b)=>a+b,0)); scale(o,0,opt.ymax||Math.max(...tot)*1.08);
+  let s=svgEl(w,h)+axes({...o,ylab}); const X=w-o.l-o.r, bw=X/6*0.62;
+  mat.forEach((row,t)=>{let acc=0;const x=o.l+X*(t+0.5)/6-bw/2;
+    row.forEach((v,i)=>{if(v>1e-6){const y0=ymap(o,acc),y1=ymap(o,acc+v);s+=`<rect x="${x}" y="${y1}" width="${bw}" height="${y0-y1}" fill="${OILC[i]}"><title>${R.data.oils[i]} ${fmt(v,1)} t</title></rect>`}acc+=v});
+    s+=`<text x="${x+bw/2}" y="${h-o.b+24}" font-size="16" text-anchor="middle">${R.data.months[t]}</text>`;
+    if(opt.labels)s+=`<text x="${x+bw/2}" y="${ymap(o,tot[t])-6}" font-size="15" text-anchor="middle" fill="${C.slate}">${fmt(tot[t])}</text>`});
+  s+=legendRow(R.data.oils.map((n,i)=>({t:n,c:OILC[i]})),o.l+4,14);
+  return s+"</svg>"}
+
+/* 24-hour chart: lines + optional battery bars + peak shading */
+function dayChart(series,opt={}){
+  const w=opt.w||660,h=opt.h||380,o={w,h,l:62,r:16,t:opt.t||34,b:40};
+  let vals=[];series.forEach(s=>vals=vals.concat(s.v.map(Number)));
+  const lo=opt.ymin!=null?opt.ymin:Math.min(0,...vals)*1.05, hi=opt.ymax!=null?opt.ymax:Math.max(...vals)*1.06; scale(o,lo,hi);
+  const X=w-o.l-o.r, xs=k=>o.l+X*(k+0.5)/24; let s=svgEl(w,h);
+  if(opt.peak){const x0=o.l+X*9/24,x1=o.l+X*22/24;s+=`<rect x="${x0}" y="${o.t}" width="${x1-x0}" height="${h-o.t-o.b}" fill="${C.sand}" opacity=".35"/><text x="${(x0+x1)/2}" y="${o.t+18}" font-size="15" text-anchor="middle" fill="${C.slate}">peak tariff 09–22</text>`}
+  s+=axes({...o,ylab:opt.ylab});
+  for(let k=0;k<=24;k+=3)s+=`<text x="${o.l+X*k/24}" y="${h-o.b+22}" font-size="16" text-anchor="middle">${String(k).padStart(2,"0")}</text>`;
+  const bw=X/24*0.7;
+  series.filter(z=>z.bar).forEach(z=>z.v.forEach((v,k)=>{if(Math.abs(v)>1e-6){const y0=ymap(o,0),y1=ymap(o,v);s+=`<rect x="${xs(k)-bw/2}" y="${Math.min(y0,y1)}" width="${bw}" height="${Math.abs(y0-y1)}" fill="${z.c}" opacity="${z.op||0.85}"><title>${z.t} ${String(k).padStart(2,"0")}:00 ${fmt(v,1)}</title></rect>`}}));
+  series.filter(z=>!z.bar).forEach(z=>{const pts=z.step?z.v.map((v,k)=>`${o.l+X*k/24},${ymap(o,v)} ${o.l+X*(k+1)/24},${ymap(o,v)}`).join(" "):z.v.map((v,k)=>`${xs(k)},${ymap(o,v)}`).join(" ");
+    s+=`<polyline points="${pts}" fill="none" stroke="${z.c}" stroke-width="${z.wd||2.6}" ${z.dash?'stroke-dasharray="7 5"':''} stroke-linejoin="round"/>`});
+  s+=legendRow(series.map(z=>({t:z.t,c:z.c,line:!z.bar,dash:z.dash,op:z.op})),o.l+4,16);
+  return s+"</svg>"}
+
+function hbar(items,opt={}){ // items: {t,v,c}
+  const w=opt.w||640,h=opt.h||330,l=opt.l||250,r=90,t=16,rowh=(h-t-20)/items.length;
+  const mx=opt.max||niceMax(Math.max(...items.map(i=>i.v)));let s=svgEl(w,h);
+  items.forEach((it,i)=>{const y=t+i*rowh,bw=(w-l-r)*it.v/mx;
+    s+=`<text x="${l-12}" y="${y+rowh/2+5}" font-size="16" text-anchor="end" fill="${C.ink}">${it.t}</text><rect x="${l}" y="${y+rowh*0.18}" width="${Math.max(bw,1)}" height="${rowh*0.64}" fill="${it.c}" rx="3"/><text x="${l+bw+8}" y="${y+rowh/2+6}" font-size="17" font-weight="700" fill="${C.ink}">${opt.fmt?opt.fmt(it.v):fmt(it.v)}</text>`});
+  s+=`<line x1="${l}" x2="${l}" y1="${t}" y2="${h-20}" stroke="${C.graphite}" stroke-width="1.5"/>`;
+  return s+"</svg>"}
+
+/* ---------- slide content ---------- */
+const S = [];   // {id, kicker, title, html(), notes, py:{title,code,out()}}
+const foot = "2105623 Optimization of Chemical Processes · Session 4 · Multiperiod optimization · draft for 2027";
+
+S.push({cls:"title-slide", html:()=>`<p class="kicker">Session 4 · Lab 4</p><h1>Multiperiod optimization</h1>
+<div class="sub">Time-indexed models: inventory, storage and re-planning</div>
+<div class="meta">2105623 Optimization of Chemical Processes<br>Department of Chemical Engineering, Chulalongkorn University<br>Draft for the 2027 offering</div>`,
+notes:"Open with the question on the next slide. Students need a browser for the lab; nothing to install."});
+
+S.push({kicker:"Plan for today", title:"Three hours, two models, one lab", html:()=>`<div class="body"><div class="col"><table class="t">
+<tr><th>Part</th><th>Content</th><th class="n">Minutes</th></tr>
+<tr><td>1</td><td>Time-indexed models: balances, initial and terminal conditions</td><td class="n">30</td></tr>
+<tr><td>2</td><td>Food Manufacture: buying, blending and storing oils for six months</td><td class="n">35</td></tr>
+<tr><td></td><td><i>Break</i></td><td class="n">10</td></tr>
+<tr><td>3</td><td>A battery beside rooftop PV under a time-of-use tariff</td><td class="n">35</td></tr>
+<tr><td>4</td><td>Forecast error and re-planning</td><td class="n">15</td></tr>
+<tr><td>Lab</td><td>Predict, run, verify, change one condition, explain</td><td class="n">40</td></tr>
+<tr><td></td><td>Exit Ticket</td><td class="n">5</td></tr></table>
+<p class="note">Each part starts with a prediction. Write it down before the model is solved.</p></div></div>`,
+notes:"Two prediction activities (slides 8 and 17) and the lab give three activities in the session."});
+
+S.push({kicker:"Learning outcomes", title:"By the end of the session you can", html:()=>`<div class="body"><div class="col"><ul class="b">
+<li>Write a balance equation that links one period to the next</li>
+<li>State initial and terminal conditions and explain the end effect</li>
+<li>Read the value of storage and of time from a solved model</li>
+<li>Recognize a solution that cannot happen physically, and repair the model rather than the solution</li>
+<li>Explain why plans are solved again when forecasts change</li></ul></div></div>`});
+
+/* Part 1 */
+S.push({kicker:"Part 1 · Why time matters", title:"Storage links decisions across periods", html:()=>`<div class="body"><div class="col w45"><ul class="b sm">
+<li>A single-period model treats each month or hour on its own</li>
+<li>With storage, what you buy or produce now can be used later</li>
+<li>The model must then decide <span class="hl">all periods together</span></li>
+<li>Chemical engineering examples: feed purchasing, tank inventory, campaign scheduling, energy storage, maintenance windows</li></ul></div>
+<div class="col"><div class="panel grow">${timeline()}</div></div></div>`,
+notes:"The arrows between periods are the stock variables. Without them the problem separates into independent single-period problems."});
+function timeline(){let s=svgEl(600,400);const xs=[40,215,390];
+  xs.forEach((x,i)=>{s+=`<rect x="${x}" y="140" width="150" height="110" rx="12" fill="#fff" stroke="${C.teal}" stroke-width="2"/><text x="${x+75}" y="185" font-size="20" text-anchor="middle" font-weight="700" fill="${C.teal}">Period ${i+1}</text><text x="${x+75}" y="215" font-size="15" text-anchor="middle" fill="${C.slate}">buy, use, produce</text>`;
+    s+=`<line x1="${x+75}" y1="70" x2="${x+75}" y2="134" stroke="${C.graphite}" stroke-width="2" marker-end="url(#ar)"/><text x="${x+75}" y="60" font-size="15" text-anchor="middle">input</text>`;
+    s+=`<line x1="${x+75}" y1="256" x2="${x+75}" y2="320" stroke="${C.graphite}" stroke-width="2" marker-end="url(#ar)"/><text x="${x+75}" y="342" font-size="15" text-anchor="middle">demand</text>`;
+    if(i<2)s+=`<line x1="${x+152}" y1="195" x2="${x+211}" y2="195" stroke="${C.amber}" stroke-width="5" marker-end="url(#aa)"/>`});
+  s+=`<text x="300" y="120" font-size="16" text-anchor="middle" fill="${C.amber}" font-weight="700">stock carried forward</text>`;
+  s+=`<defs><marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="${C.graphite}"/></marker><marker id="aa" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="${C.amber}"/></marker></defs>`;
+  return s+"</svg>"}
+
+S.push({kicker:"Part 1 · Balance equation", title:"The balance equation carries the state", html:()=>`<div class="body"><div class="col w55"><div class="panel">
+<div class="math"><span class="lbl">Inventory, tonnes</span>s<sub>t</sub> = s<sub>t−1</sub> + b<sub>t</sub> − u<sub>t</sub><br>
+<span class="lbl">Energy, kWh</span>S<sub>t</sub> = S<sub>t−1</sub> + (η<sub>c</sub>C<sub>t</sub> − D<sub>t</sub>/η<sub>d</sub>) Δt</div></div>
+<ul class="b sm" style="margin-top:20px"><li><span class="hl">State</span> variables (s, S) are measured at the end of a period</li>
+<li><span class="hl">Flow</span> variables (b, u, C, D) are amounts or rates during the period</li>
+<li>Δt converts a rate in kW into energy in kWh</li></ul></div>
+<div class="col"><div class="panel grow">${tank()}</div></div></div>`,
+notes:"Ask which variables are states and which are flows. Point out that S_0 is data, not a variable."});
+function tank(){let s=svgEl(460,400);
+ s+=`<rect x="150" y="90" width="160" height="230" rx="10" fill="#fff" stroke="${C.graphite}" stroke-width="2.5"/><rect x="152" y="200" width="156" height="118" fill="${C.teal}" opacity=".25"/>`;
+ s+=`<text x="230" y="265" font-size="22" text-anchor="middle" font-weight="700" fill="${C.teal}">s<tspan dy="6" font-size="15">t</tspan></text>`;
+ s+=`<line x1="40" y1="130" x2="146" y2="130" stroke="${C.amber}" stroke-width="5" marker-end="url(#a2)"/><text x="60" y="118" font-size="18">b<tspan dy="5" font-size="13">t</tspan> in</text>`;
+ s+=`<line x1="314" y1="290" x2="420" y2="290" stroke="${C.amber}" stroke-width="5" marker-end="url(#a2)"/><text x="350" y="278" font-size="18">u<tspan dy="5" font-size="13">t</tspan> out</text>`;
+ s+=`<text x="230" y="70" font-size="16" text-anchor="middle" fill="${C.slate}">start of period: s<tspan dy="5" font-size="12">t−1</tspan></text><text x="230" y="352" font-size="16" text-anchor="middle" fill="${C.slate}">end of period: s<tspan dy="5" font-size="12">t</tspan></text>`;
+ s+=`<defs><marker id="a2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="${C.amber}"/></marker></defs>`;return s+"</svg>"}
+
+S.push({kicker:"Part 1 · Common errors", title:"Index errors are the most common bug", html:()=>`<div class="body"><div class="col"><table class="t">
+<tr><th>Error</th><th>Symptom</th><th>Test that catches it</th></tr>
+<tr><td>s<sub>t−1</sub> at t = 1 points to nothing, or to the last period</td><td>Stock appears from nowhere</td><td>Recompute the balance for every period</td></tr>
+<tr><td>Start-of-period and end-of-period stock mixed</td><td>Plan is shifted by one period</td><td>Check one period by hand</td></tr>
+<tr><td>kW used as kWh, or Δt omitted</td><td>Battery fills too fast or too slowly</td><td>Change Δt from 1 h to 0.5 h; energy must not change</td></tr>
+<tr><td>Python index 0 versus month 1</td><td>Prices used one month late</td><td>Print the price used in each period</td></tr>
+<tr><td>No terminal condition</td><td>Storage is emptied at the end</td><td>Look at the last period</td></tr></table></div></div>`,
+notes:"These are the planted errors in Lab 1 as well. Students should recognize them by their symptoms."});
+
+S.push({kicker:"Part 1 · Boundary conditions", title:"The horizon has two ends", html:()=>`<div class="body"><div class="col w55"><ul class="b sm">
+<li><span class="hl">Initial condition</span>: s<sub>0</sub> is measured data, not a decision</li>
+<li><span class="hl">Terminal condition</span>: the model does not know that the plant continues after period T</li>
+<li>Without it, the cheapest plan uses up the stock: the <span class="hl">end effect</span></li>
+<li>Common choices: s<sub>T</sub> ≥ s<sub>0</sub>; a value for each unit left at the end; a longer horizon whose last periods are discarded</li></ul></div>
+<div class="col"><div class="panel grow"><div class="note" style="margin:0 0 6px">Total stock of the five oils, Food Manufacture</div><div class="chart" id="ch-end"></div></div></div></div>`,
+draw:()=>{const a=R.food.reference.stock.map(r=>r.reduce((x,y)=>x+y,0)),b=R.food.no_terminal.stock.map(r=>r.reduce((x,y)=>x+y,0));
+ document.getElementById("ch-end").innerHTML=monthLines([{t:"with terminal stock = 500 t",v:[2500,...a],c:C.teal},{t:"no terminal condition",v:[2500,...b],c:C.amber,dash:true}],"total stock, t")},
+notes:"The chart shows total stock of the five oils, starting at 2,500 t. Without a terminal condition the model ends with nothing in storage."});
+function monthLines(series,ylab){const w=600,h=360,o={w,h,l:76,r:16,t:40,b:44};scale(o,0,Math.max(...series.flatMap(s=>s.v))*1.05);
+ const X=w-o.l-o.r,xs=k=>o.l+X*k/6;let s=svgEl(w,h)+axes({...o,ylab});
+ ["start",...R.data.months].forEach((m,k)=>s+=`<text x="${xs(k)}" y="${h-o.b+24}" font-size="16" text-anchor="middle">${m}</text>`);
+ series.forEach(z=>{s+=`<polyline points="${z.v.map((v,k)=>`${xs(k)},${ymap(o,v)}`).join(" ")}" fill="none" stroke="${z.c}" stroke-width="3" ${z.dash?'stroke-dasharray="8 5"':''}/>`;z.v.forEach((v,k)=>s+=`<circle cx="${xs(k)}" cy="${ymap(o,v)}" r="4.5" fill="${z.c}"/>`)});
+ s+=legendRow(series.map(z=>({t:z.t,c:z.c,line:true,dash:z.dash})),o.l+4,18);return s+"</svg>"}
+
+S.push({kicker:"Activity 1 · 3 minutes", title:"Predict before we solve", html:()=>`<div class="body"><div class="col w55"><div class="act"><span class="tag">PREDICT</span>
+<ul class="b sm" style="margin:0"><li>Look at the oil prices. Which oils would you buy early and store?</li>
+<li>Will total stock rise before an expensive month?</li><li>Write one sentence. We will check it on slide 11.</li></ul></div></div>
+<div class="col"><div class="panel">${priceTable()}</div><p class="note">GBP per tonne. Williams (2013), Section 12.1.</p></div></div>`});
+function priceTable(){let s=`<table class="t"><tr><th>Month</th>${R.data.oils.map(o=>`<th class="n">${o}</th>`).join("")}</tr>`;
+ R.data.price.forEach((row,t)=>{const mn=Math.min(...row);s+=`<tr><td>${R.data.months[t]}</td>${row.map(v=>`<td class="n" style="${v===mn?'color:'+C.teal+';font-weight:700':''}">${v}</td>`).join("")}</tr>`});return s+"</table>"}
+
+/* Part 2 */
+S.push({kicker:"Part 2 · Food Manufacture", title:"Six months of buying, refining and storing oil", html:()=>`<div class="body"><div class="col"><ul class="b xs">
+<li>Five raw oils: VEG1, VEG2 (vegetable) and OIL1–OIL3 (non-vegetable); monthly prices on the previous slide</li>
+<li>Refining capacity per month: 200 t vegetable, 250 t non-vegetable</li>
+<li>Product hardness must stay between 3 and 6 (linear blending); hardness 8.8, 6.1, 2.0, 4.2, 5.0</li>
+<li>Product sells for 150 GBP/t; no loss in refining</li>
+<li>Up to 1,000 t of each oil may be stored, at 5 GBP per tonne per month</li>
+<li>500 t of each oil in stock at the start, and the same at the end of June</li></ul>
+<p class="note">Source: H. P. Williams, <i>Model Building in Mathematical Programming</i>, 5th ed., Wiley, 2013, Section 12.1.</p></div>
+<div class="col w40"><div class="panel"><table class="t"><tr><th>Oil</th><th>Type</th><th class="n">Hardness</th><th class="n">GBP/t</th></tr>
+${R.data.oils.map((o,i)=>`<tr><td>${o}</td><td>${i<2?"veg":"non-veg"}</td><td class="n">${R.data.hardness[i]}</td><td class="n">${Math.min(...R.data.price.map(r=>r[i]))}–${Math.max(...R.data.price.map(r=>r[i]))}</td></tr>`).join("")}</table>
+<p class="note">Blend hardness is the weighted average of the oils used, so the 3 to 6 limits are linear in the tonnes used.</p></div></div></div>`});
+
+S.push({kicker:"Part 2 · Model", title:"The model in five lines", html:()=>`<div class="body"><div class="col w60"><div class="panel">
+<div class="math" style="font-size:23px"><span class="lbl">Profit</span>max Σ<sub>t</sub> [150 p<sub>t</sub> − Σ<sub>i</sub> c<sub>it</sub> b<sub>it</sub> − 5 Σ<sub>i</sub> s<sub>it</sub>]<br>
+<span class="lbl">Stock balance</span>s<sub>it</sub> = s<sub>i,t−1</sub> + b<sub>it</sub> − u<sub>it</sub>, s<sub>i0</sub> = s<sub>i6</sub> = 500<br>
+<span class="lbl">Capacity</span>Σ<sub>i∈V</sub> u<sub>it</sub> ≤ 200, Σ<sub>i∉V</sub> u<sub>it</sub> ≤ 250<br>
+<span class="lbl">Hardness</span>3 p<sub>t</sub> ≤ Σ<sub>i</sub> h<sub>i</sub> u<sub>it</sub> ≤ 6 p<sub>t</sub><br>
+<span class="lbl">Product, bounds</span>p<sub>t</sub> = Σ<sub>i</sub> u<sub>it</sub>, 0 ≤ s<sub>it</sub> ≤ 1000</div></div></div>
+<div class="col"><ul class="b xs"><li>b: buy, u: use, s: month-end stock, p: product</li><li>90 variables, 30 balances, 24 inequalities</li>
+<li>Only the stock balance links months. Remove it and the problem splits into six one-month problems</li><li>Hardness written as two linear inequalities, not as a ratio</li></ul></div></div>`,
+py:{title:"Build and solve", sub:"multiperiod_lab.food_manufacture()", code:
+`from multiperiod_lab import food_manufacture
+r = food_manufacture()              # storage cost 5 GBP/t-month
+print(r["status"], round(r["profit"], 2))
+print("product per month:", r["product"])`, out:()=>`${R.food.reference.status} ${R.food.reference.profit.toFixed(2)}\nproduct per month: ${JSON.stringify(R.food.reference.product)}`}});
+
+S.push({kicker:"Part 2 · Demo", title:"The optimal plan", dhint:true, html:()=>`<div class="body"><div class="col w40"><ul class="b xs">
+<li>Profit <span class="hl" id="fm-profit"></span> GBP</li><li>Product 450 t every month: both refining limits are binding</li>
+<li>Starting stock covers most of January to May; the big purchase is in June, the cheapest month for VEG1, VEG2 and OIL2, to refill the 500 t end stocks</li><li>OIL1 is never used</li></ul>
+<div class="ctrl" id="fm-ctrl"><span>Show</span><button data-k="buy" class="on">Buy</button><button data-k="use">Use</button><button data-k="stock">Stock</button></div>
+<p class="note">This LP has several optimal plans with the same profit. Another solver version may show a different plan; compare profits and checks, not plans.</p></div>
+<div class="col"><div class="panel grow"><div class="chart" id="ch-fm"></div></div></div></div>`,
+draw:()=>{const el=document.getElementById("ch-fm"),ctl=document.getElementById("fm-ctrl");document.getElementById("fm-profit").textContent=fmt(R.food.reference.profit);
+ const show=k=>{ctl.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.k===k));el.innerHTML=foodChart(R.food.reference[k],k==="stock"?"month-end stock, t":(k==="buy"?"bought, t":"refined, t"),{labels:true,ymax:k==="stock"?3500:null})};
+ ctl.querySelectorAll("button").forEach(b=>b.onclick=()=>show(b.dataset.k));show("buy")},
+py:{title:"Read the plan", sub:"buy, use and stock are [month][oil] tables", code:
+`from multiperiod_lab import *
+r = food_manufacture()
+for m, row in zip(MONTHS, r["buy"]):
+    print(m, [round(v, 1) for v in row])`, out:()=>R.food.reference.buy.map((row,t)=>`${R.data.months[t]} ${JSON.stringify(row.map(v=>+v.toFixed(1)))}`).join("\n")}});
+
+S.push({kicker:"Part 2 · Verify", title:"Check every month, not only the objective", html:()=>`<div class="body"><div class="col w55"><table class="t" id="fm-audit"></table></div>
+<div class="col"><ul class="b xs"><li>The audit uses the solution values only. It does not ask the solver</li><li>Largest stock-balance residual: <span class="hl" id="fm-res"></span> t</li>
+<li>Recomputed profit minus solver profit: <span class="hl" id="fm-obj"></span> GBP</li><li>Hardness touches 6 in four months: the upper limit is active there</li></ul></div></div>`,
+draw:()=>{const f=R.food.reference;let s=`<tr><th>Month</th><th class="n">Product, t</th><th class="n">Hardness</th><th class="n">Veg, t</th><th class="n">Non-veg, t</th></tr>`;
+ f.use.forEach((u,t)=>{s+=`<tr><td>${R.data.months[t]}</td><td class="n">${fmt(f.product[t],1)}</td><td class="n">${f.hardness[t].toFixed(3)}</td><td class="n">${fmt(u[0]+u[1],1)}</td><td class="n">${fmt(u[2]+u[3]+u[4],1)}</td></tr>`});
+ document.getElementById("fm-audit").innerHTML=s;document.getElementById("fm-res").textContent=f.checks.max_stock_balance_residual_t.toExponential(1);document.getElementById("fm-obj").textContent=f.checks.objective_residual_gbp.toExponential(1)},
+py:{title:"Audit from the solution", sub:"recompute balances, specifications and profit", code:
+`from multiperiod_lab import *
+r = food_manufacture()
+print(r["checks"])
+print("hardness:", r["hardness"])`, out:()=>`${JSON.stringify(R.food.reference.checks,null,1)}\nhardness: ${JSON.stringify(R.food.reference.hardness)}`}});
+
+S.push({kicker:"Part 2 · Value of storage", title:"What is storage worth?", html:()=>`<div class="body"><div class="col w40"><ul class="b xs">
+<li>Fix every stock at 500 t, so each month buys what it uses</li><li>Profit falls by <span class="hl" id="st-diff"></span> GBP over six months</li>
+<li>That difference is the value of being free to choose <i>when</i> to buy</li><li>The model is still feasible: storage adds value, not feasibility</li></ul></div>
+<div class="col"><div class="panel grow"><div class="chart" id="ch-st"></div></div></div></div>`,
+draw:()=>{const a=R.food.reference.profit,b=R.food.no_carryover.profit;document.getElementById("st-diff").textContent=fmt(a-b);
+ document.getElementById("ch-st").innerHTML=hbar([{t:"Free storage decisions",v:a,c:C.teal},{t:"Stock fixed at 500 t",v:b,c:C.amber}],{w:620,h:260,l:230,max:120000})},
+py:{title:"Remove the carry-over", sub:"carryover=False fixes every stock at 500 t", code:
+`from multiperiod_lab import *
+ref = food_manufacture()
+fixed = food_manufacture(carryover=False)
+print(round(ref["profit"] - fixed["profit"], 2))`, out:()=>(R.food.reference.profit-R.food.no_carryover.profit).toFixed(2)}});
+
+S.push({kicker:"Part 2 · Demo", title:"Storage cost changes the plan", dhint:true, html:()=>`<div class="body"><div class="col w40">
+<div class="ctrl"><span>Storage cost</span><input type="range" min="0" max="10" step="1" value="5" id="h-sl"><b id="h-v"></b><span>GBP/t-month</span></div>
+<div class="kpi"><div>Profit, GBP<b id="h-p"></b></div><div>Stock carried, t-month<b class="a" id="h-s"></b></div></div>
+<ul class="b xs" style="margin-top:16px"><li>From 0 to 4 the plan does not change; profit falls by 11,250 GBP per 1 GBP, which is the stock carried</li><li>Above 4 the plan stores less</li><li>The slope of the optimal value with respect to a cost is the activity it multiplies</li></ul></div>
+<div class="col"><div class="panel grow"><div class="chart" id="ch-h"></div></div></div></div>`,
+draw:()=>{const sl=document.getElementById("h-sl"),up=()=>{const h=+sl.value,row=R.food.holding_sweep[h];
+ document.getElementById("h-v").textContent=h;document.getElementById("h-p").textContent=fmt(row.profit);document.getElementById("h-s").textContent=fmt(row.stock_total);
+ document.getElementById("ch-h").innerHTML=foodChart(row.stock,"month-end stock, t",{labels:true,ymax:3500})};sl.oninput=up;up()},
+py:{title:"Sweep the storage cost", sub:"one solve per value", code:
+`from multiperiod_lab import *
+for h in range(0, 11):
+    r = food_manufacture(storage_cost=h)
+    print(h, round(r["profit"], 2), round(sum(map(sum, r["stock"])), 1))`, out:()=>R.food.holding_sweep.map(r=>`${r.h} ${r.profit.toFixed(2)} ${r.stock_total.toFixed(1)}`).join("\n")}});
+
+S.push({kicker:"Part 2 · End effect", title:"Without a terminal condition the stock is sold off", html:()=>`<div class="body"><div class="col w45"><ul class="b xs">
+<li>Drop s<sub>i6</sub> = 500 and profit rises to <span class="hl" id="ne-p"></span> GBP</li>
+<li>The extra <span class="hl" id="ne-d"></span> GBP comes from using the 2,500 t of starting stock without replacing it</li>
+<li>The plant would start July with empty tanks; the model cannot see July</li><li>A terminal condition is a modeling decision. State it and justify it</li></ul></div>
+<div class="col"><div class="panel grow"><div class="chart" id="ch-ne"></div></div></div></div>`,
+draw:()=>{const p=R.food.no_terminal.profit,r=R.food.reference.profit;document.getElementById("ne-p").textContent=fmt(p);document.getElementById("ne-d").textContent=fmt(p-r);
+ document.getElementById("ch-ne").innerHTML=foodChart(R.food.no_terminal.stock,"month-end stock, t",{labels:true,ymax:3500})},
+py:{title:"Remove the terminal condition", sub:"terminal=False", code:
+`from multiperiod_lab import *
+r = food_manufacture(terminal=False)
+print(round(r["profit"], 2))
+print("June stock:", r["stock"][-1])`, out:()=>`${R.food.no_terminal.profit.toFixed(2)}\nJune stock: ${JSON.stringify(R.food.no_terminal.stock[5])}`}});
+
+/* Part 3 */
+S.push({kicker:"Part 3 · Storage beside PV", title:"A plant with rooftop PV and a battery", html:()=>`<div class="body"><div class="col w40"><ul class="b xs">
+<li>One weekday in 1-hour steps; load and PV are synthetic</li><li>PV 200 kWp, clear sky; the site may not export, but PV can be curtailed</li>
+<li>Battery 200 kWh, 100 kW, η<sub>c</sub> = η<sub>d</sub> = 0.95, kept between 20 and 200 kWh, starts at 100 kWh</li>
+<li>Tariff: 5.7982 THB/kWh 09:00–22:00 on weekdays, 2.6369 otherwise (PEA 2.2.2, energy charge only)</li><li>Battery wear: 0.05 THB per kWh discharged</li></ul></div>
+<div class="col"><div class="panel grow"><div class="chart" id="ch-data"></div></div></div></div>`,
+draw:()=>{document.getElementById("ch-data").innerHTML=dayChart([{t:"load",v:R.data.load_weekday,c:C.graphite},{t:"PV, clear sky",v:R.data.pv_clear,c:C.amber}],{ylab:"kW",peak:true})},
+notes:"Tariff values are the PEA small general service TOU energy charges in the May 2023 schedule, without Ft and VAT. Check the current schedule before using them for a real decision."});
+
+S.push({kicker:"Activity 2 · 3 minutes", title:"Sketch the state of charge", html:()=>`<div class="body"><div class="col w55"><div class="act"><span class="tag">PREDICT</span>
+<ul class="b sm" style="margin:0"><li>When does the battery charge from the grid, and when from PV?</li><li>When does it discharge?</li>
+<li>Sketch the state of charge from 00:00 to 24:00. Mark where it is full and where it is at 20 kWh</li></ul></div></div>
+<div class="col"><div class="panel grow"><div class="chart" id="ch-pred"></div></div></div></div>`,
+draw:()=>{const z=new Array(24).fill(null);document.getElementById("ch-pred").innerHTML=dayChart([{t:"net load = load − PV",v:R.data.load_weekday.map((l,k)=>l-R.data.pv_clear[k]),c:C.graphite}],{ylab:"kW",peak:true})}});
+
+S.push({kicker:"Part 3 · Model", title:"Dispatch model, one hour per period", html:()=>`<div class="body"><div class="col w60"><div class="panel">
+<div class="math" style="font-size:22px"><span class="lbl">Cost, THB</span>min Σ<sub>t</sub> (π<sub>t</sub> G<sub>t</sub> + w D<sub>t</sub>) Δt<br>
+<span class="lbl">Power, kW</span>G<sub>t</sub> + PV<sub>t</sub> − K<sub>t</sub> + D<sub>t</sub> = L<sub>t</sub> + C<sub>t</sub><br>
+<span class="lbl">Energy, kWh</span>S<sub>t</sub> = S<sub>t−1</sub> + (0.95 C<sub>t</sub> − D<sub>t</sub>/0.95) Δt<br>
+<span class="lbl">Limits</span>0 ≤ C<sub>t</sub>, D<sub>t</sub> ≤ 100, 20 ≤ S<sub>t</sub> ≤ 200, 0 ≤ K<sub>t</sub> ≤ PV<sub>t</sub><br>
+<span class="lbl">Ends</span>S<sub>0</sub> = 100, S<sub>24</sub> ≥ 100</div></div></div>
+<div class="col"><ul class="b xs"><li>G grid import, K curtailment, C charge, D discharge, S state of charge</li><li>π<sub>t</sub> is the tariff, w the wear cost, Δt = 1 h</li><li>144 variables; an LP</li><li>Nothing in the LP stops C<sub>t</sub> and D<sub>t</sub> from both being positive</li></ul></div></div>`,
+py:{title:"Solve one day", sub:"multiperiod_lab.dispatch()", code:
+`from multiperiod_lab import *
+pv = pv_profile()
+r = dispatch(LOAD_WEEKDAY, pv, TOU_WEEKDAY)
+print(r["status"], round(r["cost"], 2), "THB")
+print("without battery:", round(no_battery_cost(LOAD_WEEKDAY, pv, TOU_WEEKDAY), 2))`,
+out:()=>`${R.storage.base.status} ${R.storage.base.cost.toFixed(2)} THB\nwithout battery: ${R.storage.no_battery_cost.toFixed(2)}`}});
+
+S.push({kicker:"Part 3 · Demo", title:"The optimal day", dhint:true, html:()=>`<div class="body"><div class="col" style="flex:0 0 30%"><div class="kpi" style="flex-direction:column">
+<div>Cost with battery, THB<b id="d-c"></b></div><div>Without battery, THB<b id="d-n"></b></div><div>Saving per day<b class="a" id="d-s"></b></div></div>
+<p class="note">Bars: battery charge (down) and discharge (up). Compare with your sketch.</p></div>
+<div class="col"><div class="panel grow" style="gap:4px"><div class="chart" id="ch-d1"></div><div class="chart" id="ch-d2"></div></div></div></div>`,
+draw:()=>{const b=R.storage.base;document.getElementById("d-c").textContent=fmt(b.cost,0);document.getElementById("d-n").textContent=fmt(R.storage.no_battery_cost,0);
+ const sv=R.storage.no_battery_cost-b.cost;document.getElementById("d-s").textContent=`${fmt(sv,0)} THB (${(100*sv/R.storage.no_battery_cost).toFixed(0)}%)`;
+ document.getElementById("ch-d1").innerHTML=dayChart([{t:"discharge",v:b.dis,c:C.teal,bar:true},{t:"charge",v:b.ch.map(v=>-v),c:C.amber,bar:true},{t:"grid import",v:b.imp,c:C.graphite},{t:"PV",v:R.data.pv_clear,c:C.sand,wd:2}],{ylab:"kW",peak:true,h:250,w:760,t:30});
+ document.getElementById("ch-d2").innerHTML=dayChart([{t:"state of charge",v:b.soc,c:C.teal,step:true}],{ylab:"kWh",h:180,w:760,ymin:0,ymax:200,t:28})},
+py:{title:"Hourly plan", sub:"charge, discharge and state of charge", code:
+`from multiperiod_lab import *
+r = dispatch(LOAD_WEEKDAY, pv_profile(), TOU_WEEKDAY)
+for t in range(24):
+    print(f"{t:02d}  C={r['ch'][t]:6.1f}  D={r['dis'][t]:6.1f}  S={r['soc'][t]:6.1f}")`,
+out:()=>R.storage.base.ch.map((c,t)=>`${String(t).padStart(2,"0")}  C=${c.toFixed(1).padStart(6)}  D=${R.storage.base.dis[t].toFixed(1).padStart(6)}  S=${R.storage.base.soc[t].toFixed(1).padStart(6)}`).join("\n")}});
+
+S.push({kicker:"Part 3 · Verify", title:"Close both balances, then look for impossible flows", html:()=>`<div class="body"><div class="col"><table class="t" id="d-audit"></table>
+<p class="note">A solver status of "optimal" says the LP was solved. It does not say the LP describes a battery that can exist.</p></div></div>`,
+draw:()=>{const k=R.storage.base.checks;document.getElementById("d-audit").innerHTML=`<tr><th>Check</th><th class="n">Result</th><th>Pass if</th></tr>
+<tr><td>Largest power-balance residual</td><td class="n">${k.max_power_balance_residual_kw.toExponential(1)} kW</td><td>below 1e-6</td></tr>
+<tr><td>Largest state-of-charge residual</td><td class="n">${k.max_soc_balance_residual_kwh.toExponential(1)} kWh</td><td>below 1e-6</td></tr>
+<tr><td>Recomputed cost minus solver cost</td><td class="n">${k.objective_residual_thb.toExponential(1)} THB</td><td>below 1e-6</td></tr>
+<tr><td>State of charge at 24:00</td><td class="n">${fmt(k.soc_end_kwh,1)} kWh</td><td>at least 100</td></tr>
+<tr><td>Largest min(C<sub>t</sub>, D<sub>t</sub>)</td><td class="n">${fmt(R.storage.base.simultaneous_kw,3)} kW</td><td>zero</td></tr>`},
+py:{title:"Audit", sub:"computed from the solution values", code:
+`from multiperiod_lab import *
+r = dispatch(LOAD_WEEKDAY, pv_profile(), TOU_WEEKDAY)
+print(r["checks"])
+print("simultaneous:", r["simultaneous_kw"])`, out:()=>`${JSON.stringify(R.storage.base.checks,null,1)}\nsimultaneous: ${R.storage.base.simultaneous_kw}`}});
+
+S.push({kicker:"Part 3 · Value of time", title:"The marginal value of 1 kWh, hour by hour", html:()=>`<div class="body"><div class="col w40"><ul class="b xs">
+<li>The dual of each hour's power balance: the cost of 1 kWh more load in that hour</li><li>At 09:00 it is <span class="hl" id="mv9"></span> THB, not the peak price</li>
+<li>That is 2.6369/(0.95 × 0.95) + 0.05: off-peak energy stored at 08:00 and used at 09:00</li><li>Storage ties the value of energy in one hour to another hour</li></ul></div>
+<div class="col"><div class="panel grow"><div class="chart" id="ch-mv"></div></div></div></div>`,
+draw:()=>{const m=R.storage.base.marginal_thb_per_kwh;document.getElementById("mv9").textContent=m[9].toFixed(4);
+ document.getElementById("ch-mv").innerHTML=dayChart([{t:"tariff",v:R.data.tou_weekday,c:C.mist,step:true,wd:5},{t:"marginal value from the dual",v:m,c:C.amber,step:true}],{ylab:"THB/kWh",ymin:0,ymax:7})},
+py:{title:"Read the duals", sub:"HiGHS returns them as eqlin.marginals", code:
+`from multiperiod_lab import *
+r = dispatch(LOAD_WEEKDAY, pv_profile(), TOU_WEEKDAY)
+print(r["marginal_thb_per_kwh"])
+print(2.6369 / 0.95**2 + 0.05)`, out:()=>`${JSON.stringify(R.storage.base.marginal_thb_per_kwh)}\n${(2.6369/0.95**2+0.05).toFixed(4)}`}});
+
+S.push({kicker:"Part 3 · End effect again", title:"Remove S₂₄ ≥ 100 and the battery is emptied", html:()=>`<div class="body"><div class="col w40"><ul class="b xs">
+<li>Cost falls from <span id="nt-a"></span> to <span class="hl" id="nt-b"></span> THB</li><li>The day ends at 20 kWh: tomorrow starts with 80 kWh less</li>
+<li>The saving is borrowed from the next day, not earned</li></ul></div>
+<div class="col"><div class="panel grow"><div class="chart" id="ch-nt"></div></div></div></div>`,
+draw:()=>{document.getElementById("nt-a").textContent=fmt(R.storage.base.cost,0);document.getElementById("nt-b").textContent=fmt(R.storage.no_terminal.cost,0);
+ document.getElementById("ch-nt").innerHTML=dayChart([{t:"with S₂₄ ≥ 100",v:R.storage.base.soc,c:C.teal,step:true},{t:"without",v:R.storage.no_terminal.soc,c:C.amber,step:true,dash:true}],{ylab:"state of charge, kWh",ymin:0,ymax:200})},
+py:{title:"terminal=False", sub:"", code:
+`from multiperiod_lab import *
+r = dispatch(LOAD_WEEKDAY, pv_profile(), TOU_WEEKDAY, terminal=False)
+print(round(r["cost"], 2), r["checks"]["soc_end_kwh"])`, out:()=>`${R.storage.no_terminal.cost.toFixed(2)} ${R.storage.no_terminal.checks.soc_end_kwh}`}});
+
+S.push({kicker:"Part 3 · A trap", title:"Saturday: an optimal plan that cannot happen", dhint:true, html:()=>`<div class="body"><div class="col w40"><ul class="b xs">
+<li>Saturday: reduced shift, off-peak tariff all day</li><li>Same site, but this model has <b>no curtailment variable</b> (K<sub>t</sub> = 0)</li>
+<li>The LP is solved to optimality, yet the battery charges and discharges in the same hour: up to <span class="hl" id="sat-s"></span> kW</li>
+<li>Question: what is the battery doing with the surplus PV?</li></ul></div>
+<div class="col"><div class="panel grow"><div class="chart" id="ch-sat"></div></div></div></div>`,
+draw:()=>{const s=R.storage.saturday_lp_no_curtail;document.getElementById("sat-s").textContent=fmt(s.simultaneous_kw,1);
+ document.getElementById("ch-sat").innerHTML=dayChart([{t:"discharge",v:s.dis,c:C.teal,bar:true},{t:"charge",v:s.ch.map(v=>-v),c:C.amber,bar:true},{t:"PV − load",v:R.data.pv_clear.map((p,k)=>p-R.data.load_saturday[k]),c:C.graphite}],{ylab:"kW"})},
+notes:"Answer: with C and D both positive, losses of 5% each way turn surplus PV into heat. The LP uses the battery as a resistor because the model gave the surplus nowhere else to go.",
+py:{title:"Saturday without curtailment", sub:"curtail=False", code:
+`from multiperiod_lab import *
+sat = dispatch(LOAD_SATURDAY, pv_profile(), TOU_SATURDAY, curtail=False)
+print(sat["status"], round(sat["simultaneous_kw"], 2))`, out:()=>`${R.storage.saturday_lp_no_curtail.status} ${R.storage.saturday_lp_no_curtail.simultaneous_kw.toFixed(2)}`}});
+
+S.push({kicker:"Part 3 · Repair the model", title:"Two repairs, two different answers", html:()=>`<div class="body"><div class="col"><table class="t">
+<tr><th>Repair</th><th>Model</th><th>Result on Saturday</th></tr>
+<tr><td>Binary y<sub>t</sub>: C<sub>t</sub> ≤ 100 y<sub>t</sub>, D<sub>t</sub> ≤ 100 (1 − y<sub>t</sub>)</td><td>MILP</td><td><b id="rp-m"></b>: the surplus has nowhere to go</td></tr>
+<tr><td>Curtailment 0 ≤ K<sub>t</sub> ≤ PV<sub>t</sub></td><td>LP</td><td>Optimal, curtails <b id="rp-k"></b> kWh, largest min(C, D) = <b id="rp-s"></b> kW</td></tr>
+<tr><td>Binary on the weekday model</td><td>MILP</td><td>Cost <b id="rp-w"></b> THB, the same as the LP</td></tr></table>
+<ul class="b xs" style="margin-top:18px"><li>The impossible LP solution pointed to a missing physical variable</li><li>A binary can forbid a behavior but cannot create a place for energy to go</li><li>Add binaries only when the LP solution needs them; they make the model harder to solve</li></ul></div></div>`,
+draw:()=>{const s=R.storage;document.getElementById("rp-m").textContent=s.saturday_milp_no_curtail.status;document.getElementById("rp-k").textContent=fmt(s.saturday_lp_curtail.cur.reduce((a,b)=>a+b,0),1);
+ document.getElementById("rp-s").textContent=fmt(s.saturday_lp_curtail.simultaneous_kw,3);document.getElementById("rp-w").textContent=fmt(s.base_binary.cost,2)},
+py:{title:"Compare the repairs", sub:"binary=True solves a MILP with scipy.optimize.milp", code:
+`from multiperiod_lab import *
+pv = pv_profile()
+print(dispatch(LOAD_SATURDAY, pv, TOU_SATURDAY, curtail=False, binary=True)["status"])
+fix = dispatch(LOAD_SATURDAY, pv, TOU_SATURDAY, curtail=True)
+print(round(sum(fix["cur"]), 1), fix["simultaneous_kw"])
+print(round(dispatch(LOAD_WEEKDAY, pv, TOU_WEEKDAY, binary=True)["cost"], 2))`,
+out:()=>`${R.storage.saturday_milp_no_curtail.status}\n${R.storage.saturday_lp_curtail.cur.reduce((a,b)=>a+b,0).toFixed(1)} ${R.storage.saturday_lp_curtail.simultaneous_kw}\n${R.storage.base_binary.cost.toFixed(2)}`}});
+
+/* Part 4 */
+S.push({kicker:"Part 4 · Forecasts", title:"The plan was made with a forecast", html:()=>`<div class="body"><div class="col w40"><ul class="b xs">
+<li>The morning plan assumed a clear sky</li><li>Clouds arrive from 12:00 to 17:00; PV falls to 30% at the worst hour</li>
+<li>A fixed plan keeps charging when the PV is not there, so the grid supplies it at the peak price</li></ul></div>
+<div class="col"><div class="panel grow"><div class="chart" id="ch-fc"></div></div></div></div>`,
+draw:()=>{document.getElementById("ch-fc").innerHTML=dayChart([{t:"forecast (clear sky)",v:R.data.pv_clear,c:C.mist,dash:true},{t:"actual",v:R.data.pv_cloudy,c:C.amber},{t:"load",v:R.data.load_weekday,c:C.graphite}],{ylab:"kW",peak:true})}});
+
+S.push({kicker:"Part 4 · Rolling horizon", title:"Solve again every hour, apply only the first hour", html:()=>`<div class="body"><div class="col w55"><div class="panel">${rhDiagram()}</div></div>
+<div class="col"><ul class="b xs"><li>At hour h: measured PV for hour h, forecast for later hours</li><li>Start from the measured state of charge</li>
+<li>Keep the same terminal condition S<sub>24</sub> ≥ 100</li><li>This is the idea behind model predictive control (Session 11)</li></ul></div></div>`});
+function rhDiagram(){let s=svgEl(640,330);for(let r=0;r<4;r++){const y=40+r*66,x0=40+r*60;
+ s+=`<text x="10" y="${y+24}" font-size="15" fill="${C.slate}">h=${r}</text><rect x="${x0}" y="${y}" width="60" height="36" fill="${C.amber}"/><rect x="${x0+60}" y="${y}" width="${560-x0-60+20}" height="36" fill="${C.paper}" stroke="${C.mist}"/><text x="${x0+30}" y="${y+24}" font-size="13" text-anchor="middle" fill="#fff" font-weight="700">apply</text><text x="${x0+80}" y="${y+24}" font-size="13" fill="${C.slate}">plan to 24:00 with the forecast, then discard</text>`}
+ s+=`<text x="40" y="318" font-size="14" fill="${C.ink}">Each row is one solve. Only the amber hour is carried out.</text>`;return s+"</svg>"}
+
+S.push({kicker:"Part 4 · Demo", title:"What re-planning recovers", dhint:true, html:()=>`<div class="body"><div class="col w40"><ul class="b xs">
+<li>Same cloudy day, four ways to run the battery</li><li>The forecast error costs <span class="hl" id="u-loss"></span> THB with a fixed morning plan</li>
+<li>Re-planning every hour recovers <span class="hl" id="u-rec"></span> THB of it</li><li>Most of the loss remains: here a better forecast is worth more than re-planning</li></ul></div>
+<div class="col"><div class="panel grow"><div class="chart" id="ch-u"></div></div></div></div>`,
+draw:()=>{const u=R.uncertainty;document.getElementById("u-loss").textContent=fmt(u.open_loop.cost-u.perfect.cost,0);document.getElementById("u-rec").textContent=fmt(u.open_loop.cost-u.rolling.cost,0);
+ document.getElementById("ch-u").innerHTML=hbar([{t:"No battery",v:u.no_battery_cost,c:C.mist},{t:"Fixed morning plan",v:u.open_loop.cost,c:C.rust},{t:"Re-plan every hour",v:u.rolling.cost,c:C.amber},{t:"Perfect forecast",v:u.perfect.cost,c:C.teal}],{w:640,h:300,l:200,max:7000,fmt:v=>fmt(v,0)+" THB"})},
+py:{title:"Rolling horizon", sub:"24 solves, one per hour", code:
+`from multiperiod_lab import *
+pv_f, pv_a = pv_profile(), pv_profile(cloud=True)
+print(open_loop(LOAD_WEEKDAY, pv_a, pv_f, TOU_WEEKDAY)["cost"])
+print(rolling_horizon(LOAD_WEEKDAY, pv_a, pv_f, TOU_WEEKDAY)["cost"])
+print(dispatch(LOAD_WEEKDAY, pv_a, TOU_WEEKDAY)["cost"])`,
+out:()=>`${R.uncertainty.open_loop.cost.toFixed(2)}\n${R.uncertainty.rolling.cost.toFixed(2)}\n${R.uncertainty.perfect.cost.toFixed(2)}`}});
+
+/* Lab */
+S.push({kicker:"Lab 4 · 40 minutes", title:"Predict, run, verify, change one thing, explain", html:()=>`<div class="body"><div class="col"><table class="t">
+<tr><th>Step</th><th>What you do</th><th>Write down</th></tr>
+<tr><td>1 Predict</td><td>Before running: what happens to profit if storage cost falls from 5 to 3 GBP/t-month? Sketch the weekday state of charge</td><td>Your prediction</td></tr>
+<tr><td>2 Run</td><td>Parts 1–6 of multiperiod_lab.py, in the browser (press D, then Run this code) or in desktop Python</td><td>Profit, daily cost</td></tr>
+<tr><td>3 Verify</td><td>Read every residual. Find the hour with the largest min(C, D) in the Saturday model</td><td>Largest residual</td></tr>
+<tr><td>4 Change one condition</td><td>Choose one: battery 400 kWh; peak price +20%; S₂₄ ≥ 150; storage cost 8</td><td>New result</td></tr>
+<tr><td>5 Explain</td><td>One sentence: why did the result change by that amount?</td><td>Exit Ticket</td></tr></table></div></div>`,
+py:{title:"Starter for step 4", sub:"edit one argument and run again", code:
+`from multiperiod_lab import *
+pv = pv_profile()
+r = dispatch(LOAD_WEEKDAY, pv, TOU_WEEKDAY, battery={"E": 400.0})
+print(round(r["cost"], 2), r["checks"])`, out:()=>"Edit the code above, then press Run this code."}});
+
+S.push({kicker:"Checklist", title:"Before you trust a multiperiod model", html:()=>`<div class="body"><div class="col"><ul class="b sm">
+<li>State and flow variables named; start-of-period or end-of-period stated</li><li>Initial state is data; the terminal condition is stated and justified</li>
+<li>Units per period checked: kW versus kWh, Δt written in the balance</li><li>Every balance recomputed for every period from the solution</li>
+<li>Flows that cannot happen together checked (charge and discharge, buy and sell)</li><li>Horizon length and re-planning frequency chosen on purpose</li></ul></div></div>`});
+
+S.push({kicker:"Exit Ticket · 5 minutes", title:"Exit Ticket", html:()=>`<div class="body"><div class="col w60"><ol style="font-size:21px;line-height:1.5;margin:0;padding-left:26px">
+<li>Optimal Food Manufacture profit, GBP</li><li>Saving from the battery on the weekday, THB per day</li>
+<li>Largest simultaneous charge and discharge in the Saturday LP without curtailment, kW</li><li>One sentence: why did the binary model become infeasible?</li></ol>
+<p class="note">Numbers are checked automatically; the sentence is read by the instructor. Participation credit only.</p></div>
+<div class="col"><div class="panel grow" style="align-items:center;justify-content:center;text-align:center;color:${C.slate};font-size:18px">QR code for the 2027 Exit Ticket form<br>(added when the form is set up)</div></div></div>`});
+
+S.push({kicker:"Summary", title:"What to take away", html:()=>`<div class="body"><div class="col"><ul class="b">
+<li>A balance equation links the periods; everything else is a single-period model</li><li>The horizon end is artificial: a terminal condition stands in for the future</li>
+<li>Read the value of storage and of time from comparisons and from duals</li><li>An optimal LP can still describe something impossible; repair the model, not the numbers</li>
+<li>Forecasts are wrong, so plans are solved again as information arrives</li></ul></div></div>`});
+
+S.push({kicker:"Sources", title:"Data and software", html:()=>`<div class="body"><div class="col"><ul class="b xs">
+<li>H. P. Williams, <i>Model Building in Mathematical Programming</i>, 5th ed., Wiley, 2013, Section 12.1 (Food Manufacture 1): prices, capacities, hardness</li>
+<li>Provincial Electricity Authority, Electricity Tariffs (May 2023), Tariff 2.2.2 Time of Use, below 22 kV: peak 5.7982 and off-peak 2.6369 THB/kWh, excluding Ft and VAT</li>
+<li>Load, PV and battery data are synthetic teaching data, defined in multiperiod_lab.py</li>
+<li>Solvers: HiGHS through scipy.optimize.linprog and scipy.optimize.milp; browser runs use Pyodide</li></ul>
+<p class="note" id="ver"></p></div></div>`,
+draw:()=>{document.getElementById("ver").textContent=`Results on these slides: ${MODE==="live"?"live run":"recorded run"} with Python ${R.meta.python}, NumPy ${R.meta.numpy}, SciPy ${R.meta.scipy}.`}});
+
+/* ---------- deck engine ---------- */
+const N=S.length; let cur=0;
+function build(){const host=document.getElementById("slides");host.innerHTML="";
+ S.forEach((s,i)=>{const d=document.createElement("section");d.className="slide"+(s.cls?" "+s.cls:"");d.id="s"+(i+1);
+  d.innerHTML=(s.kicker&&!s.cls?`<p class="kicker">${s.kicker}</p>`:"")+(s.title?`<h1>${s.title}</h1>`:"")+s.html()+(s.py?`<div class="dhint">D · Python</div>`:"")+`<footer><span>${foot}</span><span>${i+1} / ${N}</span></footer>`;host.appendChild(d)})}
+function drawAll(){S.forEach(s=>{if(s.draw)try{s.draw()}catch(e){console.error(e)}})}
+function show(i){cur=Math.max(0,Math.min(N-1,i));document.querySelectorAll(".slide").forEach((el,k)=>el.classList.toggle("on",k===cur));
+ history.replaceState(null,"","#"+(cur+1));fillDrawer();const n=document.getElementById("notes");n.textContent=S[cur].notes||"No notes for this slide."}
+function fit(){const k=Math.min(innerWidth/1280,innerHeight/720)*0.98;document.getElementById("stage").style.transform=`scale(${k})`}
+function fillDrawer(){const p=S[cur].py,dr=document.getElementById("drawer");
+ if(!p){document.getElementById("dTitle").textContent="No Python on this slide";document.getElementById("dSub").textContent="Slides with a 'D · Python' tag have code and output.";document.getElementById("dCode").value="";document.getElementById("dOut").textContent="";return}
+ document.getElementById("dTitle").textContent=p.title;document.getElementById("dSub").textContent=p.sub||"";document.getElementById("dCode").value=p.code;
+ try{document.getElementById("dOut").textContent=p.out()}catch(e){document.getElementById("dOut").textContent=String(e)}
+ const m=document.getElementById("dMode");m.className="pill "+(MODE==="live"?"live":"rec");m.textContent=MODE==="live"?"LIVE RUN":"RECORDED RUN"}
+document.addEventListener("keydown",e=>{if(["INPUT","TEXTAREA"].includes(e.target.tagName)){if(e.key==="Escape")e.target.blur();return}const k=e.key;
+ if(["ArrowRight","PageDown"," "].includes(k)){e.preventDefault();show(cur+1)}else if(["ArrowLeft","PageUp"].includes(k)){e.preventDefault();show(cur-1)}
+ else if(k==="Home")show(0);else if(k==="End")show(N-1);else if(k==="d"||k==="D")document.getElementById("drawer").classList.toggle("open");
+ else if(k==="f"||k==="F"){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+ else if(k==="n"||k==="N"){const n=document.getElementById("notes");n.style.display=n.style.display==="block"?"none":"block"}});
+document.getElementById("stage").addEventListener("click",e=>{if(e.target.closest("button,input,#drawer,a"))return;const r=e.currentTarget.getBoundingClientRect();(e.clientX-r.left)>r.width*0.5?show(cur+1):show(cur-1)});
+addEventListener("resize",fit);
+
+/* ---------- live Python (Pyodide) ---------- */
+let py=null;
+async function ensurePy(msg){if(py)return py;msg.textContent="Loading Python in the browser (first time about 5–10 s) ...";
+ if(!window.loadPyodide){await new Promise((ok,bad)=>{const s=document.createElement("script");s.src="https://cdn.jsdelivr.net/pyodide/v0.29.3/full/pyodide.js";s.onload=ok;s.onerror=()=>bad(new Error("could not load Pyodide"));document.head.appendChild(s)})}
+ const p=await loadPyodide();await p.loadPackage(["numpy","scipy"]);
+ const src=LAB_SRC||await (await fetch(LAB_FILE)).text();p.FS.writeFile("multiperiod_lab.py",src);
+ await p.runPythonAsync('import sys\nsys.path.insert(0, ".")\nfrom multiperiod_lab import *');py=p;return p}
+async function runCode(){const msg=document.getElementById("liveMsg"),out=document.getElementById("dOut"),t0=performance.now();
+ try{const p=await ensurePy(msg);msg.textContent="Running ...";const buf=[];p.setStdout({batched:s=>buf.push(s)});p.setStderr({batched:s=>buf.push(s)});
+  try{await p.runPythonAsync(document.getElementById("dCode").value)}catch(e){buf.push(String(e.message||e).split("\n").slice(-4).join("\n"))}
+  out.textContent=buf.join("\n")||"(no output)";const m=document.getElementById("dMode");m.className="pill live";m.textContent="LIVE OUTPUT";
+  msg.textContent=`Ran in ${((performance.now()-t0)/1000).toFixed(1)} s in the browser`}
+ catch(e){msg.textContent="Python could not start: "+e.message+". The recorded output is still available."}}
+async function runLive(){const msg=document.getElementById("liveMsg"),t0=performance.now();
+ try{const p=await ensurePy(msg);msg.textContent="Solving every model ...";
+  const out=await p.runPythonAsync('import importlib, json\nimport multiperiod_lab as lab\nimportlib.reload(lab)\njson.dumps(lab.classroom_results())');
+  R=JSON.parse(out);MODE="live";drawAll();fillDrawer();msg.textContent=`All slides now show a live run (${((performance.now()-t0)/1000).toFixed(1)} s, SciPy ${R.meta.scipy})`}
+ catch(e){msg.textContent="Live run failed: "+e.message+". The recorded run is still shown."}}
+document.getElementById("runCode").onclick=runCode;
+document.getElementById("runLive").onclick=runLive;
+document.getElementById("useRec").onclick=()=>{R=RECORDED;MODE="recorded";drawAll();fillDrawer();document.getElementById("liveMsg").textContent="Showing the recorded run."};
+
+build();drawAll();fit();show((parseInt(location.hash.slice(1))||1)-1);
+</script>
+</body>
+</html>

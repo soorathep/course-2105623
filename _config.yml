@@ -17,6 +17,8 @@ defaults:
     values: {sitemap: false}
   - scope: {path: "teaching/2105603/slides-2027"}
     values: {sitemap: false}
+  - scope: {path: "teaching/2105623/2027-draft"}
+    values: {sitemap: false}
 
 plugins:
   - jekyll-feed      # /feed.xml
