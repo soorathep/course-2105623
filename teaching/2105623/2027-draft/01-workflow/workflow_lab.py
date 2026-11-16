@@ -71,6 +71,59 @@ def broken_models():
     return out
 
 
+def vertex_table():
+    """Every pair of constraints (three resources and x >= 0), solved as equalities:
+    the hand method for a two-variable LP. Feasible intersections are the vertices."""
+    A = np.vstack([USE, -np.eye(2)]); b = np.concatenate([AVAIL, [0.0, 0.0]])
+    names = ["reactor", "separation", "packaging", "x1 = 0", "x2 = 0"]
+    rows = []
+    for i, j in itertools.combinations(range(5), 2):
+        M = A[[i, j]]
+        if abs(np.linalg.det(M)) < 1e-12:
+            rows.append({"pair": [names[i], names[j]], "x": None, "feasible": False, "z": None, "note": "parallel"})
+            continue
+        x = np.linalg.solve(M, b[[i, j]])
+        ok = bool(np.all(A @ x <= b + 1e-9))
+        rows.append({"pair": [names[i], names[j]], "x": (x.round(9) + 0.0).tolist(), "feasible": ok,
+                     "z": float(MARGIN @ x), "violates": [names[k] for k in range(5) if (A @ x)[k] > b[k] + 1e-9]})
+    return rows
+
+
+def margin_sweep(values=np.arange(150.0, 651.0, 25.0)):
+    """How far can the Additive margin move before the optimal plan changes?
+    The plan (6, 3) stays optimal while c1/c2 lies between the slopes of its two
+    active constraints, packaging (1) and reactor (1.5): 300 <= c1 <= 450 for c2 = 300."""
+    out = []
+    for c1 in values:
+        r = product_mix(margin=np.array([c1, 300.0]))
+        out.append({"c1": float(c1), "x": r["x"], "z": r["z"], "shadow": r["shadow"]})
+    return out
+
+
+def local_vs_global(starts=np.arange(0.0, 8.01, 0.5)):
+    """A nonconvex cost f(x) = (x - 1.5)^2 (x - 6)^2 / 10 + 0.8 x on [0, 8], for example an
+    annual cost against a design variable. A local method (BFGS) from different starts."""
+    from scipy.optimize import minimize
+    f = lambda x: (x - 1.5) ** 2 * (x - 6) ** 2 / 10 + 0.8 * x
+    runs = []
+    for s0 in starts:
+        path = [float(s0)]
+        r = minimize(lambda v: f(v[0]), [s0], method="BFGS", callback=lambda xk: path.append(float(xk[0])))
+        runs.append({"start": float(s0), "x": float(r.x[0]), "f": float(r.fun), "iterations": int(r.nit),
+                     "path": [round(v, 4) for v in path], "status": r.message})
+    grid = np.linspace(0, 8, 161)
+    return {"curve": [[float(x), float(f(x))] for x in grid], "runs": runs}
+
+
+def solver_output():
+    """What linprog actually returns, and the residual check a reader can repeat."""
+    res = linprog(-MARGIN, A_ub=USE, b_ub=AVAIL, bounds=[(0, None)] * 2, method="highs")
+    resid = AVAIL - USE @ res.x
+    return {"status": int(res.status), "message": res.message, "fun": float(res.fun), "x": res.x.tolist(),
+            "nit": int(res.nit), "slack": res.ineqlin.residual.tolist(), "marginals": res.ineqlin.marginals.tolist(),
+            "max_violation": float(max(0.0, -resid.min())), "min_x": float(res.x.min())}
+
+
 # ---------------------------------------------------------------------------
 # Part B. Lab 1: debug a colleague's flowsheet model
 # ---------------------------------------------------------------------------
@@ -186,6 +239,10 @@ def classroom_results():
         "certificate": lp_certificate(),
         "rounded_lp": {"x": [4.0, 0.0], "z": float(MARGIN @ np.array([4.0, 0.0]))},
         "broken": broken_models(),
+        "vertex_table": vertex_table(),
+        "margin_sweep": margin_sweep(),
+        "local_global": local_vs_global(),
+        "solver_output": solver_output(),
     }
     R["lab"] = {"combinations": lab_all_combinations(), "sweeps": lab_sweeps(),
                 "data": {"X": X, "phi": PHI, "y_A": Y_A, "MW": MW, "price_kg": PRICE_KG,
