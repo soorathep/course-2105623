@@ -1,35 +1,80 @@
-start (0.5, 0.5) success True message Optimization terminated successfully
-point [2. 1.] audit {'objective': np.float64(1.9999999999999858), 'primal_violation': 7.105427357601002e-15, 'dual_violation': 0.0, 'stationarity': 7.105427357601002e-15, 'complementarity': 1.4210854715202004e-14}
-start (3, 2) success True message Optimization terminated successfully
-point [2. 1.] audit {'objective': np.float64(1.999999999999996), 'primal_violation': 1.7763568394002505e-15, 'dual_violation': 0.0, 'stationarity': 2.220446049250313e-15, 'complementarity': 3.552713678800501e-15}
-start (0, 0) success True message Optimization terminated successfully
-point [2. 1.] audit {'objective': np.float64(2.0000000000000084), 'primal_violation': 0.0, 'dual_violation': 0.0, 'stationarity': 4.440892098500626e-15, 'complementarity': 7.993605777301127e-15}
-start (4, 0) success True message Optimization terminated successfully
-point [2. 1.] audit {'objective': np.float64(2.0000000000000044), 'primal_violation': 0.0, 'dual_violation': 0.0, 'stationarity': 2.220446049250313e-15, 'complementarity': 4.440892098500626e-15}
-Sensitivity: compare actual values with V(3)-2*(b-3).
-capacity 0.5 point [5.00000000e-01 1.50990331e-14] objective 10.249999999999797
-capacity 1 point [1. 0.] objective 8.000000000000249
-capacity 3 point [2. 1.] objective 1.9999999999999858
-capacity 3.2 point [2.1 1.1] objective 1.6199999999999894
-capacity 5 point [3. 2.] objective 3.944304526105059e-31
-capacity 6 point [3.00000005 2.00000014] objective 2.164885308433009e-14
-Try different starts and verify bounds, not only the capacity residual.
+NumPy 2.2.6 · SciPy 1.15.3 · check tolerance 1e-06
 
-Full analytic certificates compared with SLSQP
-b 0.5 expected [0.5 0. ] computed [5.00000000e-01 1.50990331e-14] mu [5. 0. 1.]
-status True Optimization terminated successfully audit {'objective': np.float64(10.249999999999797), 'primal_violation': 4.3520742565306136e-14, 'dual_violation': 0.0, 'stationarity': 5.684341886080802e-14, 'complementarity': 2.1760371282653068e-13}
-b 1.0 expected [1. 0.] computed [1. 0.] mu [4. 0. 0.]
-status True Optimization terminated successfully audit {'objective': np.float64(8.000000000000249), 'primal_violation': 0.0, 'dual_violation': 0.0, 'stationarity': 1.2434497875801753e-13, 'complementarity': 2.4868995751603507e-13}
-b 3.0 expected [2. 1.] computed [2. 1.] mu [2. 0. 0.]
-status True Optimization terminated successfully audit {'objective': np.float64(1.9999999999999858), 'primal_violation': 7.105427357601002e-15, 'dual_violation': 0.0, 'stationarity': 7.105427357601002e-15, 'complementarity': 1.4210854715202004e-14}
-b 3.2 expected [2.1 1.1] computed [2.1 1.1] mu [1.8 0.  0. ]
-status True Optimization terminated successfully audit {'objective': np.float64(1.6199999999999894), 'primal_violation': 5.773159728050814e-15, 'dual_violation': 0.0, 'stationarity': 6.217248937900877e-15, 'complementarity': 1.0391687510491465e-14}
-b 5.0 expected [3. 2.] computed [3. 2.] mu [0. 0. 0.]
-status True Optimization terminated successfully audit {'objective': np.float64(3.944304526105059e-31), 'primal_violation': 0.0, 'dual_violation': 0.0, 'stationarity': 8.881784197001252e-16, 'complementarity': 0.0}
-b 6.0 expected [3. 2.] computed [3.00000005 2.00000014] mu [0. 0. 0.]
-status True Optimization terminated successfully audit {'objective': np.float64(2.164885308433009e-14), 'primal_violation': 0.0, 'dual_violation': 0.0, 'stationarity': 2.746761129657216e-07, 'complementarity': 0.0}
-Value change: exact -0.38000000000000034 linear -0.40000000000000036
-manual alpha 0.1 point [0.6 0.4] objective 8.32 feasible True
-manual alpha 0.3 point [1.8 1.2] objective 2.0800000000000005 feasible True
-manual alpha 0.5 point [3. 2.] objective 0.0 feasible False
-nonconvex Newton gradient -1.092 Hessian -2.92 direction -0.37397260273972605 slope 0.40837808219178084
+========================================================================
+PART 1 · Slide 34 · Solve with SLSQP and read the status
+========================================================================
+  b = 3, start (0.5, 0.5), method SLSQP, ftol 1e-12
+  result.success   True
+  result.message   Optimization terminated successfully
+  result.x         x = 2.000000   y = 1.000000
+  result.fun       f = 2.000000
+
+========================================================================
+PART 2 · Slide 35 · Recompute everything from the returned point
+========================================================================
+  f(x,y) recomputed        2.000000
+  g1 = x + y - 3           -4.4e-15   must be <= 0  (active)
+  g2 = -x                 -2.000000   must be <= 0
+  g3 = -y                 -1.000000   must be <= 0
+  Numbers like 1e-14 are round-off. Do not test with "== 0".
+
+========================================================================
+PART 3 · Slide 36 · Obtain the multipliers
+========================================================================
+  x > 0 and y > 0, so complementarity gives mu2 = mu3 = 0
+  x-stationarity: mu1 = 2(3 - x) = 2.000000
+  y-stationarity: mu1 = 2(2 - y) = 2.000000
+  Analytic certificate: mu = (2, 0, 0)
+
+========================================================================
+PART 4 · Slide 37 · Four KKT residuals at the returned point
+========================================================================
+  check               residual   pass (<= 1e-06)
+  primal               0.0e+00   yes
+  dual                 0.0e+00   yes
+  stationarity         4.4e-15   yes
+  complementarity      8.9e-15   yes
+  1e-6 is OUR check. ftol = 1e-12 is the solver stopping rule.
+
+========================================================================
+PART 5 · Slide 38-44 · Change the capacity b
+========================================================================
+     b       x       y        f    mu1   mu2   mu3  active            max res
+   0.5  0.5000  0.0000  10.2500   5.00  0.00  1.00  cap, y>=0           1e-13
+   1.0  1.0000  0.0000   8.0000   4.00  0.00  0.00  cap, y>=0           9e-14
+   3.0  2.0000  1.0000   2.0000   2.00  0.00  0.00  cap                 9e-15
+   3.2  2.1000  1.1000   1.6200   1.80  0.00  0.00  cap                 3e-15
+   5.0  3.0000  2.0000   0.0000   0.00  0.00  0.00  cap (mu1=0)         0e+00
+   6.0  3.0000  2.0000   0.0000   0.00  0.00  0.00  none                3e-07
+
+  b: 3 -> 3.2   exact -0.3800   linear -0.4000   gap 0.0200
+
+========================================================================
+PART 6 · Slide 46 · Several starting points (b = 3)
+========================================================================
+  start       feasible start?   success         x       y        f
+  (0.5, 0.5)  yes               True       2.0000  1.0000   2.0000
+  (3, 2)      no (x+y=5)        True       2.0000  1.0000   2.0000
+  (0, 0)      yes               True       2.0000  1.0000   2.0000
+  (4, 0)      no (x+y=4)        True       2.0000  1.0000   2.0000
+  All starts agree. Convexity proves the global minimum.
+
+========================================================================
+PART 7 · Slide 47 · A manual feasible path from (0,0) along p = (6,4)
+========================================================================
+  (This is a hand calculation, not the SLSQP iteration trace.)
+  alpha  point           x+y        f   feasible (x+y <= 3)
+  0.1    (0.6, 0.4)      1.0   8.3200   yes
+  0.3    (1.8, 1.2)      3.0   2.0800   yes
+  0.5    (3.0, 2.0)      5.0   0.0000   NO
+
+========================================================================
+PART 8 · Slide 48 · A failed Newton direction: q(s) = (s^2 - 1)^2 at s = 0.3
+========================================================================
+  q'(s)            -1.0920
+  q''(s)           -2.9200   negative curvature
+  Newton p=-q'/q'' -0.3740
+  slope q'*p       +0.4084   > 0, so a small step goes UP
+  Safeguard p=-q'  +1.0920   slope -1.1925 < 0, descent
+
+All parts checked.
