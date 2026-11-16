@@ -55,7 +55,7 @@ if __name__ == '__main__':
         expected, multipliers = analytic_capacity(b)
         result = solve_capacity(b)
         residuals = audit(result.x,b,multipliers)
-        print('b',b,'expected',expected,'computed',result.x,'lambda',multipliers)
+        print('b',b,'expected',expected,'computed',result.x,'mu',multipliers)
         print('status',result.success,result.message,'audit',residuals)
         assert result.success and np.allclose(result.x,expected,atol=1e-6)
         assert max(v for k,v in residuals.items() if k!='objective')<1e-6

@@ -3,11 +3,12 @@ Due December 2, 2026 | Individual work | 100 raw points
 
 The assignment asks you to apply the methods covered after the midterm, justify your decisions, and verify computational results. It complements the final examination, which focuses on foundations and short calculations.
 
-Assignment brief (Rev 3):
-https://www.skhgroup.net/teaching/2105623/final-week-20261116/Individual-assignment.pdf?v=rev3-20261111
+Assignment brief (Rev 4):
+https://soorathep.github.io/course-2105623/teaching/2105623/final-week-20261116/Individual-assignment.pdf?v=rev4-20261116
+Rev 4 (November 16, 2026) changes notation only: μᵢ denotes inequality multipliers and λⱼ equality multipliers, as in the October 19 KKT lecture and the KKT review. Answers written with the Rev 3 symbols earn full credit.
 
 Detailed scoring guide:
-https://www.skhgroup.net/teaching/2105623/final-week-20261116/assignment-scoring-guide.html
+https://soorathep.github.io/course-2105623/teaching/2105623/final-week-20261116/assignment-scoring-guide.html
 
 What to submit
 1. One PDF report answering all four parts, with clearly numbered subparts. Show derivations, assumptions, calculations, required plots, and interpretations. About 8–12 pages including figures is a guide, not a grading requirement.
