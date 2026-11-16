@@ -11,7 +11,7 @@ The lesson explains:
 • Why b₁ = 6 gives x = 0, y = 5, and an optimal profit of 10.
 
 Slides with narration:
-https://www.skhgroup.net/teaching/2105623/lp-duality/clarification/slides.html
+https://soorathep.github.io/course-2105623/teaching/2105623/lp-duality/clarification/slides.html
 
 PDF:
 https://github.com/soorathep/Test/releases/download/course-downloads-20261107/LP-clarification-slides.pdf
@@ -25,6 +25,6 @@ LP Exit Ticket and feedback:
 https://optimization-2105623-class-check.soorathep-k.chatgpt.site/lp-duality
 
 All review materials:
-https://www.skhgroup.net/teaching/2105623/lp-duality/clarification/
+https://soorathep.github.io/course-2105623/teaching/2105623/lp-duality/clarification/
 
 Thank you for your questions. They help me identify which steps need a clearer explanation.

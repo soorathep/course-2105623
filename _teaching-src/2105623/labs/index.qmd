@@ -5,7 +5,7 @@ pagetitle: "Optimization Lab | 2105623 | SKH Research Group"
 ```{=html}
 <header class="lab-nav">
   <a class="brand" href="https://www.skhgroup.net/">SKH <span>Research Group</span></a>
-  <nav aria-label="Course navigation"><a href="https://www.skhgroup.net/teaching/2105623/">2105623 · Course</a><a href="../books/volume-1/">Volume 1</a><a href="../books/volume-2/">Volume 2</a></nav>
+  <nav aria-label="Course navigation"><a href="https://soorathep.github.io/course-2105623/teaching/2105623/">2105623 · Course</a><a href="../books/volume-1/">Volume 1</a><a href="../books/volume-2/">Volume 2</a></nav>
 </header>
 
 <main class="lab-page">

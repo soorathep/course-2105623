@@ -1,7 +1,7 @@
 # 2105623 — slide decks (Quarto + Reveal.js)
 
 Source for the slide decks published at
-<https://www.skhgroup.net/teaching/2105623/>.
+<https://soorathep.github.io/course-2105623/teaching/2105623/>.
 
 This folder starts with an underscore, so Jekyll ignores it: nothing here is
 served. Only the rendered output in `teaching/2105623/` reaches the website.
