@@ -33,7 +33,7 @@ function setDemo(on){
 }
 function show(k){
   n=Math.max(1,Math.min(data.length,Number(k)||1));const s=data[n-1];
-  $('slide').src='flow-slides/slide-'+String(n).padStart(3,'0')+'.png?v=slide5-20261116';$('slide').alt=s.title;
+  $('slide').src='flow-slides/slide-'+String(n).padStart(3,'0')+'.png?v=slide6-20261116';$('slide').alt=s.title;
   $('caption').textContent=n+' / '+data.length+' · '+s.title.replace(/\s{3,}/,' · ');$('pick').value=n;
   $('demo-toggle').hidden=!DEMOS[n];$('prev').disabled=n===1;$('next').disabled=n===data.length;
   setDemo(false);history.replaceState(null,'','#'+n);
