@@ -169,20 +169,20 @@ const D=R.lab.data, COMB=R.lab.combinations, SW=R.lab.sweeps;
 const keyOf=f=>`${+f.units}${+f.inert}${+f.sign}`;
 
 /* flowsheet picture */
-$("pfd").innerHTML=`<svg viewBox="0 0 760 210" font-family="Helvetica Neue,Arial,sans-serif" font-size="14" fill="${C.ink}" style="width:100%;height:auto">
+$("pfd").innerHTML=`<svg viewBox="0 0 800 210" font-family="Helvetica Neue,Arial,sans-serif" font-size="14" fill="${C.ink}" style="width:100%;height:auto">
 <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="${C.graphite}"/></marker></defs>
 <text x="10" y="58">F1 (90% A)</text><text x="10" y="118">F2 (99.5% A)</text>
-<path d="M95,54 L150,80 M95,114 L150,92" stroke="${C.graphite}" stroke-width="2" marker-end="url(#ar)"/>
+<path fill="none" d="M100,54 L148,78" stroke="${C.graphite}" stroke-width="2" marker-end="url(#ar)"/><path fill="none" d="M108,114 L148,94" stroke="${C.graphite}" stroke-width="2" marker-end="url(#ar)"/>
 <circle cx="170" cy="86" r="20" fill="#fff" stroke="${C.teal}" stroke-width="2"/><text x="170" y="91" text-anchor="middle">M</text>
-<path d="M190,86 L250,86" stroke="${C.graphite}" stroke-width="2" marker-end="url(#ar)"/><text x="203" y="78">AM, IM</text>
+<path fill="none" d="M190,86 L250,86" stroke="${C.graphite}" stroke-width="2" marker-end="url(#ar)"/><text x="203" y="78">AM, IM</text>
 <rect x="252" y="56" width="110" height="60" rx="8" fill="#fff" stroke="${C.teal}" stroke-width="2"/><text x="307" y="82" text-anchor="middle">Reactor</text><text x="307" y="100" text-anchor="middle" font-size="12" fill="${C.slate}">A → B, X = 0.6</text>
-<path d="M362,86 L430,86" stroke="${C.graphite}" stroke-width="2" marker-end="url(#ar)"/>
+<path fill="none" d="M362,86 L430,86" stroke="${C.graphite}" stroke-width="2" marker-end="url(#ar)"/>
 <rect x="432" y="56" width="110" height="60" rx="8" fill="#fff" stroke="${C.teal}" stroke-width="2"/><text x="487" y="91" text-anchor="middle">Separator</text>
-<path d="M542,74 L640,74" stroke="${C.amber}" stroke-width="2.5" marker-end="url(#ar)"/><text x="648" y="79" fill="${C.amber}" font-weight="700">product B</text>
-<path d="M487,116 L487,160 L560,160" stroke="${C.graphite}" stroke-width="2" marker-end="url(#ar)"/><text x="494" y="140" font-size="12">A, I</text>
+<path fill="none" d="M542,74 L640,74" stroke="${C.amber}" stroke-width="2.5" marker-end="url(#ar)"/><text x="648" y="79" fill="${C.amber}" font-weight="700">product B</text>
+<path fill="none" d="M487,116 L487,160 L560,160" stroke="${C.graphite}" stroke-width="2" marker-end="url(#ar)"/><text x="494" y="140" font-size="12">A, I</text>
 <circle cx="580" cy="160" r="18" fill="#fff" stroke="${C.teal}" stroke-width="2"/><text x="580" y="165" text-anchor="middle">S</text>
-<path d="M598,160 L660,160" stroke="${C.rust}" stroke-width="2.5" marker-end="url(#ar)"/><text x="668" y="165" fill="${C.rust}" font-weight="700">purge (φ = 0.1)</text>
-<path d="M580,178 L580,198 L170,198 L170,108" stroke="${C.sky}" stroke-width="2.5" marker-end="url(#ar)"/><text x="330" y="192" fill="${C.sky}" font-weight="700">recycle RA, RI</text></svg>`;
+<path fill="none" d="M598,160 L650,160" stroke="${C.rust}" stroke-width="2.5" marker-end="url(#ar)"/><text x="658" y="165" fill="${C.rust}" font-weight="700">purge, φ = 0.1</text>
+<path fill="none" d="M580,178 L580,198 L170,198 L170,108" stroke="${C.sky}" stroke-width="2.5" marker-end="url(#ar)"/><text x="330" y="192" fill="${C.sky}" font-weight="700">recycle RA, RI</text></svg>`;
 $("dataRows").innerHTML=[["Per-pass conversion X",D.X],["Purged fraction φ",D.phi],["Molar mass A, B, I, kg/kmol","60, 60, 28"],
  ["F1: price, composition","0.80 USD/kg, 90 mol% A, 10% I"],["F2: price, composition","1.10 USD/kg, 99.5 mol% A, 0.5% I"],["Product B price","2.00 USD/kg"],["Purge disposal","4 USD per kmol"]].map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("");
 
