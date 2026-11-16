@@ -317,7 +317,47 @@ def classroom_results():
         "rolling": rolling_horizon(LOAD_WEEKDAY, pv_cloudy, pv_clear, TOU_WEEKDAY),
         "no_battery_cost": no_battery_cost(LOAD_WEEKDAY, pv_cloudy, TOU_WEEKDAY),
     }
+    R["lab"] = lab_sweeps()
     return R
+
+
+def lab_sweeps():
+    """Results behind the student lab page: change one condition at a time."""
+    pv0 = pv_profile()
+
+    def day(load=LOAD_WEEKDAY, pv=pv0, price=TOU_WEEKDAY, battery=None, soc_end=None):
+        r = dispatch(load, pv, price, battery=battery, soc_end=soc_end)
+        nb = no_battery_cost(load, pv, price)
+        keep = {k: r[k] for k in ("ch", "dis", "soc", "imp", "cur")}
+        keep.update(cost=r["cost"], no_battery=nb, saving=nb - r["cost"],
+                    max_residual=max(r["checks"]["max_power_balance_residual_kw"],
+                                     r["checks"]["max_soc_balance_residual_kwh"]))
+        return keep
+
+    out = {"battery_kwh": [], "peak_factor": [], "end_soc": [], "pv_kwp": []}
+    for E in (100, 150, 200, 250, 300, 350, 400):        # keep 10% floor, start half full
+        out["battery_kwh"].append(dict(value=E, **day(battery={"E": float(E), "soc_min": 0.1 * E, "soc0": 0.5 * E})))
+    for f in (0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.4):
+        price = np.where((HOURS >= 9) & (HOURS < 22), PEAK * f, OFFPEAK)
+        out["peak_factor"].append(dict(value=f, **day(price=price)))
+    for e in (20, 60, 100, 140, 180):
+        out["end_soc"].append(dict(value=e, **day(soc_end=float(e))))
+    for k in (100, 150, 200, 250, 300):
+        out["pv_kwp"].append(dict(value=k, **day(pv=pv_profile(kwp=float(k)))))
+    sat = {}
+    for name, kw in (("lp", {}), ("milp", {"binary": True}),
+                     ("lp_curtail", {"curtail": True}), ("milp_curtail", {"curtail": True, "binary": True})):
+        args = dict(curtail=False); args.update(kw)
+        r = dispatch(LOAD_SATURDAY, pv0, TOU_SATURDAY, **args)
+        if r["cost"] is None:
+            sat[name] = {"status": r["status"]}
+        else:
+            sim = np.minimum(r["ch"], r["dis"])
+            sat[name] = {"status": r["status"], "cost": r["cost"], "ch": r["ch"], "dis": r["dis"],
+                         "soc": r["soc"], "cur": r["cur"], "curtailed_kwh": float(np.sum(r["cur"])),
+                         "max_simultaneous_kw": float(sim.max()), "hour_of_max": int(np.argmax(sim))}
+    out["saturday"] = sat
+    return out
 
 
 def _print_parts(R, step=False):
