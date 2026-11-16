@@ -229,15 +229,17 @@ weeks:
     block: Advanced topics
     tool: Python
   - n: 14
-    title: Project presentations, part 1
+    title: "Onsite workshop: LP and NLP review, line search"
     dates: 9 Nov
     block: Synthesis
-    tool: "—"
+    tool: Python
+    slides: onsite-line-search-20261109/slides.html
   - n: 15
-    title: Project presentations, part 2, and wrap-up
+    title: "Final onsite class: constrained NLP, KKT and solver verification"
     dates: 16 Nov
     block: Synthesis
-    tool: "—"
+    tool: Python
+    slides: final-week-20261116/slides.html?v=classroom-20261116
 
 assessment:
   - weight: 35%
