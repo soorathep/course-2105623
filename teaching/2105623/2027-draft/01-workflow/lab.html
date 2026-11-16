@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Lab 1 · Debug a colleague's model · 2105623</title>
+<style>
+:root{--teal:#0F6E6B;--amber:#E29A2D;--rust:#BE654C;--graphite:#333F4A;--ink:#1C242B;--slate:#66727C;--mist:#B9C1C6;--paper:#F3F0EB;--sand:#DFC98F;--ok:#0F6E6B;--bad:#BE654C}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.55 "Helvetica Neue",Helvetica,Arial,sans-serif}
+main{max-width:820px;margin:0 auto;padding:18px 16px 80px}
+header h1{color:var(--teal);font-size:30px;margin:4px 0 2px}
+.kicker{color:var(--amber);font-weight:700;letter-spacing:.12em;font-size:13px;text-transform:uppercase}
+.sub{color:var(--slate);font-size:15px}
+.prog{position:sticky;top:0;background:var(--paper);padding:10px 0;z-index:3}
+.bar{height:8px;background:#e2ddd4;border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--teal);width:0;transition:width .3s}
+.prog span{font-size:13px;color:var(--slate)}
+.card{background:#fff;border-radius:14px;padding:18px 18px 16px;margin:14px 0;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.card h2{font-size:21px;margin:0 0 4px;color:var(--teal)}
+.card h3{font-size:17px;margin:16px 0 6px}
+.step{border-left:4px solid var(--mist);padding:2px 0 2px 14px;margin:14px 0}
+.step.done{border-color:var(--teal)}.step.locked{opacity:.45;pointer-events:none}
+.step.locked .chart,.step.locked .kpi,.step.locked .chk,.step.locked input[type=range],.step.locked .row{display:none}
+.step.locked::after{content:"Finish the step above to open this one.";display:block;font-size:13px;color:var(--slate)}
+.tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.08em;border-radius:6px;padding:2px 8px;margin-right:6px;color:#fff;background:var(--slate)}
+.tag.p{background:var(--amber)}.tag.r{background:var(--teal)}.tag.c{background:var(--graphite)}.tag.e{background:var(--rust)}
+textarea,input[type=text],select{font:inherit;font-size:16px;width:100%;border:1.5px solid var(--mist);border-radius:8px;padding:8px 10px;background:#fff}
+textarea{min-height:70px}
+button{font:inherit;font-size:15px;padding:8px 14px;border-radius:8px;border:none;background:var(--teal);color:#fff;cursor:pointer;margin:8px 8px 0 0}
+button.ghost{background:#fff;color:var(--teal);border:1.5px solid var(--teal)}
+button:disabled{opacity:.5;cursor:default}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.row label{flex:1 1 240px}
+.chk{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0}
+.chk input{width:150px}
+.fb{font-size:15px}.fb.ok{color:var(--ok);font-weight:700}.fb.bad{color:var(--bad)}
+.choices label{display:block;margin:4px 0}
+.kpi{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}.kpi div{background:var(--paper);border-radius:10px;padding:6px 12px;font-size:14px;color:var(--slate)}.kpi b{display:block;font-size:20px;color:var(--ink)}
+.chart{background:var(--paper);border-radius:12px;padding:6px;margin:8px 0}
+svg{width:100%;height:auto;display:block}
+input[type=range]{width:100%;accent-color:var(--teal)}
+.note{font-size:14px;color:var(--slate)}
+.hidden{display:none}
+pre.sum{white-space:pre-wrap;background:var(--paper);border-radius:10px;padding:12px;font-size:14px}
+a{color:var(--teal)}
+</style>
+<style>
+.step.locked > *:not(.tag){display:none}
+table.tb{border-collapse:collapse;width:100%;font-size:15px;margin:8px 0}
+table.tb th{background:var(--paper);text-align:left;padding:5px 8px;border-bottom:2px solid var(--mist)}
+table.tb td{padding:5px 8px;border-bottom:1px solid #e6e3dd}
+table.tb td.n,table.tb th.n{text-align:right;font-variant-numeric:tabular-nums}
+ol.rl{margin:4px 0 0;padding-left:22px;font-size:15px}
+.lights{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+.light{border-radius:999px;padding:3px 10px;font-size:14px;font-weight:700}
+.light.ok{background:#e3f0ef;color:var(--teal)}.light.bad{background:#f6e3de;color:var(--rust)}
+.code{background:#1f262d;color:#e8eef2;border-radius:10px;padding:10px 8px;font-family:Menlo,Consolas,monospace;font-size:13.5px;overflow-x:auto}
+.ln{display:flex;align-items:center;gap:8px;padding:3px 4px;border-radius:6px;white-space:pre}
+.ln.fixed{background:#24433f}
+.ln .no{color:#8a96a0;width:18px;text-align:right}
+.ln .tx{flex:1}
+.ln .okk{width:38px;color:#9fd6c9;font-size:12px;font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700}
+button.sm{width:38px;font-size:12px;padding:2px 9px;margin:0;background:transparent;color:#9fd6c9;border:1px solid #9fd6c9}
+@media (max-width:600px){table.tb{display:block;overflow-x:auto;font-size:13px}}
+</style>
+
+</head>
+<body><main>
+<header><div class="kicker">2105623 · Session 1 · Lab</div><h1>Debug a colleague's flowsheet model</h1>
+<div class="sub">About 40 minutes. Works in class or on your own, on a laptop or a phone. Nothing to install.</div></header>
+<div class="prog"><div class="bar"><i id="pbar"></i></div><span id="ptext"></span></div>
+
+<section class="card"><h2>How this lab works</h2>
+<p>A colleague wrote a linear model of a recycle process. HiGHS returns <b>optimal</b>, yet the model contains three planted errors: a units error, a missing equation and a sign error. You will find them with checks that do not need the right answer (dimensional consistency and plant-wide conservation), repair the model, and then verify the repaired optimum with a primal-dual certificate. Write each prediction before you look; the next step stays locked until you do. Number checks accept answers within 1%. Your answers stay in this browser until you finish.</p>
+<p class="note">Studying on your own because class was cancelled? Watch the narrated slides for Session 1 first, then come back here.</p></section>
+
+<section class="card" id="spec"><h2>The specification your colleague was given</h2>
+<div id="pfd"></div>
+<p>Isomerization A → B at steady state. Per-pass conversion of A is 60%. The separator recovers all B as product; unreacted A and the inert I are recycled, and 10% of the recycle loop is purged so that I cannot accumulate. Two fresh feeds are available. Maximize the hourly profit: product revenue minus feed cost minus purge disposal.</p>
+<table class="tb"><tr><th>Item</th><th>Value</th></tr><tbody id="dataRows"></tbody></table>
+<p><b>Restrictions</b> (flows in kmol/h)</p><ol class="rl">
+<li>R1 Feed A: FA = 0.90 F1 + 0.995 F2</li><li>R2 Feed I: FI = 0.10 F1 + 0.005 F2</li>
+<li>R3 Mixer: AM = FA + RA and IM = FI + RI</li><li>R4 Reactor: Aout = (1 − X) AM and B = X AM; I passes through</li>
+<li>R5 Purge: PA = φ Aout and PI = φ IM</li><li>R6 Recycle: RA = (1 − φ) Aout and RI = (1 − φ) IM</li>
+<li>R7 Reactor inlet capacity: AM + IM ≤ 100</li><li>R8 Market: B ≤ 40</li><li>R9 All flows ≥ 0</li></ol></section>
+
+<!-- TASK 1 -->
+<section class="card" id="t1"><h2>Task 1 · Predict, then run the colleague's model</h2>
+<div class="step" data-step="1a"><span class="tag p">PREDICT</span>Feed F1 is cheaper per kmol but carries 10% inert. Which fresh feed should the optimal plant use?
+ <div class="choices"><label><input type="radio" name="p1" value="only F1"> only the cheap feed F1</label><label><input type="radio" name="p1" value="only F2"> only the pure feed F2</label><label><input type="radio" name="p1" value="a mix"> a mix of both</label></div>
+ <input type="text" id="p1w" placeholder="Optional: why, in a few words"><button data-save="1a">Save prediction</button></div>
+<div class="step" data-step="1b"><span class="tag r">RUN</span>The colleague's model, as written.
+ <div id="run0"></div><button data-save="1b">I have read the result</button></div>
+<div class="step" data-step="1c"><span class="tag e">NOTICE</span>The status is optimal. Name one number in this result that should make an engineer suspicious, and say why.
+ <textarea id="e1"></textarea><button data-save="1c">Save</button></div>
+</section>
+
+<!-- TASK 2 -->
+<section class="card" id="t2"><h2>Task 2 · Checks that do not need the answer</h2>
+<div class="step" data-step="2a"><span class="tag c">CHECK 1 · DIMENSIONS</span>Each term of the objective must be in USD/h. The flows are in kmol/h.
+ <div id="unitsTable"></div>
+ <div class="chk"><span>Which terms fail?</span><select id="c2a"><option value="">choose</option><option value="revenue">the product revenue</option><option value="feeds">the two feed costs</option><option value="purge">the purge cost</option><option value="none">none</option></select><span class="fb" id="f2a"></span></div>
+ <button data-check="2a">Check</button></div>
+<div class="step" data-step="2b"><span class="tag c">CHECK 2 · CONSERVATION</span>At steady state, every A molecule that enters leaves as A in the purge or as B in the product, and every inert molecule leaves in the purge: FA = PA + B and FI = PI. These closures use the solution values only.
+ <button class="ghost" id="runClosure">Compute the plant-wide closures</button><div id="closOut"></div>
+ <div class="chk"><span>Which balances fail to close?</span><select id="c2b"><option value="">choose</option><option value="AB">A and B only</option><option value="I">inert only</option><option value="both">both</option><option value="none">neither</option></select><span class="fb" id="f2b"></span></div>
+ <button data-check="2b">Check</button></div>
+</section>
+
+<!-- TASK 3 -->
+<section class="card" id="t3"><h2>Task 3 · Repair, then certify</h2>
+<div class="step" data-step="3a"><span class="tag r">REPAIR</span>Use the failed checks to locate the errors. Click <b>Fix</b> on a line you believe is wrong, and add any equation from the specification that is missing. The model is solved again after every change; fixing a correct line changes nothing.
+ <div id="listing"></div>
+ <div class="row" style="margin-top:8px"><label>Add an equation <select id="addSel"><option value="">choose</option><option value="RA">RA = (1 − φ) Aout</option><option value="RI">RI = (1 − φ) IM</option><option value="PI">PI = φ IM</option><option value="CAP">AM + IM ≤ 100</option></select></label><button class="ghost" id="addBtn" type="button">Add</button></div>
+ <div class="fb" id="fixMsg"></div><div id="runNow"></div></div>
+<div class="step" data-step="3b"><span class="tag c">CHECK</span>Read the repaired optimum.
+ <div class="chk"><span>F1, kmol/h</span><input type="text" id="c3a" inputmode="decimal"><span class="fb" id="f3a"></span></div>
+ <div class="chk"><span>F2, kmol/h</span><input type="text" id="c3b" inputmode="decimal"><span class="fb" id="f3b"></span></div>
+ <div class="chk"><span>Profit, USD/h</span><input type="text" id="c3c" inputmode="decimal"><span class="fb" id="f3c"></span></div>
+ <button data-check="3b">Check</button></div>
+<div class="step" data-step="3c"><span class="tag c">CERTIFY</span>A solver's word is not proof. The duals returned by HiGHS give a certificate anyone can check: dual feasibility (no negative reduced cost), complementary slackness, and equal primal and dual objectives.
+ <div id="cert"></div>
+ <div class="chk"><span>Value of 1 more kmol/h of reactor capacity, USD/h</span><input type="text" id="c3d" inputmode="decimal"><span class="fb" id="f3d"></span></div>
+ <div class="chk"><span>Does the certificate prove that this plan is right for the real plant?</span><select id="c3e"><option value="">choose</option><option value="yes">yes</option><option value="no">no, only that it is optimal for this model</option></select><span class="fb" id="f3e"></span></div>
+ <button data-check="3c">Check</button></div>
+</section>
+
+<!-- TASK 4 -->
+<section class="card" id="t4"><h2>Task 4 · Change one condition</h2>
+<div class="step" data-step="4a"><span class="tag p">PREDICT</span>Choose one condition, then predict before you move the slider.
+ <div class="row"><label>Condition <select id="cond"><option value="phi">Purged fraction φ</option><option value="inert_cheap">Inert in the cheap feed F1</option><option value="capacity">Reactor inlet capacity, kmol/h</option><option value="demand">Market for B, kmol/h</option></select></label>
+ <label>If I increase it, the share of the pure feed F2 will <select id="pdir"><option value="">choose</option><option value="up">increase</option><option value="down">decrease</option><option value="same">stay the same</option></select></label></div>
+ <button data-save="4a">Save prediction</button></div>
+<div class="step" data-step="4b"><span class="tag r">RUN</span>
+ <input type="range" id="cv" min="0" max="4" step="1" value="2"><div class="kpi"><div id="cvl">Value<b id="cvv"></b></div><div>F1, kmol/h<b id="cv1"></b></div><div>F2, kmol/h<b id="cv2"></b></div><div>Profit, USD/h<b id="cvp"></b></div><div>Shadow price of capacity<b id="cvs"></b></div></div>
+ <div class="chart" id="ch4"></div>
+ <div class="chk"><span>Profit at the value you chose, USD/h</span><input type="text" id="c4b" inputmode="decimal"><span class="fb" id="f4b"></span></div>
+ <button data-check="4b">Check</button></div>
+<div class="step" data-step="4c"><span class="tag e">EXPLAIN</span>Was your prediction right? Somewhere along the slider the plan changes character (one feed drops out, or a constraint stops binding). Explain what happened there, in terms of the binding constraints.
+ <textarea id="e4"></textarea><button data-save="4c">Save</button></div>
+</section>
+
+<section class="card" id="t5"><h2>Task 5 · Explain</h2>
+<div class="step" data-step="5a"><span class="tag e">EXPLAIN</span>Which check found which error? What does "optimal" from the solver guarantee, what does the certificate add, and what can neither of them tell you?
+ <textarea id="e5"></textarea><button data-save="5a">Save</button></div>
+</section>
+
+<section class="card" id="fin"><h2>Finish: Exit Ticket and feedback</h2>
+<div class="step" data-step="fin"><p>Copy your answers, open the Exit Ticket, choose <b>Session 1</b>, paste them in the Exit Ticket box, and answer the feedback questions. Choose "On my own" if you did this lab outside class.</p>
+<pre class="sum" id="sum"></pre>
+<button id="copy">Copy my answers</button><a id="exitlink" target="_blank" rel="noopener"><button class="ghost" type="button">Open Exit Ticket and feedback</button></a>
+<p class="note" id="copied"></p>
+<p class="note">Want the code? <a href="workflow_lab.py">workflow_lab.py</a> builds this model with scipy.optimize.linprog (HiGHS) and runs in desktop Python, or open the slides and press D on any slide marked "D · Python".</p></div>
+<button class="ghost" id="reset">Clear my answers on this device</button>
+</section>
+</main>
+<script>
+const R = {"meta":{"numpy":"2.5.3","scipy":"1.18.1","python":"3.13.18"},"lecture":{"base":{"status":"optimal","x":[6.0,3.0],"z":3300.0,"used":[24.0,12.0,9.0],"slack":[0.0,4.0,0.0],"shadow":[100.0,0.0,100.0],"dual_value":3300.0},"packaging_sweep":[{"hours":5.0,"status":"optimal","x":[5.0,0.0],"z":2000.0,"used":[15.0,5.0,5.0],"slack":[9.0,11.0,0.0],"shadow":[0.0,0.0,400.0],"dual_value":2000.0},{"hours":5.5,"status":"optimal","x":[5.5,0.0],"z":2200.0,"used":[16.5,5.5,5.5],"slack":[7.5,10.5,0.0],"shadow":[0.0,0.0,400.0],"dual_value":2200.0},{"hours":6.0,"status":"optimal","x":[6.0,0.0],"z":2400.0,"used":[18.0,6.0,6.0],"slack":[6.0,10.0,0.0],"shadow":[0.0,0.0,400.0],"dual_value":2400.0},{"hours":6.5,"status":"optimal","x":[6.5,0.0],"z":2600.0,"used":[19.5,6.5,6.5],"slack":[4.5,9.5,0.0],"shadow":[0.0,0.0,400.0],"dual_value":2600.0},{"hours":7.0,"status":"optimal","x":[7.0,0.0],"z":2800.0,"used":[21.0,7.0,7.0],"slack":[3.0,9.0,0.0],"shadow":[0.0,0.0,400.0],"dual_value":2800.0},{"hours":7.5,"status":"optimal","x":[7.5,0.0],"z":3000.0,"used":[22.5,7.5,7.5],"slack":[1.5,8.5,0.0],"shadow":[0.0,0.0,400.0],"dual_value":3000.0},{"hours":8.0,"status":"optimal","x":[8.0,0.0],"z":3200.0,"used":[24.0,8.0,8.0],"slack":[0.0,8.0,0.0],"shadow":[100.0,0.0,100.0],"dual_value":3200.0},{"hours":8.5,"status":"optimal","x":[7.0,1.5],"z":3250.0,"used":[24.0,10.0,8.5],"slack":[0.0,6.0,0.0],"shadow":[100.0,0.0,100.0],"dual_value":3250.0},{"hours":9.0,"status":"optimal","x":[6.0,3.0],"z":3300.0,"used":[24.0,12.0,9.0],"slack":[0.0,4.0,0.0],"shadow":[100.0,0.0,100.0],"dual_value":3300.0},{"hours":9.5,"status":"optimal","x":[5.0,4.5],"z":3350.0,"used":[24.0,14.0,9.5],"slack":[0.0,2.0,0.0],"shadow":[100.0,0.0,100.0],"dual_value":3350.0},{"hours":10.0,"status":"optimal","x":[4.0,6.0],"z":3400.0,"used":[24.0,16.0,10.0],"slack":[0.0,0.0,0.0],"shadow":[125.0,25.0,0.0],"dual_value":3400.0},{"hours":10.5,"status":"optimal","x":[4.0,6.0],"z":3400.0,"used":[24.0,16.0,10.0],"slack":[0.0,0.0,0.5],"shadow":[125.0,25.0,0.0],"dual_value":3400.0},{"hours":11.0,"status":"optimal","x":[4.0,6.0],"z":3400.0,"used":[24.0,16.0,10.0],"slack":[0.0,0.0,1.0],"shadow":[125.0,25.0,0.0],"dual_value":3400.0},{"hours":11.5,"status":"optimal","x":[4.0,6.0],"z":3400.0,"used":[24.0,16.0,10.0],"slack":[0.0,0.0,1.5],"shadow":[125.0,25.0,0.0],"dual_value":3400.0},{"hours":12.0,"status":"optimal","x":[4.0,6.0],"z":3400.0,"used":[24.0,16.0,10.0],"slack":[0.0,0.0,2.0],"shadow":[125.0,25.0,0.0],"dual_value":3400.0},{"hours":12.5,"status":"optimal","x":[4.0,6.0],"z":3400.0,"used":[24.0,16.0,10.0],"slack":[0.0,0.0,2.5],"shadow":[125.0,25.0,0.0],"dual_value":3400.0},{"hours":13.0,"status":"optimal","x":[4.0,6.0],"z":3400.0,"used":[24.0,16.0,10.0],"slack":[0.0,0.0,3.0],"shadow":[125.0,25.0,0.0],"dual_value":3400.0},{"hours":13.5,"status":"optimal","x":[4.0,6.0],"z":3400.0,"used":[24.0,16.0,10.0],"slack":[0.0,0.0,3.5],"shadow":[125.0,25.0,0.0],"dual_value":3400.0},{"hours":14.0,"status":"optimal","x":[4.0,6.0],"z":3400.0,"used":[24.0,16.0,10.0],"slack":[0.0,0.0,4.0],"shadow":[125.0,25.0,0.0],"dual_value":3400.0},{"hours":14.5,"status":"optimal","x":[4.0,6.0],"z":3400.0,"used":[24.0,16.0,10.0],"slack":[0.0,0.0,4.5],"shadow":[125.0,25.0,0.0],"dual_value":3400.0},{"hours":15.0,"status":"optimal","x":[4.0,6.0],"z":3400.0,"used":[24.0,16.0,10.0],"slack":[0.0,0.0,5.0],"shadow":[125.0,25.0,0.0],"dual_value":3400.0}],"integer_batches":{"status":"optimal","x":[8.0,0.0],"z":3200.0},"certificate":{"Ax":[24.0,12.0,9.0],"b":[24.0,16.0,9.0],"primal_feasible":true,"ATy":[400.0,300.0],"c":[400.0,300.0],"dual_feasible":true,"primal_value":3300.0,"dual_value":3300.0,"gap":0.0},"rounded_lp":{"x":[4.0,0.0],"z":1600.0},"broken":{"supply_contract":{"status":"infeasible"},"resources_deleted":{"status":"unbounded"}}},"lab":{"combinations":{"000":{"status":"optimal","flows":{"F1":100.740741,"F2":0.0,"FA":90.666667,"FI":10.074074,"AM":66.666667,"IM":10.074074,"Aout":26.666667,"B":40.0,"PA":2.666667,"PI":1.007407,"RA":24.0,"RI":0.0},"model_objective":4704.711111111111,"true_profit":207.64444444444402,"throughput":76.74074074074075,"closure":{"A_and_B":48.0,"inert":9.066666666666665},"zero_price":{"F1":0.0,"F2":0.0,"FA":0.0,"FI":0.0,"AM":0.0,"IM":0.0,"Aout":0.0,"B":0.0,"PA":0.0,"PI":0.0,"RA":0.0,"RI":0.0}},"001":{"status":"optimal","flows":{"F1":47.407407,"F2":0.0,"FA":42.666667,"FI":4.740741,"AM":66.666667,"IM":4.740741,"Aout":26.666667,"B":40.0,"PA":2.666667,"PI":0.474074,"RA":24.0,"RI":0.0},"model_objective":4749.511111111111,"true_profit":2633.2444444444445,"throughput":71.40740740740742,"closure":{"A_and_B":7.105427357601002e-15,"inert":4.266666666666667},"zero_price":{"F1":0.0,"F2":0.0,"FA":0.0,"FI":0.0,"AM":0.0,"IM":0.0,"Aout":0.0,"B":0.0,"PA":0.0,"PI":0.0,"RA":0.0,"RI":0.0}},"010":{"status":"optimal","flows":{"F1":0.0,"F2":91.122278,"FA":90.666667,"FI":0.455611,"AM":66.666667,"IM":4.556114,"Aout":26.666667,"B":40.0,"PA":2.666667,"PI":0.455611,"RA":24.0,"RI":4.100503},"model_objective":4687.276381909547,"true_profit":-1210.5219430485774,"throughput":71.22278056951424,"closure":{"A_and_B":48.0,"inert":-1.6653345369377348e-16},"zero_price":{"F1":0.0,"F2":0.0,"FA":0.0,"FI":0.0,"AM":0.0,"IM":0.0,"Aout":0.0,"B":0.0,"PA":0.0,"PI":0.0,"RA":0.0,"RI":0.0}},"011":{"status":"optimal","flows":{"F1":0.0,"F2":42.881072,"FA":42.666667,"FI":0.214405,"AM":66.666667,"IM":2.144054,"Aout":26.666667,"B":40.0,"PA":2.666667,"PI":0.214405,"RA":24.0,"RI":1.929648},"model_objective":4741.306532663317,"true_profit":1965.8720268006691,"throughput":68.8107202680067,"closure":{"A_and_B":7.105427357601002e-15,"inert":-8.326672684688674e-17},"zero_price":{"F1":0.0,"F2":0.0,"FA":0.0,"FI":0.0,"AM":0.0,"IM":0.0,"Aout":0.0,"B":0.0,"PA":0.0,"PI":0.0,"RA":0.0,"RI":0.0}},"100":{"status":"optimal","flows":{"F1":100.740741,"F2":0.0,"FA":90.666667,"FI":10.074074,"AM":66.666667,"IM":10.074074,"Aout":26.666667,"B":40.0,"PA":2.666667,"PI":1.007407,"RA":24.0,"RI":0.0},"model_objective":207.64444444444405,"true_profit":207.64444444444402,"throughput":76.74074074074075,"closure":{"A_and_B":48.0,"inert":9.066666666666665},"zero_price":{"F1":0.0,"F2":0.0,"FA":0.0,"FI":0.0,"AM":0.0,"IM":0.0,"Aout":0.0,"B":0.0,"PA":0.0,"PI":0.0,"RA":0.0,"RI":0.0}},"101":{"status":"optimal","flows":{"F1":47.407407,"F2":0.0,"FA":42.666667,"FI":4.740741,"AM":66.666667,"IM":4.740741,"Aout":26.666667,"B":40.0,"PA":2.666667,"PI":0.474074,"RA":24.0,"RI":0.0},"model_objective":2633.2444444444445,"true_profit":2633.2444444444445,"throughput":71.40740740740742,"closure":{"A_and_B":7.105427357601002e-15,"inert":4.266666666666667},"zero_price":{"F1":0.0,"F2":0.0,"FA":0.0,"FI":0.0,"AM":0.0,"IM":0.0,"Aout":0.0,"B":0.0,"PA":0.0,"PI":0.0,"RA":0.0,"RI":0.0}},"110":{"status":"optimal","flows":{"F1":60.176991,"F2":0.0,"FA":54.159292,"FI":6.017699,"AM":39.823009,"IM":60.176991,"Aout":15.929204,"B":23.893805,"PA":1.59292,"PI":6.017699,"RA":14.336283,"RI":54.159292},"model_objective":102.3716814159303,"true_profit":102.3716814159303,"throughput":100.0,"closure":{"A_and_B":28.672566371681405,"inert":-1.7763568394002505e-15},"zero_price":{"F1":0.0,"F2":0.0,"FA":0.0,"FI":0.0,"AM":0.0,"IM":0.0,"Aout":0.0,"B":0.0,"PA":0.0,"PI":0.0,"RA":0.0,"RI":0.0}},"111":{"status":"optimal","flows":{"F1":32.666667,"F2":13.333333,"FA":42.666667,"FI":3.333333,"AM":66.666667,"IM":33.333333,"Aout":26.666667,"B":40.0,"PA":2.666667,"PI":3.333333,"RA":24.0,"RI":30.0},"model_objective":2413.973333333333,"true_profit":2413.9733333333334,"throughput":100.0,"closure":{"A_and_B":7.105427357601002e-15,"inert":-8.881784197001252e-16},"certificate":{"shadow_capacity":14.367157894736863,"shadow_demand":24.431438596491205,"min_reduced_cost":-1.4854082875995358e-15,"complementarity":2.3211062701496604e-13,"primal_objective":-2413.973333333333,"dual_objective":-2413.9733333333343,"gap":1.3642420526593924e-12},"zero_price":{"F1":0.0,"F2":0.0,"FA":0.0,"FI":0.0,"AM":0.0,"IM":0.0,"Aout":0.0,"B":0.0,"PA":0.0,"PI":0.0,"RA":0.0,"RI":0.0}}},"sweeps":{"phi":[{"value":0.05,"F1":15.280702,"F2":27.719298,"B":40.0,"profit":2269.0498245614026,"throughput":100.0,"shadow_capacity":7.18357894736846,"shadow_demand":38.76729824561397},{"value":0.075,"F1":23.973684,"F2":20.526316,"B":40.0,"profit":2341.5115789473675,"throughput":100.0,"shadow_capacity":10.775368421052633,"shadow_demand":31.599368421052617},{"value":0.1,"F1":32.666667,"F2":13.333333,"B":40.0,"profit":2413.9733333333334,"throughput":100.0,"shadow_capacity":14.367157894736863,"shadow_demand":24.431438596491205},{"value":0.15,"F1":48.888889,"F2":0.0,"B":40.0,"profit":2542.9333333333334,"throughput":99.25925925925925,"shadow_capacity":0.0,"shadow_demand":63.57333333333334},{"value":0.2,"F1":50.37037,"F2":0.0,"B":40.0,"profit":2469.6888888888893,"throughput":91.85185185185185,"shadow_capacity":0.0,"shadow_demand":61.74222222222223}],"inert_cheap":[{"value":0.05,"F1":44.912281,"F2":0.0,"B":40.0,"profit":2682.0491228070173,"throughput":89.12280701754389,"shadow_capacity":0.0,"shadow_demand":67.05122807017543},{"value":0.1,"F1":32.666667,"F2":13.333333,"B":40.0,"profit":2413.9733333333334,"throughput":100.0,"shadow_capacity":14.367157894736863,"shadow_demand":24.431438596491205},{"value":0.15,"F1":21.402299,"F2":24.597701,"B":40.0,"profit":2211.7554022988497,"throughput":100.0,"shadow_capacity":7.883586206896538,"shadow_demand":35.58491954022989},{"value":0.2,"F1":15.91453,"F2":30.08547,"B":40.0,"profit":2113.238974358974,"throughput":100.0,"shadow_capacity":4.724923076923083,"shadow_demand":41.01866666666663}],"capacity":[{"value":80.0,"F1":11.719298,"F2":32.280702,"B":40.0,"profit":2126.630175438596,"throughput":80.0,"shadow_capacity":14.367157894736863,"shadow_demand":24.431438596491205},{"value":90.0,"F1":22.192982,"F2":22.807018,"B":40.0,"profit":2270.301754385964,"throughput":90.0,"shadow_capacity":14.367157894736863,"shadow_demand":24.431438596491205},{"value":100.0,"F1":32.666667,"F2":13.333333,"B":40.0,"profit":2413.9733333333334,"throughput":100.0,"shadow_capacity":14.367157894736863,"shadow_demand":24.431438596491205},{"value":110.0,"F1":43.140351,"F2":3.859649,"B":40.0,"profit":2557.644912280701,"throughput":110.0,"shadow_capacity":14.367157894736863,"shadow_demand":24.431438596491205},{"value":120.0,"F1":47.407407,"F2":0.0,"B":40.0,"profit":2616.177777777778,"throughput":114.07407407407408,"shadow_capacity":0.0,"shadow_demand":65.40444444444445}],"demand":[{"value":30.0,"F1":35.555556,"F2":0.0,"B":30.0,"profit":1962.1333333333337,"throughput":85.55555555555554,"shadow_capacity":0.0,"shadow_demand":65.40444444444445},{"value":35.0,"F1":41.481481,"F2":0.0,"B":35.0,"profit":2289.155555555556,"throughput":99.81481481481481,"shadow_capacity":0.0,"shadow_demand":65.40444444444445},{"value":40.0,"F1":32.666667,"F2":13.333333,"B":40.0,"profit":2413.9733333333334,"throughput":100.0,"shadow_capacity":14.367157894736863,"shadow_demand":24.431438596491205},{"value":45.0,"F1":23.657895,"F2":26.842105,"B":45.0,"profit":2536.130526315789,"throughput":100.0,"shadow_capacity":14.367157894736863,"shadow_demand":24.431438596491205},{"value":50.0,"F1":14.649123,"F2":40.350877,"B":50.0,"profit":2658.2877192982446,"throughput":100.0,"shadow_capacity":14.367157894736863,"shadow_demand":24.431438596491205}]},"data":{"X":0.6,"phi":0.1,"y_A":{"F1":0.9,"F2":0.995},"MW":{"A":60.0,"B":60.0,"I":28.0},"price_kg":{"F1":0.8,"F2":1.1,"B":2.0},"purge_cost":4.0,"cap":100.0,"demand":40.0,"feed_mw":{"F1":56.8,"F2":59.84}},"errors":{"units":"Feed prices in USD/kg are multiplied by flows in kmol/h","inert":"The inert recycle equation RI = (1 - phi) IM is missing","sign":"The mixer balance for A is written AM = FA - RA"}}};
+const EXIT_URL = "https://soorathep.github.io/course-2105623/teaching/2105623/exit.html?s=1";
+const C={teal:"#0F6E6B",amber:"#E29A2D",rust:"#BE654C",graphite:"#333F4A",mist:"#B9C1C6",sand:"#DFC98F",ink:"#1C242B",slate:"#66727C",sky:"#5A91BE"};
+const $=id=>document.getElementById(id);
+const fmt=(x,d=0)=>x==null?"–":Number(x).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});
+const KEY="lab1-2027-v2"; let ST={};
+try{ST=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){ST={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(ST))}catch(e){}};
+ST.fix=ST.fix||{units:false,inert:false,sign:false};
+const D=R.lab.data, COMB=R.lab.combinations, SW=R.lab.sweeps;
+const keyOf=f=>`${+f.units}${+f.inert}${+f.sign}`;
+
+/* flowsheet picture */
+$("pfd").innerHTML=`<svg viewBox="0 0 760 210" font-family="Helvetica Neue,Arial,sans-serif" font-size="14" fill="${C.ink}" style="width:100%;height:auto">
+<defs><marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="${C.graphite}"/></marker></defs>
+<text x="10" y="58">F1 (90% A)</text><text x="10" y="118">F2 (99.5% A)</text>
+<path d="M95,54 L150,80 M95,114 L150,92" stroke="${C.graphite}" stroke-width="2" marker-end="url(#ar)"/>
+<circle cx="170" cy="86" r="20" fill="#fff" stroke="${C.teal}" stroke-width="2"/><text x="170" y="91" text-anchor="middle">M</text>
+<path d="M190,86 L250,86" stroke="${C.graphite}" stroke-width="2" marker-end="url(#ar)"/><text x="203" y="78">AM, IM</text>
+<rect x="252" y="56" width="110" height="60" rx="8" fill="#fff" stroke="${C.teal}" stroke-width="2"/><text x="307" y="82" text-anchor="middle">Reactor</text><text x="307" y="100" text-anchor="middle" font-size="12" fill="${C.slate}">A → B, X = 0.6</text>
+<path d="M362,86 L430,86" stroke="${C.graphite}" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="432" y="56" width="110" height="60" rx="8" fill="#fff" stroke="${C.teal}" stroke-width="2"/><text x="487" y="91" text-anchor="middle">Separator</text>
+<path d="M542,74 L640,74" stroke="${C.amber}" stroke-width="2.5" marker-end="url(#ar)"/><text x="648" y="79" fill="${C.amber}" font-weight="700">product B</text>
+<path d="M487,116 L487,160 L560,160" stroke="${C.graphite}" stroke-width="2" marker-end="url(#ar)"/><text x="494" y="140" font-size="12">A, I</text>
+<circle cx="580" cy="160" r="18" fill="#fff" stroke="${C.teal}" stroke-width="2"/><text x="580" y="165" text-anchor="middle">S</text>
+<path d="M598,160 L660,160" stroke="${C.rust}" stroke-width="2.5" marker-end="url(#ar)"/><text x="668" y="165" fill="${C.rust}" font-weight="700">purge (φ = 0.1)</text>
+<path d="M580,178 L580,198 L170,198 L170,108" stroke="${C.sky}" stroke-width="2.5" marker-end="url(#ar)"/><text x="330" y="192" fill="${C.sky}" font-weight="700">recycle RA, RI</text></svg>`;
+$("dataRows").innerHTML=[["Per-pass conversion X",D.X],["Purged fraction φ",D.phi],["Molar mass A, B, I, kg/kmol","60, 60, 28"],
+ ["F1: price, composition","0.80 USD/kg, 90 mol% A, 10% I"],["F2: price, composition","1.10 USD/kg, 99.5 mol% A, 0.5% I"],["Product B price","2.00 USD/kg"],["Purge disposal","4 USD per kmol"]].map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("");
+
+/* result block */
+const SK=["FA","FI","AM","IM","RA","RI","PA","PI"];
+function resultHTML(m){const f=m.flows;return `<div class="kpi"><div>Solver status<b style="color:${C.teal}">${m.status}</b></div><div>F1, kmol/h<b>${fmt(f.F1,2)}</b></div><div>F2, kmol/h<b>${fmt(f.F2,2)}</b></div><div>B, kmol/h<b>${fmt(f.B,2)}</b></div><div>Reactor inlet, kmol/h<b>${fmt(m.throughput,1)}</b></div><div>Model objective, USD/h<b>${fmt(m.model_objective,1)}</b></div></div>
+ <table class="tb"><tr><th>Stream</th>${SK.map(k=>`<th class="n">${k}</th>`).join("")}</tr><tr><td>kmol/h</td>${SK.map(k=>`<td class="n">${fmt(f[k],2)}</td>`).join("")}</tr></table>`}
+function lights(m){const ok=v=>Math.abs(v)<1e-6;const L=(o,t)=>`<span class="light ${o?"ok":"bad"}">${o?"✓":"✗"} ${t}</span>`;return `<div class="lights">${L(ST.fix.units,"dimensions")}${L(ok(m.closure.A_and_B),"A + B closure")}${L(ok(m.closure.inert),"inert closure")}</div>`}
+
+/* steps */
+const ORDER=["1a","1b","1c","2a","2b","3a","3b","3c","4a","4b","4c","5a"];
+function refresh(){let open=true;ORDER.forEach(id=>{const el=document.querySelector(`[data-step="${id}"]`),done=!!ST["done_"+id];el.classList.toggle("done",done);el.classList.toggle("locked",!done&&!open);if(!done&&open)open=false});
+ document.querySelector('[data-step="fin"]').classList.toggle("locked",!ORDER.every(id=>ST["done_"+id]));
+ const n=ORDER.filter(id=>ST["done_"+id]).length;$("pbar").style.width=(100*n/ORDER.length)+"%";$("ptext").textContent=`${n} of ${ORDER.length} steps done`;summary();save()}
+function need(id,msg){const st=document.querySelector(`[data-step="${id}"]`);let f=st.querySelector(".need");if(!f){f=document.createElement("div");f.className="fb bad need";st.appendChild(f)}f.textContent=msg;return false}
+function markDone(id){const nd=document.querySelector(`[data-step="${id}"] .need`);if(nd)nd.textContent="";ST["done_"+id]=true;refresh()}
+const radio=n=>{const r=document.querySelector(`input[name="${n}"]:checked`);return r?r.value:""};
+document.querySelectorAll("[data-save]").forEach(b=>b.onclick=()=>{const id=b.dataset.save;
+ if(id==="1a"){if(!radio("p1"))return need(id,"Choose a prediction first.");ST.p1=radio("p1");ST.p1w=$("p1w").value}
+ if(id==="1c"){if($("e1").value.trim().length<20)return need(id,"Write one full sentence.");ST.e1=$("e1").value}
+ if(id==="4a"){if(!$("pdir").value)return need(id,"Predict the direction first.");ST.cond=$("cond").value;ST.pdir=$("pdir").value;$("cond").disabled=$("pdir").disabled=true;drawCond()}
+ if(id==="4c"){if($("e4").value.trim().length<30)return need(id,"Write at least one full sentence about the binding constraints.");ST.e4=$("e4").value}
+ if(id==="5a"){if($("e5").value.trim().length<60)return need(id,"Write at least three sentences.");ST.e5=$("e5").value}
+ markDone(id)});
+
+/* checks */
+const num=s=>parseFloat(String(s).replace(/,/g,""));
+function verdict(input,fb,ok,expected){ST["tries_"+input]=(ST["tries_"+input]||0)+(ok?0:1);const f=$(fb);f.className="fb "+(ok?"ok":"bad");
+ f.textContent=ok?"Correct":(ST["tries_"+input]>=2?`Not yet. Expected: ${expected}.`:"Not yet. Look again.");return ok||ST["tries_"+input]>=2}
+function checkNum(input,fb,target,rel=0.01,abs=0.05){const v=num($(input).value);ST[input]=$(input).value;return verdict(input,fb,isFinite(v)&&Math.abs(v-target)<=Math.max(abs,rel*Math.abs(target)),fmt(target,2))}
+function checkSel(input,fb,target,label){ST[input]=$(input).value;return verdict(input,fb,$(input).value===target,label||target)}
+const sweep=()=>SW[ST.cond||$("cond").value][+$("cv").value];
+document.querySelectorAll("[data-check]").forEach(b=>b.onclick=()=>{const id=b.dataset.check;let ok=false;
+ if(id==="2a")ok=checkSel("c2a","f2a","feeds","the two feed costs");
+ if(id==="2b"){if(!ST.ranClos)return need(id,"Compute the closures first.");ok=checkSel("c2b","f2b","both","both")}
+ if(id==="3b"){const m=COMB["111"];ok=[checkNum("c3a","f3a",m.flows.F1),checkNum("c3b","f3b",m.flows.F2),checkNum("c3c","f3c",m.true_profit)].every(Boolean)}
+ if(id==="3c"){const c=COMB["111"].certificate;ok=[checkNum("c3d","f3d",c.shadow_capacity,0.02),checkSel("c3e","f3e","no","no, only that it is optimal for this model")].every(Boolean)}
+ if(id==="4b"){ok=checkNum("c4b","f4b",sweep().profit);ST.cv=$("cv").value}
+ if(ok)markDone(id);else save()});
+
+/* task 1, 2 */
+$("run0").innerHTML=resultHTML(COMB["000"]);
+$("unitsTable").innerHTML=`<table class="tb"><tr><th>Term in the colleague's objective</th><th>Units</th><th>Gives</th></tr>
+<tr><td>2.00 × 60 × B</td><td>USD/kg × kg/kmol × kmol/h</td><td>USD/h</td></tr><tr><td>0.80 × F1</td><td>USD/kg × kmol/h</td><td>USD·kmol/(kg·h)</td></tr>
+<tr><td>1.10 × F2</td><td>USD/kg × kmol/h</td><td>USD·kmol/(kg·h)</td></tr><tr><td>4 × (PA + PI)</td><td>USD/kmol × kmol/h</td><td>USD/h</td></tr></table>`;
+$("runClosure").onclick=()=>{const m=COMB["000"];ST.ranClos=true;$("closOut").innerHTML=`<div class="kpi"><div>FA − PA − B, kmol/h<b>${fmt(m.closure.A_and_B,2)}</b></div><div>FI − PI, kmol/h<b>${fmt(m.closure.inert,2)}</b></div></div><p class="note">A balance closes when its residual is zero (here, below 10⁻⁶).</p>`;save()};
+
+/* task 3 listing */
+const LINES=[{k:null,txt:"feed_A:    FA = 0.90*F1 + 0.995*F2"},{k:null,txt:"feed_I:    FI = 0.10*F1 + 0.005*F2"},
+ {k:"sign",txt:"mixer_A:   AM = FA - RA",fixed:"mixer_A:   AM = FA + RA"},{k:null,txt:"mixer_I:   IM = FI + RI"},
+ {k:null,txt:"reactor:   Aout = (1 - X)*AM ;  B = X*AM"},{k:null,txt:"purge:     PA = phi*Aout ;  PI = phi*IM"},
+ {k:null,txt:"recycle:   RA = (1 - phi)*Aout"},{k:null,txt:"capacity:  AM + IM <= 100 ;  market:  B <= 40"},
+ {k:"units",txt:"profit:    2.00*60*B - 0.80*F1 - 1.10*F2 - 4*(PA + PI)",fixed:"profit:    2.00*60*B - 0.80*56.8*F1 - 1.10*59.84*F2 - 4*(PA + PI)"}];
+function listing(){let s=`<div class="code">`;LINES.forEach((L,i)=>{const fx=L.k&&ST.fix[L.k];s+=`<div class="ln ${fx?"fixed":""}"><span class="no">${i+1}</span>${fx?`<span class="okk">fixed</span>`:`<button class="ghost sm" data-fix="${i}">Fix</button>`}<span class="tx">${fx?L.fixed:L.txt}</span></div>`;
+  if(i===6&&ST.fix.inert)s+=`<div class="ln fixed"><span class="no">+</span><span class="okk">added</span><span class="tx">recycle_I: RI = (1 - phi)*IM</span></div>`});
+ $("listing").innerHTML=s+"</div>";
+ document.querySelectorAll("[data-fix]").forEach(b=>b.onclick=()=>{const i=+b.dataset.fix,L=LINES[i];if(!L.k){$("fixMsg").className="fb bad";$("fixMsg").textContent=`Line ${i+1} matches the specification. Nothing to fix there.`;ST.wrongFix=(ST.wrongFix||0)+1}
+  else{ST.fix[L.k]=true;$("fixMsg").className="fb ok";$("fixMsg").textContent=`Line ${i+1} fixed. The model was solved again.`}afterFix()})}
+$("addBtn").onclick=()=>{const v=$("addSel").value;if(!v)return;if(v==="RI"){ST.fix.inert=true;$("fixMsg").className="fb ok";$("fixMsg").textContent="Inert recycle equation added. The model was solved again."}
+ else{$("fixMsg").className="fb bad";$("fixMsg").textContent="That equation is already in the model.";ST.wrongFix=(ST.wrongFix||0)+1}afterFix()};
+function afterFix(){listing();const m=COMB[keyOf(ST.fix)];$("runNow").innerHTML=`<p class="note">${Object.values(ST.fix).filter(Boolean).length} of 3 errors repaired. Checks on the current model:</p>`+lights(m)+resultHTML(m);
+ if(ST.fix.units&&ST.fix.inert&&ST.fix.sign&&!ST.done_3a)markDone("3a");else save()}
+/* certificate */
+(function(){const c=COMB["111"].certificate;$("cert").innerHTML=`<table class="tb"><tr><th>Check</th><th class="n">Value</th><th>Required</th></tr>
+<tr><td>Smallest reduced cost</td><td class="n">${Math.abs(c.min_reduced_cost)<1e-9?"0 (within 1e-9)":c.min_reduced_cost.toExponential(1)}</td><td>≥ 0 (dual feasibility)</td></tr>
+<tr><td>Largest |reduced cost × flow|</td><td class="n">${c.complementarity.toExponential(1)}</td><td>0 (complementary slackness)</td></tr>
+<tr><td>Primal objective − dual objective</td><td class="n">${c.gap.toExponential(1)}</td><td>0 (no duality gap)</td></tr>
+<tr><td>Dual of the capacity row (shadow price)</td><td class="n">${fmt(c.shadow_capacity,2)}</td><td>USD/h per kmol/h</td></tr>
+<tr><td>Dual of the market row</td><td class="n">${fmt(c.shadow_demand,2)}</td><td>USD/h per kmol/h of B</td></tr></table>`})();
+
+/* task 4 */
+const LBL={phi:v=>"φ = "+v,inert_cheap:v=>(v*100).toFixed(0)+"% inert",capacity:v=>v+" kmol/h",demand:v=>v+" kmol/h"};
+function drawCond(){const key=ST.cond||$("cond").value,arr=SW[key];$("cv").max=arr.length-1;if(+$("cv").value>arr.length-1)$("cv").value=arr.length-1;const r=arr[+$("cv").value];
+ $("cvl").firstChild.textContent=$("cond").selectedOptions[0].textContent;$("cvv").textContent=LBL[key](r.value);$("cv1").textContent=fmt(r.F1,1);$("cv2").textContent=fmt(r.F2,1);$("cvp").textContent=fmt(r.profit,1);$("cvs").textContent=fmt(r.shadow_capacity,2);
+ const w=720,h=230,l=60,b=34,t=26,X=w-l-20,Y=h-t-b,mx=Math.max(...arr.map(a=>a.F1+a.F2))*1.1,bw=X/arr.length*.5;
+ let s=`<svg viewBox="0 0 ${w} ${h}" font-family="Helvetica Neue,Arial,sans-serif" font-size="13" fill="${C.ink}"><line x1="${l}" x2="${l}" y1="${t}" y2="${t+Y}" stroke="${C.graphite}"/><line x1="${l}" x2="${w-20}" y1="${t+Y}" y2="${t+Y}" stroke="${C.graphite}"/><text x="${l}" y="16">fresh feed, kmol/h (teal F1, amber F2)</text>`;
+ arr.forEach((a,i)=>{const x=l+X*(i+.5)/arr.length-bw/2,h1=Y*a.F1/mx,h2=Y*a.F2/mx;s+=`<rect x="${x}" y="${t+Y-h1}" width="${bw}" height="${h1}" fill="${C.teal}"/><rect x="${x}" y="${t+Y-h1-h2}" width="${bw}" height="${h2}" fill="${C.amber}"/><text x="${x+bw/2}" y="${t+Y+18}" text-anchor="middle">${LBL[key](a.value)}</text>${i===+$("cv").value?`<rect x="${x-4}" y="${t}" width="${bw+8}" height="${Y}" fill="none" stroke="${C.ink}" stroke-dasharray="4 3"/>`:""}`});
+ $("ch4").innerHTML=s+"</svg>"}
+$("cv").oninput=drawCond;$("cond").onchange=()=>{$("cv").value=SW[$("cond").value].findIndex(a=>a.value===({phi:0.1,inert_cheap:0.1,capacity:100,demand:40})[$("cond").value]);drawCond()};
+
+/* summary */
+function summary(){const f=ST.fix,cond=ST.cond?`${$("cond").querySelector(`option[value="${ST.cond}"]`).textContent} to ${LBL[ST.cond](SW[ST.cond][+(ST.cv??2)].value)}`:"?";
+ $("sum").textContent=[`Lab 1 answers`,`1. Predicted feed: ${ST.p1||"?"}${ST.p1w?" ("+ST.p1w+")":""}. Suspicious: ${ST.e1||"?"}`,
+ `2. Dimension check failed on: ${ST.c2a||"?"}. Balances failing to close: ${ST.c2b||"?"}`,
+ `3. Repaired: units ${f.units?"yes":"no"}, inert recycle ${f.inert?"yes":"no"}, sign ${f.sign?"yes":"no"} (wrong attempts: ${ST.wrongFix||0}). F1 ${ST.c3a||"?"}, F2 ${ST.c3b||"?"} kmol/h, profit ${ST.c3c||"?"} USD/h. Capacity worth ${ST.c3d||"?"} USD/h per kmol/h. Certificate proves plant validity: ${ST.c3e||"?"}`,
+ `4. Changed ${cond} (predicted F2 share ${ST.pdir||"?"}); profit ${ST.c4b||"?"} USD/h. ${ST.e4||"?"}`,`5. ${ST.e5||"?"}`].join("\n")}
+$("copy").onclick=async()=>{try{await navigator.clipboard.writeText($("sum").textContent);$("copied").textContent="Copied. Paste it into the Exit Ticket box."}catch(e){$("copied").textContent="Copy did not work here. Select the text above and copy it."}};
+$("exitlink").href=EXIT_URL;
+$("reset").onclick=()=>{if(confirm("Clear all answers saved on this device?")){ST={};save();location.reload()}};
+
+/* restore */
+if(ST.p1){const r=document.querySelector(`input[name="p1"][value="${ST.p1}"]`);if(r)r.checked=true}
+["p1w","e1","e4","e5","c2a","c2b","c3a","c3b","c3c","c3d","c3e","c4b"].forEach(id=>{if(ST[id]!=null)$(id).value=ST[id]});
+if(ST.cond){$("cond").value=ST.cond;$("pdir").value=ST.pdir;$("cond").disabled=$("pdir").disabled=true}if(ST.cv!=null)$("cv").value=ST.cv;
+if(ST.ranClos)$("runClosure").click();
+afterFix();drawCond();refresh();
+</script>
+</body></html>
