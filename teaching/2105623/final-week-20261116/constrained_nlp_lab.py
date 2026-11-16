@@ -20,13 +20,14 @@ def objective(r):
 def gradient(r):
     return 2*(np.asarray(r)-[3,2])
 
-def solve_capacity(b=3.0,start=(0.5,0.5)):
+def solve_capacity(b=3.0,start=(0.5,0.5),path=None):
     # SciPy's "ineq" form is c(r) >= 0, so c = b - x - y = -g1.
     constraint={"type":"ineq","fun":lambda r:b-r[0]-r[1],
                 "jac":lambda r:np.array([-1.,-1.])}
+    record=None if path is None else (lambda xk: path.append([float(v) for v in xk]))
     return minimize(objective,start,jac=gradient,method="SLSQP",
                     bounds=[(0,None),(0,None)],constraints=[constraint],
-                    options={"ftol":1e-12,"maxiter":200})
+                    options={"ftol":1e-12,"maxiter":200},callback=record)
 
 def audit(r,b,multipliers):
     x,y=r
@@ -53,11 +54,12 @@ def classroom_results():
     """Every number shown in class, as plain Python types (also used by demo.html)."""
     fl=float
     out={'env':{'numpy':np.__version__,'scipy':scipy.__version__,'tol':TOL}}
-    r=solve_capacity(3.0,(0.5,0.5))
+    path=[[0.5,0.5]]
+    r=solve_capacity(3.0,(0.5,0.5),path)
     assert r.success and np.allclose(r.x,[2,1],atol=TOL)
     x,y=map(fl,r.x)
     out['status']={'b':3.0,'start':[0.5,0.5],'success':bool(r.success),'message':str(r.message),
-                   'x':x,'y':y,'fun':fl(r.fun),'nit':int(r.nit)}
+                   'x':x,'y':y,'fun':fl(r.fun),'nit':int(r.nit),'path':path}
     out['recompute']={'f':fl(objective(r.x)),'g':[x+y-3,-x,-y]}
     out['multipliers']={'from_x':2*(3-x),'from_y':2*(2-y),'certificate':[2.0,0.0,0.0]}
     a=audit(r.x,3,[2,0,0])
@@ -78,10 +80,11 @@ def classroom_results():
     out['sensitivity']={'b0':3.0,'b1':3.2,'exact':fl(objective(new)-objective(old)),'linear':-2*(3.2-3.)}
     starts=[]
     for start in [(0.5,0.5),(3,2),(0,0),(4,0)]:
-        rs=solve_capacity(3.0,start)
+        sp=[[float(start[0]),float(start[1])]]
+        rs=solve_capacity(3.0,start,sp)
         assert rs.success and np.allclose(rs.x,[2,1],atol=TOL)
         starts.append({'start':list(start),'start_sum':fl(sum(start)),'success':bool(rs.success),
-                       'x':fl(rs.x[0]),'y':fl(rs.x[1]),'f':fl(rs.fun),'nit':int(rs.nit)})
+                       'x':fl(rs.x[0]),'y':fl(rs.x[1]),'f':fl(rs.fun),'nit':int(rs.nit),'path':sp})
     out['starts']=starts
     out['manual']=[{'alpha':al,'x':6*al,'y':4*al,'sum':10*al,'f':fl(objective((6*al,4*al))),'feasible':10*al<=3+1e-12} for al in [.1,.3,.5]]
     s=.3;g=4*s*(s*s-1);h=12*s*s-4;p=-g/h
