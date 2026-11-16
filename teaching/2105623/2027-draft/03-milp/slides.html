@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>2105623 · Session 3 · MILP: logical and discrete decisions</title>
+<style>
+:root{--teal:#0F6E6B;--amber:#E29A2D;--rust:#BE654C;--sky:#5A91BE;--sage:#83A462;--plum:#995A90;--graphite:#333F4A;--sand:#DFC98F;
+--ink:#1C242B;--slate:#66727C;--mist:#B9C1C6;--paper:#F3F0EB;--mono:Menlo,Consolas,"DejaVu Sans Mono",monospace}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#2b3138;font-family:"Helvetica Neue",Helvetica,Arial,"DejaVu Sans",sans-serif;color:var(--ink)}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#stage{width:1280px;height:720px;flex:0 0 auto;overflow:hidden;background:#fff;position:relative;transform-origin:center center;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.slide{position:absolute;inset:0;padding:40px 64px 58px;display:none;flex-direction:column}
+.slide.on{display:flex}
+.kicker{color:var(--amber);font-weight:700;letter-spacing:.14em;font-size:15px;text-transform:uppercase;margin:0}
+h1{color:var(--teal);font-size:42px;line-height:1.12;margin:6px 0 22px;font-weight:800}
+.body{flex:1;display:flex;gap:28px;min-height:0}
+.col{flex:1;min-width:0;display:flex;flex-direction:column}
+.w40{flex:0 0 40%}.w45{flex:0 0 45%}.w55{flex:0 0 55%}.w60{flex:0 0 60%}
+ul.b{list-style:none;margin:0;padding:0;font-size:24px;line-height:1.36}
+ul.b>li{position:relative;padding-left:30px;margin:0 0 16px}
+ul.b>li::before{content:"";position:absolute;left:2px;top:.5em;width:11px;height:11px;background:var(--amber)}
+ul.b.sm{font-size:21px}ul.b.sm>li{margin-bottom:11px}
+ul.b.xs{font-size:19px}ul.b.xs>li{margin-bottom:8px}
+.hl{color:var(--teal);font-weight:700}
+.panel{background:var(--paper);border-radius:14px;padding:16px 18px;min-height:0;display:flex;flex-direction:column}
+.panel.grow{flex:1}
+.math{font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:25px;line-height:1.75}
+.math .lbl{font-family:"Helvetica Neue",Arial,sans-serif;font-size:16px;color:var(--slate);display:inline-block;width:150px}
+.code{font-family:var(--mono);font-size:17px;line-height:1.5;white-space:pre;color:var(--graphite)}
+.note{font-size:18px;color:var(--slate);margin-top:10px;line-height:1.4}
+.big{font-size:56px;font-weight:800;color:var(--teal)}
+table.t{border-collapse:collapse;font-size:19px;width:100%}
+table.t th{background:var(--paper);text-align:left;padding:7px 10px;border-bottom:2px solid var(--mist);font-weight:700}
+table.t td{padding:6px 10px;border-bottom:1px solid #e3e6e8}
+table.t td.n,table.t th.n{text-align:right;font-variant-numeric:tabular-nums}
+.act{border:3px solid var(--amber);border-radius:16px;padding:22px 28px;background:#fdf6ea}
+.act .tag{display:inline-block;background:var(--amber);color:#fff;font-weight:800;letter-spacing:.1em;font-size:15px;padding:4px 10px;border-radius:6px;margin-bottom:12px}
+.ctrl{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 8px;align-items:center;font-size:16px;color:var(--slate)}
+.ctrl button{font:inherit;font-size:15px;padding:5px 11px;border-radius:8px;border:1.5px solid var(--teal);background:#fff;color:var(--teal);cursor:pointer}
+.ctrl button.on{background:var(--teal);color:#fff}
+.ctrl input[type=range]{width:220px;accent-color:var(--teal)}
+.kpi{display:flex;gap:14px;margin-top:8px}
+.kpi div{background:#fff;border-radius:10px;padding:8px 12px;font-size:15px;color:var(--slate);flex:1}
+.kpi b{display:block;font-size:24px;color:var(--ink)}
+.kpi b.a{color:var(--amber)}
+svg.ch{width:100%;height:100%;display:block}
+.chart{flex:1;min-height:0}
+footer{position:absolute;left:64px;right:64px;bottom:20px;border-top:1px solid var(--mist);padding-top:7px;display:flex;justify-content:space-between;font-size:13px;color:var(--slate)}
+.title-slide{justify-content:center}
+.title-slide h1{font-size:64px;margin-bottom:12px}
+.title-slide .sub{font-size:28px;color:var(--graphite);margin-bottom:40px}
+.title-slide .meta{font-size:19px;color:var(--slate);line-height:1.6}
+.pill{display:inline-block;border-radius:999px;padding:2px 10px;font-size:13px;font-weight:700;letter-spacing:.06em}
+.pill.rec{background:var(--paper);color:var(--slate)}.pill.live{background:var(--amber);color:#fff}
+.dhint{position:absolute;right:64px;top:42px;font-size:13px;color:var(--slate);border:1px solid var(--mist);border-radius:8px;padding:3px 8px}
+/* Python drawer */
+#drawer{position:absolute;top:0;right:0;bottom:0;width:47%;background:#fbfaf7;border-left:3px solid var(--teal);box-shadow:-8px 0 24px rgba(0,0,0,.15);
+ transform:translateX(102%);transition:transform .25s;display:flex;flex-direction:column;padding:22px 24px 18px;z-index:5}
+#drawer.open{transform:none}
+#drawer h2{margin:0 0 4px;color:var(--teal);font-size:22px}
+#drawer .sub{font-size:14px;color:var(--slate);margin-bottom:10px}
+#drawer textarea{width:100%;height:190px;resize:vertical;border:none;margin:0;background:var(--paper);border-radius:10px;padding:12px 14px;font-family:var(--mono);font-size:13px;line-height:1.45;color:var(--ink);white-space:pre-wrap;outline:none}
+#drawer pre{margin:0;background:var(--paper);border-radius:10px;padding:12px 14px;font-family:var(--mono);font-size:13.5px;line-height:1.45;overflow:auto;white-space:pre}
+#drawer .out{margin-top:10px;flex:1;min-height:0;display:flex;flex-direction:column}
+#drawer .out pre{flex:1;background:#1f262d;color:#e8eef2}
+#drawer .bar{display:flex;gap:8px;align-items:center;margin-top:10px;font-size:13px;color:var(--slate)}
+#drawer button{font:inherit;font-size:14px;padding:6px 12px;border-radius:8px;border:none;background:var(--teal);color:#fff;cursor:pointer}
+#drawer button.ghost{background:#fff;color:var(--teal);border:1.5px solid var(--teal)}
+#notes{position:fixed;left:12px;bottom:12px;max-width:520px;background:#fffef8;border:1px solid var(--mist);border-radius:10px;padding:10px 14px;font-size:14px;line-height:1.45;display:none;z-index:9}
+#help{position:fixed;right:12px;bottom:12px;color:#c9d1d6;font-size:12px}
+
+/* narration and captions */
+#dock{position:fixed;left:0;right:0;display:none;flex-direction:column;align-items:center;gap:6px;padding:0 8px;z-index:8}
+#cap{display:none;color:#F3F0EB;line-height:1.45;text-align:center;overflow:hidden;padding:2px 6px;font-family:"Helvetica Neue",Arial,"Sukhumvit Set","Thonburi","Noto Sans Thai","Sarabun",sans-serif}
+#nbar{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;align-items:center;background:rgba(28,36,43,.9);color:#e8eef2;padding:6px 10px;border-radius:12px;font:13px "Helvetica Neue",Arial,sans-serif;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+#nbar button,#nbar select{white-space:nowrap;font:inherit;font-size:14px;background:#2f3a44;color:#fff;border:1px solid #4a5763;border-radius:8px;padding:5px 10px;cursor:pointer}
+#nbar button.on{background:#0F6E6B;border-color:#0F6E6B}
+#nbar .t{min-width:88px;text-align:center;font-variant-numeric:tabular-nums;color:#c9d1d6}
+#nbar .msg{color:#E29A2D;max-width:330px;line-height:1.25}
+#startov{position:absolute;inset:0;background:rgba(243,240,235,.92);display:none;align-items:center;justify-content:center;flex-direction:column;z-index:6;gap:14px}
+#startov button{font:inherit;font-size:24px;padding:14px 28px;border-radius:12px;border:none;background:#0F6E6B;color:#fff;cursor:pointer}
+#startov p{color:#333F4A;font-size:18px;margin:0}
+@media print{#dock,#startov{display:none!important}}
+@media print{#viewport{position:static;display:block}#stage{transform:none!important;box-shadow:none}.slide{display:flex!important;position:relative;page-break-after:always;height:720px}#drawer,#help,#notes,.dhint{display:none}}
+</style>
+</head>
+<body>
+<div id="viewport"><div id="stage">
+<div id="slides"></div>
+<div id="startov"><button id="startBtn">▶ Start the narrated session</button><p>English narration with captions below the slide. You move to the next slide yourself.</p><p>→ or Next: next slide · P: pause · C: captions (English, ไทย, off)</p></div>
+<aside id="drawer" aria-label="Python for this slide">
+  <h2 id="dTitle">Python</h2>
+  <div class="sub" id="dSub"></div>
+  <textarea id="dCode" spellcheck="false"></textarea>
+  <div class="out"><div class="bar" style="margin:0 0 6px"><span>Output</span><span id="dMode" class="pill rec">RECORDED RUN</span></div><pre id="dOut"></pre></div>
+  <div class="bar"><button id="runCode">Run this code</button><button class="ghost" id="runLive">Recompute all slides</button><button class="ghost" id="useRec">Recorded run</button></div>
+  <div class="bar" id="liveMsg" style="min-height:18px"></div>
+</aside>
+</div></div>
+<div id="notes"></div>
+<div id="dock"><div id="cap" aria-live="polite"></div>
+<div id="nbar"><button id="nPrev" title="Previous slide (←)">‹ Back</button><button id="nPlay" title="Play or pause the narration (P)">▶ Play</button><button id="nStop" title="Stop and go back to the start of this slide">■ Stop</button><span class="t" id="nTime">0:00 / 0:00</span><select id="nSpeed" title="Speed"><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select><button id="nCC" title="Captions: off, English, Thai (C)">CC off</button><button id="nNext" title="Next slide (→)">Next ›</button><span class="msg" id="nMsg"></span></div></div>
+<audio id="narr" preload="none"></audio>
+<div id="help">← → move · P narration · C captions · D Python · F full screen · N notes</div>
+<script>
+const RECORDED = {"meta":{"numpy":"2.5.3","scipy":"1.18.1","python":"3.13.18"},"lecture":{"discount":{"milp":{"margin":362648.0798650195,"q1":300.0,"q2":300.0,"z":1.0,"alkylate":600.0,"nodes":1,"gap":0.0},"lp":{"margin":362648.07986501907,"q1":300.0,"q2":300.0,"z":1.0,"alkylate":600.0,"nodes":null,"gap":null},"tier":300.0,"p1":780.0,"p2":700.0},"fixed_charge":{"data":{"demand":30.0,"cap":50.0,"fuel":20.0,"fixed":600.0,"buy":45.0},"cases":[{"M":20.0,"lp":{"cost":1350.0,"x":0.0,"y":0.0,"w":30.0},"milp":{"cost":1350.0,"x":0.0,"y":0.0,"w":30.0},"valid":false,"gap":0.0},{"M":25.0,"lp":{"cost":1325.0,"x":25.0,"y":1.0,"w":5.0},"milp":{"cost":1325.0,"x":25.0,"y":1.0,"w":5.0},"valid":false,"gap":0.0},{"M":30.0,"lp":{"cost":1200.0,"x":30.0,"y":1.0,"w":0.0},"milp":{"cost":1200.0,"x":30.0,"y":1.0,"w":0.0},"valid":true,"gap":0.0},{"M":40.0,"lp":{"cost":1050.0,"x":30.0,"y":0.75,"w":0.0},"milp":{"cost":1200.0,"x":30.0,"y":1.0,"w":0.0},"valid":true,"gap":0.125},{"M":50.0,"lp":{"cost":960.0,"x":30.0,"y":0.6,"w":0.0},"milp":{"cost":1200.0,"x":30.0,"y":1.0,"w":0.0},"valid":true,"gap":0.2},{"M":75.0,"lp":{"cost":840.0,"x":30.0,"y":0.4,"w":0.0},"milp":{"cost":1200.0,"x":30.0,"y":1.0,"w":0.0},"valid":true,"gap":0.3},{"M":100.0,"lp":{"cost":780.0,"x":30.0,"y":0.3,"w":0.0},"milp":{"cost":1200.0,"x":30.0,"y":1.0,"w":0.0},"valid":true,"gap":0.35},{"M":200.0,"lp":{"cost":690.0,"x":30.0,"y":0.15,"w":0.0},"milp":{"cost":1200.0,"x":30.0,"y":1.0,"w":0.0},"valid":true,"gap":0.425},{"M":500.0,"lp":{"cost":636.0,"x":30.0,"y":0.06,"w":0.0},"milp":{"cost":1200.0,"x":30.0,"y":1.0,"w":0.0},"valid":true,"gap":0.47},{"M":1000.0,"lp":{"cost":618.0,"x":30.0,"y":0.03,"w":0.0},"milp":{"cost":1200.0,"x":30.0,"y":1.0,"w":0.0},"valid":true,"gap":0.485}]},"tree":{"nodes":[{"id":0,"parent":null,"branch":"root","depth":0,"lp":131.0,"status":"branched","var":4,"value":0.2,"incumbent":null,"bound":131.0,"xpos":9},{"id":2,"parent":0,"branch":"4>=1","depth":1,"lp":127.5,"status":"branched","var":0,"value":0.75,"incumbent":null,"bound":131.0,"xpos":11,"label":"P5 = 1"},{"id":4,"parent":2,"branch":"0>=1","depth":2,"lp":127.5,"status":"branched","var":3,"value":0.5,"incumbent":null,"bound":131.0,"xpos":17,"label":"P1 = 1"},{"id":6,"parent":4,"branch":"3>=1","depth":3,"status":"infeasible","lp":null,"incumbent":null,"bound":131.0,"xpos":18,"label":"P4 = 1"},{"id":5,"parent":4,"branch":"3<=0","depth":3,"lp":126.66666666666667,"status":"branched","var":1,"value":0.3333333333333333,"incumbent":null,"bound":131.0,"xpos":15,"label":"P4 = 0"},{"id":8,"parent":5,"branch":"1>=1","depth":4,"status":"infeasible","lp":null,"incumbent":null,"bound":131.0,"xpos":16,"label":"P2 = 1"},{"id":7,"parent":5,"branch":"1<=0","depth":4,"lp":126.0,"status":"branched","var":2,"value":0.4,"incumbent":null,"bound":131.0,"xpos":13,"label":"P2 = 0"},{"id":10,"parent":7,"branch":"2>=1","depth":5,"status":"infeasible","lp":null,"incumbent":null,"bound":131.0,"xpos":14,"label":"P3 = 1"},{"id":9,"parent":7,"branch":"2<=0","depth":5,"lp":114.0,"status":"integer","incumbent":114.0,"bound":131.0,"xpos":12,"label":"P3 = 0"},{"id":3,"parent":2,"branch":"0<=0","depth":2,"lp":125.0,"status":"integer","incumbent":125.0,"bound":131.0,"xpos":10,"label":"P1 = 0"},{"id":1,"parent":0,"branch":"4<=0","depth":1,"lp":131.0,"status":"branched","var":2,"value":0.4,"incumbent":125.0,"bound":131.0,"xpos":1,"label":"P5 = 0"},{"id":12,"parent":1,"branch":"2>=1","depth":2,"lp":130.0,"status":"branched","var":1,"value":0.5,"incumbent":125.0,"bound":131.0,"xpos":3,"label":"P3 = 1"},{"id":14,"parent":12,"branch":"1>=1","depth":3,"lp":128.75,"status":"branched","var":0,"value":0.625,"incumbent":125.0,"bound":131.0,"xpos":5,"label":"P2 = 1"},{"id":16,"parent":14,"branch":"0>=1","depth":4,"lp":128.75,"status":"branched","var":3,"value":0.25,"incumbent":125.0,"bound":131.0,"xpos":7,"label":"P1 = 1"},{"id":18,"parent":16,"branch":"3>=1","depth":5,"status":"infeasible","lp":null,"incumbent":125.0,"bound":131.0,"xpos":8,"label":"P4 = 1"},{"id":17,"parent":16,"branch":"3<=0","depth":5,"lp":122.0,"status":"pruned by bound","incumbent":125.0,"bound":131.0,"xpos":6,"label":"P4 = 0"},{"id":15,"parent":14,"branch":"0<=0","depth":4,"lp":95.0,"status":"pruned by bound","incumbent":125.0,"bound":131.0,"xpos":4,"label":"P1 = 0"},{"id":13,"parent":12,"branch":"1<=0","depth":3,"lp":111.0,"status":"pruned by bound","incumbent":125.0,"bound":131.0,"xpos":2,"label":"P2 = 0"},{"id":11,"parent":1,"branch":"2<=0","depth":2,"lp":119.0,"status":"pruned by bound","incumbent":125.0,"bound":125.0,"xpos":0,"label":"P3 = 0"}],"best":125.0,"x":[0.0,1.0,-0.0,1.0,1.0],"chosen":["P2","P4","P5"],"root_lp":131.0,"greedy":["P1","P4","P2"],"greedy_saving":119.0,"width":19},"tree_data":{"projects":["P1","P2","P3","P4","P5"],"capex":[120.0,90.0,75.0,60.0,150.0],"save":[54.0,38.0,30.0,27.0,60.0],"budget":300.0},"location":{"sites":[[62.92,51.41],[49.69,24.75],[1.18,19.24],[69.2,20.06],[36.95,0.37],[83.0,15.45],[26.76,88.03],[50.98,84.72]],"plants":[[63.97,74.18],[9.15,54.11],[50.78,87.13],[36.13,59.82],[5.93,38.76],[32.3,15.02],[81.63,37.94],[97.87,59.0],[60.51,63.8],[67.65,15.08],[44.03,23.96],[40.25,9.67],[96.78,21.5],[67.18,30.04],[87.41,66.22],[13.16,84.51],[94.49,90.39],[56.97,14.55],[19.25,92.79],[55.23,18.06]],"fixed":[3250.2,3794.4,3551.4,2450.4,2600.3,3747.1,2010.5,3642.5],"demand":[16.96,12.02,9.55,9.18,8.82,11.68,12.57,13.3,19.93,16.89,14.33,19.83,8.23,7.4,14.19,5.66,5.54,12.72,11.99,18.76],"aggregated":{"rows":28,"lp_bound":11191.561052531104,"optimum":19168.14210425897,"root_gap":0.41613741218850575,"bb_nodes":123,"bb_best":19168.142104258968,"highs_nodes":5,"highs_seconds":0.020131646999971053,"open":[3,6],"assign":[6,6,6,6,6,3,3,3,6,3,3,3,3,3,3,6,6,3,6,3],"lp_y":[0.15,0.1,0.05,0.2,0.1,0.05,0.2,0.15]},"disaggregated":{"rows":180,"lp_bound":19168.142104258968,"optimum":19168.14210425897,"root_gap":1.8979297979449922e-16,"bb_nodes":1,"bb_best":19168.142104258968,"highs_nodes":1,"highs_seconds":0.003073966000101791,"open":[3,6],"assign":[6,6,6,6,6,3,3,3,6,3,3,3,3,3,3,6,6,3,6,3],"lp_y":[0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0]}}},"lab":{"tight":{"status":"optimal","cost":129240.0,"seconds":0.04023532500002602,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,0.0,1.0,1.0]},"x":{"B1":[110.0,105.0,100.0,100.0,105.0,120.0,115.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,110.0,120.0,115.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,40.0,75.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,95.0,85.0,75.0,70.0,50.0,40.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,20.0,25.0,30.0,20.0,25.0,30.0,20.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,15.0,10.0,10.0,0.0,0.0,0.0,0.0,0.0,10.0,10.0,10.0,0.0,0.0,0.0,15.0,10.0]},"starts":{"B1":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0]},"n_starts":5,"n_fractional":0,"parts":{"fuel":85820.0,"no_load":36820.0,"start":6600.0},"nodes":1,"gap":5.552424233345007e-05,"bound":129232.82404692082},"tight_lp":{"status":"optimal","cost":123727.66666666667,"seconds":0.003291867999905662,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.056666667,0.395,0.636666667,0.636666667,0.636666667,0.636666667,0.636666667,0.636666667,0.636666667,0.636666667,0.636666667,0.636666667,0.636666667,0.636666667,0.636666667,0.443333333,0.25,0.105,0.008333333],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.241666667,0.725,0.966666667,0.966666667,0.966666667,0.966666667,0.966666667,0.966666667,0.805555556,0.563888889,0.402777778,0.241666667,0.0,0.0,0.0,0.0,0.0],"B4":[0.3,0.1625,0.025,0.025,0.1625,0.433333333,0.55,0.683333333,0.783333333,0.833333333,0.970833333,0.833333333,0.695833333,0.695833333,0.833333333,0.8,0.75,0.716666667,0.683333333,0.633333333,0.566666667,0.5,0.45,0.416666667]},"x":{"B1":[117.0,113.375,109.75,109.75,113.375,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0],"B2":[0.0,0.0,0.0,0.0,0.0,5.666666667,39.5,63.666666667,63.666666667,63.666666667,63.666666667,63.666666667,63.666666667,63.666666667,63.666666667,63.666666667,63.666666667,63.666666667,63.666666667,63.666666667,44.333333333,25.0,10.5,0.833333333],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,14.5,43.5,58.0,58.0,58.0,49.375,54.375,58.0,48.333333333,33.833333333,24.166666667,14.5,0.0,0.0,0.0,0.0,0.0],"B4":[3.0,1.625,0.25,0.25,1.625,4.333333333,5.5,6.833333333,7.833333333,8.333333333,13.333333333,8.333333333,6.958333333,6.958333333,8.333333333,8.0,7.5,7.166666667,6.833333333,6.333333333,5.666666667,5.0,4.5,4.166666667]},"starts":{"B1":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.056666667,0.338333333,0.241666667,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.241666667,0.483333333,0.241666667,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[0.3,0.0,0.0,0.0,0.1375,0.270833333,0.116666667,0.133333333,0.1,0.05,0.1375,0.0,0.0,0.0,0.1375,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]},"n_starts":2.986667,"n_fractional":55,"parts":{"fuel":86758.499999992,"no_load":32529.16667018,"start":4440.0000018}},"loose":{"status":"optimal","cost":129240.0,"seconds":0.03995713799997702,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,0.0,1.0,1.0]},"x":{"B1":[110.0,105.0,100.0,100.0,105.0,120.0,115.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,110.0,120.0,115.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,40.0,75.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,95.0,85.0,75.0,70.0,50.0,40.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,20.0,25.0,30.0,20.0,25.0,30.0,20.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,15.0,10.0,10.0,0.0,0.0,0.0,0.0,0.0,10.0,10.0,10.0,0.0,0.0,0.0,15.0,10.0]},"starts":{"B1":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0]},"n_starts":5,"n_fractional":0,"parts":{"fuel":85820.0,"no_load":36820.0,"start":6600.0},"nodes":1,"gap":5.552424233345007e-05,"bound":129232.82404692082},"loose_lp":{"status":"optimal","cost":121414.36675258381,"seconds":0.003005338000093616,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.954166667,0.954166667,0.954166667,0.954166667,0.8625,0.725,0.633333333,0.541666667,0.404166667,0.404166667,0.404166667,0.404166667,0.3125],"B2":[0.0,0.0,0.0,0.0,0.0,0.000426065,0.002792642,0.055,0.385,0.55,0.605,0.605,0.605,0.605,0.605,0.605,0.605,0.605,0.605,0.605,0.385,0.165,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.35367893,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B4":[0.3,0.1625,0.025,0.025,0.1625,0.573934837,1.0,1.0,1.0,1.0,1.0,1.0,0.8625,0.8625,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]},"x":{"B1":[117.0,113.375,109.75,109.75,113.375,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,113.4,105.0,95.0],"B2":[0.0,0.0,0.0,0.0,0.0,4.260651629,27.926421405,55.0,85.0,100.0,100.0,100.0,91.375,96.375,100.0,90.0,75.0,65.0,55.0,40.0,20.0,6.6,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,7.073578595,20.0,20.0,20.0,25.0,20.0,20.0,20.0,20.0,20.0,20.0,20.0,20.0,20.0,20.0,20.0,20.0,20.0],"B4":[3.0,1.625,0.25,0.25,1.625,5.739348371,10.0,10.0,10.0,10.0,10.0,10.0,8.625,8.625,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0]},"starts":{"B1":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.000426065,0.002366577,0.052207358,0.33,0.165,0.055,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.35367893,0.64632107,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[0.3,0.0,0.0,0.0,0.1375,0.411434837,0.426065163,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.1375,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]},"n_starts":3.0175,"n_fractional":39,"parts":{"fuel":86712.38779809,"no_load":30355.72895674,"start":4346.25}},"small_M":{"status":"optimal","cost":131710.0,"seconds":0.039629266000019925,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,0.0,1.0,1.0]},"x":{"B1":[100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,55.0,95.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,95.0,90.0,70.0,50.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,40.0,45.0,50.0,40.0,45.0,50.0,40.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[20.0,15.0,10.0,10.0,15.0,30.0,10.0,10.0,35.0,10.0,10.0,0.0,0.0,0.0,0.0,0.0,25.0,15.0,10.0,0.0,0.0,0.0,35.0,25.0]},"starts":{"B1":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0]},"n_starts":5,"n_fractional":0,"parts":{"fuel":88290.0,"no_load":36820.0,"start":6600.0},"nodes":1,"gap":0.0,"bound":131710.0},"enum":{"hour":19,"steam":190,"rows":[{"pattern":"0000","on":[],"capacity":0.0,"status":"infeasible","cost":null,"load":null},{"pattern":"0001","on":["B4"],"capacity":40.0,"status":"infeasible","cost":null,"load":null},{"pattern":"0010","on":["B3"],"capacity":60.0,"status":"infeasible","cost":null,"load":null},{"pattern":"0011","on":["B3","B4"],"capacity":100.0,"status":"infeasible","cost":null,"load":null},{"pattern":"0100","on":["B2"],"capacity":100.0,"status":"infeasible","cost":null,"load":null},{"pattern":"0101","on":["B2","B4"],"capacity":140.0,"status":"infeasible","cost":null,"load":null},{"pattern":"0110","on":["B2","B3"],"capacity":160.0,"status":"infeasible","cost":null,"load":null},{"pattern":"0111","on":["B2","B3","B4"],"capacity":200.0,"status":"infeasible","cost":null,"load":null},{"pattern":"1000","on":["B1"],"capacity":120.0,"status":"infeasible","cost":null,"load":null},{"pattern":"1001","on":["B1","B4"],"capacity":160.0,"status":"infeasible","cost":null,"load":null},{"pattern":"1010","on":["B1","B3"],"capacity":180.0,"status":"infeasible","cost":null,"load":null},{"pattern":"1011","on":["B1","B3","B4"],"capacity":220.0,"status":"optimal","cost":5220.0,"load":{"B1":120.0,"B2":0.0,"B3":60.0,"B4":10.0}},{"pattern":"1100","on":["B1","B2"],"capacity":220.0,"status":"optimal","cost":5160.0,"load":{"B1":120.0,"B2":70.0,"B3":0.0,"B4":0.0}},{"pattern":"1101","on":["B1","B2","B4"],"capacity":260.0,"status":"optimal","cost":5380.0,"load":{"B1":120.0,"B2":60.0,"B3":0.0,"B4":10.0}},{"pattern":"1110","on":["B1","B2","B3"],"capacity":280.0,"status":"optimal","cost":5540.0,"load":{"B1":120.0,"B2":50.0,"B3":20.0,"B4":0.0}},{"pattern":"1111","on":["B1","B2","B3","B4"],"capacity":320.0,"status":"optimal","cost":5760.0,"load":{"B1":120.0,"B2":40.0,"B3":20.0,"B4":10.0}}],"feasible":5,"best":{"pattern":"1100","on":["B1","B2"],"capacity":220.0,"status":"optimal","cost":5160.0,"load":{"B1":120.0,"B2":70.0,"B3":0.0,"B4":0.0}},"milp_cost":5160.0,"milp_on":["B1","B2"]},"start_sweep":[{"scale":0.0,"cost":121870.0,"starts":9,"nodes":1,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,1.0,1.0,0.0,0.0],"B4":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,0.0,1.0,1.0]},"parts":{"fuel":86250.0,"no_load":35620.0,"start":0.0}},{"scale":0.25,"cost":124030.0,"starts":7,"nodes":1,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[1.0,1.0,1.0,1.0,1.0,1.0,0.0,1.0,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,0.0,1.0,1.0]},"parts":{"fuel":85650.0,"no_load":36580.0,"start":1800.0}},{"scale":0.5,"cost":125830.0,"starts":7,"nodes":1,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[1.0,1.0,1.0,1.0,1.0,1.0,0.0,1.0,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,0.0,1.0,1.0]},"parts":{"fuel":85650.0,"no_load":36580.0,"start":3600.0}},{"scale":1.0,"cost":129240.0,"starts":5,"nodes":1,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,0.0,1.0,1.0]},"parts":{"fuel":85820.0,"no_load":36820.0,"start":6600.0}},{"scale":1.5,"cost":132490.0,"starts":4,"nodes":1,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0],"B4":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0]},"parts":{"fuel":86520.0,"no_load":36520.0,"start":9450.0}},{"scale":2.0,"cost":135640.0,"starts":4,"nodes":1,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0],"B4":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0]},"parts":{"fuel":86520.0,"no_load":36520.0,"start":12600.0}},{"scale":3.0,"cost":141900.0,"starts":3,"nodes":1,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B4":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]},"parts":{"fuel":85980.0,"no_load":37920.0,"start":18000.0}},{"scale":4.0,"cost":147900.0,"starts":3,"nodes":1,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B4":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]},"parts":{"fuel":85980.0,"no_load":37920.0,"start":24000.0}}],"data":{"boilers":["B1","B2","B3","B4"],"umax":{"B1":120.0,"B2":100.0,"B3":60.0,"B4":40.0},"lmin":{"B1":50.0,"B2":40.0,"B3":20.0,"B4":10.0},"fuel":{"B1":18.0,"B2":20.0,"B3":24.0,"B4":30.0},"noload":{"B1":900.0,"B2":700.0,"B3":300.0,"B4":120.0},"start":{"B1":6000.0,"B2":4500.0,"B3":1200.0,"B4":300.0},"u0":{"B1":1,"B2":0,"B3":0,"B4":0},"steam":[120,115,110,110,115,130,165,205,235,250,255,250,240,245,250,240,225,215,205,190,170,150,135,125],"reserve":0.1}}};
+const LAB_FILE = "milp_lab.py?v=s03-83dd5211";
+const LAB_SRC = "\"\"\"2105623 Session 3: MILP for logical and discrete decisions.\n\nPart A  Lecture: the volume discount left open in Session 2, closed with one\n        binary; the big-M picture for a fixed charge; a plain branch-and-bound\n        tree; aggregated and disaggregated facility location.\nPart B  Lab 3: commit four boilers over 24 hours with minimum loads, no-load\n        costs, start-up costs and a reserve margin.\n\nAll data are synthetic. Runs in the browser (Pyodide: NumPy, SciPy/HiGHS) and\nin desktop Python.\n    python milp_lab.py          print every part\n    python milp_lab.py --json   write milp-results.json for the slides and the lab page\n\"\"\"\nimport itertools\nimport json\nimport sys\nimport time\n\nimport numpy as np\nfrom scipy.optimize import Bounds, LinearConstraint, linprog, milp\n\n\nclass MILP:\n    \"\"\"A small named-variable MILP builder on scipy.optimize.milp (HiGHS).\"\"\"\n\n    def __init__(self):\n        self.cols, self.obj, self.lb, self.ub, self.int = [], [], [], [], []\n        self.rows = []\n\n    def var(self, name, obj=0.0, lb=0.0, ub=np.inf, integer=False):\n        self.cols.append(name); self.obj.append(obj); self.lb.append(lb); self.ub.append(ub); self.int.append(integer)\n\n    def row(self, name, terms, lo=-np.inf, hi=np.inf):\n        self.rows.append((name, dict(terms), lo, hi))\n\n    def solve(self, maximize=False, relax=False, options=None):\n        ix = {c: k for k, c in enumerate(self.cols)}\n        A = np.zeros((len(self.rows), len(self.cols)))\n        for k, (_, t, _, _) in enumerate(self.rows):\n            for c, a in t.items():\n                A[k, ix[c]] += a\n        c = np.array(self.obj) * (-1.0 if maximize else 1.0)\n        integ = np.zeros(len(self.cols)) if relax else np.array(self.int, float)\n        t0 = time.perf_counter()\n        r = milp(c, constraints=LinearConstraint(A, [x[2] for x in self.rows], [x[3] for x in self.rows]),\n                 integrality=integ, bounds=Bounds(self.lb, self.ub), options=options or {})\n        dt = time.perf_counter() - t0\n        if r.status != 0 or r.x is None:\n            return {\"status\": {2: \"infeasible\", 3: \"unbounded\"}.get(r.status, r.message)}\n        sg = -1.0 if maximize else 1.0\n        out = {\"status\": \"optimal\", \"obj\": float(sg * r.fun), \"x\": dict(zip(self.cols, (r.x.round(9) + 0.0).tolist())),\n               \"seconds\": dt}\n        if not relax and any(self.int):\n            out.update(nodes=int(getattr(r, \"mip_node_count\", 0) or 0), gap=float(getattr(r, \"mip_gap\", 0.0) or 0.0),\n                       bound=float(sg * getattr(r, \"mip_dual_bound\", r.fun)))\n        return out\n\n\ndef branch_and_bound(c, A_ub, b_ub, lb, ub, ints, maximize=False, max_nodes=5000):\n    \"\"\"Textbook LP-based branch and bound: depth first, most fractional variable,\n    no presolve and no cuts. Every node is recorded so the tree can be drawn.\"\"\"\n    sg = -1.0 if maximize else 1.0\n    nodes, inc, incx, nid = [], None, None, 0\n    stack = [(0, None, \"root\", np.array(lb, float), np.array(ub, float), None, 0)]\n    while stack and len(nodes) < max_nodes:\n        idn, parent, desc, lo, hi, plp, depth = stack.pop()\n        r = linprog(sg * np.asarray(c, float), A_ub=A_ub, b_ub=b_ub, bounds=list(zip(lo, hi)), method=\"highs\")\n        node = {\"id\": idn, \"parent\": parent, \"branch\": desc, \"depth\": depth}\n        if r.status != 0:\n            node.update(status=\"infeasible\", lp=None)\n        else:\n            z = float(sg * r.fun); node[\"lp\"] = z\n            worse = inc is not None and ((z <= inc + 1e-9) if maximize else (z >= inc - 1e-9))\n            frac = [(j, r.x[j]) for j in ints if abs(r.x[j] - round(r.x[j])) > 1e-6]\n            if worse:\n                node[\"status\"] = \"pruned by bound\"\n            elif not frac:\n                node[\"status\"] = \"integer\"; inc, incx = z, r.x.copy()\n            else:\n                j, v = max(frac, key=lambda t: -abs(t[1] - np.floor(t[1]) - 0.5))\n                node.update(status=\"branched\", var=int(j), value=float(v))\n                l1, u1 = lo.copy(), hi.copy(); u1[j] = np.floor(v)\n                l2, u2 = lo.copy(), hi.copy(); l2[j] = np.ceil(v)\n                for (ll, uu, d) in ((l1, u1, f\"{j}<={int(np.floor(v))}\"), (l2, u2, f\"{j}>={int(np.ceil(v))}\")):\n                    nid += 1; stack.append((nid, idn, d, ll, uu, z, depth + 1))\n        opn = [s[5] for s in stack if s[5] is not None]\n        cand = opn + ([inc] if inc is not None else [])\n        node[\"incumbent\"] = inc\n        node[\"bound\"] = (max(cand) if maximize else min(cand)) if cand else inc\n        nodes.append(node)\n    return {\"nodes\": nodes, \"best\": inc, \"x\": None if incx is None else incx.round(9).tolist(), \"complete\": not stack}\n\n\n# ---------------------------------------------------------------------------\n# Part A1. Session 2's volume discount, closed with one binary\n# ---------------------------------------------------------------------------\nCOMP = [\"Butane\", \"LSR naphtha\", \"Reformate\", \"FCC gasoline\", \"Alkylate\"]\nRON = {\"Butane\": 94.0, \"LSR naphtha\": 70.0, \"Reformate\": 98.0, \"FCC gasoline\": 92.0, \"Alkylate\": 96.0}\nRVP = {\"Butane\": 360.0, \"LSR naphtha\": 80.0, \"Reformate\": 25.0, \"FCC gasoline\": 50.0, \"Alkylate\": 30.0}\nCOST = {\"Butane\": 380.0, \"LSR naphtha\": 520.0, \"Reformate\": 640.0, \"FCC gasoline\": 600.0}\nAVAIL = {\"Butane\": 300.0, \"LSR naphtha\": 900.0, \"Reformate\": 1200.0, \"FCC gasoline\": 1500.0}\nGRADES, RON_MIN, RVP_MAX = [\"Regular\", \"Premium\"], {\"Regular\": 91.0, \"Premium\": 95.0}, 60.0\nPRICE, DEMAND = {\"Regular\": 690.0, \"Premium\": 750.0}, {\"Regular\": 2500.0, \"Premium\": 1500.0}\nTIER, P1, P2 = 300.0, 780.0, 700.0          # alkylate: first 300 m3/d at 780, beyond that 700 USD/m3\n\n\ndef discount_blend(relax=False):\n    \"\"\"Tier 2 may be used only when tier 1 is full: q1 >= 300 z, q2 <= 300 z, z binary.\"\"\"\n    m = MILP()\n    for i in COMP:\n        for g in GRADES:\n            m.var(f\"{i}>{g}\", obj=PRICE[g] - COST.get(i, 0.0))\n    m.var(\"q1\", obj=-P1, ub=TIER); m.var(\"q2\", obj=-P2, ub=TIER); m.var(\"z\", ub=1.0, integer=True)\n    m.row(\"tier 1 full if tier 2 used\", {\"q1\": 1, \"z\": -TIER}, lo=0.0)\n    m.row(\"tier 2 only if z\", {\"q2\": 1, \"z\": -TIER}, hi=0.0)\n    m.row(\"alkylate bought\", {**{f\"Alkylate>{g}\": 1 for g in GRADES}, \"q1\": -1, \"q2\": -1}, lo=0.0, hi=0.0)\n    for i in COMP[:-1]:\n        m.row(f\"avail {i}\", {f\"{i}>{g}\": 1 for g in GRADES}, hi=AVAIL[i])\n    for g in GRADES:\n        m.row(f\"demand {g}\", {f\"{i}>{g}\": 1 for i in COMP}, hi=DEMAND[g])\n        m.row(f\"RON {g}\", {f\"{i}>{g}\": RON[i] - RON_MIN[g] for i in COMP}, lo=0.0)\n        m.row(f\"RVP {g}\", {f\"{i}>{g}\": RVP[i] ** 1.25 - RVP_MAX ** 1.25 for i in COMP}, hi=0.0)\n    r = m.solve(maximize=True, relax=relax)\n    x = r[\"x\"]\n    return {\"margin\": r[\"obj\"], \"q1\": x[\"q1\"], \"q2\": x[\"q2\"], \"z\": x[\"z\"], \"alkylate\": x[\"q1\"] + x[\"q2\"],\n            \"nodes\": r.get(\"nodes\"), \"gap\": r.get(\"gap\")}\n\n\n# ---------------------------------------------------------------------------\n# Part A2. The big-M picture: one boiler or bought steam\n# ---------------------------------------------------------------------------\nFC = {\"demand\": 30.0, \"cap\": 50.0, \"fuel\": 20.0, \"fixed\": 600.0, \"buy\": 45.0}   # t/h, t/h, USD/t, USD/h, USD/t\n\n\ndef fixed_charge(M):\n    \"\"\"min fuel*x + fixed*y + buy*w  s.t.  x + w >= demand, x <= M y, x <= cap, y in {0,1}.\"\"\"\n    out = {\"M\": M}\n    for relax in (True, False):\n        m = MILP()\n        m.var(\"x\", obj=FC[\"fuel\"], ub=FC[\"cap\"]); m.var(\"w\", obj=FC[\"buy\"]); m.var(\"y\", obj=FC[\"fixed\"], ub=1.0, integer=True)\n        m.row(\"steam\", {\"x\": 1, \"w\": 1}, lo=FC[\"demand\"]); m.row(\"big-M\", {\"x\": 1, \"y\": -M}, hi=0.0)\n        r = m.solve(relax=relax)\n        out[\"lp\" if relax else \"milp\"] = {\"cost\": r[\"obj\"], \"x\": r[\"x\"][\"x\"], \"y\": r[\"x\"][\"y\"], \"w\": r[\"x\"][\"w\"]}\n    true_best = min(FC[\"fuel\"] * FC[\"demand\"] + FC[\"fixed\"], FC[\"buy\"] * FC[\"demand\"])\n    out[\"valid\"] = abs(out[\"milp\"][\"cost\"] - true_best) < 1e-6\n    out[\"gap\"] = (out[\"milp\"][\"cost\"] - out[\"lp\"][\"cost\"]) / out[\"milp\"][\"cost\"]\n    return out\n\n\n# ---------------------------------------------------------------------------\n# Part A3. A branch-and-bound tree: heat-recovery projects under a budget\n# ---------------------------------------------------------------------------\nPROJ = [\"P1\", \"P2\", \"P3\", \"P4\", \"P5\"]\nCAPEX = [120.0, 90.0, 75.0, 60.0, 150.0]       # kUSD\nSAVE = [54.0, 38.0, 30.0, 27.0, 60.0]          # kUSD per year\nBUDGET = 300.0\n\n\ndef project_tree():\n    r = branch_and_bound(SAVE, [CAPEX], [BUDGET], [0] * 5, [1] * 5, range(5), maximize=True)\n    # layout: x by in-order position of the final tree, y by depth\n    kids = {}\n    for n in r[\"nodes\"]:\n        kids.setdefault(n[\"parent\"], []).append(n[\"id\"])\n    order, pos = [], {}\n    def walk(i):\n        ch = sorted(kids.get(i, []))\n        if ch:\n            walk(ch[0])\n        order.append(i)\n        for c in ch[1:]:\n            walk(c)\n    walk(0)\n    for k, i in enumerate(order):\n        pos[i] = k\n    for n in r[\"nodes\"]:\n        n[\"xpos\"] = pos[n[\"id\"]]\n        if \"branch\" in n and n[\"branch\"] != \"root\":\n            j, rest = (n[\"branch\"].split(\"<=\") + [None])[:2] if \"<=\" in n[\"branch\"] else n[\"branch\"].split(\">=\")\n            n[\"label\"] = f\"{PROJ[int(j)]} = {'0' if '<=' in n['branch'] else '1'}\"\n    greedy, spent = [], 0.0\n    for j in sorted(range(5), key=lambda j: -SAVE[j] / CAPEX[j]):\n        if spent + CAPEX[j] <= BUDGET:\n            greedy.append(PROJ[j]); spent += CAPEX[j]\n    return {\"nodes\": r[\"nodes\"], \"best\": r[\"best\"], \"x\": r[\"x\"], \"chosen\": [PROJ[j] for j in range(5) if r[\"x\"][j] > 0.5],\n            \"root_lp\": r[\"nodes\"][0][\"lp\"], \"greedy\": greedy, \"greedy_saving\": sum(SAVE[PROJ.index(p)] for p in greedy),\n            \"width\": len(order)}\n\n\n# ---------------------------------------------------------------------------\n# Part A4. Formulation strength: aggregated vs disaggregated facility location\n# ---------------------------------------------------------------------------\ndef location(n_sites=8, n_plants=20, seed=7):\n    \"\"\"Open solvent-recovery sites (fixed cost) and assign each plant to one site.\n    Aggregated:    sum_j x_ij <= n_plants * y_i     (one row per site)\n    Disaggregated: x_ij <= y_i                      (one row per pair; the same integer set)\"\"\"\n    rng = np.random.default_rng(seed)\n    F = rng.uniform(2000, 4000, n_sites); d = rng.uniform(5, 20, n_plants)\n    ps = rng.uniform(0, 100, (n_sites, 2)); pp = rng.uniform(0, 100, (n_plants, 2))\n    tc = 2.0 * np.linalg.norm(ps[:, None] - pp[None], axis=2) * d[None, :]\n    n = n_sites + n_sites * n_plants\n    c = np.concatenate([F, tc.ravel()])\n    out = {\"sites\": ps.round(2).tolist(), \"plants\": pp.round(2).tolist(), \"fixed\": F.round(1).tolist(), \"demand\": d.round(2).tolist()}\n    for name in (\"aggregated\", \"disaggregated\"):\n        A, b = [], []\n        for j in range(n_plants):\n            r = np.zeros(n); r[n_sites + np.arange(n_sites) * n_plants + j] = -1; A.append(r); b.append(-1.0)\n        if name == \"aggregated\":\n            for i in range(n_sites):\n                r = np.zeros(n); r[n_sites + i * n_plants:n_sites + (i + 1) * n_plants] = 1; r[i] = -n_plants; A.append(r); b.append(0.0)\n        else:\n            for i in range(n_sites):\n                for j in range(n_plants):\n                    r = np.zeros(n); r[n_sites + i * n_plants + j] = 1; r[i] = -1; A.append(r); b.append(0.0)\n        A, b = np.array(A), np.array(b)\n        bb = branch_and_bound(c, A, b, [0] * n, [1] * n, range(n_sites), max_nodes=3000)\n        integ = np.zeros(n); integ[:n_sites] = 1\n        t0 = time.perf_counter()\n        h = milp(c, constraints=LinearConstraint(A, -np.inf, b), integrality=integ, bounds=Bounds(0, 1))\n        dt = time.perf_counter() - t0\n        lp = linprog(c, A_ub=A, b_ub=b, bounds=[(0, 1)] * n, method=\"highs\")\n        y = h.x[:n_sites]; x = h.x[n_sites:].reshape(n_sites, n_plants)\n        out[name] = {\"rows\": int(A.shape[0]), \"lp_bound\": float(lp.fun), \"optimum\": float(h.fun),\n                     \"root_gap\": float((h.fun - lp.fun) / h.fun), \"bb_nodes\": len(bb[\"nodes\"]), \"bb_best\": bb[\"best\"],\n                     \"highs_nodes\": int(getattr(h, \"mip_node_count\", 0) or 0), \"highs_seconds\": dt,\n                     \"open\": [int(i) for i in range(n_sites) if y[i] > 0.5],\n                     \"assign\": [int(np.argmax(x[:, j])) for j in range(n_plants)],\n                     \"lp_y\": (lp.x[:n_sites].round(4) + 0.0).tolist()}\n    return out\n\n\n# ---------------------------------------------------------------------------\n# Part B. Lab 3: commit four boilers over 24 hours\n# ---------------------------------------------------------------------------\nBOILERS = [\"B1\", \"B2\", \"B3\", \"B4\"]\nUMAX = {\"B1\": 120.0, \"B2\": 100.0, \"B3\": 60.0, \"B4\": 40.0}       # t/h steam\nLMIN = {\"B1\": 50.0, \"B2\": 40.0, \"B3\": 20.0, \"B4\": 10.0}         # t/h minimum stable load\nFUEL = {\"B1\": 18.0, \"B2\": 20.0, \"B3\": 24.0, \"B4\": 30.0}         # USD per t steam\nNOLOAD = {\"B1\": 900.0, \"B2\": 700.0, \"B3\": 300.0, \"B4\": 120.0}   # USD per hour while on\nSTART = {\"B1\": 6000.0, \"B2\": 4500.0, \"B3\": 1200.0, \"B4\": 300.0}  # USD per start\nU0 = {\"B1\": 1, \"B2\": 0, \"B3\": 0, \"B4\": 0}                        # on at midnight\nSTEAM = [120, 115, 110, 110, 115, 130, 165, 205, 235, 250, 255, 250,\n         240, 245, 250, 240, 225, 215, 205, 190, 170, 150, 135, 125]  # t/h, hour 0 to 23\nRESERVE = 0.10                                                     # committed capacity >= 1.1 x demand\n\n\ndef boilers(M=None, M_b=None, relax=False, start_scale=1.0, hours=None, reserve=RESERVE, fix_u=None):\n    \"\"\"x[b,t] load, u[b,t] on/off (binary), s[b,t] start-up (continuous: s >= u_t - u_{t-1} and a\n    positive start cost make it 0 or 1 whenever u is integer).\n    Load rows: L u <= x <= M u, with M = UMAX (tight) unless M or M_b says otherwise; x <= UMAX always.\"\"\"\n    hours = list(range(24)) if hours is None else list(hours)\n    m = MILP()\n    for b in BOILERS:\n        for t in hours:\n            m.var(f\"x {b} {t}\", obj=FUEL[b], ub=UMAX[b])\n            m.var(f\"u {b} {t}\", obj=NOLOAD[b], ub=1.0, integer=True)\n            m.var(f\"s {b} {t}\", obj=START[b] * start_scale, ub=1.0)\n            mm = UMAX[b] if M is None else M\n            if M_b and b in M_b:\n                mm = M_b[b]\n            m.row(f\"max load {b} {t}\", {f\"x {b} {t}\": 1, f\"u {b} {t}\": -mm}, hi=0.0)\n            m.row(f\"min load {b} {t}\", {f\"x {b} {t}\": 1, f\"u {b} {t}\": -LMIN[b]}, lo=0.0)\n            if fix_u is not None:\n                m.row(f\"fix {b} {t}\", {f\"u {b} {t}\": 1}, lo=fix_u[b], hi=fix_u[b])\n            if len(hours) > 1 or start_scale:\n                prev = hours.index(t)\n                if prev == 0:\n                    m.row(f\"start {b} {t}\", {f\"s {b} {t}\": 1, f\"u {b} {t}\": -1}, lo=-U0[b] if hours[0] == 0 else -np.inf)\n                else:\n                    m.row(f\"start {b} {t}\", {f\"s {b} {t}\": 1, f\"u {b} {t}\": -1, f\"u {b} {hours[prev - 1]}\": 1}, lo=0.0)\n    for t in hours:\n        m.row(f\"steam {t}\", {f\"x {b} {t}\": 1 for b in BOILERS}, lo=STEAM[t])\n        m.row(f\"reserve {t}\", {f\"u {b} {t}\": UMAX[b] for b in BOILERS}, lo=(1 + reserve) * STEAM[t])\n    r = m.solve(relax=relax)\n    if r[\"status\"] != \"optimal\":\n        return r\n    x = r[\"x\"]\n    out = {\"status\": \"optimal\", \"cost\": r[\"obj\"], \"seconds\": r[\"seconds\"],\n           \"u\": {b: [x[f\"u {b} {t}\"] for t in hours] for b in BOILERS},\n           \"x\": {b: [x[f\"x {b} {t}\"] for t in hours] for b in BOILERS},\n           \"starts\": {b: [x[f\"s {b} {t}\"] for t in hours] for b in BOILERS}}\n    # count start-ups from the on/off pattern itself (s is free when its cost is zero)\n    out[\"n_starts\"] = sum(1 for b in BOILERS for k, t in enumerate(hours)\n                          if out[\"u\"][b][k] > 0.5 and (out[\"u\"][b][k - 1] if k else (U0[b] if t == 0 else 0)) < 0.5) \\\n        if not relax else round(sum(sum(v) for v in out[\"starts\"].values()), 6)\n    out[\"n_fractional\"] = sum(1 for b in BOILERS for v in out[\"u\"][b] if 1e-6 < v < 1 - 1e-6)\n    out[\"parts\"] = {\"fuel\": sum(FUEL[b] * x[f\"x {b} {t}\"] for b in BOILERS for t in hours),\n                    \"no_load\": sum(NOLOAD[b] * x[f\"u {b} {t}\"] for b in BOILERS for t in hours),\n                    \"start\": sum(START[b] * start_scale * x[f\"s {b} {t}\"] for b in BOILERS for t in hours)}\n    if not relax:\n        out.update(nodes=r.get(\"nodes\"), gap=r.get(\"gap\"), bound=r.get(\"bound\"))\n    return out\n\n\ndef enumerate_hour(t=19):\n    \"\"\"Every on/off pattern for one hour (no start-up costs): each fixed pattern is an LP.\"\"\"\n    rows = []\n    for pat in itertools.product([0, 1], repeat=4):\n        fu = dict(zip(BOILERS, pat))\n        cap = sum(UMAX[b] * fu[b] for b in BOILERS)\n        r = boilers(hours=[t], start_scale=0.0, fix_u=fu, relax=True)\n        rows.append({\"pattern\": \"\".join(map(str, pat)), \"on\": [b for b in BOILERS if fu[b]], \"capacity\": cap,\n                     \"status\": r[\"status\"], \"cost\": r.get(\"cost\"),\n                     \"load\": {b: r[\"x\"][b][0] for b in BOILERS} if r[\"status\"] == \"optimal\" else None})\n    best = min((r for r in rows if r[\"status\"] == \"optimal\"), key=lambda r: r[\"cost\"])\n    one = boilers(hours=[t], start_scale=0.0)\n    return {\"hour\": t, \"steam\": STEAM[t], \"rows\": rows, \"feasible\": sum(r[\"status\"] == \"optimal\" for r in rows),\n            \"best\": best, \"milp_cost\": one[\"cost\"], \"milp_on\": [b for b in BOILERS if one[\"u\"][b][0] > 0.5]}\n\n\ndef lab_results():\n    tight, tight_lp = boilers(), boilers(relax=True)\n    loose, loose_lp = boilers(M=10000.0), boilers(M=10000.0, relax=True)\n    small = boilers(M_b={\"B1\": 100.0})\n    sweep = []\n    for k in (0.0, 0.25, 0.5, 1.0, 1.5, 2.0, 3.0, 4.0):\n        r = boilers(start_scale=k)\n        sweep.append({\"scale\": k, \"cost\": r[\"cost\"], \"starts\": r[\"n_starts\"], \"nodes\": r[\"nodes\"],\n                      \"u\": r[\"u\"], \"parts\": r[\"parts\"]})\n    return {\"tight\": tight, \"tight_lp\": tight_lp, \"loose\": loose, \"loose_lp\": loose_lp, \"small_M\": small,\n            \"enum\": enumerate_hour(19), \"start_sweep\": sweep,\n            \"data\": {\"boilers\": BOILERS, \"umax\": UMAX, \"lmin\": LMIN, \"fuel\": FUEL, \"noload\": NOLOAD, \"start\": START,\n                     \"u0\": U0, \"steam\": STEAM, \"reserve\": RESERVE}}\n\n\ndef classroom_results():\n    R = {\"meta\": {\"numpy\": np.__version__, \"scipy\": __import__(\"scipy\").__version__, \"python\": sys.version.split()[0]}}\n    R[\"lecture\"] = {\n        \"discount\": {\"milp\": discount_blend(), \"lp\": discount_blend(relax=True), \"tier\": TIER, \"p1\": P1, \"p2\": P2},\n        \"fixed_charge\": {\"data\": FC, \"cases\": [fixed_charge(M) for M in (20.0, 25.0, 30.0, 40.0, 50.0, 75.0, 100.0, 200.0, 500.0, 1000.0)]},\n        \"tree\": project_tree(),\n        \"tree_data\": {\"projects\": PROJ, \"capex\": CAPEX, \"save\": SAVE, \"budget\": BUDGET},\n        \"location\": location(),\n    }\n    R[\"lab\"] = lab_results()\n    return R\n\n\ndef _sched(u):\n    return {b: \"\".join(\"#\" if v > 0.999 else (\".\" if v < 1e-3 else \"~\") for v in u[b]) for b in u}\n\n\nif __name__ == \"__main__\":\n    R = classroom_results()\n    if \"--json\" in sys.argv:\n        with open(\"milp-results.json\", \"w\") as fh:\n            json.dump(R, fh, indent=1)\n        print(\"wrote milp-results.json\")\n        sys.exit()\n    L = R[\"lecture\"]\n    print(\"A1 discount:\", {k: (round(v, 2) if isinstance(v, float) else v) for k, v in L[\"discount\"][\"milp\"].items()},\n          \"| LP relaxation:\", {k: (round(v, 3) if isinstance(v, float) else v) for k, v in L[\"discount\"][\"lp\"].items()})\n    print(\"A2 fixed charge:\")\n    for c in L[\"fixed_charge\"][\"cases\"]:\n        print(f\"   M {c['M']:7.0f}: LP {c['lp']['cost']:8.1f} (y {c['lp']['y']:.3f})  MILP {c['milp']['cost']:7.1f}  valid {c['valid']}  gap {100*c['gap']:5.1f}%\")\n    t = L[\"tree\"]; print(f\"A3 tree: {len(t['nodes'])} nodes, best {t['best']} {t['chosen']}, root LP {t['root_lp']:.2f}, greedy {t['greedy']} {t['greedy_saving']}\")\n    for k in (\"aggregated\", \"disaggregated\"):\n        v = L[\"location\"][k]\n        print(f\"A4 {k}: rows {v['rows']}, LP {v['lp_bound']:.0f}, opt {v['optimum']:.0f}, root gap {100*v['root_gap']:.1f}%, plain B&B {v['bb_nodes']} nodes, HiGHS {v['highs_nodes']} nodes, open {v['open']}\")\n    lab = R[\"lab\"]\n    for k in (\"tight\", \"tight_lp\", \"loose\", \"loose_lp\", \"small_M\"):\n        v = lab[k]\n        print(f\"B {k}: cost {v['cost']:.1f}, starts {v['n_starts']}, fractional u {v['n_fractional']}, nodes {v.get('nodes')}, gap {v.get('gap')}\")\n    for b, s in _sched(lab[\"tight\"][\"u\"]).items():\n        print(\"   \", b, s)\n    e = lab[\"enum\"]; print(f\"B enum hour {e['hour']}: {e['feasible']} feasible, best {e['best']['on']} {e['best']['cost']:.1f}; MILP {e['milp_on']} {e['milp_cost']:.1f}\")\n    for s in lab[\"start_sweep\"]:\n        print(f\"   start x{s['scale']}: cost {s['cost']:.1f}, starts {s['starts']}, nodes {s['nodes']}\")\n";   // embedded copy, so live Python also works when the file is opened locally
+let R = RECORDED, MODE = "recorded";
+const C = {teal:"#0F6E6B",amber:"#E29A2D",rust:"#BE654C",sky:"#5A91BE",sage:"#83A462",plum:"#995A90",graphite:"#333F4A",sand:"#DFC98F",ink:"#1C242B",slate:"#66727C",mist:"#B9C1C6",paper:"#F3F0EB"};
+const fmt = (x,d=0)=>x==null?"–":Number(x).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});
+
+/* ---------- tiny SVG chart helpers ---------- */
+function svgEl(w,h){return `<svg class="ch" viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid meet" font-family="Helvetica Neue,Arial,sans-serif">`}
+function niceStep(r,n=5){const raw=r/n,p=Math.pow(10,Math.floor(Math.log10(raw||1)));for(const m of [1,2,2.5,5,10]){if(m*p>=raw-1e-12)return m*p}return 10*p}
+function scale(o,lo,hi){const st=niceStep(hi-lo);o.step=st;o.ymin=Math.floor(lo/st+1e-9)*st;o.ymax=Math.ceil(hi/st-1e-9)*st;o.ticks=Math.round((o.ymax-o.ymin)/st);return o}
+function niceMax(v){const p=Math.pow(10,Math.floor(Math.log10(v||1)));for(const m of [1,1.2,1.5,2,2.5,3,4,5,6,8,10]){if(m*p>=v)return m*p}return 10*p}
+function axes(o){ // o: w,h,l,r,t,b,ymin,ymax,xlabels,ylab,ticks
+  const {w,h,l,r,t,b,ymin,ymax}=o, X=w-l-r, Y=h-t-b, n=o.ticks||5; let s="";
+  for(let k=0;k<=n;k++){const v=ymin+(ymax-ymin)*k/n, y=t+Y-(v-ymin)/(ymax-ymin)*Y;
+    s+=`<line x1="${l}" x2="${w-r}" y1="${y}" y2="${y}" stroke="${C.mist}" stroke-width="0.8" opacity=".7"/><text x="${l-8}" y="${y+5}" font-size="16" text-anchor="end" fill="${C.ink}">${fmt(v, (o.step||1)<1?1:0)}</text>`}
+  s+=`<line x1="${l}" x2="${l}" y1="${t}" y2="${t+Y}" stroke="${C.graphite}" stroke-width="1.5"/>`;
+  const z=t+Y-(0-ymin)/(ymax-ymin)*Y; s+=`<line x1="${l}" x2="${w-r}" y1="${Math.min(t+Y,Math.max(t,z))}" y2="${Math.min(t+Y,Math.max(t,z))}" stroke="${C.graphite}" stroke-width="1.5"/>`;
+  if(o.ylab)s+=`<text transform="translate(${16},${t+Y/2}) rotate(-90)" font-size="17" text-anchor="middle" fill="${C.ink}">${o.ylab}</text>`;
+  return s}
+function ymap(o,v){const Y=o.h-o.t-o.b;return o.t+Y-(v-o.ymin)/(o.ymax-o.ymin)*Y}
+function legend(items,x,y){let s="";items.forEach((it,i)=>{const yy=y+i*22;s+=it.line?`<line x1="${x}" x2="${x+22}" y1="${yy}" y2="${yy}" stroke="${it.c}" stroke-width="3" ${it.dash?'stroke-dasharray="6 4"':''}/>`:`<rect x="${x}" y="${yy-8}" width="16" height="16" fill="${it.c}" ${it.op?`opacity="${it.op}"`:''}/>`;s+=`<text x="${x+28}" y="${yy+5}" font-size="16" fill="${C.ink}">${it.t}</text>`});return s}
+function legendRow(items,x,y){let s="",xx=x;items.forEach(it=>{s+=it.line?`<line x1="${xx}" x2="${xx+20}" y1="${y}" y2="${y}" stroke="${it.c}" stroke-width="3" ${it.dash?'stroke-dasharray="6 4"':''}/>`:`<rect x="${xx}" y="${y-7}" width="14" height="14" fill="${it.c}" ${it.op?`opacity="${it.op}"`:''}/>`;s+=`<text x="${xx+26}" y="${y+5}" font-size="16" fill="${C.ink}">${it.t}</text>`;xx+=38+it.t.length*8.2});return s}
+
+/* Food Manufacture: stacked bars of a [month][oil] matrix, optional line */
+function hbar(items,opt={}){ // items: {t,v,c}
+  const w=opt.w||640,h=opt.h||330,l=opt.l||250,r=90,t=16,rowh=(h-t-20)/items.length;
+  const mx=opt.max||niceMax(Math.max(...items.map(i=>i.v)));let s=svgEl(w,h);
+  items.forEach((it,i)=>{const y=t+i*rowh,bw=(w-l-r)*it.v/mx;
+    s+=`<text x="${l-12}" y="${y+rowh/2+5}" font-size="16" text-anchor="end" fill="${C.ink}">${it.t}</text><rect x="${l}" y="${y+rowh*0.18}" width="${Math.max(bw,1)}" height="${rowh*0.64}" fill="${it.c}" rx="3"/><text x="${l+bw+8}" y="${y+rowh/2+6}" font-size="17" font-weight="700" fill="${C.ink}">${opt.fmt?opt.fmt(it.v):fmt(it.v)}</text>`});
+  s+=`<line x1="${l}" x2="${l}" y1="${t}" y2="${h-20}" stroke="${C.graphite}" stroke-width="1.5"/>`;
+  return s+"</svg>"}
+
+/* ---------- Session 3 helpers ---------- */
+const foot = "2105623 Optimization of Chemical Processes · Session 3 · MILP: logical and discrete decisions · draft for 2027";
+function xyChart(o){ // series:[{pts:[[x,y]],c,dash,w}], xmin,xmax,ymin,ymax,xlab,ylab,marks,hline,xstep
+  const w=o.w||620,h=o.h||430,l=o.l||84,r=24,t=18,b=58,X=w-l-r;let s=svgEl(w,h);const A=scale({w,h,l,r,t,b,ylab:o.ylab},o.ymin,o.ymax);
+  const px=x=>l+X*(x-o.xmin)/(o.xmax-o.xmin),py=y=>ymap(A,y);s+=axes(A);
+  for(let x=o.xmin;x<=o.xmax+1e-9;x+=o.xstep){s+=`<text x="${px(x)}" y="${h-b+24}" font-size="16" text-anchor="middle" fill="${C.ink}">${o.xfmt?o.xfmt(x):fmt(x)}</text>`}
+  s+=`<text x="${l+X/2}" y="${h-8}" font-size="17" text-anchor="middle" fill="${C.ink}">${o.xlab}</text>`;
+  if(o.hline)s+=`<line x1="${l}" x2="${w-r}" y1="${py(o.hline.y)}" y2="${py(o.hline.y)}" stroke="${C.graphite}" stroke-width="1.6" stroke-dasharray="7 5"/><text x="${w-r-6}" y="${py(o.hline.y)-8}" font-size="16" text-anchor="end" fill="${C.graphite}">${o.hline.t}</text>`;
+  o.series.forEach(se=>{s+=`<polyline fill="none" stroke="${se.c}" stroke-width="${se.w||3}" ${se.dash?'stroke-dasharray="8 6"':''} points="${se.pts.map(p=>`${px(p[0])},${py(p[1])}`).join(" ")}"/>`});
+  (o.marks||[]).forEach(m=>{s+=`<circle cx="${px(m.x)}" cy="${py(m.y)}" r="7" fill="${m.c||C.amber}" stroke="#fff" stroke-width="2"/>`+(m.t?`<text x="${px(m.x)+(m.dx||10)}" y="${py(m.y)+(m.dy||-12)}" font-size="16" font-weight="700" text-anchor="${m.anchor||"start"}" fill="${C.ink}">${m.t}</text>`:"")});
+  if(o.legend)s+=legend(o.legend,l+16,t+18);
+  return s+"</svg>"}
+
+/* big-M picture: x horizontal (t/h), y vertical (0..1) */
+function bigMPlot(c,d){const W=600,H=430,l=70,r=20,t=24,bm=58,X=W-l-r,Y=H-t-bm,xm=60,px=x=>l+X*x/xm,py=y=>t+Y-Y*y;let s=svgEl(W,H);
+ for(let k=0;k<=xm;k+=10)s+=`<line x1="${px(k)}" x2="${px(k)}" y1="${t}" y2="${t+Y}" stroke="${C.mist}" stroke-width=".7"/><text x="${px(k)}" y="${t+Y+22}" font-size="16" text-anchor="middle">${k}</text>`;
+ [0,0.5,1].forEach(v=>{s+=`<line x1="${l}" x2="${l+X}" y1="${py(v)}" y2="${py(v)}" stroke="${C.mist}" stroke-width=".7"/><text x="${l-10}" y="${py(v)+5}" font-size="16" text-anchor="end">${v}</text>`});
+ s+=`<line x1="${l}" x2="${l}" y1="${t}" y2="${t+Y}" stroke="${C.graphite}" stroke-width="1.6"/><line x1="${l}" x2="${l+X}" y1="${t+Y}" y2="${t+Y}" stroke="${C.graphite}" stroke-width="1.6"/>`;
+ s+=`<text x="${l+X/2}" y="${H-10}" font-size="17" text-anchor="middle">x, steam from the boiler, t/h</text><text transform="translate(18,${t+Y/2}) rotate(-90)" font-size="17" text-anchor="middle">y (on = 1)</text>`;
+ const M=c.M,cap=d.cap,poly=M>=cap?[[0,0],[cap,cap/M],[cap,1],[0,1]]:[[0,0],[M,1],[0,1]];
+ s+=`<polygon points="${poly.map(p=>`${px(p[0])},${py(p[1])}`).join(" ")}" fill="${C.teal}" opacity=".18" stroke="${C.teal}" stroke-width="2"/>`;
+ s+=`<polygon points="${[[0,0],[Math.min(d.demand,cap),1],[0,1]].map(p=>`${px(p[0])},${py(p[1])}`).join(" ")}" fill="none" stroke="${C.graphite}" stroke-width="1.6" stroke-dasharray="6 5"/>`;
+ s+=`<line x1="${px(0)}" x2="${px(Math.min(M,cap))}" y1="${py(1)}" y2="${py(1)}" stroke="${C.ink}" stroke-width="5"/><circle cx="${px(0)}" cy="${py(0)}" r="6" fill="${C.ink}"/>`;
+ s+=`<line x1="${px(d.demand)}" x2="${px(d.demand)}" y1="${t}" y2="${t+Y}" stroke="${C.rust}" stroke-width="1.6" stroke-dasharray="4 4"/><text x="${px(d.demand)+6}" y="${t+16}" font-size="15" fill="${C.rust}">demand 30</text>`;
+ s+=`<circle cx="${px(c.lp.x)}" cy="${py(c.lp.y)}" r="9" fill="${C.amber}" stroke="#fff" stroke-width="2"/><text x="${px(c.lp.x)+12}" y="${py(c.lp.y)+(c.lp.y>0.85?22:-10)}" font-size="16" font-weight="700">LP optimum (${fmt(c.lp.x,0)}, ${fmt(c.lp.y,2)})</text>`;
+
+ return s+"</svg>"}
+
+/* branch-and-bound tree */
+function treePlot(T,k){const W=1150,H=330,n=T.width,dx=(W-60)/n,dy=56,nodes=T.nodes.slice(0,k),byId={};T.nodes.forEach(nd=>byId[nd.id]=nd);let s=`<svg class="ch" viewBox="0 0 ${W} ${H}" font-family="Helvetica Neue,Arial,sans-serif">`;
+ const P=nd=>[30+dx*(nd.xpos+0.5),28+dy*nd.depth];
+ nodes.forEach(nd=>{if(nd.parent==null)return;const a=P(byId[nd.parent]),b=P(nd);s+=`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${C.mist}" stroke-width="2"/><text x="${(a[0]+b[0])/2+(b[0]<a[0]?-6:6)}" y="${(a[1]+b[1])/2}" font-size="12" text-anchor="${b[0]<a[0]?"end":"start"}" fill="${C.slate}">${nd.label}</text>`});
+ nodes.forEach((nd,i)=>{const [x,y]=P(nd),last=i===k-1,col={branched:C.teal,integer:C.amber,infeasible:C.rust,"pruned by bound":C.slate}[nd.status];
+  s+=`<circle cx="${x}" cy="${y}" r="${last?17:14}" fill="${nd.status==="integer"?C.amber:"#fff"}" stroke="${col}" stroke-width="${last?4:2.5}"/>`;
+  s+=`<text x="${x}" y="${y+5}" font-size="12" font-weight="700" text-anchor="middle" fill="${nd.status==="integer"?"#fff":col}">${nd.lp==null?"×":fmt(nd.lp,0)}</text>`});
+ return s+"</svg>"}
+
+/* facility map */
+function mapPlot(L,key){const W=560,H=430,p=v=>[30+v[0]*5,20+(100-v[1])*3.9],o=L[key];let s=svgEl(W,H);
+ L.plants.forEach((q,j)=>{const a=p(q),b=p(L.sites[o.assign[j]]);s+=`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${C.mist}" stroke-width="1.5"/>`});
+ L.plants.forEach(q=>{const a=p(q);s+=`<circle cx="${a[0]}" cy="${a[1]}" r="5" fill="${C.graphite}"/>`});
+ L.sites.forEach((q,i)=>{const a=p(q),op=o.open.includes(i);s+=`<rect x="${a[0]-9}" y="${a[1]-9}" width="18" height="18" fill="${op?C.teal:"#fff"}" stroke="${C.teal}" stroke-width="2.5"/>`});
+ return s+legend([{t:"open site",c:C.teal},{t:"plant",c:C.graphite}],W-150,H-40)+"</svg>"}
+
+/* ---------- slide content ---------- */
+const S = [];
+S.push({cls:"title-slide", html:()=>`<p class="kicker">Session 3 · Lab 3</p><h1>MILP: logical and discrete decisions</h1>
+<div class="sub">Binary variables, big-M, and why the formulation decides what a solver can prove</div>
+<div class="meta">2105623 Optimization of Chemical Processes<br>Department of Chemical Engineering, Chulalongkorn University<br>Draft for the 2027 offering</div><p style="margin-top:28px;font-size:19px"><a href="?narrate=1#1" style="color:${C.teal}">Studying on your own? Start the narrated session</a></p>`,
+notes:"Open with the discount from Session 2: the open question that motivates binaries."});
+
+S.push({kicker:"Plan for today", title:"Three hours, two activities and a lab", html:()=>`<div class="body"><div class="col"><table class="t">
+<tr><th>Part</th><th>Content</th><th class="n">Minutes</th></tr>
+<tr><td></td><td>Activity 1: retrieval check on Session 2</td><td class="n">10</td></tr>
+<tr><td>1</td><td>Logic as linear inequalities; fixed charges, minimum loads, either-or</td><td class="n">30</td></tr>
+<tr><td>2</td><td>Big-M: how to choose M, and what a bad M does</td><td class="n">20</td></tr>
+<tr><td>3</td><td>How a solver proves optimality: relaxation, branch and bound, the gap, formulation strength</td><td class="n">30</td></tr>
+<tr><td></td><td><i>Break</i>, then Activity 2: your card with binaries</td><td class="n">20</td></tr>
+<tr><td>4</td><td>Committing boilers: on/off, minimum load, start-ups, reserve</td><td class="n">20</td></tr>
+<tr><td>Lab 3</td><td>Commit four boilers for one day</td><td class="n">40</td></tr>
+<tr><td></td><td>Exit Ticket and feedback</td><td class="n">5</td></tr></table></div></div>`});
+
+S.push({kicker:"Activity 1 · 10 minutes · alone, then in pairs", title:"Retrieval check: Session 2 without notes", html:()=>`<div class="body"><div class="col w55"><div class="act"><span class="tag">WRITE, THEN COMPARE</span>
+<ol style="font-size:20px;line-height:1.45;margin:0;padding-left:26px">
+<li>Write "blend octane ≥ 95" as a linear row. When is it exact?</li>
+<li>Why did the model with RVP blended linearly report a higher margin?</li>
+<li>At an LP vertex, how many variables can be positive?</li>
+<li>With a volume discount, the LP bought only the cheap second tier. Why is that wrong, and what does the model need?</li></ol></div>
+<div class="ctrl" style="margin-top:12px"><button id="a1btn">Show answers</button></div></div>
+<div class="col"><div class="panel grow" id="a1ans" style="visibility:hidden"><ul class="b xs">
+<li>Σ<sub>i</sub> (RON<sub>i</sub> − 95) x<sub>i</sub> ≥ 0. Exact if octane blends linearly by volume and the grade volume is positive</li>
+<li>The RVP index is convex, so the linear row under-predicts RVP and admits more cheap butane: the plan is off-spec</li>
+<li>At most as many as there are tight rows</li>
+<li>The cost is concave; the LP fills the cheaper tier first whatever the contract says. Enforcing the order needs a binary: today</li></ul></div></div></div>`,
+draw:()=>{const b=document.getElementById("a1btn");b.onclick=()=>{const p=document.getElementById("a1ans"),on=p.style.visibility==="hidden";p.style.visibility=on?"visible":"hidden";b.textContent=on?"Hide answers":"Show answers"}},
+notes:"Five minutes alone, five in pairs. Question 4 leads straight into the next slide."});
+
+S.push({kicker:"Learning outcomes", title:"By the end of today you can", html:()=>`<div class="body"><div class="col"><ul class="b sm">
+<li>Translate yes/no rules stated in plant language into linear inequalities in binary variables</li>
+<li>Write fixed charges, minimum loads, start-ups and either-or constraints with big-M, and derive each M from the model</li>
+<li>Explain the LP relaxation as a bound, branch and bound, and the MIP gap as the certificate of a MILP</li>
+<li>Compare two formulations of the same decisions by the strength of their LP relaxation</li>
+<li>Say what "optimal" from a MILP solver means, and what it does not</li></ul></div></div>`});
+
+S.push({kicker:"Session 2, closed", title:"The volume discount needs one binary variable", dhint:true, html:()=>`<div class="body"><div class="col w55"><div class="panel"><div class="math" style="font-size:21px;line-height:1.7">
+q = q<sub>1</sub> + q<sub>2</sub>, cost 780 q<sub>1</sub> + 700 q<sub>2</sub><br>
+q<sub>2</sub> ≤ 300 z &nbsp;&nbsp;(tier 2 only if z = 1)<br>q<sub>1</sub> ≥ 300 z &nbsp;&nbsp;(and only once tier 1 is full)<br>0 ≤ q<sub>1</sub> ≤ 300, z ∈ {0, 1}</div></div></div>
+<div class="col"><table class="t" id="disc" style="font-size:18px"></table>
+<p class="note">The MILP reproduces the answer Session 2 found by enumerating both segments, in one solve.</p></div></div>`,
+draw:()=>{const d=R.lecture.discount.milp;document.getElementById("disc").innerHTML=`<tr><th></th><th class="n">LP, Session 2</th><th class="n">MILP</th></tr>
+<tr><td>Tier 1 bought, m³/d</td><td class="n">0</td><td class="n">${fmt(d.q1)}</td></tr><tr><td>Tier 2 bought, m³/d</td><td class="n">300</td><td class="n">${fmt(d.q2)}</td></tr>
+<tr><td>Margin, USD/d</td><td class="n" style="color:${C.rust}">371,851 (not achievable)</td><td class="n"><b>${fmt(d.margin)}</b></td></tr><tr><td>z</td><td class="n">none</td><td class="n">${fmt(d.z)}</td></tr>`},
+py:{title:"The discount as a MILP", sub:"milp_lab.discount_blend()", code:
+`from milp_lab import *
+r = discount_blend()
+print({k: round(v, 1) if isinstance(v, float) else v for k, v in r.items()})`,
+out:()=>JSON.stringify(Object.fromEntries(Object.entries(R.lecture.discount.milp).map(e=>[e[0],typeof e[1]==="number"?+e[1].toFixed(1):e[1]])))}});
+
+/* Part 1 */
+S.push({kicker:"Part 1 · Building blocks", title:"Six patterns cover most plant logic", html:()=>`<div class="body"><div class="col"><table class="t" style="font-size:17.5px">
+<tr><th>Plant statement</th><th>Linear form (y, z binary)</th></tr>
+<tr><td>Pay a fixed cost F only when the unit runs</td><td>F y in the objective, x ≤ U y</td></tr>
+<tr><td>A unit is off, or runs between L and U</td><td>L y ≤ x ≤ U y</td></tr>
+<tr><td>If A runs, B must run</td><td>y<sub>A</sub> ≤ y<sub>B</sub></td></tr>
+<tr><td>At most k of these units run</td><td>Σ y<sub>i</sub> ≤ k</td></tr>
+<tr><td>Either constraint 1 or constraint 2 holds</td><td>g<sub>1</sub>(x) ≤ M<sub>1</sub>(1 − z), g<sub>2</sub>(x) ≤ M<sub>2</sub> z</td></tr>
+<tr><td>A unit counts as started when it goes from off to on</td><td>s<sub>t</sub> ≥ y<sub>t</sub> − y<sub>t−1</sub>, s<sub>t</sub> ≥ 0</td></tr></table>
+<p class="note">Every M is a number you must be able to justify from the model. The second half of today is about what happens when you cannot.</p></div></div>`});
+
+S.push({kicker:"Part 1 · Logic to inequalities", title:"Try it: four rules from a plant manual", html:()=>`<div class="body"><div class="col w55"><ol style="font-size:20px;line-height:1.5;margin:0;padding-left:26px">
+<li>If the dryer runs, the evaporator must run</li><li>At most two of the three reactors run</li>
+<li>Boiler 3 runs only if boiler 1 or boiler 2 runs</li><li>If the cracker runs it takes 40 to 100 t/h; otherwise nothing</li></ol>
+<p class="note">Method: write each rule as clauses (A or B or not C). A clause becomes y<sub>A</sub> + y<sub>B</sub> + (1 − y<sub>C</sub>) ≥ 1.</p>
+<div class="ctrl" style="margin-top:8px"><button id="lgbtn">Show the inequalities</button></div></div>
+<div class="col"><div class="panel grow" id="lgans" style="visibility:hidden"><div class="math" style="font-size:21px;line-height:1.75">
+1. y<sub>D</sub> ≤ y<sub>E</sub><br>2. y<sub>1</sub> + y<sub>2</sub> + y<sub>3</sub> ≤ 2<br>3. y<sub>B3</sub> ≤ y<sub>B1</sub> + y<sub>B2</sub><br>4. 40 y<sub>C</sub> ≤ x<sub>C</sub> ≤ 100 y<sub>C</sub></div>
+<p class="note">Rule 3: "B3 implies (B1 or B2)" is the clause (not B3) or B1 or B2, so (1 − y<sub>B3</sub>) + y<sub>B1</sub> + y<sub>B2</sub> ≥ 1.</p></div></div></div>`,
+draw:()=>{const b=document.getElementById("lgbtn");b.onclick=()=>{const p=document.getElementById("lgans"),on=p.style.visibility==="hidden";p.style.visibility=on?"visible":"hidden";b.textContent=on?"Hide":"Show the inequalities"}}});
+
+S.push({kicker:"Part 1 · Either-or", title:"Two operating windows, one binary, and M from the bounds", html:()=>`<div class="body"><div class="col w55"><div class="panel"><div class="math" style="font-size:21px;line-height:1.7">
+Reactor temperature T ∈ [300, 500] °C<br>Mode A: T ≤ 350 &nbsp;&nbsp;or&nbsp;&nbsp; Mode B: T ≥ 420<br>
+T − 350 ≤ M<sub>A</sub> (1 − z), &nbsp;M<sub>A</sub> = 500 − 350 = 150<br>420 − T ≤ M<sub>B</sub> z, &nbsp;M<sub>B</sub> = 420 − 300 = 120</div></div></div>
+<div class="col"><ul class="b xs"><li>z = 1: the first row gives T ≤ 350 (mode A); the second gives T ≥ 300, already true</li>
+<li>z = 0: the second row gives T ≥ 420 (mode B); the first gives T ≤ 500, already true</li>
+<li>Each M is the largest value its left side can take within the bounds of T: the smallest M that makes the row harmless when it is switched off</li>
+<li>In the relaxation z = 0.5 allows 360 ≤ T ≤ 425: the forbidden window is filled. Branching on z removes it</li></ul></div></div>`});
+
+S.push({kicker:"Part 2 · Demo", title:"Choose M: too small is wrong, too large is weak", dhint:true, html:()=>`<div class="body"><div class="col w40">
+<div class="ctrl"><span>M</span><input type="range" id="bm" min="0" max="9" step="1" value="4"><b id="bmv"></b></div>
+<div class="kpi" style="flex-wrap:wrap"><div>LP relaxation, USD/h<b id="bml"></b></div><div>MILP, USD/h<b class="a" id="bmm"></b></div></div>
+<div class="kpi"><div>Root gap<b id="bmg"></b></div><div>Answer<b id="bmok"></b></div></div>
+<p class="note">One boiler (up to 50 t/h, 20 USD/t, 600 USD/h when on) or bought steam at 45 USD/t; demand 30 t/h. Correct answer: run the boiler, 1,200 USD/h.</p>
+<p class="note" style="line-height:1.7"><span style="display:inline-block;width:14px;height:14px;background:${C.teal};opacity:.35;vertical-align:-2px"></span> LP relaxation of x ≤ M y<br><span style="display:inline-block;width:22px;border-top:4px solid ${C.ink};vertical-align:3px"></span> integer points (y = 0, or y = 1)<br><span style="display:inline-block;width:22px;border-top:2px dashed ${C.graphite};vertical-align:3px"></span> tightest: x ≤ 30 y &nbsp; <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:${C.amber};vertical-align:-1px"></span> LP optimum</p></div>
+<div class="col"><div class="panel grow"><div class="chart" id="ch-bm"></div></div></div></div>`,
+draw:()=>{const F=R.lecture.fixed_charge,sl=document.getElementById("bm"),up=()=>{const c=F.cases[+sl.value];
+ document.getElementById("bmv").textContent=fmt(c.M);document.getElementById("bml").textContent=fmt(c.lp.cost,0);document.getElementById("bmm").textContent=fmt(c.milp.cost,0);
+ document.getElementById("bmg").textContent=fmt(100*c.gap,1)+"%";const ok=document.getElementById("bmok");ok.textContent=c.valid?"correct":"wrong";ok.style.color=c.valid?C.teal:C.rust;
+ document.getElementById("ch-bm").innerHTML=bigMPlot(c,F.data)};sl.oninput=up;up()},
+py:{title:"Relaxation and MILP for each M", sub:"milp_lab.fixed_charge(M)", code:
+`from milp_lab import *
+for M in (25, 30, 50, 1000):
+    c = fixed_charge(M)
+    print(M, "LP", round(c["lp"]["cost"], 1), "MILP", c["milp"]["cost"], "valid", c["valid"])`,
+out:()=>R.lecture.fixed_charge.cases.filter(c=>[25,30,50,1000].includes(c.M)).map(c=>`${c.M} LP ${c.lp.cost.toFixed(1)} MILP ${c.milp.cost} valid ${c.valid?"True":"False"}`).join("\n")}});
+
+S.push({kicker:"Part 2 · Choosing M", title:"M is the largest value the left side can take, proved from the model", html:()=>`<div class="body"><div class="col w55"><ul class="b sm">
+<li><b>Too small</b> (M &lt; 30 above): feasible plans are cut off. The solver reports <i>optimal</i> for a different plant</li>
+<li><b>Valid but large</b> (M = 1,000): the relaxation pays 3% of the fixed cost for full output. The bound is weak and the search is longer</li>
+<li><b>Tightest</b> (M = 30): it removes only plans that make more steam than the demand, which can never be optimal. Capacity is a valid M; the demand is a better one</li></ul></div>
+<div class="col"><ul class="b xs"><li>Derive M from variable bounds and from other rows, and write the derivation next to the row</li>
+<li>Integrality is checked to a tolerance, typically 10⁻⁶. With M = 10⁶, y = 10⁻⁶ counts as 0 and still allows x = 1: free output</li>
+<li>Presolve tightens obvious M values for you. It cannot see bounds that come from the physics you did not write down</li></ul></div></div>`});
+
+/* Part 3 */
+S.push({kicker:"Part 3 · Branch and bound", title:"Relax, branch, bound, prune", html:()=>`<div class="body"><div class="col w55"><ul class="b sm">
+<li><b>Relax</b>: drop integrality. The LP optimum bounds the MILP (from above when maximizing)</li>
+<li><b>Branch</b> on a fractional binary: one child with y = 0, one with y = 1</li>
+<li><b>Prune</b> a node when its LP is infeasible, when its LP answer is already integer (a new incumbent), or when its bound cannot beat the incumbent</li>
+<li>Stop when no open node can beat the incumbent</li></ul></div>
+<div class="col"><div class="panel grow"><table class="t" id="prj" style="font-size:17px"></table><p class="note" id="prjn"></p></div></div></div>`,
+draw:()=>{const d=R.lecture.tree_data;document.getElementById("prj").innerHTML=`<tr><th>Heat-recovery project</th><th class="n">Capital, kUSD</th><th class="n">Saving, kUSD/yr</th></tr>`+d.projects.map((p,i)=>`<tr><td>${p}</td><td class="n">${d.capex[i]}</td><td class="n">${d.save[i]}</td></tr>`).join("");
+ document.getElementById("prjn").textContent=`Budget ${d.budget} kUSD. Choose projects to maximize the annual saving.`}});
+
+S.push({kicker:"Part 3 · Demo", title:"Watch the incumbent rise and the bound fall", dhint:true, html:()=>`<div class="body" style="flex-direction:column;gap:6px"><div class="ctrl"><span>Node</span><input type="range" id="bb" min="1" max="19" step="1" value="1" style="width:420px"><b id="bbv"></b><span id="bbs" style="margin-left:14px"></span></div>
+<div class="panel" style="padding:4px 8px"><div id="ch-tree"></div></div>
+<div class="kpi"><div>Incumbent, kUSD/yr<b class="a" id="bbi"></b></div><div>Best bound<b id="bbb"></b></div><div>Gap<b id="bbg"></b></div><div>Greedy by saving/capital<b id="bbgr"></b></div></div></div>`,
+draw:()=>{const T=R.lecture.tree,sl=document.getElementById("bb");sl.max=T.nodes.length;const up=()=>{const k=+sl.value,nd=T.nodes[k-1];
+ document.getElementById("bbv").textContent=`${k} of ${T.nodes.length}`;document.getElementById("bbs").textContent=`${nd.label||"root"}: ${nd.status}${nd.lp!=null?", LP "+fmt(nd.lp,2):""}`;
+ document.getElementById("bbi").textContent=nd.incumbent==null?"none yet":fmt(nd.incumbent,0);const bd=k===T.nodes.length?T.best:nd.bound;document.getElementById("bbb").textContent=fmt(bd,2);
+ document.getElementById("bbg").textContent=nd.incumbent==null?"–":fmt(100*(bd-nd.incumbent)/nd.incumbent,1)+"%";document.getElementById("bbgr").textContent=`${T.greedy.join(", ")}: ${T.greedy_saving}`;
+ document.getElementById("ch-tree").innerHTML=treePlot(T,k)};sl.oninput=up;up()},
+py:{title:"A textbook branch and bound", sub:"milp_lab.branch_and_bound(): depth first, no cuts", code:
+`from milp_lab import *
+t = project_tree()
+print("nodes", len(t["nodes"]), "best", t["best"], t["chosen"])
+for n in t["nodes"][:6]:
+    print(n.get("label", "root"), n["status"], n["lp"])`,
+out:()=>{const t=R.lecture.tree;return `nodes ${t.nodes.length} best ${t.best} ${JSON.stringify(t.chosen)}\n`+t.nodes.slice(0,6).map(n=>`${n.label||"root"} ${n.status} ${n.lp}`).join("\n")}}});
+
+S.push({kicker:"Part 3 · The certificate", title:"What \"optimal\" means for a MILP", html:()=>`<div class="body"><div class="col w55"><div class="panel"><div class="math" style="font-size:22px;line-height:1.7">
+incumbent (best plan found) ≤ z* ≤ best bound<br>gap = (bound − incumbent) / |incumbent|</div></div>
+<ul class="b xs" style="margin-top:14px"><li>HiGHS stops when the relative gap is at most 10⁻⁴ by default: "optimal" means within 0.01%</li><li>With a time limit, report the incumbent <i>and</i> the bound. A plan without its gap is not a result</li></ul></div>
+<div class="col"><ul class="b xs"><li>The pair (incumbent, bound) is the MILP's certificate, as the primal-dual pair was for an LP in Session 1</li>
+<li>A MILP has no shadow prices. Fix the binaries at their optimal values and solve the LP: its duals are prices <i>for that on/off pattern</i> only</li>
+<li>Equal objective values with different plans are common in MILP. Symmetric units (two identical boilers) multiply them and slow the search</li></ul></div></div>`});
+
+S.push({kicker:"Part 3 · Formulation strength", title:"Same decisions, same optimum, very different bounds", dhint:true, html:()=>`<div class="body"><div class="col w55"><table class="t" id="loc" style="font-size:17px"></table>
+<p class="note" style="font-size:16px">Eight candidate solvent-recovery sites, twenty plants. Aggregated: Σ<sub>j</sub> x<sub>ij</sub> ≤ 20 y<sub>i</sub>. Disaggregated: x<sub>ij</sub> ≤ y<sub>i</sub> for every pair. Both describe exactly the same integer plans.</p></div>
+<div class="col"><div class="panel grow"><div class="chart" id="ch-loc"></div></div></div></div>`,
+draw:()=>{const L=R.lecture.location,a=L.aggregated,d=L.disaggregated;
+ document.getElementById("loc").innerHTML=`<tr><th></th><th class="n">Aggregated</th><th class="n">Disaggregated</th></tr><tr><td>Linking rows</td><td class="n">${a.rows-20}</td><td class="n">${d.rows-20}</td></tr>
+<tr><td>LP bound, USD</td><td class="n">${fmt(a.lp_bound)}</td><td class="n">${fmt(d.lp_bound)}</td></tr><tr><td>MILP optimum, USD</td><td class="n">${fmt(a.optimum)}</td><td class="n">${fmt(d.optimum)}</td></tr>
+<tr><td>Root gap</td><td class="n">${fmt(100*a.root_gap,1)}%</td><td class="n">${fmt(100*d.root_gap,1)}%</td></tr><tr><td>Textbook B&amp;B nodes</td><td class="n">${a.bb_nodes}</td><td class="n">${d.bb_nodes}</td></tr>
+<tr><td>HiGHS nodes</td><td class="n">${a.highs_nodes}</td><td class="n">${d.highs_nodes}</td></tr>`;
+ document.getElementById("ch-loc").innerHTML=mapPlot(L,"disaggregated")},
+py:{title:"Two formulations of one location problem", sub:"milp_lab.location()", code:
+`from milp_lab import *
+L = location()
+for k in ("aggregated", "disaggregated"):
+    v = L[k]
+    print(k, "LP", round(v["lp_bound"]), "opt", round(v["optimum"]),
+          "B&B nodes", v["bb_nodes"], "HiGHS nodes", v["highs_nodes"])`,
+out:()=>["aggregated","disaggregated"].map(k=>{const v=R.lecture.location[k];return `${k} LP ${Math.round(v.lp_bound)} opt ${Math.round(v.optimum)} B&B nodes ${v.bb_nodes} HiGHS nodes ${v.highs_nodes}`}).join("\n")}});
+
+S.push({kicker:"Part 3 · Why", title:"A strong formulation is close to the convex hull", html:()=>`<div class="body"><div class="col w55"><ul class="b sm">
+<li>The ideal formulation of a set of integer plans is its convex hull: then the LP relaxation already has an integer optimum</li>
+<li>Disaggregation, tight M and valid inequalities move a formulation toward the hull; more rows can mean a faster solve</li>
+<li>Solvers add cuts and tighten coefficients themselves. That is why HiGHS needs only a few nodes on the weak form here; on larger models the difference is hours</li></ul></div>
+<div class="col"><div class="panel grow" style="justify-content:center"><p style="font-size:21px;line-height:1.5;margin:0">Judge a MILP formulation by<br><b class="hl">the gap between its LP relaxation and its optimum</b>,<br>not by its number of rows.</p></div></div></div>`});
+
+S.push({kicker:"Break · 10 minutes", title:"Break", html:()=>`<div class="body"><div class="col" style="justify-content:center;align-items:center"><div class="big">10 minutes</div>
+<p style="font-size:22px;color:${C.slate}">Next: the yes/no decisions on your card get binaries</p></div></div>`});
+
+S.push({kicker:"Activity 2 · 10 minutes · alone, then in pairs", title:"Your card with binaries", html:()=>`<div class="body"><div class="col w55"><div class="act"><span class="tag">YOUR LINEARIZED CARD</span>
+<ol style="font-size:20px;line-height:1.45;margin:0;padding-left:26px"><li>Give every yes/no decision a binary variable and say what 1 means</li>
+<li>Write each rule that links them, using the patterns from Part 1</li><li>For every big-M, write down the number and the bound it comes from</li></ol></div></div>
+<div class="col"><ul class="b sm"><li>0–5 min alone; 5–10 min swap with a partner and try to find a feasible plan that the partner's M would cut off</li>
+<li>No card? Use the Lab 1 recycle: should the purge be allowed to close?</li><li>Studying on your own? Write it and keep it for Session 4, where decisions repeat over time</li></ul></div></div>`,
+notes:"Ask one pair to show an M that was too small. It is the most common error in student projects."});
+
+/* Part 4 */
+S.push({kicker:"Part 4 · Unit commitment", title:"Commit boilers for a day", html:()=>`<div class="body"><div class="col w55"><table class="t" style="font-size:17px" id="blr"></table>
+<p class="note">Steam demand varies from 110 to 255 t/h over the day. Committed capacity must cover demand plus a 10% reserve. B1 is on at midnight. All data are synthetic.</p></div>
+<div class="col"><ul class="b xs"><li>Large boilers are cheap per tonne but expensive to keep on and to start</li><li>Small boilers follow the peaks</li>
+<li>The decision each hour: which boilers are on (binary), and how much each one makes (continuous)</li><li>This is the plant of Lab 3</li></ul></div></div>`,
+draw:()=>{const d=R.lab.data;document.getElementById("blr").innerHTML=`<tr><th>Boiler</th><th class="n">Max, t/h</th><th class="n">Min, t/h</th><th class="n">Fuel, USD/t</th><th class="n">On, USD/h</th><th class="n">Start, USD</th></tr>`+
+ d.boilers.map(b=>`<tr><td>${b}</td><td class="n">${d.umax[b]}</td><td class="n">${d.lmin[b]}</td><td class="n">${d.fuel[b]}</td><td class="n">${d.noload[b]}</td><td class="n">${fmt(d.start[b])}</td></tr>`).join("")}});
+
+S.push({kicker:"Part 4 · Formulation", title:"Five rows per boiler-hour, and one decision about integrality", html:()=>`<div class="body"><div class="col w55"><div class="panel"><div class="math" style="font-size:20px;line-height:1.7">
+min Σ<sub>b,t</sub> c<sub>b</sub> x<sub>bt</sub> + F<sub>b</sub> u<sub>bt</sub> + S<sub>b</sub> s<sub>bt</sub><br>
+L<sub>b</sub> u<sub>bt</sub> ≤ x<sub>bt</sub> ≤ U<sub>b</sub> u<sub>bt</sub><br>s<sub>bt</sub> ≥ u<sub>bt</sub> − u<sub>b,t−1</sub>, &nbsp;0 ≤ s<sub>bt</sub> ≤ 1<br>
+Σ<sub>b</sub> x<sub>bt</sub> ≥ D<sub>t</sub>, &nbsp;Σ<sub>b</sub> U<sub>b</sub> u<sub>bt</sub> ≥ 1.1 D<sub>t</sub><br>u<sub>bt</sub> ∈ {0, 1}</div></div></div>
+<div class="col"><ul class="b xs"><li>s need not be declared integer: with u integer and a positive start cost, the optimum sets s to 0 or 1 by itself. Fewer integers, same answer</li>
+<li>Extensions that stay in this form: minimum up and down times, ramp limits, fuel switching</li><li>Four boilers × 24 hours: 96 binaries and 2<sup>96</sup> patterns, solved in well under a second because the relaxation is close and the solver adds cuts</li></ul></div></div>`});
+
+S.push({kicker:"Part 4 · Practice", title:"Five habits for MILP models", html:()=>`<div class="body"><div class="col"><table class="t" style="font-size:18px">
+<tr><th>Habit</th><th>Why</th></tr>
+<tr><td>Write every M with its derivation</td><td>A wrong M changes the answer without any warning</td></tr>
+<tr><td>Solve the LP relaxation first and report the root gap</td><td>It tells you how hard the model will be, before you wait</td></tr>
+<tr><td>Report incumbent, bound and gap</td><td>"Optimal" is a tolerance; a time limit leaves a gap</td></tr>
+<tr><td>Check a small case by enumeration</td><td>It catches logic errors that the solver cannot see</td></tr>
+<tr><td>Break symmetry between identical units</td><td>Equivalent plans multiply the search tree</td></tr></table></div></div>`});
+
+S.push({kicker:"Lab 3 · 40 minutes", title:"Commit four boilers for one day", html:()=>`<div class="body"><div class="col w55"><ul class="b sm">
+<li>Write the load and start-up rows, then solve the LP relaxation and the MILP and compute the root gap</li>
+<li>Replace the tight M by 10,000 and by a value that is too small, and see what changes</li>
+<li>Enumerate the sixteen on/off patterns of one hour and check the solver</li><li>Change the start-up cost and explain how the schedule responds</li></ul></div>
+<div class="col"><div class="panel grow" style="align-items:center;justify-content:center;text-align:center"><div style="width:270px"><svg style="width:100%;height:auto;background:#fff;border-radius:8px" width="45mm" height="45mm" version="1.1" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg"><path d="M2,2H3V3H2zM3,2H4V3H3zM4,2H5V3H4zM5,2H6V3H5zM6,2H7V3H6zM7,2H8V3H7zM8,2H9V3H8zM11,2H12V3H11zM16,2H17V3H16zM17,2H18V3H17zM19,2H20V3H19zM21,2H22V3H21zM25,2H26V3H25zM26,2H27V3H26zM27,2H28V3H27zM28,2H29V3H28zM29,2H30V3H29zM33,2H34V3H33zM34,2H35V3H34zM36,2H37V3H36zM37,2H38V3H37zM38,2H39V3H38zM39,2H40V3H39zM40,2H41V3H40zM41,2H42V3H41zM42,2H43V3H42zM2,3H3V4H2zM8,3H9V4H8zM12,3H13V4H12zM14,3H15V4H14zM18,3H19V4H18zM20,3H21V4H20zM23,3H24V4H23zM24,3H25V4H24zM25,3H26V4H25zM27,3H28V4H27zM28,3H29V4H28zM29,3H30V4H29zM30,3H31V4H30zM31,3H32V4H31zM36,3H37V4H36zM42,3H43V4H42zM2,4H3V5H2zM4,4H5V5H4zM5,4H6V5H5zM6,4H7V5H6zM8,4H9V5H8zM11,4H12V5H11zM12,4H13V5H12zM13,4H14V5H13zM16,4H17V5H16zM20,4H21V5H20zM22,4H23V5H22zM25,4H26V5H25zM26,4H27V5H26zM27,4H28V5H27zM29,4H30V5H29zM30,4H31V5H30zM31,4H32V5H31zM36,4H37V5H36zM38,4H39V5H38zM39,4H40V5H39zM40,4H41V5H40zM42,4H43V5H42zM2,5H3V6H2zM4,5H5V6H4zM5,5H6V6H5zM6,5H7V6H6zM8,5H9V6H8zM13,5H14V6H13zM15,5H16V6H15zM19,5H20V6H19zM20,5H21V6H20zM23,5H24V6H23zM25,5H26V6H25zM27,5H28V6H27zM28,5H29V6H28zM29,5H30V6H29zM30,5H31V6H30zM31,5H32V6H31zM33,5H34V6H33zM34,5H35V6H34zM36,5H37V6H36zM38,5H39V6H38zM39,5H40V6H39zM40,5H41V6H40zM42,5H43V6H42zM2,6H3V7H2zM4,6H5V7H4zM5,6H6V7H5zM6,6H7V7H6zM8,6H9V7H8zM12,6H13V7H12zM13,6H14V7H13zM14,6H15V7H14zM16,6H17V7H16zM17,6H18V7H17zM18,6H19V7H18zM20,6H21V7H20zM24,6H25V7H24zM25,6H26V7H25zM27,6H28V7H27zM28,6H29V7H28zM29,6H30V7H29zM34,6H35V7H34zM36,6H37V7H36zM38,6H39V7H38zM39,6H40V7H39zM40,6H41V7H40zM42,6H43V7H42zM2,7H3V8H2zM8,7H9V8H8zM10,7H11V8H10zM13,7H14V8H13zM16,7H17V8H16zM18,7H19V8H18zM19,7H20V8H19zM21,7H22V8H21zM22,7H23V8H22zM24,7H25V8H24zM26,7H27V8H26zM27,7H28V8H27zM29,7H30V8H29zM31,7H32V8H31zM33,7H34V8H33zM36,7H37V8H36zM42,7H43V8H42zM2,8H3V9H2zM3,8H4V9H3zM4,8H5V9H4zM5,8H6V9H5zM6,8H7V9H6zM7,8H8V9H7zM8,8H9V9H8zM10,8H11V9H10zM12,8H13V9H12zM14,8H15V9H14zM16,8H17V9H16zM18,8H19V9H18zM20,8H21V9H20zM22,8H23V9H22zM24,8H25V9H24zM26,8H27V9H26zM28,8H29V9H28zM30,8H31V9H30zM32,8H33V9H32zM34,8H35V9H34zM36,8H37V9H36zM37,8H38V9H37zM38,8H39V9H38zM39,8H40V9H39zM40,8H41V9H40zM41,8H42V9H41zM42,8H43V9H42zM12,9H13V10H12zM14,9H15V10H14zM19,9H20V10H19zM21,9H22V10H21zM22,9H23V10H22zM23,9H24V10H23zM25,9H26V10H25zM26,9H27V10H26zM31,9H32V10H31zM32,9H33V10H32zM34,9H35V10H34zM2,10H3V11H2zM5,10H6V11H5zM7,10H8V11H7zM8,10H9V11H8zM10,10H11V11H10zM12,10H13V11H12zM14,10H15V11H14zM16,10H17V11H16zM20,10H21V11H20zM21,10H22V11H21zM23,10H24V11H23zM25,10H26V11H25zM26,10H27V11H26zM27,10H28V11H27zM28,10H29V11H28zM33,10H34V11H33zM34,10H35V11H34zM35,10H36V11H35zM37,10H38V11H37zM3,11H4V12H3zM4,11H5V12H4zM5,11H6V12H5zM6,11H7V12H6zM9,11H10V12H9zM10,11H11V12H10zM11,11H12V12H11zM12,11H13V12H12zM15,11H16V12H15zM16,11H17V12H16zM17,11H18V12H17zM19,11H20V12H19zM22,11H23V12H22zM23,11H24V12H23zM26,11H27V12H26zM27,11H28V12H27zM30,11H31V12H30zM31,11H32V12H31zM34,11H35V12H34zM36,11H37V12H36zM37,11H38V12H37zM39,11H40V12H39zM40,11H41V12H40zM41,11H42V12H41zM42,11H43V12H42zM3,12H4V13H3zM5,12H6V13H5zM8,12H9V13H8zM9,12H10V13H9zM11,12H12V13H11zM13,12H14V13H13zM17,12H18V13H17zM18,12H19V13H18zM19,12H20V13H19zM21,12H22V13H21zM26,12H27V13H26zM28,12H29V13H28zM30,12H31V13H30zM31,12H32V13H31zM32,12H33V13H32zM33,12H34V13H33zM35,12H36V13H35zM39,12H40V13H39zM40,12H41V13H40zM41,12H42V13H41zM3,13H4V14H3zM5,13H6V14H5zM6,13H7V14H6zM7,13H8V14H7zM9,13H10V14H9zM11,13H12V14H11zM16,13H17V14H16zM18,13H19V14H18zM20,13H21V14H20zM21,13H22V14H21zM23,13H24V14H23zM24,13H25V14H24zM25,13H26V14H25zM26,13H27V14H26zM27,13H28V14H27zM28,13H29V14H28zM29,13H30V14H29zM35,13H36V14H35zM40,13H41V14H40zM2,14H3V15H2zM5,14H6V15H5zM7,14H8V15H7zM8,14H9V15H8zM9,14H10V15H9zM13,14H14V15H13zM14,14H15V15H14zM15,14H16V15H15zM16,14H17V15H16zM19,14H20V15H19zM20,14H21V15H20zM23,14H24V15H23zM25,14H26V15H25zM26,14H27V15H26zM27,14H28V15H27zM28,14H29V15H28zM31,14H32V15H31zM32,14H33V15H32zM33,14H34V15H33zM34,14H35V15H34zM35,14H36V15H35zM36,14H37V15H36zM37,14H38V15H37zM39,14H40V15H39zM42,14H43V15H42zM4,15H5V16H4zM5,15H6V16H5zM6,15H7V16H6zM10,15H11V16H10zM11,15H12V16H11zM13,15H14V16H13zM15,15H16V16H15zM17,15H18V16H17zM19,15H20V16H19zM23,15H24V16H23zM24,15H25V16H24zM25,15H26V16H25zM26,15H27V16H26zM28,15H29V16H28zM29,15H30V16H29zM30,15H31V16H30zM31,15H32V16H31zM32,15H33V16H32zM34,15H35V16H34zM35,15H36V16H35zM39,15H40V16H39zM40,15H41V16H40zM2,16H3V17H2zM3,16H4V17H3zM4,16H5V17H4zM8,16H9V17H8zM9,16H10V17H9zM11,16H12V17H11zM14,16H15V17H14zM16,16H17V17H16zM17,16H18V17H17zM19,16H20V17H19zM20,16H21V17H20zM22,16H23V17H22zM23,16H24V17H23zM24,16H25V17H24zM26,16H27V17H26zM32,16H33V17H32zM33,16H34V17H33zM36,16H37V17H36zM38,16H39V17H38zM39,16H40V17H39zM40,16H41V17H40zM42,16H43V17H42zM2,17H3V18H2zM4,17H5V18H4zM12,17H13V18H12zM13,17H14V18H13zM14,17H15V18H14zM15,17H16V18H15zM16,17H17V18H16zM18,17H19V18H18zM19,17H20V18H19zM21,17H22V18H21zM23,17H24V18H23zM24,17H25V18H24zM26,17H27V18H26zM27,17H28V18H27zM28,17H29V18H28zM29,17H30V18H29zM31,17H32V18H31zM34,17H35V18H34zM36,17H37V18H36zM3,18H4V19H3zM4,18H5V19H4zM6,18H7V19H6zM7,18H8V19H7zM8,18H9V19H8zM13,18H14V19H13zM15,18H16V19H15zM18,18H19V19H18zM19,18H20V19H19zM20,18H21V19H20zM21,18H22V19H21zM22,18H23V19H22zM23,18H24V19H23zM25,18H26V19H25zM30,18H31V19H30zM31,18H32V19H31zM32,18H33V19H32zM37,18H38V19H37zM39,18H40V19H39zM3,19H4V20H3zM5,19H6V20H5zM7,19H8V20H7zM9,19H10V20H9zM12,19H13V20H12zM17,19H18V20H17zM18,19H19V20H18zM25,19H26V20H25zM27,19H28V20H27zM28,19H29V20H28zM30,19H31V20H30zM31,19H32V20H31zM32,19H33V20H32zM34,19H35V20H34zM36,19H37V20H36zM37,19H38V20H37zM39,19H40V20H39zM40,19H41V20H40zM41,19H42V20H41zM42,19H43V20H42zM2,20H3V21H2zM3,20H4V21H3zM4,20H5V21H4zM7,20H8V21H7zM8,20H9V21H8zM9,20H10V21H9zM10,20H11V21H10zM11,20H12V21H11zM13,20H14V21H13zM14,20H15V21H14zM17,20H18V21H17zM18,20H19V21H18zM20,20H21V21H20zM23,20H24V21H23zM28,20H29V21H28zM30,20H31V21H30zM31,20H32V21H31zM34,20H35V21H34zM36,20H37V21H36zM38,20H39V21H38zM40,20H41V21H40zM42,20H43V21H42zM2,21H3V22H2zM5,21H6V22H5zM6,21H7V22H6zM7,21H8V22H7zM9,21H10V22H9zM10,21H11V22H10zM11,21H12V22H11zM12,21H13V22H12zM13,21H14V22H13zM14,21H15V22H14zM15,21H16V22H15zM16,21H17V22H16zM19,21H20V22H19zM20,21H21V22H20zM24,21H25V22H24zM26,21H27V22H26zM28,21H29V22H28zM29,21H30V22H29zM33,21H34V22H33zM35,21H36V22H35zM37,21H38V22H37zM3,22H4V23H3zM4,22H5V23H4zM6,22H7V23H6zM7,22H8V23H7zM8,22H9V23H8zM10,22H11V23H10zM11,22H12V23H11zM12,22H13V23H12zM13,22H14V23H13zM16,22H17V23H16zM17,22H18V23H17zM18,22H19V23H18zM19,22H20V23H19zM20,22H21V23H20zM21,22H22V23H21zM26,22H27V23H26zM31,22H32V23H31zM35,22H36V23H35zM36,22H37V23H36zM39,22H40V23H39zM40,22H41V23H40zM41,22H42V23H41zM6,23H7V24H6zM7,23H8V24H7zM10,23H11V24H10zM13,23H14V24H13zM14,23H15V24H14zM17,23H18V24H17zM18,23H19V24H18zM20,23H21V24H20zM22,23H23V24H22zM26,23H27V24H26zM28,23H29V24H28zM36,23H37V24H36zM39,23H40V24H39zM41,23H42V24H41zM42,23H43V24H42zM3,24H4V25H3zM4,24H5V25H4zM6,24H7V25H6zM7,24H8V25H7zM8,24H9V25H8zM10,24H11V25H10zM12,24H13V25H12zM15,24H16V25H15zM19,24H20V25H19zM21,24H22V25H21zM26,24H27V25H26zM27,24H28V25H27zM28,24H29V25H28zM30,24H31V25H30zM31,24H32V25H31zM33,24H34V25H33zM38,24H39V25H38zM39,24H40V25H39zM41,24H42V25H41zM2,25H3V26H2zM3,25H4V26H3zM5,25H6V26H5zM6,25H7V26H6zM21,25H22V26H21zM22,25H23V26H22zM23,25H24V26H23zM24,25H25V26H24zM26,25H27V26H26zM27,25H28V26H27zM28,25H29V26H28zM29,25H30V26H29zM30,25H31V26H30zM32,25H33V26H32zM33,25H34V26H33zM36,25H37V26H36zM38,25H39V26H38zM39,25H40V26H39zM40,25H41V26H40zM42,25H43V26H42zM3,26H4V27H3zM6,26H7V27H6zM8,26H9V27H8zM9,26H10V27H9zM10,26H11V27H10zM11,26H12V27H11zM15,26H16V27H15zM17,26H18V27H17zM19,26H20V27H19zM21,26H22V27H21zM23,26H24V27H23zM26,26H27V27H26zM27,26H28V27H27zM30,26H31V27H30zM31,26H32V27H31zM34,26H35V27H34zM36,26H37V27H36zM37,26H38V27H37zM41,26H42V27H41zM42,26H43V27H42zM2,27H3V28H2zM4,27H5V28H4zM5,27H6V28H5zM6,27H7V28H6zM12,27H13V28H12zM16,27H17V28H16zM18,27H19V28H18zM21,27H22V28H21zM22,27H23V28H22zM23,27H24V28H23zM31,27H32V28H31zM33,27H34V28H33zM35,27H36V28H35zM37,27H38V28H37zM39,27H40V28H39zM41,27H42V28H41zM4,28H5V29H4zM7,28H8V29H7zM8,28H9V29H8zM10,28H11V29H10zM12,28H13V29H12zM15,28H16V29H15zM16,28H17V29H16zM17,28H18V29H17zM23,28H24V29H23zM24,28H25V29H24zM25,28H26V29H25zM26,28H27V29H26zM27,28H28V29H27zM30,28H31V29H30zM31,28H32V29H31zM32,28H33V29H32zM34,28H35V29H34zM35,28H36V29H35zM37,28H38V29H37zM41,28H42V29H41zM42,28H43V29H42zM3,29H4V30H3zM4,29H5V30H4zM5,29H6V30H5zM6,29H7V30H6zM7,29H8V30H7zM9,29H10V30H9zM13,29H14V30H13zM15,29H16V30H15zM17,29H18V30H17zM19,29H20V30H19zM20,29H21V30H20zM21,29H22V30H21zM23,29H24V30H23zM24,29H25V30H24zM25,29H26V30H25zM27,29H28V30H27zM28,29H29V30H28zM31,29H32V30H31zM32,29H33V30H32zM34,29H35V30H34zM41,29H42V30H41zM3,30H4V31H3zM4,30H5V31H4zM7,30H8V31H7zM8,30H9V31H8zM11,30H12V31H11zM12,30H13V31H12zM16,30H17V31H16zM17,30H18V31H17zM19,30H20V31H19zM20,30H21V31H20zM22,30H23V31H22zM23,30H24V31H23zM24,30H25V31H24zM28,30H29V31H28zM31,30H32V31H31zM32,30H33V31H32zM34,30H35V31H34zM35,30H36V31H35zM37,30H38V31H37zM41,30H42V31H41zM42,30H43V31H42zM3,31H4V32H3zM6,31H7V32H6zM7,31H8V32H7zM9,31H10V32H9zM13,31H14V32H13zM14,31H15V32H14zM17,31H18V32H17zM18,31H19V32H18zM19,31H20V32H19zM20,31H21V32H20zM21,31H22V32H21zM27,31H28V32H27zM28,31H29V32H28zM29,31H30V32H29zM30,31H31V32H30zM32,31H33V32H32zM33,31H34V32H33zM34,31H35V32H34zM35,31H36V32H35zM36,31H37V32H36zM37,31H38V32H37zM39,31H40V32H39zM40,31H41V32H40zM42,31H43V32H42zM2,32H3V33H2zM4,32H5V33H4zM5,32H6V33H5zM6,32H7V33H6zM8,32H9V33H8zM9,32H10V33H9zM10,32H11V33H10zM11,32H12V33H11zM12,32H13V33H12zM13,32H14V33H13zM16,32H17V33H16zM17,32H18V33H17zM19,32H20V33H19zM21,32H22V33H21zM22,32H23V33H22zM27,32H28V33H27zM29,32H30V33H29zM30,32H31V33H30zM31,32H32V33H31zM34,32H35V33H34zM37,32H38V33H37zM39,32H40V33H39zM42,32H43V33H42zM5,33H6V34H5zM7,33H8V34H7zM9,33H10V34H9zM10,33H11V34H10zM11,33H12V34H11zM12,33H13V34H12zM13,33H14V34H13zM14,33H15V34H14zM15,33H16V34H15zM19,33H20V34H19zM20,33H21V34H20zM21,33H22V34H21zM22,33H23V34H22zM23,33H24V34H23zM25,33H26V34H25zM31,33H32V34H31zM32,33H33V34H32zM34,33H35V34H34zM35,33H36V34H35zM38,33H39V34H38zM39,33H40V34H39zM41,33H42V34H41zM2,34H3V35H2zM4,34H5V35H4zM5,34H6V35H5zM6,34H7V35H6zM8,34H9V35H8zM9,34H10V35H9zM12,34H13V35H12zM16,34H17V35H16zM17,34H18V35H17zM18,34H19V35H18zM21,34H22V35H21zM23,34H24V35H23zM25,34H26V35H25zM26,34H27V35H26zM27,34H28V35H27zM28,34H29V35H28zM29,34H30V35H29zM30,34H31V35H30zM32,34H33V35H32zM33,34H34V35H33zM34,34H35V35H34zM35,34H36V35H35zM36,34H37V35H36zM37,34H38V35H37zM38,34H39V35H38zM40,34H41V35H40zM42,34H43V35H42zM10,35H11V36H10zM13,35H14V36H13zM15,35H16V36H15zM16,35H17V36H16zM18,35H19V36H18zM22,35H23V36H22zM23,35H24V36H23zM28,35H29V36H28zM30,35H31V36H30zM31,35H32V36H31zM34,35H35V36H34zM38,35H39V36H38zM41,35H42V36H41zM42,35H43V36H42zM2,36H3V37H2zM3,36H4V37H3zM4,36H5V37H4zM5,36H6V37H5zM6,36H7V37H6zM7,36H8V37H7zM8,36H9V37H8zM14,36H15V37H14zM16,36H17V37H16zM18,36H19V37H18zM19,36H20V37H19zM21,36H22V37H21zM26,36H27V37H26zM30,36H31V37H30zM32,36H33V37H32zM34,36H35V37H34zM36,36H37V37H36zM38,36H39V37H38zM40,36H41V37H40zM41,36H42V37H41zM2,37H3V38H2zM8,37H9V38H8zM10,37H11V38H10zM11,37H12V38H11zM13,37H14V38H13zM14,37H15V38H14zM19,37H20V38H19zM21,37H22V38H21zM23,37H24V38H23zM24,37H25V38H24zM26,37H27V38H26zM28,37H29V38H28zM29,37H30V38H29zM30,37H31V38H30zM32,37H33V38H32zM33,37H34V38H33zM34,37H35V38H34zM38,37H39V38H38zM39,37H40V38H39zM40,37H41V38H40zM2,38H3V39H2zM4,38H5V39H4zM5,38H6V39H5zM6,38H7V39H6zM8,38H9V39H8zM11,38H12V39H11zM14,38H15V39H14zM17,38H18V39H17zM21,38H22V39H21zM22,38H23V39H22zM24,38H25V39H24zM29,38H30V39H29zM32,38H33V39H32zM34,38H35V39H34zM35,38H36V39H35zM36,38H37V39H36zM37,38H38V39H37zM38,38H39V39H38zM39,38H40V39H39zM2,39H3V40H2zM4,39H5V40H4zM5,39H6V40H5zM6,39H7V40H6zM8,39H9V40H8zM10,39H11V40H10zM11,39H12V40H11zM12,39H13V40H12zM14,39H15V40H14zM15,39H16V40H15zM17,39H18V40H17zM21,39H22V40H21zM22,39H23V40H22zM23,39H24V40H23zM26,39H27V40H26zM30,39H31V40H30zM32,39H33V40H32zM33,39H34V40H33zM34,39H35V40H34zM35,39H36V40H35zM36,39H37V40H36zM38,39H39V40H38zM39,39H40V40H39zM40,39H41V40H40zM42,39H43V40H42zM2,40H3V41H2zM4,40H5V41H4zM5,40H6V41H5zM6,40H7V41H6zM8,40H9V41H8zM11,40H12V41H11zM15,40H16V41H15zM17,40H18V41H17zM19,40H20V41H19zM20,40H21V41H20zM25,40H26V41H25zM28,40H29V41H28zM30,40H31V41H30zM33,40H34V41H33zM34,40H35V41H34zM38,40H39V41H38zM40,40H41V41H40zM41,40H42V41H41zM42,40H43V41H42zM2,41H3V42H2zM8,41H9V42H8zM11,41H12V42H11zM16,41H17V42H16zM17,41H18V42H17zM21,41H22V42H21zM23,41H24V42H23zM26,41H27V42H26zM27,41H28V42H27zM28,41H29V42H28zM29,41H30V42H29zM31,41H32V42H31zM32,41H33V42H32zM33,41H34V42H33zM34,41H35V42H34zM35,41H36V42H35zM37,41H38V42H37zM41,41H42V42H41zM2,42H3V43H2zM3,42H4V43H3zM4,42H5V43H4zM5,42H6V43H5zM6,42H7V43H6zM7,42H8V43H7zM8,42H9V43H8zM10,42H11V43H10zM12,42H13V43H12zM13,42H14V43H13zM15,42H16V43H15zM17,42H18V43H17zM20,42H21V43H20zM22,42H23V43H22zM23,42H24V43H23zM24,42H25V43H24zM25,42H26V43H25zM30,42H31V43H30zM31,42H32V43H31zM34,42H35V43H34zM35,42H36V43H35zM36,42H37V43H36zM37,42H38V43H37zM38,42H39V43H38zM39,42H40V43H39zM41,42H42V43H41z" id="qr-path" fill="#000000" fill-opacity="1" fill-rule="nonzero" stroke="none"/></svg></div><a href="lab.html" target="_blank" rel="noopener" style="color:${C.teal};font-size:18px;margin-top:10px">Open the lab page</a></div></div></div>`,
+notes:"Students who finish early: add a minimum up time of four hours for B1 and B2."});
+
+S.push({kicker:"Summary", title:"What to take from today", html:()=>`<div class="body"><div class="col w45"><table class="t" style="font-size:17px" id="sumt"></table></div>
+<div class="col"><ul class="b xs"><li>Binary variables turn plant rules into linear inequalities: fixed charge, minimum load, implication, at most k, either-or, start-up</li>
+<li>Every M must be valid, and should be as small as the model can prove</li><li>The LP relaxation is a bound; branch and bound closes the gap; the gap is the certificate</li>
+<li>Judge formulations by their root gap; disaggregation and tight M move toward the convex hull</li></ul></div></div>`,
+draw:()=>{const L=R.lecture;document.getElementById("sumt").innerHTML=`<tr><th>Quantity</th><th class="n">Value</th></tr><tr><td>Discount with one binary</td><td class="n">${fmt(L.discount.milp.margin)} USD/d</td></tr>
+<tr><td>Fixed charge, root gap at M = 30 and 1,000</td><td class="n">0%, ${fmt(100*L.fixed_charge.cases[9].gap,1)}%</td></tr><tr><td>Project tree</td><td class="n">${L.tree.nodes.length} nodes, best ${L.tree.best}</td></tr>
+<tr><td>Location root gap, aggregated</td><td class="n">${fmt(100*L.location.aggregated.root_gap,1)}%</td></tr><tr><td>Location root gap, disaggregated</td><td class="n">${fmt(100*L.location.disaggregated.root_gap,1)}%</td></tr>`}});
+
+S.push({kicker:"Before Session 4", title:"Before we meet again", html:()=>`<div class="body"><div class="col"><ul class="b sm">
+<li>Finish Lab 3 if you did not finish in class</li><li>Keep your card with binaries; Session 4 repeats decisions over time and links them through inventory</li>
+<li>Read Williams, <i>Model Building in Mathematical Programming</i>, Chapter 10 (building integer programming models II) and Section 12.1 (food manufacture)</li>
+<li>Optional: add a minimum up time to the boiler model and see how the schedule changes</li></ul></div></div>`});
+
+S.push({kicker:"Exit Ticket and feedback · 5 minutes", title:"Exit Ticket and feedback", html:()=>`<div class="body"><div class="col w55"><ul class="b sm">
+<li>Scan the code and choose <b>Session 3</b></li><li>Exit Ticket: paste the answers that the lab page copies for you</li>
+<li>Feedback: pace, confidence, how far you got in the lab, and what is still unclear</li><li>Studying on your own? Choose "On my own"</li></ul>
+<p class="note">One form for both. Anonymous; no name or student ID.</p></div>
+<div class="col"><div class="panel grow" style="align-items:center;justify-content:center;text-align:center"><div style="width:270px"><svg style="width:100%;height:auto;background:#fff;border-radius:8px" width="41mm" height="41mm" version="1.1" viewBox="0 0 41 41" xmlns="http://www.w3.org/2000/svg"><path d="M2,2H3V3H2zM3,2H4V3H3zM4,2H5V3H4zM5,2H6V3H5zM6,2H7V3H6zM7,2H8V3H7zM8,2H9V3H8zM11,2H12V3H11zM13,2H14V3H13zM14,2H15V3H14zM17,2H18V3H17zM18,2H19V3H18zM20,2H21V3H20zM22,2H23V3H22zM25,2H26V3H25zM28,2H29V3H28zM32,2H33V3H32zM33,2H34V3H33zM34,2H35V3H34zM35,2H36V3H35zM36,2H37V3H36zM37,2H38V3H37zM38,2H39V3H38zM2,3H3V4H2zM8,3H9V4H8zM14,3H15V4H14zM16,3H17V4H16zM17,3H18V4H17zM21,3H22V4H21zM24,3H25V4H24zM26,3H27V4H26zM28,3H29V4H28zM29,3H30V4H29zM32,3H33V4H32zM38,3H39V4H38zM2,4H3V5H2zM4,4H5V5H4zM5,4H6V5H5zM6,4H7V5H6zM8,4H9V5H8zM10,4H11V5H10zM11,4H12V5H11zM12,4H13V5H12zM15,4H16V5H15zM17,4H18V5H17zM21,4H22V5H21zM22,4H23V5H22zM23,4H24V5H23zM28,4H29V5H28zM32,4H33V5H32zM34,4H35V5H34zM35,4H36V5H35zM36,4H37V5H36zM38,4H39V5H38zM2,5H3V6H2zM4,5H5V6H4zM5,5H6V6H5zM6,5H7V6H6zM8,5H9V6H8zM10,5H11V6H10zM17,5H18V6H17zM18,5H19V6H18zM19,5H20V6H19zM20,5H21V6H20zM21,5H22V6H21zM24,5H25V6H24zM26,5H27V6H26zM27,5H28V6H27zM28,5H29V6H28zM29,5H30V6H29zM32,5H33V6H32zM34,5H35V6H34zM35,5H36V6H35zM36,5H37V6H36zM38,5H39V6H38zM2,6H3V7H2zM4,6H5V7H4zM5,6H6V7H5zM6,6H7V7H6zM8,6H9V7H8zM10,6H11V7H10zM11,6H12V7H11zM12,6H13V7H12zM13,6H14V7H13zM15,6H16V7H15zM16,6H17V7H16zM17,6H18V7H17zM18,6H19V7H18zM20,6H21V7H20zM21,6H22V7H21zM22,6H23V7H22zM25,6H26V7H25zM26,6H27V7H26zM28,6H29V7H28zM30,6H31V7H30zM32,6H33V7H32zM34,6H35V7H34zM35,6H36V7H35zM36,6H37V7H36zM38,6H39V7H38zM2,7H3V8H2zM8,7H9V8H8zM10,7H11V8H10zM14,7H15V8H14zM15,7H16V8H15zM16,7H17V8H16zM17,7H18V8H17zM20,7H21V8H20zM22,7H23V8H22zM23,7H24V8H23zM24,7H25V8H24zM26,7H27V8H26zM27,7H28V8H27zM29,7H30V8H29zM32,7H33V8H32zM38,7H39V8H38zM2,8H3V9H2zM3,8H4V9H3zM4,8H5V9H4zM5,8H6V9H5zM6,8H7V9H6zM7,8H8V9H7zM8,8H9V9H8zM10,8H11V9H10zM12,8H13V9H12zM14,8H15V9H14zM16,8H17V9H16zM18,8H19V9H18zM20,8H21V9H20zM22,8H23V9H22zM24,8H25V9H24zM26,8H27V9H26zM28,8H29V9H28zM30,8H31V9H30zM32,8H33V9H32zM33,8H34V9H33zM34,8H35V9H34zM35,8H36V9H35zM36,8H37V9H36zM37,8H38V9H37zM38,8H39V9H38zM10,9H11V10H10zM11,9H12V10H11zM12,9H13V10H12zM13,9H14V10H13zM15,9H16V10H15zM17,9H18V10H17zM21,9H22V10H21zM23,9H24V10H23zM24,9H25V10H24zM25,9H26V10H25zM26,9H27V10H26zM28,9H29V10H28zM29,9H30V10H29zM2,10H3V11H2zM4,10H5V11H4zM5,10H6V11H5zM6,10H7V11H6zM7,10H8V11H7zM8,10H9V11H8zM11,10H12V11H11zM12,10H13V11H12zM13,10H14V11H13zM15,10H16V11H15zM16,10H17V11H16zM17,10H18V11H17zM20,10H21V11H20zM22,10H23V11H22zM24,10H25V11H24zM27,10H28V11H27zM30,10H31V11H30zM32,10H33V11H32zM33,10H34V11H33zM34,10H35V11H34zM35,10H36V11H35zM36,10H37V11H36zM2,11H3V12H2zM3,11H4V12H3zM4,11H5V12H4zM5,11H6V12H5zM9,11H10V12H9zM10,11H11V12H10zM11,11H12V12H11zM12,11H13V12H12zM13,11H14V12H13zM15,11H16V12H15zM16,11H17V12H16zM17,11H18V12H17zM18,11H19V12H18zM19,11H20V12H19zM25,11H26V12H25zM37,11H38V12H37zM4,12H5V13H4zM6,12H7V13H6zM7,12H8V13H7zM8,12H9V13H8zM10,12H11V13H10zM12,12H13V13H12zM15,12H16V13H15zM16,12H17V13H16zM22,12H23V13H22zM23,12H24V13H23zM26,12H27V13H26zM29,12H30V13H29zM32,12H33V13H32zM33,12H34V13H33zM34,12H35V13H34zM37,12H38V13H37zM38,12H39V13H38zM5,13H6V14H5zM9,13H10V14H9zM10,13H11V14H10zM12,13H13V14H12zM15,13H16V14H15zM18,13H19V14H18zM23,13H24V14H23zM24,13H25V14H24zM26,13H27V14H26zM30,13H31V14H30zM31,13H32V14H31zM33,13H34V14H33zM38,13H39V14H38zM3,14H4V15H3zM4,14H5V15H4zM6,14H7V15H6zM7,14H8V15H7zM8,14H9V15H8zM9,14H10V15H9zM10,14H11V15H10zM13,14H14V15H13zM15,14H16V15H15zM18,14H19V15H18zM19,14H20V15H19zM20,14H21V15H20zM22,14H23V15H22zM24,14H25V15H24zM25,14H26V15H25zM26,14H27V15H26zM27,14H28V15H27zM29,14H30V15H29zM31,14H32V15H31zM32,14H33V15H32zM33,14H34V15H33zM34,14H35V15H34zM35,14H36V15H35zM36,14H37V15H36zM37,14H38V15H37zM38,14H39V15H38zM4,15H5V16H4zM6,15H7V16H6zM12,15H13V16H12zM13,15H14V16H13zM15,15H16V16H15zM19,15H20V16H19zM21,15H22V16H21zM22,15H23V16H22zM25,15H26V16H25zM27,15H28V16H27zM30,15H31V16H30zM33,15H34V16H33zM2,16H3V17H2zM4,16H5V17H4zM5,16H6V17H5zM6,16H7V17H6zM8,16H9V17H8zM11,16H12V17H11zM13,16H14V17H13zM14,16H15V17H14zM16,16H17V17H16zM17,16H18V17H17zM19,16H20V17H19zM23,16H24V17H23zM24,16H25V17H24zM27,16H28V17H27zM28,16H29V17H28zM29,16H30V17H29zM31,16H32V17H31zM33,16H34V17H33zM34,16H35V17H34zM35,16H36V17H35zM37,16H38V17H37zM38,16H39V17H38zM2,17H3V18H2zM3,17H4V18H3zM4,17H5V18H4zM7,17H8V18H7zM9,17H10V18H9zM10,17H11V18H10zM11,17H12V18H11zM12,17H13V18H12zM13,17H14V18H13zM15,17H16V18H15zM16,17H17V18H16zM19,17H20V18H19zM20,17H21V18H20zM21,17H22V18H21zM23,17H24V18H23zM28,17H29V18H28zM29,17H30V18H29zM30,17H31V18H30zM31,17H32V18H31zM33,17H34V18H33zM34,17H35V18H34zM38,17H39V18H38zM2,18H3V19H2zM4,18H5V19H4zM5,18H6V19H5zM7,18H8V19H7zM8,18H9V19H8zM9,18H10V19H9zM10,18H11V19H10zM11,18H12V19H11zM12,18H13V19H12zM17,18H18V19H17zM18,18H19V19H18zM26,18H27V19H26zM27,18H28V19H27zM28,18H29V19H28zM29,18H30V19H29zM30,18H31V19H30zM32,18H33V19H32zM34,18H35V19H34zM36,18H37V19H36zM37,18H38V19H37zM38,18H39V19H38zM3,19H4V20H3zM5,19H6V20H5zM7,19H8V20H7zM9,19H10V20H9zM12,19H13V20H12zM13,19H14V20H13zM16,19H17V20H16zM17,19H18V20H17zM20,19H21V20H20zM22,19H23V20H22zM24,19H25V20H24zM25,19H26V20H25zM27,19H28V20H27zM31,19H32V20H31zM33,19H34V20H33zM35,19H36V20H35zM37,19H38V20H37zM2,20H3V21H2zM3,20H4V21H3zM5,20H6V21H5zM6,20H7V21H6zM8,20H9V21H8zM16,20H17V21H16zM17,20H18V21H17zM18,20H19V21H18zM19,20H20V21H19zM20,20H21V21H20zM21,20H22V21H21zM24,20H25V21H24zM26,20H27V21H26zM27,20H28V21H27zM28,20H29V21H28zM29,20H30V21H29zM30,20H31V21H30zM31,20H32V21H31zM34,20H35V21H34zM37,20H38V21H37zM38,20H39V21H38zM3,21H4V22H3zM6,21H7V22H6zM7,21H8V22H7zM9,21H10V22H9zM16,21H17V22H16zM17,21H18V22H17zM20,21H21V22H20zM21,21H22V22H21zM22,21H23V22H22zM23,21H24V22H23zM24,21H25V22H24zM25,21H26V22H25zM29,21H30V22H29zM30,21H31V22H30zM31,21H32V22H31zM33,21H34V22H33zM34,21H35V22H34zM38,21H39V22H38zM2,22H3V23H2zM4,22H5V23H4zM5,22H6V23H5zM7,22H8V23H7zM8,22H9V23H8zM9,22H10V23H9zM10,22H11V23H10zM13,22H14V23H13zM14,22H15V23H14zM15,22H16V23H15zM17,22H18V23H17zM18,22H19V23H18zM19,22H20V23H19zM20,22H21V23H20zM21,22H22V23H21zM22,22H23V23H22zM25,22H26V23H25zM27,22H28V23H27zM28,22H29V23H28zM29,22H30V23H29zM30,22H31V23H30zM31,22H32V23H31zM32,22H33V23H32zM34,22H35V23H34zM35,22H36V23H35zM36,22H37V23H36zM3,23H4V24H3zM5,23H6V24H5zM16,23H17V24H16zM21,23H22V24H21zM22,23H23V24H22zM25,23H26V24H25zM30,23H31V24H30zM35,23H36V24H35zM37,23H38V24H37zM2,24H3V25H2zM6,24H7V25H6zM7,24H8V25H7zM8,24H9V25H8zM9,24H10V25H9zM10,24H11V25H10zM11,24H12V25H11zM14,24H15V25H14zM15,24H16V25H15zM16,24H17V25H16zM17,24H18V25H17zM20,24H21V25H20zM22,24H23V25H22zM24,24H25V25H24zM26,24H27V25H26zM28,24H29V25H28zM29,24H30V25H29zM30,24H31V25H30zM32,24H33V25H32zM33,24H34V25H33zM34,24H35V25H34zM35,24H36V25H35zM37,24H38V25H37zM38,24H39V25H38zM2,25H3V26H2zM3,25H4V26H3zM4,25H5V26H4zM6,25H7V26H6zM10,25H11V26H10zM11,25H12V26H11zM12,25H13V26H12zM14,25H15V26H14zM16,25H17V26H16zM18,25H19V26H18zM22,25H23V26H22zM23,25H24V26H23zM24,25H25V26H24zM26,25H27V26H26zM28,25H29V26H28zM29,25H30V26H29zM33,25H34V26H33zM34,25H35V26H34zM37,25H38V26H37zM4,26H5V27H4zM7,26H8V27H7zM8,26H9V27H8zM9,26H10V27H9zM10,26H11V27H10zM11,26H12V27H11zM12,26H13V27H12zM15,26H16V27H15zM16,26H17V27H16zM17,26H18V27H17zM20,26H21V27H20zM24,26H25V27H24zM25,26H26V27H25zM26,26H27V27H26zM27,26H28V27H27zM28,26H29V27H28zM29,26H30V27H29zM30,26H31V27H30zM32,26H33V27H32zM34,26H35V27H34zM36,26H37V27H36zM37,26H38V27H37zM2,27H3V28H2zM3,27H4V28H3zM5,27H6V28H5zM6,27H7V28H6zM11,27H12V28H11zM15,27H16V28H15zM17,27H18V28H17zM18,27H19V28H18zM24,27H25V28H24zM25,27H26V28H25zM26,27H27V28H26zM28,27H29V28H28zM31,27H32V28H31zM33,27H34V28H33zM35,27H36V28H35zM2,28H3V29H2zM6,28H7V29H6zM8,28H9V29H8zM10,28H11V29H10zM11,28H12V29H11zM15,28H16V29H15zM20,28H21V29H20zM22,28H23V29H22zM24,28H25V29H24zM26,28H27V29H26zM27,28H28V29H27zM28,28H29V29H28zM29,28H30V29H29zM31,28H32V29H31zM33,28H34V29H33zM36,28H37V29H36zM37,28H38V29H37zM38,28H39V29H38zM2,29H3V30H2zM4,29H5V30H4zM7,29H8V30H7zM9,29H10V30H9zM12,29H13V30H12zM15,29H16V30H15zM16,29H17V30H16zM18,29H19V30H18zM21,29H22V30H21zM23,29H24V30H23zM24,29H25V30H24zM28,29H29V30H28zM29,29H30V30H29zM31,29H32V30H31zM34,29H35V30H34zM37,29H38V30H37zM38,29H39V30H38zM2,30H3V31H2zM5,30H6V31H5zM7,30H8V31H7zM8,30H9V31H8zM9,30H10V31H9zM10,30H11V31H10zM11,30H12V31H11zM12,30H13V31H12zM13,30H14V31H13zM14,30H15V31H14zM15,30H16V31H15zM16,30H17V31H16zM18,30H19V31H18zM19,30H20V31H19zM20,30H21V31H20zM22,30H23V31H22zM24,30H25V31H24zM26,30H27V31H26zM27,30H28V31H27zM28,30H29V31H28zM29,30H30V31H29zM30,30H31V31H30zM31,30H32V31H31zM32,30H33V31H32zM33,30H34V31H33zM34,30H35V31H34zM35,30H36V31H35zM36,30H37V31H36zM10,31H11V32H10zM11,31H12V32H11zM12,31H13V32H12zM15,31H16V32H15zM19,31H20V32H19zM21,31H22V32H21zM22,31H23V32H22zM23,31H24V32H23zM25,31H26V32H25zM27,31H28V32H27zM29,31H30V32H29zM30,31H31V32H30zM34,31H35V32H34zM35,31H36V32H35zM2,32H3V33H2zM3,32H4V33H3zM4,32H5V33H4zM5,32H6V33H5zM6,32H7V33H6zM7,32H8V33H7zM8,32H9V33H8zM12,32H13V33H12zM13,32H14V33H13zM14,32H15V33H14zM16,32H17V33H16zM17,32H18V33H17zM18,32H19V33H18zM19,32H20V33H19zM22,32H23V33H22zM26,32H27V33H26zM30,32H31V33H30zM32,32H33V33H32zM34,32H35V33H34zM36,32H37V33H36zM38,32H39V33H38zM2,33H3V34H2zM8,33H9V34H8zM10,33H11V34H10zM13,33H14V34H13zM14,33H15V34H14zM15,33H16V34H15zM16,33H17V34H16zM17,33H18V34H17zM18,33H19V34H18zM19,33H20V34H19zM20,33H21V34H20zM21,33H22V34H21zM22,33H23V34H22zM23,33H24V34H23zM24,33H25V34H24zM30,33H31V34H30zM34,33H35V34H34zM35,33H36V34H35zM37,33H38V34H37zM2,34H3V35H2zM4,34H5V35H4zM5,34H6V35H5zM6,34H7V35H6zM8,34H9V35H8zM10,34H11V35H10zM11,34H12V35H11zM12,34H13V35H12zM14,34H15V35H14zM16,34H17V35H16zM17,34H18V35H17zM18,34H19V35H18zM21,34H22V35H21zM22,34H23V35H22zM27,34H28V35H27zM28,34H29V35H28zM29,34H30V35H29zM30,34H31V35H30zM31,34H32V35H31zM32,34H33V35H32zM33,34H34V35H33zM34,34H35V35H34zM36,34H37V35H36zM38,34H39V35H38zM2,35H3V36H2zM4,35H5V36H4zM5,35H6V36H5zM6,35H7V36H6zM8,35H9V36H8zM10,35H11V36H10zM11,35H12V36H11zM12,35H13V36H12zM15,35H16V36H15zM16,35H17V36H16zM17,35H18V36H17zM20,35H21V36H20zM21,35H22V36H21zM23,35H24V36H23zM24,35H25V36H24zM25,35H26V36H25zM27,35H28V36H27zM29,35H30V36H29zM30,35H31V36H30zM31,35H32V36H31zM32,35H33V36H32zM34,35H35V36H34zM35,35H36V36H35zM36,35H37V36H36zM38,35H39V36H38zM2,36H3V37H2zM4,36H5V37H4zM5,36H6V37H5zM6,36H7V37H6zM8,36H9V37H8zM10,36H11V37H10zM11,36H12V37H11zM14,36H15V37H14zM17,36H18V37H17zM18,36H19V37H18zM20,36H21V37H20zM22,36H23V37H22zM29,36H30V37H29zM31,36H32V37H31zM35,36H36V37H35zM37,36H38V37H37zM38,36H39V37H38zM2,37H3V38H2zM8,37H9V38H8zM11,37H12V38H11zM12,37H13V38H12zM13,37H14V38H13zM14,37H15V38H14zM15,37H16V38H15zM17,37H18V38H17zM20,37H21V38H20zM22,37H23V38H22zM23,37H24V38H23zM24,37H25V38H24zM26,37H27V38H26zM28,37H29V38H28zM30,37H31V38H30zM32,37H33V38H32zM34,37H35V38H34zM38,37H39V38H38zM2,38H3V39H2zM3,38H4V39H3zM4,38H5V39H4zM5,38H6V39H5zM6,38H7V39H6zM7,38H8V39H7zM8,38H9V39H8zM10,38H11V39H10zM14,38H15V39H14zM16,38H17V39H16zM17,38H18V39H17zM18,38H19V39H18zM19,38H20V39H19zM20,38H21V39H20zM21,38H22V39H21zM24,38H25V39H24zM25,38H26V39H25zM27,38H28V39H27zM28,38H29V39H28zM29,38H30V39H29zM31,38H32V39H31zM32,38H33V39H32zM34,38H35V39H34zM35,38H36V39H35zM36,38H37V39H36zM37,38H38V39H37zM38,38H39V39H38z" id="qr-path" fill="#000000" fill-opacity="1" fill-rule="nonzero" stroke="none"/></svg></div><a href="https://soorathep.github.io/course-2105623/teaching/2105623/exit.html?s=3" target="_blank" rel="noopener" style="color:${C.teal};font-size:18px;margin-top:10px">Open the Exit Ticket</a></div></div></div>`,
+notes:"Leave this slide on screen for the last five minutes."});
+
+/* ---------- deck engine ---------- */
+const N=S.length; let cur=0;
+function build(){const host=document.getElementById("slides");host.innerHTML="";
+ S.forEach((s,i)=>{const d=document.createElement("section");d.className="slide"+(s.cls?" "+s.cls:"");d.id="s"+(i+1);
+  d.innerHTML=(s.kicker&&!s.cls?`<p class="kicker">${s.kicker}</p>`:"")+(s.title?`<h1>${s.title}</h1>`:"")+s.html()+(s.py?`<div class="dhint">D · Python</div>`:"")+`<footer><span>${foot}</span><span>${i+1} / ${N}</span></footer>`;host.appendChild(d)})}
+function drawAll(){S.forEach(s=>{if(s.draw)try{s.draw()}catch(e){console.error(e)}})}
+function show(i){cur=Math.max(0,Math.min(N-1,i));document.querySelectorAll(".slide").forEach((el,k)=>el.classList.toggle("on",k===cur));
+ history.replaceState(null,"",location.search+"#"+(cur+1));fillDrawer();if(window.onSlideChange)onSlideChange(cur);const n=document.getElementById("notes");n.textContent=S[cur].notes||"No notes for this slide."}
+let CAP_ON=false;   // set by the narration player; reserves a caption band under the slide
+function fit(){const W=innerWidth,H=innerHeight,vp=document.getElementById("viewport"),dock=document.getElementById("dock"),cap=document.getElementById("cap");
+ const hasDock=dock.style.display==="flex",barH=hasDock?document.getElementById("nbar").offsetHeight:0;
+ let k=Math.min(W/1280,H/720)*0.98,capH=0,fs=0,dockH=0;
+ for(let it=0;it<3;it++){if(hasDock&&CAP_ON){const lines=k<0.6?4:2;fs=Math.max(12,Math.min(22,24*k));capH=Math.ceil(lines*fs*1.45)+4}else capH=0;
+  dockH=hasDock?capH+barH+(capH?6:0)+14:0;k=Math.min(W/1280,Math.max(120,H-dockH)/720)*0.98}
+ const h=720*k,pad=10,top=Math.max(0,(H-h-dockH)/2);
+ vp.style.top=(top-pad)+"px";vp.style.bottom="auto";vp.style.height=(h+2*pad)+"px";
+ document.getElementById("stage").style.transform=`scale(${k})`;
+ if(hasDock){dock.style.top=(top+h+6)+"px";cap.style.display=CAP_ON?"block":"none";cap.style.width=Math.min(1280*k,W-16)+"px";cap.style.height=capH+"px";cap.dataset.fs=fs;if(window.capRefit)capRefit()}}
+function fillDrawer(){const p=S[cur].py,dr=document.getElementById("drawer");
+ if(!p){document.getElementById("dTitle").textContent="No Python on this slide";document.getElementById("dSub").textContent="Slides with a 'D · Python' tag have code and output.";document.getElementById("dCode").value="";document.getElementById("dOut").textContent="";return}
+ document.getElementById("dTitle").textContent=p.title;document.getElementById("dSub").textContent=p.sub||"";document.getElementById("dCode").value=p.code;
+ try{document.getElementById("dOut").textContent=p.out()}catch(e){document.getElementById("dOut").textContent=String(e)}
+ const m=document.getElementById("dMode");m.className="pill "+(MODE==="live"?"live":"rec");m.textContent=MODE==="live"?"LIVE RUN":"RECORDED RUN"}
+document.addEventListener("keydown",e=>{if(["INPUT","TEXTAREA"].includes(e.target.tagName)){if(e.key==="Escape")e.target.blur();return}const k=e.key;
+ if(["ArrowRight","PageDown"," "].includes(k)){e.preventDefault();show(cur+1)}else if(["ArrowLeft","PageUp"].includes(k)){e.preventDefault();show(cur-1)}
+ else if(k==="Home")show(0);else if(k==="End")show(N-1);else if(k==="d"||k==="D")document.getElementById("drawer").classList.toggle("open");
+ else if(k==="f"||k==="F"){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+ else if(k==="p"||k==="P"){if(window.narrToggle)narrToggle()}
+ else if(k==="c"||k==="C"){if(window.ccCycle)ccCycle()}
+ else if(k==="n"||k==="N"){const n=document.getElementById("notes");n.style.display=n.style.display==="block"?"none":"block"}});
+document.getElementById("stage").addEventListener("click",e=>{if(e.target.closest("button,input,select,#drawer,a,#startov"))return;const r=e.currentTarget.getBoundingClientRect();(e.clientX-r.left)>r.width*0.5?show(cur+1):show(cur-1)});
+addEventListener("resize",fit);
+
+/* ---------- live Python (Pyodide) ---------- */
+let py=null;
+async function ensurePy(msg){if(py)return py;msg.textContent="Loading Python in the browser (first time about 5–10 s) ...";
+ if(!window.loadPyodide){await new Promise((ok,bad)=>{const s=document.createElement("script");s.src="https://cdn.jsdelivr.net/pyodide/v0.29.3/full/pyodide.js";s.onload=ok;s.onerror=()=>bad(new Error("could not load Pyodide"));document.head.appendChild(s)})}
+ const p=await loadPyodide();await p.loadPackage(["numpy","scipy"]);
+ const src=LAB_SRC||await (await fetch(LAB_FILE)).text();p.FS.writeFile("milp_lab.py",src);
+ await p.runPythonAsync('import sys\nsys.path.insert(0, ".")\nfrom milp_lab import *');py=p;return p}
+async function runCode(){const msg=document.getElementById("liveMsg"),out=document.getElementById("dOut"),t0=performance.now();
+ try{const p=await ensurePy(msg);msg.textContent="Running ...";const buf=[];p.setStdout({batched:s=>buf.push(s)});p.setStderr({batched:s=>buf.push(s)});
+  try{await p.runPythonAsync(document.getElementById("dCode").value)}catch(e){buf.push(String(e.message||e).split("\n").slice(-4).join("\n"))}
+  out.textContent=buf.join("\n")||"(no output)";const m=document.getElementById("dMode");m.className="pill live";m.textContent="LIVE OUTPUT";
+  msg.textContent=`Ran in ${((performance.now()-t0)/1000).toFixed(1)} s in the browser`}
+ catch(e){msg.textContent="Python could not start: "+e.message+". The recorded output is still available."}}
+async function runLive(){const msg=document.getElementById("liveMsg"),t0=performance.now();
+ try{const p=await ensurePy(msg);msg.textContent="Solving every model ...";
+  const out=await p.runPythonAsync('import importlib, json\nimport milp_lab as lab\nimportlib.reload(lab)\njson.dumps(lab.classroom_results())');
+  R=JSON.parse(out);MODE="live";drawAll();fillDrawer();msg.textContent=`All slides now show a live run (${((performance.now()-t0)/1000).toFixed(1)} s, SciPy ${R.meta.scipy})`}
+ catch(e){msg.textContent="Live run failed: "+e.message+". The recorded run is still shown."}}
+document.getElementById("runCode").onclick=runCode;
+document.getElementById("runLive").onclick=runLive;
+document.getElementById("useRec").onclick=()=>{R=RECORDED;MODE="recorded";drawAll();fillDrawer();document.getElementById("liveMsg").textContent="Showing the recorded run."};
+
+/* ---------- narration and captions ---------- */
+const NARR = {
+ "voice": "en-US-GuyNeural",
+ "rate": "-5%",
+ "provider": "Microsoft Edge neural speech (edge-tts)",
+ "synthetic_voice": true,
+ "total_seconds": 739.3,
+ "slides": [
+  {
+   "n": 1,
+   "file": "audio/slide-01.mp3",
+   "duration": 23.448,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.761,
+     "en": "Welcome to Session 3 of Optimization of Chemical Processes.",
+     "th": "ยินดีต้อนรับสู่คาบที่ 3 ของวิชา Optimization of Chemical Processes"
+    },
+    {
+     "s": 4.761,
+     "e": 9.934,
+     "en": "Today is about mixed-integer linear programming: decisions that are yes or no.",
+     "th": "วันนี้ว่าด้วย mixed-integer linear programming คือการตัดสินใจแบบใช่หรือไม่ใช่"
+    },
+    {
+     "s": 9.934,
+     "e": 17.974,
+     "en": "We will write plant rules with binary variables, choose the numbers called big M, and see how a solver proves that a plan is optimal.",
+     "th": "เราจะเขียนกฎของโรงงานด้วยตัวแปร binary เลือกค่าที่เรียกว่า big M และดูว่า solver พิสูจน์ได้อย่างไรว่าแผนนั้นดีที่สุด"
+    },
+    {
+     "s": 17.974,
+     "e": 23.382,
+     "en": "When the narration for a slide ends, press the right arrow key, or Next, to go on.",
+     "th": "เมื่อเสียงบรรยายของแต่ละหน้าจบ กดลูกศรขวาหรือปุ่ม Next เพื่อไปหน้าถัดไป"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "file": "audio/slide-02.mp3",
+   "duration": 27.048,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.05,
+     "en": "Here is the plan for the three hours.",
+     "th": "นี่คือแผนของสามชั่วโมง"
+    },
+    {
+     "s": 3.05,
+     "e": 9.382,
+     "en": "After a retrieval check on Session 2, part one turns plant logic into linear inequalities.",
+     "th": "หลังทบทวนความจำจากคาบที่ 2 ส่วนที่หนึ่งแปลงตรรกะของโรงงานเป็นอสมการเชิงเส้น"
+    },
+    {
+     "s": 9.382,
+     "e": 14.211,
+     "en": "Part two is about big M: how to choose it, and what a bad value does.",
+     "th": "ส่วนที่สองว่าด้วย big M คือจะเลือกค่าอย่างไร และค่าที่ไม่ดีส่งผลอย่างไร"
+    },
+    {
+     "s": 14.211,
+     "e": 21.079,
+     "en": "Part three shows how a solver proves optimality, and why one formulation can be much stronger than another.",
+     "th": "ส่วนที่สามแสดงว่า solver พิสูจน์ความเหมาะที่สุดอย่างไร และทำไม formulation หนึ่งจึงแข็งแรงกว่าอีกแบบได้มาก"
+    },
+    {
+     "s": 21.079,
+     "e": 26.987,
+     "en": "After the break and a second activity, part four sets up the boiler problem of Lab 3.",
+     "th": "หลังพักและกิจกรรมที่สอง ส่วนที่สี่เตรียมปัญหาหม้อไอน้ำของ Lab 3"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "file": "audio/slide-03.mp3",
+   "duration": 23.952,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.971,
+     "en": "Activity 1 is a retrieval check on Session 2.",
+     "th": "กิจกรรมที่ 1 คือการทบทวนความจำจากคาบที่ 2"
+    },
+    {
+     "s": 3.971,
+     "e": 8.539,
+     "en": "Answer the four questions without notes, in a sentence or two each.",
+     "th": "ตอบคำถามทั้งสี่ข้อโดยไม่เปิดโน้ต ข้อละหนึ่งหรือสองประโยค"
+    },
+    {
+     "s": 8.539,
+     "e": 11.842,
+     "en": "The last question leads straight into today.",
+     "th": "คำถามข้อสุดท้ายจะนำเข้าสู่เนื้อหาวันนี้โดยตรง"
+    },
+    {
+     "s": 11.842,
+     "e": 16.553,
+     "en": "In class, write alone for five minutes, then compare with a partner.",
+     "th": "ในห้องเรียน เขียนคนเดียวห้านาที แล้วเทียบกับเพื่อน"
+    },
+    {
+     "s": 16.553,
+     "e": 23.895,
+     "en": "If you are studying on your own, stop here and write your answers, then press Show answers to check them, and go to the next slide.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้หยุดที่หน้านี้ เขียนคำตอบ แล้วกดปุ่ม Show answers เพื่อตรวจ จากนั้นจึงไปหน้าถัดไป"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "file": "audio/slide-04.mp3",
+   "duration": 34.008,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.918,
+     "en": "By the end of today you should be able to do five things.",
+     "th": "เมื่อจบคาบนี้ คุณควรทำได้ห้าอย่าง"
+    },
+    {
+     "s": 3.918,
+     "e": 10.066,
+     "en": "Translate yes or no rules from plant language into linear inequalities in binary variables.",
+     "th": "แปลงกฎแบบใช่หรือไม่ใช่จากภาษาของโรงงานให้เป็นอสมการเชิงเส้นในตัวแปร binary"
+    },
+    {
+     "s": 10.066,
+     "e": 16.895,
+     "en": "Write fixed charges, minimum loads, start-ups and either-or constraints, and derive every big M from the model.",
+     "th": "เขียนต้นทุนคงที่ ภาระขั้นต่ำ การเริ่มเดินเครื่อง และข้อจำกัดแบบอย่างใดอย่างหนึ่ง และหาค่า big M ทุกตัวจากโมเดล"
+    },
+    {
+     "s": 16.895,
+     "e": 24.566,
+     "en": "Explain the linear relaxation as a bound, branch and bound, and the gap as the certificate of a mixed-integer program.",
+     "th": "อธิบาย linear relaxation ในฐานะขอบเขต อธิบาย branch and bound และอธิบาย gap ในฐานะ certificate ของ mixed-integer program"
+    },
+    {
+     "s": 24.566,
+     "e": 28.961,
+     "en": "Compare two formulations by the strength of their relaxation.",
+     "th": "เปรียบเทียบ formulation สองแบบด้วยความแข็งแรงของ relaxation"
+    },
+    {
+     "s": 28.961,
+     "e": 33.934,
+     "en": "And say what optimal means for a mixed-integer solver, and what it does not.",
+     "th": "และบอกได้ว่าคำว่า optimal ของ solver แบบ mixed-integer หมายถึงอะไร และไม่ได้หมายถึงอะไร"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "file": "audio/slide-05.mp3",
+   "duration": 37.68,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.471,
+     "en": "Session 2 ended with an open question.",
+     "th": "คาบที่ 2 จบด้วยคำถามที่ยังค้างอยู่"
+    },
+    {
+     "s": 3.471,
+     "e": 14.789,
+     "en": "With a volume discount on alkylate, the linear program bought only the cheap second tier, which the contract does not allow, and claimed 371,851 dollars per day.",
+     "th": "เมื่อมีส่วนลดตามปริมาณของ alkylate linear program ซื้อเฉพาะขั้นที่สองที่ถูกกว่า ซึ่งสัญญาไม่อนุญาต และอ้างว่าได้ 371,851 ดอลลาร์ต่อวัน"
+    },
+    {
+     "s": 14.789,
+     "e": 23.868,
+     "en": "One binary variable z fixes it. The second tier may be used only if z is one, and only once the first tier is full.",
+     "th": "ตัวแปร binary z เพียงตัวเดียวแก้ปัญหานี้ได้ ขั้นที่สองใช้ได้ก็ต่อเมื่อ z เท่ากับหนึ่ง และต้องใช้ขั้นแรกจนเต็มก่อน"
+    },
+    {
+     "s": 23.868,
+     "e": 31.842,
+     "en": "The mixed-integer program buys all 600 cubic meters and earns 362,648 dollars per day.",
+     "th": "mixed-integer program ซื้อทั้ง 600 ลูกบาศก์เมตร และได้ 362,648 ดอลลาร์ต่อวัน"
+    },
+    {
+     "s": 31.842,
+     "e": 37.618,
+     "en": "That is the answer Session 2 found by enumerating both segments, now in one solve.",
+     "th": "นี่คือคำตอบเดียวกับที่คาบที่ 2 ได้จากการไล่ทั้งสองช่วง แต่คราวนี้ได้จากการแก้ครั้งเดียว"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "file": "audio/slide-06.mp3",
+   "duration": 29.328,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.458,
+     "en": "Six patterns cover most plant logic.",
+     "th": "รูปแบบหกแบบครอบคลุมตรรกะของโรงงานได้เกือบทั้งหมด"
+    },
+    {
+     "s": 3.458,
+     "e": 11.711,
+     "en": "A fixed cost paid only when a unit runs. A unit that is either off or runs between a minimum and a maximum load.",
+     "th": "ต้นทุนคงที่ที่จ่ายเฉพาะเมื่อหน่วยผลิตทำงาน และหน่วยที่ปิดอยู่ หรือเดินระหว่างภาระขั้นต่ำกับขั้นสูง"
+    },
+    {
+     "s": 11.711,
+     "e": 16.711,
+     "en": "An implication between two units, and a limit on how many units run.",
+     "th": "เงื่อนไขแบบถ้าแล้วระหว่างสองหน่วย และขีดจำกัดจำนวนหน่วยที่เดินพร้อมกัน"
+    },
+    {
+     "s": 16.711,
+     "e": 22.132,
+     "en": "Either one constraint or another, and a start-up counted when a unit goes from off to on.",
+     "th": "ข้อจำกัดอย่างใดอย่างหนึ่ง และการนับการเริ่มเดินเครื่องเมื่อหน่วยเปลี่ยนจากปิดเป็นเปิด"
+    },
+    {
+     "s": 22.132,
+     "e": 29.263,
+     "en": "Several of these contain a number M. Every M must be a number you can justify from the model.",
+     "th": "หลายรูปแบบมีตัวเลข M อยู่ และ M ทุกตัวต้องเป็นตัวเลขที่คุณให้เหตุผลได้จากโมเดล"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "file": "audio/slide-07.mp3",
+   "duration": 27.816,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.511,
+     "en": "Try it with four rules from a plant manual.",
+     "th": "ลองทำกับกฎสี่ข้อจากคู่มือโรงงาน"
+    },
+    {
+     "s": 3.511,
+     "e": 10.724,
+     "en": "The method is to write each rule as clauses joined by or, and turn each clause into a sum of binaries that must be at least one.",
+     "th": "วิธีคือเขียนแต่ละกฎเป็นประโยคย่อยที่เชื่อมด้วยคำว่า หรือ แล้วแปลงแต่ละประโยคย่อยเป็นผลรวมของ binary ที่ต้องไม่น้อยกว่าหนึ่ง"
+    },
+    {
+     "s": 10.724,
+     "e": 14.974,
+     "en": "A negated variable appears as one minus the variable.",
+     "th": "ตัวแปรที่ถูกปฏิเสธจะเขียนเป็นหนึ่งลบตัวแปรนั้น"
+    },
+    {
+     "s": 14.974,
+     "e": 19.474,
+     "en": "Write your four inequalities, then press the button to compare.",
+     "th": "เขียนอสมการทั้งสี่ข้อของคุณ แล้วกดปุ่มเพื่อเปรียบเทียบ"
+    },
+    {
+     "s": 19.474,
+     "e": 27.763,
+     "en": "Rule three is the one most people get wrong: boiler 3 implies boiler 1 or boiler 2, so y three is at most y one plus y two.",
+     "th": "กฎข้อที่สามเป็นข้อที่คนส่วนใหญ่ทำผิด หม้อไอน้ำ 3 เดินได้ก็ต่อเมื่อหม้อ 1 หรือหม้อ 2 เดิน ดังนั้น y3 ไม่เกิน y1 บวก y2"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "file": "audio/slide-08.mp3",
+   "duration": 37.824,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.866,
+     "en": "Here is an either-or constraint.",
+     "th": "นี่คือข้อจำกัดแบบอย่างใดอย่างหนึ่ง"
+    },
+    {
+     "s": 2.866,
+     "e": 11.632,
+     "en": "A reactor runs either below 350 degrees or above 420 degrees, and its temperature lies between 300 and 500.",
+     "th": "เครื่องปฏิกรณ์เดินที่อุณหภูมิต่ำกว่า 350 องศา หรือสูงกว่า 420 องศา และอุณหภูมิอยู่ระหว่าง 300 ถึง 500"
+    },
+    {
+     "s": 11.632,
+     "e": 17.908,
+     "en": "When z is one the first row is active and the second is harmless; when z is zero, the reverse.",
+     "th": "เมื่อ z เท่ากับหนึ่ง แถวแรกมีผล และแถวที่สองไม่มีผล เมื่อ z เท่ากับศูนย์ จะกลับกัน"
+    },
+    {
+     "s": 17.908,
+     "e": 26.658,
+     "en": "Each M is the largest value its left side can take within the bounds of the temperature: 150 for the first row and 120 for the second.",
+     "th": "แต่ละค่า M คือค่าที่ใหญ่ที่สุดที่ด้านซ้ายของแถวนั้นเป็นได้ ภายใต้ขอบเขตของอุณหภูมิ คือ 150 สำหรับแถวแรก และ 120 สำหรับแถวที่สอง"
+    },
+    {
+     "s": 26.658,
+     "e": 37.763,
+     "en": "In the relaxation, z equal to one half allows temperatures between 360 and 425, inside the forbidden window. Branching on z removes them.",
+     "th": "ใน relaxation ค่า z เท่ากับครึ่งหนึ่ง ยอมให้อุณหภูมิอยู่ระหว่าง 360 ถึง 425 ซึ่งอยู่ในช่วงต้องห้าม การ branch บน z จะตัดช่วงนี้ออก"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "file": "audio/slide-09.mp3",
+   "duration": 49.656,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.905,
+     "en": "This demo shows what M does.",
+     "th": "demo นี้แสดงว่า M ทำอะไร"
+    },
+    {
+     "s": 2.905,
+     "e": 13.855,
+     "en": "A plant needs 30 tonnes of steam per hour. It can run one boiler, with a fixed cost of 600 dollars per hour, or buy steam at 45 dollars per tonne.",
+     "th": "โรงงานต้องการไอน้ำ 30 ตันต่อชั่วโมง จะเดินหม้อไอน้ำหนึ่งลูกซึ่งมีต้นทุนคงที่ 600 ดอลลาร์ต่อชั่วโมง หรือซื้อไอน้ำที่ 45 ดอลลาร์ต่อตันก็ได้"
+    },
+    {
+     "s": 13.855,
+     "e": 19.276,
+     "en": "The right answer is to run the boiler, at 1,200 dollars per hour.",
+     "th": "คำตอบที่ถูกคือเดินหม้อไอน้ำ ที่ 1,200 ดอลลาร์ต่อชั่วโมง"
+    },
+    {
+     "s": 19.276,
+     "e": 30.934,
+     "en": "Move M down to 25. The model now cannot make 30 tonnes, and it reports 1,325 dollars as optimal. That answer is wrong.",
+     "th": "เลื่อน M ลงเป็น 25 โมเดลจะผลิตไอน้ำ 30 ตันไม่ได้ และรายงานว่า 1,325 ดอลลาร์คือค่าที่เหมาะที่สุด ซึ่งเป็นคำตอบที่ผิด"
+    },
+    {
+     "s": 30.934,
+     "e": 35.592,
+     "en": "At M equal to 30 the relaxation already gives the right answer.",
+     "th": "ที่ M เท่ากับ 30 relaxation ให้คำตอบที่ถูกต้องอยู่แล้ว"
+    },
+    {
+     "s": 35.592,
+     "e": 49.592,
+     "en": "As M grows, the relaxation can switch the boiler on by a small fraction and pay only that fraction of the fixed cost. At M equal to 1,000 the bound is 618, a gap of 48.5 percent.",
+     "th": "เมื่อ M ใหญ่ขึ้น relaxation จะเปิดหม้อไอน้ำเพียงเศษเสี้ยว และจ่ายต้นทุนคงที่เพียงเศษเสี้ยวนั้น ที่ M เท่ากับ 1,000 ขอบเขตเหลือ 618 ห่างจากคำตอบ 48.5 เปอร์เซ็นต์"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "file": "audio/slide-10.mp3",
+   "duration": 38.832,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.629,
+     "en": "So, how do you choose M?",
+     "th": "แล้วจะเลือก M อย่างไร"
+    },
+    {
+     "s": 2.629,
+     "e": 8.842,
+     "en": "Too small, and feasible plans are cut off; the solver reports optimal for a different plant.",
+     "th": "ถ้าเล็กเกินไป แผนที่เป็นไปได้จะถูกตัดออก และ solver จะรายงานคำตอบที่เหมาะที่สุดของโรงงานอื่น"
+    },
+    {
+     "s": 8.842,
+     "e": 13.263,
+     "en": "Valid but large, and the bound is weak and the search is longer.",
+     "th": "ถ้าถูกต้องแต่ใหญ่ ขอบเขตจะอ่อน และการค้นหาจะนานขึ้น"
+    },
+    {
+     "s": 13.263,
+     "e": 23.461,
+     "en": "The best M is the largest value the left side can take, proved from the model, and capacity is not always the tightest such bound. Here the demand is.",
+     "th": "M ที่ดีที่สุดคือค่าที่ใหญ่ที่สุดที่ด้านซ้ายเป็นได้ โดยพิสูจน์จากโมเดล และกำลังการผลิตไม่ใช่ขอบเขตที่แน่นที่สุดเสมอไป ในกรณีนี้คือความต้องการไอน้ำ"
+    },
+    {
+     "s": 23.461,
+     "e": 35.013,
+     "en": "Solvers check integrality to a tolerance, typically one in a million. With M equal to a million, a binary of one in a million counts as zero and still allows real output.",
+     "th": "solver ตรวจความเป็นจำนวนเต็มด้วยค่าความคลาดเคลื่อน โดยทั่วไปคือหนึ่งในล้าน ถ้า M เท่ากับหนึ่งล้าน ตัวแปร binary ที่มีค่าหนึ่งในล้านจะถูกนับเป็นศูนย์ แต่ยังยอมให้ผลิตได้จริง"
+    },
+    {
+     "s": 35.013,
+     "e": 38.763,
+     "en": "Write every M with its derivation next to the row.",
+     "th": "เขียน M ทุกตัวพร้อมที่มาของมันไว้ข้างแถวนั้น"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "file": "audio/slide-11.mp3",
+   "duration": 29.4,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.537,
+     "en": "How does a solver find and prove the optimum?",
+     "th": "solver หาและพิสูจน์คำตอบที่ดีที่สุดได้อย่างไร"
+    },
+    {
+     "s": 3.537,
+     "e": 8.868,
+     "en": "It relaxes integrality and solves the linear program, which gives a bound.",
+     "th": "มันผ่อนเงื่อนไขความเป็นจำนวนเต็ม แล้วแก้ linear program ซึ่งให้ขอบเขต"
+    },
+    {
+     "s": 8.868,
+     "e": 15.316,
+     "en": "It branches on a fractional binary, with one child where the variable is zero and one where it is one.",
+     "th": "มัน branch บนตัวแปร binary ที่มีค่าเป็นเศษส่วน โดยลูกหนึ่งให้ตัวแปรเป็นศูนย์ และอีกลูกให้เป็นหนึ่ง"
+    },
+    {
+     "s": 15.316,
+     "e": 23.566,
+     "en": "It prunes a node when the relaxation is infeasible, when it is already integer, or when its bound cannot beat the best plan found so far.",
+     "th": "มันตัดโหนดทิ้งเมื่อ relaxation ไม่มีคำตอบ เมื่อได้คำตอบเป็นจำนวนเต็มแล้ว หรือเมื่อขอบเขตของมันชนะแผนที่ดีที่สุดที่พบแล้วไม่ได้"
+    },
+    {
+     "s": 23.566,
+     "e": 29.342,
+     "en": "Our example chooses heat-recovery projects within a budget of 300 thousand dollars.",
+     "th": "ตัวอย่างของเราคือการเลือกโครงการนำความร้อนกลับมาใช้ ภายใต้งบประมาณ 300,000 ดอลลาร์"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "file": "audio/slide-12.mp3",
+   "duration": 38.448,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.826,
+     "en": "Move the slider to grow the tree one node at a time.",
+     "th": "เลื่อนแถบเพื่อให้ต้นไม้เติบโตทีละโหนด"
+    },
+    {
+     "s": 3.826,
+     "e": 11.461,
+     "en": "The root relaxation promises 131 thousand dollars per year. That is the first bound.",
+     "th": "relaxation ที่ราก ให้ค่าสูงสุด 131,000 ดอลลาร์ต่อปี นั่นคือขอบเขตแรก"
+    },
+    {
+     "s": 11.461,
+     "e": 17.816,
+     "en": "The first integer plan found is worth 114, then a better one is worth 125.",
+     "th": "แผนจำนวนเต็มแรกที่พบมีมูลค่า 114 จากนั้นพบแผนที่ดีกว่ามีมูลค่า 125"
+    },
+    {
+     "s": 17.816,
+     "e": 27.724,
+     "en": "Grey nodes are pruned by the bound and red nodes are infeasible. After 19 nodes no open node can beat 125, and the gap is zero.",
+     "th": "โหนดสีเทาถูกตัดด้วยขอบเขต และโหนดสีแดงไม่มีคำตอบ หลังจาก 19 โหนด ไม่มีโหนดใดที่ยังเปิดอยู่ชนะ 125 ได้ และ gap เป็นศูนย์"
+    },
+    {
+     "s": 27.724,
+     "e": 38.382,
+     "en": "The best choice is projects 2, 4 and 5. Choosing greedily by saving per dollar gives projects 1, 4 and 2, worth only 119.",
+     "th": "ตัวเลือกที่ดีที่สุดคือโครงการ 2, 4 และ 5 ส่วนการเลือกแบบโลภตามผลประหยัดต่อดอลลาร์ ได้โครงการ 1, 4 และ 2 ซึ่งมีมูลค่าเพียง 119"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "file": "audio/slide-13.mp3",
+   "duration": 37.824,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.103,
+     "en": "This is what optimal means for a mixed-integer program.",
+     "th": "นี่คือความหมายของคำว่า optimal สำหรับ mixed-integer program"
+    },
+    {
+     "s": 4.103,
+     "e": 12.632,
+     "en": "The best plan found, called the incumbent, and the best bound bracket the true optimum. The gap is their relative difference.",
+     "th": "แผนที่ดีที่สุดที่พบ เรียกว่า incumbent กับขอบเขตที่ดีที่สุด ประกบค่าที่เหมาะที่สุดจริงไว้ และ gap คือผลต่างสัมพัทธ์ของทั้งสอง"
+    },
+    {
+     "s": 12.632,
+     "e": 21.868,
+     "en": "HiGHS stops by default when the gap is below one hundredth of a percent. With a time limit, always report the incumbent and the bound.",
+     "th": "โดยค่าเริ่มต้น HiGHS หยุดเมื่อ gap ต่ำกว่าหนึ่งในร้อยของหนึ่งเปอร์เซ็นต์ ถ้ามีการจำกัดเวลา ให้รายงานทั้ง incumbent และขอบเขตเสมอ"
+    },
+    {
+     "s": 21.868,
+     "e": 32.329,
+     "en": "A mixed-integer program has no shadow prices. If you fix the binaries and solve the linear program, its duals are prices for that on and off pattern only.",
+     "th": "mixed-integer program ไม่มี shadow price ถ้าตรึงค่า binary แล้วแก้ linear program ค่า dual ที่ได้เป็นราคาสำหรับรูปแบบการเปิดปิดนั้นเท่านั้น"
+    },
+    {
+     "s": 32.329,
+     "e": 37.763,
+     "en": "Identical units create many plans with the same cost, which slows the search.",
+     "th": "หน่วยผลิตที่เหมือนกันทุกประการทำให้เกิดแผนจำนวนมากที่มีต้นทุนเท่ากัน ซึ่งทำให้การค้นหาช้าลง"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "file": "audio/slide-14.mp3",
+   "duration": 43.344,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.3,
+     "en": "Two formulations can describe exactly the same integer plans and still behave very differently.",
+     "th": "formulation สองแบบอาจบรรยายแผนจำนวนเต็มชุดเดียวกันทุกประการ แต่มีพฤติกรรมต่างกันมาก"
+    },
+    {
+     "s": 6.3,
+     "e": 10.908,
+     "en": "Here, eight candidate solvent-recovery sites serve twenty plants.",
+     "th": "ในตัวอย่างนี้ มีพื้นที่ตั้งหน่วยนำตัวทำละลายกลับมาใช้ที่เป็นไปได้แปดแห่ง ให้บริการโรงงานยี่สิบแห่ง"
+    },
+    {
+     "s": 10.908,
+     "e": 24.934,
+     "en": "The aggregated form links each site with one row. Its relaxation bound is 11,192 dollars against an optimum of 19,168, a gap of 41.6 percent.",
+     "th": "แบบรวมใช้หนึ่งแถวเชื่อมแต่ละพื้นที่ ขอบเขตของ relaxation คือ 11,192 ดอลลาร์ เทียบกับค่าที่เหมาะที่สุด 19,168 ห่างกัน 41.6 เปอร์เซ็นต์"
+    },
+    {
+     "s": 24.934,
+     "e": 34.671,
+     "en": "The disaggregated form uses one row for every pair: 160 rows instead of 8. Its relaxation is already integer.",
+     "th": "แบบแยกใช้หนึ่งแถวต่อทุกคู่ คือ 160 แถว แทนที่จะเป็น 8 และ relaxation ของมันได้คำตอบเป็นจำนวนเต็มแล้ว"
+    },
+    {
+     "s": 34.671,
+     "e": 43.276,
+     "en": "A textbook branch and bound needs 123 nodes for the first form and one for the second. HiGHS needs 5 and one.",
+     "th": "branch and bound แบบตำราต้องใช้ 123 โหนดสำหรับแบบแรก และหนึ่งโหนดสำหรับแบบที่สอง ส่วน HiGHS ใช้ 5 และหนึ่ง"
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "file": "audio/slide-15.mp3",
+   "duration": 37.56,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.445,
+     "en": "Why is the second form so much stronger?",
+     "th": "ทำไมแบบที่สองจึงแข็งแรงกว่ามาก"
+    },
+    {
+     "s": 3.445,
+     "e": 12.421,
+     "en": "The ideal formulation of a set of integer plans is its convex hull. Its relaxation already has an integer optimum.",
+     "th": "formulation ในอุดมคติของชุดแผนจำนวนเต็ม คือ convex hull ของมัน ซึ่ง relaxation ได้คำตอบที่เป็นจำนวนเต็มอยู่แล้ว"
+    },
+    {
+     "s": 12.421,
+     "e": 20.671,
+     "en": "Disaggregation, tight values of M and valid inequalities move a formulation toward the hull, and more rows can mean a faster solve.",
+     "th": "การแยก ค่า M ที่แน่น และอสมการที่ถูกต้องเพิ่มเติม ช่วยให้ formulation เข้าใกล้ hull และการมีแถวมากขึ้นอาจทำให้แก้ได้เร็วขึ้น"
+    },
+    {
+     "s": 20.671,
+     "e": 30.855,
+     "en": "Solvers add cuts and tighten coefficients themselves, which is why HiGHS needed only a few nodes on the weak form. On larger models the difference is hours.",
+     "th": "solver เพิ่ม cut และปรับสัมประสิทธิ์ให้แน่นขึ้นเอง จึงทำให้ HiGHS ใช้เพียงไม่กี่โหนดกับแบบที่อ่อน แต่ในโมเดลที่ใหญ่ขึ้น ความต่างอาจเป็นหลายชั่วโมง"
+    },
+    {
+     "s": 30.855,
+     "e": 37.5,
+     "en": "Judge a formulation by the gap between its relaxation and its optimum, not by its number of rows.",
+     "th": "ให้ตัดสิน formulation จากช่องว่างระหว่าง relaxation กับค่าที่เหมาะที่สุด ไม่ใช่จากจำนวนแถว"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "file": "audio/slide-16.mp3",
+   "duration": 7.656,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.432,
+     "en": "Take a ten-minute break.",
+     "th": "พักสิบนาที"
+    },
+    {
+     "s": 2.432,
+     "e": 7.605,
+     "en": "After the break, the yes or no decisions on your card get binary variables.",
+     "th": "หลังพัก การตัดสินใจแบบใช่หรือไม่ใช่บนการ์ดของคุณจะได้ตัวแปร binary"
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "file": "audio/slide-17.mp3",
+   "duration": 30.672,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.445,
+     "en": "Activity 2 uses your linearized card from Session 2.",
+     "th": "กิจกรรมที่ 2 ใช้การ์ดที่เขียนเป็นเชิงเส้นแล้วจากคาบที่ 2"
+    },
+    {
+     "s": 4.445,
+     "e": 10.053,
+     "en": "Give every yes or no decision a binary variable, and say what the value one means.",
+     "th": "กำหนดตัวแปร binary ให้ทุกการตัดสินใจแบบใช่หรือไม่ใช่ และบอกว่าค่าหนึ่งหมายถึงอะไร"
+    },
+    {
+     "s": 10.053,
+     "e": 14.447,
+     "en": "Write the rules that link them, using the patterns from part one.",
+     "th": "เขียนกฎที่เชื่อมตัวแปรเหล่านั้น โดยใช้รูปแบบจากส่วนที่หนึ่ง"
+    },
+    {
+     "s": 14.447,
+     "e": 18.763,
+     "en": "For every big M, write down the number and the bound it comes from.",
+     "th": "สำหรับ big M ทุกตัว เขียนตัวเลขและขอบเขตที่เป็นที่มาของมัน"
+    },
+    {
+     "s": 18.763,
+     "e": 25.039,
+     "en": "In class, swap with a partner and try to find a feasible plan that your partner's M would cut off.",
+     "th": "ในห้องเรียน แลกกับเพื่อน แล้วลองหาแผนที่เป็นไปได้ที่ M ของเพื่อนจะตัดทิ้ง"
+    },
+    {
+     "s": 25.039,
+     "e": 30.618,
+     "en": "If you are studying on your own, stop here, write it, and keep it for Session 4.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้หยุดที่หน้านี้ เขียนไว้ แล้วเก็บไว้ใช้ในคาบที่ 4"
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "file": "audio/slide-18.mp3",
+   "duration": 29.808,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.05,
+     "en": "Part four is the problem of the lab.",
+     "th": "ส่วนที่สี่คือปัญหาของ lab"
+    },
+    {
+     "s": 3.05,
+     "e": 14.316,
+     "en": "A utility plant has four boilers. Large boilers are cheap per tonne of steam, but expensive to keep on and to start. Small boilers follow the peaks.",
+     "th": "โรงงานสาธารณูปโภคมีหม้อไอน้ำสี่ลูก ลูกใหญ่มีต้นทุนต่อตันไอน้ำต่ำ แต่มีค่าใช้จ่ายสูงในการเปิดค้างไว้และการเริ่มเดิน ลูกเล็กใช้รับช่วงความต้องการสูงสุด"
+    },
+    {
+     "s": 14.316,
+     "e": 24.368,
+     "en": "Steam demand varies from 110 to 255 tonnes per hour over the day, and the capacity that is on must cover the demand plus a ten percent reserve.",
+     "th": "ความต้องการไอน้ำเปลี่ยนจาก 110 ถึง 255 ตันต่อชั่วโมงตลอดวัน และกำลังการผลิตของหม้อที่เปิดอยู่ต้องครอบคลุมความต้องการบวกสำรองอีกสิบเปอร์เซ็นต์"
+    },
+    {
+     "s": 24.368,
+     "e": 29.737,
+     "en": "Each hour, the decision is which boilers are on, and how much steam each one makes.",
+     "th": "ในแต่ละชั่วโมง ต้องตัดสินใจว่าหม้อใดเปิด และแต่ละหม้อผลิตไอน้ำเท่าใด"
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "file": "audio/slide-19.mp3",
+   "duration": 31.728,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.576,
+     "en": "Here is the formulation.",
+     "th": "นี่คือ formulation"
+    },
+    {
+     "s": 2.576,
+     "e": 9.145,
+     "en": "Each boiler-hour has a minimum and a maximum load linked to its on and off variable, and a start-up row.",
+     "th": "แต่ละหม้อในแต่ละชั่วโมงมีภาระขั้นต่ำและขั้นสูงที่ผูกกับตัวแปรเปิดปิด และมีแถวสำหรับการเริ่มเดินเครื่อง"
+    },
+    {
+     "s": 9.145,
+     "e": 12.684,
+     "en": "Each hour has a demand row and a reserve row.",
+     "th": "แต่ละชั่วโมงมีแถวความต้องการและแถวสำรอง"
+    },
+    {
+     "s": 12.684,
+     "e": 22.908,
+     "en": "The start-up variables need not be declared integer: with the on and off variables integer and a positive start cost, the optimum sets them to zero or one by itself.",
+     "th": "ตัวแปรการเริ่มเดินไม่จำเป็นต้องประกาศเป็นจำนวนเต็ม เพราะเมื่อตัวแปรเปิดปิดเป็นจำนวนเต็มและต้นทุนการเริ่มเดินเป็นบวก คำตอบที่เหมาะที่สุดจะกำหนดให้เป็นศูนย์หรือหนึ่งเอง"
+    },
+    {
+     "s": 22.908,
+     "e": 31.671,
+     "en": "Four boilers over 24 hours give 96 binaries, solved in well under a second because the relaxation is close and the solver adds cuts.",
+     "th": "หม้อสี่ลูกตลอด 24 ชั่วโมงให้ตัวแปร binary 96 ตัว ซึ่งแก้ได้ในเวลาไม่ถึงหนึ่งวินาที เพราะ relaxation ใกล้เคียง และ solver เพิ่ม cut"
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "file": "audio/slide-20.mp3",
+   "duration": 23.088,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.287,
+     "en": "Five habits for mixed-integer models.",
+     "th": "นิสัยห้าข้อสำหรับโมเดล mixed-integer"
+    },
+    {
+     "s": 3.287,
+     "e": 10.158,
+     "en": "Write every M with its derivation. Solve the relaxation first and report the root gap.",
+     "th": "เขียน M ทุกตัวพร้อมที่มา แก้ relaxation ก่อน และรายงาน gap ที่ราก"
+    },
+    {
+     "s": 10.158,
+     "e": 13.632,
+     "en": "Report the incumbent, the bound and the gap.",
+     "th": "รายงาน incumbent ขอบเขต และ gap"
+    },
+    {
+     "s": 13.632,
+     "e": 19.474,
+     "en": "Check a small case by enumeration, which catches logic errors the solver cannot see.",
+     "th": "ตรวจกรณีเล็กด้วยการไล่ทุกกรณี ซึ่งจับข้อผิดพลาดเชิงตรรกะที่ solver มองไม่เห็น"
+    },
+    {
+     "s": 19.474,
+     "e": 23.013,
+     "en": "And break symmetry between identical units.",
+     "th": "และทำลายความสมมาตรระหว่างหน่วยผลิตที่เหมือนกัน"
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "file": "audio/slide-21.mp3",
+   "duration": 27.864,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.813,
+     "en": "Lab 3 commits the four boilers for one day.",
+     "th": "Lab 3 วางแผนการเปิดปิดหม้อไอน้ำทั้งสี่ลูกสำหรับหนึ่งวัน"
+    },
+    {
+     "s": 3.813,
+     "e": 10.961,
+     "en": "You will write the load and start-up rows, solve the relaxation and the mixed-integer program, and compute the root gap.",
+     "th": "คุณจะเขียนแถวภาระและแถวการเริ่มเดิน แก้ relaxation และ mixed-integer program แล้วคำนวณ gap ที่ราก"
+    },
+    {
+     "s": 10.961,
+     "e": 14.5,
+     "en": "You will see what a loose M and an invalid M do.",
+     "th": "คุณจะเห็นว่า M ที่หลวมและ M ที่ไม่ถูกต้องส่งผลอย่างไร"
+    },
+    {
+     "s": 14.5,
+     "e": 21.118,
+     "en": "You will check the solver by enumerating the sixteen patterns of one hour, and change the start-up cost.",
+     "th": "คุณจะตรวจ solver ด้วยการไล่รูปแบบทั้งสิบหกแบบของหนึ่งชั่วโมง และเปลี่ยนต้นทุนการเริ่มเดิน"
+    },
+    {
+     "s": 21.118,
+     "e": 27.789,
+     "en": "You have forty minutes. If you are studying on your own, stop here and open the lab.",
+     "th": "คุณมีเวลาสี่สิบนาที ถ้าเรียนด้วยตนเอง ให้หยุดที่หน้านี้แล้วเปิด lab"
+    }
+   ]
+  },
+  {
+   "n": 22,
+   "file": "audio/slide-22.mp3",
+   "duration": 25.008,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.076,
+     "en": "To summarize.",
+     "th": "สรุป"
+    },
+    {
+     "s": 2.076,
+     "e": 6.711,
+     "en": "Binary variables turn plant rules into linear inequalities.",
+     "th": "ตัวแปร binary แปลงกฎของโรงงานให้เป็นอสมการเชิงเส้น"
+    },
+    {
+     "s": 6.711,
+     "e": 11.474,
+     "en": "Every M must be valid, and should be as small as the model can prove.",
+     "th": "M ทุกตัวต้องถูกต้อง และควรเล็กที่สุดเท่าที่โมเดลพิสูจน์ได้"
+    },
+    {
+     "s": 11.474,
+     "e": 17.671,
+     "en": "The relaxation is a bound, branch and bound closes the gap, and the gap is the certificate.",
+     "th": "relaxation คือขอบเขต branch and bound ปิด gap และ gap คือ certificate"
+    },
+    {
+     "s": 17.671,
+     "e": 24.947,
+     "en": "Judge formulations by their root gap. Disaggregation and tight M move them toward the convex hull.",
+     "th": "ตัดสิน formulation ด้วย gap ที่ราก การแยกและ M ที่แน่น ช่วยให้เข้าใกล้ convex hull"
+    }
+   ]
+  },
+  {
+   "n": 23,
+   "file": "audio/slide-23.mp3",
+   "duration": 22.728,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.076,
+     "en": "Before Session 4, finish Lab 3 if you did not finish it in class.",
+     "th": "ก่อนคาบที่ 4 ทำ Lab 3 ให้เสร็จ ถ้ายังทำไม่เสร็จในห้อง"
+    },
+    {
+     "s": 5.076,
+     "e": 12.658,
+     "en": "Keep your card with binaries. Session 4 repeats decisions over time and links them through inventory.",
+     "th": "เก็บการ์ดที่มีตัวแปร binary ไว้ คาบที่ 4 จะทำการตัดสินใจซ้ำตามเวลา และเชื่อมกันด้วยสินค้าคงคลัง"
+    },
+    {
+     "s": 12.658,
+     "e": 16.697,
+     "en": "Read Williams, chapter 10 and section 12.1.",
+     "th": "อ่านหนังสือของ Williams บทที่ 10 และหัวข้อ 12.1"
+    },
+    {
+     "s": 16.697,
+     "e": 22.658,
+     "en": "If you want practice, add a minimum up time to the boiler model and see how the schedule changes.",
+     "th": "ถ้าต้องการฝึกเพิ่ม ลองเพิ่มเวลาเดินขั้นต่ำให้โมเดลหม้อไอน้ำ แล้วดูว่าตารางเปลี่ยนไปอย่างไร"
+    }
+   ]
+  },
+  {
+   "n": 24,
+   "file": "audio/slide-24.mp3",
+   "duration": 24.624,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.405,
+     "en": "Finally, the Exit Ticket and feedback.",
+     "th": "สุดท้ายคือ Exit Ticket และ feedback"
+    },
+    {
+     "s": 3.405,
+     "e": 9.184,
+     "en": "Scan the code, choose Session 3, and paste the answers that the lab page copies for you.",
+     "th": "สแกนโค้ด เลือก Session 3 แล้ววางคำตอบที่หน้า lab คัดลอกไว้ให้"
+    },
+    {
+     "s": 9.184,
+     "e": 15.513,
+     "en": "Then tell us about the pace, your confidence, how far you got in the lab, and what is still unclear.",
+     "th": "จากนั้นบอกเราเรื่องความเร็วในการสอน ความมั่นใจ ความคืบหน้าใน lab และสิ่งที่ยังไม่ชัดเจน"
+    },
+    {
+     "s": 15.513,
+     "e": 21.237,
+     "en": "If you studied on your own, choose On my own. The form is anonymous.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้เลือก On my own แบบฟอร์มนี้ไม่ระบุตัวตน"
+    },
+    {
+     "s": 21.237,
+     "e": 24.553,
+     "en": "Thank you, and see you in Session 4.",
+     "th": "ขอบคุณ แล้วพบกันในคาบที่ 4"
+    }
+   ]
+  }
+ ]
+};
+(function(){if(!NARR)return;
+ const au=document.getElementById("narr"),bar=document.getElementById("nbar"),cap=document.getElementById("cap"),play=document.getElementById("nPlay"),tm=document.getElementById("nTime"),msg=document.getElementById("nMsg");
+ document.getElementById("dock").style.display="flex";document.getElementById("help").style.display="none";let on=false,lang="off",slideIdx=-1;
+ const ls=(k,v)=>{try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}};
+ lang=ls("cc-lang")||"off";const sp=ls("narr-speed");if(sp)document.getElementById("nSpeed").value=sp;
+ const fmtT=t=>isFinite(t)?`${Math.floor(t/60)}:${String(Math.floor(t%60)).padStart(2,"0")}`:"0:00";
+ const S_=i=>NARR.slides[i];
+ function load(i){slideIdx=i;const s=S_(i);if(!s){au.removeAttribute("src");return}au.src=s.file;au.playbackRate=+document.getElementById("nSpeed").value;tm.textContent=`0:00 / ${fmtT(s.duration)}`;showCap(0)}
+ function setPlayUI(){play.textContent=au.paused?"▶ Play":"❚❚ Pause";play.classList.toggle("on",!au.paused)}
+ // captions sit in their own band under the slide; long lines shrink to fit the band
+ window.capRefit=()=>{let f=parseFloat(cap.dataset.fs)||18;cap.style.fontSize=f+"px";while(cap.scrollHeight>cap.clientHeight+1&&f>11){f-=1;cap.style.fontSize=f+"px"}};
+ function showCap(t){const s=S_(slideIdx);let c=null;if(s&&lang!=="off"){for(const q of s.cues){if(t>=q.s-0.05)c=q;else break}}
+  const txt=(!c||(au.paused&&au.currentTime===0&&!on))?"":(lang==="th"?c.th:c.en);if(cap.textContent!==txt){cap.textContent=txt;capRefit()}}
+ function ccUI(){const b=document.getElementById("nCC");b.textContent=lang==="off"?"CC off":lang==="en"?"CC English":"CC ไทย";b.classList.toggle("on",lang!=="off");CAP_ON=lang!=="off";fit();showCap(au.currentTime||0)}
+ window.ccCycle=()=>{lang=lang==="off"?"en":lang==="en"?"th":"off";ls("cc-lang",lang);ccUI()};
+ // "on" means the student is listening: it starts with Play and ends with Pause or Stop.
+ // Slides change only when the student moves; the new slide's narration then starts if "on".
+ window.narrToggle=()=>{if(au.paused){on=true;if(slideIdx!==cur)load(cur);if(au.ended)au.currentTime=0;msg.textContent="";au.play().catch(()=>{msg.textContent="Press Play again to start audio."})}else{on=false;au.pause()}};
+ window.onSlideChange=i=>{au.pause();msg.textContent="";load(i);if(on)au.play().catch(()=>{})};
+ document.getElementById("nPlay").onclick=narrToggle;
+ document.getElementById("nStop").onclick=()=>{au.pause();au.currentTime=0;on=false;setPlayUI();showCap(0);tm.textContent=`0:00 / ${fmtT((S_(cur)||{}).duration)}`};
+ document.getElementById("nCC").onclick=ccCycle;
+ document.getElementById("nPrev").onclick=()=>show(cur-1);document.getElementById("nNext").onclick=()=>show(cur+1);
+ document.getElementById("nSpeed").onchange=e=>{au.playbackRate=+e.target.value;ls("narr-speed",e.target.value)};
+ au.addEventListener("play",setPlayUI);au.addEventListener("pause",setPlayUI);
+ au.addEventListener("timeupdate",()=>{tm.textContent=`${fmtT(au.currentTime)} / ${fmtT((S_(slideIdx)||{}).duration)}`;showCap(au.currentTime)});
+ au.addEventListener("ended",()=>{setPlayUI();const s=S_(slideIdx);msg.textContent=s&&s.hold?"Activity: do it now, then press Next ›":cur<N-1?"Press Next › or → for the next slide":"End of the session"});
+ const q=new URLSearchParams(location.search);
+ if(q.get("narrate")==="1"){const ov=document.getElementById("startov");ov.style.display="flex";document.getElementById("startBtn").onclick=()=>{ov.style.display="none";if(lang==="off"){lang="en";ls("cc-lang",lang)}ccUI();on=true;load(cur);au.play().catch(()=>{})}}
+ ccUI();setTimeout(()=>{if(slideIdx<0)load(cur)},0);
+})();
+
+build();drawAll();fit();show((parseInt(location.hash.slice(1))||1)-1);
+</script>
+</body>
+</html>

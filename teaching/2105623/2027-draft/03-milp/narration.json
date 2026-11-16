@@ -1,0 +1,909 @@
+{
+ "voice": "en-US-GuyNeural",
+ "rate": "-5%",
+ "provider": "Microsoft Edge neural speech (edge-tts)",
+ "synthetic_voice": true,
+ "total_seconds": 739.3,
+ "slides": [
+  {
+   "n": 1,
+   "file": "audio/slide-01.mp3",
+   "duration": 23.448,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.761,
+     "en": "Welcome to Session 3 of Optimization of Chemical Processes.",
+     "th": "ยินดีต้อนรับสู่คาบที่ 3 ของวิชา Optimization of Chemical Processes"
+    },
+    {
+     "s": 4.761,
+     "e": 9.934,
+     "en": "Today is about mixed-integer linear programming: decisions that are yes or no.",
+     "th": "วันนี้ว่าด้วย mixed-integer linear programming คือการตัดสินใจแบบใช่หรือไม่ใช่"
+    },
+    {
+     "s": 9.934,
+     "e": 17.974,
+     "en": "We will write plant rules with binary variables, choose the numbers called big M, and see how a solver proves that a plan is optimal.",
+     "th": "เราจะเขียนกฎของโรงงานด้วยตัวแปร binary เลือกค่าที่เรียกว่า big M และดูว่า solver พิสูจน์ได้อย่างไรว่าแผนนั้นดีที่สุด"
+    },
+    {
+     "s": 17.974,
+     "e": 23.382,
+     "en": "When the narration for a slide ends, press the right arrow key, or Next, to go on.",
+     "th": "เมื่อเสียงบรรยายของแต่ละหน้าจบ กดลูกศรขวาหรือปุ่ม Next เพื่อไปหน้าถัดไป"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "file": "audio/slide-02.mp3",
+   "duration": 27.048,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.05,
+     "en": "Here is the plan for the three hours.",
+     "th": "นี่คือแผนของสามชั่วโมง"
+    },
+    {
+     "s": 3.05,
+     "e": 9.382,
+     "en": "After a retrieval check on Session 2, part one turns plant logic into linear inequalities.",
+     "th": "หลังทบทวนความจำจากคาบที่ 2 ส่วนที่หนึ่งแปลงตรรกะของโรงงานเป็นอสมการเชิงเส้น"
+    },
+    {
+     "s": 9.382,
+     "e": 14.211,
+     "en": "Part two is about big M: how to choose it, and what a bad value does.",
+     "th": "ส่วนที่สองว่าด้วย big M คือจะเลือกค่าอย่างไร และค่าที่ไม่ดีส่งผลอย่างไร"
+    },
+    {
+     "s": 14.211,
+     "e": 21.079,
+     "en": "Part three shows how a solver proves optimality, and why one formulation can be much stronger than another.",
+     "th": "ส่วนที่สามแสดงว่า solver พิสูจน์ความเหมาะที่สุดอย่างไร และทำไม formulation หนึ่งจึงแข็งแรงกว่าอีกแบบได้มาก"
+    },
+    {
+     "s": 21.079,
+     "e": 26.987,
+     "en": "After the break and a second activity, part four sets up the boiler problem of Lab 3.",
+     "th": "หลังพักและกิจกรรมที่สอง ส่วนที่สี่เตรียมปัญหาหม้อไอน้ำของ Lab 3"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "file": "audio/slide-03.mp3",
+   "duration": 23.952,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.971,
+     "en": "Activity 1 is a retrieval check on Session 2.",
+     "th": "กิจกรรมที่ 1 คือการทบทวนความจำจากคาบที่ 2"
+    },
+    {
+     "s": 3.971,
+     "e": 8.539,
+     "en": "Answer the four questions without notes, in a sentence or two each.",
+     "th": "ตอบคำถามทั้งสี่ข้อโดยไม่เปิดโน้ต ข้อละหนึ่งหรือสองประโยค"
+    },
+    {
+     "s": 8.539,
+     "e": 11.842,
+     "en": "The last question leads straight into today.",
+     "th": "คำถามข้อสุดท้ายจะนำเข้าสู่เนื้อหาวันนี้โดยตรง"
+    },
+    {
+     "s": 11.842,
+     "e": 16.553,
+     "en": "In class, write alone for five minutes, then compare with a partner.",
+     "th": "ในห้องเรียน เขียนคนเดียวห้านาที แล้วเทียบกับเพื่อน"
+    },
+    {
+     "s": 16.553,
+     "e": 23.895,
+     "en": "If you are studying on your own, stop here and write your answers, then press Show answers to check them, and go to the next slide.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้หยุดที่หน้านี้ เขียนคำตอบ แล้วกดปุ่ม Show answers เพื่อตรวจ จากนั้นจึงไปหน้าถัดไป"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "file": "audio/slide-04.mp3",
+   "duration": 34.008,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.918,
+     "en": "By the end of today you should be able to do five things.",
+     "th": "เมื่อจบคาบนี้ คุณควรทำได้ห้าอย่าง"
+    },
+    {
+     "s": 3.918,
+     "e": 10.066,
+     "en": "Translate yes or no rules from plant language into linear inequalities in binary variables.",
+     "th": "แปลงกฎแบบใช่หรือไม่ใช่จากภาษาของโรงงานให้เป็นอสมการเชิงเส้นในตัวแปร binary"
+    },
+    {
+     "s": 10.066,
+     "e": 16.895,
+     "en": "Write fixed charges, minimum loads, start-ups and either-or constraints, and derive every big M from the model.",
+     "th": "เขียนต้นทุนคงที่ ภาระขั้นต่ำ การเริ่มเดินเครื่อง และข้อจำกัดแบบอย่างใดอย่างหนึ่ง และหาค่า big M ทุกตัวจากโมเดล"
+    },
+    {
+     "s": 16.895,
+     "e": 24.566,
+     "en": "Explain the linear relaxation as a bound, branch and bound, and the gap as the certificate of a mixed-integer program.",
+     "th": "อธิบาย linear relaxation ในฐานะขอบเขต อธิบาย branch and bound และอธิบาย gap ในฐานะ certificate ของ mixed-integer program"
+    },
+    {
+     "s": 24.566,
+     "e": 28.961,
+     "en": "Compare two formulations by the strength of their relaxation.",
+     "th": "เปรียบเทียบ formulation สองแบบด้วยความแข็งแรงของ relaxation"
+    },
+    {
+     "s": 28.961,
+     "e": 33.934,
+     "en": "And say what optimal means for a mixed-integer solver, and what it does not.",
+     "th": "และบอกได้ว่าคำว่า optimal ของ solver แบบ mixed-integer หมายถึงอะไร และไม่ได้หมายถึงอะไร"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "file": "audio/slide-05.mp3",
+   "duration": 37.68,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.471,
+     "en": "Session 2 ended with an open question.",
+     "th": "คาบที่ 2 จบด้วยคำถามที่ยังค้างอยู่"
+    },
+    {
+     "s": 3.471,
+     "e": 14.789,
+     "en": "With a volume discount on alkylate, the linear program bought only the cheap second tier, which the contract does not allow, and claimed 371,851 dollars per day.",
+     "th": "เมื่อมีส่วนลดตามปริมาณของ alkylate linear program ซื้อเฉพาะขั้นที่สองที่ถูกกว่า ซึ่งสัญญาไม่อนุญาต และอ้างว่าได้ 371,851 ดอลลาร์ต่อวัน"
+    },
+    {
+     "s": 14.789,
+     "e": 23.868,
+     "en": "One binary variable z fixes it. The second tier may be used only if z is one, and only once the first tier is full.",
+     "th": "ตัวแปร binary z เพียงตัวเดียวแก้ปัญหานี้ได้ ขั้นที่สองใช้ได้ก็ต่อเมื่อ z เท่ากับหนึ่ง และต้องใช้ขั้นแรกจนเต็มก่อน"
+    },
+    {
+     "s": 23.868,
+     "e": 31.842,
+     "en": "The mixed-integer program buys all 600 cubic meters and earns 362,648 dollars per day.",
+     "th": "mixed-integer program ซื้อทั้ง 600 ลูกบาศก์เมตร และได้ 362,648 ดอลลาร์ต่อวัน"
+    },
+    {
+     "s": 31.842,
+     "e": 37.618,
+     "en": "That is the answer Session 2 found by enumerating both segments, now in one solve.",
+     "th": "นี่คือคำตอบเดียวกับที่คาบที่ 2 ได้จากการไล่ทั้งสองช่วง แต่คราวนี้ได้จากการแก้ครั้งเดียว"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "file": "audio/slide-06.mp3",
+   "duration": 29.328,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.458,
+     "en": "Six patterns cover most plant logic.",
+     "th": "รูปแบบหกแบบครอบคลุมตรรกะของโรงงานได้เกือบทั้งหมด"
+    },
+    {
+     "s": 3.458,
+     "e": 11.711,
+     "en": "A fixed cost paid only when a unit runs. A unit that is either off or runs between a minimum and a maximum load.",
+     "th": "ต้นทุนคงที่ที่จ่ายเฉพาะเมื่อหน่วยผลิตทำงาน และหน่วยที่ปิดอยู่ หรือเดินระหว่างภาระขั้นต่ำกับขั้นสูง"
+    },
+    {
+     "s": 11.711,
+     "e": 16.711,
+     "en": "An implication between two units, and a limit on how many units run.",
+     "th": "เงื่อนไขแบบถ้าแล้วระหว่างสองหน่วย และขีดจำกัดจำนวนหน่วยที่เดินพร้อมกัน"
+    },
+    {
+     "s": 16.711,
+     "e": 22.132,
+     "en": "Either one constraint or another, and a start-up counted when a unit goes from off to on.",
+     "th": "ข้อจำกัดอย่างใดอย่างหนึ่ง และการนับการเริ่มเดินเครื่องเมื่อหน่วยเปลี่ยนจากปิดเป็นเปิด"
+    },
+    {
+     "s": 22.132,
+     "e": 29.263,
+     "en": "Several of these contain a number M. Every M must be a number you can justify from the model.",
+     "th": "หลายรูปแบบมีตัวเลข M อยู่ และ M ทุกตัวต้องเป็นตัวเลขที่คุณให้เหตุผลได้จากโมเดล"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "file": "audio/slide-07.mp3",
+   "duration": 27.816,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.511,
+     "en": "Try it with four rules from a plant manual.",
+     "th": "ลองทำกับกฎสี่ข้อจากคู่มือโรงงาน"
+    },
+    {
+     "s": 3.511,
+     "e": 10.724,
+     "en": "The method is to write each rule as clauses joined by or, and turn each clause into a sum of binaries that must be at least one.",
+     "th": "วิธีคือเขียนแต่ละกฎเป็นประโยคย่อยที่เชื่อมด้วยคำว่า หรือ แล้วแปลงแต่ละประโยคย่อยเป็นผลรวมของ binary ที่ต้องไม่น้อยกว่าหนึ่ง"
+    },
+    {
+     "s": 10.724,
+     "e": 14.974,
+     "en": "A negated variable appears as one minus the variable.",
+     "th": "ตัวแปรที่ถูกปฏิเสธจะเขียนเป็นหนึ่งลบตัวแปรนั้น"
+    },
+    {
+     "s": 14.974,
+     "e": 19.474,
+     "en": "Write your four inequalities, then press the button to compare.",
+     "th": "เขียนอสมการทั้งสี่ข้อของคุณ แล้วกดปุ่มเพื่อเปรียบเทียบ"
+    },
+    {
+     "s": 19.474,
+     "e": 27.763,
+     "en": "Rule three is the one most people get wrong: boiler 3 implies boiler 1 or boiler 2, so y three is at most y one plus y two.",
+     "th": "กฎข้อที่สามเป็นข้อที่คนส่วนใหญ่ทำผิด หม้อไอน้ำ 3 เดินได้ก็ต่อเมื่อหม้อ 1 หรือหม้อ 2 เดิน ดังนั้น y3 ไม่เกิน y1 บวก y2"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "file": "audio/slide-08.mp3",
+   "duration": 37.824,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.866,
+     "en": "Here is an either-or constraint.",
+     "th": "นี่คือข้อจำกัดแบบอย่างใดอย่างหนึ่ง"
+    },
+    {
+     "s": 2.866,
+     "e": 11.632,
+     "en": "A reactor runs either below 350 degrees or above 420 degrees, and its temperature lies between 300 and 500.",
+     "th": "เครื่องปฏิกรณ์เดินที่อุณหภูมิต่ำกว่า 350 องศา หรือสูงกว่า 420 องศา และอุณหภูมิอยู่ระหว่าง 300 ถึง 500"
+    },
+    {
+     "s": 11.632,
+     "e": 17.908,
+     "en": "When z is one the first row is active and the second is harmless; when z is zero, the reverse.",
+     "th": "เมื่อ z เท่ากับหนึ่ง แถวแรกมีผล และแถวที่สองไม่มีผล เมื่อ z เท่ากับศูนย์ จะกลับกัน"
+    },
+    {
+     "s": 17.908,
+     "e": 26.658,
+     "en": "Each M is the largest value its left side can take within the bounds of the temperature: 150 for the first row and 120 for the second.",
+     "th": "แต่ละค่า M คือค่าที่ใหญ่ที่สุดที่ด้านซ้ายของแถวนั้นเป็นได้ ภายใต้ขอบเขตของอุณหภูมิ คือ 150 สำหรับแถวแรก และ 120 สำหรับแถวที่สอง"
+    },
+    {
+     "s": 26.658,
+     "e": 37.763,
+     "en": "In the relaxation, z equal to one half allows temperatures between 360 and 425, inside the forbidden window. Branching on z removes them.",
+     "th": "ใน relaxation ค่า z เท่ากับครึ่งหนึ่ง ยอมให้อุณหภูมิอยู่ระหว่าง 360 ถึง 425 ซึ่งอยู่ในช่วงต้องห้าม การ branch บน z จะตัดช่วงนี้ออก"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "file": "audio/slide-09.mp3",
+   "duration": 49.656,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.905,
+     "en": "This demo shows what M does.",
+     "th": "demo นี้แสดงว่า M ทำอะไร"
+    },
+    {
+     "s": 2.905,
+     "e": 13.855,
+     "en": "A plant needs 30 tonnes of steam per hour. It can run one boiler, with a fixed cost of 600 dollars per hour, or buy steam at 45 dollars per tonne.",
+     "th": "โรงงานต้องการไอน้ำ 30 ตันต่อชั่วโมง จะเดินหม้อไอน้ำหนึ่งลูกซึ่งมีต้นทุนคงที่ 600 ดอลลาร์ต่อชั่วโมง หรือซื้อไอน้ำที่ 45 ดอลลาร์ต่อตันก็ได้"
+    },
+    {
+     "s": 13.855,
+     "e": 19.276,
+     "en": "The right answer is to run the boiler, at 1,200 dollars per hour.",
+     "th": "คำตอบที่ถูกคือเดินหม้อไอน้ำ ที่ 1,200 ดอลลาร์ต่อชั่วโมง"
+    },
+    {
+     "s": 19.276,
+     "e": 30.934,
+     "en": "Move M down to 25. The model now cannot make 30 tonnes, and it reports 1,325 dollars as optimal. That answer is wrong.",
+     "th": "เลื่อน M ลงเป็น 25 โมเดลจะผลิตไอน้ำ 30 ตันไม่ได้ และรายงานว่า 1,325 ดอลลาร์คือค่าที่เหมาะที่สุด ซึ่งเป็นคำตอบที่ผิด"
+    },
+    {
+     "s": 30.934,
+     "e": 35.592,
+     "en": "At M equal to 30 the relaxation already gives the right answer.",
+     "th": "ที่ M เท่ากับ 30 relaxation ให้คำตอบที่ถูกต้องอยู่แล้ว"
+    },
+    {
+     "s": 35.592,
+     "e": 49.592,
+     "en": "As M grows, the relaxation can switch the boiler on by a small fraction and pay only that fraction of the fixed cost. At M equal to 1,000 the bound is 618, a gap of 48.5 percent.",
+     "th": "เมื่อ M ใหญ่ขึ้น relaxation จะเปิดหม้อไอน้ำเพียงเศษเสี้ยว และจ่ายต้นทุนคงที่เพียงเศษเสี้ยวนั้น ที่ M เท่ากับ 1,000 ขอบเขตเหลือ 618 ห่างจากคำตอบ 48.5 เปอร์เซ็นต์"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "file": "audio/slide-10.mp3",
+   "duration": 38.832,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.629,
+     "en": "So, how do you choose M?",
+     "th": "แล้วจะเลือก M อย่างไร"
+    },
+    {
+     "s": 2.629,
+     "e": 8.842,
+     "en": "Too small, and feasible plans are cut off; the solver reports optimal for a different plant.",
+     "th": "ถ้าเล็กเกินไป แผนที่เป็นไปได้จะถูกตัดออก และ solver จะรายงานคำตอบที่เหมาะที่สุดของโรงงานอื่น"
+    },
+    {
+     "s": 8.842,
+     "e": 13.263,
+     "en": "Valid but large, and the bound is weak and the search is longer.",
+     "th": "ถ้าถูกต้องแต่ใหญ่ ขอบเขตจะอ่อน และการค้นหาจะนานขึ้น"
+    },
+    {
+     "s": 13.263,
+     "e": 23.461,
+     "en": "The best M is the largest value the left side can take, proved from the model, and capacity is not always the tightest such bound. Here the demand is.",
+     "th": "M ที่ดีที่สุดคือค่าที่ใหญ่ที่สุดที่ด้านซ้ายเป็นได้ โดยพิสูจน์จากโมเดล และกำลังการผลิตไม่ใช่ขอบเขตที่แน่นที่สุดเสมอไป ในกรณีนี้คือความต้องการไอน้ำ"
+    },
+    {
+     "s": 23.461,
+     "e": 35.013,
+     "en": "Solvers check integrality to a tolerance, typically one in a million. With M equal to a million, a binary of one in a million counts as zero and still allows real output.",
+     "th": "solver ตรวจความเป็นจำนวนเต็มด้วยค่าความคลาดเคลื่อน โดยทั่วไปคือหนึ่งในล้าน ถ้า M เท่ากับหนึ่งล้าน ตัวแปร binary ที่มีค่าหนึ่งในล้านจะถูกนับเป็นศูนย์ แต่ยังยอมให้ผลิตได้จริง"
+    },
+    {
+     "s": 35.013,
+     "e": 38.763,
+     "en": "Write every M with its derivation next to the row.",
+     "th": "เขียน M ทุกตัวพร้อมที่มาของมันไว้ข้างแถวนั้น"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "file": "audio/slide-11.mp3",
+   "duration": 29.4,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.537,
+     "en": "How does a solver find and prove the optimum?",
+     "th": "solver หาและพิสูจน์คำตอบที่ดีที่สุดได้อย่างไร"
+    },
+    {
+     "s": 3.537,
+     "e": 8.868,
+     "en": "It relaxes integrality and solves the linear program, which gives a bound.",
+     "th": "มันผ่อนเงื่อนไขความเป็นจำนวนเต็ม แล้วแก้ linear program ซึ่งให้ขอบเขต"
+    },
+    {
+     "s": 8.868,
+     "e": 15.316,
+     "en": "It branches on a fractional binary, with one child where the variable is zero and one where it is one.",
+     "th": "มัน branch บนตัวแปร binary ที่มีค่าเป็นเศษส่วน โดยลูกหนึ่งให้ตัวแปรเป็นศูนย์ และอีกลูกให้เป็นหนึ่ง"
+    },
+    {
+     "s": 15.316,
+     "e": 23.566,
+     "en": "It prunes a node when the relaxation is infeasible, when it is already integer, or when its bound cannot beat the best plan found so far.",
+     "th": "มันตัดโหนดทิ้งเมื่อ relaxation ไม่มีคำตอบ เมื่อได้คำตอบเป็นจำนวนเต็มแล้ว หรือเมื่อขอบเขตของมันชนะแผนที่ดีที่สุดที่พบแล้วไม่ได้"
+    },
+    {
+     "s": 23.566,
+     "e": 29.342,
+     "en": "Our example chooses heat-recovery projects within a budget of 300 thousand dollars.",
+     "th": "ตัวอย่างของเราคือการเลือกโครงการนำความร้อนกลับมาใช้ ภายใต้งบประมาณ 300,000 ดอลลาร์"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "file": "audio/slide-12.mp3",
+   "duration": 38.448,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.826,
+     "en": "Move the slider to grow the tree one node at a time.",
+     "th": "เลื่อนแถบเพื่อให้ต้นไม้เติบโตทีละโหนด"
+    },
+    {
+     "s": 3.826,
+     "e": 11.461,
+     "en": "The root relaxation promises 131 thousand dollars per year. That is the first bound.",
+     "th": "relaxation ที่ราก ให้ค่าสูงสุด 131,000 ดอลลาร์ต่อปี นั่นคือขอบเขตแรก"
+    },
+    {
+     "s": 11.461,
+     "e": 17.816,
+     "en": "The first integer plan found is worth 114, then a better one is worth 125.",
+     "th": "แผนจำนวนเต็มแรกที่พบมีมูลค่า 114 จากนั้นพบแผนที่ดีกว่ามีมูลค่า 125"
+    },
+    {
+     "s": 17.816,
+     "e": 27.724,
+     "en": "Grey nodes are pruned by the bound and red nodes are infeasible. After 19 nodes no open node can beat 125, and the gap is zero.",
+     "th": "โหนดสีเทาถูกตัดด้วยขอบเขต และโหนดสีแดงไม่มีคำตอบ หลังจาก 19 โหนด ไม่มีโหนดใดที่ยังเปิดอยู่ชนะ 125 ได้ และ gap เป็นศูนย์"
+    },
+    {
+     "s": 27.724,
+     "e": 38.382,
+     "en": "The best choice is projects 2, 4 and 5. Choosing greedily by saving per dollar gives projects 1, 4 and 2, worth only 119.",
+     "th": "ตัวเลือกที่ดีที่สุดคือโครงการ 2, 4 และ 5 ส่วนการเลือกแบบโลภตามผลประหยัดต่อดอลลาร์ ได้โครงการ 1, 4 และ 2 ซึ่งมีมูลค่าเพียง 119"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "file": "audio/slide-13.mp3",
+   "duration": 37.824,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.103,
+     "en": "This is what optimal means for a mixed-integer program.",
+     "th": "นี่คือความหมายของคำว่า optimal สำหรับ mixed-integer program"
+    },
+    {
+     "s": 4.103,
+     "e": 12.632,
+     "en": "The best plan found, called the incumbent, and the best bound bracket the true optimum. The gap is their relative difference.",
+     "th": "แผนที่ดีที่สุดที่พบ เรียกว่า incumbent กับขอบเขตที่ดีที่สุด ประกบค่าที่เหมาะที่สุดจริงไว้ และ gap คือผลต่างสัมพัทธ์ของทั้งสอง"
+    },
+    {
+     "s": 12.632,
+     "e": 21.868,
+     "en": "HiGHS stops by default when the gap is below one hundredth of a percent. With a time limit, always report the incumbent and the bound.",
+     "th": "โดยค่าเริ่มต้น HiGHS หยุดเมื่อ gap ต่ำกว่าหนึ่งในร้อยของหนึ่งเปอร์เซ็นต์ ถ้ามีการจำกัดเวลา ให้รายงานทั้ง incumbent และขอบเขตเสมอ"
+    },
+    {
+     "s": 21.868,
+     "e": 32.329,
+     "en": "A mixed-integer program has no shadow prices. If you fix the binaries and solve the linear program, its duals are prices for that on and off pattern only.",
+     "th": "mixed-integer program ไม่มี shadow price ถ้าตรึงค่า binary แล้วแก้ linear program ค่า dual ที่ได้เป็นราคาสำหรับรูปแบบการเปิดปิดนั้นเท่านั้น"
+    },
+    {
+     "s": 32.329,
+     "e": 37.763,
+     "en": "Identical units create many plans with the same cost, which slows the search.",
+     "th": "หน่วยผลิตที่เหมือนกันทุกประการทำให้เกิดแผนจำนวนมากที่มีต้นทุนเท่ากัน ซึ่งทำให้การค้นหาช้าลง"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "file": "audio/slide-14.mp3",
+   "duration": 43.344,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.3,
+     "en": "Two formulations can describe exactly the same integer plans and still behave very differently.",
+     "th": "formulation สองแบบอาจบรรยายแผนจำนวนเต็มชุดเดียวกันทุกประการ แต่มีพฤติกรรมต่างกันมาก"
+    },
+    {
+     "s": 6.3,
+     "e": 10.908,
+     "en": "Here, eight candidate solvent-recovery sites serve twenty plants.",
+     "th": "ในตัวอย่างนี้ มีพื้นที่ตั้งหน่วยนำตัวทำละลายกลับมาใช้ที่เป็นไปได้แปดแห่ง ให้บริการโรงงานยี่สิบแห่ง"
+    },
+    {
+     "s": 10.908,
+     "e": 24.934,
+     "en": "The aggregated form links each site with one row. Its relaxation bound is 11,192 dollars against an optimum of 19,168, a gap of 41.6 percent.",
+     "th": "แบบรวมใช้หนึ่งแถวเชื่อมแต่ละพื้นที่ ขอบเขตของ relaxation คือ 11,192 ดอลลาร์ เทียบกับค่าที่เหมาะที่สุด 19,168 ห่างกัน 41.6 เปอร์เซ็นต์"
+    },
+    {
+     "s": 24.934,
+     "e": 34.671,
+     "en": "The disaggregated form uses one row for every pair: 160 rows instead of 8. Its relaxation is already integer.",
+     "th": "แบบแยกใช้หนึ่งแถวต่อทุกคู่ คือ 160 แถว แทนที่จะเป็น 8 และ relaxation ของมันได้คำตอบเป็นจำนวนเต็มแล้ว"
+    },
+    {
+     "s": 34.671,
+     "e": 43.276,
+     "en": "A textbook branch and bound needs 123 nodes for the first form and one for the second. HiGHS needs 5 and one.",
+     "th": "branch and bound แบบตำราต้องใช้ 123 โหนดสำหรับแบบแรก และหนึ่งโหนดสำหรับแบบที่สอง ส่วน HiGHS ใช้ 5 และหนึ่ง"
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "file": "audio/slide-15.mp3",
+   "duration": 37.56,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.445,
+     "en": "Why is the second form so much stronger?",
+     "th": "ทำไมแบบที่สองจึงแข็งแรงกว่ามาก"
+    },
+    {
+     "s": 3.445,
+     "e": 12.421,
+     "en": "The ideal formulation of a set of integer plans is its convex hull. Its relaxation already has an integer optimum.",
+     "th": "formulation ในอุดมคติของชุดแผนจำนวนเต็ม คือ convex hull ของมัน ซึ่ง relaxation ได้คำตอบที่เป็นจำนวนเต็มอยู่แล้ว"
+    },
+    {
+     "s": 12.421,
+     "e": 20.671,
+     "en": "Disaggregation, tight values of M and valid inequalities move a formulation toward the hull, and more rows can mean a faster solve.",
+     "th": "การแยก ค่า M ที่แน่น และอสมการที่ถูกต้องเพิ่มเติม ช่วยให้ formulation เข้าใกล้ hull และการมีแถวมากขึ้นอาจทำให้แก้ได้เร็วขึ้น"
+    },
+    {
+     "s": 20.671,
+     "e": 30.855,
+     "en": "Solvers add cuts and tighten coefficients themselves, which is why HiGHS needed only a few nodes on the weak form. On larger models the difference is hours.",
+     "th": "solver เพิ่ม cut และปรับสัมประสิทธิ์ให้แน่นขึ้นเอง จึงทำให้ HiGHS ใช้เพียงไม่กี่โหนดกับแบบที่อ่อน แต่ในโมเดลที่ใหญ่ขึ้น ความต่างอาจเป็นหลายชั่วโมง"
+    },
+    {
+     "s": 30.855,
+     "e": 37.5,
+     "en": "Judge a formulation by the gap between its relaxation and its optimum, not by its number of rows.",
+     "th": "ให้ตัดสิน formulation จากช่องว่างระหว่าง relaxation กับค่าที่เหมาะที่สุด ไม่ใช่จากจำนวนแถว"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "file": "audio/slide-16.mp3",
+   "duration": 7.656,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.432,
+     "en": "Take a ten-minute break.",
+     "th": "พักสิบนาที"
+    },
+    {
+     "s": 2.432,
+     "e": 7.605,
+     "en": "After the break, the yes or no decisions on your card get binary variables.",
+     "th": "หลังพัก การตัดสินใจแบบใช่หรือไม่ใช่บนการ์ดของคุณจะได้ตัวแปร binary"
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "file": "audio/slide-17.mp3",
+   "duration": 30.672,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.445,
+     "en": "Activity 2 uses your linearized card from Session 2.",
+     "th": "กิจกรรมที่ 2 ใช้การ์ดที่เขียนเป็นเชิงเส้นแล้วจากคาบที่ 2"
+    },
+    {
+     "s": 4.445,
+     "e": 10.053,
+     "en": "Give every yes or no decision a binary variable, and say what the value one means.",
+     "th": "กำหนดตัวแปร binary ให้ทุกการตัดสินใจแบบใช่หรือไม่ใช่ และบอกว่าค่าหนึ่งหมายถึงอะไร"
+    },
+    {
+     "s": 10.053,
+     "e": 14.447,
+     "en": "Write the rules that link them, using the patterns from part one.",
+     "th": "เขียนกฎที่เชื่อมตัวแปรเหล่านั้น โดยใช้รูปแบบจากส่วนที่หนึ่ง"
+    },
+    {
+     "s": 14.447,
+     "e": 18.763,
+     "en": "For every big M, write down the number and the bound it comes from.",
+     "th": "สำหรับ big M ทุกตัว เขียนตัวเลขและขอบเขตที่เป็นที่มาของมัน"
+    },
+    {
+     "s": 18.763,
+     "e": 25.039,
+     "en": "In class, swap with a partner and try to find a feasible plan that your partner's M would cut off.",
+     "th": "ในห้องเรียน แลกกับเพื่อน แล้วลองหาแผนที่เป็นไปได้ที่ M ของเพื่อนจะตัดทิ้ง"
+    },
+    {
+     "s": 25.039,
+     "e": 30.618,
+     "en": "If you are studying on your own, stop here, write it, and keep it for Session 4.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้หยุดที่หน้านี้ เขียนไว้ แล้วเก็บไว้ใช้ในคาบที่ 4"
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "file": "audio/slide-18.mp3",
+   "duration": 29.808,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.05,
+     "en": "Part four is the problem of the lab.",
+     "th": "ส่วนที่สี่คือปัญหาของ lab"
+    },
+    {
+     "s": 3.05,
+     "e": 14.316,
+     "en": "A utility plant has four boilers. Large boilers are cheap per tonne of steam, but expensive to keep on and to start. Small boilers follow the peaks.",
+     "th": "โรงงานสาธารณูปโภคมีหม้อไอน้ำสี่ลูก ลูกใหญ่มีต้นทุนต่อตันไอน้ำต่ำ แต่มีค่าใช้จ่ายสูงในการเปิดค้างไว้และการเริ่มเดิน ลูกเล็กใช้รับช่วงความต้องการสูงสุด"
+    },
+    {
+     "s": 14.316,
+     "e": 24.368,
+     "en": "Steam demand varies from 110 to 255 tonnes per hour over the day, and the capacity that is on must cover the demand plus a ten percent reserve.",
+     "th": "ความต้องการไอน้ำเปลี่ยนจาก 110 ถึง 255 ตันต่อชั่วโมงตลอดวัน และกำลังการผลิตของหม้อที่เปิดอยู่ต้องครอบคลุมความต้องการบวกสำรองอีกสิบเปอร์เซ็นต์"
+    },
+    {
+     "s": 24.368,
+     "e": 29.737,
+     "en": "Each hour, the decision is which boilers are on, and how much steam each one makes.",
+     "th": "ในแต่ละชั่วโมง ต้องตัดสินใจว่าหม้อใดเปิด และแต่ละหม้อผลิตไอน้ำเท่าใด"
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "file": "audio/slide-19.mp3",
+   "duration": 31.728,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.576,
+     "en": "Here is the formulation.",
+     "th": "นี่คือ formulation"
+    },
+    {
+     "s": 2.576,
+     "e": 9.145,
+     "en": "Each boiler-hour has a minimum and a maximum load linked to its on and off variable, and a start-up row.",
+     "th": "แต่ละหม้อในแต่ละชั่วโมงมีภาระขั้นต่ำและขั้นสูงที่ผูกกับตัวแปรเปิดปิด และมีแถวสำหรับการเริ่มเดินเครื่อง"
+    },
+    {
+     "s": 9.145,
+     "e": 12.684,
+     "en": "Each hour has a demand row and a reserve row.",
+     "th": "แต่ละชั่วโมงมีแถวความต้องการและแถวสำรอง"
+    },
+    {
+     "s": 12.684,
+     "e": 22.908,
+     "en": "The start-up variables need not be declared integer: with the on and off variables integer and a positive start cost, the optimum sets them to zero or one by itself.",
+     "th": "ตัวแปรการเริ่มเดินไม่จำเป็นต้องประกาศเป็นจำนวนเต็ม เพราะเมื่อตัวแปรเปิดปิดเป็นจำนวนเต็มและต้นทุนการเริ่มเดินเป็นบวก คำตอบที่เหมาะที่สุดจะกำหนดให้เป็นศูนย์หรือหนึ่งเอง"
+    },
+    {
+     "s": 22.908,
+     "e": 31.671,
+     "en": "Four boilers over 24 hours give 96 binaries, solved in well under a second because the relaxation is close and the solver adds cuts.",
+     "th": "หม้อสี่ลูกตลอด 24 ชั่วโมงให้ตัวแปร binary 96 ตัว ซึ่งแก้ได้ในเวลาไม่ถึงหนึ่งวินาที เพราะ relaxation ใกล้เคียง และ solver เพิ่ม cut"
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "file": "audio/slide-20.mp3",
+   "duration": 23.088,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.287,
+     "en": "Five habits for mixed-integer models.",
+     "th": "นิสัยห้าข้อสำหรับโมเดล mixed-integer"
+    },
+    {
+     "s": 3.287,
+     "e": 10.158,
+     "en": "Write every M with its derivation. Solve the relaxation first and report the root gap.",
+     "th": "เขียน M ทุกตัวพร้อมที่มา แก้ relaxation ก่อน และรายงาน gap ที่ราก"
+    },
+    {
+     "s": 10.158,
+     "e": 13.632,
+     "en": "Report the incumbent, the bound and the gap.",
+     "th": "รายงาน incumbent ขอบเขต และ gap"
+    },
+    {
+     "s": 13.632,
+     "e": 19.474,
+     "en": "Check a small case by enumeration, which catches logic errors the solver cannot see.",
+     "th": "ตรวจกรณีเล็กด้วยการไล่ทุกกรณี ซึ่งจับข้อผิดพลาดเชิงตรรกะที่ solver มองไม่เห็น"
+    },
+    {
+     "s": 19.474,
+     "e": 23.013,
+     "en": "And break symmetry between identical units.",
+     "th": "และทำลายความสมมาตรระหว่างหน่วยผลิตที่เหมือนกัน"
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "file": "audio/slide-21.mp3",
+   "duration": 27.864,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.813,
+     "en": "Lab 3 commits the four boilers for one day.",
+     "th": "Lab 3 วางแผนการเปิดปิดหม้อไอน้ำทั้งสี่ลูกสำหรับหนึ่งวัน"
+    },
+    {
+     "s": 3.813,
+     "e": 10.961,
+     "en": "You will write the load and start-up rows, solve the relaxation and the mixed-integer program, and compute the root gap.",
+     "th": "คุณจะเขียนแถวภาระและแถวการเริ่มเดิน แก้ relaxation และ mixed-integer program แล้วคำนวณ gap ที่ราก"
+    },
+    {
+     "s": 10.961,
+     "e": 14.5,
+     "en": "You will see what a loose M and an invalid M do.",
+     "th": "คุณจะเห็นว่า M ที่หลวมและ M ที่ไม่ถูกต้องส่งผลอย่างไร"
+    },
+    {
+     "s": 14.5,
+     "e": 21.118,
+     "en": "You will check the solver by enumerating the sixteen patterns of one hour, and change the start-up cost.",
+     "th": "คุณจะตรวจ solver ด้วยการไล่รูปแบบทั้งสิบหกแบบของหนึ่งชั่วโมง และเปลี่ยนต้นทุนการเริ่มเดิน"
+    },
+    {
+     "s": 21.118,
+     "e": 27.789,
+     "en": "You have forty minutes. If you are studying on your own, stop here and open the lab.",
+     "th": "คุณมีเวลาสี่สิบนาที ถ้าเรียนด้วยตนเอง ให้หยุดที่หน้านี้แล้วเปิด lab"
+    }
+   ]
+  },
+  {
+   "n": 22,
+   "file": "audio/slide-22.mp3",
+   "duration": 25.008,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.076,
+     "en": "To summarize.",
+     "th": "สรุป"
+    },
+    {
+     "s": 2.076,
+     "e": 6.711,
+     "en": "Binary variables turn plant rules into linear inequalities.",
+     "th": "ตัวแปร binary แปลงกฎของโรงงานให้เป็นอสมการเชิงเส้น"
+    },
+    {
+     "s": 6.711,
+     "e": 11.474,
+     "en": "Every M must be valid, and should be as small as the model can prove.",
+     "th": "M ทุกตัวต้องถูกต้อง และควรเล็กที่สุดเท่าที่โมเดลพิสูจน์ได้"
+    },
+    {
+     "s": 11.474,
+     "e": 17.671,
+     "en": "The relaxation is a bound, branch and bound closes the gap, and the gap is the certificate.",
+     "th": "relaxation คือขอบเขต branch and bound ปิด gap และ gap คือ certificate"
+    },
+    {
+     "s": 17.671,
+     "e": 24.947,
+     "en": "Judge formulations by their root gap. Disaggregation and tight M move them toward the convex hull.",
+     "th": "ตัดสิน formulation ด้วย gap ที่ราก การแยกและ M ที่แน่น ช่วยให้เข้าใกล้ convex hull"
+    }
+   ]
+  },
+  {
+   "n": 23,
+   "file": "audio/slide-23.mp3",
+   "duration": 22.728,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.076,
+     "en": "Before Session 4, finish Lab 3 if you did not finish it in class.",
+     "th": "ก่อนคาบที่ 4 ทำ Lab 3 ให้เสร็จ ถ้ายังทำไม่เสร็จในห้อง"
+    },
+    {
+     "s": 5.076,
+     "e": 12.658,
+     "en": "Keep your card with binaries. Session 4 repeats decisions over time and links them through inventory.",
+     "th": "เก็บการ์ดที่มีตัวแปร binary ไว้ คาบที่ 4 จะทำการตัดสินใจซ้ำตามเวลา และเชื่อมกันด้วยสินค้าคงคลัง"
+    },
+    {
+     "s": 12.658,
+     "e": 16.697,
+     "en": "Read Williams, chapter 10 and section 12.1.",
+     "th": "อ่านหนังสือของ Williams บทที่ 10 และหัวข้อ 12.1"
+    },
+    {
+     "s": 16.697,
+     "e": 22.658,
+     "en": "If you want practice, add a minimum up time to the boiler model and see how the schedule changes.",
+     "th": "ถ้าต้องการฝึกเพิ่ม ลองเพิ่มเวลาเดินขั้นต่ำให้โมเดลหม้อไอน้ำ แล้วดูว่าตารางเปลี่ยนไปอย่างไร"
+    }
+   ]
+  },
+  {
+   "n": 24,
+   "file": "audio/slide-24.mp3",
+   "duration": 24.624,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.405,
+     "en": "Finally, the Exit Ticket and feedback.",
+     "th": "สุดท้ายคือ Exit Ticket และ feedback"
+    },
+    {
+     "s": 3.405,
+     "e": 9.184,
+     "en": "Scan the code, choose Session 3, and paste the answers that the lab page copies for you.",
+     "th": "สแกนโค้ด เลือก Session 3 แล้ววางคำตอบที่หน้า lab คัดลอกไว้ให้"
+    },
+    {
+     "s": 9.184,
+     "e": 15.513,
+     "en": "Then tell us about the pace, your confidence, how far you got in the lab, and what is still unclear.",
+     "th": "จากนั้นบอกเราเรื่องความเร็วในการสอน ความมั่นใจ ความคืบหน้าใน lab และสิ่งที่ยังไม่ชัดเจน"
+    },
+    {
+     "s": 15.513,
+     "e": 21.237,
+     "en": "If you studied on your own, choose On my own. The form is anonymous.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้เลือก On my own แบบฟอร์มนี้ไม่ระบุตัวตน"
+    },
+    {
+     "s": 21.237,
+     "e": 24.553,
+     "en": "Thank you, and see you in Session 4.",
+     "th": "ขอบคุณ แล้วพบกันในคาบที่ 4"
+    }
+   ]
+  }
+ ]
+}

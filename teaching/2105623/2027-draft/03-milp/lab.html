@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Lab 3 · Commit four boilers · 2105623</title>
+<style>
+:root{--teal:#0F6E6B;--amber:#E29A2D;--rust:#BE654C;--graphite:#333F4A;--ink:#1C242B;--slate:#66727C;--mist:#B9C1C6;--paper:#F3F0EB;--sand:#DFC98F;--ok:#0F6E6B;--bad:#BE654C}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.55 "Helvetica Neue",Helvetica,Arial,sans-serif}
+main{max-width:820px;margin:0 auto;padding:18px 16px 80px}
+header h1{color:var(--teal);font-size:30px;margin:4px 0 2px}
+.kicker{color:var(--amber);font-weight:700;letter-spacing:.12em;font-size:13px;text-transform:uppercase}
+.sub{color:var(--slate);font-size:15px}
+.prog{position:sticky;top:0;background:var(--paper);padding:10px 0;z-index:3}
+.bar{height:8px;background:#e2ddd4;border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--teal);width:0;transition:width .3s}
+.prog span{font-size:13px;color:var(--slate)}
+.card{background:#fff;border-radius:14px;padding:18px 18px 16px;margin:14px 0;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.card h2{font-size:21px;margin:0 0 4px;color:var(--teal)}
+.card h3{font-size:17px;margin:16px 0 6px}
+.step{border-left:4px solid var(--mist);padding:2px 0 2px 14px;margin:14px 0}
+.step.done{border-color:var(--teal)}.step.locked{opacity:.45;pointer-events:none}
+.step.locked .chart,.step.locked .kpi,.step.locked .chk,.step.locked input[type=range],.step.locked .row{display:none}
+.step.locked::after{content:"Finish the step above to open this one.";display:block;font-size:13px;color:var(--slate)}
+.tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.08em;border-radius:6px;padding:2px 8px;margin-right:6px;color:#fff;background:var(--slate)}
+.tag.p{background:var(--amber)}.tag.r{background:var(--teal)}.tag.c{background:var(--graphite)}.tag.e{background:var(--rust)}
+textarea,input[type=text],select{font:inherit;font-size:16px;width:100%;border:1.5px solid var(--mist);border-radius:8px;padding:8px 10px;background:#fff}
+textarea{min-height:70px}
+button{font:inherit;font-size:15px;padding:8px 14px;border-radius:8px;border:none;background:var(--teal);color:#fff;cursor:pointer;margin:8px 8px 0 0}
+button.ghost{background:#fff;color:var(--teal);border:1.5px solid var(--teal)}
+button:disabled{opacity:.5;cursor:default}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.row label{flex:1 1 240px}
+.chk{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0}
+.chk input{width:150px}
+.fb{font-size:15px}.fb.ok{color:var(--ok);font-weight:700}.fb.bad{color:var(--bad)}
+.choices label{display:block;margin:4px 0}
+.kpi{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}.kpi div{background:var(--paper);border-radius:10px;padding:6px 12px;font-size:14px;color:var(--slate)}.kpi b{display:block;font-size:20px;color:var(--ink)}
+.chart{background:var(--paper);border-radius:12px;padding:6px;margin:8px 0}
+svg{width:100%;height:auto;display:block}
+input[type=range]{width:100%;accent-color:var(--teal)}
+.note{font-size:14px;color:var(--slate)}
+.hidden{display:none}
+pre.sum{white-space:pre-wrap;background:var(--paper);border-radius:10px;padding:12px;font-size:14px}
+a{color:var(--teal)}
+</style>
+<style>
+.step.locked > *:not(.tag){display:none}
+table.tb{border-collapse:collapse;width:100%;font-size:15px;margin:8px 0}
+table.tb th{background:var(--paper);text-align:left;padding:5px 8px;border-bottom:2px solid var(--mist)}
+table.tb td{padding:5px 8px;border-bottom:1px solid #e6e3dd}
+table.tb td.n,table.tb th.n{text-align:right;font-variant-numeric:tabular-nums}
+ol.rl{margin:4px 0 0;padding-left:22px;font-size:15px}
+.lights{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+.light{border-radius:999px;padding:3px 10px;font-size:14px;font-weight:700}
+.light.ok{background:#e3f0ef;color:var(--teal)}.light.bad{background:#f6e3de;color:var(--rust)}
+.code{background:#1f262d;color:#e8eef2;border-radius:10px;padding:10px 8px;font-family:Menlo,Consolas,monospace;font-size:13.5px;overflow-x:auto}
+.ln{display:flex;align-items:center;gap:8px;padding:3px 4px;border-radius:6px;white-space:pre}
+.ln.fixed{background:#24433f}
+.ln .no{color:#8a96a0;width:18px;text-align:right}
+.ln .tx{flex:1}
+.ln .okk{width:38px;color:#9fd6c9;font-size:12px;font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700}
+button.sm{width:38px;font-size:12px;padding:2px 9px;margin:0;background:transparent;color:#9fd6c9;border:1px solid #9fd6c9}
+@media (max-width:600px){table.tb{display:block;overflow-x:auto;font-size:13px}}
+</style>
+
+</head>
+<body><main>
+<header><div class="kicker">2105623 · Session 3 · Lab</div><h1>Commit four boilers for one day</h1>
+<div class="sub">About 40 minutes. Works in class or on your own, on a laptop or a phone. Nothing to install; a calculator helps.</div></header>
+<div class="prog"><div class="bar"><i id="pbar"></i></div><span id="ptext"></span></div>
+
+<section class="card"><h2>How this lab works</h2>
+<p>A utility plant must decide, hour by hour, which of four boilers are on and how much steam each one makes. A boiler that is on costs a fixed amount per hour and must run between its minimum and maximum load; starting it costs extra. You will write the load and start-up rows, compare the LP relaxation with the MILP, see what a loose and an invalid big-M do, check the solver by enumerating one hour by hand, and change the start-up cost. Write each prediction before you look; the next step stays locked until you do. Number checks accept answers within 1%. Your answers stay in this browser until you finish.</p>
+<p class="note">Studying on your own because class was cancelled? Watch the narrated slides for Session 3 first, then come back here.</p></section>
+
+<section class="card" id="spec"><h2>The plant</h2>
+<table class="tb"><tr><th>Boiler</th><th class="n">Max, t/h</th><th class="n">Min, t/h</th><th class="n">Fuel, USD/t</th><th class="n">On, USD/h</th><th class="n">Start, USD</th><th>At midnight</th></tr><tbody id="blr"></tbody></table>
+<div class="chart" id="chD"></div>
+<p class="note">Each hour: total steam ≥ demand, and the capacity of the boilers that are on ≥ 1.1 × demand (reserve). Minimize fuel + on-cost + start-up cost over 24 hours. All data are synthetic.</p></section>
+
+<!-- TASK 1 -->
+<section class="card" id="t1"><h2>Task 1 · Write the rows, then solve the relaxation</h2>
+<div class="step" data-step="1a"><span class="tag p">PREDICT</span>Which boilers will be on for all 24 hours?
+ <div class="choices"><label><input type="radio" name="p1" value="B1 only"> B1 only</label><label><input type="radio" name="p1" value="B1 and B2"> B1 and B2</label><label><input type="radio" name="p1" value="B1, B2 and B3"> B1, B2 and B3</label><label><input type="radio" name="p1" value="all four"> all four</label></div>
+ <input type="text" id="p1w" placeholder="Optional: why, in a few words"><button data-save="1a">Save prediction</button></div>
+<div class="step" data-step="1b"><span class="tag c">WRITE THE ROWS</span>For boiler B3 in hour t, the load rows are x − M u ≤ 0 and x − L u ≥ 0, with u binary.
+ <div class="chk"><span>Tightest valid M for B3, t/h</span><input type="text" id="c1a" inputmode="decimal"><span class="fb" id="f1a"></span></div>
+ <div class="chk"><span>L for B3, t/h</span><input type="text" id="c1b" inputmode="decimal"><span class="fb" id="f1b"></span></div>
+ <div class="chk"><span>The start-up row</span><select id="c1c"><option value="">choose</option><option value="a">s(t) ≥ u(t) − u(t−1)</option><option value="b">s(t) ≥ u(t−1) − u(t)</option><option value="c">s(t) = u(t)</option><option value="d">s(t) ≥ u(t) + u(t−1) − 1</option></select><span class="fb" id="f1c"></span></div>
+ <button data-check="1b">Check</button></div>
+<div class="step" data-step="1c"><span class="tag r">RUN THE RELAXATION</span>The same model with 0 ≤ u ≤ 1 instead of u ∈ {0, 1}. Shaded cells show u; a half-shaded cell is a boiler "half on".
+ <div id="runLP"></div>
+ <div class="chk"><span>Is this cost a valid lower bound on the cheapest real schedule?</span><select id="c1d"><option value="">choose</option><option value="yes">yes</option><option value="no">no</option></select><span class="fb" id="f1d"></span></div>
+ <div class="chk"><span>Which boiler is "partly on" in every hour?</span><select id="c1e"><option value="">choose</option><option>B1</option><option>B2</option><option>B3</option><option>B4</option></select><span class="fb" id="f1e"></span></div>
+ <button data-check="1c">Check</button></div>
+</section>
+
+<!-- TASK 2 -->
+<section class="card" id="t2"><h2>Task 2 · Solve the MILP</h2>
+<div class="step" data-step="2a"><span class="tag r">RUN</span>The MILP with u ∈ {0, 1}, solved with HiGHS.
+ <div id="runMILP"></div>
+ <div class="chk"><span>Root gap: (MILP − LP relaxation) / MILP, in %</span><input type="text" id="c2a" inputmode="decimal"><span class="fb" id="f2a"></span></div>
+ <div class="chk"><span>Number of start-ups in the day</span><input type="text" id="c2b" inputmode="numeric"><span class="fb" id="f2b"></span></div>
+ <button data-check="2a">Check</button></div>
+</section>
+
+<!-- TASK 3 -->
+<section class="card" id="t3"><h2>Task 3 · What M does</h2>
+<div class="step" data-step="3a"><span class="tag p">PREDICT</span>A colleague uses M = 10,000 for every boiler (the capacity rows x ≤ max load stay in the model).
+ <div class="row"><label>The MILP optimum will be <select id="p3a"><option value="">choose</option><option value="the same">the same</option><option value="higher">higher</option><option value="lower">lower</option></select></label>
+ <label>The LP relaxation bound will be <select id="p3b"><option value="">choose</option><option value="the same">the same</option><option value="weaker (lower)">weaker (lower)</option><option value="stronger (higher)">stronger (higher)</option></select></label></div>
+ <button data-save="3a">Save prediction</button></div>
+<div class="step" data-step="3b"><span class="tag r">RUN</span>The colleague's model.
+ <div id="runLoose"></div>
+ <div class="chk"><span>LP relaxation bound with M = 10,000, USD</span><input type="text" id="c3a" inputmode="decimal"><span class="fb" id="f3a"></span></div>
+ <div class="chk"><span>Its root gap, %</span><input type="text" id="c3b" inputmode="decimal"><span class="fb" id="f3b"></span></div>
+ <button data-check="3b">Check</button></div>
+<div class="step" data-step="3c"><span class="tag c">AN INVALID M</span>Another colleague writes B1's max-load row with M = 100, below its 120 t/h capacity.
+ <div id="runSmall"></div>
+ <div class="chk"><span>Cost of this "optimal" schedule, USD</span><input type="text" id="c3c" inputmode="decimal"><span class="fb" id="f3c"></span></div>
+ <div class="chk"><span>Why is it more expensive?</span><select id="c3d"><option value="">choose</option><option value="a">the solver stopped early</option><option value="b">feasible schedules with B1 above 100 t/h are cut off</option><option value="c">the LP relaxation got weaker</option></select><span class="fb" id="f3d"></span></div>
+ <button data-check="3c">Check</button></div>
+</section>
+
+<!-- TASK 4 -->
+<section class="card" id="t4"><h2>Task 4 · Check the solver by enumeration</h2>
+<div class="step" data-step="4a"><span class="tag c">ENUMERATE</span>Hour 19 alone (demand 190 t/h, no start-up costs). With the on/off pattern fixed, what is left is an LP. All 16 patterns:
+ <div id="enumT"></div>
+ <div class="chk"><span>How many patterns are feasible?</span><input type="text" id="c4a" inputmode="numeric"><span class="fb" id="f4a"></span></div>
+ <div class="chk"><span>Cheapest cost for the hour, USD</span><input type="text" id="c4b" inputmode="decimal"><span class="fb" id="f4b"></span></div>
+ <button data-check="4a">Check</button><div id="enumMilp"></div></div>
+</section>
+
+<!-- TASK 5 -->
+<section class="card" id="t5"><h2>Task 5 · Change one condition: start-up costs</h2>
+<div class="step" data-step="5a"><span class="tag p">PREDICT</span>If every start-up cost doubles, the day will have
+ <div class="choices"><label><input type="radio" name="p5" value="more start-ups"> more start-ups</label><label><input type="radio" name="p5" value="fewer start-ups"> fewer start-ups</label><label><input type="radio" name="p5" value="the same start-ups"> the same number of start-ups</label></div>
+ <button data-save="5a">Save prediction</button></div>
+<div class="step" data-step="5b"><span class="tag r">RUN</span>Multiply all start-up costs by
+ <input type="range" id="sc" min="0" max="7" step="1" value="3"><div class="kpi"><div>Multiplier<b id="scv"></b></div><div>Total cost, USD<b id="scc"></b></div><div>Start-ups<b id="scn"></b></div></div>
+ <div id="chS"></div>
+ <div class="chk"><span>Total cost at the multiplier you chose, USD</span><input type="text" id="c5" inputmode="decimal"><span class="fb" id="f5"></span></div>
+ <button data-check="5b">Check</button></div>
+<div class="step" data-step="5c"><span class="tag e">EXPLAIN</span>Was your prediction right? Which boiler changes its pattern most as starts get dearer, and what does the plant pay instead?
+ <textarea id="e5"></textarea><button data-save="5c">Save</button></div>
+</section>
+
+<section class="card" id="t6"><h2>Task 6 · Explain</h2>
+<div class="step" data-step="6a"><span class="tag e">EXPLAIN</span>You report the schedule to the utilities manager. Give the cost and the gap, say which checks back the schedule up, and explain to the colleague with M = 100 what went wrong and how to choose M.
+ <textarea id="e6"></textarea><button data-save="6a">Save</button></div>
+</section>
+
+<section class="card" id="fin"><h2>Finish: Exit Ticket and feedback</h2>
+<div class="step" data-step="fin"><p>Copy your answers, open the Exit Ticket, choose <b>Session 3</b>, paste them in the Exit Ticket box, and answer the feedback questions. Choose "On my own" if you did this lab outside class.</p>
+<pre class="sum" id="sum"></pre>
+<button id="copy">Copy my answers</button><a id="exitlink" target="_blank" rel="noopener"><button class="ghost" type="button">Open Exit Ticket and feedback</button></a>
+<p class="note" id="copied"></p>
+<p class="note">Want the code? <a href="milp_lab.py">milp_lab.py</a> builds this model with scipy.optimize.milp (HiGHS) and runs in desktop Python, or open the slides and press D on any slide marked "D · Python".</p></div>
+<button class="ghost" id="reset">Clear my answers on this device</button>
+</section>
+</main>
+<script>
+const R = {"meta":{"numpy":"2.5.3","scipy":"1.18.1","python":"3.13.18"},"lecture":{"discount":{"milp":{"margin":362648.0798650195,"q1":300.0,"q2":300.0,"z":1.0,"alkylate":600.0,"nodes":1,"gap":0.0},"lp":{"margin":362648.07986501907,"q1":300.0,"q2":300.0,"z":1.0,"alkylate":600.0,"nodes":null,"gap":null},"tier":300.0,"p1":780.0,"p2":700.0},"fixed_charge":{"data":{"demand":30.0,"cap":50.0,"fuel":20.0,"fixed":600.0,"buy":45.0},"cases":[{"M":20.0,"lp":{"cost":1350.0,"x":0.0,"y":0.0,"w":30.0},"milp":{"cost":1350.0,"x":0.0,"y":0.0,"w":30.0},"valid":false,"gap":0.0},{"M":25.0,"lp":{"cost":1325.0,"x":25.0,"y":1.0,"w":5.0},"milp":{"cost":1325.0,"x":25.0,"y":1.0,"w":5.0},"valid":false,"gap":0.0},{"M":30.0,"lp":{"cost":1200.0,"x":30.0,"y":1.0,"w":0.0},"milp":{"cost":1200.0,"x":30.0,"y":1.0,"w":0.0},"valid":true,"gap":0.0},{"M":40.0,"lp":{"cost":1050.0,"x":30.0,"y":0.75,"w":0.0},"milp":{"cost":1200.0,"x":30.0,"y":1.0,"w":0.0},"valid":true,"gap":0.125},{"M":50.0,"lp":{"cost":960.0,"x":30.0,"y":0.6,"w":0.0},"milp":{"cost":1200.0,"x":30.0,"y":1.0,"w":0.0},"valid":true,"gap":0.2},{"M":75.0,"lp":{"cost":840.0,"x":30.0,"y":0.4,"w":0.0},"milp":{"cost":1200.0,"x":30.0,"y":1.0,"w":0.0},"valid":true,"gap":0.3},{"M":100.0,"lp":{"cost":780.0,"x":30.0,"y":0.3,"w":0.0},"milp":{"cost":1200.0,"x":30.0,"y":1.0,"w":0.0},"valid":true,"gap":0.35},{"M":200.0,"lp":{"cost":690.0,"x":30.0,"y":0.15,"w":0.0},"milp":{"cost":1200.0,"x":30.0,"y":1.0,"w":0.0},"valid":true,"gap":0.425},{"M":500.0,"lp":{"cost":636.0,"x":30.0,"y":0.06,"w":0.0},"milp":{"cost":1200.0,"x":30.0,"y":1.0,"w":0.0},"valid":true,"gap":0.47},{"M":1000.0,"lp":{"cost":618.0,"x":30.0,"y":0.03,"w":0.0},"milp":{"cost":1200.0,"x":30.0,"y":1.0,"w":0.0},"valid":true,"gap":0.485}]},"tree":{"nodes":[{"id":0,"parent":null,"branch":"root","depth":0,"lp":131.0,"status":"branched","var":4,"value":0.2,"incumbent":null,"bound":131.0,"xpos":9},{"id":2,"parent":0,"branch":"4>=1","depth":1,"lp":127.5,"status":"branched","var":0,"value":0.75,"incumbent":null,"bound":131.0,"xpos":11,"label":"P5 = 1"},{"id":4,"parent":2,"branch":"0>=1","depth":2,"lp":127.5,"status":"branched","var":3,"value":0.5,"incumbent":null,"bound":131.0,"xpos":17,"label":"P1 = 1"},{"id":6,"parent":4,"branch":"3>=1","depth":3,"status":"infeasible","lp":null,"incumbent":null,"bound":131.0,"xpos":18,"label":"P4 = 1"},{"id":5,"parent":4,"branch":"3<=0","depth":3,"lp":126.66666666666667,"status":"branched","var":1,"value":0.3333333333333333,"incumbent":null,"bound":131.0,"xpos":15,"label":"P4 = 0"},{"id":8,"parent":5,"branch":"1>=1","depth":4,"status":"infeasible","lp":null,"incumbent":null,"bound":131.0,"xpos":16,"label":"P2 = 1"},{"id":7,"parent":5,"branch":"1<=0","depth":4,"lp":126.0,"status":"branched","var":2,"value":0.4,"incumbent":null,"bound":131.0,"xpos":13,"label":"P2 = 0"},{"id":10,"parent":7,"branch":"2>=1","depth":5,"status":"infeasible","lp":null,"incumbent":null,"bound":131.0,"xpos":14,"label":"P3 = 1"},{"id":9,"parent":7,"branch":"2<=0","depth":5,"lp":114.0,"status":"integer","incumbent":114.0,"bound":131.0,"xpos":12,"label":"P3 = 0"},{"id":3,"parent":2,"branch":"0<=0","depth":2,"lp":125.0,"status":"integer","incumbent":125.0,"bound":131.0,"xpos":10,"label":"P1 = 0"},{"id":1,"parent":0,"branch":"4<=0","depth":1,"lp":131.0,"status":"branched","var":2,"value":0.4,"incumbent":125.0,"bound":131.0,"xpos":1,"label":"P5 = 0"},{"id":12,"parent":1,"branch":"2>=1","depth":2,"lp":130.0,"status":"branched","var":1,"value":0.5,"incumbent":125.0,"bound":131.0,"xpos":3,"label":"P3 = 1"},{"id":14,"parent":12,"branch":"1>=1","depth":3,"lp":128.75,"status":"branched","var":0,"value":0.625,"incumbent":125.0,"bound":131.0,"xpos":5,"label":"P2 = 1"},{"id":16,"parent":14,"branch":"0>=1","depth":4,"lp":128.75,"status":"branched","var":3,"value":0.25,"incumbent":125.0,"bound":131.0,"xpos":7,"label":"P1 = 1"},{"id":18,"parent":16,"branch":"3>=1","depth":5,"status":"infeasible","lp":null,"incumbent":125.0,"bound":131.0,"xpos":8,"label":"P4 = 1"},{"id":17,"parent":16,"branch":"3<=0","depth":5,"lp":122.0,"status":"pruned by bound","incumbent":125.0,"bound":131.0,"xpos":6,"label":"P4 = 0"},{"id":15,"parent":14,"branch":"0<=0","depth":4,"lp":95.0,"status":"pruned by bound","incumbent":125.0,"bound":131.0,"xpos":4,"label":"P1 = 0"},{"id":13,"parent":12,"branch":"1<=0","depth":3,"lp":111.0,"status":"pruned by bound","incumbent":125.0,"bound":131.0,"xpos":2,"label":"P2 = 0"},{"id":11,"parent":1,"branch":"2<=0","depth":2,"lp":119.0,"status":"pruned by bound","incumbent":125.0,"bound":125.0,"xpos":0,"label":"P3 = 0"}],"best":125.0,"x":[0.0,1.0,-0.0,1.0,1.0],"chosen":["P2","P4","P5"],"root_lp":131.0,"greedy":["P1","P4","P2"],"greedy_saving":119.0,"width":19},"tree_data":{"projects":["P1","P2","P3","P4","P5"],"capex":[120.0,90.0,75.0,60.0,150.0],"save":[54.0,38.0,30.0,27.0,60.0],"budget":300.0},"location":{"sites":[[62.92,51.41],[49.69,24.75],[1.18,19.24],[69.2,20.06],[36.95,0.37],[83.0,15.45],[26.76,88.03],[50.98,84.72]],"plants":[[63.97,74.18],[9.15,54.11],[50.78,87.13],[36.13,59.82],[5.93,38.76],[32.3,15.02],[81.63,37.94],[97.87,59.0],[60.51,63.8],[67.65,15.08],[44.03,23.96],[40.25,9.67],[96.78,21.5],[67.18,30.04],[87.41,66.22],[13.16,84.51],[94.49,90.39],[56.97,14.55],[19.25,92.79],[55.23,18.06]],"fixed":[3250.2,3794.4,3551.4,2450.4,2600.3,3747.1,2010.5,3642.5],"demand":[16.96,12.02,9.55,9.18,8.82,11.68,12.57,13.3,19.93,16.89,14.33,19.83,8.23,7.4,14.19,5.66,5.54,12.72,11.99,18.76],"aggregated":{"rows":28,"lp_bound":11191.561052531104,"optimum":19168.14210425897,"root_gap":0.41613741218850575,"bb_nodes":123,"bb_best":19168.142104258968,"highs_nodes":5,"highs_seconds":0.020131646999971053,"open":[3,6],"assign":[6,6,6,6,6,3,3,3,6,3,3,3,3,3,3,6,6,3,6,3],"lp_y":[0.15,0.1,0.05,0.2,0.1,0.05,0.2,0.15]},"disaggregated":{"rows":180,"lp_bound":19168.142104258968,"optimum":19168.14210425897,"root_gap":1.8979297979449922e-16,"bb_nodes":1,"bb_best":19168.142104258968,"highs_nodes":1,"highs_seconds":0.003073966000101791,"open":[3,6],"assign":[6,6,6,6,6,3,3,3,6,3,3,3,3,3,3,6,6,3,6,3],"lp_y":[0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0]}}},"lab":{"tight":{"status":"optimal","cost":129240.0,"seconds":0.04023532500002602,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,0.0,1.0,1.0]},"x":{"B1":[110.0,105.0,100.0,100.0,105.0,120.0,115.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,110.0,120.0,115.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,40.0,75.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,95.0,85.0,75.0,70.0,50.0,40.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,20.0,25.0,30.0,20.0,25.0,30.0,20.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,15.0,10.0,10.0,0.0,0.0,0.0,0.0,0.0,10.0,10.0,10.0,0.0,0.0,0.0,15.0,10.0]},"starts":{"B1":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0]},"n_starts":5,"n_fractional":0,"parts":{"fuel":85820.0,"no_load":36820.0,"start":6600.0},"nodes":1,"gap":5.552424233345007e-05,"bound":129232.82404692082},"tight_lp":{"status":"optimal","cost":123727.66666666667,"seconds":0.003291867999905662,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.056666667,0.395,0.636666667,0.636666667,0.636666667,0.636666667,0.636666667,0.636666667,0.636666667,0.636666667,0.636666667,0.636666667,0.636666667,0.636666667,0.636666667,0.443333333,0.25,0.105,0.008333333],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.241666667,0.725,0.966666667,0.966666667,0.966666667,0.966666667,0.966666667,0.966666667,0.805555556,0.563888889,0.402777778,0.241666667,0.0,0.0,0.0,0.0,0.0],"B4":[0.3,0.1625,0.025,0.025,0.1625,0.433333333,0.55,0.683333333,0.783333333,0.833333333,0.970833333,0.833333333,0.695833333,0.695833333,0.833333333,0.8,0.75,0.716666667,0.683333333,0.633333333,0.566666667,0.5,0.45,0.416666667]},"x":{"B1":[117.0,113.375,109.75,109.75,113.375,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0],"B2":[0.0,0.0,0.0,0.0,0.0,5.666666667,39.5,63.666666667,63.666666667,63.666666667,63.666666667,63.666666667,63.666666667,63.666666667,63.666666667,63.666666667,63.666666667,63.666666667,63.666666667,63.666666667,44.333333333,25.0,10.5,0.833333333],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,14.5,43.5,58.0,58.0,58.0,49.375,54.375,58.0,48.333333333,33.833333333,24.166666667,14.5,0.0,0.0,0.0,0.0,0.0],"B4":[3.0,1.625,0.25,0.25,1.625,4.333333333,5.5,6.833333333,7.833333333,8.333333333,13.333333333,8.333333333,6.958333333,6.958333333,8.333333333,8.0,7.5,7.166666667,6.833333333,6.333333333,5.666666667,5.0,4.5,4.166666667]},"starts":{"B1":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.056666667,0.338333333,0.241666667,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.241666667,0.483333333,0.241666667,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[0.3,0.0,0.0,0.0,0.1375,0.270833333,0.116666667,0.133333333,0.1,0.05,0.1375,0.0,0.0,0.0,0.1375,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]},"n_starts":2.986667,"n_fractional":55,"parts":{"fuel":86758.499999992,"no_load":32529.16667018,"start":4440.0000018}},"loose":{"status":"optimal","cost":129240.0,"seconds":0.03995713799997702,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,0.0,1.0,1.0]},"x":{"B1":[110.0,105.0,100.0,100.0,105.0,120.0,115.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,110.0,120.0,115.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,40.0,75.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,95.0,85.0,75.0,70.0,50.0,40.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,20.0,25.0,30.0,20.0,25.0,30.0,20.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,15.0,10.0,10.0,0.0,0.0,0.0,0.0,0.0,10.0,10.0,10.0,0.0,0.0,0.0,15.0,10.0]},"starts":{"B1":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0]},"n_starts":5,"n_fractional":0,"parts":{"fuel":85820.0,"no_load":36820.0,"start":6600.0},"nodes":1,"gap":5.552424233345007e-05,"bound":129232.82404692082},"loose_lp":{"status":"optimal","cost":121414.36675258381,"seconds":0.003005338000093616,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.954166667,0.954166667,0.954166667,0.954166667,0.8625,0.725,0.633333333,0.541666667,0.404166667,0.404166667,0.404166667,0.404166667,0.3125],"B2":[0.0,0.0,0.0,0.0,0.0,0.000426065,0.002792642,0.055,0.385,0.55,0.605,0.605,0.605,0.605,0.605,0.605,0.605,0.605,0.605,0.605,0.385,0.165,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.35367893,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B4":[0.3,0.1625,0.025,0.025,0.1625,0.573934837,1.0,1.0,1.0,1.0,1.0,1.0,0.8625,0.8625,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]},"x":{"B1":[117.0,113.375,109.75,109.75,113.375,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,120.0,113.4,105.0,95.0],"B2":[0.0,0.0,0.0,0.0,0.0,4.260651629,27.926421405,55.0,85.0,100.0,100.0,100.0,91.375,96.375,100.0,90.0,75.0,65.0,55.0,40.0,20.0,6.6,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,7.073578595,20.0,20.0,20.0,25.0,20.0,20.0,20.0,20.0,20.0,20.0,20.0,20.0,20.0,20.0,20.0,20.0,20.0],"B4":[3.0,1.625,0.25,0.25,1.625,5.739348371,10.0,10.0,10.0,10.0,10.0,10.0,8.625,8.625,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0]},"starts":{"B1":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.000426065,0.002366577,0.052207358,0.33,0.165,0.055,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.35367893,0.64632107,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[0.3,0.0,0.0,0.0,0.1375,0.411434837,0.426065163,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.1375,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]},"n_starts":3.0175,"n_fractional":39,"parts":{"fuel":86712.38779809,"no_load":30355.72895674,"start":4346.25}},"small_M":{"status":"optimal","cost":131710.0,"seconds":0.039629266000019925,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,0.0,1.0,1.0]},"x":{"B1":[100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,55.0,95.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,95.0,90.0,70.0,50.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,40.0,45.0,50.0,40.0,45.0,50.0,40.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[20.0,15.0,10.0,10.0,15.0,30.0,10.0,10.0,35.0,10.0,10.0,0.0,0.0,0.0,0.0,0.0,25.0,15.0,10.0,0.0,0.0,0.0,35.0,25.0]},"starts":{"B1":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0]},"n_starts":5,"n_fractional":0,"parts":{"fuel":88290.0,"no_load":36820.0,"start":6600.0},"nodes":1,"gap":0.0,"bound":131710.0},"enum":{"hour":19,"steam":190,"rows":[{"pattern":"0000","on":[],"capacity":0.0,"status":"infeasible","cost":null,"load":null},{"pattern":"0001","on":["B4"],"capacity":40.0,"status":"infeasible","cost":null,"load":null},{"pattern":"0010","on":["B3"],"capacity":60.0,"status":"infeasible","cost":null,"load":null},{"pattern":"0011","on":["B3","B4"],"capacity":100.0,"status":"infeasible","cost":null,"load":null},{"pattern":"0100","on":["B2"],"capacity":100.0,"status":"infeasible","cost":null,"load":null},{"pattern":"0101","on":["B2","B4"],"capacity":140.0,"status":"infeasible","cost":null,"load":null},{"pattern":"0110","on":["B2","B3"],"capacity":160.0,"status":"infeasible","cost":null,"load":null},{"pattern":"0111","on":["B2","B3","B4"],"capacity":200.0,"status":"infeasible","cost":null,"load":null},{"pattern":"1000","on":["B1"],"capacity":120.0,"status":"infeasible","cost":null,"load":null},{"pattern":"1001","on":["B1","B4"],"capacity":160.0,"status":"infeasible","cost":null,"load":null},{"pattern":"1010","on":["B1","B3"],"capacity":180.0,"status":"infeasible","cost":null,"load":null},{"pattern":"1011","on":["B1","B3","B4"],"capacity":220.0,"status":"optimal","cost":5220.0,"load":{"B1":120.0,"B2":0.0,"B3":60.0,"B4":10.0}},{"pattern":"1100","on":["B1","B2"],"capacity":220.0,"status":"optimal","cost":5160.0,"load":{"B1":120.0,"B2":70.0,"B3":0.0,"B4":0.0}},{"pattern":"1101","on":["B1","B2","B4"],"capacity":260.0,"status":"optimal","cost":5380.0,"load":{"B1":120.0,"B2":60.0,"B3":0.0,"B4":10.0}},{"pattern":"1110","on":["B1","B2","B3"],"capacity":280.0,"status":"optimal","cost":5540.0,"load":{"B1":120.0,"B2":50.0,"B3":20.0,"B4":0.0}},{"pattern":"1111","on":["B1","B2","B3","B4"],"capacity":320.0,"status":"optimal","cost":5760.0,"load":{"B1":120.0,"B2":40.0,"B3":20.0,"B4":10.0}}],"feasible":5,"best":{"pattern":"1100","on":["B1","B2"],"capacity":220.0,"status":"optimal","cost":5160.0,"load":{"B1":120.0,"B2":70.0,"B3":0.0,"B4":0.0}},"milp_cost":5160.0,"milp_on":["B1","B2"]},"start_sweep":[{"scale":0.0,"cost":121870.0,"starts":9,"nodes":1,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,1.0,1.0,0.0,0.0],"B4":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,0.0,1.0,1.0]},"parts":{"fuel":86250.0,"no_load":35620.0,"start":0.0}},{"scale":0.25,"cost":124030.0,"starts":7,"nodes":1,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[1.0,1.0,1.0,1.0,1.0,1.0,0.0,1.0,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,0.0,1.0,1.0]},"parts":{"fuel":85650.0,"no_load":36580.0,"start":1800.0}},{"scale":0.5,"cost":125830.0,"starts":7,"nodes":1,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[1.0,1.0,1.0,1.0,1.0,1.0,0.0,1.0,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,0.0,1.0,1.0]},"parts":{"fuel":85650.0,"no_load":36580.0,"start":3600.0}},{"scale":1.0,"cost":129240.0,"starts":5,"nodes":1,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"B4":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,0.0,1.0,1.0]},"parts":{"fuel":85820.0,"no_load":36820.0,"start":6600.0}},{"scale":1.5,"cost":132490.0,"starts":4,"nodes":1,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0],"B4":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0]},"parts":{"fuel":86520.0,"no_load":36520.0,"start":9450.0}},{"scale":2.0,"cost":135640.0,"starts":4,"nodes":1,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0],"B4":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0]},"parts":{"fuel":86520.0,"no_load":36520.0,"start":12600.0}},{"scale":3.0,"cost":141900.0,"starts":3,"nodes":1,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B4":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]},"parts":{"fuel":85980.0,"no_load":37920.0,"start":18000.0}},{"scale":4.0,"cost":147900.0,"starts":3,"nodes":1,"u":{"B1":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B2":[0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0],"B3":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"B4":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]},"parts":{"fuel":85980.0,"no_load":37920.0,"start":24000.0}}],"data":{"boilers":["B1","B2","B3","B4"],"umax":{"B1":120.0,"B2":100.0,"B3":60.0,"B4":40.0},"lmin":{"B1":50.0,"B2":40.0,"B3":20.0,"B4":10.0},"fuel":{"B1":18.0,"B2":20.0,"B3":24.0,"B4":30.0},"noload":{"B1":900.0,"B2":700.0,"B3":300.0,"B4":120.0},"start":{"B1":6000.0,"B2":4500.0,"B3":1200.0,"B4":300.0},"u0":{"B1":1,"B2":0,"B3":0,"B4":0},"steam":[120,115,110,110,115,130,165,205,235,250,255,250,240,245,250,240,225,215,205,190,170,150,135,125],"reserve":0.1}}};
+const EXIT_URL = "https://soorathep.github.io/course-2105623/teaching/2105623/exit.html?s=3";
+const C={teal:"#0F6E6B",amber:"#E29A2D",rust:"#BE654C",graphite:"#333F4A",mist:"#B9C1C6",sand:"#DFC98F",ink:"#1C242B",slate:"#66727C",sky:"#5A91BE",sage:"#83A462"};
+const BC={B1:C.teal,B2:C.amber,B3:C.rust,B4:C.sky};
+const $=id=>document.getElementById(id);
+const fmt=(x,d=0)=>x==null?"–":Number(x).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});
+const KEY="lab3-2027-v1"; let ST={};
+try{ST=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){ST={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(ST))}catch(e){}};
+const L=R.lab, D=L.data, BS=D.boilers, T=24;
+
+$("blr").innerHTML=BS.map(b=>`<tr><td><span style="display:inline-block;width:12px;height:12px;background:${BC[b]};margin-right:8px"></span>${b}</td><td class="n">${D.umax[b]}</td><td class="n">${D.lmin[b]}</td><td class="n">${D.fuel[b]}</td><td class="n">${D.noload[b]}</td><td class="n">${fmt(D.start[b])}</td><td>${D.u0[b]?"on":"off"}</td></tr>`).join("");
+
+/* charts */
+function frame(w,h,l,t,X,Y,ymax,ylab){let s=`<svg viewBox="0 0 ${w} ${h}" font-family="Helvetica Neue,Arial,sans-serif" font-size="12" fill="${C.ink}" style="width:100%;height:auto">`;
+ for(let v=0;v<=ymax;v+=50)s+=`<line x1="${l}" x2="${l+X}" y1="${t+Y-Y*v/ymax}" y2="${t+Y-Y*v/ymax}" stroke="${C.mist}" stroke-width=".7"/><text x="${l-6}" y="${t+Y-Y*v/ymax+4}" text-anchor="end">${v}</text>`;
+ for(let k=0;k<T;k+=3)s+=`<text x="${l+X*(k+.5)/T}" y="${t+Y+16}" text-anchor="middle">${k}</text>`;
+ s+=`<text x="${l}" y="${t-8}">${ylab}</text><text x="${l+X}" y="${t+Y+30}" text-anchor="end">hour</text>`;return s}
+function demandChart(){const w=720,h=200,l=44,t=24,X=w-l-16,Y=h-t-40,ym=300;let s=frame(w,h,l,t,X,Y,ym,"steam demand, t/h (dashed: 1.1 × demand, the capacity that must be on)");
+ D.steam.forEach((v,k)=>{s+=`<rect x="${l+X*k/T+2}" y="${t+Y-Y*v/ym}" width="${X/T-4}" height="${Y*v/ym}" fill="${C.graphite}" opacity=".55"/>`});
+ s+=`<polyline fill="none" stroke="${C.rust}" stroke-width="2" stroke-dasharray="5 4" points="${D.steam.map((v,k)=>`${l+X*(k+.5)/T},${t+Y-Y*1.1*v/ym}`).join(" ")}"/>`;return s+"</svg>"}
+$("chD").innerHTML=demandChart();
+function grid(u){const w=720,h=130,l=44,t=10,X=w-l-16,rh=26;let s=`<svg viewBox="0 0 ${w} ${h}" font-family="Helvetica Neue,Arial,sans-serif" font-size="12" fill="${C.ink}" style="width:100%;height:auto">`;
+ BS.forEach((b,i)=>{s+=`<text x="${l-8}" y="${t+i*rh+17}" text-anchor="end" font-weight="700">${b}</text>`;u[b].forEach((v,k)=>{const x=l+X*k/T,y=t+i*rh;
+  s+=`<rect x="${x+1}" y="${y+2}" width="${X/T-2}" height="${rh-4}" fill="#fff" stroke="${C.mist}"/>`;if(v>1e-6)s+=`<rect x="${x+1}" y="${y+2+(rh-4)*(1-v)}" width="${X/T-2}" height="${(rh-4)*v}" fill="${BC[b]}"/>`})});
+ for(let k=0;k<T;k+=3)s+=`<text x="${l+X*(k+.5)/T}" y="${t+4*rh+14}" text-anchor="middle">${k}</text>`;return s+"</svg>"}
+function loads(x){const w=720,h=210,l=44,t=24,X=w-l-16,Y=h-t-40,ym=300;let s=frame(w,h,l,t,X,Y,ym,"steam made, t/h (stacked by boiler; line: demand)");
+ for(let k=0;k<T;k++){let y0=t+Y;BS.forEach(b=>{const v=x[b][k];if(v<1e-6)return;const hh=Y*v/ym;s+=`<rect x="${l+X*k/T+2}" y="${y0-hh}" width="${X/T-4}" height="${hh}" fill="${BC[b]}"/>`;y0-=hh})}
+ s+=`<polyline fill="none" stroke="${C.ink}" stroke-width="2" points="${D.steam.map((v,k)=>`${l+X*(k+.5)/T},${t+Y-Y*v/ym}`).join(" ")}"/>`;return s+"</svg>"}
+function plan(r,extra){return `<div class="kpi"><div>Status<b style="color:${C.teal}">${r.status}</b></div><div>Total cost, USD<b>${fmt(r.cost,1)}</b></div>${extra||""}</div>${grid(r.u)}${loads(r.x)}`}
+const parts=r=>`<div>Fuel, USD<b>${fmt(r.parts.fuel)}</b></div><div>On-cost, USD<b>${fmt(r.parts.no_load)}</b></div><div>Start-up cost, USD<b>${fmt(r.parts.start)}</b></div>`;
+$("runLP").innerHTML=plan(L.tight_lp,`<div>Fractional u values<b>${L.tight_lp.n_fractional} of 96</b></div>`);
+$("runMILP").innerHTML=plan(L.tight,`<div>Nodes<b>${L.tight.nodes}</b></div><div>MIP gap<b>${fmt(100*L.tight.gap,3)}%</b></div>`+parts(L.tight));
+$("runLoose").innerHTML=`<div class="kpi"><div>LP relaxation, USD<b>${fmt(L.loose_lp.cost,1)}</b></div><div>MILP, USD<b>${fmt(L.loose.cost,1)}</b></div><div>Nodes<b>${L.loose.nodes}</b></div><div>Tight M: LP, MILP<b>${fmt(L.tight_lp.cost,0)}, ${fmt(L.tight.cost,0)}</b></div></div>${grid(L.loose_lp.u)}<p class="note">Grid: the relaxation with M = 10,000. The MILP schedule is the same as in Task 2.</p>`;
+$("runSmall").innerHTML=plan(L.small_M,`<div>Nodes<b>${L.small_M.nodes}</b></div><div>B1 peak load, t/h<b>${fmt(Math.max(...L.small_M.x.B1),1)}</b></div>`);
+const E=L.enum;
+$("enumT").innerHTML=`<table class="tb"><tr><th>On</th><th class="n">Capacity on, t/h</th><th>Status</th><th class="n">Cost, USD</th></tr>${E.rows.map(r=>`<tr><td>${r.on.length?r.on.join(" + "):"none"}</td><td class="n">${r.capacity}</td><td>${r.status}</td><td class="n">${r.cost==null?"":fmt(r.cost,1)}</td></tr>`).join("")}</table>`;
+
+/* steps */
+const ORDER=["1a","1b","1c","2a","3a","3b","3c","4a","5a","5b","5c","6a"];
+function refresh(){let open=true;ORDER.forEach(id=>{const el=document.querySelector(`[data-step="${id}"]`),done=!!ST["done_"+id];el.classList.toggle("done",done);el.classList.toggle("locked",!done&&!open);if(!done&&open)open=false});
+ document.querySelector('[data-step="fin"]').classList.toggle("locked",!ORDER.every(id=>ST["done_"+id]));
+ const n=ORDER.filter(id=>ST["done_"+id]).length;$("pbar").style.width=(100*n/ORDER.length)+"%";$("ptext").textContent=`${n} of ${ORDER.length} steps done`;summary();save()}
+function need(id,msg){const st=document.querySelector(`[data-step="${id}"]`);let f=st.querySelector(".need");if(!f){f=document.createElement("div");f.className="fb bad need";st.appendChild(f)}f.textContent=msg;return false}
+function markDone(id){const nd=document.querySelector(`[data-step="${id}"] .need`);if(nd)nd.textContent="";ST["done_"+id]=true;refresh()}
+const radio=n=>{const r=document.querySelector(`input[name="${n}"]:checked`);return r?r.value:""};
+const num=s=>parseFloat(String(s).replace(/,/g,"").replace("−","-").replace("%",""));
+document.querySelectorAll("[data-save]").forEach(b=>b.onclick=()=>{const id=b.dataset.save;
+ if(id==="1a"){if(!radio("p1"))return need(id,"Choose a prediction first.");ST.p1=radio("p1");ST.p1w=$("p1w").value}
+ if(id==="3a"){if(!$("p3a").value||!$("p3b").value)return need(id,"Predict both first.");ST.p3a=$("p3a").value;ST.p3b=$("p3b").value;$("p3a").disabled=$("p3b").disabled=true}
+ if(id==="5a"){if(!radio("p5"))return need(id,"Choose a prediction first.");ST.p5=radio("p5")}
+ if(id==="5c"){if($("e5").value.trim().length<30)return need(id,"Write at least one full sentence.");ST.e5=$("e5").value}
+ if(id==="6a"){if($("e6").value.trim().length<60)return need(id,"Write at least three sentences.");ST.e6=$("e6").value}
+ markDone(id)});
+
+/* checks */
+function verdict(input,fb,ok,expected){ST["tries_"+input]=(ST["tries_"+input]||0)+(ok?0:1);const f=$(fb);f.className="fb "+(ok?"ok":"bad");
+ f.textContent=ok?"Correct":(ST["tries_"+input]>=2?`Not yet. Expected: ${expected}.`:"Not yet. Look again.");return ok||ST["tries_"+input]>=2}
+function checkNum(input,fb,target,rel=0.01,abs=0.05,d=2){const v=num($(input).value);ST[input]=$(input).value;return verdict(input,fb,isFinite(v)&&Math.abs(v-target)<=Math.max(abs,rel*Math.abs(target)),fmt(target,d))}
+function checkSel(input,fb,target,label){ST[input]=$(input).value;return verdict(input,fb,$(input).value===target,label||target)}
+const rootGap=(m,l)=>100*(m.cost-l.cost)/m.cost;
+document.querySelectorAll("[data-check]").forEach(b=>b.onclick=()=>{const id=b.dataset.check;let ok=false;
+ if(id==="1b")ok=[checkNum("c1a","f1a",D.umax.B3,0,0.5,0),checkNum("c1b","f1b",D.lmin.B3,0,0.5,0),checkSel("c1c","f1c","a","s(t) ≥ u(t) − u(t−1)")].every(Boolean);
+ if(id==="1c")ok=[checkSel("c1d","f1d","yes"),checkSel("c1e","f1e",BS.find(b=>L.tight_lp.u[b].every(v=>v>1e-6&&v<1-1e-6))||"B4")].every(Boolean);
+ if(id==="2a")ok=[checkNum("c2a","f2a",rootGap(L.tight,L.tight_lp),0.02,0.05),checkNum("c2b","f2b",L.tight.n_starts,0,0.5,0)].every(Boolean);
+ if(id==="3b")ok=[checkNum("c3a","f3a",L.loose_lp.cost,0.01,1,1),checkNum("c3b","f3b",rootGap(L.loose,L.loose_lp),0.02,0.05)].every(Boolean);
+ if(id==="3c")ok=[checkNum("c3c","f3c",L.small_M.cost,0.01,1,1),checkSel("c3d","f3d","b","feasible schedules with B1 above 100 t/h are cut off")].every(Boolean);
+ if(id==="4a"){ok=[checkNum("c4a","f4a",E.feasible,0,0.5,0),checkNum("c4b","f4b",E.best.cost,0.01,1,1)].every(Boolean);
+  $("enumMilp").innerHTML=`<p class="note">The MILP for hour 19 alone turns on ${E.milp_on.join(" + ")} at ${fmt(E.milp_cost,1)} USD: the same as the best row of the table.</p>`}
+ if(id==="5b"){ok=checkNum("c5","f5",L.start_sweep[+$("sc").value].cost,0.01,1,1);ST.sc=$("sc").value}
+ if(ok)markDone(id);else save()});
+
+/* task 5 */
+function drawSc(){const r=L.start_sweep[+$("sc").value];$("scv").textContent="× "+r.scale;$("scc").textContent=fmt(r.cost,0);$("scn").textContent=r.starts;$("chS").innerHTML=grid(r.u)}
+$("sc").oninput=drawSc;
+
+/* summary */
+function summary(){
+ $("sum").textContent=[`Lab 3 answers`,`1. Predicted on all day: ${ST.p1||"?"}${ST.p1w?" ("+ST.p1w+")":""}. B3 rows: M ${ST.c1a||"?"}, L ${ST.c1b||"?"}. Relaxation is a lower bound: ${ST.c1d||"?"}; partly on every hour: ${ST.c1e||"?"}`,
+ `2. Root gap ${ST.c2a||"?"}%; start-ups ${ST.c2b||"?"}`,
+ `3. Predicted with M = 10,000: optimum ${ST.p3a||"?"}, bound ${ST.p3b||"?"}. Loose LP bound ${ST.c3a||"?"}, root gap ${ST.c3b||"?"}%. M = 100 for B1 costs ${ST.c3c||"?"} USD`,
+ `4. Hour 19: ${ST.c4a||"?"} feasible patterns, cheapest ${ST.c4b||"?"} USD`,
+ `5. Predicted ${ST.p5||"?"}; start-up multiplier x${ST.sc!=null?L.start_sweep[+ST.sc].scale:"?"} costs ${ST.c5||"?"} USD. ${ST.e5||"?"}`,`6. ${ST.e6||"?"}`].join("\n")}
+$("copy").onclick=async()=>{try{await navigator.clipboard.writeText($("sum").textContent);$("copied").textContent="Copied. Paste it into the Exit Ticket box."}catch(e){$("copied").textContent="Copy did not work here. Select the text above and copy it."}};
+$("exitlink").href=EXIT_URL;
+$("reset").onclick=()=>{if(confirm("Clear all answers saved on this device?")){ST={};save();location.reload()}};
+
+/* restore */
+[["p1",ST.p1],["p5",ST.p5]].forEach(([n,v])=>{if(v){const r=document.querySelector(`input[name="${n}"][value="${v}"]`);if(r)r.checked=true}});
+["p1w","p3a","p3b","e5","e6","c1a","c1b","c1c","c1d","c1e","c2a","c2b","c3a","c3b","c3c","c3d","c4a","c4b","c5"].forEach(id=>{if(ST[id]!=null)$(id).value=ST[id]});
+if(ST.done_3a)$("p3a").disabled=$("p3b").disabled=true;if(ST.sc!=null)$("sc").value=ST.sc;
+if(ST.done_4a)$("enumMilp").innerHTML=`<p class="note">The MILP for hour 19 alone turns on ${E.milp_on.join(" + ")} at ${fmt(E.milp_cost,1)} USD: the same as the best row of the table.</p>`;
+drawSc();refresh();
+</script>
+</body></html>
