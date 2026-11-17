@@ -1,0 +1,2385 @@
+{
+ "voice": "en-US-GuyNeural",
+ "rate": "-5%",
+ "provider": "Microsoft Edge neural speech (edge-tts)",
+ "synthetic_voice": true,
+ "total_seconds": 2856.5,
+ "slides": [
+  {
+   "n": 1,
+   "file": "audio/slide-01.mp3",
+   "duration": 71.256,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.668,
+     "en": "Welcome to Session 9 of Optimization of Chemical Processes.",
+     "th": "ยินดีต้อนรับสู่คาบที่ 9 ของวิชา Optimization of Chemical Processes"
+    },
+    {
+     "s": 4.668,
+     "e": 13.234,
+     "en": "Session 7 gave the conditions that a constrained optimum must satisfy, and Session 8 gave the algorithms for problems without rows.",
+     "th": "คาบที่ 7 ให้เงื่อนไขที่จุดเหมาะสมที่สุดภายใต้ข้อจำกัดต้องสอดคล้อง และคาบที่ 8 ให้ algorithm สำหรับปัญหาที่ไม่มีแถวข้อจำกัด"
+    },
+    {
+     "s": 13.234,
+     "e": 17.842,
+     "en": "Today the rows come back, and we look at how solvers reach a KKT point.",
+     "th": "วันนี้แถวข้อจำกัดกลับมา และเราจะดูว่า solver ไปถึงจุด KKT ได้อย่างไร"
+    },
+    {
+     "s": 17.842,
+     "e": 28.087,
+     "en": "We will build up from the quadratic penalty and the augmented Lagrangian to Newton's method on the KKT conditions, then study the two families behind most process solvers:",
+     "th": "เราจะเริ่มจาก quadratic penalty และ augmented Lagrangian ไปสู่ Newton's method บนเงื่อนไข KKT แล้วศึกษาสองตระกูลที่อยู่เบื้องหลัง solver สำหรับกระบวนการส่วนใหญ่ คือ"
+    },
+    {
+     "s": 28.087,
+     "e": 32.197,
+     "en": "sequential quadratic programming, or SQP, and interior-point methods.",
+     "th": "sequential quadratic programming หรือ SQP และวิธี interior point"
+    },
+    {
+     "s": 32.197,
+     "e": 44.329,
+     "en": "Then we turn to practice: starting points, failures, what SLSQP and Ipopt report, and how to check an answer before you trust it. In the lab you will run Ipopt in Google Colab.",
+     "th": "จากนั้นเราจะดูการใช้งานจริง ได้แก่ จุดเริ่มต้น ความล้มเหลว สิ่งที่ SLSQP และ Ipopt รายงาน และวิธีตรวจคำตอบก่อนเชื่อ ใน lab คุณจะรัน Ipopt ใน Google Colab"
+    },
+    {
+     "s": 44.329,
+     "e": 50.223,
+     "en": "The examples are small, two variables in most of the demos, so that you can see every step.",
+     "th": "ตัวอย่างมีขนาดเล็ก ส่วนใหญ่มีสองตัวแปร เพื่อให้คุณเห็นทุกก้าว จากนั้น lab"
+    },
+    {
+     "s": 50.223,
+     "e": 58.487,
+     "en": "The lab then uses a plant model with eleven variables and seven equations, where the same ideas decide whether a solver succeeds.",
+     "th": "ใช้โมเดลโรงงานที่มีสิบเอ็ดตัวแปรและเจ็ดสมการ ซึ่งแนวคิดเดียวกันเป็นตัวตัดสินว่า solver จะสำเร็จหรือไม่"
+    },
+    {
+     "s": 58.487,
+     "e": 65.789,
+     "en": "On your own, the narration takes about fifty minutes; the activities, four checks and the lab fill the rest of the three hours.",
+     "th": "ถ้าเรียนเอง เสียงบรรยายใช้เวลาประมาณห้าสิบนาที ส่วนกิจกรรม แบบตรวจสี่ครั้ง และ lab จะใช้เวลาที่เหลือของสามชั่วโมง"
+    },
+    {
+     "s": 65.789,
+     "e": 71.197,
+     "en": "When the narration for a slide ends, press the right arrow key, or Next, to go on.",
+     "th": "เมื่อเสียงบรรยายของแต่ละหน้าจบ กดลูกศรขวาหรือปุ่ม Next เพื่อไปหน้าถัดไป"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "file": "audio/slide-02.mp3",
+   "duration": 57.024,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.05,
+     "en": "Here is the plan for the three hours.",
+     "th": "นี่คือแผนของสามชั่วโมง"
+    },
+    {
+     "s": 3.05,
+     "e": 10.259,
+     "en": "After a ten-minute retrieval check on Session 8, part one, thirty-five minutes, goes from the KKT conditions to steps:",
+     "th": "หลังทบทวนความจำจากคาบที่ 8 สิบนาที ส่วนที่หนึ่ง สามสิบห้านาที เริ่มจากเงื่อนไข KKT ไปสู่การก้าว ได้แก่"
+    },
+    {
+     "s": 10.259,
+     "e": 17.105,
+     "en": "a map of the methods, the quadratic penalty, the augmented Lagrangian, and Newton's method on the KKT conditions.",
+     "th": "แผนที่ของวิธีต่าง ๆ quadratic penalty, augmented Lagrangian และ Newton's method บนเงื่อนไข KKT"
+    },
+    {
+     "s": 17.105,
+     "e": 28.5,
+     "en": "Part two, forty minutes, covers SQP and interior points: the QP subproblem, merit functions and filters, the log barrier and the central path, and how the two families compare.",
+     "th": "ส่วนที่สอง สี่สิบนาที ว่าด้วย SQP และ interior point ได้แก่ ปัญหาย่อยแบบ QP, merit function และ filter, log barrier และ central path และการเปรียบเทียบสองตระกูลนี้"
+    },
+    {
+     "s": 28.5,
+     "e": 33.954,
+     "en": "After a break and a second activity, part three, thirty minutes, is about practice:",
+     "th": "หลังพักและกิจกรรมที่สอง ส่วนที่สาม สามสิบนาที ว่าด้วยการใช้งานจริง ได้แก่"
+    },
+    {
+     "s": 33.954,
+     "e": 42.329,
+     "en": "starting points, failures, reading SLSQP and Ipopt, residual audits, scaling, running Ipopt in Colab, and which solver to choose.",
+     "th": "จุดเริ่มต้น ความล้มเหลว การอ่านผลของ SLSQP และ Ipopt การตรวจด้วย residual การปรับสเกล การรัน Ipopt ใน Colab และการเลือก solver"
+    },
+    {
+     "s": 42.329,
+     "e": 51.355,
+     "en": "Each part ends with a check of four questions. Treat the checks as part of the lesson: they show you what is still unclear before you reach the lab.",
+     "th": "แต่ละส่วนจบด้วยแบบตรวจสี่คำถาม ให้ถือว่าแบบตรวจเป็นส่วนหนึ่งของบทเรียน มันแสดงให้เห็นว่าอะไรยังไม่ชัดเจนก่อนที่คุณจะถึง lab"
+    },
+    {
+     "s": 51.355,
+     "e": 56.947,
+     "en": "The session ends with Lab 9, on the Williams–Otto plant, and with the Exit Ticket.",
+     "th": "คาบนี้จบด้วย Lab 9 บนโรงงาน Williams–Otto และจบด้วย Exit Ticket"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "file": "audio/slide-03.mp3",
+   "duration": 44.928,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.945,
+     "en": "Activity 1 is a retrieval check on Session 8.",
+     "th": "กิจกรรมที่ 1 คือการทบทวนความจำจากคาบที่ 8"
+    },
+    {
+     "s": 3.945,
+     "e": 15.645,
+     "en": "Answer the four questions without notes. They cover the Newton step, the BFGS secant condition, what bad units do to each method, and what to check when SciPy reports success.",
+     "th": "ตอบคำถามสี่ข้อโดยไม่เปิดโน้ต คำถามครอบคลุม Newton step, secant condition ของ BFGS ผลของหน่วยที่แย่ต่อแต่ละวิธี และสิ่งที่ต้องตรวจเมื่อ SciPy รายงานว่าสำเร็จ"
+    },
+    {
+     "s": 15.645,
+     "e": 27.671,
+     "en": "All four come back today. SQP is a Newton method, it uses a BFGS matrix, scaling matters even more with rows, and the last question leads to today's residual audit.",
+     "th": "ทั้งสี่ข้อจะกลับมาในวันนี้ SQP คือวิธีแบบ Newton ที่ใช้เมทริกซ์ BFGS การปรับสเกลยิ่งสำคัญเมื่อมีแถวข้อจำกัด และข้อสุดท้ายนำไปสู่การตรวจด้วย residual ของวันนี้"
+    },
+    {
+     "s": 27.671,
+     "e": 34.947,
+     "en": "If you could not answer one of them, look back at the matching slide of Session 8 before you go on; today builds directly on it.",
+     "th": "ถ้าคุณตอบข้อใดไม่ได้ ให้ย้อนกลับไปดูหน้าที่ตรงกันในคาบที่ 8 ก่อนไปต่อ เพราะวันนี้ต่อยอดจากเนื้อหานั้นโดยตรง"
+    },
+    {
+     "s": 34.947,
+     "e": 44.868,
+     "en": "In class, write alone for five minutes, then compare with a partner. On your own, pause the narration, write your answers, and then press Show answers.",
+     "th": "ในห้องเรียน เขียนคนเดียวห้านาที แล้วเทียบกับเพื่อน ถ้าเรียนเอง ให้หยุดเสียงบรรยาย เขียนคำตอบ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "file": "audio/slide-04.mp3",
+   "duration": 43.68,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.866,
+     "en": "By the end of today you should be able to do six things.",
+     "th": "เมื่อจบวันนี้ คุณควรทำหกอย่างต่อไปนี้ได้"
+    },
+    {
+     "s": 3.866,
+     "e": 11.013,
+     "en": "Write the quadratic penalty and the augmented Lagrangian, and explain why the penalty alone becomes ill-conditioned.",
+     "th": "เขียน quadratic penalty และ augmented Lagrangian ได้ และอธิบายได้ว่าทำไม penalty อย่างเดียวจึงมี condition ที่แย่"
+    },
+    {
+     "s": 11.013,
+     "e": 16.829,
+     "en": "Take one Newton step on the KKT conditions by hand, with the KKT matrix.",
+     "th": "ทำ Newton step หนึ่งก้าวบนเงื่อนไข KKT ด้วยมือได้ โดยใช้ KKT matrix"
+    },
+    {
+     "s": 16.829,
+     "e": 23.75,
+     "en": "Explain SQP: the QP subproblem, the BFGS Hessian of the Lagrangian, and the merit function.",
+     "th": "อธิบาย SQP ได้ ได้แก่ ปัญหาย่อย QP, Hessian ของ Lagrangian แบบ BFGS และ merit function"
+    },
+    {
+     "s": 23.75,
+     "e": 30.447,
+     "en": "Explain the log barrier and the central path, and how an interior-point method reaches complementarity.",
+     "th": "อธิบาย log barrier และ central path ได้ และอธิบายว่าวิธี interior point ไปถึง complementarity ได้อย่างไร"
+    },
+    {
+     "s": 30.447,
+     "e": 38.211,
+     "en": "Choose starting points, recognize failures, read SLSQP and Ipopt output, and audit an answer with residuals.",
+     "th": "เลือกจุดเริ่มต้น รู้จักความล้มเหลว อ่านผลของ SLSQP และ Ipopt และตรวจคำตอบด้วย residual ได้"
+    },
+    {
+     "s": 38.211,
+     "e": 43.605,
+     "en": "And run Ipopt in Colab, and compare it with SLSQP on a plant model.",
+     "th": "และรัน Ipopt ใน Colab แล้วเปรียบเทียบกับ SLSQP บนโมเดลโรงงานได้"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "file": "audio/slide-05.mp3",
+   "duration": 87.168,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.497,
+     "en": "Today puts Sessions 7 and 8 together.",
+     "th": "วันนี้นำคาบที่ 7 และ 8 มารวมกัน"
+    },
+    {
+     "s": 3.497,
+     "e": 12.816,
+     "en": "Session 7 gave the KKT conditions, the multipliers and their residuals. Today adds algorithms that solve those conditions.",
+     "th": "คาบที่ 7 ให้เงื่อนไข KKT, multiplier และ residual ของมัน วันนี้เพิ่ม algorithm ที่แก้เงื่อนไขเหล่านั้น"
+    },
+    {
+     "s": 12.816,
+     "e": 24.342,
+     "en": "Session 8 gave Newton steps, line searches and BFGS. SQP turns out to be Newton's method on the KKT conditions, with a BFGS matrix and a line search.",
+     "th": "คาบที่ 8 ให้ Newton step, line search และ BFGS ปรากฏว่า SQP ก็คือ Newton's method บนเงื่อนไข KKT ที่ใช้เมทริกซ์ BFGS และ line search"
+    },
+    {
+     "s": 24.342,
+     "e": 31.776,
+     "en": "Session 8 also scaled the variables and the objective. With rows, the rows need scaling too.",
+     "th": "คาบที่ 8 ยังปรับสเกลตัวแปรและฟังก์ชันเป้าหมาย เมื่อมีแถวข้อจำกัด แถวก็ต้องปรับสเกลด้วย"
+    },
+    {
+     "s": 31.776,
+     "e": 41.013,
+     "en": "Without scaled rows, a tolerance on the violation means one thing for a mass balance and another for a fraction, and a solver can stop too early or never stop.",
+     "th": "ถ้าไม่ปรับสเกลแถว tolerance ของการละเมิดจะมีความหมายหนึ่งสำหรับสมดุลมวล และอีกความหมายหนึ่งสำหรับสัดส่วน และ solver อาจหยุดเร็วเกินไปหรือไม่หยุดเลย"
+    },
+    {
+     "s": 41.013,
+     "e": 49.237,
+     "en": "You have used SLSQP as a black box in Sessions 5 and 7. Today we open it and read its messages.",
+     "th": "คุณใช้ SLSQP แบบกล่องดำมาแล้วในคาบที่ 5 และ 7 วันนี้เราเปิดมันออก และอ่านข้อความที่มันรายงาน"
+    },
+    {
+     "s": 49.237,
+     "e": 55.447,
+     "en": "By the end of the session you should be able to look at a solver's output and say whether you believe it, and why.",
+     "th": "เมื่อจบคาบ คุณควรดูผลจาก solver แล้วบอกได้ว่าเชื่อหรือไม่ และเพราะอะไร"
+    },
+    {
+     "s": 55.447,
+     "e": 65.579,
+     "en": "Session 5's multistart comes back, now with rows and with starts that are not feasible. And Session 10 will use the same solvers for least squares.",
+     "th": "multistart จากคาบที่ 5 กลับมาอีกครั้ง คราวนี้มีแถวข้อจำกัด และมีจุดเริ่มต้นที่ไม่ feasible และคาบที่ 10 จะใช้ solver เดียวกันกับ least squares"
+    },
+    {
+     "s": 65.579,
+     "e": 74.977,
+     "en": "A note on notation. We minimize f subject to g at most zero, with multipliers mu, and h equal to zero, with multipliers lambda.",
+     "th": "หมายเหตุเรื่องสัญลักษณ์ เราหาค่าต่ำสุดของ f ภายใต้ g ไม่เกินศูนย์ ซึ่งมี multiplier เป็น mu และ h เท่ากับศูนย์ ซึ่งมี multiplier"
+    },
+    {
+     "s": 74.977,
+     "e": 87.092,
+     "en": "A is the Jacobian of the rows, rho is a penalty weight, and tau is the barrier parameter, which Ipopt calls mu. To avoid a clash, eigenvalues are not written lambda.",
+     "th": "เป็น lambda A คือ Jacobian ของแถว rho คือน้ำหนักของ penalty และ tau คือ barrier parameter ซึ่ง Ipopt เรียกว่า mu เพื่อไม่ให้สับสน eigenvalue จะไม่เขียนเป็น lambda"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "file": "audio/slide-06.mp3",
+   "duration": 95.4,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.632,
+     "en": "Part one starts with a map. There are five common ways to handle rows, and each has solvers built on it.",
+     "th": "ส่วนที่หนึ่งเริ่มด้วยแผนที่ มีห้าวิธีทั่วไปในการจัดการแถวข้อจำกัด และแต่ละวิธีมี solver ที่สร้างบนมัน"
+    },
+    {
+     "s": 7.632,
+     "e": 14.044,
+     "en": "The quadratic penalty adds the squared violations to the objective and solves an unconstrained problem.",
+     "th": "quadratic penalty บวกกำลังสองของการละเมิดเข้ากับฟังก์ชันเป้าหมาย แล้วแก้ปัญหาที่ไม่มีข้อจำกัด"
+    },
+    {
+     "s": 14.044,
+     "e": 20.579,
+     "en": "Any method from Session 8 works, but the weight must grow without bound, and the rows are only nearly met.",
+     "th": "วิธีใดจากคาบที่ 8 ก็ใช้ได้ แต่น้ำหนักต้องเพิ่มขึ้นไม่มีขีดจำกัด และแถวข้อจำกัดจะเป็นจริงเพียงโดยประมาณ"
+    },
+    {
+     "s": 20.579,
+     "e": 30.618,
+     "en": "The augmented Lagrangian adds a multiplier term and updates it after each solve. It is exact with a finite weight, at the cost of many inner solves.",
+     "th": "augmented Lagrangian เพิ่มพจน์ของ multiplier และปรับค่าหลังการแก้แต่ละครั้ง วิธีนี้แม่นตรงด้วยน้ำหนักจำกัด แต่ต้องแก้ปัญหาภายในหลายครั้ง"
+    },
+    {
+     "s": 30.618,
+     "e": 44.212,
+     "en": "SQP solves a quadratic program at each iteration, built from a quadratic model of the Lagrangian and linearized rows. It needs few iterations and finds the active set exactly.",
+     "th": "SQP แก้ quadratic program ในแต่ละรอบ ซึ่งสร้างจากแบบจำลองกำลังสองของ Lagrangian และแถวที่ทำให้เป็นเชิงเส้น ใช้รอบน้อยและหา active set ได้แม่นตรง SLSQP"
+    },
+    {
+     "s": 44.212,
+     "e": 46.684,
+     "en": "SLSQP and SNOPT are SQP solvers.",
+     "th": "และ SNOPT เป็น solver แบบ SQP"
+    },
+    {
+     "s": 46.684,
+     "e": 57.345,
+     "en": "Interior-point methods take a Newton step on the KKT conditions with complementarity relaxed to mu i times s i equal to tau, where s is the slack of each row.",
+     "th": "วิธี interior point ใช้ Newton step บนเงื่อนไข KKT โดยผ่อนคลาย complementarity เป็น mu i คูณ s i เท่ากับ tau โดย s คือ slack ของแต่ละแถว"
+    },
+    {
+     "s": 57.345,
+     "e": 63.447,
+     "en": "They handle large sparse problems with many inequalities. Ipopt is the open-source example.",
+     "th": "วิธีนี้จัดการปัญหาใหญ่ที่เป็นเมทริกซ์เบาบางและมีอสมการจำนวนมาก Ipopt คือตัวอย่างแบบ open source"
+    },
+    {
+     "s": 63.447,
+     "e": 74.118,
+     "en": "Reduced-gradient methods eliminate the equalities and step in the remaining variables, so the iterates stay feasible. CONOPT and Excel's Solver work this way.",
+     "th": "วิธี reduced gradient กำจัดสมการออกแล้วก้าวในตัวแปรที่เหลือ จุดในแต่ละรอบจึง feasible อยู่เสมอ CONOPT และ Solver ของ Excel ทำงานแบบนี้"
+    },
+    {
+     "s": 74.118,
+     "e": 77.204,
+     "en": "You do not need to implement any of these yourself.",
+     "th": "คุณไม่จำเป็นต้องเขียนวิธีเหล่านี้เอง"
+    },
+    {
+     "s": 77.204,
+     "e": 86.342,
+     "en": "What you need is to know which family a solver belongs to, because that tells you how it behaves, what its messages mean, and what kind of start it needs.",
+     "th": "สิ่งที่ต้องรู้คือ solver อยู่ในตระกูลใด เพราะนั่นบอกว่ามันทำงานอย่างไร ข้อความของมันหมายถึงอะไร และต้องการจุดเริ่มต้นแบบใด"
+    },
+    {
+     "s": 86.342,
+     "e": 95.316,
+     "en": "Part one builds up to SQP from the first two rows of the table. Part two covers SQP and interior points in detail.",
+     "th": "ส่วนที่หนึ่งค่อย ๆ ไปสู่ SQP จากสองแถวแรกของตาราง ส่วนที่สองว่าด้วย SQP และ interior point อย่างละเอียด"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "file": "audio/slide-07.mp3",
+   "duration": 83.976,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 12.316,
+     "en": "The quadratic penalty replaces the rows by a cost. Q of x and rho is f plus rho over two times the sum of the squared equality rows, and x of rho is its unconstrained minimizer.",
+     "th": "quadratic penalty แทนแถวข้อจำกัดด้วยต้นทุน Q ของ x และ rho เท่ากับ f บวก rho หารสอง คูณผลรวมกำลังสองของแถวสมการ และ x ของ rho คือจุดต่ำสุดแบบไม่มีข้อจำกัดของมัน"
+    },
+    {
+     "s": 12.316,
+     "e": 22.939,
+     "en": "Set the gradient of Q to zero: grad f plus the sum of rho h j times grad h j. Compare it with stationarity in Session 7, grad f plus lambda grad h.",
+     "th": "ให้ gradient ของ Q เป็นศูนย์ คือ grad f บวกผลรวมของ rho h j คูณ grad h j เมื่อเทียบกับ stationarity ในคาบที่ 7 คือ grad f บวก lambda"
+    },
+    {
+     "s": 22.939,
+     "e": 26.026,
+     "en": "The product rho h plays the role of lambda.",
+     "th": "grad h ผลคูณ rho h ทำหน้าที่เหมือน lambda"
+    },
+    {
+     "s": 26.026,
+     "e": 36.632,
+     "en": "For rho h to stay near lambda while rho grows, h must shrink as one over rho. So a finite rho always leaves the row violated, by about lambda over rho.",
+     "th": "เพื่อให้ rho h อยู่ใกล้ lambda ขณะที่ rho เพิ่มขึ้น h ต้องลดลงตามหนึ่งหาร rho ดังนั้น rho ที่จำกัดจะทำให้แถวถูกละเมิดเสมอ ประมาณ lambda หาร rho"
+    },
+    {
+     "s": 36.632,
+     "e": 41.861,
+     "en": "The Hessian of Q is about the Hessian of the Lagrangian plus rho A transpose A.",
+     "th": "Hessian ของ Q ประมาณเท่ากับ Hessian ของ Lagrangian บวก rho A transpose A"
+    },
+    {
+     "s": 41.861,
+     "e": 52.776,
+     "en": "That term adds curvature of size rho across the row and none along it, so the condition number grows in proportion to rho. Session 8 showed what that does to a solver.",
+     "th": "พจน์นี้เพิ่มความโค้งขนาด rho ในทิศตั้งฉากกับแถว และไม่เพิ่มเลยในทิศตามแถว condition number จึงเพิ่มตามสัดส่วนของ rho คาบที่ 8 แสดงแล้วว่าสิ่งนี้ส่งผลต่อ solver อย่างไร"
+    },
+    {
+     "s": 52.776,
+     "e": 59.842,
+     "en": "Inequalities use the square of max of zero and g, which is zero inside the feasible set and grows outside it.",
+     "th": "อสมการใช้กำลังสองของ max ระหว่างศูนย์กับ g ซึ่งเป็นศูนย์ภายในเซตที่ feasible และเพิ่มขึ้นภายนอก"
+    },
+    {
+     "s": 59.842,
+     "e": 69.84,
+     "en": "The example for the next three slides is from Nocedal and Wright: minimize x one plus x two on the circle x one squared plus x two squared equals two.",
+     "th": "ตัวอย่างสำหรับสามหน้าถัดไปมาจาก Nocedal และ Wright คือหาค่าต่ำสุดของ x หนึ่ง บวก x สอง บนวงกลม x หนึ่ง ยกกำลังสอง บวก x สอง ยกกำลังสอง"
+    },
+    {
+     "s": 69.84,
+     "e": 74.342,
+     "en": "The solution is minus one, minus one, with lambda equal to one half.",
+     "th": "เท่ากับสอง คำตอบคือ ลบหนึ่ง ลบหนึ่ง และ lambda เท่ากับครึ่งหนึ่ง"
+    },
+    {
+     "s": 74.342,
+     "e": 83.908,
+     "en": "In practice the penalty is rarely used alone. It survives as a building block, in augmented Lagrangian methods and in merit functions.",
+     "th": "ในทางปฏิบัติ penalty แทบไม่ถูกใช้เดี่ยว ๆ แต่ยังอยู่ในฐานะส่วนประกอบ ใน augmented Lagrangian และใน merit function"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "file": "audio/slide-08.mp3",
+   "duration": 74.328,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.925,
+     "en": "Here is the penalty on the circle example.",
+     "th": "นี่คือ penalty บนตัวอย่างวงกลม"
+    },
+    {
+     "s": 2.925,
+     "e": 13.303,
+     "en": "The teal arc is the circle, the grey curves are contours of Q, and the amber points are the minimizers x of rho for fifteen weights from 0.32 to one thousand.",
+     "th": "เส้นโค้งสีเขียวหัวเป็ดคือวงกลม เส้นสีเทาคือเส้นชั้นของ Q และจุดสีเหลืองอำพันคือจุดต่ำสุด x ของ rho สำหรับน้ำหนักสิบห้าค่า ตั้งแต่ 0.32 ถึงหนึ่งพัน"
+    },
+    {
+     "s": 13.303,
+     "e": 26.553,
+     "en": "Move the slider. With a small rho the problem is easy, and the minimizer sits well outside the circle. At rho equal to 3.16, the row violation is 0.15.",
+     "th": "เลื่อนแถบเลื่อน เมื่อ rho เล็ก ปัญหาง่าย และจุดต่ำสุดอยู่ห่างนอกวงกลม ที่ rho เท่ากับ 3.16 การละเมิดแถวเท่ากับ 0.15"
+    },
+    {
+     "s": 26.553,
+     "e": 36.671,
+     "en": "As rho grows, the point creeps toward the circle. The violation falls as one over rho, and the multiplier estimate rho h approaches one half.",
+     "th": "เมื่อ rho เพิ่มขึ้น จุดจะคืบเข้าหาวงกลม การละเมิดลดลงตามหนึ่งหาร rho และค่าประมาณของ multiplier คือ rho h เข้าใกล้ครึ่งหนึ่ง"
+    },
+    {
+     "s": 36.671,
+     "e": 38.973,
+     "en": "Watch the contours at the same time.",
+     "th": "ดูเส้นชั้นไปพร้อมกัน"
+    },
+    {
+     "s": 38.973,
+     "e": 48.554,
+     "en": "They become long narrow valleys along the circle, and the condition number of the Hessian of Q reaches about eight thousand at rho equal to one thousand.",
+     "th": "มันกลายเป็นหุบเขาแคบยาวตามวงกลม และ condition number ของ Hessian ของ Q ไปถึงประมาณแปดพันเมื่อ rho เท่ากับหนึ่งพัน"
+    },
+    {
+     "s": 48.554,
+     "e": 51.789,
+     "en": "That is the price of forcing the row with a penalty.",
+     "th": "นี่คือราคาของการบังคับแถวด้วย penalty"
+    },
+    {
+     "s": 51.789,
+     "e": 60.555,
+     "en": "A solver from Session 8 started on such a valley would zigzag or need many backtracking steps. That is why the penalty alone is rarely used:",
+     "th": "solver จากคาบที่ 8 ที่เริ่มบนหุบเขาแบบนี้จะซิกแซก หรือต้องถอยหลายครั้ง นี่คือเหตุผลที่ penalty อย่างเดียวแทบไม่ถูกใช้"
+    },
+    {
+     "s": 60.555,
+     "e": 66.026,
+     "en": "the closer you want to get to the circle, the harder each unconstrained problem becomes.",
+     "th": "ยิ่งต้องการเข้าใกล้วงกลมมากเท่าใด ปัญหาแบบไม่มีข้อจำกัดในแต่ละครั้งก็ยิ่งยากขึ้น"
+    },
+    {
+     "s": 66.026,
+     "e": 74.263,
+     "en": "Even then, the row is violated by five times ten to the minus four. Press D to see the four weights in Python.",
+     "th": "แม้ถึงตอนนั้น แถวยังถูกละเมิดห้าคูณสิบยกกำลังลบสี่ กด D เพื่อดูน้ำหนักสี่ค่าใน Python"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "file": "audio/slide-09.mp3",
+   "duration": 95.4,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 10.105,
+     "en": "The augmented Lagrangian fixes the penalty's problem by adding the multiplier. L A equals f plus lambda h plus rho over two h squared.",
+     "th": "augmented Lagrangian แก้ปัญหาของ penalty โดยเพิ่ม multiplier เข้าไป L A เท่ากับ f บวก lambda h บวก rho หารสอง h ยกกำลังสอง"
+    },
+    {
+     "s": 10.105,
+     "e": 17.382,
+     "en": "Each outer iteration minimizes L A with lambda fixed, then updates lambda to lambda plus rho h of x k.",
+     "th": "แต่ละรอบภายนอกหาค่าต่ำสุดของ L A โดยตรึง lambda ไว้ แล้วปรับ lambda เป็น lambda บวก rho h ของ x k"
+    },
+    {
+     "s": 17.382,
+     "e": 30.711,
+     "en": "Why this update? The gradient of L A is grad f plus lambda k plus rho h, times grad h. So lambda k plus rho h is the new multiplier estimate, and the update simply keeps it.",
+     "th": "ทำไมจึงปรับแบบนี้ gradient ของ L A คือ grad f บวก lambda k บวก rho h คูณ grad h ดังนั้น lambda k บวก rho h คือค่าประมาณ multiplier ใหม่ และการปรับก็เพียงเก็บค่านั้นไว้"
+    },
+    {
+     "s": 30.711,
+     "e": 41.382,
+     "en": "Once lambda k equals the true lambda, the minimizer of L A meets the row exactly, for any rho above a threshold. The weight no longer has to go to infinity.",
+     "th": "เมื่อ lambda k เท่ากับ lambda ที่แท้จริง จุดต่ำสุดของ L A จะทำให้แถวเป็นจริงพอดี สำหรับ rho ใดก็ได้ที่มากกว่าค่าขีดหนึ่ง น้ำหนักจึงไม่ต้องไปถึงอนันต์อีกต่อไป"
+    },
+    {
+     "s": 41.382,
+     "e": 48.981,
+     "en": "The threshold depends on the curvature: rho must be large enough to make L A convex along the directions that leave the row.",
+     "th": "ค่าขีดขึ้นกับความโค้ง rho ต้องใหญ่พอที่จะทำให้ L A เป็น convex ในทิศที่ออกจากแถว บนวงกลม เมื่อ lambda"
+    },
+    {
+     "s": 48.981,
+     "e": 54.513,
+     "en": "On the circle, any rho above about zero works once lambda is right, and two is comfortable.",
+     "th": "ถูกต้องแล้ว rho ที่มากกว่าศูนย์เพียงเล็กน้อยก็ใช้ได้ และสองถือว่าเหลือเฟือ"
+    },
+    {
+     "s": 54.513,
+     "e": 57.908,
+     "en": "The table uses rho equal to two, fixed.",
+     "th": "ตารางใช้ rho เท่ากับสองคงที่"
+    },
+    {
+     "s": 57.908,
+     "e": 71.487,
+     "en": "Lambda goes 0, 0.473, 0.498, 0.4999, and the violation falls by about seventeen times per outer iteration, to five times ten to the minus ten after eight steps.",
+     "th": "lambda เป็น 0, 0.473, 0.498, 0.4999 และการละเมิดลดลงประมาณสิบเจ็ดเท่าต่อรอบภายนอก จนเหลือห้าคูณสิบยกกำลังลบสิบหลังแปดรอบ"
+    },
+    {
+     "s": 71.487,
+     "e": 83.342,
+     "en": "The dashed line in the plot is the pure penalty at rho equal to one thousand. The augmented Lagrangian passes it by its fourth outer iteration, with a well-conditioned problem at every step.",
+     "th": "เส้นประในกราฟคือ penalty ล้วนที่ rho เท่ากับหนึ่งพัน augmented Lagrangian ผ่านเส้นนั้นภายในรอบภายนอกที่สี่ โดยปัญหาในทุกขั้นมี condition ที่ดี"
+    },
+    {
+     "s": 83.342,
+     "e": 95.329,
+     "en": "Large-scale codes such as LANCELOT are built this way, and the same idea of a multiplier update appears in the method of multipliers and its relatives. Press D to run the eight iterations.",
+     "th": "โปรแกรมสำหรับปัญหาขนาดใหญ่อย่าง LANCELOT สร้างแบบนี้ และแนวคิดเดียวกันของการปรับ multiplier ปรากฏใน method of multipliers และวิธีที่เกี่ยวข้อง กด D เพื่อรันแปดรอบนี้"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "file": "audio/slide-10.mp3",
+   "duration": 118.32,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 8.697,
+     "en": "Now a different route. Instead of turning the rows into a cost, solve the KKT conditions directly with Newton's method.",
+     "th": "ตอนนี้เป็นอีกเส้นทางหนึ่ง แทนที่จะเปลี่ยนแถวเป็นต้นทุน ให้แก้เงื่อนไข KKT โดยตรงด้วย Newton's method"
+    },
+    {
+     "s": 8.697,
+     "e": 20.05,
+     "en": "The unknowns are x and lambda. The equations are grad f plus lambda grad h equals zero, and h equals zero. One Newton step solves a linear system with the KKT matrix:",
+     "th": "ตัวไม่ทราบค่าคือ x และ lambda สมการคือ grad f บวก lambda grad h เท่ากับศูนย์ และ h เท่ากับศูนย์ Newton step หนึ่งก้าวแก้ระบบเชิงเส้นด้วย KKT matrix"
+    },
+    {
+     "s": 20.05,
+     "e": 26.237,
+     "en": "the Hessian of the Lagrangian and A transpose in the top row, A and zero in the bottom row.",
+     "th": "ซึ่งแถวบนคือ Hessian ของ Lagrangian กับ A transpose และแถวล่างคือ A กับศูนย์"
+    },
+    {
+     "s": 26.237,
+     "e": 38.724,
+     "en": "On the circle, the Hessian of L is two lambda times the identity, and A is two x one, two x two. Start at minus 1.5, minus 0.5, with lambda equal to one.",
+     "th": "บนวงกลม Hessian ของ L คือสอง lambda คูณเมทริกซ์เอกลักษณ์ และ A คือ สอง x หนึ่ง สอง x สอง เริ่มที่ ลบ 1.5 ลบ 0.5 โดย lambda เท่ากับหนึ่ง"
+    },
+    {
+     "s": 38.724,
+     "e": 42.545,
+     "en": "The gradient of L is minus two, zero, and h is one half.",
+     "th": "gradient ของ L คือ ลบสอง ศูนย์ และ h เท่ากับครึ่งหนึ่ง"
+    },
+    {
+     "s": 42.545,
+     "e": 52.934,
+     "en": "The three equations are two p one minus three delta equals two, two p two minus delta equals zero, and minus three p one minus p two equals minus one half.",
+     "th": "สมการสามสมการคือ สอง p หนึ่ง ลบ สาม delta เท่ากับสอง, สอง p สอง ลบ delta เท่ากับศูนย์ และ ลบสาม p หนึ่ง ลบ p สอง เท่ากับลบครึ่งหนึ่ง"
+    },
+    {
+     "s": 52.934,
+     "e": 66.842,
+     "en": "Solving gives delta equal to minus one half and p equal to 0.25, minus 0.25. The new point is minus 1.25, minus 0.75, with lambda equal to one half.",
+     "th": "เมื่อแก้จะได้ delta เท่ากับลบครึ่งหนึ่ง และ p เท่ากับ 0.25 ลบ 0.25 จุดใหม่คือ ลบ 1.25 ลบ 0.75 และ lambda เท่ากับครึ่งหนึ่ง"
+    },
+    {
+     "s": 66.842,
+     "e": 74.807,
+     "en": "Check it: the new point has h equal to 1.5625 plus 0.5625 minus 2, which is 0.125, down from 0.5.",
+     "th": "ตรวจดู จุดใหม่มี h เท่ากับ 1.5625 บวก 0.5625 ลบ 2 ซึ่งเท่ากับ 0.125 ลดลงจาก 0.5"
+    },
+    {
+     "s": 74.807,
+     "e": 84.803,
+     "en": "Newton has linearized the circle and stepped to the tangent line, so the remaining violation comes only from the curvature.",
+     "th": "Newton ทำให้วงกลมเป็นเชิงเส้นแล้วก้าวไปยังเส้นสัมผัส การละเมิดที่เหลือจึงมาจากความโค้งเพียงอย่างเดียว"
+    },
+    {
+     "s": 84.803,
+     "e": 96.345,
+     "en": "The table continues. The residual goes 2, 0.25, 0.12, 0.0018, eight times ten to the minus seven, then three times ten to the minus thirteen.",
+     "th": "ตารางแสดงต่อ residual เป็น 2, 0.25, 0.12, 0.0018, แปดคูณสิบยกกำลังลบเจ็ด แล้วสามคูณสิบยกกำลังลบสิบสาม"
+    },
+    {
+     "s": 96.345,
+     "e": 104.474,
+     "en": "From step three it roughly squares at each step: Newton's quadratic rate, now on the KKT conditions.",
+     "th": "ตั้งแต่ขั้นที่สามมันประมาณยกกำลังสองในแต่ละก้าว นี่คืออัตราแบบ quadratic ของ Newton ซึ่งตอนนี้ใช้กับเงื่อนไข KKT"
+    },
+    {
+     "s": 104.474,
+     "e": 118.25,
+     "en": "The KKT matrix is symmetric but indefinite: it has one negative eigenvalue for each row. Solvers factor it with methods made for that structure. Press D to see the iterations in Python.",
+     "th": "KKT matrix สมมาตรแต่เป็น indefinite มี eigenvalue เป็นลบหนึ่งตัวต่อหนึ่งแถว solver แยกตัวประกอบมันด้วยวิธีที่ออกแบบมาสำหรับโครงสร้างนี้ กด D เพื่อดูรอบต่าง ๆ ใน Python"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "file": "audio/slide-11.mp3",
+   "duration": 85.536,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 8.105,
+     "en": "In this demo you choose the start. Click on the plot to set x zero, and use the slider for the starting lambda.",
+     "th": "ในตัวอย่างนี้คุณเลือกจุดเริ่มต้นเอง คลิกบนกราฟเพื่อกำหนด x ศูนย์ และใช้แถบเลื่อนสำหรับ lambda เริ่มต้น"
+    },
+    {
+     "s": 8.105,
+     "e": 18.19,
+     "en": "The KKT conditions of the circle example hold at two points. Minus one, minus one, with lambda equal to one half, is the minimum.",
+     "th": "เงื่อนไข KKT ของตัวอย่างวงกลมเป็นจริงที่สองจุด ลบหนึ่ง ลบหนึ่ง ที่ lambda เท่ากับครึ่งหนึ่ง คือค่าต่ำสุด และ"
+    },
+    {
+     "s": 18.19,
+     "e": 23.0,
+     "en": "One, one, with lambda equal to minus one half, is the maximum.",
+     "th": "หนึ่ง หนึ่ง ที่ lambda เท่ากับลบครึ่งหนึ่ง คือค่าสูงสุด"
+    },
+    {
+     "s": 23.0,
+     "e": 30.145,
+     "en": "Start near minus one, minus one, with a positive lambda: Newton converges to the minimum in a few steps.",
+     "th": "เริ่มใกล้ ลบหนึ่ง ลบหนึ่ง ด้วย lambda ที่เป็นบวก Newton จะลู่เข้าสู่ค่าต่ำสุดในไม่กี่ก้าว"
+    },
+    {
+     "s": 30.145,
+     "e": 43.891,
+     "en": "Now click near one, one, and set the starting lambda to minus one half. Newton converges just as fast, to the maximum. It solves the KKT equations; it does not know which way is down.",
+     "th": "ตอนนี้คลิกใกล้ หนึ่ง หนึ่ง แล้วตั้ง lambda เริ่มต้นเป็นลบครึ่งหนึ่ง Newton ลู่เข้าเร็วพอกันไปสู่ค่าสูงสุด มันแก้สมการ KKT แต่ไม่รู้ว่าทางไหนลงเขา"
+    },
+    {
+     "s": 43.891,
+     "e": 47.776,
+     "en": "This is the same lesson as pure Newton in Session 8.",
+     "th": "นี่คือบทเรียนเดียวกับ pure Newton ในคาบที่ 8"
+    },
+    {
+     "s": 47.776,
+     "e": 59.295,
+     "en": "Look at the Hessian of the Lagrangian to see why. It is two lambda times the identity. With lambda positive it is positive definite, and the KKT point is a minimum;",
+     "th": "ดู Hessian ของ Lagrangian เพื่อเข้าใจเหตุผล มันคือสอง lambda คูณเมทริกซ์เอกลักษณ์ เมื่อ lambda เป็นบวก มันเป็น positive definite และจุด KKT เป็นค่าต่ำสุด"
+    },
+    {
+     "s": 59.295,
+     "e": 64.671,
+     "en": "with lambda negative it is negative definite, and the KKT point is a maximum.",
+     "th": "เมื่อ lambda เป็นลบ มันเป็น negative definite และจุด KKT เป็นค่าสูงสุด"
+    },
+    {
+     "s": 64.671,
+     "e": 74.579,
+     "en": "Some starts make the KKT matrix singular, for example lambda equal to zero with the point on an axis. The message tells you when that happens.",
+     "th": "จุดเริ่มต้นบางจุดทำให้ KKT matrix เป็น singular เช่น lambda เท่ากับศูนย์ขณะที่จุดอยู่บนแกน ข้อความจะบอกคุณเมื่อเกิดเหตุนี้"
+    },
+    {
+     "s": 74.579,
+     "e": 85.461,
+     "en": "SQP adds two things to this bare Newton method: a Hessian kept positive definite, and a merit function that decides whether a step is good. Both appear in part two.",
+     "th": "SQP เพิ่มสองอย่างให้กับ Newton แบบพื้นฐานนี้ คือ Hessian ที่รักษาให้เป็น positive definite และ merit function ที่ตัดสินว่าก้าวนั้นดีหรือไม่ ทั้งสองจะปรากฏในส่วนที่สอง"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "file": "audio/slide-12.mp3",
+   "duration": 46.056,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.682,
+     "en": "Check 1 covers penalties and Newton on the KKT conditions.",
+     "th": "แบบตรวจที่ 1 ครอบคลุม penalty และ Newton บนเงื่อนไข KKT"
+    },
+    {
+     "s": 4.682,
+     "e": 14.804,
+     "en": "Question one asks you to estimate lambda from a penalty solve. Question two asks why the augmented Lagrangian does not need an infinite weight.",
+     "th": "ข้อหนึ่งให้ประมาณ lambda จากการแก้ด้วย penalty ข้อสองถามว่าทำไม augmented Lagrangian ไม่ต้องใช้น้ำหนักอนันต์"
+    },
+    {
+     "s": 14.804,
+     "e": 25.066,
+     "en": "Question three asks for the KKT matrix and its size. And question four asks whether a KKT point with a negative lambda on the circle is a minimum.",
+     "th": "ข้อสามถาม KKT matrix และขนาดของมัน และข้อสี่ถามว่าจุด KKT ที่มี lambda เป็นลบบนวงกลมเป็นค่าต่ำสุดหรือไม่"
+    },
+    {
+     "s": 25.066,
+     "e": 31.342,
+     "en": "A hint for question four: look at the Hessian of the Lagrangian, two lambda times the identity.",
+     "th": "คำใบ้ข้อสี่ ให้ดู Hessian ของ Lagrangian ซึ่งคือสอง lambda คูณเมทริกซ์เอกลักษณ์"
+    },
+    {
+     "s": 31.342,
+     "e": 41.105,
+     "en": "If you are not sure about question three, write the gradient of L and the gradient of h for one variable and one row, and arrange them in the block form of the previous slides.",
+     "th": "ถ้าไม่แน่ใจข้อสาม ให้เขียน gradient ของ L และ gradient ของ h สำหรับหนึ่งตัวแปรและหนึ่งแถว แล้วจัดเรียงในรูปบล็อกเหมือนหน้าก่อน ๆ"
+    },
+    {
+     "s": 41.105,
+     "e": 46.0,
+     "en": "Pause the narration, answer the four questions, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย ตอบคำถามสี่ข้อ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "file": "audio/slide-13.mp3",
+   "duration": 118.248,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.908,
+     "en": "Part two begins with SQP. At each iterate, SQP solves a quadratic program in the step p.",
+     "th": "ส่วนที่สองเริ่มด้วย SQP ที่แต่ละจุด SQP แก้ quadratic program ในตัวแปรก้าว p"
+    },
+    {
+     "s": 7.908,
+     "e": 18.482,
+     "en": "The objective of the QP is grad f transpose p plus one half p transpose B p, where B approximates the Hessian of the Lagrangian. The rows are linearized:",
+     "th": "ฟังก์ชันเป้าหมายของ QP คือ grad f transpose p บวกครึ่งหนึ่งของ p transpose B p โดย B ประมาณ Hessian ของ Lagrangian แถวข้อจำกัดถูกทำให้เป็นเชิงเส้น"
+    },
+    {
+     "s": 18.482,
+     "e": 24.25,
+     "en": "g plus grad g transpose p at most zero, and h plus grad h transpose p equal to zero.",
+     "th": "คือ g บวก grad g transpose p ไม่เกินศูนย์ และ h บวก grad h transpose p เท่ากับศูนย์"
+    },
+    {
+     "s": 24.25,
+     "e": 35.842,
+     "en": "The QP's multipliers become the next multiplier estimates, and its active rows predict the active set. The step is then taken with a length alpha chosen by a merit function.",
+     "th": "multiplier ของ QP กลายเป็นค่าประมาณ multiplier ถัดไป และแถวที่ active ใน QP ทำนาย active set จากนั้นก้าวจะถูกใช้ด้วยความยาว alpha ที่เลือกโดย merit function"
+    },
+    {
+     "s": 35.842,
+     "e": 48.513,
+     "en": "With only equalities and B equal to the true Hessian of L, the KKT conditions of this QP are exactly the Newton step of the previous slides. SQP is Newton's method on the KKT conditions.",
+     "th": "เมื่อมีแต่สมการ และ B เท่ากับ Hessian ที่แท้จริงของ L เงื่อนไข KKT ของ QP นี้ก็คือ Newton step ในหน้าก่อน ๆ พอดี SQP คือ Newton's method บนเงื่อนไข KKT"
+    },
+    {
+     "s": 48.513,
+     "e": 54.618,
+     "en": "For example, at the start one half, one half of the next demo, with B equal to the identity,",
+     "th": "ตัวอย่างเช่น ที่จุดเริ่มต้น ครึ่งหนึ่ง ครึ่งหนึ่ง ของตัวอย่างถัดไป โดย B เท่ากับเมทริกซ์เอกลักษณ์"
+    },
+    {
+     "s": 54.618,
+     "e": 66.171,
+     "en": "the QP minimizes minus one half p one minus one half p two plus one half the squared length of p. No row is active, so the step is one half, one half, and it lands at one, one.",
+     "th": "QP หาค่าต่ำสุดของ ลบครึ่งหนึ่ง p หนึ่ง ลบครึ่งหนึ่ง p สอง บวกครึ่งหนึ่งของกำลังสองของความยาว p ไม่มีแถวใด active ก้าวจึงเป็น ครึ่งหนึ่ง ครึ่งหนึ่ง และไปตกที่ หนึ่ง หนึ่ง"
+    },
+    {
+     "s": 66.171,
+     "e": 77.627,
+     "en": "Why the Hessian of L and not of f? Because the curvature of the rows matters. On the circle, f is linear, so its Hessian is zero, yet the problem clearly has curvature:",
+     "th": "ทำไมใช้ Hessian ของ L ไม่ใช่ของ f เพราะความโค้งของแถวข้อจำกัดมีผล บนวงกลม f เป็นเชิงเส้น Hessian ของมันจึงเป็นศูนย์ แต่ปัญหามีความโค้งชัดเจน"
+    },
+    {
+     "s": 77.627,
+     "e": 81.355,
+     "en": "it comes through the multiplier times the Hessian of h.",
+     "th": "ซึ่งมาจาก multiplier คูณ Hessian ของ h"
+    },
+    {
+     "s": 81.355,
+     "e": 91.079,
+     "en": "Why a QP and not a linear system? Because of the inequalities. The QP decides which rows are active at this step.",
+     "th": "ทำไมใช้ QP ไม่ใช่ระบบเชิงเส้น เพราะมีอสมการ QP เป็นตัวตัดสินว่าแถวใด active ในก้าวนี้"
+    },
+    {
+     "s": 91.079,
+     "e": 100.778,
+     "en": "B is kept positive definite with Powell's damped BFGS update, so the QP has a unique solution and the step goes downhill for the merit function.",
+     "th": "B ถูกรักษาให้เป็น positive definite ด้วยการปรับ BFGS แบบ damped ของ Powell QP จึงมีคำตอบเดียว และก้าวลงเขาสำหรับ merit"
+    },
+    {
+     "s": 100.778,
+     "e": 106.263,
+     "en": "Near the solution, the active set stops changing, and SQP converges superlinearly.",
+     "th": "function ใกล้คำตอบ active set หยุดเปลี่ยน และ SQP ลู่เข้าแบบ superlinear"
+    },
+    {
+     "s": 106.263,
+     "e": 118.171,
+     "en": "SciPy's SLSQP, written by Dieter Kraft in 1988, is this method with dense matrices. Unless you give it the gradients, it computes them by finite differences.",
+     "th": "SLSQP ของ SciPy ซึ่ง Dieter Kraft เขียนในปี 1988 คือวิธีนี้ที่ใช้เมทริกซ์หนาแน่น ถ้าคุณไม่ให้ gradient มันจะคำนวณด้วย finite difference"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "file": "audio/slide-14.mp3",
+   "duration": 103.056,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.467,
+     "en": "This demo runs a small teaching SQP on a problem with an inequality:",
+     "th": "ตัวอย่างนี้รัน SQP ขนาดเล็กเพื่อการสอนบนปัญหาที่มีอสมการ"
+    },
+    {
+     "s": 4.467,
+     "e": 12.44,
+     "en": "minimize minus x one times x two, inside the ellipse x one squared plus four x two squared at most four, with x non-negative.",
+     "th": "คือหาค่าต่ำสุดของ ลบ x หนึ่ง คูณ x สอง ภายในวงรี x หนึ่ง ยกกำลังสอง บวกสี่ x สอง ยกกำลังสอง ไม่เกินสี่ โดย x ไม่เป็นลบ คำตอบคือ"
+    },
+    {
+     "s": 12.44,
+     "e": 18.579,
+     "en": "The answer is root two, root two over two, with f equal to minus one and mu equal to one quarter.",
+     "th": "รากที่สองของสอง และรากที่สองของสองหารสอง โดย f เท่ากับลบหนึ่ง และ mu เท่ากับหนึ่งในสี่"
+    },
+    {
+     "s": 18.579,
+     "e": 30.105,
+     "en": "Move the iteration slider. At each iterate you see the linearized ellipse row as a dashed amber line, the QP step as a rust arrow, and the accepted point as an amber dot.",
+     "th": "เลื่อนแถบรอบ ที่แต่ละจุดคุณจะเห็นแถววงรีที่ทำให้เป็นเชิงเส้นเป็นเส้นประสีเหลืองอำพัน ก้าวของ QP เป็นลูกศรสีสนิม และจุดที่ยอมรับเป็นจุดสีเหลืองอำพัน"
+    },
+    {
+     "s": 30.105,
+     "e": 41.915,
+     "en": "From the inside start, one half, one half, the first QP has no active row, because the identity matrix makes the step a steepest-descent step, and it lands at one, one, outside the ellipse.",
+     "th": "จากจุดเริ่มต้นภายใน ครึ่งหนึ่ง ครึ่งหนึ่ง QP แรกไม่มีแถวที่ active เพราะเมทริกซ์เอกลักษณ์ทำให้ก้าวเป็นแบบ steepest descent และไปตกที่ หนึ่ง หนึ่ง ซึ่งอยู่นอกวงรี"
+    },
+    {
+     "s": 41.915,
+     "e": 47.447,
+     "en": "From there the linearized ellipse row is active, and the iterates close in on the answer.",
+     "th": "จากนั้นแถววงรีที่เป็นเชิงเส้นจะ active และจุดในแต่ละรอบเข้าใกล้คำตอบ"
+    },
+    {
+     "s": 47.447,
+     "e": 62.393,
+     "en": "Watch the violation column: 1, 1.1, 0.18, 0.004, seven times ten to the minus six. The iterates are allowed to leave the feasible set; SQP only needs the rows met at the end.",
+     "th": "ดูคอลัมน์การละเมิด 1, 1.1, 0.18, 0.004, เจ็ดคูณสิบยกกำลังลบหก จุดในแต่ละรอบออกนอกเซต feasible ได้ SQP ต้องการเพียงให้แถวเป็นจริงในตอนจบ"
+    },
+    {
+     "s": 62.393,
+     "e": 65.211,
+     "en": "It converges in seven iterations.",
+     "th": "มันลู่เข้าในเจ็ดรอบ"
+    },
+    {
+     "s": 65.211,
+     "e": 67.496,
+     "en": "Notice also the step length column.",
+     "th": "สังเกตคอลัมน์ความยาวก้าวด้วย"
+    },
+    {
+     "s": 67.496,
+     "e": 77.461,
+     "en": "Every step here is a full step, alpha equal to one, because the damped BFGS matrix already gives steps of the right size and the merit function accepts them.",
+     "th": "ทุกก้าวในที่นี้เป็นก้าวเต็ม alpha เท่ากับหนึ่ง เพราะเมทริกซ์ BFGS แบบ damped ให้ก้าวที่มีขนาดเหมาะสมอยู่แล้ว และ merit function ยอมรับก้าวเหล่านั้น"
+    },
+    {
+     "s": 77.461,
+     "e": 83.68,
+     "en": "Press Start outside to begin at two and a half, one and a half. Or click anywhere on the plot.",
+     "th": "กด Start outside เพื่อเริ่มที่ สองจุดห้า หนึ่งจุดห้า หรือคลิกที่ใดก็ได้บนกราฟ"
+    },
+    {
+     "s": 83.68,
+     "e": 93.303,
+     "en": "For the starts we tried, the QP settles on the ellipse as its active row within the first three iterations, and after that the convergence is fast.",
+     "th": "สำหรับจุดเริ่มต้นที่เราลอง QP เลือกแถววงรีเป็นแถวที่ active ภายในสามรอบแรก และหลังจากนั้นการลู่เข้าเป็นไปอย่างรวดเร็ว"
+    },
+    {
+     "s": 93.303,
+     "e": 102.974,
+     "en": "The D panel compares this teaching code with SciPy's SLSQP from three starts. Both reach the same point in a similar number of iterations.",
+     "th": "แผง D เปรียบเทียบโค้ดเพื่อการสอนนี้กับ SLSQP ของ SciPy จากสามจุดเริ่มต้น ทั้งสองไปถึงจุดเดียวกันด้วยจำนวนรอบใกล้เคียงกัน"
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "file": "audio/slide-15.mp3",
+   "duration": 90.312,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 8.921,
+     "en": "A step from the QP may raise f while it reduces the violation, or the other way round. Something must decide whether to accept it.",
+     "th": "ก้าวจาก QP อาจทำให้ f เพิ่มขณะที่ลดการละเมิด หรือกลับกัน ต้องมีบางอย่างตัดสินว่าจะยอมรับก้าวนั้นหรือไม่"
+    },
+    {
+     "s": 8.921,
+     "e": 21.179,
+     "en": "A merit function combines the two into one number. The l one merit function is f plus rho times the sum of the absolute equality violations and the positive parts of g. It is exact:",
+     "th": "merit function รวมสองอย่างเป็นตัวเลขเดียว merit function แบบ l หนึ่ง คือ f บวก rho คูณผลรวมของค่าสัมบูรณ์ของการละเมิดสมการ และส่วนที่เป็นบวกของ g มันแม่นตรง ถ้า rho"
+    },
+    {
+     "s": 21.179,
+     "e": 27.039,
+     "en": "if rho is larger than the largest multiplier, its minimizer is the constrained optimum.",
+     "th": "มากกว่า multiplier ที่ใหญ่ที่สุด จุดต่ำสุดของมันคือจุดเหมาะสมที่สุดภายใต้ข้อจำกัด"
+    },
+    {
+     "s": 27.039,
+     "e": 28.655,
+     "en": "A filter needs no weight.",
+     "th": "filter ไม่ต้องใช้น้ำหนัก"
+    },
+    {
+     "s": 28.655,
+     "e": 39.224,
+     "en": "It keeps a list of pairs, theta and f, where theta is the total violation, and accepts a trial point if it is better in theta or better in f than every entry in the list.",
+     "th": "มันเก็บรายการของคู่ theta กับ f โดย theta คือการละเมิดรวม และยอมรับจุดทดลองถ้าจุดนั้นดีกว่าใน theta หรือดีกว่าใน f เมื่อเทียบกับทุกรายการ"
+    },
+    {
+     "s": 39.224,
+     "e": 47.666,
+     "en": "Both devices answer the same question: is this step progress? The merit function answers with one number and a weight that must be large enough;",
+     "th": "ทั้งสองเครื่องมือตอบคำถามเดียวกัน คือก้าวนี้เป็นความคืบหน้าหรือไม่ merit function ตอบด้วยตัวเลขเดียวและน้ำหนักที่ต้องใหญ่พอ"
+    },
+    {
+     "s": 47.666,
+     "e": 53.895,
+     "en": "the filter answers with two numbers and no weight, which makes it less sensitive to a badly chosen penalty.",
+     "th": "filter ตอบด้วยตัวเลขสองตัวโดยไม่ใช้น้ำหนัก จึงไวน้อยกว่าต่อน้ำหนัก penalty ที่เลือกไม่ดี"
+    },
+    {
+     "s": 53.895,
+     "e": 66.75,
+     "en": "Click on the plot to try it. The rust dots are filter entries, and the shaded regions are what they dominate. A trial point in a shaded region is rejected; anywhere else it is acceptable.",
+     "th": "คลิกบนกราฟเพื่อลอง จุดสีสนิมคือรายการใน filter และบริเวณที่แรเงาคือสิ่งที่รายการเหล่านั้นครอบงำ จุดทดลองในบริเวณที่แรเงาจะถูกปฏิเสธ ที่อื่นจะยอมรับได้"
+    },
+    {
+     "s": 66.75,
+     "e": 75.288,
+     "en": "Near the solution, a full SQP step can raise the merit function through second-order terms in the rows, even though it is a good step.",
+     "th": "ใกล้คำตอบ ก้าวเต็มของ SQP อาจทำให้ merit function เพิ่มขึ้นผ่านพจน์อันดับสองของแถว แม้จะเป็นก้าวที่ดี นี่คือ"
+    },
+    {
+     "s": 75.288,
+     "e": 80.474,
+     "en": "This is the Maratos effect, and solvers add a second-order correction to avoid it.",
+     "th": "Maratos effect และ solver เพิ่ม second-order correction เพื่อหลีกเลี่ยง"
+    },
+    {
+     "s": 80.474,
+     "e": 90.25,
+     "en": "SLSQP uses an l one merit function. Ipopt uses a filter line search, described by Wächter and Biegler in 2006.",
+     "th": "SLSQP ใช้ merit function แบบ l หนึ่ง Ipopt ใช้ filter line search ซึ่ง Wächter และ Biegler อธิบายไว้ในปี 2006"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "file": "audio/slide-16.mp3",
+   "duration": 104.496,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 9.882,
+     "en": "Now the second family, interior points. The log barrier replaces each inequality by a term minus tau times the log of minus g i.",
+     "th": "ตอนนี้คือตระกูลที่สอง interior point log barrier แทนอสมการแต่ละแถวด้วยพจน์ ลบ tau คูณ log ของ ลบ g i"
+    },
+    {
+     "s": 9.882,
+     "e": 17.053,
+     "en": "The barrier is infinite on the boundary, so the iterates stay strictly inside: every slack s i stays positive.",
+     "th": "barrier มีค่าอนันต์บนขอบ จุดในแต่ละรอบจึงอยู่ข้างในอย่างเคร่งครัด slack s i ทุกตัวเป็นบวกเสมอ"
+    },
+    {
+     "s": 17.053,
+     "e": 29.182,
+     "en": "Set the gradient of phi tau to zero. It reads grad f plus the sum of tau over minus g i times grad g i. Compare with stationarity: tau over s i plays the role of mu i.",
+     "th": "ให้ gradient ของ phi tau เป็นศูนย์ จะได้ grad f บวกผลรวมของ tau หาร ลบ g i คูณ grad g i เมื่อเทียบกับ stationarity tau หาร s i ทำหน้าที่เหมือน mu i ดังนั้น"
+    },
+    {
+     "s": 29.182,
+     "e": 31.276,
+     "en": "So mu i times s i equals tau.",
+     "th": "mu i คูณ s i เท่ากับ tau"
+    },
+    {
+     "s": 31.276,
+     "e": 41.152,
+     "en": "This is complementarity, relaxed. Instead of mu i g i equal to zero, we ask for mu i s i equal to tau, and then tighten tau step by step.",
+     "th": "นี่คือ complementarity ที่ผ่อนคลาย แทนที่จะให้ mu i g i เท่ากับศูนย์ เราให้ mu i s i เท่ากับ tau แล้วค่อย ๆ ลด tau จุดต่ำสุด x"
+    },
+    {
+     "s": 41.152,
+     "e": 53.461,
+     "en": "The minimizers x of tau form the central path, and they approach x star as tau goes to zero. For a convex problem with m rows, f of x of tau is within m tau of the optimum.",
+     "th": "ของ tau ประกอบกันเป็น central path และเข้าใกล้ x star เมื่อ tau เข้าสู่ศูนย์ สำหรับปัญหา convex ที่มี m แถว f ของ x ของ tau ห่างจากค่าเหมาะสมที่สุดไม่เกิน m tau"
+    },
+    {
+     "s": 53.461,
+     "e": 61.789,
+     "en": "The active set is never guessed. Rows whose mu i stays positive turn out to be active; for the others mu i goes to zero.",
+     "th": "active set ไม่ต้องเดา แถวที่ mu i ยังเป็นบวกจะกลายเป็นแถวที่ active ส่วนแถวอื่น mu i เข้าสู่ศูนย์"
+    },
+    {
+     "s": 61.789,
+     "e": 69.481,
+     "en": "Compare this with the penalty. The penalty approaches the solution from outside the feasible set, with violated rows;",
+     "th": "เปรียบเทียบกับ penalty penalty เข้าหาคำตอบจากนอกเซต feasible โดยแถวถูกละเมิด ส่วน barrier"
+    },
+    {
+     "s": 69.481,
+     "e": 74.5,
+     "en": "the barrier approaches from inside, with every inequality strictly satisfied.",
+     "th": "เข้าหาจากข้างใน โดยอสมการทุกแถวเป็นจริงอย่างเคร่งครัด"
+    },
+    {
+     "s": 74.5,
+     "e": 85.987,
+     "en": "Like the penalty, the barrier minimizers alone become ill-conditioned as tau goes to zero. Primal-dual methods avoid that by treating mu as an unknown, which we see in two slides.",
+     "th": "เช่นเดียวกับ penalty จุดต่ำสุดของ barrier เพียงอย่างเดียวจะมี condition ที่แย่ลงเมื่อ tau เข้าสู่ศูนย์ วิธี primal-dual หลีกเลี่ยงปัญหานี้โดยถือว่า mu เป็นตัวไม่ทราบค่า ซึ่งเราจะเห็นในอีกสองหน้า"
+    },
+    {
+     "s": 85.987,
+     "e": 96.263,
+     "en": "The same pattern runs through this session: a simple method whose subproblems become harder as it nears the answer, and a primal-dual or multiplier version that keeps them well behaved.",
+     "th": "รูปแบบเดียวกันปรากฏตลอดคาบนี้ คือวิธีง่าย ๆ ที่ปัญหาย่อยยากขึ้นเมื่อเข้าใกล้คำตอบ และรูปแบบ primal-dual หรือแบบที่ใช้ multiplier ซึ่งรักษาให้ปัญหาย่อยมีพฤติกรรมดี"
+    },
+    {
+     "s": 96.263,
+     "e": 104.421,
+     "en": "Ipopt starts with tau equal to 0.1, and multiplies it by about 0.2 each time a barrier problem is solved well enough.",
+     "th": "Ipopt เริ่มด้วย tau เท่ากับ 0.1 และคูณด้วยประมาณ 0.2 ทุกครั้งที่ปัญหา barrier ถูกแก้ได้ดีพอ"
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "file": "audio/slide-17.mp3",
+   "duration": 76.92,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.032,
+     "en": "Here is the central path on the ellipse problem.",
+     "th": "นี่คือ central path บนปัญหาวงรี"
+    },
+    {
+     "s": 3.032,
+     "e": 13.263,
+     "en": "The grey curves are contours of the barrier function, drawn only inside the feasible set, and the amber points are x of tau for tau from one down to ten to the minus four.",
+     "th": "เส้นสีเทาคือเส้นชั้นของฟังก์ชัน barrier ซึ่งวาดเฉพาะภายในเซต feasible และจุดสีเหลืองอำพันคือ x ของ tau สำหรับ tau ตั้งแต่หนึ่งลงไปถึงสิบยกกำลังลบสี่"
+    },
+    {
+     "s": 13.263,
+     "e": 21.947,
+     "en": "With tau equal to one, the barrier keeps x well inside, at 1.11, 0.56, and f is minus 0.62.",
+     "th": "เมื่อ tau เท่ากับหนึ่ง barrier ทำให้ x อยู่ลึกเข้าไปข้างใน ที่ 1.11, 0.56 และ f เท่ากับลบ 0.62"
+    },
+    {
+     "s": 21.947,
+     "e": 42.329,
+     "en": "Move the slider down. At tau equal to 0.1 the point is 1.35, 0.67, and the multiplier estimate for the ellipse, tau over its slack, is 0.28. At 0.01 it is 0.253, and at 0.001 it is 0.2503.",
+     "th": "เลื่อนแถบลง ที่ tau เท่ากับ 0.1 จุดอยู่ที่ 1.35, 0.67 และค่าประมาณ multiplier ของวงรี คือ tau หาร slack ของมัน เท่ากับ 0.28 ที่ 0.01 เท่ากับ 0.253 และที่ 0.001 เท่ากับ 0.2503"
+    },
+    {
+     "s": 42.329,
+     "e": 52.053,
+     "en": "Meanwhile the estimates for x non-negative fall toward zero, because those rows are not active. The barrier has found the active set without guessing it.",
+     "th": "ในขณะเดียวกัน ค่าประมาณสำหรับ x ไม่เป็นลบลดลงเข้าหาศูนย์ เพราะแถวเหล่านั้นไม่ active barrier พบ active set ได้โดยไม่ต้องเดา"
+    },
+    {
+     "s": 52.053,
+     "e": 64.658,
+     "en": "The gap to the optimum shrinks with tau as well. At tau equal to ten to the minus three, f is minus 0.999, within three tau of minus one, as the convex-case bound suggests.",
+     "th": "ช่องว่างถึงค่าเหมาะสมที่สุดก็ลดลงตาม tau เช่นกัน ที่ tau เท่ากับสิบยกกำลังลบสาม f เท่ากับลบ 0.999 ห่างจากลบหนึ่งไม่เกินสาม tau ตามที่ขอบเขตของกรณี convex บอกไว้"
+    },
+    {
+     "s": 64.658,
+     "e": 76.855,
+     "en": "Notice also how the contours tighten around the minimizer as tau shrinks. That is the ill-conditioning of the pure barrier. Press D to see four points of the path in Python.",
+     "th": "สังเกตด้วยว่าเส้นชั้นบีบแน่นรอบจุดต่ำสุดเมื่อ tau เล็กลง นั่นคือ condition ที่แย่ของ barrier ล้วน กด D เพื่อดูสี่จุดของเส้นทางใน Python"
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "file": "audio/slide-18.mp3",
+   "duration": 105.936,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.05,
+     "en": "This slide describes what Ipopt does at each iteration.",
+     "th": "หน้านี้อธิบายสิ่งที่ Ipopt ทำในแต่ละรอบ"
+    },
+    {
+     "s": 4.05,
+     "e": 8.472,
+     "en": "The unknowns are x, the slacks s, and both sets of multipliers.",
+     "th": "ตัวไม่ทราบค่าคือ x, slack s และ multiplier ทั้งสองชุด"
+    },
+    {
+     "s": 8.472,
+     "e": 19.25,
+     "en": "The equations are stationarity, g plus s equal to zero, h equal to zero, and the relaxed complementarity mu i s i equal to tau, with s and mu kept positive.",
+     "th": "สมการคือ stationarity, g บวก s เท่ากับศูนย์, h เท่ากับศูนย์ และ complementarity ที่ผ่อนคลาย mu i s i เท่ากับ tau โดยรักษาให้ s และ mu เป็นบวก"
+    },
+    {
+     "s": 19.25,
+     "e": 30.407,
+     "en": "One Newton step on these equations is one sparse, symmetric linear solve. Treating mu as an unknown keeps that system well conditioned even as tau goes to zero.",
+     "th": "Newton step หนึ่งก้าวบนสมการเหล่านี้คือการแก้ระบบเชิงเส้นที่สมมาตรและเบาบางหนึ่งครั้ง การถือว่า mu เป็นตัวไม่ทราบค่าทำให้ระบบนั้นมี condition ที่ดีแม้ tau เข้าสู่ศูนย์"
+    },
+    {
+     "s": 30.407,
+     "e": 35.605,
+     "en": "Ipopt factors it with MUMPS, which is open source, or with the HSL solvers.",
+     "th": "Ipopt แยกตัวประกอบด้วย MUMPS ซึ่งเป็น open source หรือด้วย solver ของ HSL"
+    },
+    {
+     "s": 35.605,
+     "e": 43.816,
+     "en": "A fraction-to-the-boundary rule keeps the slacks from reaching zero: each step may use at most 99 percent of the distance to the boundary.",
+     "th": "กฎ fraction to the boundary ป้องกันไม่ให้ slack ถึงศูนย์ แต่ละก้าวใช้ได้ไม่เกินร้อยละ 99 ของระยะถึงขอบ"
+    },
+    {
+     "s": 43.816,
+     "e": 54.645,
+     "en": "The step length comes from a filter line search. When a barrier problem is solved well enough, tau becomes the smaller of tau over five and tau to the power 1.5.",
+     "th": "ความยาวก้าวได้จาก filter line search เมื่อปัญหา barrier ถูกแก้ได้ดีพอ tau จะเปลี่ยนเป็นค่าที่น้อยกว่าระหว่าง tau หารห้า กับ tau ยกกำลัง 1.5"
+    },
+    {
+     "s": 54.645,
+     "e": 65.368,
+     "en": "If the matrix has the wrong inertia, Ipopt adds a multiple delta of the identity to the Hessian block. You will see it in the column lg rg of the log.",
+     "th": "ถ้าเมทริกซ์มี inertia ที่ไม่ถูกต้อง Ipopt จะบวกผลคูณ delta ของเมทริกซ์เอกลักษณ์เข้ากับบล็อก Hessian คุณจะเห็นค่านี้ในคอลัมน์ lg rg ของ log"
+    },
+    {
+     "s": 65.368,
+     "e": 69.983,
+     "en": "Inertia means the numbers of positive, negative and zero eigenvalues.",
+     "th": "inertia หมายถึงจำนวน eigenvalue ที่เป็นบวก ลบ และศูนย์"
+    },
+    {
+     "s": 69.983,
+     "e": 79.674,
+     "en": "At a minimum the KKT matrix should have as many positive eigenvalues as there are variables, and as many negative ones as there are equality rows.",
+     "th": "ที่จุดต่ำสุด KKT matrix ควรมี eigenvalue บวกเท่ากับจำนวนตัวแปร และ eigenvalue ลบเท่ากับจำนวนแถวสมการ"
+    },
+    {
+     "s": 79.674,
+     "e": 84.618,
+     "en": "Any other count signals that the step could head for a maximum or a saddle.",
+     "th": "จำนวนอื่นเป็นสัญญาณว่าก้าวอาจมุ่งไปยังค่าสูงสุดหรือจุด saddle"
+    },
+    {
+     "s": 84.618,
+     "e": 95.094,
+     "en": "Two more details matter in practice. A start on a bound is first moved inside it, by bound push equal to 0.01; Lab 9 shows why this matters.",
+     "th": "อีกสองรายละเอียดมีผลในทางปฏิบัติ จุดเริ่มต้นที่อยู่บนขอบเขตจะถูกขยับเข้าข้างในก่อน ด้วย bound push เท่ากับ 0.01 Lab 9 จะแสดงว่าทำไมเรื่องนี้สำคัญ"
+    },
+    {
+     "s": 95.094,
+     "e": 105.868,
+     "en": "And if the filter cannot make progress, a restoration phase minimizes the violation alone. If that also fails, Ipopt reports local infeasibility.",
+     "th": "และถ้า filter ไม่สามารถทำความคืบหน้าได้ ขั้น restoration จะลดการละเมิดเพียงอย่างเดียว ถ้าขั้นนี้ล้มเหลวด้วย Ipopt จะรายงาน local infeasibility"
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "file": "audio/slide-19.mp3",
+   "duration": 104.52,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.011,
+     "en": "Here the two families side by side.",
+     "th": "นี่คือสองตระกูลเทียบกัน"
+    },
+    {
+     "s": 3.011,
+     "e": 8.846,
+     "en": "SQP guesses the active inequalities through its QP and adjusts the guess at each iteration.",
+     "th": "SQP เดา active inequality ผ่าน QP และปรับการเดาในแต่ละรอบ วิธี"
+    },
+    {
+     "s": 8.846,
+     "e": 15.632,
+     "en": "An interior-point method keeps all inequalities present through mu i s i equal to tau, and guesses nothing.",
+     "th": "interior point รักษาอสมการทั้งหมดไว้ผ่าน mu i s i เท่ากับ tau และไม่เดาอะไรเลย"
+    },
+    {
+     "s": 15.632,
+     "e": 25.342,
+     "en": "SQP iterates may leave the feasible set. Interior-point iterates stay strictly inside the bounds, and meet the rows only at the end.",
+     "th": "จุดในแต่ละรอบของ SQP อาจออกนอกเซต feasible ส่วนของ interior point อยู่ภายในขอบเขตอย่างเคร่งครัด และทำให้แถวเป็นจริงเฉพาะตอนจบ"
+    },
+    {
+     "s": 25.342,
+     "e": 35.066,
+     "en": "Each SQP iteration solves a QP, which in SLSQP is dense. Each interior-point iteration does one sparse factorization.",
+     "th": "แต่ละรอบของ SQP แก้ QP หนึ่งปัญหา ซึ่งใน SLSQP เป็นแบบหนาแน่น แต่ละรอบของ interior point แยกตัวประกอบเมทริกซ์เบาบางหนึ่งครั้ง"
+    },
+    {
+     "s": 35.066,
+     "e": 40.802,
+     "en": "SQP needs few iterations when the active set is right, and more when it changes often.",
+     "th": "SQP ใช้รอบน้อยเมื่อ active set ถูกต้อง และมากขึ้นเมื่อมันเปลี่ยนบ่อย"
+    },
+    {
+     "s": 40.802,
+     "e": 47.724,
+     "en": "Interior-point methods typically need twenty to sixty iterations, nearly independent of the problem size.",
+     "th": "วิธี interior point โดยทั่วไปใช้ยี่สิบถึงหกสิบรอบ แทบไม่ขึ้นกับขนาดของปัญหา"
+    },
+    {
+     "s": 47.724,
+     "e": 58.625,
+     "en": "SQP warm-starts well from the last active set; interior points do not, because the central path must be retraced. SLSQP suits small to medium problems;",
+     "th": "SQP เริ่มต่อจาก active set เดิมได้ดี ส่วน interior point ทำได้ไม่ดี เพราะต้องเดินตาม central path ใหม่ SLSQP เหมาะกับปัญหาเล็กถึงกลาง"
+    },
+    {
+     "s": 58.625,
+     "e": 63.0,
+     "en": "Ipopt handles large sparse ones, up to millions of variables.",
+     "th": "Ipopt จัดการปัญหาใหญ่ที่เบาบางได้ถึงหลายล้านตัวแปร"
+    },
+    {
+     "s": 63.0,
+     "e": 65.321,
+     "en": "Neither family is better in general.",
+     "th": "ไม่มีตระกูลใดดีกว่าโดยทั่วไป"
+    },
+    {
+     "s": 65.321,
+     "e": 75.171,
+     "en": "Many modeling systems let you switch solvers with one line, so when a model is hard, it is worth trying both and comparing the results with a residual audit.",
+     "th": "ระบบสร้างโมเดลหลายระบบให้คุณเปลี่ยน solver ได้ในบรรทัดเดียว เมื่อโมเดลยาก จึงคุ้มค่าที่จะลองทั้งสองแบบ แล้วเปรียบเทียบผลด้วยการตรวจ residual"
+    },
+    {
+     "s": 75.171,
+     "e": 86.129,
+     "en": "For process models with thousands of equations, such as a flowsheet or a discretized dynamic model, an interior-point solver with exact derivatives is the usual choice.",
+     "th": "สำหรับโมเดลกระบวนการที่มีสมการหลายพันสมการ เช่น flowsheet หรือโมเดลพลวัตที่แบ่งช่วงแล้ว solver แบบ interior point ที่ใช้อนุพันธ์แม่นตรงเป็นตัวเลือกปกติ"
+    },
+    {
+     "s": 86.129,
+     "e": 91.316,
+     "en": "For small models re-solved many times with similar data, SQP's warm starts help.",
+     "th": "สำหรับโมเดลเล็กที่แก้ซ้ำหลายครั้งด้วยข้อมูลใกล้เคียงกัน การเริ่มต่อจากเดิมของ SQP ช่วยได้"
+    },
+    {
+     "s": 91.316,
+     "e": 94.056,
+     "en": "In the lab you will see both on the same plant:",
+     "th": "ใน lab คุณจะเห็นทั้งสองบนโรงงานเดียวกัน"
+    },
+    {
+     "s": 94.056,
+     "e": 104.447,
+     "en": "SLSQP with finite-difference gradients needs between seven hundred and fourteen hundred function evaluations per run, while Ipopt with exact derivatives needs a few dozen iterations.",
+     "th": "SLSQP ที่ใช้ gradient แบบ finite difference ต้องคำนวณฟังก์ชันระหว่างเจ็ดร้อยถึงหนึ่งพันสี่ร้อยครั้งต่อการรัน ขณะที่ Ipopt ที่ใช้อนุพันธ์แม่นตรงใช้เพียงไม่กี่สิบรอบ"
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "file": "audio/slide-20.mp3",
+   "duration": 35.496,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.905,
+     "en": "Check 2 covers SQP and interior points.",
+     "th": "แบบตรวจที่ 2 ครอบคลุม SQP และ interior point"
+    },
+    {
+     "s": 3.905,
+     "e": 16.346,
+     "en": "Question one asks you to write the QP. Question two asks why SQP uses the Hessian of the Lagrangian. Question three gives a slack and a barrier parameter and asks for mu.",
+     "th": "ข้อหนึ่งให้เขียน QP ข้อสองถามว่าทำไม SQP ใช้ Hessian ของ Lagrangian ข้อสามให้ slack และ barrier parameter แล้วถามค่า mu"
+    },
+    {
+     "s": 16.346,
+     "e": 20.711,
+     "en": "And question four asks for one reason to prefer each family.",
+     "th": "และข้อสี่ถามเหตุผลหนึ่งข้อที่จะเลือกแต่ละตระกูล"
+    },
+    {
+     "s": 20.711,
+     "e": 30.526,
+     "en": "A hint for question three: use mu i s i equal to tau. A hint for question four: think about the size of the model and how often it is re-solved.",
+     "th": "คำใบ้ข้อสาม ใช้ mu i s i เท่ากับ tau คำใบ้ข้อสี่ ให้คิดถึงขนาดของโมเดลและความถี่ที่ต้องแก้ซ้ำ"
+    },
+    {
+     "s": 30.526,
+     "e": 35.421,
+     "en": "Pause the narration, answer the four questions, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย ตอบคำถามสี่ข้อ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "file": "audio/slide-21.mp3",
+   "duration": 8.52,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.734,
+     "en": "Time for a ten-minute break.",
+     "th": "ถึงเวลาพักสิบนาที"
+    },
+    {
+     "s": 2.734,
+     "e": 8.447,
+     "en": "After the break, take out your card again. This time the rows come with it.",
+     "th": "หลังพัก ให้หยิบการ์ดของคุณออกมาอีกครั้ง คราวนี้มีแถวข้อจำกัดมาด้วย"
+    }
+   ]
+  },
+  {
+   "n": 22,
+   "file": "audio/slide-22.mp3",
+   "duration": 83.664,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.829,
+     "en": "Activity 2 prepares your card, with its rows, for a solver. Work in pairs.",
+     "th": "กิจกรรมที่ 2 เตรียมการ์ดของคุณพร้อมแถวข้อจำกัดให้พร้อมสำหรับ solver ทำเป็นคู่"
+    },
+    {
+     "s": 6.829,
+     "e": 20.0,
+     "en": "First, write your card's rows in the course form, g at most zero and h equal to zero. Count the variables, the equalities and the degrees of freedom. A count of zero or less is a warning.",
+     "th": "ข้อแรก เขียนแถวข้อจำกัดของการ์ดในรูปแบบของวิชา คือ g ไม่เกินศูนย์ และ h เท่ากับศูนย์ นับตัวแปร สมการ และ degree of freedom ถ้าได้ศูนย์หรือน้อยกว่าคือสัญญาณเตือน"
+    },
+    {
+     "s": 20.0,
+     "e": 26.143,
+     "en": "Second, scale each row by a typical size of its terms, as you scaled the variables in Session 8.",
+     "th": "ข้อสอง ปรับสเกลแต่ละแถวด้วยขนาดโดยทั่วไปของพจน์ในแถวนั้น เหมือนที่คุณปรับสเกลตัวแปรในคาบที่ 8"
+    },
+    {
+     "s": 26.143,
+     "e": 36.276,
+     "en": "A row in kilograms per hour and a row in kilowatts should each be divided by a typical value, so that a residual of ten to the minus six means the same in both.",
+     "th": "แถวที่มีหน่วยกิโลกรัมต่อชั่วโมงกับแถวที่มีหน่วยกิโลวัตต์ ควรหารด้วยค่าโดยทั่วไปของแต่ละแถว เพื่อให้ residual สิบยกกำลังลบหกมีความหมายเดียวกันในทั้งสองแถว"
+    },
+    {
+     "s": 36.276,
+     "e": 47.829,
+     "en": "Third, guess which inequalities will be active, and propose a starting point. Is it feasible? Does any term divide by zero there, or take the log of zero?",
+     "th": "ข้อสาม เดาว่าอสมการใดจะ active และเสนอจุดเริ่มต้น จุดนั้น feasible หรือไม่ มีพจน์ใดหารด้วยศูนย์ หรือหา log ของศูนย์ที่จุดนั้นหรือไม่"
+    },
+    {
+     "s": 47.829,
+     "e": 52.303,
+     "en": "Fourth, choose SLSQP or Ipopt, and give one reason.",
+     "th": "ข้อสี่ เลือก SLSQP หรือ Ipopt และให้เหตุผลหนึ่งข้อ"
+    },
+    {
+     "s": 52.303,
+     "e": 65.487,
+     "en": "For most cards with a few variables, SLSQP is enough. If your card has a model with many equations, such as a column or a reactor network, Ipopt with exact derivatives is the safer choice.",
+     "th": "สำหรับการ์ดส่วนใหญ่ที่มีตัวแปรไม่กี่ตัว SLSQP ก็เพียงพอ ถ้าการ์ดของคุณมีโมเดลที่มีสมการจำนวนมาก เช่นหอกลั่นหรือเครือข่ายเครื่องปฏิกรณ์ Ipopt ที่ใช้อนุพันธ์แม่นตรงเป็นตัวเลือกที่ปลอดภัยกว่า"
+    },
+    {
+     "s": 65.487,
+     "e": 77.776,
+     "en": "Your partner checks the start by substituting it into every row and every denominator. If you have no card, use the three CSTRs of Lab 7, with the total feed as a variable.",
+     "th": "เพื่อนตรวจจุดเริ่มต้นโดยแทนค่าลงในทุกแถวและทุกตัวส่วน ถ้าไม่มีการ์ด ให้ใช้ CSTR สามถังจาก Lab 7 โดยให้ปริมาณป้อนรวมเป็นตัวแปร"
+    },
+    {
+     "s": 77.776,
+     "e": 83.605,
+     "en": "On your own, pause the narration, write your four answers, and do the partner's check yourself.",
+     "th": "ถ้าเรียนเอง ให้หยุดเสียงบรรยาย เขียนคำตอบสี่ข้อ และทำการตรวจของเพื่อนด้วยตัวเอง"
+    }
+   ]
+  },
+  {
+   "n": 23,
+   "file": "audio/slide-23.mp3",
+   "duration": 97.056,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.418,
+     "en": "Part three is about practice, and it starts with starting points.",
+     "th": "ส่วนที่สามว่าด้วยการใช้งานจริง และเริ่มด้วยจุดเริ่มต้น"
+    },
+    {
+     "s": 4.418,
+     "e": 12.768,
+     "en": "The problem on this slide is minimize minus x one minus two x two, subject to x one times x two at most one, within a box.",
+     "th": "ปัญหาในหน้านี้คือหาค่าต่ำสุดของ ลบ x หนึ่ง ลบสอง x สอง ภายใต้ x หนึ่ง คูณ x สอง ไม่เกินหนึ่ง ภายในกล่อง"
+    },
+    {
+     "s": 12.768,
+     "e": 18.539,
+     "en": "The feasible set lies below the curve x one x two equal to one, and it is not convex.",
+     "th": "เซต feasible อยู่ใต้เส้นโค้ง x หนึ่ง x สอง เท่ากับหนึ่ง และไม่เป็น convex"
+    },
+    {
+     "s": 18.539,
+     "e": 28.947,
+     "en": "It has two local minima: one third, three, with f equal to minus 6.33, the global one, and four, one quarter, with f equal to minus 4.5.",
+     "th": "ปัญหานี้มีค่าต่ำสุดเฉพาะที่สองจุด คือ หนึ่งในสาม สาม ที่ f เท่ากับลบ 6.33 ซึ่งเป็นค่าต่ำสุดวงกว้าง และ สี่ หนึ่งในสี่ ที่ f เท่ากับลบ 4.5"
+    },
+    {
+     "s": 28.947,
+     "e": 40.36,
+     "en": "Each small square is one SLSQP run from its center: 441 runs in all. Teal squares reached the global minimum, amber squares the local one.",
+     "th": "แต่ละช่องเล็กคือการรัน SLSQP หนึ่งครั้งจากจุดกึ่งกลางของช่อง รวม 441 ครั้ง ช่องสีเขียวหัวเป็ดไปถึงค่าต่ำสุดวงกว้าง ช่องสีเหลืองอำพันไปถึงค่าต่ำสุดเฉพาะที่ 257"
+    },
+    {
+     "s": 40.36,
+     "e": 46.026,
+     "en": "257 runs found the global minimum and 184 the local one; none failed.",
+     "th": "ครั้งพบค่าต่ำสุดวงกว้าง และ 184 ครั้งพบค่าต่ำสุดเฉพาะที่ ไม่มีครั้งใดล้มเหลว"
+    },
+    {
+     "s": 46.026,
+     "e": 52.99,
+     "en": "More than half of the starts lie above the curve, so they are infeasible. SLSQP handles them without trouble:",
+     "th": "จุดเริ่มต้นมากกว่าครึ่งอยู่เหนือเส้นโค้ง จึงไม่ feasible SLSQP จัดการได้โดยไม่มีปัญหา"
+    },
+    {
+     "s": 52.99,
+     "e": 59.447,
+     "en": "what decides the outcome is which basin the first steps fall into, not whether the start was feasible.",
+     "th": "สิ่งที่ตัดสินผลคือก้าวแรก ๆ ตกลงในแอ่งใด ไม่ใช่ว่าจุดเริ่มต้น feasible หรือไม่"
+    },
+    {
+     "s": 59.447,
+     "e": 69.73,
+     "en": "Click a square to see its path. The boundary between the colors is not a simple line, so a rule of thumb about where to start would be unreliable.",
+     "th": "คลิกช่องเพื่อดูเส้นทาง ขอบเขตระหว่างสีไม่ใช่เส้นง่าย ๆ กฎง่าย ๆ ว่าควรเริ่มที่ใดจึงเชื่อถือไม่ได้ multistart"
+    },
+    {
+     "s": 69.73,
+     "e": 73.368,
+     "en": "Multistart, from Session 5, is the practical answer.",
+     "th": "จากคาบที่ 5 คือคำตอบในทางปฏิบัติ"
+    },
+    {
+     "s": 73.368,
+     "e": 78.922,
+     "en": "Look at a path from the upper right corner, three point eight five, two point eight five.",
+     "th": "ดูเส้นทางจากมุมขวาบน ที่ สามจุดแปดห้า สองจุดแปดห้า"
+    },
+    {
+     "s": 78.922,
+     "e": 88.303,
+     "en": "The first step jumps down to the curve, the next steps slide along it, and the run ends at the local minimum, four, one quarter, after nine iterations.",
+     "th": "ก้าวแรกกระโดดลงมาที่เส้นโค้ง ก้าวถัดไปเลื่อนไปตามเส้นโค้ง และการรันจบที่ค่าต่ำสุดเฉพาะที่ สี่ หนึ่งในสี่ หลังเก้ารอบ"
+    },
+    {
+     "s": 88.303,
+     "e": 93.487,
+     "en": "A start at two point six, two point nine instead reaches the global minimum in four.",
+     "th": "ส่วนจุดเริ่มต้นที่ สองจุดหก สองจุดเก้า ไปถึงค่าต่ำสุดวงกว้างในสี่รอบ"
+    },
+    {
+     "s": 93.487,
+     "e": 96.987,
+     "en": "Press D to run four of these starts in Python.",
+     "th": "กด D เพื่อรันสี่จุดเริ่มต้นนี้ใน Python"
+    }
+   ]
+  },
+  {
+   "n": 24,
+   "file": "audio/slide-24.mp3",
+   "duration": 132.84,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.379,
+     "en": "This table lists four ways a run goes wrong before it gets going.",
+     "th": "ตารางนี้แสดงสี่ทางที่การรันผิดพลาดตั้งแต่ยังไม่ทันเริ่ม"
+    },
+    {
+     "s": 4.379,
+     "e": 15.115,
+     "en": "First, a term is undefined at the start: a division by zero, the log of zero, the square root of a negative number, or a mass fraction when the total flow is zero.",
+     "th": "แบบแรก มีพจน์ที่ไม่นิยามที่จุดเริ่มต้น เช่น หารด้วยศูนย์ log ของศูนย์ รากที่สองของจำนวนลบ หรือสัดส่วนมวลเมื่ออัตราการไหลรวมเป็นศูนย์ SLSQP"
+    },
+    {
+     "s": 15.115,
+     "e": 21.466,
+     "en": "SLSQP stops with a message such as singular matrix E in LSQ subproblem, or returns not-a-number.",
+     "th": "หยุดพร้อมข้อความเช่น singular matrix E in LSQ subproblem หรือคืนค่า not a number ส่วน"
+    },
+    {
+     "s": 21.466,
+     "e": 28.012,
+     "en": "Ipopt reports an invalid number, unless its bound push has already moved the start to a safe point.",
+     "th": "Ipopt รายงาน invalid number เว้นแต่ bound push จะขยับจุดเริ่มต้นไปยังจุดที่ปลอดภัยแล้ว"
+    },
+    {
+     "s": 28.012,
+     "e": 35.868,
+     "en": "The remedy is bounds that keep denominators and log arguments away from zero, and never starting a flow at exactly zero.",
+     "th": "วิธีแก้คือกำหนดขอบเขตที่กันตัวส่วนและอาร์กิวเมนต์ของ log ไม่ให้เป็นศูนย์ และอย่าเริ่มอัตราการไหลที่ศูนย์พอดี"
+    },
+    {
+     "s": 35.868,
+     "e": 40.928,
+     "en": "Second, the start is far from feasible, so the linearized rows mislead.",
+     "th": "แบบที่สอง จุดเริ่มต้นห่างจากเซต feasible มาก แถวที่ทำให้เป็นเชิงเส้นจึงชี้ผิดทาง"
+    },
+    {
+     "s": 40.928,
+     "e": 53.508,
+     "en": "You see many iterations, SLSQP's positive directional derivative message, or Ipopt's restoration iterations, marked with an r. The remedy is to start from a converged simulation:",
+     "th": "คุณจะเห็นรอบจำนวนมาก ข้อความ positive directional derivative ของ SLSQP หรือรอบ restoration ของ Ipopt ซึ่งมีตัว r กำกับ วิธีแก้คือเริ่มจากผลการจำลองที่ลู่เข้าแล้ว"
+    },
+    {
+     "s": 53.508,
+     "e": 57.303,
+     "en": "fix the decisions, solve the equations, then optimize.",
+     "th": "คือตรึงตัวแปรตัดสินใจ แก้สมการ แล้วจึงหาค่าเหมาะสม"
+    },
+    {
+     "s": 57.303,
+     "e": 68.722,
+     "en": "Third, the rows really cannot hold together. SLSQP ends with mode 8 or 4 and a large violation; Ipopt reports that it converged to a point of local infeasibility.",
+     "th": "แบบที่สาม แถวข้อจำกัดเป็นจริงพร้อมกันไม่ได้จริง ๆ SLSQP จบด้วย mode 8 หรือ 4 และการละเมิดที่มาก Ipopt รายงานว่าลู่เข้าสู่จุด local"
+    },
+    {
+     "s": 68.722,
+     "e": 78.25,
+     "en": "Check the data and the model. A useful trick is to relax a row with a slack, penalize the slack, and see which row it is that conflicts.",
+     "th": "infeasibility ให้ตรวจข้อมูลและโมเดล เทคนิคที่มีประโยชน์คือผ่อนแถวด้วย slack ลงโทษ slack นั้น แล้วดูว่าแถวใดที่ขัดแย้ง"
+    },
+    {
+     "s": 78.25,
+     "e": 87.55,
+     "en": "Fourth, the problem is nonconvex and the start is in the wrong basin. The solver reports success, at a worse local optimum.",
+     "th": "แบบที่สี่ ปัญหาไม่เป็น convex และจุดเริ่มต้นอยู่ผิดแอ่ง solver รายงานว่าสำเร็จ แต่ที่ค่าเหมาะสมเฉพาะที่ที่แย่กว่า ให้ใช้"
+    },
+    {
+     "s": 87.55,
+     "e": 93.25,
+     "en": "Use multistart, compare objective values, and in Session 13, global solvers.",
+     "th": "multistart เปรียบเทียบค่าฟังก์ชันเป้าหมาย และในคาบที่ 13 ใช้ global solver"
+    },
+    {
+     "s": 93.25,
+     "e": 104.921,
+     "en": "Of the four, the first is the easiest to prevent and the most common in student models. Before running anything, substitute the start into every expression that divides or takes a log.",
+     "th": "ในสี่แบบนี้ แบบแรกป้องกันได้ง่ายที่สุดและพบบ่อยที่สุดในโมเดลของนักศึกษา ก่อนรันอะไร ให้แทนจุดเริ่มต้นลงในทุกนิพจน์ที่มีการหารหรือ log"
+    },
+    {
+     "s": 104.921,
+     "e": 117.553,
+     "en": "One caution about the word infeasible. Local infeasibility means the solver found a point where the violation cannot be reduced locally. It is not a proof that no feasible point exists;",
+     "th": "ข้อควรระวังเกี่ยวกับคำว่า infeasible local infeasibility หมายความว่า solver พบจุดที่ไม่สามารถลดการละเมิดได้ในบริเวณใกล้เคียง ไม่ได้พิสูจน์ว่าไม่มีจุด feasible อยู่เลย"
+    },
+    {
+     "s": 117.553,
+     "e": 119.658,
+     "en": "a different start may find one.",
+     "th": "จุดเริ่มต้นอื่นอาจพบจุดนั้นได้"
+    },
+    {
+     "s": 119.658,
+     "e": 129.769,
+     "en": "When Ipopt reports local infeasibility on a model you believe is feasible, try two or three other starts and look at which row keeps the largest violation.",
+     "th": "เมื่อ Ipopt รายงาน local infeasibility กับโมเดลที่คุณเชื่อว่า feasible ให้ลองจุดเริ่มต้นอื่นอีกสองหรือสามจุด แล้วดูว่าแถวใดมีการละเมิดมากที่สุดอยู่เสมอ"
+    },
+    {
+     "s": 129.769,
+     "e": 132.75,
+     "en": "That row, or its data, is usually the culprit.",
+     "th": "แถวนั้นหรือข้อมูลของมันมักเป็นต้นเหตุ"
+    }
+   ]
+  },
+  {
+   "n": 25,
+   "file": "audio/slide-25.mp3",
+   "duration": 124.032,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.221,
+     "en": "This slide shows five SLSQP runs on the ellipse problem of part two, and what the residuals say about each.",
+     "th": "หน้านี้แสดงการรัน SLSQP ห้าครั้งบนปัญหาวงรีจากส่วนที่สอง และสิ่งที่ residual บอกเกี่ยวกับแต่ละครั้ง"
+    },
+    {
+     "s": 7.221,
+     "e": 21.038,
+     "en": "The first run, as posed, ends with status zero, optimization terminated successfully, at root two, root two over two. The stationarity residual is ten to the minus six and the row is met.",
+     "th": "การรันครั้งแรกตามโจทย์ จบด้วย status ศูนย์ optimization terminated successfully ที่ รากที่สองของสอง และรากที่สองของสองหารสอง residual ของ stationarity เท่ากับสิบยกกำลังลบหก และแถวเป็นจริง"
+    },
+    {
+     "s": 21.038,
+     "e": 23.316,
+     "en": "The audit confirms a KKT point.",
+     "th": "การตรวจยืนยันว่าเป็นจุด KKT"
+    },
+    {
+     "s": 23.316,
+     "e": 34.908,
+     "en": "The second run stops at the iteration limit of two, status nine, at one, one. It is honest: it says it did not finish, and the audit agrees, with a violation of one.",
+     "th": "การรันครั้งที่สองหยุดที่ขีดจำกัดสองรอบ status เก้า ที่ หนึ่ง หนึ่ง มันซื่อตรง บอกว่ายังไม่เสร็จ และการตรวจก็เห็นด้วย โดยมีการละเมิดเท่ากับหนึ่ง"
+    },
+    {
+     "s": 34.908,
+     "e": 46.388,
+     "en": "The third and fourth runs are the dangerous ones. With the objective multiplied by ten to the minus eight, SLSQP reports success after one iteration, at the start.",
+     "th": "การรันครั้งที่สามและสี่เป็นกรณีอันตราย เมื่อคูณฟังก์ชันเป้าหมายด้วยสิบยกกำลังลบแปด SLSQP รายงานว่าสำเร็จหลังหนึ่งรอบ ที่จุดเริ่มต้น"
+    },
+    {
+     "s": 46.388,
+     "e": 57.868,
+     "en": "With the objective multiplied by a million, it reports success at an interior point that is not optimal. Both messages say success; both audits say not a KKT point.",
+     "th": "เมื่อคูณฟังก์ชันเป้าหมายด้วยหนึ่งล้าน มันรายงานว่าสำเร็จที่จุดภายในที่ไม่ใช่จุดเหมาะสม ข้อความทั้งสองบอกว่าสำเร็จ แต่การตรวจทั้งสองบอกว่าไม่ใช่จุด KKT"
+    },
+    {
+     "s": 57.868,
+     "e": 69.448,
+     "en": "Why? SLSQP stops when the change in f between iterations falls below ftol, with the rows met. A tiny objective hardly changes, so it stops at once.",
+     "th": "ทำไม SLSQP หยุดเมื่อการเปลี่ยนแปลงของ f ระหว่างรอบต่ำกว่า ftol และแถวเป็นจริง ฟังก์ชันเป้าหมายที่เล็กมากแทบไม่เปลี่ยน มันจึงหยุดทันที"
+    },
+    {
+     "s": 69.448,
+     "e": 73.829,
+     "en": "The scale of the objective is part of the stopping test.",
+     "th": "สเกลของฟังก์ชันเป้าหมายจึงเป็นส่วนหนึ่งของเกณฑ์การหยุด"
+    },
+    {
+     "s": 73.829,
+     "e": 83.408,
+     "en": "With the objective multiplied by a million, the steps are large and the line search behaves badly, and the run stops at a point where the gradient is still far from zero.",
+     "th": "เมื่อคูณฟังก์ชันเป้าหมายด้วยหนึ่งล้าน ก้าวมีขนาดใหญ่และ line search ทำงานได้ไม่ดี การรันจึงหยุดที่จุดซึ่ง gradient ยังห่างจากศูนย์มาก"
+    },
+    {
+     "s": 83.408,
+     "e": 90.774,
+     "en": "The fifth run adds a row that cannot hold, x one plus x two at least three, together with the unit disk.",
+     "th": "การรันครั้งที่ห้าเพิ่มแถวที่เป็นจริงไม่ได้ คือ x หนึ่ง บวก x สอง ไม่น้อยกว่าสาม ร่วมกับวงกลมหนึ่งหน่วย"
+    },
+    {
+     "s": 90.774,
+     "e": 100.526,
+     "en": "SLSQP ends with mode eight, positive directional derivative for linesearch, and a violation of 1.6. Nothing in the message says infeasible.",
+     "th": "SLSQP จบด้วย mode แปด positive directional derivative for linesearch และการละเมิด 1.6 ไม่มีส่วนใดในข้อความบอกว่า infeasible"
+    },
+    {
+     "s": 100.526,
+     "e": 112.355,
+     "en": "So the status number alone does not separate an infeasible model from a hard one. The residual audit does: a primal residual of 1.6 that will not go down is the sign.",
+     "th": "ดังนั้นหมายเลข status เพียงอย่างเดียวแยกโมเดลที่ infeasible ออกจากโมเดลที่ยากไม่ได้ แต่การตรวจด้วย residual ทำได้ residual ของ primal เท่ากับ 1.6 ที่ไม่ลดลงคือสัญญาณ"
+    },
+    {
+     "s": 112.355,
+     "e": 123.961,
+     "en": "The residuals are computed in the problem's own units, as posed. That is the only defense against a false success. Press D to run the five cases.",
+     "th": "residual ถูกคำนวณในหน่วยของปัญหาเอง ตามโจทย์ นี่คือการป้องกันเดียวต่อความสำเร็จที่ไม่จริง กด D เพื่อรันห้ากรณีนี้"
+    }
+   ]
+  },
+  {
+   "n": 26,
+   "file": "audio/slide-26.mp3",
+   "duration": 97.992,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 9.908,
+     "en": "Ipopt prints a log line for every iteration. This slide shows two logs: the ellipse problem, and the same problem with the impossible row added.",
+     "th": "Ipopt พิมพ์ log หนึ่งบรรทัดต่อทุกรอบ หน้านี้แสดงสอง log คือปัญหาวงรี และปัญหาเดียวกันที่เพิ่มแถวที่เป็นไปไม่ได้"
+    },
+    {
+     "s": 9.908,
+     "e": 22.448,
+     "en": "Click a column name to see what it means. The two most important are inf pr, the largest violation of any row, and inf du, the largest component of the stationarity residual.",
+     "th": "คลิกชื่อคอลัมน์เพื่อดูความหมาย สองคอลัมน์ที่สำคัญที่สุดคือ inf pr ซึ่งคือการละเมิดที่ใหญ่ที่สุดของแถวใด ๆ และ inf du ซึ่งคือส่วนประกอบที่ใหญ่ที่สุดของ residual ของ"
+    },
+    {
+     "s": 22.448,
+     "e": 25.816,
+     "en": "Both must fall to about ten to the minus eight.",
+     "th": "stationarity ทั้งสองต้องลดลงถึงประมาณสิบยกกำลังลบแปด"
+    },
+    {
+     "s": 25.816,
+     "e": 37.429,
+     "en": "lg mu is the log of the barrier parameter tau. It falls from minus one toward minus nine as the barrier problems are solved. alpha pr is the step length, with a letter:",
+     "th": "lg mu คือ log ของ barrier parameter tau ลดลงจากลบหนึ่งไปทางลบเก้าเมื่อปัญหา barrier ถูกแก้ alpha pr คือความยาวก้าว พร้อมตัวอักษร f"
+    },
+    {
+     "s": 37.429,
+     "e": 43.408,
+     "en": "f for a step accepted for reducing the barrier objective, h for reducing the violation.",
+     "th": "สำหรับก้าวที่ยอมรับเพราะลด barrier objective และ h สำหรับก้าวที่ลดการละเมิด"
+    },
+    {
+     "s": 43.408,
+     "e": 50.566,
+     "en": "In the first log, Ipopt reaches the answer in seven iterations, and ends with EXIT: Optimal Solution Found.",
+     "th": "ใน log แรก Ipopt ไปถึงคำตอบในเจ็ดรอบ และจบด้วย EXIT: Optimal Solution Found"
+    },
+    {
+     "s": 50.566,
+     "e": 52.58,
+     "en": "Read the columns together.",
+     "th": "อ่านคอลัมน์ไปด้วยกัน"
+    },
+    {
+     "s": 52.58,
+     "e": 64.814,
+     "en": "inf pr is zero from iteration four on, because the point is feasible, while inf du keeps falling by orders of magnitude as lg mu drops from minus 2.5 to minus 8.6.",
+     "th": "inf pr เป็นศูนย์ตั้งแต่รอบที่สี่ เพราะจุดนั้น feasible ขณะที่ inf du ลดลงหลายอันดับขนาด เมื่อ lg mu ลดจากลบ 2.5 ไปถึงลบ 8.6"
+    },
+    {
+     "s": 64.814,
+     "e": 67.5,
+     "en": "That is the barrier being tightened.",
+     "th": "นั่นคือการบีบ barrier ให้แน่นขึ้น"
+    },
+    {
+     "s": 67.5,
+     "e": 80.624,
+     "en": "Now press the second button. inf pr falls at first, then stalls near 0.76. The iterations are marked r: the restoration phase is minimizing the violation alone.",
+     "th": "ตอนนี้กดปุ่มที่สอง inf pr ลดลงในช่วงแรก แล้วหยุดอยู่ใกล้ 0.76 รอบต่าง ๆ มีตัว r กำกับ คือขั้น restoration ที่ลดการละเมิดเพียงอย่างเดียว"
+    },
+    {
+     "s": 80.624,
+     "e": 90.079,
+     "en": "After forty iterations Ipopt ends with EXIT: Converged to a point of local infeasibility. Problem may be infeasible.",
+     "th": "หลังสี่สิบรอบ Ipopt จบด้วย EXIT: Converged to a point of local infeasibility. Problem may be infeasible"
+    },
+    {
+     "s": 90.079,
+     "e": 97.908,
+     "en": "Unlike SLSQP's mode eight, that message names the problem. The EXIT line is the status to report.",
+     "th": "ต่างจาก mode แปด ของ SLSQP ข้อความนี้ระบุปัญหาชัดเจน บรรทัด EXIT คือสถานะที่ควรรายงาน"
+    }
+   ]
+  },
+  {
+   "n": 27,
+   "file": "audio/slide-27.mp3",
+   "duration": 85.2,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.013,
+     "en": "Session 8 scaled the variables and the objective. With rows, scale the rows as well.",
+     "th": "คาบที่ 8 ปรับสเกลตัวแปรและฟังก์ชันเป้าหมาย เมื่อมีแถวข้อจำกัด ให้ปรับสเกลแถวด้วย"
+    },
+    {
+     "s": 7.013,
+     "e": 15.784,
+     "en": "Divide each row by a typical size of its terms, c j. Then a residual of ten to the minus six means the same small thing in every row.",
+     "th": "หารแต่ละแถวด้วยขนาดโดยทั่วไปของพจน์ในแถวนั้น คือ c j แล้ว residual สิบยกกำลังลบหกจะหมายถึงสิ่งเล็กเท่ากันในทุกแถว"
+    },
+    {
+     "s": 15.784,
+     "e": 24.947,
+     "en": "A balance in pounds per hour with terms near ten to the fifth, and a fraction row near one, cannot share a tolerance unless they are scaled.",
+     "th": "สมดุลในหน่วยปอนด์ต่อชั่วโมงที่มีพจน์ใกล้สิบยกกำลังห้า กับแถวสัดส่วนที่มีค่าใกล้หนึ่ง ใช้ tolerance ร่วมกันไม่ได้ถ้าไม่ปรับสเกล"
+    },
+    {
+     "s": 24.947,
+     "e": 32.922,
+     "en": "In the Williams–Otto plant, the effluent flows of B and E are near 150,000 pounds per hour while C is near 8,000.",
+     "th": "ในโรงงาน Williams–Otto อัตราการไหลออกของ B และ E ใกล้ 150,000 ปอนด์ต่อชั่วโมง ขณะที่ C ใกล้ 8,000"
+    },
+    {
+     "s": 32.922,
+     "e": 40.618,
+     "en": "Dividing every balance by ten thousand puts all of them between about 0.3 and 15, which a solver handles well.",
+     "th": "การหารทุกสมดุลด้วยหนึ่งหมื่นทำให้ทุกค่าอยู่ระหว่างประมาณ 0.3 ถึง 15 ซึ่ง solver จัดการได้ดี"
+    },
+    {
+     "s": 40.618,
+     "e": 50.342,
+     "en": "SLSQP has no scaling of its own, and its stopping test is absolute, as the last slide showed. Scale everything before you call it.",
+     "th": "SLSQP ไม่มีการปรับสเกลของตัวเอง และเกณฑ์การหยุดเป็นแบบสัมบูรณ์ ดังที่หน้าก่อนแสดง ปรับสเกลทุกอย่างก่อนเรียกใช้"
+    },
+    {
+     "s": 50.342,
+     "e": 61.287,
+     "en": "Ipopt scales automatically by default, using the gradients at the start so that no gradient exceeds one hundred, and it reports both scaled and unscaled errors at the end.",
+     "th": "Ipopt ปรับสเกลอัตโนมัติโดยค่าเริ่มต้น โดยใช้ gradient ที่จุดเริ่มต้น เพื่อไม่ให้ gradient ใดเกินหนึ่งร้อย และรายงานความคลาดเคลื่อนทั้งแบบปรับสเกลและไม่ปรับสเกลในตอนจบ"
+    },
+    {
+     "s": 61.287,
+     "e": 63.132,
+     "en": "Your own scaling still helps.",
+     "th": "การปรับสเกลของคุณเองก็ยังช่วยได้"
+    },
+    {
+     "s": 63.132,
+     "e": 72.02,
+     "en": "Multipliers come back in scaled units. To read them as prices, convert: lambda j equals the scaled lambda times f typical over c j.",
+     "th": "multiplier ที่ได้กลับมาอยู่ในหน่วยที่ปรับสเกลแล้ว เพื่ออ่านเป็นราคา ให้แปลงกลับ lambda j เท่ากับ lambda ที่ปรับสเกลแล้ว คูณ f โดยทั่วไป หารด้วย c j"
+    },
+    {
+     "s": 72.02,
+     "e": 82.632,
+     "en": "Lab 9 uses flows in ten thousand pounds per hour, volume in ten cubic feet, temperature in hundreds of degrees Rankine, divides each balance by ten thousand pounds per hour,",
+     "th": "Lab 9 ใช้อัตราการไหลในหน่วยหนึ่งหมื่นปอนด์ต่อชั่วโมง ปริมาตรในหน่วยสิบลูกบาศก์ฟุต อุณหภูมิในหน่วยร้อยองศาแรงคิน หารแต่ละสมดุลด้วยหนึ่งหมื่นปอนด์ต่อชั่วโมง"
+    },
+    {
+     "s": 82.632,
+     "e": 85.132,
+     "en": "and minimizes minus ROI over one hundred.",
+     "th": "และหาค่าต่ำสุดของ ลบ ROI หารหนึ่งร้อย"
+    }
+   ]
+  },
+  {
+   "n": 28,
+   "file": "audio/slide-28.mp3",
+   "duration": 31.92,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.708,
+     "en": "Check 3 covers starts, messages and logs.",
+     "th": "แบบตรวจที่ 3 ครอบคลุมจุดเริ่มต้น ข้อความ และ log"
+    },
+    {
+     "s": 3.708,
+     "e": 15.255,
+     "en": "Question one is about a mass fraction at a bad start. Question two is about a success after one iteration. Question three gives the end of an Ipopt log.",
+     "th": "ข้อหนึ่งเกี่ยวกับสัดส่วนมวลที่จุดเริ่มต้นที่ไม่ดี ข้อสองเกี่ยวกับความสำเร็จหลังหนึ่งรอบ ข้อสามให้ส่วนท้ายของ log ของ Ipopt"
+    },
+    {
+     "s": 15.255,
+     "e": 19.632,
+     "en": "And question four asks you to convert a scaled multiplier.",
+     "th": "และข้อสี่ให้แปลง multiplier ที่ปรับสเกลแล้ว"
+    },
+    {
+     "s": 19.632,
+     "e": 27.126,
+     "en": "A hint for question four: the scaled Lagrangian is the original one divided by f typical, with each row divided by its own c j.",
+     "th": "คำใบ้ข้อสี่ Lagrangian ที่ปรับสเกลแล้วคือ Lagrangian เดิมหารด้วย f โดยทั่วไป และแต่ละแถวหารด้วย c j ของตัวเอง"
+    },
+    {
+     "s": 27.126,
+     "e": 31.855,
+     "en": "Pause the narration, answer the four questions, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย ตอบคำถามสี่ข้อ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 29,
+   "file": "audio/slide-29.mp3",
+   "duration": 135.144,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 9.868,
+     "en": "Ipopt does not run inside the browser Python of these slides, so in Lab 9 you will run it in Google Colab. Here is how, step by step.",
+     "th": "Ipopt รันใน Python บนเบราว์เซอร์ของสไลด์นี้ไม่ได้ ใน Lab 9 คุณจึงจะรันใน Google Colab นี่คือวิธีทีละขั้น"
+    },
+    {
+     "s": 9.868,
+     "e": 22.855,
+     "en": "Step one. Open the notebook: scan the code on this slide, or press Open in Colab on the Lab 9 page. It opens in your web browser; there is nothing to install on your computer.",
+     "th": "ขั้นที่หนึ่ง เปิด notebook โดยสแกนโค้ดในหน้านี้ หรือกด Open in Colab ในหน้า Lab 9 มันจะเปิดในเว็บเบราว์เซอร์ของคุณ ไม่มีอะไรต้องติดตั้งในคอมพิวเตอร์"
+    },
+    {
+     "s": 22.855,
+     "e": 32.75,
+     "en": "Step two. If Colab asks, sign in with a Google account, using Sign in at the top right. Any Google account works.",
+     "th": "ขั้นที่สอง ถ้า Colab ขอ ให้ลงชื่อเข้าใช้ด้วยบัญชี Google โดยกด Sign in ที่มุมขวาบน บัญชี Google ใดก็ได้"
+    },
+    {
+     "s": 32.75,
+     "e": 42.816,
+     "en": "Step three. Open the menu Runtime, and choose Run all. The shortcut is Control F9, or Command F9 on a Mac.",
+     "th": "ขั้นที่สาม เปิดเมนู Runtime แล้วเลือก Run all ปุ่มลัดคือ Control F9 หรือ Command F9 บน Mac"
+    },
+    {
+     "s": 42.816,
+     "e": 54.224,
+     "en": "Step four. Colab shows a box saying that the notebook was not authored by Google. It comes from the course repository on GitHub, so press Run anyway.",
+     "th": "ขั้นที่สี่ Colab จะแสดงกล่องข้อความว่า notebook นี้ไม่ได้เขียนโดย Google มันมาจาก repository ของวิชาบน GitHub ให้กด Run anyway"
+    },
+    {
+     "s": 54.224,
+     "e": 66.245,
+     "en": "Step five. Wait while Step 1 of the notebook installs CasADi, which contains Ipopt. It takes about a minute. A spinning circle beside a cell means it is running;",
+     "th": "ขั้นที่ห้า รอขณะที่ Step 1 ของ notebook ติดตั้ง CasADi ซึ่งมี Ipopt อยู่ภายใน ใช้เวลาประมาณหนึ่งนาที วงกลมที่หมุนอยู่ข้างเซลล์หมายความว่ากำลังรัน"
+    },
+    {
+     "s": 66.245,
+     "e": 69.658,
+     "en": "when it finishes, its output appears below it.",
+     "th": "เมื่อเสร็จผลลัพธ์จะปรากฏใต้เซลล์"
+    },
+    {
+     "s": 69.658,
+     "e": 81.355,
+     "en": "Step six. Scroll down. Each step of the notebook prints a table or an Ipopt log. Copy the numbers that the lab page asks for.",
+     "th": "ขั้นที่หก เลื่อนลง แต่ละขั้นของ notebook พิมพ์ตารางหรือ log ของ Ipopt คัดลอกตัวเลขที่หน้า lab ถาม"
+    },
+    {
+     "s": 81.355,
+     "e": 93.618,
+     "en": "Step 3 of the notebook prints the full Ipopt log for the base start, and Step 4 a table of all seven starts. Step 5 reads the multipliers, and Step 6 lets you try a start of your own.",
+     "th": "Step 3 ของ notebook พิมพ์ log ทั้งหมดของ Ipopt สำหรับจุดเริ่มต้น base และ Step 4 พิมพ์ตารางของจุดเริ่มต้นทั้งเจ็ด Step 5 อ่าน multiplier และ Step 6 ให้คุณลองจุดเริ่มต้นของคุณเอง"
+    },
+    {
+     "s": 93.618,
+     "e": 106.408,
+     "en": "Step seven. To try a change, edit a cell and press Shift Enter to run that cell only. And step eight: if you see an error, choose Runtime, Restart session, and then Run all again.",
+     "th": "ขั้นที่เจ็ด ถ้าต้องการลองเปลี่ยนอะไร ให้แก้เซลล์แล้วกด Shift Enter เพื่อรันเฉพาะเซลล์นั้น และขั้นที่แปด ถ้าเห็น error ให้เลือก Runtime แล้ว Restart session แล้วกด Run all อีกครั้ง"
+    },
+    {
+     "s": 106.408,
+     "e": 118.303,
+     "en": "Nothing you change is saved unless you choose File, Save a copy in Drive. If you have no Google account or no internet, the lab page shows the recorded run, so you can still finish the lab.",
+     "th": "สิ่งที่คุณเปลี่ยนจะไม่ถูกบันทึก เว้นแต่คุณเลือก File แล้ว Save a copy in Drive ถ้าไม่มีบัญชี Google หรือไม่มีอินเทอร์เน็ต หน้า lab แสดงผลการรันที่บันทึกไว้ คุณจึงยังทำ lab ให้เสร็จได้"
+    },
+    {
+     "s": 118.303,
+     "e": 127.942,
+     "en": "Why CasADi? It installs with one command, it contains Ipopt, and it builds exact first and second derivatives of the model automatically.",
+     "th": "ทำไมใช้ CasADi เพราะติดตั้งได้ด้วยคำสั่งเดียว มี Ipopt อยู่ภายใน และสร้างอนุพันธ์อันดับหนึ่งและสองที่แม่นตรงของโมเดลโดยอัตโนมัติ"
+    },
+    {
+     "s": 127.942,
+     "e": 135.066,
+     "en": "Pyomo can call Ipopt as well, but needs a separate solver install; we will use it later in the course.",
+     "th": "Pyomo เรียก Ipopt ได้เช่นกัน แต่ต้องติดตั้ง solver แยกต่างหาก เราจะใช้ Pyomo ในภายหลังของวิชา"
+    }
+   ]
+  },
+  {
+   "n": 30,
+   "file": "audio/slide-30.mp3",
+   "duration": 90.816,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.813,
+     "en": "This table summarizes which solver to use when.",
+     "th": "ตารางนี้สรุปว่าควรใช้ solver ใดเมื่อใด"
+    },
+    {
+     "s": 3.813,
+     "e": 12.057,
+     "en": "For a few variables and rows, smooth, in Python, SLSQP from scipy dot optimize dot minimize is the quick choice.",
+     "th": "สำหรับตัวแปรและแถวไม่กี่ตัวที่เรียบ ใน Python SLSQP จาก scipy dot optimize dot minimize เป็นตัวเลือกที่เร็ว"
+    },
+    {
+     "s": 12.057,
+     "e": 18.987,
+     "en": "For a robust default within SciPy, trust-constr uses an interior-point method for inequalities.",
+     "th": "สำหรับค่าเริ่มต้นที่ทนทานกว่าภายใน SciPy trust-constr ใช้วิธี interior point สำหรับอสมการ"
+    },
+    {
+     "s": 18.987,
+     "e": 27.355,
+     "en": "For a large sparse process or dynamic model with exact derivatives, use Ipopt, called from CasADi, Pyomo, GAMS or JuMP.",
+     "th": "สำหรับโมเดลกระบวนการหรือโมเดลพลวัตขนาดใหญ่ที่เบาบางและมีอนุพันธ์แม่นตรง ให้ใช้ Ipopt โดยเรียกจาก CasADi, Pyomo, GAMS หรือ JuMP"
+    },
+    {
+     "s": 27.355,
+     "e": 36.645,
+     "en": "Ipopt is free and open source, and it is the solver behind many published process optimization studies, so results with it are easy for others to reproduce.",
+     "th": "Ipopt ใช้ได้ฟรีและเป็น open source และเป็น solver ที่อยู่เบื้องหลังงานวิจัยด้านการหาค่าเหมาะสมของกระบวนการที่ตีพิมพ์จำนวนมาก ผลที่ได้จึงทำซ้ำโดยผู้อื่นได้ง่าย"
+    },
+    {
+     "s": 36.645,
+     "e": 46.733,
+     "en": "For large sparse problems re-solved many times with similar data, the commercial solvers SNOPT, an SQP code, and Knitro, which has both families, are strong.",
+     "th": "สำหรับปัญหาใหญ่ที่เบาบางซึ่งแก้ซ้ำหลายครั้งด้วยข้อมูลใกล้เคียงกัน solver เชิงพาณิชย์อย่าง SNOPT ซึ่งเป็นแบบ SQP และ Knitro ซึ่งมีทั้งสองตระกูล ทำได้ดี สำหรับ"
+    },
+    {
+     "s": 46.733,
+     "e": 53.118,
+     "en": "For flowsheets with many equalities where you want a feasible path, CONOPT, a reduced-gradient code.",
+     "th": "flowsheet ที่มีสมการจำนวนมากและต้องการเส้นทางที่ feasible ใช้ CONOPT ซึ่งเป็นแบบ reduced gradient"
+    },
+    {
+     "s": 53.118,
+     "e": 61.368,
+     "en": "And for a nonconvex problem where you need the global optimum, the global solvers BARON, Couenne and SCIP, which are Session 13.",
+     "th": "และสำหรับปัญหาที่ไม่เป็น convex และต้องการค่าเหมาะสมวงกว้าง ใช้ global solver อย่าง BARON, Couenne และ SCIP ซึ่งเป็นเนื้อหาของคาบที่ 13"
+    },
+    {
+     "s": 61.368,
+     "e": 73.934,
+     "en": "Commercial solvers usually come through a modeling system such as GAMS or AMPL, often with an academic license. For this course, SciPy and Ipopt through CasADi are enough for every lab.",
+     "th": "solver เชิงพาณิชย์มักมาพร้อมระบบสร้างโมเดลอย่าง GAMS หรือ AMPL ซึ่งมักมีใบอนุญาตสำหรับสถานศึกษา สำหรับวิชานี้ SciPy และ Ipopt ผ่าน CasADi เพียงพอสำหรับทุก lab"
+    },
+    {
+     "s": 73.934,
+     "e": 84.412,
+     "en": "Whatever the solver: scale, start from a converged simulation when you can, give exact derivatives, try more than one start, and audit the answer with residuals.",
+     "th": "ไม่ว่าจะใช้ solver ใด ให้ปรับสเกล เริ่มจากผลการจำลองที่ลู่เข้าแล้วถ้าทำได้ ให้อนุพันธ์แม่นตรง ลองมากกว่าหนึ่งจุดเริ่มต้น และตรวจคำตอบด้วย residual"
+    },
+    {
+     "s": 84.412,
+     "e": 90.75,
+     "en": "The modeling layer, such as CasADi or Pyomo, supplies the exact derivatives; the solver uses them.",
+     "th": "ชั้นการสร้างโมเดล เช่น CasADi หรือ Pyomo เป็นผู้ให้อนุพันธ์แม่นตรง และ solver เป็นผู้ใช้"
+    }
+   ]
+  },
+  {
+   "n": 31,
+   "file": "audio/slide-31.mp3",
+   "duration": 36.36,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.116,
+     "en": "Check 4 covers choosing a solver and checking its answer.",
+     "th": "แบบตรวจที่ 4 ครอบคลุมการเลือก solver และการตรวจคำตอบ"
+    },
+    {
+     "s": 4.116,
+     "e": 15.906,
+     "en": "Question one is about a large flowsheet model. Question two is about a small model re-solved every hour. Question three asks whether agreement between two solvers is enough.",
+     "th": "ข้อหนึ่งเกี่ยวกับโมเดล flowsheet ขนาดใหญ่ ข้อสองเกี่ยวกับโมเดลเล็กที่แก้ซ้ำทุกชั่วโมง ข้อสามถามว่าการที่สอง solver ให้ผลตรงกันเพียงพอหรือไม่"
+    },
+    {
+     "s": 15.906,
+     "e": 21.395,
+     "en": "And question four asks what to check before you run a notebook from someone else.",
+     "th": "และข้อสี่ถามว่าควรตรวจอะไรก่อนรัน notebook ของคนอื่น"
+    },
+    {
+     "s": 21.395,
+     "e": 31.408,
+     "en": "A hint for question three: agreement is evidence, not proof, especially for a nonconvex model. Ask what else Session 7 told you to check.",
+     "th": "คำใบ้ข้อสาม การให้ผลตรงกันเป็นหลักฐาน ไม่ใช่การพิสูจน์ โดยเฉพาะสำหรับโมเดลที่ไม่เป็น convex ให้ถามว่าคาบที่ 7 บอกให้ตรวจอะไรอีก"
+    },
+    {
+     "s": 31.408,
+     "e": 36.303,
+     "en": "Pause the narration, answer the four questions, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย ตอบคำถามสี่ข้อ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 32,
+   "file": "audio/slide-32.mp3",
+   "duration": 56.568,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.642,
+     "en": "Today's solvers appear in the rest of the course.",
+     "th": "solver ของวันนี้จะปรากฏในส่วนที่เหลือของวิชา"
+    },
+    {
+     "s": 3.642,
+     "e": 11.547,
+     "en": "In Session 10, parameter estimation is least squares with rows: bounds on parameters, and sometimes model equations.",
+     "th": "ในคาบที่ 10 การประมาณค่าพารามิเตอร์คือ least squares ที่มีแถวข้อจำกัด เช่นขอบเขตของพารามิเตอร์"
+    },
+    {
+     "s": 11.547,
+     "e": 17.763,
+     "en": "It is solved by SQP or Ipopt, and the multipliers and the Hessian give confidence intervals.",
+     "th": "และบางครั้งสมการของโมเดล แก้ด้วย SQP หรือ Ipopt และ multiplier กับ Hessian ให้ช่วงความเชื่อมั่น"
+    },
+    {
+     "s": 17.763,
+     "e": 27.539,
+     "en": "In Session 11, collocation turns a dynamic model into a large sparse NLP, solved with Ipopt through CasADi or Pyomo, in Colab, as today.",
+     "th": "ในคาบที่ 11 collocation เปลี่ยนโมเดลพลวัตให้เป็น NLP ขนาดใหญ่ที่เบาบาง แก้ด้วย Ipopt ผ่าน CasADi หรือ Pyomo ใน Colab เหมือนวันนี้"
+    },
+    {
+     "s": 27.539,
+     "e": 35.197,
+     "en": "The Colab routine you learn today, opening a notebook, running all cells and reading the log, is the same one you will use there.",
+     "th": "ขั้นตอนใน Colab ที่คุณเรียนวันนี้ คือการเปิด notebook รันทุกเซลล์ และอ่าน log เป็นขั้นตอนเดียวกับที่คุณจะใช้ในคาบนั้น"
+    },
+    {
+     "s": 35.197,
+     "e": 47.618,
+     "en": "In Session 12, scenario models repeat the same NLP for each scenario, coupled by the first-stage decisions. And in Session 13, local solvers run inside global methods.",
+     "th": "ในคาบที่ 12 โมเดลแบบ scenario ทำซ้ำ NLP เดียวกันสำหรับแต่ละ scenario โดยเชื่อมกันด้วยการตัดสินใจขั้นแรก และในคาบที่ 13 solver เฉพาะที่ทำงานภายในวิธีหาค่าเหมาะสมวงกว้าง"
+    },
+    {
+     "s": 47.618,
+     "e": 56.5,
+     "en": "For the project, your report includes the solver status, the iteration counts, the residual audit, and the active set with its multipliers.",
+     "th": "สำหรับโครงงาน รายงานของคุณต้องมีสถานะของ solver จำนวนรอบ การตรวจด้วย residual และ active set พร้อม multiplier"
+    }
+   ]
+  },
+  {
+   "n": 33,
+   "file": "audio/slide-33.mp3",
+   "duration": 80.592,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.447,
+     "en": "Now Lab 9. Scan the code, or open the lab page.",
+     "th": "ต่อไปคือ Lab 9 สแกนโค้ด หรือเปิดหน้า lab"
+    },
+    {
+     "s": 5.447,
+     "e": 10.924,
+     "en": "The Williams–Otto plant has a reactor, a decanter, a distillation column and a recycle.",
+     "th": "โรงงาน Williams–Otto มีเครื่องปฏิกรณ์ decanter หอกลั่น และการนำกลับมาใช้ใหม่"
+    },
+    {
+     "s": 10.924,
+     "e": 20.882,
+     "en": "You choose the feeds, the reactor volume, the temperature and the purge fraction to maximize the return on investment, with the production of the product fixed.",
+     "th": "คุณเลือกอัตราป้อน ปริมาตรเครื่องปฏิกรณ์ อุณหภูมิ และสัดส่วน purge เพื่อให้ผลตอบแทนการลงทุนสูงที่สุด โดยกำหนดปริมาณการผลิตไว้คงที่"
+    },
+    {
+     "s": 20.882,
+     "e": 27.488,
+     "en": "First you run SLSQP from seven starts, with and without scaling, and decide which successes are real.",
+     "th": "ขั้นแรกคุณรัน SLSQP จากเจ็ดจุดเริ่มต้น ทั้งแบบปรับสเกลและไม่ปรับสเกล แล้วตัดสินว่าความสำเร็จใดเป็นจริง"
+    },
+    {
+     "s": 27.488,
+     "e": 35.066,
+     "en": "Then you run Ipopt in Colab from the same starts and read its log, following the steps on the previous slide but one.",
+     "th": "จากนั้นรัน Ipopt ใน Colab จากจุดเริ่มต้นเดียวกันและอ่าน log ตามขั้นตอนในหน้าก่อนหน้านั้น"
+    },
+    {
+     "s": 35.066,
+     "e": 45.316,
+     "en": "Before you look at any result, predict which bounds will be active at the best design. The answer tells you something about the plant, and Task 4 returns to it.",
+     "th": "ก่อนดูผลใด ๆ ให้ทำนายว่าขอบเขตใดจะ active ที่การออกแบบที่ดีที่สุด คำตอบบอกบางอย่างเกี่ยวกับโรงงาน และ Task 4 จะกลับมาที่เรื่องนี้"
+    },
+    {
+     "s": 45.316,
+     "e": 56.145,
+     "en": "Then you read the multipliers: what one more pound per hour of product is worth, and what a lower temperature limit costs. And you audit the answers with the residuals.",
+     "th": "จากนั้นคุณอ่าน multiplier ว่าผลิตภัณฑ์เพิ่มอีกหนึ่งปอนด์ต่อชั่วโมงมีค่าเท่าใด และขีดจำกัดอุณหภูมิที่ต่ำลงมีต้นทุนเท่าใด และตรวจคำตอบด้วย residual"
+    },
+    {
+     "s": 56.145,
+     "e": 67.276,
+     "en": "One of the multipliers will surprise you. Before you look at the answer, think about what a return on investment is, and what happens to it when the whole plant is made twice as large.",
+     "th": "multiplier ตัวหนึ่งจะทำให้คุณแปลกใจ ก่อนดูคำตอบ ให้คิดว่าผลตอบแทนการลงทุนคืออะไร และจะเกิดอะไรกับมันเมื่อทั้งโรงงานถูกขยายเป็นสองเท่า"
+    },
+    {
+     "s": 67.276,
+     "e": 80.526,
+     "en": "Bring a laptop for the Colab part; on a phone, use the recorded run on the lab page. Each step asks for a prediction or a number before you move on. In class you have about forty minutes.",
+     "th": "นำแล็ปท็อปมาสำหรับส่วนของ Colab ถ้าใช้โทรศัพท์ ให้ใช้ผลการรันที่บันทึกไว้ในหน้า lab แต่ละขั้นต้องการคำทำนายหรือตัวเลขก่อนจะไปต่อ ในห้องเรียนคุณมีเวลาประมาณสี่สิบนาที"
+    }
+   ]
+  },
+  {
+   "n": 34,
+   "file": "audio/slide-34.mp3",
+   "duration": 68.808,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.076,
+     "en": "To summarize.",
+     "th": "สรุป"
+    },
+    {
+     "s": 2.076,
+     "e": 12.41,
+     "en": "The quadratic penalty needs the weight to go to infinity and becomes ill-conditioned: at rho equal to one thousand the row is still violated by five times ten to the minus four.",
+     "th": "quadratic penalty ต้องให้น้ำหนักไปถึงอนันต์และมี condition ที่แย่ ที่ rho เท่ากับหนึ่งพัน แถวยังถูกละเมิดห้าคูณสิบยกกำลังลบสี่"
+    },
+    {
+     "s": 12.41,
+     "e": 19.842,
+     "en": "The augmented Lagrangian fixes that with a multiplier update, and reached five times ten to the minus ten with rho equal to two.",
+     "th": "augmented Lagrangian แก้ด้วยการปรับ multiplier และไปถึงห้าคูณสิบยกกำลังลบสิบด้วย rho เท่ากับสอง"
+    },
+    {
+     "s": 19.842,
+     "e": 30.789,
+     "en": "SQP is Newton's method on the KKT conditions: a QP with a BFGS Hessian of the Lagrangian and linearized rows, plus a merit function or a filter to accept steps.",
+     "th": "SQP คือ Newton's method บนเงื่อนไข KKT คือ QP ที่มี Hessian ของ Lagrangian แบบ BFGS และแถวที่ทำให้เป็นเชิงเส้น บวกกับ merit function หรือ filter สำหรับการยอมรับก้าว"
+    },
+    {
+     "s": 30.789,
+     "e": 41.237,
+     "en": "Interior-point methods relax complementarity to mu i s i equal to tau and follow the central path. Ipopt is the open-source workhorse for large models.",
+     "th": "วิธี interior point ผ่อนคลาย complementarity เป็น mu i s i เท่ากับ tau และเดินตาม central path Ipopt คือเครื่องมือหลักแบบ open source สำหรับโมเดลขนาดใหญ่"
+    },
+    {
+     "s": 41.237,
+     "e": 50.276,
+     "en": "Newton on the KKT conditions converges quadratically, but by itself it cannot tell a minimum from a maximum: on the circle it found both.",
+     "th": "Newton บนเงื่อนไข KKT ลู่เข้าแบบ quadratic แต่โดยลำพังแยกค่าต่ำสุดออกจากค่าสูงสุดไม่ได้ บนวงกลมมันพบทั้งสองจุด"
+    },
+    {
+     "s": 50.276,
+     "e": 62.947,
+     "en": "Bad starts, bad scaling and infeasible rows each have their own messages, and none of the messages is proof. Of five SLSQP runs, three said success, and only one was a KKT point.",
+     "th": "จุดเริ่มต้นที่ไม่ดี สเกลที่แย่ และแถวที่เป็นไปไม่ได้ ต่างมีข้อความของตัวเอง และไม่มีข้อความใดเป็นหลักฐาน จากการรัน SLSQP ห้าครั้ง สามครั้งบอกว่าสำเร็จ แต่มีเพียงครั้งเดียวที่เป็นจุด KKT"
+    },
+    {
+     "s": 62.947,
+     "e": 68.737,
+     "en": "So audit every answer with the residuals of Session 7, in the problem's own units.",
+     "th": "ดังนั้นตรวจทุกคำตอบด้วย residual จากคาบที่ 7 ในหน่วยของปัญหาเอง"
+    }
+   ]
+  },
+  {
+   "n": 35,
+   "file": "audio/slide-35.mp3",
+   "duration": 45.768,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.379,
+     "en": "Before the next session, finish Lab 9 if you did not finish it in class, including the Colab part.",
+     "th": "ก่อนคาบหน้า ทำ Lab 9 ให้เสร็จถ้ายังทำไม่เสร็จในห้องเรียน รวมถึงส่วนที่ใช้ Colab"
+    },
+    {
+     "s": 6.379,
+     "e": 14.553,
+     "en": "Keep your card. Session 10 fits model parameters to data, and your card may have parameters to estimate.",
+     "th": "เก็บการ์ดไว้ คาบที่ 10 จะปรับพารามิเตอร์ของโมเดลให้เข้ากับข้อมูล และการ์ดของคุณอาจมีพารามิเตอร์ที่ต้องประมาณค่า"
+    },
+    {
+     "s": 14.553,
+     "e": 20.921,
+     "en": "Also keep the Colab notebook open or saved to your Drive: Session 11 uses the same routine.",
+     "th": "เก็บ notebook ใน Colab ไว้เปิดหรือบันทึกลง Drive ด้วย คาบที่ 11 ใช้ขั้นตอนเดียวกัน"
+    },
+    {
+     "s": 20.921,
+     "e": 31.704,
+     "en": "For reading, Nocedal and Wright, Numerical Optimization, chapters 17 to 19, cover penalty and augmented Lagrangian methods, SQP and interior points.",
+     "th": "สำหรับการอ่าน Numerical Optimization ของ Nocedal และ Wright บทที่ 17 ถึง 19 ครอบคลุม penalty และ augmented Lagrangian, SQP และ interior point"
+    },
+    {
+     "s": 31.704,
+     "e": 38.724,
+     "en": "Or read Biegler, Nonlinear Programming, chapters 5 and 6, with the process examples of chapter 7.",
+     "th": "หรืออ่าน Nonlinear Programming ของ Biegler บทที่ 5 และ 6 พร้อมตัวอย่างกระบวนการในบทที่ 7"
+    },
+    {
+     "s": 38.724,
+     "e": 45.711,
+     "en": "Optionally, read the Ipopt paper by Wächter and Biegler, Mathematical Programming, 2006.",
+     "th": "ถ้าต้องการ อ่านบทความ Ipopt ของ Wächter และ Biegler ใน Mathematical Programming ปี 2006"
+    }
+   ]
+  },
+  {
+   "n": 36,
+   "file": "audio/slide-36.mp3",
+   "duration": 39.12,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.405,
+     "en": "Finally, the Exit Ticket and feedback.",
+     "th": "สุดท้ายคือ Exit Ticket และ feedback"
+    },
+    {
+     "s": 3.405,
+     "e": 9.118,
+     "en": "Scan the code, choose Session 9, and paste the answers that the lab page copies for you.",
+     "th": "สแกนโค้ด เลือก Session 9 แล้ววางคำตอบที่หน้า lab คัดลอกไว้ให้"
+    },
+    {
+     "s": 9.118,
+     "e": 16.75,
+     "en": "Then tell us about the pace, your confidence, how far you got in the lab, whether Colab worked for you, and what is still unclear.",
+     "th": "จากนั้นบอกเราเรื่องความเร็วในการสอน ความมั่นใจ ความคืบหน้าใน lab Colab ใช้งานได้หรือไม่ และสิ่งที่ยังไม่ชัดเจน"
+    },
+    {
+     "s": 16.75,
+     "e": 24.395,
+     "en": "The question about Colab matters this week: if it did not work for you, say what you saw, so the instructions can be improved.",
+     "th": "คำถามเรื่อง Colab สำคัญในสัปดาห์นี้ ถ้าใช้ไม่ได้ ให้บอกว่าคุณเห็นอะไร เพื่อปรับปรุงคำแนะนำ"
+    },
+    {
+     "s": 24.395,
+     "e": 30.118,
+     "en": "If you studied on your own, choose On my own. The form is anonymous.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้เลือก On my own แบบฟอร์มนี้ไม่ระบุตัวตน"
+    },
+    {
+     "s": 30.118,
+     "e": 35.803,
+     "en": "Your answers are how the next session is adjusted, so short, honest answers help most.",
+     "th": "คำตอบของคุณใช้ปรับคาบถัดไป คำตอบสั้น ๆ ที่ตรงไปตรงมาจึงช่วยได้มากที่สุด"
+    },
+    {
+     "s": 35.803,
+     "e": 39.053,
+     "en": "Thank you, and see you in Session 10.",
+     "th": "ขอบคุณ แล้วพบกันในคาบที่ 10"
+    }
+   ]
+  }
+ ]
+}
