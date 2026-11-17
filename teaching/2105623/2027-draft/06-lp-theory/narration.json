@@ -1,0 +1,2539 @@
+{
+ "voice": "en-US-GuyNeural",
+ "rate": "-5%",
+ "provider": "Microsoft Edge neural speech (edge-tts)",
+ "synthetic_voice": true,
+ "total_seconds": 3007.9,
+ "slides": [
+  {
+   "n": 1,
+   "file": "audio/slide-01.mp3",
+   "duration": 46.776,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.787,
+     "en": "Welcome to Session 6 of Optimization of Chemical Processes.",
+     "th": "ยินดีต้อนรับสู่คาบที่ 6 ของวิชา Optimization of Chemical Processes"
+    },
+    {
+     "s": 4.787,
+     "e": 13.843,
+     "en": "In Sessions 1 to 4 you used linear programming as a tool: you wrote models, a solver returned a plan, and you checked it with a certificate.",
+     "th": "ในคาบที่ 1 ถึง 4 คุณใช้ linear programming เป็นเครื่องมือ คุณเขียนโมเดล solver คืนแผน และคุณตรวจด้วยใบรับรอง"
+    },
+    {
+     "s": 13.843,
+     "e": 17.632,
+     "en": "Today we open the solver and look at the principles inside.",
+     "th": "วันนี้เราจะเปิด solver และดูหลักการที่อยู่ข้างใน"
+    },
+    {
+     "s": 17.632,
+     "e": 29.508,
+     "en": "First the principles: what a vertex is in algebra, and why the optimum sits at one. Then the simplex method, which walks from vertex to vertex. Then duality and sensitivity:",
+     "th": "เริ่มจากหลักการ คือ vertex ในเชิงพีชคณิตคืออะไร และทำไมคำตอบที่ดีที่สุดจึงอยู่ที่ vertex จากนั้นคือวิธี simplex ซึ่งเดินจาก vertex หนึ่งไปอีก vertex หนึ่ง แล้วจึงเป็น duality"
+    },
+    {
+     "s": 29.508,
+     "e": 34.013,
+     "en": "where the prices come from, and what happens when the data change.",
+     "th": "และ sensitivity ว่าราคามาจากไหน และเกิดอะไรขึ้นเมื่อข้อมูลเปลี่ยน"
+    },
+    {
+     "s": 34.013,
+     "e": 41.316,
+     "en": "On your own, the narration takes about fifty minutes; the activities, four checks and the lab fill the rest of the three hours.",
+     "th": "ถ้าเรียนเอง เสียงบรรยายใช้เวลาประมาณห้าสิบนาที ส่วนกิจกรรม แบบตรวจสี่ครั้ง และ lab จะใช้เวลาที่เหลือของสามชั่วโมง"
+    },
+    {
+     "s": 41.316,
+     "e": 46.724,
+     "en": "When the narration for a slide ends, press the right arrow key, or Next, to go on.",
+     "th": "เมื่อเสียงบรรยายของแต่ละหน้าจบ กดลูกศรขวาหรือปุ่ม Next เพื่อไปหน้าถัดไป"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "file": "audio/slide-02.mp3",
+   "duration": 43.968,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.05,
+     "en": "Here is the plan for the three hours.",
+     "th": "นี่คือแผนของสามชั่วโมง"
+    },
+    {
+     "s": 3.05,
+     "e": 9.852,
+     "en": "After a fifteen-minute retrieval check on Session 5, part one, thirty-five minutes, covers the principles:",
+     "th": "หลังทบทวนความจำจากคาบที่ 5 สิบห้านาที ส่วนที่หนึ่งสามสิบห้านาที ว่าด้วยหลักการ ได้แก่ standard"
+    },
+    {
+     "s": 9.852,
+     "e": 17.671,
+     "en": "standard form, bases and basic solutions, each vertex as a set of basic variables, the fundamental theorem, and degeneracy.",
+     "th": "form, basis และ basic solution, แต่ละ vertex ในฐานะชุดของ basic variable, ทฤษฎีบทหลัก และ degeneracy"
+    },
+    {
+     "s": 17.671,
+     "e": 28.224,
+     "en": "Part two, thirty minutes, is the simplex method: reduced costs, the ratio test, two pivots by hand, how it starts, why it can cycle, and how many pivots it needs.",
+     "th": "ส่วนที่สอง สามสิบนาที คือวิธี simplex ได้แก่ reduced cost, ratio test, การ pivot สองครั้งด้วยมือ, วิธีเริ่มต้น, ทำไมจึงวนซ้ำได้ และต้องใช้กี่ pivot"
+    },
+    {
+     "s": 28.224,
+     "e": 34.497,
+     "en": "After a break and a second activity, part three, thirty-five minutes, derives the dual, proves strong duality,",
+     "th": "หลังพักและกิจกรรมที่สอง ส่วนที่สาม สามสิบห้านาที จะหา dual พิสูจน์ strong duality และแสดงว่าเกิดอะไรขึ้นกับ"
+    },
+    {
+     "s": 34.497,
+     "e": 40.092,
+     "en": "and shows what happens to the basis when the right-hand sides or the objective coefficients change.",
+     "th": "basis เมื่อค่าทางขวาของข้อจำกัด หรือสัมประสิทธิ์ของฟังก์ชันเป้าหมายเปลี่ยน"
+    },
+    {
+     "s": 40.092,
+     "e": 43.908,
+     "en": "The session ends with Lab 6 and the Exit Ticket.",
+     "th": "คาบนี้จบด้วย Lab 6 และ Exit Ticket"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "file": "audio/slide-03.mp3",
+   "duration": 38.52,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.103,
+     "en": "Activity 1 is a retrieval check on Session 5.",
+     "th": "กิจกรรมที่ 1 คือการทบทวนความจำจากคาบที่ 5"
+    },
+    {
+     "s": 4.103,
+     "e": 14.974,
+     "en": "Answer the four questions without notes. They cover convexity of an LP, a saddle point, the number of starts in a multistart, and what a global solver needs.",
+     "th": "ตอบคำถามสี่ข้อโดยไม่เปิดโน้ต คำถามครอบคลุม convexity ของ LP จุดอานม้า จำนวนจุดเริ่มของการเริ่มหลายจุด และสิ่งที่ global solver ต้องการ"
+    },
+    {
+     "s": 14.974,
+     "e": 23.612,
+     "en": "Question 1 is today's starting point: an LP is a convex problem, so any local optimum is global. Today asks a sharper question:",
+     "th": "ข้อ 1 คือจุดเริ่มของวันนี้ LP เป็นปัญหา convex จุดเหมาะสมเฉพาะที่ใด ๆ จึงเป็นจุดเหมาะสมวงกว้าง วันนี้ถามคำถามที่แหลมขึ้น"
+    },
+    {
+     "s": 23.612,
+     "e": 28.539,
+     "en": "where in the feasible set is that optimum, and how does a solver find it?",
+     "th": "ว่าจุดนั้นอยู่ที่ไหนในเซตที่เป็นไปได้ และ solver หามันได้อย่างไร"
+    },
+    {
+     "s": 28.539,
+     "e": 38.461,
+     "en": "In class, write alone for five minutes, then compare with a partner. On your own, pause the narration, write your answers, and then press Show answers.",
+     "th": "ในห้องเรียน เขียนคนเดียวห้านาที แล้วเทียบกับเพื่อน ถ้าเรียนเอง ให้หยุดเสียงบรรยาย เขียนคำตอบ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "file": "audio/slide-04.mp3",
+   "duration": 45.888,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.866,
+     "en": "By the end of today you should be able to do six things.",
+     "th": "เมื่อจบวันนี้ คุณควรทำหกอย่างต่อไปนี้ได้"
+    },
+    {
+     "s": 3.866,
+     "e": 11.763,
+     "en": "Write any LP in standard equality form, compute the basic solution of a chosen basis, and name the basis of each vertex.",
+     "th": "เขียน LP ใด ๆ ในรูป standard form แบบสมการ คำนวณ basic solution ของ basis ที่เลือก และบอกได้ว่าแต่ละ vertex คือ basis ใด"
+    },
+    {
+     "s": 11.763,
+     "e": 19.868,
+     "en": "Explain why an optimum, when one exists, is attained at a basic feasible solution, and what degeneracy does to that statement.",
+     "th": "อธิบายได้ว่าทำไมคำตอบที่ดีที่สุด เมื่อมีอยู่ จึงเกิดที่ basic feasible solution และ degeneracy มีผลต่อข้อความนี้อย่างไร"
+    },
+    {
+     "s": 19.868,
+     "e": 26.553,
+     "en": "Carry out simplex pivots by hand: reduced costs, the ratio test, and the update of the tableau.",
+     "th": "ทำการ pivot ของ simplex ด้วยมือได้ ทั้ง reduced cost, ratio test และการปรับ tableau"
+    },
+    {
+     "s": 26.553,
+     "e": 34.289,
+     "en": "Say how a solver starts, why the simplex method can cycle, and why it is fast in practice but exponential in the worst case.",
+     "th": "บอกได้ว่า solver เริ่มต้นอย่างไร ทำไมวิธี simplex จึงวนซ้ำได้ และทำไมมันเร็วในทางปฏิบัติแต่ช้าแบบเอกซ์โพเนนเชียลในกรณีเลวร้ายที่สุด"
+    },
+    {
+     "s": 34.289,
+     "e": 39.237,
+     "en": "Write the dual of any LP and prove strong duality from the final basis.",
+     "th": "เขียน dual ของ LP ใด ๆ ได้ และพิสูจน์ strong duality จาก basis สุดท้ายได้"
+    },
+    {
+     "s": 39.237,
+     "e": 45.816,
+     "en": "And compute the range over which a shadow price or a cost holds, and read the value function v star of b.",
+     "th": "และคำนวณช่วงที่ shadow price หรือราคาหนึ่งยังใช้ได้ และอ่าน value function v star ของ b ได้"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "file": "audio/slide-05.mp3",
+   "duration": 77.208,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.918,
+     "en": "Everything today builds on things you have already used.",
+     "th": "ทุกอย่างในวันนี้ต่อยอดจากสิ่งที่คุณใช้มาแล้ว"
+    },
+    {
+     "s": 3.918,
+     "e": 14.105,
+     "en": "In Session 1 you listed ten pairs of active constraints by hand and found five vertices. Today each of them becomes an algebraic object: a basis.",
+     "th": "ในคาบที่ 1 คุณไล่คู่ของข้อจำกัดที่ active สิบคู่ด้วยมือ และพบห้า vertex วันนี้แต่ละคู่จะกลายเป็นวัตถุเชิงพีชคณิต คือ basis"
+    },
+    {
+     "s": 14.105,
+     "e": 23.921,
+     "en": "Session 1 also said that the simplex method walks from vertex to vertex. Today you will see the walk, pivot by pivot, and why it stops.",
+     "th": "คาบที่ 1 ยังบอกว่าวิธี simplex เดินจาก vertex ไป vertex วันนี้คุณจะเห็นการเดินนั้นทีละ pivot และเห็นว่าทำไมมันจึงหยุด"
+    },
+    {
+     "s": 23.921,
+     "e": 35.118,
+     "en": "You checked weak duality with the prices one hundred, zero and one hundred. Today you will see where those prices come from, and strong duality will be proved rather than stated.",
+     "th": "คุณตรวจ weak duality ด้วยราคาหนึ่งร้อย ศูนย์ และหนึ่งร้อย วันนี้คุณจะเห็นว่าราคาเหล่านั้นมาจากไหน และ strong duality จะถูกพิสูจน์แทนการบอกเฉย ๆ"
+    },
+    {
+     "s": 35.118,
+     "e": 47.461,
+     "en": "Two Session 1 demos showed that a shadow price holds only on an interval, and that the Additive margin could move between 300 and 450. Today gives the formulas behind both.",
+     "th": "การสาธิตสองชิ้นในคาบที่ 1 แสดงว่า shadow price ใช้ได้เฉพาะในช่วงหนึ่ง และกำไรของ Additive เปลี่ยนได้ระหว่าง 300 ถึง 450 วันนี้จะให้สูตรเบื้องหลังทั้งสองเรื่อง"
+    },
+    {
+     "s": 47.461,
+     "e": 56.605,
+     "en": "Session 2's rule, positive variables at most tight rows, and Session 4's dual constraints on the value of oil, both come from the same structure.",
+     "th": "กฎของคาบที่ 2 ว่าตัวแปรที่เป็นบวกไม่เกินจำนวนแถวที่แน่น และข้อจำกัด dual ของมูลค่าน้ำมันในคาบที่ 4 ล้วนมาจากโครงสร้างเดียวกัน"
+    },
+    {
+     "s": 56.605,
+     "e": 65.447,
+     "en": "And Session 3's branch and bound solved one LP at every node of its tree. Today explains what each of those solves does inside.",
+     "th": "และ branch and bound ของคาบที่ 3 แก้ LP หนึ่งปัญหาที่ทุกโหนดของต้นไม้ วันนี้อธิบายว่าการแก้แต่ละครั้งนั้นทำอะไรอยู่ข้างใน"
+    },
+    {
+     "s": 65.447,
+     "e": 77.132,
+     "en": "The running example is the Session 1 plant: Additive and Binder on a reactor train, a separation unit and packaging, with the optimum six and three tonnes per week at 3,300 dollars.",
+     "th": "ตัวอย่างที่ใช้ตลอดคือโรงงานในคาบที่ 1 ผลิต Additive และ Binder บน reactor train หน่วยแยก และการบรรจุ คำตอบที่ดีที่สุดคือหกและสามตันต่อสัปดาห์ ที่ 3,300 ดอลลาร์"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "file": "audio/slide-06.mp3",
+   "duration": 82.224,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.355,
+     "en": "Part one: the principles. Start with standard form.",
+     "th": "ส่วนที่หนึ่ง หลักการ เริ่มจาก standard form"
+    },
+    {
+     "s": 5.355,
+     "e": 15.197,
+     "en": "Add one slack variable to each inequality row. The slack is the unused amount of that resource: for the plant, the idle hours of each unit.",
+     "th": "เพิ่มตัวแปร slack หนึ่งตัวให้แต่ละแถวที่เป็นอสมการ slack คือปริมาณทรัพยากรที่ไม่ได้ใช้ สำหรับโรงงานนี้คือชั่วโมงว่างของแต่ละหน่วย"
+    },
+    {
+     "s": 15.197,
+     "e": 25.513,
+     "en": "Now every row is an equation, and every variable is non-negative. The plant has three rows and five columns: x one, x two, and the three slacks.",
+     "th": "ตอนนี้ทุกแถวเป็นสมการ และทุกตัวแปรไม่เป็นลบ โรงงานมีสามแถวและห้าคอลัมน์ คือ x หนึ่ง x สอง และ slack สามตัว"
+    },
+    {
+     "s": 25.513,
+     "e": 35.85,
+     "en": "Why equalities? Because a basis is defined for a system of equations. With inequalities we cannot say which variables are determined by the others.",
+     "th": "ทำไมต้องเป็นสมการ เพราะ basis นิยามบนระบบสมการ ถ้าเป็นอสมการ เราบอกไม่ได้ว่าตัวแปรใดถูกกำหนดโดยตัวแปรอื่น"
+    },
+    {
+     "s": 35.85,
+     "e": 42.974,
+     "en": "With equalities and slacks, every corner of the region becomes the solution of a square linear system.",
+     "th": "เมื่อเป็นสมการและมี slack ทุกมุมของบริเวณจะกลายเป็นคำตอบของระบบสมการเชิงเส้นแบบจัตุรัส"
+    },
+    {
+     "s": 42.974,
+     "e": 55.624,
+     "en": "The table gives the other conversions. A greater-than-or-equal row gets a surplus variable that is subtracted. A free variable is split into a positive and a negative part.",
+     "th": "ตารางแสดงการแปลงอื่น ๆ แถวแบบมากกว่าหรือเท่ากับจะได้ตัวแปร surplus ที่ถูกลบออก ตัวแปรอิสระแยกเป็นส่วนบวกและส่วนลบ"
+    },
+    {
+     "s": 55.624,
+     "e": 58.987,
+     "en": "A minimum becomes the maximum of the negative.",
+     "th": "การหาค่าต่ำสุดกลายเป็นการหาค่าสูงสุดของค่าลบ"
+    },
+    {
+     "s": 58.987,
+     "e": 65.868,
+     "en": "Rows that are already equations, such as a mass balance, need no slack; they enter standard form as they are.",
+     "th": "แถวที่เป็นสมการอยู่แล้ว เช่นสมดุลมวล ไม่ต้องมี slack และเข้าสู่ standard form ได้ตามเดิม"
+    },
+    {
+     "s": 65.868,
+     "e": 73.395,
+     "en": "And a row with a negative right-hand side is multiplied by minus one first, so that every right-hand side is non-negative.",
+     "th": "และแถวที่ค่าทางขวาเป็นลบ ให้คูณด้วยลบหนึ่งก่อน เพื่อให้ค่าทางขวาทุกตัวไม่เป็นลบ"
+    },
+    {
+     "s": 73.395,
+     "e": 82.158,
+     "en": "Solvers do all of this inside. You need it to read a tableau, a basis and a dual, which is what the rest of today does.",
+     "th": "solver ทำทั้งหมดนี้ข้างใน แต่คุณต้องรู้เพื่ออ่าน tableau, basis และ dual ซึ่งเป็นสิ่งที่วันนี้ทำต่อจากนี้"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "file": "audio/slide-07.mp3",
+   "duration": 98.208,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.392,
+     "en": "Now the central idea: a basis.",
+     "th": "ต่อไปคือแนวคิดหลัก basis"
+    },
+    {
+     "s": 3.392,
+     "e": 16.408,
+     "en": "Choose m columns of the standard-form matrix that form an invertible square matrix B. That choice is the basis. The other columns are nonbasic, and their variables are set to zero.",
+     "th": "เลือก m คอลัมน์ของเมทริกซ์ใน standard form ที่ประกอบเป็นเมทริกซ์จัตุรัส B ที่หาอินเวอร์สได้ การเลือกนี้คือ basis คอลัมน์ที่เหลือเป็น nonbasic และตัวแปรของมันถูกตั้งเป็นศูนย์"
+    },
+    {
+     "s": 16.408,
+     "e": 30.671,
+     "en": "Then the basic variables are fixed: x B equals B inverse times b. That point is a basic solution. If every basic variable is non-negative, it is a basic feasible solution, or BFS.",
+     "th": "แล้วตัวแปร basic จะถูกกำหนดค่า คือ x B เท่ากับ B อินเวอร์สคูณ b จุดนั้นคือ basic solution ถ้าตัวแปร basic ทุกตัวไม่เป็นลบ จะเป็น basic feasible solution หรือ BFS"
+    },
+    {
+     "s": 30.671,
+     "e": 43.397,
+     "en": "Here is one by hand. Take the basis x one, x two, s two. Then s one and s three are zero, so the reactor and packaging rows become equations in x one and x two alone:",
+     "th": "ลองทำหนึ่งชุดด้วยมือ ใช้ basis x หนึ่ง x สอง s สอง แล้ว s หนึ่งและ s สามเป็นศูนย์ แถว reactor และแถวการบรรจุจึงเป็นสมการของ x หนึ่งและ x สองเท่านั้น คือ สาม"
+    },
+    {
+     "s": 43.397,
+     "e": 48.579,
+     "en": "three x one plus two x two equals 24, and x one plus x two equals 9.",
+     "th": "x หนึ่ง บวก สอง x สอง เท่ากับ 24 และ x หนึ่ง บวก x สอง เท่ากับ 9"
+    },
+    {
+     "s": 48.579,
+     "e": 59.716,
+     "en": "Subtract twice the second equation from the first: x one is six, so x two is three, and the separation row gives s two equal to 16 minus 12, which is four.",
+     "th": "ลบสองเท่าของสมการที่สองออกจากสมการแรก ได้ x หนึ่งเท่ากับหก x สองจึงเท่ากับสาม และแถวการแยกให้ s สองเท่ากับ 16 ลบ 12 คือสี่"
+    },
+    {
+     "s": 59.716,
+     "e": 65.855,
+     "en": "All three are non-negative, so this basis is feasible. It is the optimum of Session 1.",
+     "th": "ทั้งสามค่าไม่เป็นลบ basis นี้จึงเป็นไปได้ และคือคำตอบของคาบที่ 1"
+    },
+    {
+     "s": 65.855,
+     "e": 71.118,
+     "en": "For the plant, choosing three of five columns gives at most ten basic solutions.",
+     "th": "สำหรับโรงงานนี้ การเลือกสามจากห้าคอลัมน์ให้ basic solution ได้มากที่สุดสิบจุด"
+    },
+    {
+     "s": 71.118,
+     "e": 82.934,
+     "en": "Now connect this to Session 1. A nonbasic variable at zero is an active constraint. A slack at zero means a tight row; an x at zero means a tight bound.",
+     "th": "ทีนี้เชื่อมกับคาบที่ 1 ตัวแปร nonbasic ที่เป็นศูนย์คือข้อจำกัดที่ active slack ที่เป็นศูนย์หมายถึงแถวที่แน่น ส่วน x ที่เป็นศูนย์หมายถึงขอบเขตที่แน่น"
+    },
+    {
+     "s": 82.934,
+     "e": 90.764,
+     "en": "So choosing two nonbasic variables is choosing two active constraints: Session 1's ten pairs are exactly these ten bases.",
+     "th": "การเลือก nonbasic สองตัวจึงเท่ากับการเลือกข้อจำกัด active สองตัว คู่สิบคู่ในคาบที่ 1 จึงคือ basis"
+    },
+    {
+     "s": 90.764,
+     "e": 98.145,
+     "en": "On the plot, the five filled points are the feasible ones, the vertices; the open circles are basic but infeasible.",
+     "th": "สิบชุดนี้พอดี บนกราฟ จุดทึบห้าจุดคือจุดที่เป็นไปได้ หรือ vertex ส่วนวงกลมโปร่งเป็น basic แต่เป็นไปไม่ได้"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "file": "audio/slide-08.mp3",
+   "duration": 78.696,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.063,
+     "en": "Here are all ten, computed with exact fractions.",
+     "th": "นี่คือทั้งสิบชุด คำนวณด้วยเศษส่วนแบบแม่นยำ"
+    },
+    {
+     "s": 4.063,
+     "e": 13.158,
+     "en": "Each row names three basic variables. The two missing variables are zero, and the three are found by solving a three by three system.",
+     "th": "แต่ละแถวระบุตัวแปร basic สามตัว ตัวแปรที่ขาดสองตัวเป็นศูนย์ และสามตัวนั้นหาได้จากการแก้ระบบสมการสามคูณสาม"
+    },
+    {
+     "s": 13.158,
+     "e": 23.101,
+     "en": "Take the basis x one, x two, s three: the reactor and separation rows are tight, which gives the point four and six, but then s three is minus one.",
+     "th": "ลองดู basis x หนึ่ง x สอง s สาม แถว reactor และแถวการแยกแน่น ได้จุดสี่กับหก แต่ s สามเท่ากับลบหนึ่ง"
+    },
+    {
+     "s": 23.101,
+     "e": 27.132,
+     "en": "Packaging is broken by one hour, so the point is infeasible.",
+     "th": "การบรรจุเกินไปหนึ่งชั่วโมง จุดนี้จึงเป็นไปไม่ได้"
+    },
+    {
+     "s": 27.132,
+     "e": 32.316,
+     "en": "A negative value always tells you which row or bound a basic solution breaks.",
+     "th": "ค่าลบบอกเสมอว่า basic solution นั้นละเมิดแถวหรือขอบเขตใด"
+    },
+    {
+     "s": 32.316,
+     "e": 34.567,
+     "en": "No basis of the plant is singular.",
+     "th": "ไม่มี basis"
+    },
+    {
+     "s": 34.567,
+     "e": 45.632,
+     "en": "With parallel rows, for example two capacity rows proportional to each other, some choices of three columns would not be invertible and would give no basic solution at all.",
+     "th": "ใดของโรงงานนี้ที่เป็นเมทริกซ์เอกฐาน ถ้ามีแถวที่ขนานกัน เช่นแถวความจุสองแถวที่เป็นสัดส่วนกัน การเลือกสามคอลัมน์บางแบบจะหาอินเวอร์สไม่ได้ และไม่ให้ basic solution เลย"
+    },
+    {
+     "s": 45.632,
+     "e": 58.526,
+     "en": "Five bases are feasible: the origin, eight and zero, six and three, two and seven, and zero and eight. The best is six and three at 3,300 dollars, the optimum of Session 1.",
+     "th": "basis ที่เป็นไปได้มีห้าชุด คือจุดกำเนิด แปดกับศูนย์ หกกับสาม สองกับเจ็ด และศูนย์กับแปด ที่ดีที่สุดคือหกกับสาม ที่ 3,300 ดอลลาร์ ซึ่งเป็นคำตอบของคาบที่ 1"
+    },
+    {
+     "s": 58.526,
+     "e": 70.355,
+     "en": "Listing every basis works here, but the count grows like n choose m: about ten to the twenty-nine for a hundred rows and a hundred variables. The simplex method visits only a few of them.",
+     "th": "การไล่ทุก basis ใช้ได้ที่นี่ แต่จำนวนเพิ่มตาม n เลือก m ประมาณสิบยกกำลังยี่สิบเก้า สำหรับหนึ่งร้อยแถวและหนึ่งร้อยตัวแปร วิธี simplex เยี่ยมเพียงไม่กี่ชุด"
+    },
+    {
+     "s": 70.355,
+     "e": 78.618,
+     "en": "Press D to see the code that produced this table. It uses Python's Fraction type, so every value is exact.",
+     "th": "กด D เพื่อดูโค้ดที่สร้างตารางนี้ โค้ดใช้ชนิดข้อมูล Fraction ของ Python ทุกค่าจึงแม่นยำ"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "file": "audio/slide-09.mp3",
+   "duration": 98.904,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.774,
+     "en": "This slide makes the link explicit: each vertex is one set of basic variables.",
+     "th": "หน้านี้ทำให้ความเชื่อมโยงชัดเจน แต่ละ vertex คือชุดของ basic variable หนึ่งชุด"
+    },
+    {
+     "s": 5.774,
+     "e": 20.935,
+     "en": "Each vertex of the feasible region carries its basis in braces. The origin is s one, s two, s three: nothing is made and all hours are idle. Eight and zero is x one, s two, s three.",
+     "th": "แต่ละ vertex ของบริเวณที่เป็นไปได้มี basis ของมันอยู่ในวงเล็บปีกกา จุดกำเนิดคือ s หนึ่ง s สอง s สาม ไม่ผลิตอะไรและทุกชั่วโมงว่าง จุดแปดกับศูนย์คือ x หนึ่ง s สอง s สาม"
+    },
+    {
+     "s": 20.935,
+     "e": 25.184,
+     "en": "The optimum, six and three, is x one, x two, s two.",
+     "th": "คำตอบที่ดีที่สุด หกกับสาม คือ x หนึ่ง x สอง s สอง"
+    },
+    {
+     "s": 25.184,
+     "e": 36.329,
+     "en": "Now look at two neighboring vertices. The origin and eight and zero share s two and s three. They differ in one variable: x one replaces s one.",
+     "th": "ดู vertex สองจุดที่อยู่ติดกัน จุดกำเนิดกับจุดแปดและศูนย์มี s สอง และ s สาม ร่วมกัน ต่างกันเพียงตัวแปรเดียว คือ x หนึ่งเข้ามาแทน s หนึ่ง"
+    },
+    {
+     "s": 36.329,
+     "e": 49.197,
+     "en": "That is true of every edge. Along an edge, one variable rises from zero, which we call entering, and another falls to zero, which we call leaving. The label on each edge shows the swap.",
+     "th": "สิ่งนี้เป็นจริงกับทุก edge ตามแนว edge ตัวแปรหนึ่งเพิ่มขึ้นจากศูนย์ เราเรียกว่าเข้า และอีกตัวลดลงเป็นศูนย์ เราเรียกว่าออก ป้ายบนแต่ละ edge แสดงการสลับนั้น"
+    },
+    {
+     "s": 49.197,
+     "e": 60.197,
+     "en": "The variable that stays nonbasic at both ends names the line the edge lies on. From eight and zero to six and three, s one stays zero: that edge is the reactor line.",
+     "th": "ตัวแปรที่ยังเป็น nonbasic ทั้งสองปลายบอกว่า edge นั้นอยู่บนเส้นใด จากแปดกับศูนย์ไปหกกับสาม s หนึ่งยังเป็นศูนย์ edge นั้นจึงคือเส้นของ reactor"
+    },
+    {
+     "s": 60.197,
+     "e": 72.092,
+     "en": "So the picture of vertices and edges is also a graph of bases, where neighbors differ by one swap. A simplex pivot is exactly one such swap: the method is a walk on this graph.",
+     "th": "ดังนั้นภาพของ vertex และ edge ก็คือกราฟของ basis ที่เพื่อนบ้านต่างกันด้วยการสลับหนึ่งครั้ง การ pivot ของ simplex คือการสลับแบบนี้หนึ่งครั้งพอดี วิธีนี้จึงเป็นการเดินบนกราฟนี้"
+    },
+    {
+     "s": 72.092,
+     "e": 82.519,
+     "en": "Count the neighbors. At a nondegenerate vertex each nonbasic variable that can enter defines one edge or ray, so every vertex has n minus m of them.",
+     "th": "นับเพื่อนบ้าน ที่ vertex ที่ไม่ degenerate ตัวแปร nonbasic แต่ละตัวที่เข้าได้กำหนด edge หรือรังสีหนึ่งเส้น ทุก vertex จึงมี n ลบ m เส้น"
+    },
+    {
+     "s": 82.519,
+     "e": 87.487,
+     "en": "Here n minus m is two, and every vertex of the plant has two neighbors.",
+     "th": "ที่นี่ n ลบ m เท่ากับสอง และทุก vertex ของโรงงานนี้มีเพื่อนบ้านสองจุด"
+    },
+    {
+     "s": 87.487,
+     "e": 98.842,
+     "en": "Keep this slide in mind for the rest of the session. Every change of vertex we see today, in the simplex method or when data change, is a change in the set of basic variables.",
+     "th": "จำหน้านี้ไว้ตลอดคาบ การเปลี่ยน vertex ทุกครั้งที่เราเห็นวันนี้ ไม่ว่าในวิธี simplex หรือเมื่อข้อมูลเปลี่ยน คือการเปลี่ยนชุดของ basic variable"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "file": "audio/slide-10.mp3",
+   "duration": 106.704,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.316,
+     "en": "Why does the optimum sit at a vertex? Two statements.",
+     "th": "ทำไมคำตอบที่ดีที่สุดจึงอยู่ที่ vertex มีสองข้อความ"
+    },
+    {
+     "s": 5.316,
+     "e": 12.224,
+     "en": "First, a point is a vertex of the standard-form feasible set exactly when it is a basic feasible solution.",
+     "th": "ข้อแรก จุดหนึ่งเป็น vertex ของเซตที่เป็นไปได้ใน standard form ก็ต่อเมื่อมันเป็น basic feasible solution"
+    },
+    {
+     "s": 12.224,
+     "e": 22.119,
+     "en": "One direction: with the nonbasic variables at zero, x B is the only solution, so a BFS cannot be the midpoint of two other feasible points. The other:",
+     "th": "ทิศทางหนึ่ง เมื่อ nonbasic เป็นศูนย์ x B เป็นคำตอบเดียว BFS จึงเป็นจุดกึ่งกลางของจุดที่เป็นไปได้อื่นสองจุดไม่ได้"
+    },
+    {
+     "s": 22.119,
+     "e": 28.934,
+     "en": "at a vertex, the columns of the positive variables are linearly independent, and they extend to a basis.",
+     "th": "อีกทิศทาง ที่ vertex คอลัมน์ของตัวแปรที่เป็นบวกเป็นอิสระเชิงเส้น และขยายเป็น basis ได้"
+    },
+    {
+     "s": 28.934,
+     "e": 40.96,
+     "en": "Check it at the optimum. The positive variables are x one, x two and s two. Their columns are three, one, one; two, two, one; and zero, one, zero.",
+     "th": "ตรวจที่คำตอบที่ดีที่สุด ตัวแปรที่เป็นบวกคือ x หนึ่ง x สอง และ s สอง คอลัมน์ของมันคือ สาม หนึ่ง หนึ่ง; สอง สอง หนึ่ง; และ ศูนย์ หนึ่ง"
+    },
+    {
+     "s": 40.96,
+     "e": 47.75,
+     "en": "They are linearly independent, so they form a basis, and six and three is a vertex.",
+     "th": "ศูนย์ ซึ่งเป็นอิสระเชิงเส้น จึงประกอบเป็น basis และหกกับสามจึงเป็น vertex"
+    },
+    {
+     "s": 47.75,
+     "e": 52.421,
+     "en": "Second, if the optimum is finite, some vertex is optimal.",
+     "th": "ข้อสอง ถ้าค่าที่ดีที่สุดมีขอบเขต จะมี vertex ที่เป็นคำตอบที่ดีที่สุด"
+    },
+    {
+     "s": 52.421,
+     "e": 60.676,
+     "en": "A polyhedron is the convex hull of its vertices plus a cone of rays. A finite optimum means no ray improves the objective.",
+     "th": "พอลิฮีดรอนคือ convex hull ของ vertex บวกกับกรวยของรังสี ค่าที่ดีที่สุดที่มีขอบเขตแปลว่าไม่มีรังสีใดทำให้ฟังก์ชันเป้าหมายดีขึ้น"
+    },
+    {
+     "s": 60.676,
+     "e": 71.079,
+     "en": "And a linear function over the convex hull of the vertices is best at a vertex: that is the argument of Session 5, since a linear function is also concave.",
+     "th": "และฟังก์ชันเชิงเส้นบน convex hull ของ vertex ดีที่สุดที่ vertex ซึ่งเป็นเหตุผลจากคาบที่ 5 เพราะฟังก์ชันเชิงเส้นก็เป็น concave"
+    },
+    {
+     "s": 71.079,
+     "e": 83.69,
+     "en": "The assumption that a vertex exists matters. A polyhedron that contains a whole line has no vertex at all. In standard form that cannot happen, because x at least zero rules out lines.",
+     "th": "สมมติฐานว่ามี vertex อยู่นั้นสำคัญ พอลิฮีดรอนที่มีเส้นตรงทั้งเส้นอยู่ข้างในไม่มี vertex เลย ใน standard form สิ่งนี้เกิดไม่ได้ เพราะ x ไม่ติดลบตัดเส้นตรงออก"
+    },
+    {
+     "s": 83.69,
+     "e": 89.961,
+     "en": "This is one more reason to write a free variable as the difference of two non-negative ones.",
+     "th": "นี่คืออีกเหตุผลหนึ่งที่เขียนตัวแปรอิสระเป็นผลต่างของตัวแปรที่ไม่ติดลบสองตัว"
+    },
+    {
+     "s": 89.961,
+     "e": 99.395,
+     "en": "This is why a finite list of candidates exists at all. If several vertices are optimal, the whole edge or face between them is optimal.",
+     "th": "นี่คือเหตุที่มีรายการผู้สมัครจำนวนจำกัดเลย ถ้ามีหลาย vertex ที่ดีที่สุด ทั้ง edge หรือหน้าระหว่างพวกมันก็ดีที่สุด"
+    },
+    {
+     "s": 99.395,
+     "e": 106.632,
+     "en": "Interior-point methods end inside that optimal face, and crossover, from Session 2, moves them to a vertex.",
+     "th": "วิธี interior point จบภายในหน้าที่ดีที่สุดนั้น และ crossover จากคาบที่ 2 พามันไปที่ vertex"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "file": "audio/slide-11.mp3",
+   "duration": 82.272,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.129,
+     "en": "One complication: degeneracy.",
+     "th": "ความซับซ้อนหนึ่งข้อ คือ degeneracy"
+    },
+    {
+     "s": 3.129,
+     "e": 15.289,
+     "en": "Add a feedstock row, two x one plus x two at most fifteen. It passes exactly through six and three, so three rows are tight at one point of the plane, one more than two variables need.",
+     "th": "เพิ่มแถววัตถุดิบ สอง x หนึ่ง บวก x สอง ไม่เกินสิบห้า แถวนี้ผ่านจุดหกกับสามพอดี จึงมีสามแถวที่แน่นที่จุดเดียวในระนาบ มากกว่าที่ตัวแปรสองตัวต้องการหนึ่งแถว"
+    },
+    {
+     "s": 15.289,
+     "e": 23.598,
+     "en": "Now there are four rows, so a basis has four variables. At six and three only x one, x two and s two are positive.",
+     "th": "ตอนนี้มีสี่แถว basis จึงมีสี่ตัวแปร ที่หกกับสามมีเพียง x หนึ่ง x สอง และ s สอง ที่เป็นบวก ตัวแปร basic"
+    },
+    {
+     "s": 23.598,
+     "e": 31.329,
+     "en": "The fourth basic variable is one of the zero slacks, and any of the three will do: three bases, one vertex.",
+     "th": "ตัวที่สี่คือ slack ตัวใดตัวหนึ่งที่เป็นศูนย์ และเลือกได้ทั้งสามตัว จึงมีสาม basis สำหรับ vertex เดียว"
+    },
+    {
+     "s": 31.329,
+     "e": 37.026,
+     "en": "That is the definition: a BFS is degenerate when a basic variable is zero.",
+     "th": "นี่คือนิยาม BFS เป็น degenerate เมื่อมีตัวแปร basic ที่เป็นศูนย์"
+    },
+    {
+     "s": 37.026,
+     "e": 47.737,
+     "en": "On slide 9 each vertex had exactly one basis. Degeneracy breaks that one-to-one link, and with it the link between a vertex and a single set of prices.",
+     "th": "ในหน้า 9 แต่ละ vertex มี basis พอดีหนึ่งชุด degeneracy ทำลายความสัมพันธ์แบบหนึ่งต่อหนึ่งนั้น และทำลายความสัมพันธ์ระหว่าง vertex กับชุดราคาเพียงชุดเดียวไปด้วย"
+    },
+    {
+     "s": 47.737,
+     "e": 58.553,
+     "en": "In the plane, a nondegenerate vertex has exactly two tight constraints, and in n dimensions exactly n. Degeneracy means one or more extra tight constraints at the same point.",
+     "th": "ในระนาบ vertex ที่ไม่ degenerate มีข้อจำกัดที่แน่นพอดีสองตัว และใน n มิติมีพอดี n ตัว degeneracy คือการมีข้อจำกัดที่แน่นเกินมาหนึ่งตัวหรือมากกว่าที่จุดเดียวกัน"
+    },
+    {
+     "s": 58.553,
+     "e": 64.329,
+     "en": "You met it in Session 2: at octane 98, six positive flows and seven tight rows.",
+     "th": "คุณเคยพบในคาบที่ 2 ที่ค่าออกเทน 98 มีการไหลที่เป็นบวกหกตัว และแถวที่แน่นเจ็ดแถว"
+    },
+    {
+     "s": 64.329,
+     "e": 74.118,
+     "en": "It has two consequences that we will meet today. A simplex pivot can take a step of length zero, and the prices at the vertex are not unique.",
+     "th": "มันมีผลสองข้อที่เราจะพบวันนี้ การ pivot ของ simplex อาจก้าวยาวศูนย์ และราคาที่ vertex นั้นไม่ได้มีค่าเดียว"
+    },
+    {
+     "s": 74.118,
+     "e": 82.197,
+     "en": "Degeneracy is common in plant models, because balances, equal capacities and round data make extra rows tight at the same point.",
+     "th": "degeneracy พบบ่อยในโมเดลโรงงาน เพราะสมดุล ความจุที่เท่ากัน และข้อมูลที่เป็นตัวเลขกลม ๆ ทำให้แถวเกินจำเป็นแน่นที่จุดเดียวกัน"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "file": "audio/slide-12.mp3",
+   "duration": 31.872,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.829,
+     "en": "Check your understanding: standard form and bases. Four items, about five minutes.",
+     "th": "ตรวจความเข้าใจเรื่อง standard form และ basis สี่ข้อ ประมาณห้านาที"
+    },
+    {
+     "s": 6.829,
+     "e": 14.316,
+     "en": "For item one, remember that a free variable is split into two parts, and that a greater-than-or-equal row gets a surplus.",
+     "th": "สำหรับข้อหนึ่ง จำไว้ว่าตัวแปรอิสระถูกแยกเป็นสองส่วน และแถวแบบมากกว่าหรือเท่ากับได้ตัวแปร surplus"
+    },
+    {
+     "s": 14.316,
+     "e": 21.211,
+     "en": "Item two uses the plant: compute the basic solution of one basis and decide whether it is a vertex.",
+     "th": "ข้อสองใช้โรงงานนี้ คำนวณ basic solution ของ basis หนึ่ง และตัดสินว่าเป็น vertex หรือไม่"
+    },
+    {
+     "s": 21.211,
+     "e": 27.316,
+     "en": "Item three is a count, and item four connects to Session 2's rule about positive variables.",
+     "th": "ข้อสามเป็นการนับ และข้อสี่เชื่อมกับกฎของคาบที่ 2 เรื่องตัวแปรที่เป็นบวก"
+    },
+    {
+     "s": 27.316,
+     "e": 31.803,
+     "en": "Pause the narration, write your answers, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย เขียนคำตอบ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "file": "audio/slide-13.mp3",
+   "duration": 91.008,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.103,
+     "en": "Part two: the simplex method.",
+     "th": "ส่วนที่สอง วิธี simplex"
+    },
+    {
+     "s": 3.103,
+     "e": 11.539,
+     "en": "Start at a basic feasible solution and ask: is a neighboring vertex better? The answer comes from the reduced costs.",
+     "th": "เริ่มที่ basic feasible solution หนึ่ง แล้วถามว่า vertex ข้างเคียงดีกว่าหรือไม่ คำตอบมาจาก reduced cost"
+    },
+    {
+     "s": 11.539,
+     "e": 21.013,
+     "en": "The current basis implies a price for each row: y transpose equals c B transpose times B inverse, where c B holds the margins of the basic variables.",
+     "th": "basis ปัจจุบันกำหนดราคาให้แต่ละแถว คือ y transpose เท่ากับ c B transpose คูณ B อินเวอร์ส โดย c B คือกำไรของตัวแปร basic"
+    },
+    {
+     "s": 21.013,
+     "e": 29.882,
+     "en": "The reduced cost of column j is its margin minus the cost of the resources it uses, at those prices: c j minus y transpose A j.",
+     "th": "reduced cost ของคอลัมน์ j คือกำไรของมัน ลบด้วยต้นทุนของทรัพยากรที่มันใช้ ที่ราคาเหล่านั้น คือ c j ลบ y transpose A j"
+    },
+    {
+     "s": 29.882,
+     "e": 40.487,
+     "en": "Two quick checks of the formula. For a basic column, A j is a column of B, so y transpose A j equals c j, and the reduced cost is zero.",
+     "th": "ตรวจสูตรนี้สองแบบ สำหรับคอลัมน์ basic A j คือคอลัมน์หนึ่งของ B ดังนั้น y transpose A j เท่ากับ c j และ reduced cost เป็นศูนย์"
+    },
+    {
+     "s": 40.487,
+     "e": 52.039,
+     "en": "For a slack column, A j is a unit vector and c j is zero, so the reduced cost of slack i is minus y i. The slack columns carry the prices, with the sign changed.",
+     "th": "สำหรับคอลัมน์ slack A j เป็นเวกเตอร์หน่วยและ c j เป็นศูนย์ reduced cost ของ slack i จึงเท่ากับลบ y i คอลัมน์ slack จึงเก็บราคาไว้ โดยกลับเครื่องหมาย"
+    },
+    {
+     "s": 52.039,
+     "e": 63.632,
+     "en": "If a reduced cost is positive, one unit of that variable earns more than the resources it would take from the current plan are worth. Bringing it into the basis improves the objective.",
+     "th": "ถ้า reduced cost เป็นบวก หนึ่งหน่วยของตัวแปรนั้นทำกำไรได้มากกว่ามูลค่าของทรัพยากรที่มันจะดึงไปจากแผนปัจจุบัน การนำมันเข้า basis จึงทำให้ค่าเป้าหมายดีขึ้น"
+    },
+    {
+     "s": 63.632,
+     "e": 72.355,
+     "en": "If no reduced cost is positive, no neighbor is better, and because an LP is convex, no point at all is better: the BFS is optimal.",
+     "th": "ถ้าไม่มี reduced cost ใดเป็นบวก ไม่มีเพื่อนบ้านใดดีกว่า และเพราะ LP เป็น convex จึงไม่มีจุดใดดีกว่าเลย BFS นั้นเป็นคำตอบที่ดีที่สุด"
+    },
+    {
+     "s": 72.355,
+     "e": 81.553,
+     "en": "For a minimization the signs flip: the BFS is optimal when every reduced cost is zero or positive, and a negative one marks an improving column.",
+     "th": "สำหรับการหาค่าต่ำสุด เครื่องหมายกลับกัน BFS เป็นคำตอบที่ดีที่สุดเมื่อ reduced cost ทุกตัวเป็นศูนย์หรือบวก และตัวที่เป็นลบบ่งบอกคอลัมน์ที่ทำให้ดีขึ้น"
+    },
+    {
+     "s": 81.553,
+     "e": 90.947,
+     "en": "To choose among several positive reduced costs, Dantzig's rule takes the largest, Bland's rule the smallest index, and solvers use steepest-edge pricing.",
+     "th": "ถ้ามี reduced cost ที่เป็นบวกหลายตัว กฎของ Dantzig เลือกตัวที่ใหญ่ที่สุด กฎของ Bland เลือกดัชนีที่เล็กที่สุด และ solver ใช้ steepest-edge pricing"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "file": "audio/slide-14.mp3",
+   "duration": 89.088,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.261,
+     "en": "Once a variable is chosen to enter, how far can it go?",
+     "th": "เมื่อเลือกตัวแปรที่จะเข้าแล้ว มันเพิ่มได้มากเท่าใด"
+    },
+    {
+     "s": 4.261,
+     "e": 17.079,
+     "en": "Raise the entering variable from zero to t, and keep the other nonbasic variables at zero. The basic variables change linearly: x B of t equals x B minus t times B inverse A e.",
+     "th": "เพิ่มตัวแปรที่เข้าจากศูนย์เป็น t และให้ nonbasic ตัวอื่นเป็นศูนย์ ตัวแปร basic เปลี่ยนแบบเชิงเส้น คือ x B ของ t เท่ากับ x B ลบ t คูณ B อินเวอร์ส A e"
+    },
+    {
+     "s": 17.079,
+     "e": 28.789,
+     "en": "Where does that formula come from? Feasibility says B x B plus A e times t equals b. Multiply by B inverse: x B equals B inverse b minus t times B inverse A e.",
+     "th": "สูตรนี้มาจากไหน ความเป็นไปได้บอกว่า B x B บวก A e คูณ t เท่ากับ b คูณด้วย B อินเวอร์ส ได้ x B เท่ากับ B อินเวอร์ส b ลบ t คูณ B อินเวอร์ส A e"
+    },
+    {
+     "s": 28.789,
+     "e": 35.132,
+     "en": "So the vector B inverse A e says how much each basic variable gives up per unit of the entering one.",
+     "th": "เวกเตอร์ B อินเวอร์ส A e จึงบอกว่าตัวแปร basic แต่ละตัวต้องลดลงเท่าใดต่อหนึ่งหน่วยของตัวแปรที่เข้า"
+    },
+    {
+     "s": 35.132,
+     "e": 46.855,
+     "en": "Only rows with a positive entry in that column limit the step, because those basic variables fall as t rises. Each limits t to its current value divided by the entry.",
+     "th": "เฉพาะแถวที่มีค่าบวกในคอลัมน์นั้นที่จำกัดก้าว เพราะตัวแปร basic เหล่านั้นลดลงเมื่อ t เพิ่ม แต่ละแถวจำกัด t ไม่ให้เกินค่าปัจจุบันหารด้วยค่าในคอลัมน์"
+    },
+    {
+     "s": 46.855,
+     "e": 59.026,
+     "en": "The smallest ratio wins. Its basic variable reaches zero first, and it leaves the basis. That is the swap of slide nine: one variable enters, one leaves.",
+     "th": "อัตราส่วนที่น้อยที่สุดชนะ ตัวแปร basic ของแถวนั้นถึงศูนย์ก่อน และออกจาก basis นี่คือการสลับในหน้าเก้า ตัวแปรหนึ่งเข้า อีกตัวหนึ่งออก"
+    },
+    {
+     "s": 59.026,
+     "e": 66.013,
+     "en": "Along the way the objective rises at the rate of the reduced cost, so one pivot gains d e times the step length.",
+     "th": "ระหว่างทาง ค่าเป้าหมายเพิ่มขึ้นในอัตราเท่ากับ reduced cost การ pivot หนึ่งครั้งจึงได้ d e คูณความยาวก้าว"
+    },
+    {
+     "s": 66.013,
+     "e": 74.539,
+     "en": "If no entry is positive, nothing limits the step: the objective grows without bound, and the column gives the improving ray of Session 1.",
+     "th": "ถ้าไม่มีค่าใดเป็นบวก ไม่มีอะไรจำกัดก้าว ค่าเป้าหมายเพิ่มได้ไม่จำกัด และคอลัมน์นั้นให้รังสีที่ดีขึ้นแบบในคาบที่ 1"
+    },
+    {
+     "s": 74.539,
+     "e": 81.487,
+     "en": "At a degenerate vertex the smallest ratio can be zero: the basis changes, but the point does not move.",
+     "th": "ที่ vertex แบบ degenerate อัตราส่วนที่น้อยที่สุดอาจเป็นศูนย์ basis เปลี่ยน แต่จุดไม่ขยับ"
+    },
+    {
+     "s": 81.487,
+     "e": 89.026,
+     "en": "In the tableau, one pivot is one Gauss–Jordan step, with the pivot element where the leaving row meets the entering column.",
+     "th": "ใน tableau การ pivot หนึ่งครั้งคือการกำจัดแบบ Gauss–Jordan หนึ่งขั้น โดยมีตัว pivot อยู่ตรงที่แถวที่ออกตัดกับคอลัมน์ที่เข้า"
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "file": "audio/slide-15.mp3",
+   "duration": 96.48,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.353,
+     "en": "Now two pivots by hand on the plant.",
+     "th": "ต่อไป pivot สองครั้งด้วยมือบนโรงงานนี้"
+    },
+    {
+     "s": 3.353,
+     "e": 13.303,
+     "en": "We start at the origin. The basis is the three slacks: nothing is made, every hour is idle, z is zero, and the implied prices are all zero.",
+     "th": "เราเริ่มที่จุดกำเนิด basis คือ slack ทั้งสามตัว ไม่ผลิตอะไร ทุกชั่วโมงว่าง z เป็นศูนย์ และราคาที่ตามมาเป็นศูนย์ทั้งหมด"
+    },
+    {
+     "s": 13.303,
+     "e": 25.357,
+     "en": "Read the tableau from the left: one row per basic variable, one column per variable, then the right-hand side, which holds the current values of the basic variables, and the ratio.",
+     "th": "อ่าน tableau จากซ้าย หนึ่งแถวต่อตัวแปร basic หนึ่งคอลัมน์ต่อตัวแปร แล้วตามด้วยค่าทางขวาซึ่งเก็บค่าปัจจุบันของตัวแปร basic และอัตราส่วน"
+    },
+    {
+     "s": 25.357,
+     "e": 28.487,
+     "en": "The last row, d, holds the reduced costs and z.",
+     "th": "แถวสุดท้าย d เก็บ reduced cost และ z"
+    },
+    {
+     "s": 28.487,
+     "e": 40.0,
+     "en": "With zero prices, the reduced costs are just the margins, 400 and 300. Both products pay. Dantzig's rule picks x one, the larger.",
+     "th": "เมื่อราคาเป็นศูนย์ reduced cost ก็คือกำไร 400 และ 300 ทั้งสองผลิตภัณฑ์คุ้ม กฎของ Dantzig เลือก x หนึ่ง ซึ่งมากกว่า"
+    },
+    {
+     "s": 40.0,
+     "e": 52.314,
+     "en": "The ratio test in the x one column: twenty-four over three is eight, sixteen over one is sixteen, nine over one is nine. The smallest is eight, in the reactor row, so s one leaves:",
+     "th": "ratio test ในคอลัมน์ x หนึ่ง ยี่สิบสี่หารสามได้แปด สิบหกหารหนึ่งได้สิบหก เก้าหารหนึ่งได้เก้า ค่าน้อยที่สุดคือแปด ในแถว reactor s หนึ่งจึงออก"
+    },
+    {
+     "s": 52.314,
+     "e": 53.947,
+     "en": "the reactor fills first.",
+     "th": "reactor เต็มก่อน"
+    },
+    {
+     "s": 53.947,
+     "e": 64.526,
+     "en": "Read the ratios physically: making only Additive, the reactor allows eight tonnes, packaging nine and separation sixteen. The reactor runs out first.",
+     "th": "อ่านอัตราส่วนในเชิงกายภาพ ถ้าผลิตเพียง Additive reactor ยอมได้แปดตัน การบรรจุเก้าตัน และการแยกสิบหกตัน reactor หมดก่อน"
+    },
+    {
+     "s": 64.526,
+     "e": 76.276,
+     "en": "In terms of bases: s one, s two, s three becomes x one, s two, s three. On the picture, we move from the origin along the x one axis to eight and zero.",
+     "th": "ในแง่ของ basis s หนึ่ง s สอง s สาม กลายเป็น x หนึ่ง s สอง s สาม บนภาพ เราเดินจากจุดกำเนิดไปตามแกน x หนึ่ง ถึงจุดแปดกับศูนย์"
+    },
+    {
+     "s": 76.276,
+     "e": 88.789,
+     "en": "The pivot divides the reactor row by three and clears x one from the other rows. The new vertex earns 400 times eight, 3,200 dollars: Session 1's second-best vertex.",
+     "th": "การ pivot หารแถว reactor ด้วยสาม แล้วกำจัด x หนึ่งออกจากแถวอื่น vertex ใหม่ได้ 400 คูณแปด คือ 3,200 ดอลลาร์ ซึ่งเป็น vertex ที่ดีอันดับสองของคาบที่ 1"
+    },
+    {
+     "s": 88.789,
+     "e": 96.408,
+     "en": "Check the gain with the rule of the previous slide: a reduced cost of 400 times a step of eight is 3,200.",
+     "th": "ตรวจกำไรที่ได้ด้วยกฎในหน้าก่อน reduced cost 400 คูณก้าวยาวแปด เท่ากับ 3,200"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "file": "audio/slide-16.mp3",
+   "duration": 99.864,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.195,
+     "en": "Iteration two.",
+     "th": "รอบที่สอง"
+    },
+    {
+     "s": 2.195,
+     "e": 12.737,
+     "en": "At eight and zero the reactor is full, so the prices change. The reactor is now worth 400 over three per hour, the margin of Additive per reactor hour.",
+     "th": "ที่จุดแปดกับศูนย์ reactor เต็ม ราคาจึงเปลี่ยน ตอนนี้ reactor มีค่า 400 หารสามต่อชั่วโมง คือกำไรของ Additive ต่อชั่วโมง reactor"
+    },
+    {
+     "s": 12.737,
+     "e": 26.224,
+     "en": "Binder's reduced cost is 300 minus two hours times 400 over three, which is 100 over three. Still positive: at these prices, Binder pays. So x two enters.",
+     "th": "reduced cost ของ Binder คือ 300 ลบสองชั่วโมงคูณ 400 หารสาม ได้ 100 หารสาม ยังเป็นบวก ที่ราคาเหล่านี้ Binder คุ้ม x สองจึงเข้า"
+    },
+    {
+     "s": 26.224,
+     "e": 39.529,
+     "en": "Physically: at eight and zero every reactor hour goes to Additive. A tonne of Binder needs two reactor hours, which cost 266.7 dollars at that price, less than Binder's 300.",
+     "th": "ในเชิงกายภาพ ที่จุดแปดกับศูนย์ ทุกชั่วโมงของ reactor ใช้กับ Additive Binder หนึ่งตันต้องใช้ reactor สองชั่วโมง ซึ่งมีค่า 266.7 ดอลลาร์ที่ราคานั้น น้อยกว่ากำไร 300 ของ Binder"
+    },
+    {
+     "s": 39.529,
+     "e": 43.658,
+     "en": "So moving hours to Binder pays, until packaging fills.",
+     "th": "การย้ายชั่วโมงไปให้ Binder จึงคุ้ม จนกว่าการบรรจุจะเต็ม"
+    },
+    {
+     "s": 43.658,
+     "e": 57.408,
+     "en": "The ratios are twelve, six and three. Packaging limits first, so s three leaves. The step is three: x two becomes three, and x one falls to eight minus two thirds of three, which is six.",
+     "th": "อัตราส่วนคือสิบสอง หก และสาม การบรรจุจำกัดก่อน s สามจึงออก ก้าวยาวสาม x สองกลายเป็นสาม และ x หนึ่งลดเหลือแปดลบสองในสามของสาม คือหก"
+    },
+    {
+     "s": 57.408,
+     "e": 65.474,
+     "en": "The gain is 100 over three times three, which is 100, so z goes from 3,200 to 3,300.",
+     "th": "กำไรที่ได้คือ 100 หารสามคูณสาม เท่ากับ 100 z จึงเปลี่ยนจาก 3,200 เป็น 3,300"
+    },
+    {
+     "s": 65.474,
+     "e": 75.132,
+     "en": "The basis goes from x one, s two, s three to x one, x two, s two, and the vertex from eight and zero to six and three, along the reactor line.",
+     "th": "basis เปลี่ยนจาก x หนึ่ง s สอง s สาม เป็น x หนึ่ง x สอง s สอง และ vertex เปลี่ยนจากแปดกับศูนย์ เป็นหกกับสาม ตามแนวเส้น reactor"
+    },
+    {
+     "s": 75.132,
+     "e": 82.684,
+     "en": "In the second tableau every reduced cost is zero or negative: optimal, with z equal to 3,300.",
+     "th": "ใน tableau ที่สอง reduced cost ทุกตัวเป็นศูนย์หรือลบ จึงเป็นคำตอบที่ดีที่สุด z เท่ากับ 3,300"
+    },
+    {
+     "s": 82.684,
+     "e": 95.944,
+     "en": "And look at the slack columns: their reduced costs are minus 100, zero and minus 100. A slack's reduced cost is minus its row's price, so the prices are 100, zero and 100 dollars per hour:",
+     "th": "และดูคอลัมน์ slack reduced cost ของมันคือลบ 100 ศูนย์ และลบ 100 reduced cost ของ slack คือค่าลบของราคาแถวนั้น ราคาจึงเป็น 100 ศูนย์ และ 100 ดอลลาร์ต่อชั่วโมง"
+    },
+    {
+     "s": 95.944,
+     "e": 99.803,
+     "en": "Session 1's certificate, produced by the method itself.",
+     "th": "ซึ่งคือใบรับรองของคาบที่ 1 ที่วิธีนี้สร้างขึ้นเอง"
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "file": "audio/slide-17.mp3",
+   "duration": 59.304,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.132,
+     "en": "Here is the same walk as a demo. Press Next pivot.",
+     "th": "นี่คือการเดินเดียวกันในรูปการสาธิต กด Next pivot"
+    },
+    {
+     "s": 5.132,
+     "e": 10.763,
+     "en": "Before each press, predict which variable will enter and which will leave, then check.",
+     "th": "ก่อนกดแต่ละครั้ง ให้ทำนายว่าตัวแปรใดจะเข้าและตัวใดจะออก แล้วตรวจ"
+    },
+    {
+     "s": 10.763,
+     "e": 21.553,
+     "en": "The line above the tableau names the current basis and the next one. On the plot, every vertex carries its basis, and the amber path grows one edge at a time.",
+     "th": "บรรทัดเหนือ tableau บอก basis ปัจจุบันและ basis ถัดไป บนกราฟ ทุก vertex มี basis ของมันกำกับ และเส้นทางสีส้มยาวขึ้นทีละ edge"
+    },
+    {
+     "s": 21.553,
+     "e": 31.487,
+     "en": "Each step is one swap of a basic variable and one edge of the feasible region. Two pivots visit three of the five vertices and stop at the optimum.",
+     "th": "แต่ละขั้นคือการสลับ basic variable หนึ่งตัว และ edge หนึ่งเส้นของบริเวณที่เป็นไปได้ สอง pivot เยี่ยมสามจากห้า vertex และหยุดที่คำตอบที่ดีที่สุด"
+    },
+    {
+     "s": 31.487,
+     "e": 42.829,
+     "en": "Then press Start again and step through once more, this time reading the d row. Under Dantzig's rule the entering variable is always the one with the largest positive reduced cost.",
+     "th": "จากนั้นกด Start again แล้วเดินอีกครั้ง คราวนี้อ่านแถว d ภายใต้กฎของ Dantzig ตัวแปรที่เข้าคือตัวที่มี reduced cost เป็นบวกมากที่สุดเสมอ"
+    },
+    {
+     "s": 42.829,
+     "e": 50.013,
+     "en": "In the tableau, the entering column is in amber, the leaving row in rust, and the pivot element is highlighted where they meet.",
+     "th": "ใน tableau คอลัมน์ที่เข้าแสดงเป็นสีส้ม แถวที่ออกเป็นสีสนิม และตัว pivot ถูกเน้นตรงจุดที่มันตัดกัน"
+    },
+    {
+     "s": 50.013,
+     "e": 59.224,
+     "en": "Press D to see the code. It runs the same tableau with exact fractions, so the numbers on the slide are the numbers you would get by hand.",
+     "th": "กด D เพื่อดูโค้ด มันทำ tableau เดียวกันด้วยเศษส่วนแบบแม่นยำ ตัวเลขบนสไลด์จึงเป็นตัวเลขเดียวกับที่คุณจะได้ด้วยมือ"
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "file": "audio/slide-18.mp3",
+   "duration": 88.488,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.168,
+     "en": "How does the method start when the origin is not feasible?",
+     "th": "วิธีนี้เริ่มอย่างไรเมื่อจุดกำเนิดเป็นไปไม่ได้"
+    },
+    {
+     "s": 4.168,
+     "e": 16.564,
+     "en": "Rows with greater-than or equal signs have no slack to start from. Add an artificial variable to each, and first solve a different problem: minimize the sum of the artificials.",
+     "th": "แถวที่เป็นมากกว่าหรือเท่ากับ หรือเป็นสมการ ไม่มี slack ให้เริ่ม ให้เพิ่มตัวแปรเทียมให้แต่ละแถว แล้วแก้ปัญหาอีกแบบก่อน คือหาค่าต่ำสุดของผลรวมตัวแปรเทียม"
+    },
+    {
+     "s": 16.564,
+     "e": 17.684,
+     "en": "That is Phase I.",
+     "th": "นั่นคือ Phase I"
+    },
+    {
+     "s": 17.684,
+     "e": 27.526,
+     "en": "If Phase I reaches zero, the artificials are gone and the basis is a first BFS of the real problem. Phase II then optimizes as before.",
+     "th": "ถ้า Phase I ได้ศูนย์ ตัวแปรเทียมหายไป และ basis นั้นเป็น BFS แรกของปัญหาจริง จากนั้น Phase II หาค่าที่ดีที่สุดเหมือนเดิม"
+    },
+    {
+     "s": 27.526,
+     "e": 40.398,
+     "en": "If Phase I stays above zero, no feasible plan exists. Session 1's supply contract is the example: packaging allows at most nine tonnes, the contract asks for at least twelve.",
+     "th": "ถ้า Phase I ยังมากกว่าศูนย์ ไม่มีแผนที่เป็นไปได้ สัญญาจัดส่งในคาบที่ 1 เป็นตัวอย่าง การบรรจุยอมได้ไม่เกินเก้าตัน แต่สัญญาต้องการอย่างน้อยสิบสอง"
+    },
+    {
+     "s": 40.398,
+     "e": 43.855,
+     "en": "Phase I cannot push the artificial below three.",
+     "th": "Phase I ลดตัวแปรเทียมได้ไม่ต่ำกว่าสาม"
+    },
+    {
+     "s": 43.855,
+     "e": 51.601,
+     "en": "Follow it. The contract row becomes x one plus x two, minus a surplus, plus an artificial, equal to 12.",
+     "th": "ลองไล่ดู แถวสัญญากลายเป็น x หนึ่ง บวก x สอง ลบ surplus บวกตัวแปรเทียม เท่ากับ 12"
+    },
+    {
+     "s": 51.601,
+     "e": 60.092,
+     "en": "Phase I starts with the artificial at 12 and raises production to reduce it, until packaging binds at nine tonnes.",
+     "th": "Phase I เริ่มด้วยตัวแปรเทียมเท่ากับ 12 แล้วเพิ่มการผลิตเพื่อลดมัน จนการบรรจุตึงที่เก้าตัน"
+    },
+    {
+     "s": 60.092,
+     "e": 70.882,
+     "en": "That three is the same number as Session 1's Farkas certificate, nine minus twelve. The proof of infeasibility and the failed Phase I are two views of one fact.",
+     "th": "สามนั้นคือตัวเลขเดียวกับใบรับรอง Farkas ในคาบที่ 1 คือเก้าลบสิบสอง การพิสูจน์ว่าเป็นไปไม่ได้กับ Phase I ที่ไม่สำเร็จคือสองมุมของข้อเท็จจริงเดียวกัน"
+    },
+    {
+     "s": 70.882,
+     "e": 81.526,
+     "en": "So every simplex run ends in one of Session 1's three outcomes: optimal, infeasible when Phase I stays positive, or unbounded when an entering column has no positive entry.",
+     "th": "การรัน simplex ทุกครั้งจึงจบในหนึ่งในสามผลของคาบที่ 1 คือได้คำตอบที่ดีที่สุด เป็นไปไม่ได้เมื่อ Phase I ยังเป็นบวก หรือไม่มีขอบเขตเมื่อคอลัมน์ที่เข้าไม่มีค่าบวกเลย"
+    },
+    {
+     "s": 81.526,
+     "e": 88.408,
+     "en": "Real solvers start with presolve and a crash basis, and HiGHS uses the dual simplex method by default.",
+     "th": "solver จริงเริ่มด้วย presolve และ crash basis และ HiGHS ใช้วิธี dual simplex เป็นค่าเริ่มต้น"
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "file": "audio/slide-19.mp3",
+   "duration": 88.104,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.208,
+     "en": "Degeneracy creates one more risk.",
+     "th": "degeneracy สร้างความเสี่ยงอีกข้อหนึ่ง"
+    },
+    {
+     "s": 3.208,
+     "e": 10.382,
+     "en": "At a degenerate vertex the ratio test can give a step of zero: the basis changes, but x and z do not.",
+     "th": "ที่ vertex แบบ degenerate ratio test อาจให้ก้าวยาวศูนย์ basis เปลี่ยน แต่ x และ z ไม่เปลี่ยน"
+    },
+    {
+     "s": 10.382,
+     "e": 23.75,
+     "en": "A sequence of such zero steps can come back to a basis already visited. Then the method cycles and never stops. Beale published a small example in 1955 with Dantzig's rule.",
+     "th": "ลำดับของก้าวยาวศูนย์แบบนี้อาจวนกลับมาที่ basis ที่เคยเยี่ยมแล้ว แล้ววิธีนี้จะวนซ้ำไม่หยุด Beale ตีพิมพ์ตัวอย่างเล็ก ๆ ไว้ในปี 1955 ด้วยกฎของ Dantzig"
+    },
+    {
+     "s": 23.75,
+     "e": 34.408,
+     "en": "Bland's rule, from 1977, prevents it: enter the smallest-index column with a positive reduced cost, and break ties in the ratio test by the smallest index too.",
+     "th": "กฎของ Bland ในปี 1977 ป้องกันได้ คือให้คอลัมน์ที่มีดัชนีเล็กที่สุดซึ่ง reduced cost เป็นบวกเข้า และตัดสินกรณีเสมอใน ratio test ด้วยดัชนีเล็กที่สุดเช่นกัน"
+    },
+    {
+     "s": 34.408,
+     "e": 43.082,
+     "en": "The idea of the proof: suppose a cycle exists, and look at the variable with the largest index among those that enter and leave during it.",
+     "th": "แนวคิดของบทพิสูจน์ สมมติว่ามีการวน แล้วดูตัวแปรที่มีดัชนีใหญ่ที่สุดในบรรดาตัวที่เข้าและออกระหว่างการวนนั้น"
+    },
+    {
+     "s": 43.082,
+     "e": 53.316,
+     "en": "Comparing the reduced costs at the pivot where it leaves and the pivot where it enters gives a contradiction. Chapter 3 of Bertsimas and Tsitsiklis has the details.",
+     "th": "การเปรียบเทียบ reduced cost ที่ pivot ที่มันออก กับ pivot ที่มันเข้า ให้ข้อขัดแย้ง รายละเอียดอยู่ในบทที่ 3 ของ Bertsimas และ Tsitsiklis"
+    },
+    {
+     "s": 53.316,
+     "e": 60.118,
+     "en": "Solvers prefer small perturbations of the right-hand sides, which separate the tight rows and remove the ties.",
+     "th": "solver นิยมรบกวนค่าทางขวาเล็กน้อย ซึ่งแยกแถวที่แน่นออกจากกันและทำให้ไม่มีการเสมอ"
+    },
+    {
+     "s": 60.118,
+     "e": 70.184,
+     "en": "Cycling is rare in practice. Stalling, a long run of degenerate pivots, is common in large plant models, and the perturbation is aimed at it.",
+     "th": "การวนซ้ำเกิดได้ยากในทางปฏิบัติ แต่การชะงัก หรือการ pivot แบบ degenerate ต่อกันยาว ๆ พบบ่อยในโมเดลโรงงานขนาดใหญ่ และการรบกวนมุ่งแก้ปัญหานี้"
+    },
+    {
+     "s": 70.184,
+     "e": 77.342,
+     "en": "For the plant, Bland's rule takes the same two pivots: x one has both the smaller index and the larger reduced cost.",
+     "th": "สำหรับโรงงานนี้ กฎของ Bland ใช้สอง pivot เหมือนกัน เพราะ x หนึ่งมีทั้งดัชนีที่เล็กกว่าและ reduced cost ที่ใหญ่กว่า"
+    },
+    {
+     "s": 77.342,
+     "e": 88.026,
+     "en": "The point to keep: with an anti-cycling rule, the simplex method always ends. That finite end is exactly what the proof of strong duality in part three needs.",
+     "th": "ประเด็นที่ควรจำคือ เมื่อมีกฎป้องกันการวน วิธี simplex จะจบเสมอ การจบในจำนวนขั้นที่จำกัดนี้คือสิ่งที่บทพิสูจน์ strong duality ในส่วนที่สามต้องการ"
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "file": "audio/slide-20.mp3",
+   "duration": 98.112,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.655,
+     "en": "How many pivots does the simplex method need?",
+     "th": "วิธี simplex ต้องใช้กี่ pivot"
+    },
+    {
+     "s": 3.655,
+     "e": 15.4,
+     "en": "The Klee–Minty cube is a squashed n-dimensional cube built so that Dantzig's rule visits every one of its two to the n vertices. The pivots double with each dimension:",
+     "th": "Klee–Minty cube คือลูกบาศก์ n มิติที่ถูกบีบ ออกแบบให้กฎของ Dantzig เยี่ยมทุก vertex ซึ่งมีสองยกกำลัง n จุด จำนวน pivot เพิ่มเป็นสองเท่าทุกมิติ คือ 3"
+    },
+    {
+     "s": 15.4,
+     "e": 20.434,
+     "en": "3 pivots for n equal to two, 15 for four, 63 for six, and 1,023 for ten.",
+     "th": "pivot เมื่อ n เท่ากับสอง 15 เมื่อสี่ 63 เมื่อหก และ 1,023 เมื่อสิบ"
+    },
+    {
+     "s": 20.434,
+     "e": 29.553,
+     "en": "HiGHS, with its dual simplex method and presolve switched off, needs between one and four iterations, and its interior-point method needs five to seven.",
+     "th": "HiGHS ด้วยวิธี dual simplex เมื่อปิด presolve ใช้หนึ่งถึงสี่รอบ และวิธี interior point ใช้ห้าถึงเจ็ดรอบ"
+    },
+    {
+     "s": 29.553,
+     "e": 39.212,
+     "en": "Why does Dantzig's rule fall into the trap? It chooses by the gain per unit of the entering variable, and that depends on how the variables are scaled.",
+     "th": "ทำไมกฎของ Dantzig จึงตกกับดัก มันเลือกจากกำไรต่อหนึ่งหน่วยของตัวแปรที่เข้า ซึ่งขึ้นกับการปรับสเกลของตัวแปร"
+    },
+    {
+     "s": 39.212,
+     "e": 44.487,
+     "en": "The cube is scaled so that this choice always takes a short edge with a small gain.",
+     "th": "ลูกบาศก์นี้ถูกปรับสเกลให้การเลือกแบบนี้พาไปตาม edge สั้น ๆ ที่ได้กำไรน้อยเสมอ"
+    },
+    {
+     "s": 44.487,
+     "e": 56.329,
+     "en": "Steepest-edge pricing measures the gain per unit of distance instead. No pivot rule is known to be polynomial in the worst case, but steepest edge needs far fewer pivots in practice.",
+     "th": "steepest-edge pricing วัดกำไรต่อหนึ่งหน่วยของระยะทางแทน ยังไม่มีกฎการ pivot ใดที่รู้ว่าเป็นพหุนามในกรณีเลวร้ายที่สุด แต่ steepest edge ใช้ pivot น้อยกว่ามากในทางปฏิบัติ"
+    },
+    {
+     "s": 56.329,
+     "e": 64.495,
+     "en": "So the simplex method is exponential in the worst case, yet in practice it usually needs a small multiple of the number of rows.",
+     "th": "วิธี simplex จึงเป็นเอกซ์โพเนนเชียลในกรณีเลวร้ายที่สุด แต่ในทางปฏิบัติมักใช้จำนวน pivot เพียงไม่กี่เท่าของจำนวนแถว"
+    },
+    {
+     "s": 64.495,
+     "e": 69.053,
+     "en": "Better pricing rules avoid the trap that Dantzig's rule falls into here.",
+     "th": "กฎการเลือกที่ดีกว่าหลีกเลี่ยงกับดักที่กฎของ Dantzig ตกลงไปที่นี่"
+    },
+    {
+     "s": 69.053,
+     "e": 79.282,
+     "en": "Methods with a polynomial guarantee exist: the ellipsoid method of Khachiyan, in 1979, and interior-point methods after Karmarkar, in 1984.",
+     "th": "วิธีที่รับประกันเวลาแบบพหุนามมีอยู่ คือวิธี ellipsoid ของ Khachiyan ในปี 1979 และวิธี interior point หลังจาก Karmarkar ในปี"
+    },
+    {
+     "s": 79.282,
+     "e": 84.908,
+     "en": "Modern solvers offer both simplex and interior point, and choose per problem.",
+     "th": "1984 solver สมัยใหม่มีทั้ง simplex และ interior point และเลือกตามปัญหา"
+    },
+    {
+     "s": 84.908,
+     "e": 94.816,
+     "en": "Interior-point methods move through the inside of the region along a central path defined by a barrier, and their iteration count grows only slowly with the size of the problem.",
+     "th": "วิธี interior point เคลื่อนผ่านด้านในของบริเวณไปตาม central path ที่กำหนดด้วย barrier และจำนวนรอบเพิ่มขึ้นช้ามากตามขนาดของปัญหา"
+    },
+    {
+     "s": 94.816,
+     "e": 98.039,
+     "en": "Press D to run the cube in your browser.",
+     "th": "กด D เพื่อรันลูกบาศก์นี้ในเบราว์เซอร์ของคุณ"
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "file": "audio/slide-21.mp3",
+   "duration": 31.968,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.421,
+     "en": "Check your understanding: pivots by hand. Four items, about five minutes.",
+     "th": "ตรวจความเข้าใจเรื่อง pivot ด้วยมือ สี่ข้อ ประมาณห้านาที"
+    },
+    {
+     "s": 6.421,
+     "e": 16.197,
+     "en": "Items one to three take a small problem from the slack basis to the optimum in two pivots. Write the basis after each pivot as well as the vertex.",
+     "th": "ข้อหนึ่งถึงสามพาปัญหาเล็ก ๆ จาก slack basis ไปถึงคำตอบที่ดีที่สุดด้วยสอง pivot ให้เขียน basis หลังแต่ละ pivot ด้วย นอกเหนือจาก vertex"
+    },
+    {
+     "s": 16.197,
+     "e": 22.974,
+     "en": "Item three gives you the reduced cost of x two at the new vertex, so you can check your prices along the way.",
+     "th": "ข้อสามให้ reduced cost ของ x สองที่ vertex ใหม่ คุณจึงตรวจราคาของคุณระหว่างทางได้"
+    },
+    {
+     "s": 22.974,
+     "e": 27.408,
+     "en": "Item four asks what to report when no row limits the step.",
+     "th": "ข้อสี่ถามว่าจะรายงานอะไรเมื่อไม่มีแถวใดจำกัดก้าว"
+    },
+    {
+     "s": 27.408,
+     "e": 31.895,
+     "en": "Pause the narration, write your answers, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย เขียนคำตอบ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 22,
+   "file": "audio/slide-22.mp3",
+   "duration": 9.96,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.432,
+     "en": "Take a ten-minute break.",
+     "th": "พักสิบนาที"
+    },
+    {
+     "s": 2.432,
+     "e": 9.908,
+     "en": "When you come back, take out your card. You will put a price, with a unit, on its tightest resource.",
+     "th": "เมื่อกลับมา ให้หยิบการ์ดออกมา คุณจะตั้งราคาพร้อมหน่วยให้กับทรัพยากรที่ตึงที่สุดของมัน"
+    }
+   ]
+  },
+  {
+   "n": 23,
+   "file": "audio/slide-23.mp3",
+   "duration": 48.072,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.05,
+     "en": "Activity 2: price your card.",
+     "th": "กิจกรรมที่ 2 ตั้งราคาให้การ์ดของคุณ"
+    },
+    {
+     "s": 3.05,
+     "e": 8.421,
+     "en": "Take the linear part of your card and say which rows you expect to be tight at the optimum.",
+     "th": "นำส่วนที่เป็นเชิงเส้นของการ์ดมา แล้วบอกว่าแถวใดที่คุณคาดว่าจะแน่นที่คำตอบที่ดีที่สุด"
+    },
+    {
+     "s": 8.421,
+     "e": 15.908,
+     "en": "Give each row's dual its unit: the objective unit per unit of the row, such as dollars per hour or dollars per tonne.",
+     "th": "ให้หน่วยแก่ dual ของแต่ละแถว คือหน่วยของฟังก์ชันเป้าหมายต่อหน่วยของแถว เช่นดอลลาร์ต่อชั่วโมง หรือดอลลาร์ต่อตัน"
+    },
+    {
+     "s": 15.908,
+     "e": 23.75,
+     "en": "Write the dual constraint of one decision variable: the resources it uses, at their prices, must be worth at least its margin.",
+     "th": "เขียนข้อจำกัด dual ของตัวแปรตัดสินใจหนึ่งตัว คือทรัพยากรที่มันใช้ คิดที่ราคาของมัน ต้องมีค่าอย่างน้อยเท่ากำไรของมัน"
+    },
+    {
+     "s": 23.75,
+     "e": 34.474,
+     "en": "Then, in one sentence: what is one more unit of your tightest resource worth, and over what range would you trust that number? Part three shows how to compute the range.",
+     "th": "แล้วเขียนหนึ่งประโยค ว่าทรัพยากรที่ตึงที่สุดเพิ่มหนึ่งหน่วยมีค่าเท่าใด และคุณจะเชื่อตัวเลขนั้นในช่วงใด ส่วนที่สามจะแสดงวิธีคำนวณช่วงนั้น"
+    },
+    {
+     "s": 34.474,
+     "e": 41.855,
+     "en": "A row that cannot be tight has a price of zero, and an equality row, such as a balance, can have a price of either sign.",
+     "th": "แถวที่ไม่มีทางแน่นมีราคาเป็นศูนย์ และแถวที่เป็นสมการ เช่นสมดุล อาจมีราคาเป็นบวกหรือลบก็ได้"
+    },
+    {
+     "s": 41.855,
+     "e": 48.013,
+     "en": "If your card has no LP, use the Lab 4 office battery or the Session 2 gasoline blend.",
+     "th": "ถ้าการ์ดของคุณไม่มี LP ให้ใช้แบตเตอรี่สำนักงานของ Lab 4 หรือการผสมน้ำมันเบนซินของคาบที่ 2"
+    }
+   ]
+  },
+  {
+   "n": 24,
+   "file": "audio/slide-24.mp3",
+   "duration": 118.056,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.566,
+     "en": "Part three: duality and sensitivity. First, where does the dual come from?",
+     "th": "ส่วนที่สาม duality และ sensitivity ก่อนอื่น dual มาจากไหน"
+    },
+    {
+     "s": 6.566,
+     "e": 16.554,
+     "en": "Take the primal: maximize c transpose x subject to A x at most b, x non-negative. Give each row a price y at least zero, and form the Lagrangian:",
+     "th": "พิจารณา primal คือหาค่าสูงสุดของ c transpose x ภายใต้ A x ไม่เกิน b และ x ไม่เป็นลบ ให้แต่ละแถวมีราคา y ไม่ติดลบ แล้วสร้าง"
+    },
+    {
+     "s": 16.554,
+     "e": 23.395,
+     "en": "the margin plus the value of the unused resources, c transpose x plus y transpose times b minus A x.",
+     "th": "Lagrangian คือกำไรบวกมูลค่าของทรัพยากรที่ไม่ได้ใช้ c transpose x บวก y transpose คูณ b ลบ A x"
+    },
+    {
+     "s": 23.395,
+     "e": 29.921,
+     "en": "For any feasible plan, the extra term is non-negative, so the Lagrangian is at least the margin.",
+     "th": "สำหรับแผนที่เป็นไปได้ใด ๆ พจน์ที่เพิ่มมาไม่เป็นลบ Lagrangian จึงไม่น้อยกว่ากำไร"
+    },
+    {
+     "s": 29.921,
+     "e": 39.591,
+     "en": "Now maximize the Lagrangian over all x at least zero. It equals b transpose y when A transpose y is at least c, and it is infinite otherwise.",
+     "th": "ทีนี้หาค่าสูงสุดของ Lagrangian บน x ทุกตัวที่ไม่ติดลบ มันเท่ากับ b transpose y เมื่อ A transpose y ไม่น้อยกว่า c และเป็นอนันต์ในกรณีอื่น"
+    },
+    {
+     "s": 39.591,
+     "e": 50.487,
+     "en": "So every such y gives an upper bound b transpose y, and the best bound is the dual: minimize b transpose y subject to A transpose y at least c, y at least zero.",
+     "th": "y ทุกตัวแบบนี้จึงให้ขอบบน b transpose y และขอบบนที่ดีที่สุดคือ dual คือหาค่าต่ำสุดของ b transpose y ภายใต้ A transpose y ไม่น้อยกว่า c และ y ไม่ติดลบ"
+    },
+    {
+     "s": 50.487,
+     "e": 55.645,
+     "en": "That is Session 1's weak duality, now with the dual derived rather than given.",
+     "th": "นี่คือ weak duality ของคาบที่ 1 แต่ตอนนี้ dual ถูกหามาแทนที่จะถูกให้มา"
+    },
+    {
+     "s": 55.645,
+     "e": 63.224,
+     "en": "Session 7 takes the same step for nonlinear problems: from the Lagrangian to a bound, the argument is identical.",
+     "th": "คาบที่ 7 ใช้ขั้นตอนเดียวกันกับปัญหาไม่เชิงเส้น จาก Lagrangian ไปสู่ขอบเขต เหตุผลเหมือนกันทุกประการ"
+    },
+    {
+     "s": 63.224,
+     "e": 72.342,
+     "en": "Written as one chain: for x feasible and y dual feasible, c transpose x is at most y transpose A x, which is at most y transpose b.",
+     "th": "เขียนเป็นสายเดียว สำหรับ x ที่เป็นไปได้ และ y ที่เป็น dual feasible c transpose x ไม่เกิน y transpose A x ซึ่งไม่เกิน y transpose b"
+    },
+    {
+     "s": 72.342,
+     "e": 82.092,
+     "en": "The first step uses A transpose y at least c together with x at least zero. The second uses A x at most b together with y at least zero.",
+     "th": "ขั้นแรกใช้ A transpose y ไม่น้อยกว่า c คู่กับ x ไม่ติดลบ ขั้นที่สองใช้ A x ไม่เกิน b คู่กับ y ไม่ติดลบ"
+    },
+    {
+     "s": 82.092,
+     "e": 90.618,
+     "en": "The units agree: y is in dollars per hour and b in hours per week, so b transpose y is in dollars per week, the unit of the margin.",
+     "th": "หน่วยสอดคล้องกัน y มีหน่วยดอลลาร์ต่อชั่วโมง และ b มีหน่วยชั่วโมงต่อสัปดาห์ b transpose y จึงมีหน่วยดอลลาร์ต่อสัปดาห์ ซึ่งเป็นหน่วยของกำไร"
+    },
+    {
+     "s": 90.618,
+     "e": 102.009,
+     "en": "A reading: an outside buyer offers prices for your hours. To make you sell, each product's hours must be worth at least its margin, which is A transpose y at least c.",
+     "th": "การตีความหนึ่งคือ ผู้ซื้อภายนอกเสนอราคาสำหรับชั่วโมงของคุณ เพื่อให้คุณยอมขาย ชั่วโมงที่แต่ละผลิตภัณฑ์ใช้ต้องมีค่าอย่างน้อยเท่ากำไรของมัน คือ A transpose y ไม่น้อยกว่า"
+    },
+    {
+     "s": 102.009,
+     "e": 104.737,
+     "en": "The buyer wants the cheapest such offer.",
+     "th": "c และผู้ซื้อต้องการข้อเสนอที่ถูกที่สุด"
+    },
+    {
+     "s": 104.737,
+     "e": 117.987,
+     "en": "A note on notation: y multiplies an inequality, so in Session 7 it is written mu. The KKT conditions of an LP are primal feasibility, dual feasibility and complementary slackness.",
+     "th": "หมายเหตุเรื่องสัญลักษณ์ y คูณกับอสมการ ในคาบที่ 7 จึงเขียนเป็น mu เงื่อนไข KKT ของ LP คือ primal feasibility, dual feasibility และ complementary slackness"
+    }
+   ]
+  },
+  {
+   "n": 25,
+   "file": "audio/slide-25.mp3",
+   "duration": 96.768,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.116,
+     "en": "For any LP, the dual follows a table of rules.",
+     "th": "สำหรับ LP ใด ๆ dual เป็นไปตามตารางของกฎ"
+    },
+    {
+     "s": 4.116,
+     "e": 6.672,
+     "en": "Each primal row gives a dual variable.",
+     "th": "แถวของ primal แต่ละแถวให้ตัวแปร dual"
+    },
+    {
+     "s": 6.672,
+     "e": 16.632,
+     "en": "For a maximization, a less-than-or-equal row gives a non-negative price, a greater-than-or-equal row a non-positive price, and an equality a free price.",
+     "th": "หนึ่งตัว สำหรับการหาค่าสูงสุด แถวแบบน้อยกว่าหรือเท่ากับให้ราคาที่ไม่ติดลบ แถวแบบมากกว่าหรือเท่ากับให้ราคาที่ไม่เป็นบวก และสมการให้ราคาอิสระ"
+    },
+    {
+     "s": 16.632,
+     "e": 28.829,
+     "en": "Each primal variable gives a dual row. A non-negative variable gives a greater-than-or-equal row, a non-positive variable a less-than-or-equal row, and a free variable an equality.",
+     "th": "ตัวแปรของ primal แต่ละตัวให้แถวของ dual หนึ่งแถว ตัวแปรที่ไม่ติดลบให้แถวแบบมากกว่าหรือเท่ากับ ตัวแปรที่ไม่เป็นบวกให้แถวแบบน้อยกว่าหรือเท่ากับ และตัวแปรอิสระให้สมการ"
+    },
+    {
+     "s": 28.829,
+     "e": 39.421,
+     "en": "The objective coefficients and the right-hand sides trade places. For a minimization, read the table from right to left, and the dual of the dual is the primal.",
+     "th": "สัมประสิทธิ์ของฟังก์ชันเป้าหมายกับค่าทางขวาสลับที่กัน สำหรับการหาค่าต่ำสุด ให้อ่านตารางจากขวาไปซ้าย และ dual ของ dual คือ primal"
+    },
+    {
+     "s": 39.421,
+     "e": 46.842,
+     "en": "For example, a minimization with greater-than-or-equal rows and non-negative variables, read from right to left,",
+     "th": "ตัวอย่าง การหาค่าต่ำสุดที่มีแถวแบบมากกว่าหรือเท่ากับและตัวแปรไม่ติดลบ เมื่ออ่านจากขวาไปซ้าย จะมี"
+    },
+    {
+     "s": 46.842,
+     "e": 54.0,
+     "en": "has a maximization dual with non-negative prices and less-than-or-equal rows. Check 3 uses exactly this case.",
+     "th": "dual เป็นการหาค่าสูงสุดที่มีราคาไม่ติดลบและแถวแบบน้อยกว่าหรือเท่ากับ แบบตรวจที่ 3 ใช้กรณีนี้พอดี"
+    },
+    {
+     "s": 54.0,
+     "e": 64.717,
+     "en": "Check the rules on the plant. Three less-than-or-equal rows give three non-negative prices. Two non-negative products give two greater-than-or-equal dual rows:",
+     "th": "ตรวจกฎกับโรงงานนี้ แถวแบบน้อยกว่าหรือเท่ากับสามแถวให้ราคาไม่ติดลบสามตัว ผลิตภัณฑ์ที่ไม่ติดลบสองตัวให้แถว dual แบบมากกว่าหรือเท่ากับสองแถว คือ สาม y"
+    },
+    {
+     "s": 64.717,
+     "e": 71.75,
+     "en": "three y one plus y two plus y three at least 400, and two y one plus two y two plus y three at least 300.",
+     "th": "หนึ่ง บวก y สอง บวก y สาม ไม่น้อยกว่า 400 และ สอง y หนึ่ง บวก สอง y สอง บวก y สาม ไม่น้อยกว่า 300"
+    },
+    {
+     "s": 71.75,
+     "e": 80.803,
+     "en": "The signs make economic sense. Tightening a greater-than-or-equal row can only lower a maximum, so its price is at most zero.",
+     "th": "เครื่องหมายมีความหมายทางเศรษฐศาสตร์ การทำให้แถวแบบมากกว่าหรือเท่ากับเข้มขึ้นทำได้เพียงลดค่าสูงสุด ราคาของมันจึงไม่เกินศูนย์"
+    },
+    {
+     "s": 80.803,
+     "e": 88.447,
+     "en": "An equality row has a free price: Session 4's stock balances were equalities, and the value of oil could have either sign.",
+     "th": "แถวที่เป็นสมการมีราคาอิสระ สมดุลคงคลังในคาบที่ 4 เป็นสมการ และมูลค่าน้ำมันจึงเป็นบวกหรือลบก็ได้"
+    },
+    {
+     "s": 88.447,
+     "e": 96.711,
+     "en": "And a free variable gives an equality in the dual: its reduced cost must be exactly zero, because it can move in either direction.",
+     "th": "และตัวแปรอิสระให้สมการใน dual reduced cost ของมันต้องเป็นศูนย์พอดี เพราะมันเคลื่อนได้ทั้งสองทิศทาง"
+    }
+   ]
+  },
+  {
+   "n": 26,
+   "file": "audio/slide-26.mp3",
+   "duration": 93.144,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.353,
+     "en": "Now the proof that Session 1 promised: strong duality.",
+     "th": "ต่อไปคือบทพิสูจน์ที่คาบที่ 1 สัญญาไว้ strong duality"
+    },
+    {
+     "s": 4.353,
+     "e": 12.053,
+     "en": "Take the optimal basis B that the simplex method ends with, and set y transpose equal to c B transpose times B inverse.",
+     "th": "ใช้ basis B ที่ดีที่สุดซึ่งวิธี simplex จบลง แล้วกำหนดให้ y transpose เท่ากับ c B transpose คูณ B อินเวอร์ส"
+    },
+    {
+     "s": 12.053,
+     "e": 22.755,
+     "en": "At an optimum every reduced cost is zero or negative. For the structural columns, that says A transpose y is at least c: the dual constraints hold.",
+     "th": "ที่คำตอบที่ดีที่สุด reduced cost ทุกตัวเป็นศูนย์หรือลบ สำหรับคอลัมน์ของตัวแปรจริง หมายความว่า A transpose y ไม่น้อยกว่า c ข้อจำกัด dual"
+    },
+    {
+     "s": 22.755,
+     "e": 28.25,
+     "en": "For the slack columns, the reduced cost is minus y i, so y is at least zero.",
+     "th": "จึงเป็นจริง สำหรับคอลัมน์ slack reduced cost คือลบ y i ดังนั้น y ไม่ติดลบ"
+    },
+    {
+     "s": 28.25,
+     "e": 37.526,
+     "en": "And the objectives agree: b transpose y equals c B transpose B inverse b, which is c B transpose x B, which is c transpose x.",
+     "th": "และค่าเป้าหมายเท่ากัน b transpose y เท่ากับ c B transpose B อินเวอร์ส b ซึ่งคือ c B transpose x B ซึ่งคือ c transpose x"
+    },
+    {
+     "s": 37.526,
+     "e": 43.585,
+     "en": "So y is dual feasible with the same objective as x, and by weak duality both are optimal.",
+     "th": "ดังนั้น y เป็น dual feasible และมีค่าเป้าหมายเท่ากับ x ตาม weak duality ทั้งคู่จึงเป็นคำตอบที่ดีที่สุด"
+    },
+    {
+     "s": 43.585,
+     "e": 50.789,
+     "en": "Because the simplex method with an anti-cycling rule always ends, every LP with an optimum has such a pair.",
+     "th": "และเพราะวิธี simplex ที่มีกฎป้องกันการวนจบเสมอ LP ทุกตัวที่มีคำตอบที่ดีที่สุดจึงมีคู่แบบนี้"
+    },
+    {
+     "s": 50.789,
+     "e": 58.855,
+     "en": "For the plant, y is 100, zero and 100, and b transpose y is 3,300, the optimal margin.",
+     "th": "สำหรับโรงงานนี้ y คือ 100 ศูนย์ และ 100 และ b transpose y เท่ากับ 3,300 ซึ่งคือกำไรสูงสุด"
+    },
+    {
+     "s": 58.855,
+     "e": 69.032,
+     "en": "Note what the proof used: only that the final reduced costs are zero or negative. Any method that ends at an optimal basis gives the same certificate.",
+     "th": "สังเกตว่าบทพิสูจน์ใช้เพียงว่า reduced cost สุดท้ายเป็นศูนย์หรือลบ วิธีใดก็ตามที่จบที่ basis ที่ดีที่สุดให้ใบรับรองเดียวกัน"
+    },
+    {
+     "s": 69.032,
+     "e": 75.434,
+     "en": "That is one reason interior-point solvers run crossover when a basis and its ranges are needed.",
+     "th": "นี่เป็นเหตุผลหนึ่งที่ solver แบบ interior point ทำ crossover เมื่อต้องการ basis และช่วงของมัน"
+    },
+    {
+     "s": 75.434,
+     "e": 81.526,
+     "en": "That is why a solver reports duals at no extra cost: they are already in the final basis.",
+     "th": "นี่คือเหตุที่ solver รายงานค่า dual ได้โดยไม่ต้องทำงานเพิ่ม เพราะมันอยู่ใน basis สุดท้ายแล้ว"
+    },
+    {
+     "s": 81.526,
+     "e": 93.079,
+     "en": "The other outcomes pair up as well. If the primal is unbounded, the dual has no feasible point, and the reverse. Both can also be infeasible at once.",
+     "th": "ผลแบบอื่นก็จับคู่กัน ถ้า primal ไม่มีขอบเขต dual ไม่มีจุดที่เป็นไปได้ และกลับกัน ทั้งสองอาจเป็นไปไม่ได้พร้อมกันก็ได้"
+    }
+   ]
+  },
+  {
+   "n": 27,
+   "file": "audio/slide-27.mp3",
+   "duration": 80.328,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.8,
+     "en": "Complementary slackness is how to read the prices.",
+     "th": "complementary slackness คือวิธีอ่านราคา"
+    },
+    {
+     "s": 3.8,
+     "e": 12.711,
+     "en": "For every row, the price times the slack is zero. For every column, the variable times its surplus in the dual row is zero.",
+     "th": "สำหรับทุกแถว ราคาคูณ slack เท่ากับศูนย์ สำหรับทุกคอลัมน์ ตัวแปรคูณส่วนเกินในแถวของ dual เท่ากับศูนย์"
+    },
+    {
+     "s": 12.711,
+     "e": 19.763,
+     "en": "A resource with idle hours is worth nothing at the margin: separation has four spare hours, so its price is zero.",
+     "th": "ทรัพยากรที่มีชั่วโมงว่างไม่มีค่าที่ส่วนเพิ่ม การแยกมีชั่วโมงว่างสี่ชั่วโมง ราคาจึงเป็นศูนย์"
+    },
+    {
+     "s": 19.763,
+     "e": 34.447,
+     "en": "A product that is made earns exactly the value of the hours it uses. Additive: three reactor hours at 100, one separation hour at zero, one packaging hour at 100, is 400, its margin.",
+     "th": "ผลิตภัณฑ์ที่ผลิตได้กำไรเท่ากับมูลค่าของชั่วโมงที่มันใช้พอดี Additive ใช้ reactor สามชั่วโมงที่ 100 การแยกหนึ่งชั่วโมงที่ศูนย์ การบรรจุหนึ่งชั่วโมงที่ 100 รวม 400 ซึ่งคือกำไรของมัน Binder"
+    },
+    {
+     "s": 34.447,
+     "e": 38.539,
+     "en": "Binder: two, two and one hours, is 300, its margin.",
+     "th": "ใช้สอง สอง และหนึ่งชั่วโมง รวม 300 ซึ่งคือกำไรของมัน"
+    },
+    {
+     "s": 38.539,
+     "e": 47.421,
+     "en": "A product that is not made would use hours worth more than its margin, and its reduced cost says by how much. Lab 6 uses that.",
+     "th": "ผลิตภัณฑ์ที่ไม่ได้ผลิตจะใช้ชั่วโมงที่มีค่ามากกว่ากำไรของมัน และ reduced cost บอกว่ามากกว่าเท่าใด Lab 6 ใช้สิ่งนี้"
+    },
+    {
+     "s": 47.421,
+     "e": 60.132,
+     "en": "This gives a practical test of optimality. Given a candidate plan, set the prices of the rows with slack to zero, write the dual rows of the positive variables as equations, and solve for y.",
+     "th": "สิ่งนี้ให้การทดสอบความเป็นคำตอบที่ดีที่สุดที่ใช้ได้จริง เมื่อมีแผนที่เสนอมา ให้ราคาของแถวที่มี slack เป็นศูนย์ เขียนแถว dual ของตัวแปรที่เป็นบวกเป็นสมการ แล้วแก้หา y"
+    },
+    {
+     "s": 60.132,
+     "e": 71.079,
+     "en": "If that y is dual feasible, the plan is optimal. If not, a violated dual row or a negative price shows which variable, a product or a slack, should enter.",
+     "th": "ถ้า y นั้นเป็น dual feasible แผนนั้นดีที่สุด ถ้าไม่ แถว dual ที่ผิดเงื่อนไข หรือราคาที่ติดลบ จะบอกว่าตัวแปรใด ซึ่งเป็นผลิตภัณฑ์หรือ slack ควรเข้า"
+    },
+    {
+     "s": 71.079,
+     "e": 80.263,
+     "en": "Session 1 used these two rules to find y by hand. Session 7 calls them the complementarity part of the KKT conditions.",
+     "th": "คาบที่ 1 ใช้กฎสองข้อนี้หา y ด้วยมือ คาบที่ 7 เรียกว่าส่วน complementarity ของเงื่อนไข KKT"
+    }
+   ]
+  },
+  {
+   "n": 28,
+   "file": "audio/slide-28.mp3",
+   "duration": 31.968,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.579,
+     "en": "Check your understanding: write and solve a dual. Four items, about five minutes.",
+     "th": "ตรวจความเข้าใจ เขียนและแก้ dual สี่ข้อ ประมาณห้านาที"
+    },
+    {
+     "s": 6.579,
+     "e": 13.461,
+     "en": "The first problem is a minimization with greater-than-or-equal rows, so read the rules table from right to left.",
+     "th": "ปัญหาแรกเป็นการหาค่าต่ำสุดที่มีแถวแบบมากกว่าหรือเท่ากับ ให้อ่านตารางกฎจากขวาไปซ้าย"
+    },
+    {
+     "s": 13.461,
+     "e": 20.263,
+     "en": "Solve both problems by hand and check that the two optima are equal: that is strong duality on a small case.",
+     "th": "แก้ทั้งสองปัญหาด้วยมือ แล้วตรวจว่าค่าที่ดีที่สุดทั้งสองเท่ากัน นั่นคือ strong duality บนกรณีเล็ก ๆ"
+    },
+    {
+     "s": 20.263,
+     "e": 27.421,
+     "en": "Item four reads complementary slackness backwards: what does a tight dual row allow its primal variable to do?",
+     "th": "ข้อสี่อ่าน complementary slackness ย้อนกลับ แถว dual ที่แน่นยอมให้ตัวแปร primal ของมันทำอะไรได้"
+    },
+    {
+     "s": 27.421,
+     "e": 31.908,
+     "en": "Pause the narration, write your answers, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย เขียนคำตอบ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 29,
+   "file": "audio/slide-29.mp3",
+   "duration": 99.936,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.697,
+     "en": "Now sensitivity. What happens when a right-hand side changes?",
+     "th": "ต่อไปคือ sensitivity เกิดอะไรขึ้นเมื่อค่าทางขวาเปลี่ยน"
+    },
+    {
+     "s": 5.697,
+     "e": 17.855,
+     "en": "Change b i by delta and keep the same basis. The basic variables become B inverse b plus delta times column i of B inverse. They change linearly with delta.",
+     "th": "เปลี่ยน b i ไปเดลตา และคง basis เดิมไว้ ตัวแปร basic กลายเป็น B อินเวอร์ส b บวกเดลตาคูณคอลัมน์ i ของ B อินเวอร์ส มันเปลี่ยนแบบเชิงเส้นตามเดลตา"
+    },
+    {
+     "s": 17.855,
+     "e": 30.329,
+     "en": "The reduced costs do not involve b at all, so the basis stays optimal as long as it stays feasible: as long as every basic variable stays at or above zero. That gives an interval for delta.",
+     "th": "reduced cost ไม่มี b อยู่เลย basis จึงยังดีที่สุดตราบที่ยังเป็นไปได้ คือตราบที่ตัวแปร basic ทุกตัวยังไม่ต่ำกว่าศูนย์ ซึ่งให้ช่วงของเดลตา"
+    },
+    {
+     "s": 30.329,
+     "e": 36.724,
+     "en": "Inside the interval, the prices y do not change, and the margin changes by y i times delta.",
+     "th": "ภายในช่วงนั้น ราคา y ไม่เปลี่ยน และกำไรเปลี่ยนไป y i คูณเดลตา"
+    },
+    {
+     "s": 36.724,
+     "e": 44.704,
+     "en": "Work it for the reactor. The first column of B inverse is one, minus one, one, for x one, x two and s two.",
+     "th": "ลองคำนวณสำหรับ reactor คอลัมน์แรกของ B อินเวอร์สคือ หนึ่ง ลบหนึ่ง หนึ่ง สำหรับ x หนึ่ง x สอง และ"
+    },
+    {
+     "s": 44.704,
+     "e": 53.132,
+     "en": "With delta more reactor hours, x one is six plus delta, x two is three minus delta, and s two is four plus delta.",
+     "th": "s สอง เมื่อเพิ่มชั่วโมง reactor เดลตา x หนึ่งเป็นหกบวกเดลตา x สองเป็นสามลบเดลตา และ s สองเป็นสี่บวกเดลตา"
+    },
+    {
+     "s": 53.132,
+     "e": 63.842,
+     "en": "x two stays non-negative while delta is at most three, and s two while delta is at least minus four. So the basis holds from 20 to 27 hours.",
+     "th": "x สองไม่ติดลบตราบที่เดลตาไม่เกินสาม และ s สองไม่ติดลบตราบที่เดลตาไม่น้อยกว่าลบสี่ basis นี้จึงใช้ได้ตั้งแต่ 20 ถึง 27 ชั่วโมง"
+    },
+    {
+     "s": 63.842,
+     "e": 75.089,
+     "en": "Read it physically. Packaging is full, so an extra reactor hour moves one tonne from Binder to Additive, and the separation unit gains an idle hour.",
+     "th": "อ่านในเชิงกายภาพ การบรรจุเต็ม ชั่วโมง reactor ที่เพิ่มจึงย้ายการผลิตหนึ่งตันจาก Binder ไป Additive และหน่วยแยกมีชั่วโมงว่างเพิ่มหนึ่งชั่วโมง"
+    },
+    {
+     "s": 75.089,
+     "e": 80.75,
+     "en": "The margin rises by 400 minus 300, which is 100 dollars: the reactor price.",
+     "th": "กำไรเพิ่ม 400 ลบ 300 คือ 100 ดอลลาร์ ซึ่งคือราคาของ reactor"
+    },
+    {
+     "s": 80.75,
+     "e": 91.368,
+     "en": "For the plant: the reactor price of 100 holds from 20 to 27 hours, separation's zero from 12 hours upward, and packaging's 100 from 8 to 10 hours.",
+     "th": "สำหรับโรงงานนี้ ราคา reactor 100 ใช้ได้ตั้งแต่ 20 ถึง 27 ชั่วโมง ราคาศูนย์ของการแยกใช้ได้ตั้งแต่ 12 ชั่วโมงขึ้นไป และราคา 100 ของการบรรจุใช้ได้ตั้งแต่ 8 ถึง 10 ชั่วโมง"
+    },
+    {
+     "s": 91.368,
+     "e": 99.855,
+     "en": "Session 1's packaging demo showed the price stop at 10 hours. Here is the whole interval, from one matrix inverse.",
+     "th": "การสาธิตเรื่องการบรรจุในคาบที่ 1 แสดงว่าราคาหยุดที่ 10 ชั่วโมง ที่นี่คือช่วงทั้งหมด ได้จากอินเวอร์สของเมทริกซ์ครั้งเดียว"
+    }
+   ]
+  },
+  {
+   "n": 30,
+   "file": "audio/slide-30.mp3",
+   "duration": 102.864,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.316,
+     "en": "Here is the same idea on the picture. Choose a row and move its right-hand side.",
+     "th": "นี่คือแนวคิดเดียวกันบนภาพ เลือกแถวหนึ่ง แล้วเลื่อนค่าทางขวาของมัน"
+    },
+    {
+     "s": 6.316,
+     "e": 13.395,
+     "en": "The chosen constraint line, in amber, moves parallel to itself, and the feasible region grows or shrinks with it.",
+     "th": "เส้นข้อจำกัดที่เลือก แสดงเป็นสีส้ม เลื่อนขนานกับตัวเอง และบริเวณที่เป็นไปได้ขยายหรือหดตาม"
+    },
+    {
+     "s": 13.395,
+     "e": 21.382,
+     "en": "Start with the reactor at 24 hours and raise it slowly. The optimal vertex slides along the packaging line.",
+     "th": "เริ่มที่ reactor 24 ชั่วโมง แล้วค่อย ๆ เพิ่ม vertex ที่ดีที่สุดเลื่อนไปตามเส้นของการบรรจุ basis"
+    },
+    {
+     "s": 21.382,
+     "e": 32.105,
+     "en": "The basis is still x one, x two, s two, and the table shows x B equal to B inverse b moving linearly, while the prices stay at 100, zero and 100.",
+     "th": "ยังเป็น x หนึ่ง x สอง s สอง และตารางแสดง x B เท่ากับ B อินเวอร์ส b เปลี่ยนแบบเชิงเส้น ขณะที่ราคายังคงเป็น 100 ศูนย์ และ 100"
+    },
+    {
+     "s": 32.105,
+     "e": 42.566,
+     "en": "The prices stay fixed because y transpose is c B transpose times B inverse, which does not involve b. While the basis lasts, only the plan moves.",
+     "th": "ราคาคงที่เพราะ y transpose เท่ากับ c B transpose คูณ B อินเวอร์ส ซึ่งไม่มี b อยู่ ตราบที่ basis ยังอยู่ มีเพียงแผนที่ขยับ"
+    },
+    {
+     "s": 42.566,
+     "e": 53.421,
+     "en": "At 27 hours, x two reaches zero. The vertex has reached the x one axis. Raise the reactor further, and the old basis would need a negative x two:",
+     "th": "ที่ 27 ชั่วโมง x สองถึงศูนย์ vertex มาถึงแกน x หนึ่ง ถ้าเพิ่ม reactor ต่อ basis เดิมจะต้องมี x สองติดลบ จึงเป็นไปไม่ได้"
+    },
+    {
+     "s": 53.421,
+     "e": 59.592,
+     "en": "it is infeasible, so x two leaves the basis and s one, the reactor's slack, enters.",
+     "th": "x สองจึงออกจาก basis และ s หนึ่ง ซึ่งเป็น slack ของ reactor เข้ามาแทน"
+    },
+    {
+     "s": 59.592,
+     "e": 70.855,
+     "en": "The new basis is x one, s one, s two, at the vertex nine and zero, and the prices jump: the reactor is no longer worth anything, and packaging is now worth 400 per hour.",
+     "th": "basis ใหม่คือ x หนึ่ง s หนึ่ง s สอง ที่ vertex เก้ากับศูนย์ และราคาเปลี่ยนแบบกระโดด reactor ไม่มีค่าอีกต่อไป ส่วนการบรรจุมีค่า 400 ต่อชั่วโมง"
+    },
+    {
+     "s": 70.855,
+     "e": 80.026,
+     "en": "Lower the reactor below 20 hours instead, and s two is the one that hits zero: separation becomes tight, and the vertex moves to the separation line.",
+     "th": "ถ้าลด reactor ให้ต่ำกว่า 20 ชั่วโมงแทน s สองจะเป็นตัวที่ถึงศูนย์ การแยกกลายเป็นแน่น และ vertex ย้ายไปอยู่บนเส้นของการแยก"
+    },
+    {
+     "s": 80.026,
+     "e": 90.607,
+     "en": "Try packaging as well. Above 10 hours, s two reaches zero and separation becomes tight; below 8 hours, x two reaches zero and Binder leaves the plan.",
+     "th": "ลองกับการบรรจุด้วย เหนือ 10 ชั่วโมง s สองถึงศูนย์และการแยกกลายเป็นแน่น ต่ำกว่า 8 ชั่วโมง x สองถึงศูนย์และ Binder ออกจากแผน"
+    },
+    {
+     "s": 90.607,
+     "e": 96.039,
+     "en": "Separation's price stays zero down to 12 hours, where its idle time runs out.",
+     "th": "ราคาของการแยกเป็นศูนย์ไปจนถึง 12 ชั่วโมง ซึ่งเป็นจุดที่เวลาว่างของมันหมด"
+    },
+    {
+     "s": 96.039,
+     "e": 102.789,
+     "en": "So when b changes, the plan moves and the prices stay, until a basic variable reaches zero and leaves.",
+     "th": "ดังนั้นเมื่อ b เปลี่ยน แผนขยับแต่ราคาคงที่ จนกว่าตัวแปร basic ตัวหนึ่งถึงศูนย์และออก"
+    }
+   ]
+  },
+  {
+   "n": 31,
+   "file": "audio/slide-31.mp3",
+   "duration": 82.224,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.958,
+     "en": "Collect those pieces into one curve: the value function, the best margin as a function of the reactor hours.",
+     "th": "รวมชิ้นเหล่านั้นเป็นเส้นโค้งเดียว คือ value function หรือกำไรที่ดีที่สุดเป็นฟังก์ชันของชั่วโมง reactor"
+    },
+    {
+     "s": 6.958,
+     "e": 12.487,
+     "en": "Each straight piece is one basis, and its slope is the reactor price of that basis.",
+     "th": "แต่ละช่วงที่เป็นเส้นตรงคือ basis หนึ่งชุด และความชันของมันคือราคาของ reactor ใน basis นั้น"
+    },
+    {
+     "s": 12.487,
+     "e": 28.355,
+     "en": "Below 16 hours only Binder is made and an hour is worth 150 dollars. From 16 to 20 the price is 125, from 20 to 27 it is 100, which is today's interval, and above 27 hours it is zero.",
+     "th": "ต่ำกว่า 16 ชั่วโมง ผลิตเพียง Binder และหนึ่งชั่วโมงมีค่า 150 ดอลลาร์ จาก 16 ถึง 20 ราคาคือ 125 จาก 20 ถึง 27 คือ 100 ซึ่งเป็นช่วงของวันนี้ และเหนือ 27 ชั่วโมงเป็นศูนย์"
+    },
+    {
+     "s": 28.355,
+     "e": 37.987,
+     "en": "The first slope is easy to check: with only Binder made, each tonne uses two reactor hours and earns 300 dollars, so an hour is worth 150.",
+     "th": "ความชันแรกตรวจได้ง่าย เมื่อผลิตเพียง Binder แต่ละตันใช้ reactor สองชั่วโมงและได้ 300 ดอลลาร์ หนึ่งชั่วโมงจึงมีค่า 150"
+    },
+    {
+     "s": 37.987,
+     "e": 46.908,
+     "en": "The slopes fall as hours are added: each extra hour is worth less than the one before. The curve is piecewise linear and concave.",
+     "th": "ความชันลดลงเมื่อเพิ่มชั่วโมง แต่ละชั่วโมงที่เพิ่มมีค่าน้อยกว่าชั่วโมงก่อนหน้า เส้นโค้งนี้เป็นเชิงเส้นเป็นช่วงและ concave"
+    },
+    {
+     "s": 46.908,
+     "e": 57.316,
+     "en": "Why concave? By strong duality, v star of b equals the minimum over the dual vertices of b transpose y: a minimum of linear functions in b.",
+     "th": "ทำไมจึง concave ตาม strong duality v star ของ b เท่ากับค่าต่ำสุดของ b transpose y บน vertex ของ dual ซึ่งคือค่าต่ำสุดของฟังก์ชันเชิงเส้นใน b"
+    },
+    {
+     "s": 57.316,
+     "e": 65.947,
+     "en": "This is the general form of Session 1's warning that shadow prices are local: a price is the slope of one piece, not a forecast for large changes.",
+     "th": "นี่คือรูปทั่วไปของคำเตือนในคาบที่ 1 ว่า shadow price เป็นค่าเฉพาะที่ ราคาคือความชันของช่วงหนึ่ง ไม่ใช่การพยากรณ์สำหรับการเปลี่ยนแปลงขนาดใหญ่"
+    },
+    {
+     "s": 65.947,
+     "e": 68.746,
+     "en": "The curve also answers a renting question.",
+     "th": "เส้นโค้งนี้ยังตอบคำถามเรื่องการเช่าได้"
+    },
+    {
+     "s": 68.746,
+     "e": 79.359,
+     "en": "If an hour costs r dollars, renting pays only on the pieces whose slope is above r, so you rent up to the breakpoint where the slope falls below the rental price.",
+     "th": "ถ้าชั่วโมงหนึ่งราคา r ดอลลาร์ การเช่าคุ้มเฉพาะช่วงที่ความชันสูงกว่า r คุณจึงเช่าได้ถึงจุดหักที่ความชันลดต่ำกว่าราคาเช่า"
+    },
+    {
+     "s": 79.359,
+     "e": 82.158,
+     "en": "Lab 6 asks this question for its own plant.",
+     "th": "Lab 6 ถามคำถามนี้กับโรงงานของมันเอง"
+    }
+   ]
+  },
+  {
+   "n": 32,
+   "file": "audio/slide-32.mp3",
+   "duration": 104.592,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.803,
+     "en": "Now change the objective instead. How far can a margin move before the plan changes?",
+     "th": "ทีนี้เปลี่ยนฟังก์ชันเป้าหมายแทน กำไรเปลี่ยนได้มากเท่าใดก่อนที่แผนจะเปลี่ยน"
+    },
+    {
+     "s": 6.803,
+     "e": 16.408,
+     "en": "Changing c leaves B inverse b untouched, so the current plan stays feasible. Only optimality can fail, through the reduced costs.",
+     "th": "การเปลี่ยน c ไม่กระทบ B อินเวอร์ส b แผนปัจจุบันจึงยังเป็นไปได้ มีเพียงความเป็นคำตอบที่ดีที่สุดที่อาจเสีย ผ่าน reduced cost"
+    },
+    {
+     "s": 16.408,
+     "e": 24.789,
+     "en": "For a nonbasic variable, only its own reduced cost changes: it enters when its margin rises by more than minus its reduced cost.",
+     "th": "สำหรับตัวแปร nonbasic มีเพียง reduced cost ของมันเองที่เปลี่ยน มันจะเข้าเมื่อกำไรเพิ่มขึ้นมากกว่าค่าลบของ reduced cost"
+    },
+    {
+     "s": 24.789,
+     "e": 36.316,
+     "en": "For a basic variable, the change enters the prices y, and every nonbasic reduced cost moves linearly. The plan stays optimal while all of them stay at or below zero.",
+     "th": "สำหรับตัวแปร basic การเปลี่ยนเข้าไปในราคา y และ reduced cost ของ nonbasic ทุกตัวเปลี่ยนแบบเชิงเส้น แผนยังดีที่สุดตราบที่ทุกตัวยังไม่เกินศูนย์"
+    },
+    {
+     "s": 36.316,
+     "e": 48.934,
+     "en": "Work it for Additive. With the basis x one, x two, s two, the prices are y one equal to c one minus c two, y two equal to zero, and y three equal to three c two minus two c one.",
+     "th": "ลองคำนวณสำหรับ Additive เมื่อ basis คือ x หนึ่ง x สอง s สอง ราคาคือ y หนึ่งเท่ากับ c หนึ่งลบ c สอง y สองเท่ากับศูนย์ และ y สามเท่ากับสาม c สองลบสอง c หนึ่ง"
+    },
+    {
+     "s": 48.934,
+     "e": 54.673,
+     "en": "The reduced costs of the two nonbasic slacks are minus y one and minus y three.",
+     "th": "reduced cost ของ slack สองตัวที่เป็น nonbasic คือลบ y หนึ่ง และลบ"
+    },
+    {
+     "s": 54.673,
+     "e": 63.855,
+     "en": "Both must stay at or below zero, so c one is at least c two, which is 300, and at most one and a half times c two, which is 450.",
+     "th": "y สาม ทั้งสองต้องไม่เกินศูนย์ c หนึ่งจึงไม่น้อยกว่า c สอง คือ 300 และไม่เกินหนึ่งเท่าครึ่งของ c สอง คือ 450"
+    },
+    {
+     "s": 63.855,
+     "e": 73.408,
+     "en": "In the picture, the ratio of the two margins must lie between the coefficient ratios of the two tight rows: one for packaging, and one and a half for the reactor.",
+     "th": "ในภาพ อัตราส่วนของกำไรทั้งสองต้องอยู่ระหว่างอัตราส่วนสัมประสิทธิ์ของสองแถวที่แน่น คือหนึ่งสำหรับการบรรจุ และหนึ่งเท่าครึ่งสำหรับ reactor"
+    },
+    {
+     "s": 73.408,
+     "e": 81.461,
+     "en": "For Binder the same steps give c two between two thirds of c one and c one, which is 266.7 to 400.",
+     "th": "สำหรับ Binder ขั้นตอนเดียวกันให้ c สองอยู่ระหว่างสองในสามของ c หนึ่ง กับ c หนึ่ง คือ 266.7 ถึง 400"
+    },
+    {
+     "s": 81.461,
+     "e": 93.632,
+     "en": "For the plant, the Additive margin can move from 300 to 450 dollars per tonne, the interval Session 1 found with a slider, and the Binder margin from 266.7 to 400.",
+     "th": "สำหรับโรงงานนี้ กำไรของ Additive เปลี่ยนได้ตั้งแต่ 300 ถึง 450 ดอลลาร์ต่อตัน ซึ่งเป็นช่วงที่คาบที่ 1 หาด้วยแถบเลื่อน และกำไรของ Binder ตั้งแต่ 266.7 ถึง 400"
+    },
+    {
+     "s": 93.632,
+     "e": 104.513,
+     "en": "Inside the interval the plan is the same, and the margin changes by x j times the change. At an end two vertices tie, and the whole edge between them is optimal.",
+     "th": "ภายในช่วงนั้นแผนเหมือนเดิม และกำไรเปลี่ยนไป x j คูณการเปลี่ยนแปลง ที่ปลายช่วง vertex สองจุดเสมอกัน และทั้ง edge ระหว่างมันเป็นคำตอบที่ดีที่สุด"
+    }
+   ]
+  },
+  {
+   "n": 33,
+   "file": "audio/slide-33.mp3",
+   "duration": 97.776,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.75,
+     "en": "And here it is on the picture. Move the margins of Additive and Binder.",
+     "th": "และนี่คือบนภาพ เลื่อนกำไรของ Additive และ Binder"
+    },
+    {
+     "s": 5.75,
+     "e": 15.026,
+     "en": "The dashed amber line is the isoprofit line through the optimum. Changing a margin turns it, while the feasible region does not change at all.",
+     "th": "เส้นประสีส้มคือเส้นกำไรเท่ากันที่ผ่านคำตอบที่ดีที่สุด การเปลี่ยนกำไรทำให้มันหมุน ขณะที่บริเวณที่เป็นไปได้ไม่เปลี่ยนเลย"
+    },
+    {
+     "s": 15.026,
+     "e": 28.789,
+     "en": "Raise the Additive margin from 400. The plan stays at six and three: x equals B inverse b does not involve c. But the prices move, and so do the reduced costs of the two nonbasic slacks.",
+     "th": "เพิ่มกำไรของ Additive จาก 400 แผนยังอยู่ที่หกกับสาม เพราะ x เท่ากับ B อินเวอร์ส b ไม่มี c อยู่ แต่ราคาเปลี่ยน และ reduced cost ของ slack สองตัวที่เป็น nonbasic ก็เปลี่ยน"
+    },
+    {
+     "s": 28.789,
+     "e": 37.145,
+     "en": "Inside the range, the weekly margin changes by six dollars for every dollar added to c one, because six tonnes of Additive are made.",
+     "th": "ภายในช่วงนั้น กำไรต่อสัปดาห์เปลี่ยนหกดอลลาร์ต่อทุกหนึ่งดอลลาร์ที่เพิ่มให้ c หนึ่ง เพราะผลิต Additive หกตัน"
+    },
+    {
+     "s": 37.145,
+     "e": 48.224,
+     "en": "At 450 the reduced cost of s three reaches zero. The isoprofit line now lies along the reactor line, and the whole edge from six and three to eight and zero is optimal.",
+     "th": "ที่ 450 reduced cost ของ s สามถึงศูนย์ เส้นกำไรเท่ากันทับเส้นของ reactor และทั้ง edge จากหกกับสามถึงแปดกับศูนย์เป็นคำตอบที่ดีที่สุด"
+    },
+    {
+     "s": 48.224,
+     "e": 56.495,
+     "en": "Above 450, that reduced cost is positive, so s three enters and x two leaves: packaging gets slack and Binder stops.",
+     "th": "เหนือ 450 reduced cost นั้นเป็นบวก s สามจึงเข้าและ x สองออก การบรรจุมีชั่วโมงว่างและหยุดผลิต Binder"
+    },
+    {
+     "s": 56.495,
+     "e": 62.079,
+     "en": "The basis becomes x one, s two, s three, the neighboring vertex eight and zero.",
+     "th": "basis กลายเป็น x หนึ่ง s สอง s สาม ที่ vertex ข้างเคียงแปดกับศูนย์"
+    },
+    {
+     "s": 62.079,
+     "e": 72.908,
+     "en": "Lower the margin below 300 instead, and s one enters while s two leaves: the reactor gets slack, separation becomes tight, and the optimum moves the other way, to two and seven.",
+     "th": "ถ้าลดกำไรให้ต่ำกว่า 300 แทน s หนึ่งจะเข้าขณะที่ s สองออก reactor มีชั่วโมงว่าง การแยกกลายเป็นแน่น และคำตอบย้ายไปอีกทาง ที่สองกับเจ็ด"
+    },
+    {
+     "s": 72.908,
+     "e": 82.746,
+     "en": "So the two kinds of change mirror each other. When b changes, the plan moves and the prices stay, until a basic variable reaches zero and leaves.",
+     "th": "การเปลี่ยนสองแบบจึงเป็นภาพสะท้อนของกัน เมื่อ b เปลี่ยน แผนขยับแต่ราคาคงที่ จนกว่าตัวแปร basic ถึงศูนย์และออก"
+    },
+    {
+     "s": 82.746,
+     "e": 90.158,
+     "en": "When c changes, the prices move and the plan stays, until a reduced cost crosses zero and its variable enters.",
+     "th": "เมื่อ c เปลี่ยน ราคาขยับแต่แผนคงที่ จนกว่า reduced cost ข้ามศูนย์และตัวแปรของมันเข้า"
+    },
+    {
+     "s": 90.158,
+     "e": 97.711,
+     "en": "Either way, crossing the edge of the range is one swap of a basic variable: one step on the graph of bases from part one.",
+     "th": "ไม่ว่าทางใด การข้ามขอบของช่วงคือการสลับ basic variable หนึ่งครั้ง ซึ่งคือหนึ่งก้าวบนกราฟของ basis จากส่วนที่หนึ่ง"
+    }
+   ]
+  },
+  {
+   "n": 34,
+   "file": "audio/slide-34.mp3",
+   "duration": 78.792,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.668,
+     "en": "Last, what degeneracy does to prices.",
+     "th": "สุดท้าย degeneracy ทำอะไรกับราคา"
+    },
+    {
+     "s": 3.668,
+     "e": 8.974,
+     "en": "Take the plant with the feedstock row of part one: three rows tight at six and three.",
+     "th": "ใช้โรงงานที่มีแถววัตถุดิบจากส่วนที่หนึ่ง ซึ่งมีสามแถวแน่นที่หกกับสาม"
+    },
+    {
+     "s": 8.974,
+     "e": 22.25,
+     "en": "Here the dual optimum is not unique. The last column shows the range of optimal prices for each row: the reactor from zero to 100, packaging from 100 to 200, feedstock from zero to 100.",
+     "th": "ที่นี่ dual ที่ดีที่สุดไม่ได้มีค่าเดียว คอลัมน์สุดท้ายแสดงช่วงของราคาที่ดีที่สุดของแต่ละแถว reactor จากศูนย์ถึง 100 การบรรจุจาก 100 ถึง 200 วัตถุดิบจากศูนย์ถึง 100"
+    },
+    {
+     "s": 22.25,
+     "e": 34.539,
+     "en": "The solver reports one of them: 100 for the reactor. But one more reactor hour gains nothing, because feedstock binds at once. One hour fewer loses 100.",
+     "th": "solver รายงานค่าหนึ่งในนั้น คือ 100 สำหรับ reactor แต่ชั่วโมง reactor ที่เพิ่มหนึ่งชั่วโมงไม่ได้อะไร เพราะวัตถุดิบตึงทันที ส่วนการลดหนึ่งชั่วโมงเสีย 100"
+    },
+    {
+     "s": 34.539,
+     "e": 47.092,
+     "en": "Packaging shows the effect the other way round: one more hour gains 100 dollars, and one less loses 200. Again the solver's single number, 100, is right in one direction only.",
+     "th": "การบรรจุแสดงผลเดียวกันในอีกทาง ชั่วโมงที่เพิ่มหนึ่งชั่วโมงได้ 100 ดอลลาร์ และชั่วโมงที่ลดหนึ่งชั่วโมงเสีย 200 ตัวเลขเดียวของ solver คือ 100 ถูกเพียงทิศทางเดียวอีกเช่นกัน"
+    },
+    {
+     "s": 47.092,
+     "e": 53.895,
+     "en": "Feedstock is the mirror case: the solver reports a price of zero, yet one unit less costs 100.",
+     "th": "วัตถุดิบเป็นกรณีกลับกัน solver รายงานราคาศูนย์ แต่การลดหนึ่งหน่วยเสีย 100"
+    },
+    {
+     "s": 53.895,
+     "e": 61.171,
+     "en": "In general, the value of one more unit is the smallest optimal price, and the cost of one less is the largest.",
+     "th": "โดยทั่วไป มูลค่าของการเพิ่มหนึ่งหน่วยคือราคาที่ดีที่สุดที่ต่ำที่สุด และต้นทุนของการลดหนึ่งหน่วยคือราคาที่สูงที่สุด"
+    },
+    {
+     "s": 61.171,
+     "e": 72.447,
+     "en": "In terms of bases: three bases describe this one vertex, each with its own prices. A change of b in one direction keeps one of them, and the other direction keeps another.",
+     "th": "ในแง่ของ basis มีสาม basis ที่อธิบาย vertex เดียวนี้ แต่ละตัวมีราคาของตัวเอง การเปลี่ยน b ทางหนึ่งคง basis หนึ่งไว้ และอีกทางคงอีก basis หนึ่ง"
+    },
+    {
+     "s": 72.447,
+     "e": 78.724,
+     "en": "So at a degenerate vertex, check a reported price by re-solving in the direction you care about.",
+     "th": "ดังนั้นที่ vertex แบบ degenerate ให้ตรวจราคาที่รายงานด้วยการแก้ใหม่ในทิศทางที่คุณสนใจ"
+    }
+   ]
+  },
+  {
+   "n": 35,
+   "file": "audio/slide-35.mp3",
+   "duration": 86.448,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.274,
+     "en": "A few rules for using prices and ranges in a real study.",
+     "th": "กฎบางข้อสำหรับการใช้ราคาและช่วงในงานจริง"
+    },
+    {
+     "s": 4.274,
+     "e": 17.605,
+     "en": "Solvers compute ranges from the final basis: HiGHS has getRanging, and Gurobi and CPLEX report sensitivity attributes. SciPy's linprog does not expose them, so re-solve at the ends to check.",
+     "th": "solver คำนวณช่วงจาก basis สุดท้าย HiGHS มี getRanging และ Gurobi กับ CPLEX รายงานค่า sensitivity ส่วน linprog ของ SciPy ไม่ได้เปิดให้ใช้ จึงต้องแก้ใหม่ที่ปลายช่วงเพื่อตรวจ"
+    },
+    {
+     "s": 17.605,
+     "e": 27.681,
+     "en": "Check the sign of any dual you read. SciPy reports marginals for the minimization it solves, so a maximized margin appears with the opposite sign.",
+     "th": "ตรวจเครื่องหมายของค่า dual ทุกตัวที่อ่าน SciPy รายงาน marginal ของปัญหาการหาค่าต่ำสุดที่มันแก้ กำไรที่หาค่าสูงสุดจึงปรากฏด้วยเครื่องหมายตรงข้าม"
+    },
+    {
+     "s": 27.681,
+     "e": 32.342,
+     "en": "Compare the sign with the economic meaning before you quote a price.",
+     "th": "ให้เทียบเครื่องหมายกับความหมายทางเศรษฐศาสตร์ก่อนอ้างราคา"
+    },
+    {
+     "s": 32.342,
+     "e": 43.447,
+     "en": "When several right-hand sides change at once, the 100 percent rule says the basis stays if the fractions of each allowed change add up to at most one. Otherwise, re-solve.",
+     "th": "เมื่อค่าทางขวาหลายตัวเปลี่ยนพร้อมกัน กฎหนึ่งร้อยเปอร์เซ็นต์บอกว่า basis ยังคงอยู่ถ้าสัดส่วนของการเปลี่ยนที่ยอมได้ของแต่ละตัวรวมกันไม่เกินหนึ่ง ถ้าไม่เช่นนั้นให้แก้ใหม่"
+    },
+    {
+     "s": 43.447,
+     "e": 54.99,
+     "en": "For example, the reactor may rise by up to three hours, and packaging by up to one. Raising the reactor by one and a half hours and packaging by half an hour uses half of each allowance;",
+     "th": "ตัวอย่าง reactor เพิ่มได้ถึงสามชั่วโมง และการบรรจุเพิ่มได้ถึงหนึ่งชั่วโมง การเพิ่ม reactor หนึ่งชั่วโมงครึ่ง และการบรรจุครึ่งชั่วโมง ใช้ครึ่งหนึ่งของแต่ละส่วนที่ยอมได้"
+    },
+    {
+     "s": 54.99,
+     "e": 58.632,
+     "en": "the halves add up to one, so the basis is still guaranteed.",
+     "th": "ครึ่งทั้งสองรวมเป็นหนึ่ง basis จึงยังรับประกันว่าคงอยู่"
+    },
+    {
+     "s": 58.632,
+     "e": 66.368,
+     "en": "For a large change, re-solve or sweep the value function. One price is a slope, not a forecast.",
+     "th": "สำหรับการเปลี่ยนขนาดใหญ่ ให้แก้ใหม่ หรือกวาดค่า value function ราคาหนึ่งตัวคือความชัน ไม่ใช่การพยากรณ์"
+    },
+    {
+     "s": 66.368,
+     "e": 77.053,
+     "en": "After a small change, the dual simplex method restarts from the old basis. That warm start is used at every node of branch and bound, from Session 3.",
+     "th": "หลังการเปลี่ยนเล็กน้อย วิธี dual simplex เริ่มใหม่จาก basis เดิม การเริ่มแบบอุ่นเครื่องนี้ใช้ในทุกโหนดของ branch and bound จากคาบที่ 3"
+    },
+    {
+     "s": 77.053,
+     "e": 86.382,
+     "en": "And always state a price with its unit and its range: dollars per hour, valid from this to that. Without both, nobody can act on it.",
+     "th": "และระบุราคาพร้อมหน่วยและช่วงเสมอ เช่นดอลลาร์ต่อชั่วโมง ใช้ได้ตั้งแต่เท่านี้ถึงเท่านี้ ถ้าไม่มีทั้งสองอย่าง ไม่มีใครนำไปใช้ได้"
+    }
+   ]
+  },
+  {
+   "n": 36,
+   "file": "audio/slide-36.mp3",
+   "duration": 36.792,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.474,
+     "en": "Check your understanding: prices and ranges. Four items, about five minutes.",
+     "th": "ตรวจความเข้าใจเรื่องราคาและช่วง สี่ข้อ ประมาณห้านาที"
+    },
+    {
+     "s": 6.474,
+     "e": 17.289,
+     "en": "Items one and two change packaging hours, once inside the range and once beyond it. Item three changes a margin, and item four uses the degenerate vertex.",
+     "th": "ข้อหนึ่งและสองเปลี่ยนชั่วโมงการบรรจุ ครั้งหนึ่งภายในช่วง อีกครั้งเกินช่วง ข้อสามเปลี่ยนกำไร และข้อสี่ใช้ vertex แบบ degenerate"
+    },
+    {
+     "s": 17.289,
+     "e": 25.276,
+     "en": "Item four is the degenerate case of the previous slide, so think about the direction of the change before you use the reported price.",
+     "th": "ข้อสี่คือกรณี degenerate ในหน้าก่อน ให้คิดถึงทิศทางของการเปลี่ยนก่อนใช้ราคาที่รายงาน"
+    },
+    {
+     "s": 25.276,
+     "e": 32.237,
+     "en": "For items one to three, also say whether the basis changes, and if so, which variable enters or leaves.",
+     "th": "สำหรับข้อหนึ่งถึงสาม ให้บอกด้วยว่า basis เปลี่ยนหรือไม่ และถ้าเปลี่ยน ตัวแปรใดเข้าหรือออก"
+    },
+    {
+     "s": 32.237,
+     "e": 36.724,
+     "en": "Pause the narration, write your answers, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย เขียนคำตอบ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 37,
+   "file": "audio/slide-37.mp3",
+   "duration": 49.848,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.379,
+     "en": "Duality runs through the rest of the course.",
+     "th": "duality ปรากฏตลอดส่วนที่เหลือของวิชา"
+    },
+    {
+     "s": 3.379,
+     "e": 14.145,
+     "en": "Session 7 generalizes it: LP duality is the linear case of the KKT conditions, y becomes mu, and complementary slackness becomes one of the KKT conditions.",
+     "th": "คาบที่ 7 ขยายมันให้เป็นกรณีทั่วไป LP duality คือกรณีเชิงเส้นของเงื่อนไข KKT y กลายเป็น mu และ complementary slackness กลายเป็นเงื่อนไขหนึ่งของ KKT"
+    },
+    {
+     "s": 14.145,
+     "e": 19.776,
+     "en": "Sessions 8 and 9 replace bases with active sets, and prices with multipliers.",
+     "th": "คาบที่ 8 และ 9 ใช้ active set แทน basis และใช้ multiplier แทนราคา"
+    },
+    {
+     "s": 19.776,
+     "e": 30.684,
+     "en": "An active-set method keeps a working set of tight constraints, checks the signs of their multipliers, and adds or drops one constraint at a time, much as a pivot swaps one basic variable.",
+     "th": "วิธี active set เก็บชุดทำงานของข้อจำกัดที่แน่น ตรวจเครื่องหมายของ multiplier และเพิ่มหรือตัดข้อจำกัดทีละตัว คล้ายกับที่ pivot สลับ basic variable ทีละตัว"
+    },
+    {
+     "s": 30.684,
+     "e": 41.303,
+     "en": "Session 12 writes scenario LPs and uses their duals to price information, and Session 13 reads the dual of an epsilon-constraint row as the trade-off price between objectives.",
+     "th": "คาบที่ 12 เขียน LP แบบหลาย scenario และใช้ dual ของมันตั้งราคาให้ข้อมูล ส่วนคาบที่ 13 อ่าน dual ของแถว epsilon-constraint เป็นราคาแลกเปลี่ยนระหว่างวัตถุประสงค์"
+    },
+    {
+     "s": 41.303,
+     "e": 49.789,
+     "en": "And looking back, the branch and bound of Session 3 re-solves each node's LP with the dual simplex method, starting from the parent's basis.",
+     "th": "และย้อนกลับไป branch and bound ของคาบที่ 3 แก้ LP ของแต่ละโหนดใหม่ด้วยวิธี dual simplex โดยเริ่มจาก basis ของโหนดแม่"
+    }
+   ]
+  },
+  {
+   "n": 38,
+   "file": "audio/slide-38.mp3",
+   "duration": 64.704,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.274,
+     "en": "Lab 6 asks a question every plant manager asks: what is one more reactor hour worth?",
+     "th": "Lab 6 ถามคำถามที่ผู้จัดการโรงงานทุกคนถาม ว่าชั่วโมง reactor ที่เพิ่มขึ้นหนึ่งชั่วโมงมีค่าเท่าใด"
+    },
+    {
+     "s": 6.274,
+     "e": 17.786,
+     "en": "The plant has four products, Solvent, Resin, Plasticizer and Additive, and four rows: reactor hours, distillation hours, feedstock, and a market limit on Plasticizer.",
+     "th": "โรงงานมีสี่ผลิตภัณฑ์ คือ Solvent, Resin, Plasticizer และ Additive และมีสี่แถว คือชั่วโมง reactor ชั่วโมงกลั่น วัตถุดิบ และขีดจำกัดตลาดของ Plasticizer"
+    },
+    {
+     "s": 17.786,
+     "e": 20.75,
+     "en": "With four rows, a basis has four variables.",
+     "th": "เมื่อมีสี่แถว basis จึงมีสี่ตัวแปร"
+    },
+    {
+     "s": 20.75,
+     "e": 29.132,
+     "en": "You will read the optimal basis of a four-product plan, its prices, and the certificate b transpose y equal to c transpose x.",
+     "th": "คุณจะอ่าน basis ที่ดีที่สุดของแผนสี่ผลิตภัณฑ์ ราคา และใบรับรอง b transpose y เท่ากับ c transpose x"
+    },
+    {
+     "s": 29.132,
+     "e": 37.184,
+     "en": "Then you predict the value of one more reactor hour, check it by re-solving, and find the range over which it holds, and why it ends.",
+     "th": "จากนั้นคุณจะทำนายมูลค่าของชั่วโมง reactor ที่เพิ่มหนึ่งชั่วโมง ตรวจด้วยการแก้ใหม่ และหาช่วงที่มันใช้ได้ และเหตุที่ช่วงนั้นสิ้นสุด"
+    },
+    {
+     "s": 37.184,
+     "e": 46.974,
+     "en": "You will decide whether to rent one hundred extra hours, comparing the price's prediction with a re-solve, and find how far a margin must rise before a product is made.",
+     "th": "คุณจะตัดสินใจว่าจะเช่าชั่วโมงเพิ่มหนึ่งร้อยชั่วโมงหรือไม่ โดยเทียบการทำนายจากราคากับการแก้ใหม่ และหาว่ากำไรต้องเพิ่มเท่าใดก่อนที่ผลิตภัณฑ์หนึ่งจะถูกผลิต"
+    },
+    {
+     "s": 46.974,
+     "e": 52.816,
+     "en": "Each step unlocks the next, and you get two tries for each number before the answer is shown.",
+     "th": "แต่ละขั้นจะเปิดขั้นถัดไป และตอบตัวเลขแต่ละตัวได้สองครั้งก่อนระบบจะแสดงคำตอบ"
+    },
+    {
+     "s": 52.816,
+     "e": 57.961,
+     "en": "Numbers are accepted within about one percent, and a calculator helps.",
+     "th": "ตัวเลขที่ต่างไม่เกินประมาณหนึ่งเปอร์เซ็นต์ถือว่าถูก และเครื่องคิดเลขช่วยได้"
+    },
+    {
+     "s": 57.961,
+     "e": 64.632,
+     "en": "You have forty minutes. If you are studying on your own, stop here and open the lab.",
+     "th": "คุณมีเวลาสี่สิบนาที ถ้าเรียนด้วยตนเอง ให้หยุดที่หน้านี้แล้วเปิด lab"
+    }
+   ]
+  },
+  {
+   "n": 39,
+   "file": "audio/slide-39.mp3",
+   "duration": 78.72,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.076,
+     "en": "To summarize.",
+     "th": "สรุป"
+    },
+    {
+     "s": 2.076,
+     "e": 13.434,
+     "en": "Write the LP in standard form, then choose a basis: m columns, with x B equal to B inverse b. Vertices are basic feasible solutions, and each vertex is one set of basic variables.",
+     "th": "เขียน LP ใน standard form แล้วเลือก basis คือ m คอลัมน์ โดย x B เท่ากับ B อินเวอร์ส b vertex คือ basic feasible solution และแต่ละ vertex คือชุดของ basic variable หนึ่งชุด"
+    },
+    {
+     "s": 13.434,
+     "e": 21.263,
+     "en": "If an optimum exists, a vertex is optimal. Degeneracy means several bases for one vertex.",
+     "th": "ถ้ามีคำตอบที่ดีที่สุด จะมี vertex ที่ดีที่สุด degeneracy หมายถึงหลาย basis สำหรับ vertex เดียว"
+    },
+    {
+     "s": 21.263,
+     "e": 30.464,
+     "en": "The simplex method uses reduced costs to pick a better edge and the ratio test to decide how far to go; each pivot swaps one basic variable.",
+     "th": "วิธี simplex ใช้ reduced cost เลือก edge ที่ดีกว่า และใช้ ratio test ตัดสินว่าจะไปไกลเท่าใด แต่ละ pivot สลับ basic variable"
+    },
+    {
+     "s": 30.464,
+     "e": 34.184,
+     "en": "Phase I starts it, and an anti-cycling rule makes it end.",
+     "th": "หนึ่งตัว Phase I เริ่มมัน และกฎป้องกันการวนทำให้มันจบ"
+    },
+    {
+     "s": 34.184,
+     "e": 43.934,
+     "en": "The final basis gives y equal to c B transpose B inverse: dual feasible, with the same objective. That is strong duality, proved.",
+     "th": "basis สุดท้ายให้ y เท่ากับ c B transpose B อินเวอร์ส ซึ่งเป็น dual feasible และมีค่าเป้าหมายเท่ากัน นั่นคือ strong duality ที่พิสูจน์แล้ว"
+    },
+    {
+     "s": 43.934,
+     "e": 50.594,
+     "en": "Change b, and the plan moves while the prices stay, until a basic variable reaches zero and leaves.",
+     "th": "เปลี่ยน b แล้วแผนขยับขณะที่ราคาคงที่ จนกว่าตัวแปร basic ถึงศูนย์และออก"
+    },
+    {
+     "s": 50.594,
+     "e": 57.921,
+     "en": "Change c, and the prices move while the plan stays, until a reduced cost crosses zero and its variable enters.",
+     "th": "เปลี่ยน c แล้วราคาขยับขณะที่แผนคงที่ จนกว่า reduced cost ข้ามศูนย์และตัวแปรของมันเข้า"
+    },
+    {
+     "s": 57.921,
+     "e": 66.539,
+     "en": "Every price has a unit and a range, v star of b is piecewise linear and concave, and at a degenerate vertex you check both directions.",
+     "th": "ราคาทุกตัวมีหน่วยและช่วง v star ของ b เป็นเชิงเส้นเป็นช่วงและ concave และที่ vertex แบบ degenerate ให้ตรวจทั้งสองทิศทาง"
+    },
+    {
+     "s": 66.539,
+     "e": 78.645,
+     "en": "If you take one skill from today: given a final basis, compute x B, the prices y, the reduced costs, and the two kinds of range. The rest of the session follows from those four.",
+     "th": "ถ้าจะนำทักษะเดียวจากวันนี้ไป คือเมื่อมี basis สุดท้าย ให้คำนวณ x B ราคา y reduced cost และช่วงทั้งสองแบบ ส่วนที่เหลือของคาบนี้ตามมาจากสี่อย่างนี้"
+    }
+   ]
+  },
+  {
+   "n": 40,
+   "file": "audio/slide-40.mp3",
+   "duration": 42.912,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.997,
+     "en": "Before we meet again, finish Lab 6 if you did not finish it in class.",
+     "th": "ก่อนพบกันครั้งหน้า ทำ Lab 6 ให้เสร็จ ถ้ายังทำไม่เสร็จในห้อง"
+    },
+    {
+     "s": 4.997,
+     "e": 11.553,
+     "en": "Keep your priced card. Session 7 adds nonlinear rows and their multipliers.",
+     "th": "เก็บการ์ดที่ตั้งราคาแล้วไว้ คาบที่ 7 จะเพิ่มแถวที่ไม่เชิงเส้นและ multiplier ของมัน"
+    },
+    {
+     "s": 11.553,
+     "e": 24.987,
+     "en": "Read Rao, Engineering Optimization, chapters 3 and 4. Chapter 3 works the simplex tableau step by step; chapter 4 covers the revised simplex method, duality and sensitivity analysis.",
+     "th": "อ่านหนังสือ Engineering Optimization ของ Rao บทที่ 3 และ 4 บทที่ 3 ทำ simplex tableau ทีละขั้น บทที่ 4 ว่าด้วยวิธี revised simplex, duality และ sensitivity analysis"
+    },
+    {
+     "s": 24.987,
+     "e": 35.408,
+     "en": "For more depth, read Bertsimas and Tsitsiklis, Introduction to Linear Optimization, chapters 2 to 5, or Williams, chapter 6, on interpreting the solution.",
+     "th": "ถ้าต้องการลึกขึ้น อ่าน Introduction to Linear Optimization ของ Bertsimas และ Tsitsiklis บทที่ 2 ถึง 5 หรือบทที่ 6 ของ Williams เรื่องการตีความคำตอบ"
+    },
+    {
+     "s": 35.408,
+     "e": 42.855,
+     "en": "And if you want practice, pivot the Check 2 problem with Bland's rule, write the basis at each step, and compare the path.",
+     "th": "และถ้าต้องการฝึก ให้ pivot ปัญหาในแบบตรวจที่ 2 ด้วยกฎของ Bland เขียน basis ในแต่ละขั้น แล้วเปรียบเทียบเส้นทาง"
+    }
+   ]
+  },
+  {
+   "n": 41,
+   "file": "audio/slide-41.mp3",
+   "duration": 30.384,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.405,
+     "en": "Finally, the Exit Ticket and feedback.",
+     "th": "สุดท้ายคือ Exit Ticket และ feedback"
+    },
+    {
+     "s": 3.405,
+     "e": 9.211,
+     "en": "Scan the code, choose Session 6, and paste the answers that the lab page copies for you.",
+     "th": "สแกนโค้ด เลือก Session 6 แล้ววางคำตอบที่หน้า lab คัดลอกไว้ให้"
+    },
+    {
+     "s": 9.211,
+     "e": 15.539,
+     "en": "Then tell us about the pace, your confidence, how far you got in the lab, and what is still unclear.",
+     "th": "จากนั้นบอกเราเรื่องความเร็วในการสอน ความมั่นใจ ความคืบหน้าใน lab และสิ่งที่ยังไม่เข้าใจ"
+    },
+    {
+     "s": 15.539,
+     "e": 21.263,
+     "en": "If you studied on your own, choose On my own. The form is anonymous.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้เลือก On my own แบบฟอร์มนี้ไม่ระบุตัวตน"
+    },
+    {
+     "s": 21.263,
+     "e": 26.947,
+     "en": "Your answers are how the next session is adjusted, so short, honest answers help most.",
+     "th": "คำตอบของคุณใช้ปรับคาบถัดไป คำตอบสั้น ๆ ที่ตรงไปตรงมาจึงช่วยได้มากที่สุด"
+    },
+    {
+     "s": 26.947,
+     "e": 30.316,
+     "en": "Thank you, and see you in Session 7.",
+     "th": "ขอบคุณ แล้วพบกันในคาบที่ 7"
+    }
+   ]
+  }
+ ]
+}
