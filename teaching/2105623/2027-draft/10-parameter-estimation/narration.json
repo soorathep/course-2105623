@@ -1,0 +1,2513 @@
+{
+ "voice": "en-US-GuyNeural",
+ "rate": "-5%",
+ "provider": "Microsoft Edge neural speech (edge-tts)",
+ "synthetic_voice": true,
+ "total_seconds": 2963.2,
+ "slides": [
+  {
+   "n": 1,
+   "file": "audio/slide-01.mp3",
+   "duration": 69.96,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.695,
+     "en": "Welcome to Session 10 of Optimization of Chemical Processes.",
+     "th": "ยินดีต้อนรับสู่คาบที่ 10 ของวิชา Optimization of Chemical Processes"
+    },
+    {
+     "s": 4.695,
+     "e": 13.339,
+     "en": "In Sessions 8 and 9 the objective was given: a cost, a profit, a return on investment. Today the objective comes from data.",
+     "th": "ในคาบที่ 8 และ 9 ฟังก์ชันเป้าหมายถูกกำหนดมาให้ เช่น ต้นทุน กำไร หรือผลตอบแทนการลงทุน วันนี้ฟังก์ชันเป้าหมายมาจากข้อมูล"
+    },
+    {
+     "s": 13.339,
+     "e": 20.868,
+     "en": "We choose the parameters of a model, such as rate constants, so that the model reproduces what was measured.",
+     "th": "เราเลือกพารามิเตอร์ของโมเดล เช่น ค่าคงที่อัตราเร็ว เพื่อให้โมเดลให้ผลตรงกับสิ่งที่วัดได้"
+    },
+    {
+     "s": 20.868,
+     "e": 33.198,
+     "en": "This is parameter estimation. As an optimization problem it is usually unconstrained or has only bounds, so the solvers you already know can handle it. The new questions are statistical:",
+     "th": "นี่คือการประมาณค่าพารามิเตอร์ ในฐานะปัญหา optimization มักไม่มีข้อจำกัดหรือมีเพียงขอบเขต solver ที่คุณรู้จักแล้วจึงจัดการได้ คำถามใหม่เป็นคำถามเชิงสถิติ"
+    },
+    {
+     "s": 33.198,
+     "e": 38.737,
+     "en": "how sure can you be of the answer, and can the data determine the parameters at all.",
+     "th": "คือคำตอบเชื่อถือได้แค่ไหน และข้อมูลกำหนดพารามิเตอร์ได้จริงหรือไม่"
+    },
+    {
+     "s": 38.737,
+     "e": 49.314,
+     "en": "We will go from least squares and its two main algorithms, Gauss–Newton and Levenberg–Marquardt, to standard errors, confidence regions, residuals and identifiability.",
+     "th": "เราจะเริ่มจาก least squares และ algorithm หลักสองตัว คือ Gauss–Newton และ Levenberg–Marquardt ไปสู่ standard error, confidence region, residual และ identifiability"
+    },
+    {
+     "s": 49.314,
+     "e": 57.184,
+     "en": "The last part fits a classic multiresponse data set, the thermal isomerization of alpha-pinene, which you analyse in the lab.",
+     "th": "ส่วนสุดท้ายจะปรับโมเดลกับชุดข้อมูลหลายผลตอบสนองที่เป็นตัวอย่างคลาสสิก คือการเกิด isomerization ด้วยความร้อนของ alpha-pinene ซึ่งคุณจะวิเคราะห์ใน lab"
+    },
+    {
+     "s": 57.184,
+     "e": 64.487,
+     "en": "On your own, the narration takes about fifty minutes; the activities, four checks and the lab fill the rest of the three hours.",
+     "th": "ถ้าเรียนเอง เสียงบรรยายใช้เวลาประมาณห้าสิบนาที ส่วนกิจกรรม แบบตรวจสี่ครั้ง และ lab จะใช้เวลาที่เหลือของสามชั่วโมง"
+    },
+    {
+     "s": 64.487,
+     "e": 69.895,
+     "en": "When the narration for a slide ends, press the right arrow key, or Next, to go on.",
+     "th": "เมื่อเสียงบรรยายของแต่ละหน้าจบ กดลูกศรขวาหรือปุ่ม Next เพื่อไปหน้าถัดไป"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "file": "audio/slide-02.mp3",
+   "duration": 59.496,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.05,
+     "en": "Here is the plan for the three hours.",
+     "th": "นี่คือแผนของสามชั่วโมง"
+    },
+    {
+     "s": 3.05,
+     "e": 10.425,
+     "en": "After a ten-minute retrieval check on Session 9, part one, thirty-five minutes, treats least squares as an optimization problem:",
+     "th": "หลังทบทวนความจำจากคาบที่ 9 สิบนาที ส่วนที่หนึ่ง สามสิบห้านาที มอง least squares เป็นปัญหา optimization"
+    },
+    {
+     "s": 10.425,
+     "e": 16.829,
+     "en": "where the sum of squares comes from, linear least squares, and the Gauss–Newton and Levenberg–Marquardt methods.",
+     "th": "ได้แก่ ที่มาของผลรวมกำลังสอง linear least squares และวิธี Gauss–Newton กับ Levenberg–Marquardt"
+    },
+    {
+     "s": 16.829,
+     "e": 28.395,
+     "en": "Part two, forty minutes, asks how good the estimate is: covariance and intervals, correlated parameters, confidence regions, residuals, identifiability, bounds and outliers.",
+     "th": "ส่วนที่สอง สี่สิบนาที ถามว่าค่าประมาณดีแค่ไหน ได้แก่ covariance และช่วงความเชื่อมั่น พารามิเตอร์ที่สหสัมพันธ์กัน confidence region, residual, identifiability ขอบเขต และ outlier"
+    },
+    {
+     "s": 28.395,
+     "e": 35.086,
+     "en": "After a break and a second activity, part three, thirty minutes, fits a kinetic model with five responses:",
+     "th": "หลังพักและกิจกรรมที่สอง ส่วนที่สาม สามสิบนาที ปรับโมเดลจลนพลศาสตร์ที่มีห้าผลตอบสนอง ได้แก่ โมเดล"
+    },
+    {
+     "s": 35.086,
+     "e": 41.526,
+     "en": "the ODE model, sensitivities, the determinant criterion, dependencies in the data, and where to sample.",
+     "th": "ODE, sensitivity, determinant criterion, ความสัมพันธ์เชิงเส้นในข้อมูล และตำแหน่งที่ควรเก็บตัวอย่าง"
+    },
+    {
+     "s": 41.526,
+     "e": 50.303,
+     "en": "Each part ends with a check of four questions. The session ends with Lab 10, on the alpha-pinene data, and with the Exit Ticket.",
+     "th": "แต่ละส่วนจบด้วยแบบตรวจสี่คำถาม คาบนี้จบด้วย Lab 10 บนข้อมูล alpha-pinene และ Exit Ticket"
+    },
+    {
+     "s": 50.303,
+     "e": 59.421,
+     "en": "Treat the checks as part of the lesson. They show you what is still unclear before you reach the lab, where the same ideas are applied to real data.",
+     "th": "ให้ถือว่าแบบตรวจเป็นส่วนหนึ่งของบทเรียน มันแสดงให้เห็นว่าอะไรยังไม่ชัดเจนก่อนที่คุณจะถึง lab ซึ่งนำแนวคิดเดียวกันไปใช้กับข้อมูลจริง"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "file": "audio/slide-03.mp3",
+   "duration": 49.464,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.997,
+     "en": "Activity 1 is a retrieval check on Session 9.",
+     "th": "กิจกรรมที่ 1 คือการทบทวนความจำจากคาบที่ 9"
+    },
+    {
+     "s": 3.997,
+     "e": 15.158,
+     "en": "Answer the four questions without notes. The first three are about SQP, about what to check when SLSQP reports success at its start point, and about scaling rows.",
+     "th": "ตอบคำถามสี่ข้อโดยไม่เปิดโน้ต สามข้อแรกเกี่ยวกับ SQP สิ่งที่ต้องตรวจเมื่อ SLSQP รายงานว่าสำเร็จที่จุดเริ่มต้น และการปรับสเกลของแถวข้อจำกัด"
+    },
+    {
+     "s": 15.158,
+     "e": 17.805,
+     "en": "The fourth question starts today's topic.",
+     "th": "ข้อที่สี่เป็นจุดเริ่มต้นของหัวข้อวันนี้"
+    },
+    {
+     "s": 17.805,
+     "e": 27.447,
+     "en": "For an objective that is one half of a sum of squared residuals, write the gradient and the Hessian in terms of the residual vector r and its Jacobian J.",
+     "th": "สำหรับฟังก์ชันเป้าหมายที่เป็นครึ่งหนึ่งของผลรวมกำลังสองของ residual ให้เขียน gradient และ Hessian ในรูปของเวกเตอร์ residual r และ Jacobian J ของมัน"
+    },
+    {
+     "s": 27.447,
+     "e": 34.25,
+     "en": "A hint: differentiate one term, one half r i squared, twice with the chain rule, then add the terms.",
+     "th": "คำใบ้ ให้หาอนุพันธ์ของหนึ่งพจน์ คือครึ่งหนึ่งของ r i กำลังสอง สองครั้งด้วยกฎลูกโซ่ แล้วรวมทุกพจน์"
+    },
+    {
+     "s": 34.25,
+     "e": 42.118,
+     "en": "Question two matters again today: a least-squares solver can also stop at a point that is not a minimum, and the same checks apply.",
+     "th": "ข้อสองมีความสำคัญอีกครั้งในวันนี้ solver แบบ least squares ก็อาจหยุดที่จุดที่ไม่ใช่ค่าต่ำสุดได้ และใช้การตรวจแบบเดียวกัน"
+    },
+    {
+     "s": 42.118,
+     "e": 49.395,
+     "en": "Write your answers alone first, then compare with a neighbour. When you are ready, press Show answers.",
+     "th": "เขียนคำตอบด้วยตัวเองก่อน แล้วเปรียบเทียบกับเพื่อนข้าง ๆ เมื่อพร้อมแล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "file": "audio/slide-04.mp3",
+   "duration": 46.2,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.866,
+     "en": "By the end of today you should be able to do six things.",
+     "th": "เมื่อจบวันนี้ คุณควรทำหกสิ่งต่อไปนี้ได้"
+    },
+    {
+     "s": 3.866,
+     "e": 13.882,
+     "en": "Derive least squares from maximum likelihood and say when weights are needed. Take a Gauss–Newton step by hand and explain what Levenberg–Marquardt adds.",
+     "th": "อนุพันธ์ least squares จาก maximum likelihood และบอกได้ว่าเมื่อใดต้องใช้น้ำหนัก ทำ Gauss–Newton step ด้วยมือ และอธิบายว่า Levenberg–Marquardt เพิ่มอะไรเข้ามา"
+    },
+    {
+     "s": 13.882,
+     "e": 25.5,
+     "en": "Compute standard errors, intervals and correlations from the Jacobian, and say when they mislead. Reduce a correlation by reparameterization, as in the Arrhenius equation.",
+     "th": "คำนวณ standard error ช่วงความเชื่อมั่น และสหสัมพันธ์จาก Jacobian และบอกได้ว่าเมื่อใดค่าเหล่านี้ทำให้เข้าใจผิด ลดสหสัมพันธ์ด้วยการเปลี่ยนรูปพารามิเตอร์ เช่นในสมการ Arrhenius"
+    },
+    {
+     "s": 25.5,
+     "e": 32.632,
+     "en": "Read residual plots, recognize parameters that the data cannot determine, and limit the effect of an outlier.",
+     "th": "อ่านกราฟ residual รู้จักพารามิเตอร์ที่ข้อมูลกำหนดไม่ได้ และจำกัดผลของ outlier"
+    },
+    {
+     "s": 32.632,
+     "e": 38.908,
+     "en": "And fit a multiresponse ODE model, find dependencies in its data, and choose where to sample.",
+     "th": "และปรับโมเดล ODE ที่มีหลายผลตอบสนอง หาความสัมพันธ์เชิงเส้นในข้อมูล และเลือกตำแหน่งที่จะเก็บตัวอย่าง"
+    },
+    {
+     "s": 38.908,
+     "e": 46.132,
+     "en": "The last three outcomes are the ones most often skipped in practice, and they decide whether a fitted model can be trusted.",
+     "th": "ผลลัพธ์การเรียนรู้สามข้อสุดท้ายเป็นสิ่งที่มักถูกข้ามในทางปฏิบัติ และเป็นตัวตัดสินว่าโมเดลที่ปรับได้น่าเชื่อถือหรือไม่"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "file": "audio/slide-05.mp3",
+   "duration": 85.656,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.826,
+     "en": "Today connects to most of what you have done so far.",
+     "th": "วันนี้เชื่อมโยงกับเกือบทุกอย่างที่คุณเรียนมา"
+    },
+    {
+     "s": 3.826,
+     "e": 15.658,
+     "en": "From Session 8 you have Newton steps, trust regions and BFGS. Gauss–Newton and Levenberg–Marquardt are Newton's method and a trust region, specialized for a sum of squares.",
+     "th": "จากคาบที่ 8 คุณมี Newton step, trust region และ BFGS วิธี Gauss–Newton และ Levenberg–Marquardt คือ Newton's method และ trust region ที่ปรับให้เหมาะกับผลรวมกำลังสอง"
+    },
+    {
+     "s": 15.658,
+     "e": 21.767,
+     "en": "From Session 9 you have solvers with bounds, and the habit of auditing an answer with its residuals.",
+     "th": "จากคาบที่ 9 คุณมี solver ที่รองรับขอบเขต และนิสัยการตรวจคำตอบด้วย residual"
+    },
+    {
+     "s": 21.767,
+     "e": 29.026,
+     "en": "Today the residuals are the differences between model and data, and their analysis tells you whether the model is right.",
+     "th": "วันนี้ residual คือผลต่างระหว่างโมเดลกับข้อมูล และการวิเคราะห์มันบอกว่าโมเดลถูกหรือไม่"
+    },
+    {
+     "s": 29.026,
+     "e": 38.404,
+     "en": "The Hessian at the solution, from Sessions 5 and 8, returns as the curvature of the sum of squares, and its inverse gives the covariance of the estimate.",
+     "th": "Hessian ที่คำตอบ จากคาบที่ 5 และ 8 กลับมาในฐานะความโค้งของผลรวมกำลังสอง และ inverse ของมันให้ covariance ของค่าประมาณ multiplier"
+    },
+    {
+     "s": 38.404,
+     "e": 46.382,
+     "en": "The multipliers of Session 7 were sensitivities of the optimum; today we need sensitivities of the model outputs to the parameters.",
+     "th": "ในคาบที่ 7 คือ sensitivity ของค่าเหมาะสมที่สุด วันนี้เราต้องการ sensitivity ของผลลัพธ์ของโมเดลต่อพารามิเตอร์"
+    },
+    {
+     "s": 46.382,
+     "e": 56.395,
+     "en": "The labs of Sessions 5, 7 and 9 used kinetic models with rate constants that were simply given. Today you see where such numbers come from.",
+     "th": "lab ในคาบที่ 5, 7 และ 9 ใช้โมเดลจลนพลศาสตร์ที่มีค่าคงที่อัตราเร็วซึ่งถูกกำหนดมาให้ วันนี้คุณจะเห็นว่าตัวเลขเหล่านั้นมาจากไหน"
+    },
+    {
+     "s": 56.395,
+     "e": 66.25,
+     "en": "In Lab 7, for example, the three reactors used rate constants that were simply given, and nobody asked how well they were known. Today we ask.",
+     "th": "ตัวอย่างเช่นใน Lab 7 เครื่องปฏิกรณ์สามตัวใช้ค่าคงที่อัตราเร็วที่ถูกกำหนดมาให้ และไม่มีใครถามว่ารู้ค่าเหล่านั้นแม่นยำแค่ไหน วันนี้เราถาม"
+    },
+    {
+     "s": 66.25,
+     "e": 78.899,
+     "en": "A note on notation. The residual r i is the model minus the data, J is the Jacobian of the residuals with respect to the parameters, n is the number of data and p the number of parameters.",
+     "th": "หมายเหตุเรื่องสัญลักษณ์ residual r i คือค่าจากโมเดลลบข้อมูล J คือ Jacobian ของ residual เทียบกับพารามิเตอร์ n คือจำนวนข้อมูล และ p คือจำนวนพารามิเตอร์ เนื่องจาก lambda"
+    },
+    {
+     "s": 78.899,
+     "e": 85.592,
+     "en": "Because lambda and mu are multipliers in this course, the Levenberg–Marquardt damping is written nu.",
+     "th": "และ mu เป็น multiplier ในวิชานี้ ค่า damping ของ Levenberg–Marquardt จึงเขียนเป็น nu"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "file": "audio/slide-06.mp3",
+   "duration": 109.896,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.247,
+     "en": "Why squares, and not absolute values or something else?",
+     "th": "ทำไมต้องเป็นกำลังสอง ไม่ใช่ค่าสัมบูรณ์หรืออย่างอื่น"
+    },
+    {
+     "s": 4.247,
+     "e": 12.975,
+     "en": "Suppose each measurement is the model plus an error, and the errors are independent and normal with mean zero and standard deviation sigma i.",
+     "th": "สมมติว่าการวัดแต่ละครั้งคือค่าจากโมเดลบวกความคลาดเคลื่อน และความคลาดเคลื่อนเป็นอิสระต่อกัน แจกแจงปกติ มีค่าเฉลี่ยศูนย์และส่วนเบี่ยงเบนมาตรฐาน sigma"
+    },
+    {
+     "s": 12.975,
+     "e": 20.105,
+     "en": "The probability of the observed data, seen as a function of theta, is the likelihood: a product of normal densities.",
+     "th": "i ความน่าจะเป็นของข้อมูลที่สังเกตได้ เมื่อมองเป็นฟังก์ชันของ theta คือ likelihood ซึ่งเป็นผลคูณของความหนาแน่นแบบปกติ"
+    },
+    {
+     "s": 20.105,
+     "e": 28.383,
+     "en": "Take minus the logarithm. Apart from a constant, what remains is one half of the sum of r i squared over sigma i squared.",
+     "th": "ใส่ลบลอการิทึม นอกจากค่าคงที่แล้ว ที่เหลือคือครึ่งหนึ่งของผลรวมของ r i กำลังสองหารด้วย sigma i กำลังสอง ดังนั้นการทำให้"
+    },
+    {
+     "s": 28.383,
+     "e": 36.526,
+     "en": "So maximizing the likelihood is the same as minimizing a weighted sum of squares, with weights one over sigma i squared.",
+     "th": "likelihood สูงที่สุดจึงเท่ากับการทำให้ผลรวมกำลังสองแบบถ่วงน้ำหนักต่ำที่สุด โดยน้ำหนักคือหนึ่งส่วน sigma i กำลังสอง"
+    },
+    {
+     "s": 36.526,
+     "e": 44.079,
+     "en": "When all sigma i are equal, this is ordinary least squares: minimize the sum of squared errors, which we write SSE.",
+     "th": "เมื่อ sigma i เท่ากันทั้งหมด จะได้ ordinary least squares คือทำให้ผลรวมกำลังสองของความคลาดเคลื่อน ที่เราเขียนว่า SSE ต่ำที่สุด"
+    },
+    {
+     "s": 44.079,
+     "e": 56.697,
+     "en": "The derivation shows the assumptions: independent errors, mean zero, normal, and known relative sizes. Each can fail, and each failure leaves a trace in the residuals, as part two shows.",
+     "th": "การพิสูจน์นี้แสดงสมมติฐาน คือความคลาดเคลื่อนเป็นอิสระต่อกัน ค่าเฉลี่ยศูนย์ แจกแจงปกติ และทราบขนาดสัมพัทธ์ แต่ละข้ออาจไม่จริง และแต่ละกรณีทิ้งร่องรอยไว้ใน residual ดังที่ส่วนที่สองจะแสดง"
+    },
+    {
+     "s": 56.697,
+     "e": 68.368,
+     "en": "Weights matter when errors differ in size. A concentration measured to one percent at 100 and to one percent at 1 has standard deviations that differ by a factor of 100.",
+     "th": "น้ำหนักมีความสำคัญเมื่อความคลาดเคลื่อนมีขนาดต่างกัน ความเข้มข้นที่วัดได้ละเอียดหนึ่งเปอร์เซ็นต์ที่ค่า 100 และหนึ่งเปอร์เซ็นต์ที่ค่า 1 มีส่วนเบี่ยงเบนมาตรฐานต่างกัน 100 เท่า"
+    },
+    {
+     "s": 68.368,
+     "e": 78.092,
+     "en": "For a gas chromatograph whose error is a fixed percentage of the peak area, the weights fall with the square of the signal; ignoring that lets the large peaks decide the whole fit.",
+     "th": "สำหรับ gas chromatograph ที่ความคลาดเคลื่อนเป็นเปอร์เซ็นต์คงที่ของพื้นที่พีก น้ำหนักจะลดลงตามกำลังสองของสัญญาณ ถ้าไม่สนใจเรื่องนี้ พีกขนาดใหญ่จะเป็นตัวตัดสินผลการปรับทั้งหมด"
+    },
+    {
+     "s": 78.092,
+     "e": 87.153,
+     "en": "Squares also penalize large residuals heavily, so one wrong point can pull the whole fit. And the minimum gives an estimate of sigma:",
+     "th": "กำลังสองยังลงโทษ residual ขนาดใหญ่อย่างมาก จุดที่ผิดเพียงจุดเดียวจึงดึงผลการปรับทั้งหมดได้ และค่าต่ำสุดยังให้ค่าประมาณของ"
+    },
+    {
+     "s": 87.153,
+     "e": 91.684,
+     "en": "s squared equals SSE divided by n minus p, when the model is right.",
+     "th": "sigma คือ s กำลังสองเท่ากับ SSE หารด้วย n ลบ p เมื่อโมเดลถูกต้อง"
+    },
+    {
+     "s": 91.684,
+     "e": 101.118,
+     "en": "For several responses with unknown and possibly correlated errors, the same reasoning leads to a different objective, the determinant criterion of part three.",
+     "th": "สำหรับหลายผลตอบสนองที่ไม่ทราบความคลาดเคลื่อนและอาจสหสัมพันธ์กัน เหตุผลเดียวกันนำไปสู่ฟังก์ชันเป้าหมายอีกแบบ คือ determinant criterion ในส่วนที่สาม"
+    },
+    {
+     "s": 101.118,
+     "e": 109.816,
+     "en": "Keep this slide in mind whenever you choose an objective: every choice of weights is a statement about the measurement errors, whether you make it on purpose or not.",
+     "th": "จำหน้านี้ไว้ทุกครั้งที่เลือกฟังก์ชันเป้าหมาย การเลือกน้ำหนักทุกแบบคือการระบุสมมติฐานเกี่ยวกับความคลาดเคลื่อนของการวัด ไม่ว่าคุณตั้งใจหรือไม่"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "file": "audio/slide-07.mp3",
+   "duration": 88.824,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.905,
+     "en": "When the model is linear in the parameters, f equals X theta, least squares has a closed-form answer.",
+     "th": "เมื่อโมเดลเป็นเชิงเส้นในพารามิเตอร์ คือ f เท่ากับ X theta, least squares มีคำตอบในรูปปิด"
+    },
+    {
+     "s": 6.905,
+     "e": 13.76,
+     "en": "Setting the gradient to zero gives the normal equations, X transpose X theta equals X transpose y.",
+     "th": "การตั้ง gradient เท่ากับศูนย์ให้ normal equations คือ X transpose X theta เท่ากับ X"
+    },
+    {
+     "s": 13.76,
+     "e": 24.908,
+     "en": "In practice a QR factorization of X is used instead, because forming X transpose X squares the condition number. numpy's least-squares routine does that for you.",
+     "th": "transpose y ในทางปฏิบัติใช้การแยก QR ของ X แทน เพราะการสร้าง X transpose X ทำให้ condition number ยกกำลังสอง ฟังก์ชัน lstsq ของ numpy ทำสิ่งนี้ให้"
+    },
+    {
+     "s": 24.908,
+     "e": 33.974,
+     "en": "Geometrically, the fitted values are the projection of the data onto the columns of X, and the residual vector is perpendicular to every column.",
+     "th": "ในเชิงเรขาคณิต ค่าที่ปรับได้คือภาพฉายของข้อมูลลงบนคอลัมน์ของ X และเวกเตอร์ residual ตั้งฉากกับทุกคอลัมน์"
+    },
+    {
+     "s": 33.974,
+     "e": 40.829,
+     "en": "With weights, the same formulas apply after each row of X and each element of y is divided by its sigma i.",
+     "th": "เมื่อมีน้ำหนัก สูตรเดียวกันยังใช้ได้ หลังจากหารแต่ละแถวของ X และแต่ละสมาชิกของ y ด้วย sigma i ของมัน"
+    },
+    {
+     "s": 40.829,
+     "e": 52.118,
+     "en": "A familiar example: taking logarithms of the Arrhenius equation gives ln k equals ln k zero minus E over R times one over T, which is linear in ln k zero and E.",
+     "th": "ตัวอย่างที่คุ้นเคย การใส่ลอการิทึมให้สมการ Arrhenius ได้ ln k เท่ากับ ln k ศูนย์ ลบ E ส่วน R คูณหนึ่งส่วน T ซึ่งเป็นเชิงเส้นใน ln k ศูนย์ และ E"
+    },
+    {
+     "s": 52.118,
+     "e": 59.235,
+     "en": "But the transformation also changes the errors. Equal errors in ln k are equal relative errors in k.",
+     "th": "แต่การแปลงนี้ก็เปลี่ยนความคลาดเคลื่อนด้วย ความคลาดเคลื่อนที่เท่ากันใน ln k คือความคลาดเคลื่อนสัมพัทธ์ที่เท่ากันใน"
+    },
+    {
+     "s": 59.235,
+     "e": 67.197,
+     "en": "That is right if k was measured to a fixed percentage, and wrong if it was measured to a fixed absolute accuracy.",
+     "th": "k ซึ่งถูกต้องถ้า k วัดได้ละเอียดเป็นเปอร์เซ็นต์คงที่ และไม่ถูกต้องถ้าวัดได้ละเอียดเป็นค่าสัมบูรณ์คงที่"
+    },
+    {
+     "s": 67.197,
+     "e": 78.421,
+     "en": "Most kinetic models cannot be linearized at all, and when they can, the transformed errors are rarely the right ones. Nonlinear least squares fits the model as it is.",
+     "th": "โมเดลจลนพลศาสตร์ส่วนใหญ่ทำให้เป็นเชิงเส้นไม่ได้เลย และเมื่อทำได้ ความคลาดเคลื่อนหลังการแปลงก็มักไม่ใช่แบบที่ถูกต้อง nonlinear least squares ปรับโมเดลตามรูปที่มันเป็น"
+    },
+    {
+     "s": 78.421,
+     "e": 88.75,
+     "en": "The price is that nonlinear least squares needs iterations, and it can have several minima. Linear least squares has one minimum, found in one solve.",
+     "th": "ราคาที่ต้องจ่ายคือ nonlinear least squares ต้องทำซ้ำ และอาจมีค่าต่ำสุดหลายค่า ส่วน linear least squares มีค่าต่ำสุดเดียว หาได้ด้วยการแก้ครั้งเดียว"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "file": "audio/slide-08.mp3",
+   "duration": 110.232,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.589,
+     "en": "For nonlinear models, start from the answer to question four of the activity.",
+     "th": "สำหรับโมเดลไม่เชิงเส้น ให้เริ่มจากคำตอบของข้อสี่ในกิจกรรม"
+    },
+    {
+     "s": 5.589,
+     "e": 14.501,
+     "en": "With f equal to one half the squared norm of r, the gradient is J transpose r, and the Hessian is J transpose J plus a sum of r i times the Hessian of r i.",
+     "th": "เมื่อ f เท่ากับครึ่งหนึ่งของ norm กำลังสองของ r, gradient คือ J transpose r และ Hessian คือ J transpose J บวกผลรวมของ r i คูณ Hessian ของ r i"
+    },
+    {
+     "s": 14.501,
+     "e": 24.895,
+     "en": "Gauss–Newton drops the second term. The step solves J transpose J p equals minus J transpose r. Only first derivatives are needed.",
+     "th": "Gauss–Newton ตัดพจน์ที่สองทิ้ง ก้าว p หาจาก J transpose J p เท่ากับลบ J transpose r ต้องใช้เพียงอนุพันธ์อันดับหนึ่ง"
+    },
+    {
+     "s": 24.895,
+     "e": 32.196,
+     "en": "Another way to see it: replace r by its linearization, r plus J p, and minimize the squared norm of that over p.",
+     "th": "อีกมุมหนึ่ง ให้แทน r ด้วยรูปเชิงเส้นของมัน คือ r บวก J p แล้วทำให้ norm กำลังสองของมันต่ำที่สุดเทียบกับ"
+    },
+    {
+     "s": 32.196,
+     "e": 38.981,
+     "en": "That is a linear least-squares problem, and its normal equations are exactly the Gauss–Newton equations.",
+     "th": "p นี่คือปัญหา linear least squares และ normal equations ของมันคือสมการ Gauss–Newton"
+    },
+    {
+     "s": 38.981,
+     "e": 44.99,
+     "en": "So good codes solve for the step with a QR factorization of J, without forming J transpose J.",
+     "th": "พอดี โปรแกรมที่ดีจึงหาก้าวด้วยการแยก QR ของ J โดยไม่สร้าง J transpose J"
+    },
+    {
+     "s": 44.99,
+     "e": 56.053,
+     "en": "Near a good fit the residuals are small, so the dropped term is small, and Gauss–Newton converges almost like Newton. With large residuals or a poor model it slows down.",
+     "th": "ใกล้ผลการปรับที่ดี residual มีค่าเล็ก พจน์ที่ตัดทิ้งจึงเล็ก และ Gauss–Newton ลู่เข้าเกือบเหมือน Newton ถ้า residual ใหญ่หรือโมเดลไม่ดี มันจะช้าลง"
+    },
+    {
+     "s": 56.053,
+     "e": 62.442,
+     "en": "J transpose J is positive semidefinite, so the step points downhill unless J is rank deficient.",
+     "th": "J transpose J เป็น positive semidefinite ก้าวจึงชี้ลงเนินเสมอ ยกเว้นเมื่อ J ขาด rank"
+    },
+    {
+     "s": 62.442,
+     "e": 69.697,
+     "en": "But a full step can overshoot, sometimes out of the physical region, for example to a negative rate constant.",
+     "th": "แต่ก้าวเต็มอาจเลยเป้า บางครั้งออกนอกบริเวณที่มีความหมายทางกายภาพ เช่น ไปที่ค่าคงที่อัตราเร็วติดลบ"
+    },
+    {
+     "s": 69.697,
+     "e": 82.103,
+     "en": "Levenberg–Marquardt adds nu times D to J transpose J, where D is the diagonal of J transpose J. If the step lowers SSE, it is accepted and nu is divided by three.",
+     "th": "Levenberg–Marquardt เพิ่ม nu คูณ D เข้าไปใน J transpose J โดย D คือแนวทแยงของ J transpose J ถ้าก้าวทำให้ SSE ลดลง จะยอมรับก้าวและหาร nu ด้วยสาม"
+    },
+    {
+     "s": 82.103,
+     "e": 85.908,
+     "en": "If not, nu is doubled and the step is tried again.",
+     "th": "ถ้าไม่ลด จะเพิ่ม nu เป็นสองเท่าแล้วลองใหม่"
+    },
+    {
+     "s": 85.908,
+     "e": 98.105,
+     "en": "Small nu gives the Gauss–Newton step; large nu gives a short step along minus J transpose r, scaled by D. So nu plays the role of the trust-region radius of Session 8, in reverse.",
+     "th": "nu เล็กให้ Gauss–Newton step ส่วน nu ใหญ่ให้ก้าวสั้น ๆ ตามทิศลบ J transpose r ที่ปรับสเกลด้วย D ดังนั้น nu ทำหน้าที่เหมือนรัศมีของ trust region ในคาบที่ 8 แต่กลับทิศกัน"
+    },
+    {
+     "s": 98.105,
+     "e": 110.158,
+     "en": "In SciPy, least squares with method L M calls the MINPACK implementation of Levenberg–Marquardt. The default method, T R F, is a trust-region method that also handles bounds.",
+     "th": "ใน SciPy ฟังก์ชัน least_squares ที่ใช้ method lm เรียก Levenberg–Marquardt ของ MINPACK ส่วน method ค่าเริ่มต้นคือ trf เป็นวิธี trust region ที่รองรับขอบเขตด้วย"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "file": "audio/slide-09.mp3",
+   "duration": 110.592,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.945,
+     "en": "Let us take one Gauss–Newton step by hand, with one parameter.",
+     "th": "มาลองทำ Gauss–Newton step หนึ่งก้าวด้วยมือ กับพารามิเตอร์ตัวเดียว"
+    },
+    {
+     "s": 4.945,
+     "e": 18.224,
+     "en": "The model is C equals 100 e to the minus k t, with three data points: 74 at one hour, 55 at two hours, and 30 at four hours. Start at k equal to 0.2 per hour.",
+     "th": "โมเดลคือ C เท่ากับ 100 e ยกกำลังลบ k t มีข้อมูลสามจุด คือ 74 ที่หนึ่งชั่วโมง 55 ที่สองชั่วโมง และ 30 ที่สี่ชั่วโมง เริ่มที่ k เท่ากับ 0.2 ต่อชั่วโมง"
+    },
+    {
+     "s": 18.224,
+     "e": 34.118,
+     "en": "The model gives 81.87, 67.03 and 44.93, so the residuals are 7.87, 12.03 and 14.93. The model is too high everywhere, so k must increase.",
+     "th": "โมเดลให้ 81.87, 67.03 และ 44.93 residual จึงเป็น 7.87, 12.03 และ 14.93 โมเดลสูงเกินไปทุกจุด k จึงต้องเพิ่มขึ้น"
+    },
+    {
+     "s": 34.118,
+     "e": 46.632,
+     "en": "The derivative of the model with respect to k is minus 100 t e to the minus k t: minus 81.87, minus 134.06 and minus 179.73.",
+     "th": "อนุพันธ์ของโมเดลเทียบกับ k คือ ลบ 100 t e ยกกำลังลบ k t ได้ ลบ 81.87, ลบ 134.06 และ ลบ 179.73"
+    },
+    {
+     "s": 46.632,
+     "e": 63.539,
+     "en": "With one parameter, J transpose r and J transpose J are numbers: minus 4,942 and 56,980. The step is their ratio with a minus sign, 0.0867, so the new k is 0.2867.",
+     "th": "เมื่อมีพารามิเตอร์ตัวเดียว J transpose r และ J transpose J เป็นตัวเลข คือ ลบ 4,942 และ 56,980 ก้าวคืออัตราส่วนของสองค่านี้ใส่เครื่องหมายลบ คือ 0.0867 ดังนั้น k ใหม่คือ 0.2867"
+    },
+    {
+     "s": 63.539,
+     "e": 77.776,
+     "en": "The table follows the iterations. SSE falls from 430 to 6.1 in one step, and reaches its minimum, 0.0334, at k equal to 0.3002 by the third step.",
+     "th": "ตารางแสดงการทำซ้ำ SSE ลดจาก 430 เหลือ 6.1 ในก้าวเดียว และถึงค่าต่ำสุด 0.0334 ที่ k เท่ากับ 0.3002 ภายในก้าวที่สาม"
+    },
+    {
+     "s": 77.776,
+     "e": 83.604,
+     "en": "Look at J transpose r: it falls by roughly the square of its previous size from step to step.",
+     "th": "ดูที่ J transpose r มันลดลงประมาณเท่ากำลังสองของขนาดครั้งก่อนในแต่ละก้าว"
+    },
+    {
+     "s": 83.604,
+     "e": 91.355,
+     "en": "That is the fast convergence of Newton's method, which Gauss–Newton keeps here because the residuals at the answer are small.",
+     "th": "นั่นคือการลู่เข้าที่เร็วของ Newton's method ซึ่ง Gauss–Newton ยังคงไว้ได้ในกรณีนี้ เพราะ residual ที่คำตอบมีขนาดเล็ก"
+    },
+    {
+     "s": 91.355,
+     "e": 95.0,
+     "en": "Press D to see the same iterations in Python.",
+     "th": "กด D เพื่อดูการทำซ้ำเดียวกันใน Python"
+    },
+    {
+     "s": 95.0,
+     "e": 102.842,
+     "en": "With more parameters the arithmetic is the same, with J transpose J a p by p matrix and the step from a linear solve.",
+     "th": "เมื่อมีพารามิเตอร์มากขึ้น การคำนวณยังเหมือนเดิม โดย J transpose J เป็นเมทริกซ์ขนาด p คูณ p และหาก้าวจากการแก้ระบบสมการเชิงเส้น"
+    },
+    {
+     "s": 102.842,
+     "e": 110.513,
+     "en": "Try it yourself with a different start, such as k equal to 0.5, and check that the step now has the opposite sign.",
+     "th": "ลองทำเองด้วยจุดเริ่มต้นอื่น เช่น k เท่ากับ 0.5 และตรวจว่าก้าวมีเครื่องหมายตรงข้าม"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "file": "audio/slide-10.mp3",
+   "duration": 100.56,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 9.645,
+     "en": "Now two parameters. In a batch reactor, A goes to B goes to C, with rate constants k one and k two, and only B is measured.",
+     "th": "ต่อไปคือสองพารามิเตอร์ ในเครื่องปฏิกรณ์แบบกะ A เปลี่ยนเป็น B แล้วเป็น C ด้วยค่าคงที่อัตราเร็ว k หนึ่ง และ k สอง และวัดเฉพาะ B"
+    },
+    {
+     "s": 9.645,
+     "e": 22.382,
+     "en": "The data are synthetic: eight samples from k equal to 0.6 and 0.25 per minute, with noise of 0.03 moles per litre. The right chart shows them, with the fitted curve.",
+     "th": "ข้อมูลเป็นข้อมูลสังเคราะห์ แปดตัวอย่างจาก k เท่ากับ 0.6 และ 0.25 ต่อนาที มีสัญญาณรบกวน 0.03 โมลต่อลิตร กราฟด้านขวาแสดงข้อมูลพร้อมเส้นโค้งที่ปรับได้"
+    },
+    {
+     "s": 22.382,
+     "e": 33.355,
+     "en": "The left chart shows contours of the logarithm of SSE over the two rate constants. Gauss–Newton is the rust dashed path; Levenberg–Marquardt is the teal path.",
+     "th": "กราฟด้านซ้ายแสดงเส้นชั้นของลอการิทึมของ SSE บนค่าคงที่อัตราเร็วทั้งสอง Gauss–Newton คือเส้นประสีสนิม และ Levenberg–Marquardt คือเส้นสีเขียวหัวเป็ด"
+    },
+    {
+     "s": 33.355,
+     "e": 39.11,
+     "en": "The contours are not ellipses far from the minimum, and they bend near the dashed diagonal.",
+     "th": "เส้นชั้นไม่เป็นวงรีเมื่ออยู่ห่างจากค่าต่ำสุด และโค้งงอใกล้เส้นทแยงประ"
+    },
+    {
+     "s": 39.11,
+     "e": 45.303,
+     "en": "That is where a quadratic model, which is what Gauss–Newton builds, describes the objective poorly.",
+     "th": "นั่นคือบริเวณที่แบบจำลองกำลังสองซึ่ง Gauss–Newton สร้างขึ้น อธิบายฟังก์ชันเป้าหมายได้ไม่ดี"
+    },
+    {
+     "s": 45.303,
+     "e": 54.395,
+     "en": "From the near start, both methods reach the same minimum, k one 0.568 and k two 0.244, in seven iterations.",
+     "th": "จากจุดเริ่มต้นที่ใกล้ ทั้งสองวิธีไปถึงค่าต่ำสุดเดียวกัน คือ k หนึ่ง 0.568 และ k สอง 0.244 ในเจ็ดรอบ"
+    },
+    {
+     "s": 54.395,
+     "e": 63.39,
+     "en": "Press Start far. The first full Gauss–Newton step takes k one to minus 0.53, where the model has no meaning, and the method stops.",
+     "th": "กด Start far ก้าวเต็มของ Gauss–Newton ก้าวแรกพา k หนึ่ง ไปที่ลบ 0.53 ซึ่งโมเดลไม่มีความหมาย และวิธีนี้หยุด"
+    },
+    {
+     "s": 63.39,
+     "e": 73.553,
+     "en": "Levenberg–Marquardt finds that the full step does not lower SSE, increases nu, takes shorter steps, and reaches the same minimum in nine iterations.",
+     "th": "Levenberg–Marquardt พบว่าก้าวเต็มไม่ทำให้ SSE ลด จึงเพิ่ม nu ใช้ก้าวที่สั้นลง และไปถึงค่าต่ำสุดเดียวกันในเก้ารอบ"
+    },
+    {
+     "s": 73.553,
+     "e": 84.25,
+     "en": "Start swapped begins with k two larger than k one. Gauss–Newton again leaves the physical region at once; Levenberg–Marquardt again finds the same answer.",
+     "th": "Start swapped เริ่มด้วย k สอง มากกว่า k หนึ่ง Gauss–Newton ก็ออกนอกบริเวณทางกายภาพทันทีอีก ส่วน Levenberg–Marquardt ก็พบคำตอบเดียวกันอีก"
+    },
+    {
+     "s": 84.25,
+     "e": 95.447,
+     "en": "Click anywhere on the contour plot to choose your own start. Try a start close to the dashed line where k one equals k two, where the model formula has a zero denominator.",
+     "th": "คลิกที่ใดก็ได้บนกราฟเส้นชั้นเพื่อเลือกจุดเริ่มต้นเอง ลองจุดใกล้เส้นประที่ k หนึ่ง เท่ากับ k สอง ซึ่งสูตรของโมเดลมีตัวส่วนเป็นศูนย์"
+    },
+    {
+     "s": 95.447,
+     "e": 100.5,
+     "en": "The D drawer runs both methods, and SciPy's MINPACK, from the three starts.",
+     "th": "ลิ้นชัก D รันทั้งสองวิธี และ MINPACK ของ SciPy จากสามจุดเริ่มต้น"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "file": "audio/slide-11.mp3",
+   "duration": 93.12,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.8,
+     "en": "Here is what least squares in SciPy needs, and what it returns.",
+     "th": "นี่คือสิ่งที่ least_squares ใน SciPy ต้องการ และสิ่งที่มันคืนค่ามา"
+    },
+    {
+     "s": 4.8,
+     "e": 15.671,
+     "en": "The function you pass returns the residual vector, not the sum of squares. For weighted least squares, return the residuals divided by their standard deviations.",
+     "th": "ฟังก์ชันที่คุณส่งให้ต้องคืนค่าเวกเตอร์ residual ไม่ใช่ผลรวมกำลังสอง สำหรับ weighted least squares ให้คืนค่า residual หารด้วยส่วนเบี่ยงเบนมาตรฐานของมัน"
+    },
+    {
+     "s": 15.671,
+     "e": 28.303,
+     "en": "You can pass the Jacobian; otherwise it is estimated by finite differences. The method can be T R F, the default, which handles bounds, L M for MINPACK without bounds, or dogbox.",
+     "th": "คุณส่ง Jacobian ได้ ถ้าไม่ส่ง จะประมาณด้วย finite difference ส่วน method เลือกได้ระหว่าง trf ซึ่งเป็นค่าเริ่มต้นและรองรับขอบเขต lm ซึ่งเป็น MINPACK ที่ไม่รองรับขอบเขต หรือ dogbox"
+    },
+    {
+     "s": 28.303,
+     "e": 38.539,
+     "en": "Bounds and x scale do what they did in Sessions 8 and 9. The loss and f scale arguments replace squares by a robust loss, which we use in part two.",
+     "th": "bounds และ x_scale ทำหน้าที่เหมือนในคาบที่ 8 และ 9 ส่วน loss และ f_scale เปลี่ยนกำลังสองเป็น robust loss ซึ่งเราจะใช้ในส่วนที่สอง"
+    },
+    {
+     "s": 38.539,
+     "e": 43.671,
+     "en": "One trap: the field cost is one half of SSE, not SSE.",
+     "th": "กับดักหนึ่งคือ ค่า cost คือครึ่งหนึ่งของ SSE ไม่ใช่ SSE"
+    },
+    {
+     "s": 43.671,
+     "e": 52.288,
+     "en": "Also read status and message. A status of 1 to 4 means one of the tolerances on the gradient, the step or the change in cost was met;",
+     "th": "อ่าน status และ message ด้วย status 1 ถึง 4 หมายความว่าเกณฑ์ใดเกณฑ์หนึ่งของ gradient ขนาดก้าว หรือการเปลี่ยนแปลงของ cost ถูกบรรลุ"
+    },
+    {
+     "s": 52.288,
+     "e": 57.368,
+     "en": "zero means the evaluation limit was reached, and the answer should not be used.",
+     "th": "ส่วนศูนย์หมายความว่าถึงขีดจำกัดจำนวนการประเมินฟังก์ชัน และไม่ควรใช้คำตอบนั้น"
+    },
+    {
+     "s": 57.368,
+     "e": 68.222,
+     "en": "The result also holds the Jacobian at the answer, which you will need for standard errors. curve fit, a wrapper around the same solvers, returns the covariance directly;",
+     "th": "ผลลัพธ์ยังเก็บ Jacobian ที่คำตอบไว้ ซึ่งคุณต้องใช้ในการหา standard error ส่วน curve_fit ซึ่งเป็นตัวห่อของ solver เดียวกัน คืนค่า covariance ให้โดยตรง"
+    },
+    {
+     "s": 68.222,
+     "e": 69.882,
+     "en": "check how it treats sigma.",
+     "th": "ให้ตรวจว่ามันจัดการ sigma อย่างไร"
+    },
+    {
+     "s": 69.882,
+     "e": 81.121,
+     "en": "Parameters of very different sizes, such as a pre-exponential factor near ten to the nine and an activation energy near ten to the four, need x scale or a reparameterization.",
+     "th": "พารามิเตอร์ที่มีขนาดต่างกันมาก เช่น pre-exponential factor ประมาณสิบยกกำลังเก้า และพลังงานกระตุ้นประมาณสิบยกกำลังสี่ ต้องใช้ x_scale หรือเปลี่ยนรูปพารามิเตอร์"
+    },
+    {
+     "s": 81.121,
+     "e": 85.039,
+     "en": "A positive parameter is often better fitted as its logarithm.",
+     "th": "พารามิเตอร์ที่เป็นบวกมักปรับได้ดีกว่าในรูปลอการิทึม"
+    },
+    {
+     "s": 85.039,
+     "e": 93.039,
+     "en": "Whatever the tool, report the status, SSE, n and p, the estimates with standard errors, and the residual plots.",
+     "th": "ไม่ว่าจะใช้เครื่องมือใด ให้รายงาน status, SSE, n และ p ค่าประมาณพร้อม standard error และกราฟ residual"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "file": "audio/slide-12.mp3",
+   "duration": 43.848,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.629,
+     "en": "Check 1 covers least squares and its methods.",
+     "th": "แบบตรวจที่ 1 ครอบคลุม least squares และวิธีการของมัน"
+    },
+    {
+     "s": 3.629,
+     "e": 16.074,
+     "en": "Question one asks which objective is maximum likelihood when the standard deviation is proportional to the measured value. Question two asks for the Gauss–Newton step and what it drops.",
+     "th": "ข้อหนึ่งถามว่าฟังก์ชันเป้าหมายใดเป็น maximum likelihood เมื่อส่วนเบี่ยงเบนมาตรฐานแปรผันตามค่าที่วัดได้ ข้อสองถาม Gauss–Newton step และสิ่งที่มันตัดทิ้ง"
+    },
+    {
+     "s": 16.074,
+     "e": 25.039,
+     "en": "Question three converts SciPy's cost to SSE and s squared. Question four asks what Levenberg–Marquardt does when a step goes negative.",
+     "th": "ข้อสามแปลง cost ของ SciPy เป็น SSE และ s กำลังสอง ข้อสี่ถามว่า Levenberg–Marquardt ทำอะไรเมื่อก้าวพาไปค่าติดลบ"
+    },
+    {
+     "s": 25.039,
+     "e": 32.895,
+     "en": "A hint for question one: write sigma i as a constant times y i, and put it into the weights of the maximum-likelihood slide.",
+     "th": "คำใบ้ข้อหนึ่ง ให้เขียน sigma i เป็นค่าคงที่คูณ y i แล้วแทนลงในน้ำหนักบนหน้า maximum likelihood"
+    },
+    {
+     "s": 32.895,
+     "e": 38.882,
+     "en": "For question three, remember the trap on the previous slide, and count the degrees of freedom.",
+     "th": "สำหรับข้อสาม ให้นึกถึงกับดักในหน้าก่อน และนับองศาเสรี"
+    },
+    {
+     "s": 38.882,
+     "e": 43.776,
+     "en": "Pause the narration, answer the four questions, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย ตอบคำถามสี่ข้อ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "file": "audio/slide-13.mp3",
+   "duration": 125.448,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.405,
+     "en": "Part two asks how good the estimate is.",
+     "th": "ส่วนที่สองถามว่าค่าประมาณดีแค่ไหน"
+    },
+    {
+     "s": 3.405,
+     "e": 10.294,
+     "en": "Near the minimum, the model is close to linear in theta, and linear theory gives the covariance of the estimate:",
+     "th": "ใกล้ค่าต่ำสุด โมเดลเกือบเป็นเชิงเส้นใน theta และทฤษฎีเชิงเส้นให้ covariance ของค่าประมาณ คือ s"
+    },
+    {
+     "s": 10.294,
+     "e": 15.78,
+     "en": "s squared times the inverse of J transpose J, where s squared is SSE divided by n minus p.",
+     "th": "กำลังสองคูณ inverse ของ J transpose J โดย s กำลังสองคือ SSE หารด้วย n ลบ p"
+    },
+    {
+     "s": 15.78,
+     "e": 25.301,
+     "en": "J transpose J is the Gauss–Newton Hessian of one half SSE. So the covariance is the inverse curvature of the objective at its minimum, scaled by the noise:",
+     "th": "J transpose J คือ Hessian แบบ Gauss–Newton ของครึ่งหนึ่งของ SSE ดังนั้น covariance คือ inverse ของความโค้งของฟังก์ชันเป้าหมายที่ค่าต่ำสุด ปรับด้วยขนาดของสัญญาณรบกวน"
+    },
+    {
+     "s": 25.301,
+     "e": 27.803,
+     "en": "a sharp minimum means a precise estimate.",
+     "th": "ค่าต่ำสุดที่แหลมหมายถึงค่าประมาณที่แม่นยำ"
+    },
+    {
+     "s": 27.803,
+     "e": 31.412,
+     "en": "The standard errors are the square roots of the diagonal.",
+     "th": "standard error คือรากที่สองของแนวทแยง"
+    },
+    {
+     "s": 31.412,
+     "e": 41.057,
+     "en": "A ninety-five percent interval is the estimate plus or minus t times the standard error, with t from the t distribution with n minus p degrees of freedom.",
+     "th": "ช่วงความเชื่อมั่นเก้าสิบห้าเปอร์เซ็นต์คือค่าประมาณบวกลบ t คูณ standard error โดย t มาจากการแจกแจง t ที่มีองศาเสรี n ลบ p"
+    },
+    {
+     "s": 41.057,
+     "e": 47.342,
+     "en": "The correlation of two estimates is their covariance divided by the product of their standard errors.",
+     "th": "สหสัมพันธ์ของค่าประมาณสองค่าคือ covariance หารด้วยผลคูณของ standard error ทั้งสอง"
+    },
+    {
+     "s": 47.342,
+     "e": 58.658,
+     "en": "Why n minus p? Each fitted parameter lets the model absorb part of the noise, so the residuals are smaller than the errors, by one degree of freedom per parameter.",
+     "th": "ทำไมต้องเป็น n ลบ p พารามิเตอร์ที่ปรับแต่ละตัวทำให้โมเดลดูดซับสัญญาณรบกวนไปบางส่วน residual จึงเล็กกว่าความคลาดเคลื่อน หนึ่งองศาเสรีต่อหนึ่งพารามิเตอร์"
+    },
+    {
+     "s": 58.658,
+     "e": 69.962,
+     "en": "For the A to B to C example: k one is 0.568 with standard error 0.032, and k two is 0.244 with standard error 0.0099.",
+     "th": "สำหรับตัวอย่าง A ไป B ไป C k หนึ่ง เท่ากับ 0.568 มี standard error 0.032 และ k สอง เท่ากับ 0.244 มี standard error 0.0099"
+    },
+    {
+     "s": 69.962,
+     "e": 84.618,
+     "en": "With eight data and two parameters, t is 2.447, so the intervals are 0.49 to 0.65 and 0.220 to 0.268. Both contain the true values used to make the data.",
+     "th": "เมื่อมีข้อมูลแปดจุดและสองพารามิเตอร์ t เท่ากับ 2.447 ช่วงความเชื่อมั่นจึงเป็น 0.49 ถึง 0.65 และ 0.220 ถึง 0.268 ทั้งสองช่วงครอบคลุมค่าจริงที่ใช้สร้างข้อมูล"
+    },
+    {
+     "s": 84.618,
+     "e": 94.526,
+     "en": "s is 0.0265 moles per litre, close to the 0.03 that was used. That agreement is itself a check on the model.",
+     "th": "s เท่ากับ 0.0265 โมลต่อลิตร ใกล้กับ 0.03 ที่ใช้สร้างข้อมูล ความสอดคล้องนี้เป็นการตรวจโมเดลอย่างหนึ่งในตัว"
+    },
+    {
+     "s": 94.526,
+     "e": 98.767,
+     "en": "In code, all of this takes three lines after least squares returns:",
+     "th": "ในโค้ด ทั้งหมดนี้ใช้สามบรรทัดหลังจาก least_squares"
+    },
+    {
+     "s": 98.767,
+     "e": 107.687,
+     "en": "J is result dot jac, s squared is two times the cost divided by n minus p, and the covariance is s squared times the inverse of J transpose J.",
+     "th": "คืนค่า J คือ result.jac, s กำลังสองคือสองเท่าของ cost หารด้วย n ลบ p และ covariance คือ s กำลังสองคูณ inverse ของ J"
+    },
+    {
+     "s": 107.687,
+     "e": 113.987,
+     "en": "If J is close to rank deficient, use a pseudo-inverse and report the problem rather than the numbers.",
+     "th": "transpose J ถ้า J เกือบขาด rank ให้ใช้ pseudo-inverse และรายงานปัญหานั้นแทนตัวเลข"
+    },
+    {
+     "s": 113.987,
+     "e": 125.382,
+     "en": "These formulas hold when the model is right, the errors are as assumed, and the model is close to linear in theta over the interval. The next slides show cases where one of these fails.",
+     "th": "สูตรเหล่านี้ใช้ได้เมื่อโมเดลถูกต้อง ความคลาดเคลื่อนเป็นไปตามสมมติฐาน และโมเดลเกือบเป็นเชิงเส้นใน theta ตลอดช่วง หน้าถัดไปแสดงกรณีที่ข้อใดข้อหนึ่งไม่จริง"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "file": "audio/slide-14.mp3",
+   "duration": 117.816,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.037,
+     "en": "First, correlation, with the Arrhenius equation.",
+     "th": "เรื่องแรกคือสหสัมพันธ์ ด้วยสมการ Arrhenius"
+    },
+    {
+     "s": 4.037,
+     "e": 11.266,
+     "en": "The data are six synthetic rate constants between 300 and 350 kelvin, with five percent error.",
+     "th": "ข้อมูลคือค่าคงที่อัตราเร็วสังเคราะห์หกค่า ระหว่าง 300 ถึง 350 เคลวิน มีความคลาดเคลื่อนห้าเปอร์เซ็นต์"
+    },
+    {
+     "s": 11.266,
+     "e": 19.789,
+     "en": "Fitting ln k against one over T gives an activation energy of 74.8 kilojoules per mole, with standard error 1.3.",
+     "th": "การปรับ ln k กับหนึ่งส่วน T ให้พลังงานกระตุ้น 74.8 กิโลจูลต่อโมล มี standard error 1.3"
+    },
+    {
+     "s": 19.789,
+     "e": 32.947,
+     "en": "With the slider at none, the intercept a is ln k zero, the value of ln k where one over T is zero, at the far left of the chart. The data sit between 2.9 and 3.3 on this axis.",
+     "th": "เมื่อแถบเลื่อนอยู่ที่ none ค่าตัดแกน a คือ ln k ศูนย์ ซึ่งเป็นค่า ln k ที่หนึ่งส่วน T เท่ากับศูนย์ อยู่ซ้ายสุดของกราฟ ส่วนข้อมูลอยู่ระหว่าง 2.9 ถึง 3.3 บนแกนนี้"
+    },
+    {
+     "s": 32.947,
+     "e": 46.01,
+     "en": "To reach the intercept, the fitted line is extrapolated a long way, so a small change in slope moves it a lot. The table shows the result: the correlation between ln k zero and E is 0.9986.",
+     "th": "การจะไปถึงค่าตัดแกน ต้องลากเส้นที่ปรับได้ออกไปไกลมาก การเปลี่ยนความชันเล็กน้อยจึงทำให้ค่าตัดแกนเปลี่ยนมาก ตารางแสดงผล สหสัมพันธ์ระหว่าง ln k ศูนย์ และ E เท่ากับ"
+    },
+    {
+     "s": 46.01,
+     "e": 53.092,
+     "en": "The sand band is the ninety-five percent band of the line: narrow over the data, wide at the intercept.",
+     "th": "0.9986 แถบสีทรายคือช่วงเก้าสิบห้าเปอร์เซ็นต์ของเส้น แคบในช่วงข้อมูลและกว้างที่ค่าตัดแกน"
+    },
+    {
+     "s": 53.092,
+     "e": 65.629,
+     "en": "Now move the slider. The model is rewritten as ln k equals ln k at T ref minus E over R times the difference of one over T and one over T ref. The fit and E do not change;",
+     "th": "ตอนนี้เลื่อนแถบเลื่อน โมเดลถูกเขียนใหม่เป็น ln k เท่ากับ ln k ที่ T ref ลบ E ส่วน R คูณผลต่างของหนึ่งส่วน T กับหนึ่งส่วน T ref ผลการปรับและ E ไม่เปลี่ยน"
+    },
+    {
+     "s": 65.629,
+     "e": 67.816,
+     "en": "only the meaning of a changes.",
+     "th": "มีเพียงความหมายของ a ที่เปลี่ยน"
+    },
+    {
+     "s": 67.816,
+     "e": 77.34,
+     "en": "As T ref moves into the data, the standard error of a falls from about 0.5 to 0.03, and the correlation falls toward zero.",
+     "th": "เมื่อ T ref เลื่อนเข้ามาในช่วงข้อมูล standard error ของ a ลดจากประมาณ 0.5 เหลือ 0.03 และสหสัมพันธ์ลดลงเข้าใกล้ศูนย์"
+    },
+    {
+     "s": 77.34,
+     "e": 83.921,
+     "en": "It is exactly zero when T ref is the harmonic mean of the temperatures, 324.1 kelvin.",
+     "th": "มีค่าเป็นศูนย์พอดีเมื่อ T ref เท่ากับค่าเฉลี่ยฮาร์มอนิกของอุณหภูมิ คือ 324.1 เคลวิน"
+    },
+    {
+     "s": 83.921,
+     "e": 86.7,
+     "en": "The plain form also troubles the solver.",
+     "th": "รูปแบบเดิมยังเป็นปัญหาต่อ solver"
+    },
+    {
+     "s": 86.7,
+     "e": 97.882,
+     "en": "Its Jacobian has one column of order one and another of order ten to the minus four, and the two columns are nearly parallel, so J transpose J is badly conditioned.",
+     "th": "ด้วย Jacobian มีคอลัมน์หนึ่งขนาดประมาณหนึ่ง และอีกคอลัมน์ขนาดประมาณสิบยกกำลังลบสี่ และสองคอลัมน์เกือบขนานกัน J transpose J จึงมี condition"
+    },
+    {
+     "s": 97.882,
+     "e": 101.0,
+     "en": "The reference temperature fixes both problems.",
+     "th": "ที่แย่ อุณหภูมิอ้างอิงแก้ปัญหาทั้งสองข้อ"
+    },
+    {
+     "s": 101.0,
+     "e": 111.587,
+     "en": "The lesson is general. A correlation near one says that the data determine a combination of the parameters, here the rate inside the measured range, and not each one.",
+     "th": "บทเรียนนี้ใช้ได้ทั่วไป สหสัมพันธ์ที่ใกล้หนึ่งบอกว่าข้อมูลกำหนดได้เพียงผลรวมเชิงเส้นของพารามิเตอร์ ในที่นี้คืออัตราเร็วภายในช่วงที่วัด ไม่ใช่แต่ละตัว"
+    },
+    {
+     "s": 111.587,
+     "e": 117.737,
+     "en": "A reparameterization that matches what the data measure removes it, and it also helps the solver.",
+     "th": "การเปลี่ยนรูปพารามิเตอร์ให้ตรงกับสิ่งที่ข้อมูลวัดได้จะกำจัดสหสัมพันธ์นั้น และยังช่วย solver ด้วย"
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "file": "audio/slide-15.mp3",
+   "duration": 114.912,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.339,
+     "en": "Second, the joint confidence region, and how far the linear approximation can be trusted.",
+     "th": "เรื่องที่สองคือ joint confidence region และว่าเราเชื่อการประมาณเชิงเส้นได้แค่ไหน"
+    },
+    {
+     "s": 6.339,
+     "e": 18.28,
+     "en": "The exact ninety-five percent region is the set of theta where SSE is below a level: the minimum SSE times one plus p over n minus p times an F quantile. It needs no linearization.",
+     "th": "region เก้าสิบห้าเปอร์เซ็นต์แบบแม่นตรงคือเซตของ theta ที่ SSE ต่ำกว่าระดับหนึ่ง คือ SSE ต่ำสุดคูณหนึ่งบวก p ส่วน n ลบ p คูณ F quantile ไม่ต้องทำให้เป็นเชิงเส้น"
+    },
+    {
+     "s": 18.28,
+     "e": 26.592,
+     "en": "The ellipse is the same test with the model linearized at the estimate, and the dotted box shows the two separate t intervals.",
+     "th": "วงรีคือการทดสอบเดียวกันเมื่อทำให้โมเดลเป็นเชิงเส้นที่ค่าประมาณ และกล่องเส้นจุดคือช่วง t แยกของแต่ละพารามิเตอร์"
+    },
+    {
+     "s": 26.592,
+     "e": 38.698,
+     "en": "With all eight samples, the sand region and the teal ellipse nearly coincide. The exact region runs from 0.48 to 0.67 in k one, close to the linear interval.",
+     "th": "เมื่อใช้ตัวอย่างทั้งแปด บริเวณสีทรายกับวงรีสีเขียวหัวเป็ดเกือบทับกัน region แบบแม่นตรงอยู่ระหว่าง 0.48 ถึง 0.67 ใน k หนึ่ง ใกล้กับช่วงเชิงเส้น"
+    },
+    {
+     "s": 38.698,
+     "e": 42.605,
+     "en": "The formulas of the last slide can be trusted here.",
+     "th": "สูตรในหน้าก่อนจึงเชื่อถือได้ในกรณีนี้"
+    },
+    {
+     "s": 42.605,
+     "e": 54.592,
+     "en": "Now press Late samples only. Only the four samples from four minutes on are kept. By then most of A has reacted, and the data say little about how fast it went.",
+     "th": "ตอนนี้กด Late samples only จะเหลือเฉพาะสี่ตัวอย่างตั้งแต่นาทีที่สี่ เมื่อถึงตอนนั้น A ส่วนใหญ่ทำปฏิกิริยาไปแล้ว ข้อมูลจึงบอกได้น้อยว่ามันเกิดเร็วแค่ไหน"
+    },
+    {
+     "s": 54.592,
+     "e": 70.421,
+     "en": "The estimate of k one is 1.50, with standard error 0.72, and the t interval runs from minus 1.61 to 4.61, including impossible negative values. The correlation is minus 0.96.",
+     "th": "ค่าประมาณของ k หนึ่ง เท่ากับ 1.50 มี standard error 0.72 และช่วง t อยู่ระหว่าง ลบ 1.61 ถึง 4.61 ซึ่งรวมค่าติดลบที่เป็นไปไม่ได้ สหสัมพันธ์เท่ากับ ลบ 0.96"
+    },
+    {
+     "s": 70.421,
+     "e": 76.014,
+     "en": "The exact region looks different. It starts near 0.41 and is open to the right:",
+     "th": "region แบบแม่นตรงดูต่างออกไป มันเริ่มที่ประมาณ 0.41 และเปิดไปทางขวา k หนึ่ง"
+    },
+    {
+     "s": 76.014,
+     "e": 87.829,
+     "en": "any large k one fits the late data about equally well, because a fast first step looks the same once it is over. The data set a lower limit on k one, but no upper limit.",
+     "th": "ที่มีค่ามากเท่าใดก็ปรับเข้ากับข้อมูลช่วงหลังได้ดีพอ ๆ กัน เพราะขั้นแรกที่เร็วจะดูเหมือนกันเมื่อมันจบไปแล้ว ข้อมูลกำหนดขอบล่างของ k หนึ่ง ได้ แต่ไม่มีขอบบน"
+    },
+    {
+     "s": 87.829,
+     "e": 100.053,
+     "en": "So when data are few or poorly placed, the linear formulas can be badly wrong. Comparing the exact region, or a profile of SSE along one parameter, with the ellipse is the check.",
+     "th": "ดังนั้นเมื่อข้อมูลมีน้อยหรือวางไม่ดี สูตรเชิงเส้นอาจผิดมาก การเปรียบเทียบ region แบบแม่นตรง หรือ profile ของ SSE ตามพารามิเตอร์หนึ่งตัว กับวงรี คือวิธีตรวจ"
+    },
+    {
+     "s": 100.053,
+     "e": 112.202,
+     "en": "A practical version of the exact region is the profile: fix k one at a series of values, minimize SSE over the other parameters each time, and read where the profile crosses the level.",
+     "th": "รูปแบบที่ใช้งานได้จริงของ region แบบแม่นตรงคือ profile ให้กำหนด k หนึ่ง เป็นชุดค่า แล้วทำให้ SSE ต่ำที่สุดเทียบกับพารามิเตอร์อื่นในแต่ละครั้ง และอ่านว่า profile ตัดระดับที่ใด"
+    },
+    {
+     "s": 112.202,
+     "e": 114.829,
+     "en": "L M fit computes such intervals for you.",
+     "th": "lmfit คำนวณช่วงความเชื่อมั่นแบบนี้ให้ได้"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "file": "audio/slide-16.mp3",
+   "duration": 90.456,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.945,
+     "en": "Third, residuals: what the fit leaves over.",
+     "th": "เรื่องที่สามคือ residual สิ่งที่การปรับเหลือทิ้งไว้"
+    },
+    {
+     "s": 3.945,
+     "e": 11.722,
+     "en": "The data come from a second-order reaction, two A to products, starting at two moles per litre, with noise of 0.01.",
+     "th": "ข้อมูลมาจากปฏิกิริยาอันดับสอง 2A ไปเป็นผลิตภัณฑ์ เริ่มที่สองโมลต่อลิตร มีสัญญาณรบกวน 0.01"
+    },
+    {
+     "s": 11.722,
+     "e": 16.75,
+     "en": "We fit a first-order model to them, as one might without knowing the order.",
+     "th": "เราปรับโมเดลอันดับหนึ่งเข้ากับข้อมูล เหมือนที่อาจทำเมื่อไม่รู้อันดับของปฏิกิริยา"
+    },
+    {
+     "s": 16.75,
+     "e": 26.97,
+     "en": "The fitted curve looks reasonable at a glance. The residuals below tell a different story: negative at the start, positive in the middle, negative at the end.",
+     "th": "เส้นโค้งที่ปรับได้ดูพอใช้ได้เมื่อมองผ่าน ๆ แต่ residual ด้านล่างเล่าอีกเรื่อง คือติดลบตอนต้น เป็นบวกตรงกลาง และติดลบตอนท้าย"
+    },
+    {
+     "s": 26.97,
+     "e": 33.526,
+     "en": "Three runs of sign, where random residuals for ten points would give about five and a half on average.",
+     "th": "มีสามช่วงเครื่องหมาย ขณะที่ residual แบบสุ่มของสิบจุดจะให้เฉลี่ยประมาณห้าช่วงครึ่ง"
+    },
+    {
+     "s": 33.526,
+     "e": 38.295,
+     "en": "A pattern like this means the model shape is wrong. It also inflates s:",
+     "th": "รูปแบบเช่นนี้หมายความว่ารูปร่างของโมเดลผิด และยังทำให้ s สูงเกินจริง ในที่นี้"
+    },
+    {
+     "s": 38.295,
+     "e": 47.237,
+     "en": "here s is 0.082, eight times the real noise, and every standard error computed from it describes the misfit, not the measurement error.",
+     "th": "s เท่ากับ 0.082 ซึ่งแปดเท่าของสัญญาณรบกวนจริง และ standard error ทุกตัวที่คำนวณจากค่านี้อธิบายความไม่เข้ากันของโมเดล ไม่ใช่ความคลาดเคลื่อนของการวัด"
+    },
+    {
+     "s": 47.237,
+     "e": 59.474,
+     "en": "Press Fit second order. The residuals change sign eight times, and SSE drops to 0.00091, close to eight times sigma squared, which is what the noise alone would give.",
+     "th": "กด Fit second order residual เปลี่ยนเครื่องหมายแปดครั้ง และ SSE ลดเหลือ 0.00091 ใกล้กับแปดเท่าของ sigma กำลังสอง ซึ่งเป็นค่าที่สัญญาณรบกวนอย่างเดียวจะให้"
+    },
+    {
+     "s": 59.474,
+     "e": 68.762,
+     "en": "Notice also that the second-order fit gives an initial concentration of 2.00 and a rate constant of 0.151, close to the values used,",
+     "th": "สังเกตด้วยว่าการปรับแบบอันดับสองให้ความเข้มข้นเริ่มต้น 2.00 และค่าคงที่อัตราเร็ว 0.151 ใกล้กับค่าที่ใช้สร้างข้อมูล"
+    },
+    {
+     "s": 68.762,
+     "e": 74.908,
+     "en": "while the first-order fit gives an initial concentration of 1.75, which is simply wrong.",
+     "th": "ขณะที่การปรับแบบอันดับหนึ่งให้ความเข้มข้นเริ่มต้น 1.75 ซึ่งผิด"
+    },
+    {
+     "s": 74.908,
+     "e": 83.954,
+     "en": "Make residual plots a habit: against time, against the fitted value, and against each input. With several responses, plot each one.",
+     "th": "ทำกราฟ residual ให้เป็นนิสัย เทียบกับเวลา เทียบกับค่าที่ปรับได้ และเทียบกับตัวแปรนำเข้าแต่ละตัว ถ้ามีหลายผลตอบสนอง ให้พล็อตทุกตัว"
+    },
+    {
+     "s": 83.954,
+     "e": 90.395,
+     "en": "And compare s with what you know of the measurement error, for example from replicate samples.",
+     "th": "และเปรียบเทียบ s กับสิ่งที่คุณรู้เกี่ยวกับความคลาดเคลื่อนของการวัด เช่น จากตัวอย่างซ้ำ"
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "file": "audio/slide-17.mp3",
+   "duration": 117.264,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.339,
+     "en": "Fourth, identifiability: can the data determine the parameter at all?",
+     "th": "เรื่องที่สี่คือ identifiability ข้อมูลกำหนดพารามิเตอร์ได้หรือไม่"
+    },
+    {
+     "s": 5.339,
+     "e": 16.186,
+     "en": "The chart shows scaled sensitivities: k j times the derivative of the measured concentration with respect to k j. Solid lines are for k one, dashed lines for k two.",
+     "th": "กราฟแสดง scaled sensitivity คือ k j คูณอนุพันธ์ของความเข้มข้นที่วัดเทียบกับ k j เส้นทึบสำหรับ k หนึ่ง เส้นประสำหรับ k สอง"
+    },
+    {
+     "s": 16.186,
+     "e": 18.421,
+     "en": "These curves are the columns of J.",
+     "th": "เส้นโค้งเหล่านี้คือคอลัมน์ของ J"
+    },
+    {
+     "s": 18.421,
+     "e": 27.183,
+     "en": "With A only, the dashed line is zero everywhere. C A is e to the minus k one t, and k two does not appear in it.",
+     "th": "เมื่อวัด A อย่างเดียว เส้นประเป็นศูนย์ตลอด C A คือ e ยกกำลังลบ k หนึ่ง t ซึ่งไม่มี k สอง อยู่ J"
+    },
+    {
+     "s": 27.183,
+     "e": 37.263,
+     "en": "J has a zero column, J transpose J is singular, and no amount of data on A can give k two. This is structural non-identifiability.",
+     "th": "มีคอลัมน์ที่เป็นศูนย์ J transpose J เป็น singular และข้อมูลของ A มากเท่าใดก็ให้ k สอง ไม่ได้ นี่คือ structural non-identifiability"
+    },
+    {
+     "s": 37.263,
+     "e": 47.197,
+     "en": "Press B only. Both curves are large and differ in shape, and the table gives standard errors of 0.038 and 0.011.",
+     "th": "กด B only เส้นโค้งทั้งสองมีขนาดใหญ่และรูปร่างต่างกัน ตารางให้ standard error 0.038 และ 0.011"
+    },
+    {
+     "s": 47.197,
+     "e": 57.677,
+     "en": "Press B, t up to one minute. J has full rank, but in the first minute B has barely started to react further, so the k two curve is small.",
+     "th": "กด B, t ไม่เกินหนึ่งนาที J มี rank เต็ม แต่ในนาทีแรก B แทบยังไม่ทำปฏิกิริยาต่อ เส้นโค้งของ k สอง จึงเล็ก standard"
+    },
+    {
+     "s": 57.677,
+     "e": 69.145,
+     "en": "The standard error of k two grows to 0.41, larger than k two itself. This is practical non-identifiability: possible in principle, useless in practice.",
+     "th": "error ของ k สอง เพิ่มเป็น 0.41 มากกว่าค่า k สอง เอง นี่คือ practical non-identifiability ทำได้ในหลักการ แต่ใช้ไม่ได้ในทางปฏิบัติ"
+    },
+    {
+     "s": 69.145,
+     "e": 77.842,
+     "en": "C only works, with a larger error on k one. Measuring both A and C gives the smallest errors of the five choices.",
+     "th": "การวัด C อย่างเดียวใช้ได้ แต่ k หนึ่ง มีความคลาดเคลื่อนมากกว่า การวัดทั้ง A และ C ให้ความคลาดเคลื่อนน้อยที่สุดในห้าทางเลือก"
+    },
+    {
+     "s": 77.842,
+     "e": 87.408,
+     "en": "The singular vector that belongs to the smallest singular value tells you which combination is poorly determined. For A alone, it points along k two;",
+     "th": "singular vector ที่คู่กับ singular value ที่เล็กที่สุดบอกว่าผลรวมใดถูกกำหนดได้ไม่ดี สำหรับการวัด A อย่างเดียว มันชี้ไปตามแกน k สอง"
+    },
+    {
+     "s": 87.408,
+     "e": 91.553,
+     "en": "in other problems it is often a ratio or a sum of two parameters.",
+     "th": "ในปัญหาอื่นมักเป็นอัตราส่วนหรือผลบวกของพารามิเตอร์สองตัว"
+    },
+    {
+     "s": 91.553,
+     "e": 101.237,
+     "en": "The remedies follow from the diagnosis: measure another species, sample at other times, or fix one parameter from independent data and estimate the rest.",
+     "th": "วิธีแก้ตามมาจากการวินิจฉัย คือวัดสารอื่นเพิ่ม เก็บตัวอย่างที่เวลาอื่น หรือกำหนดค่าพารามิเตอร์หนึ่งตัวจากข้อมูลอิสระแล้วประมาณค่าตัวที่เหลือ"
+    },
+    {
+     "s": 101.237,
+     "e": 113.173,
+     "en": "The test is the singular values of J, with the parameters scaled. A ratio of the smallest to the largest near zero flags a combination of parameters that the data do not fix.",
+     "th": "การทดสอบคือ singular value ของ J เมื่อปรับสเกลพารามิเตอร์แล้ว อัตราส่วนของค่าที่เล็กที่สุดต่อค่าที่ใหญ่ที่สุดที่ใกล้ศูนย์ชี้ว่ามีผลรวมของพารามิเตอร์ที่ข้อมูลกำหนดไม่ได้"
+    },
+    {
+     "s": 113.173,
+     "e": 117.197,
+     "en": "Do this test before you collect data, with a guessed theta.",
+     "th": "ให้ทดสอบก่อนเก็บข้อมูล โดยใช้ theta ที่คาดไว้"
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "file": "audio/slide-18.mp3",
+   "duration": 90.768,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.458,
+     "en": "Fifth, positive parameters and bounds.",
+     "th": "เรื่องที่ห้าคือพารามิเตอร์ที่เป็นบวกและขอบเขต"
+    },
+    {
+     "s": 3.458,
+     "e": 10.146,
+     "en": "Rate constants are positive. One way to keep them so is to fit phi, the natural logarithm of theta.",
+     "th": "ค่าคงที่อัตราเร็วเป็นบวก วิธีหนึ่งที่ทำให้เป็นบวกเสมอคือปรับ phi ซึ่งเป็นลอการิทึมธรรมชาติของ"
+    },
+    {
+     "s": 10.146,
+     "e": 20.513,
+     "en": "Positivity then comes without a bound, every parameter is on a relative scale, and the standard error of phi is about the relative standard error of theta.",
+     "th": "theta ความเป็นบวกจึงได้มาโดยไม่ต้องใช้ขอบเขต ทุกพารามิเตอร์อยู่บนสเกลสัมพัทธ์ และ standard error ของ phi ประมาณเท่ากับ standard error สัมพัทธ์ของ theta"
+    },
+    {
+     "s": 20.513,
+     "e": 27.618,
+     "en": "The interval for theta is then e to the phi plus or minus t times its standard error: positive, and lopsided.",
+     "th": "ช่วงความเชื่อมั่นของ theta จึงเป็น e ยกกำลัง phi บวกลบ t คูณ standard error ของมัน ซึ่งเป็นบวก และไม่สมมาตร"
+    },
+    {
+     "s": 27.618,
+     "e": 36.776,
+     "en": "A log transform also cures the scaling problem of the Arrhenius pre-exponential factor: ln k zero is of order twenty, not ten to the nine.",
+     "th": "การแปลงลอการิทึมยังแก้ปัญหาสเกลของ pre-exponential factor ใน Arrhenius ได้ด้วย ln k ศูนย์ มีขนาดประมาณยี่สิบ ไม่ใช่สิบยกกำลังเก้า"
+    },
+    {
+     "s": 36.776,
+     "e": 48.446,
+     "en": "For the late samples, the t interval on k one ran from minus 1.61 to 4.61. The interval on ln k one, transformed back, runs from 0.19 to 11.9.",
+     "th": "สำหรับตัวอย่างช่วงหลัง ช่วง t ของ k หนึ่ง อยู่ระหว่าง ลบ 1.61 ถึง 4.61 ช่วงของ ln k หนึ่ง เมื่อแปลงกลับ อยู่ระหว่าง 0.19 ถึง 11.9"
+    },
+    {
+     "s": 48.446,
+     "e": 56.118,
+     "en": "It stays positive and leans the way the exact region does, although neither interval is exact.",
+     "th": "ซึ่งยังเป็นบวก และเอนไปในทิศเดียวกับ region แบบแม่นตรง แม้ว่าทั้งสองช่วงจะไม่แม่นตรง"
+    },
+    {
+     "s": 56.118,
+     "e": 60.652,
+     "en": "Bounds keep the iterations physical, and the T R F method handles them.",
+     "th": "ขอบเขตทำให้การทำซ้ำอยู่ในบริเวณทางกายภาพ และ method trf จัดการได้"
+    },
+    {
+     "s": 60.652,
+     "e": 70.789,
+     "en": "But if a bound is active at the answer, the gradient J transpose r is not zero there, and s squared times the inverse of J transpose J is not a valid covariance.",
+     "th": "แต่ถ้าขอบเขตใด active ที่คำตอบ gradient J transpose r จะไม่เป็นศูนย์ที่นั่น และ s กำลังสองคูณ inverse ของ J transpose J ไม่ใช่ covariance ที่ถูกต้อง"
+    },
+    {
+     "s": 70.789,
+     "e": 82.5,
+     "en": "An estimate at a bound, such as a rate constant at zero, says that the data do not support that step. Refit without the step, and compare the two SSE values with an F test.",
+     "th": "ค่าประมาณที่อยู่ที่ขอบเขต เช่น ค่าคงที่อัตราเร็วที่เป็นศูนย์ บอกว่าข้อมูลไม่สนับสนุนขั้นปฏิกิริยานั้น ให้ปรับใหม่โดยตัดขั้นนั้นออก แล้วเปรียบเทียบค่า SSE ทั้งสองด้วย F test"
+    },
+    {
+     "s": 82.5,
+     "e": 90.711,
+     "en": "And a parameter that runs to a bound during the iterations may only reflect a poor start, so try other starts before drawing conclusions.",
+     "th": "และพารามิเตอร์ที่วิ่งไปชนขอบเขตระหว่างการทำซ้ำอาจสะท้อนเพียงจุดเริ่มต้นที่ไม่ดี ให้ลองจุดเริ่มต้นอื่นก่อนสรุป"
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "file": "audio/slide-19.mp3",
+   "duration": 96.72,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.892,
+     "en": "Sixth, weights and outliers.",
+     "th": "เรื่องที่หกคือน้ำหนักและ outlier"
+    },
+    {
+     "s": 2.892,
+     "e": 14.566,
+     "en": "The data are a calibration line, y equals 2 plus 1.5 x, with noise of 0.2. Point seven, at x equal to 6, carries an extra error of plus three.",
+     "th": "ข้อมูลคือเส้นสอบเทียบ y เท่ากับ 2 บวก 1.5 x มีสัญญาณรบกวน 0.2 จุดที่เจ็ด ที่ x เท่ากับ 6 มีความคลาดเคลื่อนเพิ่มอีกบวกสาม"
+    },
+    {
+     "s": 14.566,
+     "e": 22.434,
+     "en": "Least squares, the teal dashed line, is pulled toward it: the slope becomes 1.69 and the intercept 1.65.",
+     "th": "least squares ซึ่งเป็นเส้นประสีเขียวหัวเป็ด ถูกดึงเข้าหาจุดนั้น ความชันกลายเป็น 1.69 และค่าตัดแกนเป็น 1.65"
+    },
+    {
+     "s": 22.434,
+     "e": 35.868,
+     "en": "The amber line uses the Huber loss with f scale 0.3. Residuals smaller than 0.3 are squared as before; larger ones count linearly, so their pull on the line is capped.",
+     "th": "เส้นสีอำพันใช้ Huber loss ที่ f_scale 0.3 residual ที่เล็กกว่า 0.3 ถูกยกกำลังสองเหมือนเดิม ส่วนที่ใหญ่กว่านับแบบเชิงเส้น แรงดึงต่อเส้นจึงมีขีดจำกัด"
+    },
+    {
+     "s": 35.868,
+     "e": 41.145,
+     "en": "The Huber fit gives 1.55 and 1.84, much closer to the true values.",
+     "th": "Huber ให้ 1.55 และ 1.84 ซึ่งใกล้ค่าจริงกว่ามาก"
+    },
+    {
+     "s": 41.145,
+     "e": 52.25,
+     "en": "f scale should be of the size of the noise, one to three times sigma. Much smaller, and good points are treated as outliers; much larger, and the loss is just least squares.",
+     "th": "f_scale ควรมีขนาดประมาณสัญญาณรบกวน คือหนึ่งถึงสามเท่าของ sigma ถ้าเล็กกว่ามาก จุดที่ดีจะถูกมองเป็น outlier ถ้าใหญ่กว่ามาก loss จะเป็นเพียง least squares"
+    },
+    {
+     "s": 52.25,
+     "e": 64.921,
+     "en": "Move the slider, or click on the chart to place the point. At zero extra error the two fits agree. As the error grows, least squares keeps moving while Huber barely changes.",
+     "th": "เลื่อนแถบเลื่อน หรือคลิกบนกราฟเพื่อวางจุด เมื่อความคลาดเคลื่อนเพิ่มเป็นศูนย์ การปรับทั้งสองแบบให้ผลตรงกัน เมื่อความคลาดเคลื่อนเพิ่มขึ้น least squares เคลื่อนที่ต่อไป ขณะที่ Huber แทบไม่เปลี่ยน"
+    },
+    {
+     "s": 64.921,
+     "e": 75.081,
+     "en": "Two related tools. If the errors differ in size but are known, use weighted least squares: divide each residual by its standard deviation.",
+     "th": "เครื่องมือสองอย่างที่เกี่ยวข้อง ถ้าความคลาดเคลื่อนมีขนาดต่างกันแต่ทราบค่า ให้ใช้ weighted least squares โดยหาร residual แต่ละตัวด้วยส่วนเบี่ยงเบนมาตรฐานของมัน"
+    },
+    {
+     "s": 75.081,
+     "e": 78.882,
+     "en": "If a few points are simply wrong, use a robust loss.",
+     "th": "ถ้ามีบางจุดที่ผิดไปเลย ให้ใช้ robust loss"
+    },
+    {
+     "s": 78.882,
+     "e": 87.855,
+     "en": "A robust fit flags a point; it does not explain it. Check the laboratory record before you drop anything, and report what you did.",
+     "th": "การปรับแบบ robust ชี้ว่าจุดใดน่าสงสัย แต่ไม่ได้อธิบายสาเหตุ ให้ตรวจบันทึกการทดลองก่อนตัดข้อมูลใดทิ้ง และรายงานสิ่งที่ทำ"
+    },
+    {
+     "s": 87.855,
+     "e": 96.645,
+     "en": "In the D drawer, SciPy fits the same data with the linear, Huber and soft L one losses, and the two robust losses give nearly the same line.",
+     "th": "ในลิ้นชัก D, SciPy ปรับข้อมูลเดียวกันด้วย loss แบบ linear, Huber และ soft L one และ robust loss ทั้งสองให้เส้นที่เกือบเหมือนกัน"
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "file": "audio/slide-20.mp3",
+   "duration": 41.448,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.839,
+     "en": "Check 2 covers precision, correlation and identifiability.",
+     "th": "แบบตรวจที่ 2 ครอบคลุมความแม่นยำ สหสัมพันธ์ และ identifiability"
+    },
+    {
+     "s": 4.839,
+     "e": 15.937,
+     "en": "Question one asks for a ninety-five percent interval from a standard error. Question two asks what a correlation of 0.999 between ln k zero and E means.",
+     "th": "ข้อหนึ่งให้หาช่วงความเชื่อมั่นเก้าสิบห้าเปอร์เซ็นต์จาก standard error ข้อสองถามว่าสหสัมพันธ์ 0.999 ระหว่าง ln k ศูนย์ และ E"
+    },
+    {
+     "s": 15.937,
+     "e": 26.382,
+     "en": "Question three asks what a pattern in the residuals does to the standard errors. Question four asks whether k two can be estimated from A alone.",
+     "th": "หมายความว่าอย่างไร ข้อสามถามว่ารูปแบบใน residual มีผลอย่างไรต่อ standard error ข้อสี่ถามว่าประมาณ k สอง จาก A อย่างเดียวได้หรือไม่"
+    },
+    {
+     "s": 26.382,
+     "e": 31.342,
+     "en": "For question one, check the degrees of freedom first: n minus p.",
+     "th": "สำหรับข้อหนึ่ง ให้ตรวจองศาเสรีก่อน คือ n ลบ p"
+    },
+    {
+     "s": 31.342,
+     "e": 36.487,
+     "en": "For question three, think about what s squared contains when the model is wrong.",
+     "th": "สำหรับข้อสาม ให้คิดว่า s กำลังสองประกอบด้วยอะไรเมื่อโมเดลผิด"
+    },
+    {
+     "s": 36.487,
+     "e": 41.382,
+     "en": "Pause the narration, answer the four questions, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย ตอบคำถามสี่ข้อ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "file": "audio/slide-21.mp3",
+   "duration": 10.32,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.632,
+     "en": "Take a ten-minute break. After the break, take out your card again.",
+     "th": "พักสิบนาที หลังพักให้หยิบการ์ดออกมาอีกครั้ง"
+    },
+    {
+     "s": 5.632,
+     "e": 10.263,
+     "en": "You will need it to think about which of its parameters data could determine.",
+     "th": "คุณจะต้องใช้มันเพื่อคิดว่าข้อมูลกำหนดพารามิเตอร์ใดได้บ้าง"
+    }
+   ]
+  },
+  {
+   "n": 22,
+   "file": "audio/slide-22.mp3",
+   "duration": 59.856,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.537,
+     "en": "Activity 2 applies part two to your card.",
+     "th": "กิจกรรมที่ 2 นำส่วนที่สองไปใช้กับการ์ดของคุณ"
+    },
+    {
+     "s": 3.537,
+     "e": 12.842,
+     "en": "List the parameters in your card's model, such as rate constants, heat transfer coefficients or efficiencies, and list what a plant or a laboratory could measure.",
+     "th": "เขียนรายการพารามิเตอร์ในโมเดลของการ์ด เช่น ค่าคงที่อัตราเร็ว สัมประสิทธิ์การถ่ายเทความร้อน หรือประสิทธิภาพ และเขียนรายการสิ่งที่โรงงานหรือห้องปฏิบัติการวัดได้"
+    },
+    {
+     "s": 12.842,
+     "e": 21.95,
+     "en": "For each parameter, ask whether any measured output depends on it. Mark any two that appear only as a product, a ratio or a sum.",
+     "th": "สำหรับพารามิเตอร์แต่ละตัว ให้ถามว่ามีผลลัพธ์ที่วัดได้ใดขึ้นกับมันหรือไม่ ทำเครื่องหมายพารามิเตอร์สองตัวที่ปรากฏเป็นผลคูณ อัตราส่วน หรือผลบวกเท่านั้น"
+    },
+    {
+     "s": 21.95,
+     "e": 28.092,
+     "en": "A heat transfer coefficient U and its area A that appear only as U A are a common case.",
+     "th": "สัมประสิทธิ์การถ่ายเทความร้อน U กับพื้นที่ A ที่ปรากฏเป็น U A เท่านั้นเป็นกรณีที่พบบ่อย"
+    },
+    {
+     "s": 28.092,
+     "e": 37.566,
+     "en": "Then guess which pair will be most correlated, propose a reparameterization, and choose four to six sampling times or operating points, with a reason for each.",
+     "th": "จากนั้นคาดว่าคู่ใดจะสหสัมพันธ์กันมากที่สุด เสนอการเปลี่ยนรูปพารามิเตอร์ และเลือกเวลาเก็บตัวอย่างหรือสภาวะการทำงานสี่ถึงหกจุด พร้อมเหตุผลของแต่ละจุด"
+    },
+    {
+     "s": 37.566,
+     "e": 44.408,
+     "en": "The Arrhenius pair, k zero and E, will appear in many cards; say which reference temperature you would use.",
+     "th": "คู่ของ Arrhenius คือ k ศูนย์ และ E จะปรากฏในการ์ดหลายใบ ให้บอกว่าคุณจะใช้อุณหภูมิอ้างอิงเท่าใด"
+    },
+    {
+     "s": 44.408,
+     "e": 56.263,
+     "en": "Swap with your partner, who checks one claim by asking whether the output would change if that parameter changed by ten percent. If you have no card, use A to B to C with only C measured.",
+     "th": "แลกกับเพื่อน ซึ่งจะตรวจข้อกล่าวอ้างหนึ่งข้อโดยถามว่าผลลัพธ์จะเปลี่ยนหรือไม่ถ้าพารามิเตอร์นั้นเปลี่ยนสิบเปอร์เซ็นต์ ถ้าไม่มีการ์ด ให้ใช้ A ไป B ไป C ที่วัดเฉพาะ C"
+    },
+    {
+     "s": 56.263,
+     "e": 59.789,
+     "en": "Pause the narration and work for about ten minutes.",
+     "th": "หยุดเสียงบรรยายและทำงานประมาณสิบนาที"
+    }
+   ]
+  },
+  {
+   "n": 23,
+   "file": "audio/slide-23.mp3",
+   "duration": 100.56,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.366,
+     "en": "Part three fits a classic multiresponse problem: the thermal isomerization of alpha-pinene.",
+     "th": "ส่วนที่สามปรับโมเดลกับปัญหาหลายผลตอบสนองที่เป็นตัวอย่างคลาสสิก คือการเกิด isomerization ด้วยความร้อนของ alpha-pinene"
+    },
+    {
+     "s": 6.366,
+     "e": 12.952,
+     "en": "When alpha-pinene, y one, is heated, it forms dipentene, y two, and allo-ocimene, y three.",
+     "th": "เมื่อให้ความร้อนแก่ alpha-pinene ซึ่งคือ y หนึ่ง จะเกิด dipentene คือ y สอง และ allo-ocimene คือ y"
+    },
+    {
+     "s": 12.952,
+     "e": 20.697,
+     "en": "Allo-ocimene goes on to pyronene, y four, and to a dimer, y five, and the dimer can return to allo-ocimene.",
+     "th": "สาม allo-ocimene เปลี่ยนต่อเป็น pyronene คือ y สี่ และเป็น dimer คือ y ห้า และ dimer สามารถย้อนกลับเป็น allo-ocimene ได้"
+    },
+    {
+     "s": 20.697,
+     "e": 25.251,
+     "en": "Each step is first order, with rate constants theta one to theta five.",
+     "th": "แต่ละขั้นเป็นปฏิกิริยาอันดับหนึ่ง มีค่าคงที่อัตราเร็ว theta หนึ่งถึง"
+    },
+    {
+     "s": 25.251,
+     "e": 35.579,
+     "en": "The five equations are linear in y, so the solution is the matrix exponential of K t applied to the initial composition, one hundred weight percent alpha-pinene.",
+     "th": "theta ห้า สมการทั้งห้าเป็นเชิงเส้นใน y คำตอบจึงเป็น matrix exponential ของ K t คูณกับองค์ประกอบเริ่มต้น คือ alpha-pinene หนึ่งร้อยเปอร์เซ็นต์โดยน้ำหนัก"
+    },
+    {
+     "s": 35.579,
+     "e": 45.487,
+     "en": "The rate constants are small, of order ten to the minus five per minute, because the reaction runs for weeks: half of the alpha-pinene is gone after about eight thousand minutes.",
+     "th": "ค่าคงที่อัตราเร็วมีค่าเล็ก ประมาณสิบยกกำลังลบห้าต่อนาที เพราะปฏิกิริยาดำเนินไปหลายสัปดาห์ alpha-pinene หายไปครึ่งหนึ่งหลังจากประมาณแปดพันนาที"
+    },
+    {
+     "s": 45.487,
+     "e": 55.33,
+     "en": "The data were measured by Fuguitt and Hawkins in 1947, and analysed in a well-known paper by Box, Hunter, MacGregor and Erjavec in 1973.",
+     "th": "ข้อมูลวัดโดย Fuguitt และ Hawkins ในปี 1947 และวิเคราะห์ในบทความที่มีชื่อเสียงของ Box, Hunter, MacGregor และ Erjavec ในปี 1973"
+    },
+    {
+     "s": 55.33,
+     "e": 64.671,
+     "en": "There are eight times, from about 1,200 to 36,000 minutes, and five weight percentages at each: forty numbers for five parameters.",
+     "th": "มีแปดช่วงเวลา ตั้งแต่ประมาณ 1,200 ถึง 36,000 นาที และมีห้าเปอร์เซ็นต์โดยน้ำหนักในแต่ละเวลา รวมเป็นสี่สิบตัวเลขสำหรับห้าพารามิเตอร์"
+    },
+    {
+     "s": 64.671,
+     "e": 76.717,
+     "en": "Look at the sizes. Alpha-pinene falls from 88 to 4.5 percent and dipentene rises to 63. Allo-ocimene and pyronene never exceed about 6 and 3 percent.",
+     "th": "ดูที่ขนาด alpha-pinene ลดจาก 88 เหลือ 4.5 เปอร์เซ็นต์ และ dipentene เพิ่มเป็น 63 allo-ocimene และ pyronene ไม่เกินประมาณ 6 และ 3 เปอร์เซ็นต์"
+    },
+    {
+     "s": 76.717,
+     "e": 83.382,
+     "en": "The small responses carry most of the information about theta three, four and five.",
+     "th": "ผลตอบสนองที่มีค่าเล็กเหล่านี้มีข้อมูลส่วนใหญ่เกี่ยวกับ theta สาม สี่ และห้า"
+    },
+    {
+     "s": 83.382,
+     "e": 93.671,
+     "en": "Box and his co-authors used these data to show what can go wrong when several responses are fitted together, and the data have been a test problem for estimation software ever since.",
+     "th": "Box และผู้ร่วมเขียนใช้ข้อมูลนี้แสดงว่าอะไรผิดพลาดได้บ้างเมื่อปรับหลายผลตอบสนองพร้อมกัน และข้อมูลนี้ถูกใช้เป็นปัญหาทดสอบสำหรับซอฟต์แวร์ประมาณค่ามาตั้งแต่นั้น"
+    },
+    {
+     "s": 93.671,
+     "e": 100.5,
+     "en": "This data set has a story, which the lab will uncover. For now, fit it by hand.",
+     "th": "ชุดข้อมูลนี้มีเรื่องราวซ่อนอยู่ ซึ่ง lab จะเปิดเผย ตอนนี้ให้ลองปรับด้วยมือก่อน"
+    }
+   ]
+  },
+  {
+   "n": 24,
+   "file": "audio/slide-24.mp3",
+   "duration": 74.832,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.898,
+     "en": "The five sliders set theta one to theta five, in units of ten to the minus five per minute.",
+     "th": "แถบเลื่อนห้าอันกำหนด theta หนึ่งถึง theta ห้า ในหน่วยสิบยกกำลังลบห้าต่อนาที"
+    },
+    {
+     "s": 5.898,
+     "e": 12.579,
+     "en": "The curves are the model, computed in your browser with the matrix exponential, and the dots are the data.",
+     "th": "เส้นโค้งคือโมเดลที่คำนวณในเบราว์เซอร์ของคุณด้วย matrix exponential และจุดคือข้อมูล"
+    },
+    {
+     "s": 12.579,
+     "e": 20.947,
+     "en": "At the start, SSE is about 1,400. The panel shows SSE and the largest single residual.",
+     "th": "ที่จุดเริ่มต้น SSE ประมาณ 1,400 แผงแสดง SSE และ residual ที่ใหญ่ที่สุดหนึ่งตัว"
+    },
+    {
+     "s": 20.947,
+     "e": 29.537,
+     "en": "Work in the order of the network. The sum of theta one and theta two sets how fast alpha-pinene falls; fit the teal curve first.",
+     "th": "ทำตามลำดับของเครือข่ายปฏิกิริยา ผลบวกของ theta หนึ่งและ theta สองกำหนดว่า alpha-pinene ลดลงเร็วแค่ไหน ให้ปรับเส้นสีเขียวหัวเป็ดก่อน"
+    },
+    {
+     "s": 29.537,
+     "e": 36.329,
+     "en": "Their ratio sets how alpha-pinene splits between dipentene and allo-ocimene; fit the amber curve next.",
+     "th": "อัตราส่วนของทั้งสองกำหนดว่า alpha-pinene แบ่งไปเป็น dipentene และ allo-ocimene อย่างไร ให้ปรับเส้นสีอำพันต่อไป"
+    },
+    {
+     "s": 36.329,
+     "e": 41.987,
+     "en": "Then the slow steps: theta four and theta five for the dimer, theta three for pyronene.",
+     "th": "จากนั้นเป็นขั้นที่ช้า theta สี่และ theta ห้าสำหรับ dimer และ theta สามสำหรับ pyronene"
+    },
+    {
+     "s": 41.987,
+     "e": 53.296,
+     "en": "Try to get SSE below one hundred. You will notice that the first two sliders are easy to set, and the last three are not: several combinations of them give similar SSE.",
+     "th": "พยายามให้ SSE ต่ำกว่าหนึ่งร้อย คุณจะสังเกตว่าแถบเลื่อนสองอันแรกตั้งค่าได้ง่าย แต่สามอันหลังไม่ง่าย หลายผลรวมของค่าเหล่านี้ให้ SSE"
+    },
+    {
+     "s": 53.296,
+     "e": 56.776,
+     "en": "That is the correlation you will measure in the lab.",
+     "th": "ใกล้เคียงกัน นั่นคือสหสัมพันธ์ที่คุณจะวัดใน lab"
+    },
+    {
+     "s": 56.776,
+     "e": 66.353,
+     "en": "While you move the sliders, look at where the model misses. If one response is missed at all times in the same direction, a single slider is probably wrong;",
+     "th": "ระหว่างเลื่อนแถบเลื่อน ให้ดูว่าโมเดลพลาดที่ใด ถ้าผลตอบสนองหนึ่งพลาดไปในทิศเดียวกันทุกเวลา แถบเลื่อนตัวเดียวน่าจะผิด ถ้าการพลาดเปลี่ยนเครื่องหมาย"
+    },
+    {
+     "s": 66.353,
+     "e": 70.684,
+     "en": "if the misses change sign, you are near a compromise between responses.",
+     "th": "แสดงว่าคุณอยู่ใกล้จุดที่ต้องประนีประนอมระหว่างผลตอบสนอง"
+    },
+    {
+     "s": 70.684,
+     "e": 74.763,
+     "en": "The least-squares answer is on the lab page, not here.",
+     "th": "คำตอบแบบ least squares อยู่ในหน้า lab ไม่ใช่ที่นี่"
+    }
+   ]
+  },
+  {
+   "n": 25,
+   "file": "audio/slide-25.mp3",
+   "duration": 97.248,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.511,
+     "en": "Sensitivities show why some parameters are harder than others.",
+     "th": "sensitivity แสดงว่าทำไมพารามิเตอร์บางตัวจึงยากกว่าตัวอื่น"
+    },
+    {
+     "s": 4.511,
+     "e": 13.607,
+     "en": "The chart shows the scaled sensitivity of each response to the chosen rate constant: theta j times the derivative of y i with respect to theta j.",
+     "th": "กราฟแสดง scaled sensitivity ของแต่ละผลตอบสนองต่อค่าคงที่อัตราเร็วที่เลือก คือ theta j คูณอนุพันธ์ของ y i เทียบกับ theta j ซึ่งเป็นการเปลี่ยนแปลงของ"
+    },
+    {
+     "s": 13.607,
+     "e": 22.018,
+     "en": "It is the change in y i, in weight percent, for a hundred percent change in theta j, to first order. These curves are the columns of J.",
+     "th": "y i เป็นเปอร์เซ็นต์โดยน้ำหนัก เมื่อ theta j เปลี่ยนหนึ่งร้อยเปอร์เซ็นต์ ในการประมาณอันดับหนึ่ง เส้นโค้งเหล่านี้คือคอลัมน์ของ J"
+    },
+    {
+     "s": 22.018,
+     "e": 29.513,
+     "en": "Press theta one or theta two: the large responses move by tens of weight percent. These parameters are easy.",
+     "th": "กด theta หนึ่ง หรือ theta สอง ผลตอบสนองที่มีค่ามากเปลี่ยนไปหลายสิบเปอร์เซ็นต์โดยน้ำหนัก พารามิเตอร์เหล่านี้หาได้ง่าย"
+    },
+    {
+     "s": 29.513,
+     "e": 37.329,
+     "en": "Theta three, four and five move only the small responses, by a few weight percent, comparable with the scatter of the data.",
+     "th": "theta สาม สี่ และห้า เปลี่ยนเฉพาะผลตอบสนองที่มีค่าเล็ก เพียงไม่กี่เปอร์เซ็นต์โดยน้ำหนัก ใกล้เคียงกับการกระจายของข้อมูล"
+    },
+    {
+     "s": 37.329,
+     "e": 48.855,
+     "en": "Their effects also grow slowly: they are near zero at the first sample and largest at the last one. So late samples carry most of the information about them, which the lab returns to.",
+     "th": "ผลของมันยังเพิ่มขึ้นอย่างช้า ๆ ด้วย คือใกล้ศูนย์ที่ตัวอย่างแรกและมากที่สุดที่ตัวอย่างสุดท้าย ตัวอย่างช่วงหลังจึงมีข้อมูลส่วนใหญ่เกี่ยวกับพารามิเตอร์เหล่านี้ ซึ่ง lab จะกลับมาพูดถึง"
+    },
+    {
+     "s": 48.855,
+     "e": 56.197,
+     "en": "Compare theta four, shown now, with theta five. They move the dimer in opposite directions with a similar shape.",
+     "th": "เปรียบเทียบ theta สี่ ที่แสดงอยู่ กับ theta ห้า ทั้งสองเปลี่ยน dimer ในทิศตรงกันข้ามด้วยรูปร่างใกล้เคียงกัน"
+    },
+    {
+     "s": 56.197,
+     "e": 65.684,
+     "en": "Raising both together changes little, so the data determine their ratio better than either one, and their estimates will be positively correlated.",
+     "th": "การเพิ่มทั้งสองพร้อมกันเปลี่ยนแปลงน้อย ข้อมูลจึงกำหนดอัตราส่วนของทั้งสองได้ดีกว่าแต่ละตัว และค่าประมาณของทั้งสองจะสหสัมพันธ์เชิงบวก"
+    },
+    {
+     "s": 65.684,
+     "e": 72.406,
+     "en": "For an ODE model, sensitivities come in three ways: finite differences, with two solves per parameter;",
+     "th": "สำหรับโมเดล ODE หา sensitivity ได้สามทาง คือ finite difference ซึ่งต้องแก้สองครั้งต่อพารามิเตอร์"
+    },
+    {
+     "s": 72.406,
+     "e": 81.868,
+     "en": "the sensitivity equations, which here are d S j by d t equals K S j plus the derivative of K times y; or automatic differentiation, as in CasADi.",
+     "th": "สมการ sensitivity ซึ่งในที่นี้คือ d S j ส่วน d t เท่ากับ K S j บวกอนุพันธ์ของ K คูณ y หรือ automatic differentiation เช่นใน CasADi"
+    },
+    {
+     "s": 81.868,
+     "e": 89.198,
+     "en": "For this linear model the sensitivity equations are cheap, because they share the matrix K with the model itself.",
+     "th": "สำหรับโมเดลเชิงเส้นนี้ สมการ sensitivity คำนวณได้ถูก เพราะใช้เมทริกซ์ K ร่วมกับตัวโมเดล"
+    },
+    {
+     "s": 89.198,
+     "e": 97.171,
+     "en": "For a nonlinear model, K is replaced by the Jacobian of the right-hand side with respect to y, evaluated along the solution.",
+     "th": "สำหรับโมเดลไม่เชิงเส้น K จะถูกแทนด้วย Jacobian ของด้านขวาของสมการเทียบกับ y ที่ประเมินตามคำตอบ"
+    }
+   ]
+  },
+  {
+   "n": 26,
+   "file": "audio/slide-26.mp3",
+   "duration": 109.992,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.208,
+     "en": "With five responses, which objective should we minimize?",
+     "th": "เมื่อมีห้าผลตอบสนอง เราควรทำให้ฟังก์ชันเป้าหมายใดต่ำที่สุด"
+    },
+    {
+     "s": 4.208,
+     "e": 10.37,
+     "en": "Arrange the residuals in an n by m matrix Z, one row per sample and one column per response.",
+     "th": "จัด residual เป็นเมทริกซ์ Z ขนาด n คูณ m หนึ่งแถวต่อหนึ่งตัวอย่าง และหนึ่งคอลัมน์ต่อหนึ่งผลตอบสนอง"
+    },
+    {
+     "s": 10.37,
+     "e": 20.308,
+     "en": "If the covariance of the errors between responses, Sigma, is known, maximum likelihood minimizes the sum over samples of z transpose Sigma inverse z.",
+     "th": "ถ้าทราบ covariance ของความคลาดเคลื่อนระหว่างผลตอบสนอง คือ Sigma, maximum likelihood จะทำให้ผลรวมของ z transpose Sigma inverse z ทุกตัวอย่างต่ำที่สุด"
+    },
+    {
+     "s": 20.308,
+     "e": 27.066,
+     "en": "With Sigma equal to sigma squared times the identity, that is ordinary least squares on all responses.",
+     "th": "ถ้า Sigma เท่ากับ sigma กำลังสองคูณเมทริกซ์เอกลักษณ์ จะได้ ordinary least squares บนทุกผลตอบสนอง"
+    },
+    {
+     "s": 27.066,
+     "e": 38.645,
+     "en": "But the responses differ in size and accuracy. Ordinary least squares gives one weight percent of alpha-pinene the same weight as one weight percent of pyronene, which never exceeds three.",
+     "th": "แต่ผลตอบสนองมีขนาดและความแม่นยำต่างกัน ordinary least squares ให้น้ำหนักหนึ่งเปอร์เซ็นต์ของ alpha-pinene เท่ากับหนึ่งเปอร์เซ็นต์ของ pyronene ซึ่งไม่เคยเกินสาม"
+    },
+    {
+     "s": 38.645,
+     "e": 44.526,
+     "en": "And weight fractions normalized to one hundred share their errors, so the errors are correlated.",
+     "th": "และสัดส่วนโดยน้ำหนักที่ทำให้รวมเป็นหนึ่งร้อยมีความคลาดเคลื่อนร่วมกัน ความคลาดเคลื่อนจึงสหสัมพันธ์กัน"
+    },
+    {
+     "s": 44.526,
+     "e": 54.789,
+     "en": "If the standard deviation of each response were known, you would simply divide each column of residuals by it: weighted least squares, the first line of the slide with a diagonal Sigma.",
+     "th": "ถ้าทราบส่วนเบี่ยงเบนมาตรฐานของแต่ละผลตอบสนอง คุณเพียงหารแต่ละคอลัมน์ของ residual ด้วยค่านั้น ซึ่งคือ weighted least squares ตามบรรทัดแรกของหน้านี้ที่มี Sigma เป็นเมทริกซ์ทแยง"
+    },
+    {
+     "s": 54.789,
+     "e": 68.207,
+     "en": "When Sigma is unknown and estimated along with theta, maximum likelihood leads to minimizing the determinant of Z transpose Z. This is the determinant criterion of Box and Draper, 1965.",
+     "th": "เมื่อไม่ทราบ Sigma และต้องประมาณไปพร้อมกับ theta, maximum likelihood นำไปสู่การทำให้ determinant ของ Z transpose Z ต่ำที่สุด นี่คือ determinant criterion ของ Box และ Draper ปี 1965"
+    },
+    {
+     "s": 68.207,
+     "e": 73.329,
+     "en": "It handles different sizes and correlated errors without knowing Sigma.",
+     "th": "ซึ่งจัดการขนาดที่ต่างกันและความคลาดเคลื่อนที่สหสัมพันธ์กันได้โดยไม่ต้องทราบ Sigma"
+    },
+    {
+     "s": 73.329,
+     "e": 82.903,
+     "en": "In practice the determinant is minimized with a general solver, usually on its logarithm, and the standard errors come from the Hessian of that objective.",
+     "th": "ในทางปฏิบัติ determinant ถูกทำให้ต่ำที่สุดด้วย solver ทั่วไป มักใช้ในรูปลอการิทึม และ standard error มาจาก Hessian ของฟังก์ชันเป้าหมายนั้น หนังสือของ Bard"
+    },
+    {
+     "s": 82.903,
+     "e": 86.053,
+     "en": "Bard's book and Bates and Watts treat it in detail.",
+     "th": "และของ Bates กับ Watts อธิบายเรื่องนี้โดยละเอียด"
+    },
+    {
+     "s": 86.053,
+     "e": 96.511,
+     "en": "It has one weakness. If the responses obey an exact linear relation, in the data or in the model, then Z transpose Z is singular for every theta.",
+     "th": "แต่มีจุดอ่อนหนึ่งข้อ ถ้าผลตอบสนองสอดคล้องกับความสัมพันธ์เชิงเส้นแบบแม่นตรง ไม่ว่าในข้อมูลหรือในโมเดล Z transpose Z จะเป็น singular สำหรับทุก"
+    },
+    {
+     "s": 96.511,
+     "e": 102.026,
+     "en": "Its determinant is zero everywhere, and its minimum says nothing about theta.",
+     "th": "theta determinant ของมันเป็นศูนย์ทุกที่ และค่าต่ำสุดไม่บอกอะไรเกี่ยวกับ theta"
+    },
+    {
+     "s": 102.026,
+     "e": 109.921,
+     "en": "So before choosing the objective, look for such relations. That is the next slide, and Task 2 of the lab.",
+     "th": "ดังนั้นก่อนเลือกฟังก์ชันเป้าหมาย ให้หาความสัมพันธ์ดังกล่าวก่อน ซึ่งคือหน้าถัดไป และ Task 2 ของ lab"
+    }
+   ]
+  },
+  {
+   "n": 27,
+   "file": "audio/slide-27.mp3",
+   "duration": 93.144,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.234,
+     "en": "How do we find linear relations hidden in forty numbers?",
+     "th": "เราจะหาความสัมพันธ์เชิงเส้นที่ซ่อนอยู่ในสี่สิบตัวเลขได้อย่างไร"
+    },
+    {
+     "s": 4.234,
+     "e": 13.073,
+     "en": "Centre each column of the data, giving a matrix D, and compute the eigenvalues and eigenvectors of D transpose D, a five by five matrix.",
+     "th": "ลบค่าเฉลี่ยของแต่ละคอลัมน์ในข้อมูล ได้เมทริกซ์ D แล้วหา eigenvalue และ eigenvector ของ D transpose D ซึ่งเป็นเมทริกซ์ห้าคูณห้า"
+    },
+    {
+     "s": 13.073,
+     "e": 23.395,
+     "en": "If a vector a satisfies D a close to zero, then the combination a transpose y is the same in every sample, and a is an eigenvector with an eigenvalue near zero.",
+     "th": "ถ้าเวกเตอร์ a ทำให้ D a ใกล้ศูนย์ ผลรวมเชิงเส้น a transpose y จะมีค่าเท่ากันในทุกตัวอย่าง และ a คือ eigenvector ที่มี eigenvalue ใกล้ศูนย์"
+    },
+    {
+     "s": 23.395,
+     "e": 35.325,
+     "en": "The chart shows the five eigenvalues on a log scale. Three are of order one to ten thousand. Two, 0.0013 and 0.0168, are tiny.",
+     "th": "กราฟแสดง eigenvalue ทั้งห้าบนสเกลลอการิทึม สามค่ามีขนาดตั้งแต่หนึ่งถึงหนึ่งหมื่น อีกสองค่า คือ 0.0013 และ 0.0168"
+    },
+    {
+     "s": 35.325,
+     "e": 42.276,
+     "en": "The table shows that Box and his co-authors found the same values in 1973.",
+     "th": "เล็กมาก ตารางแสดงว่า Box และผู้ร่วมเขียนพบค่าเดียวกันในปี 1973"
+    },
+    {
+     "s": 42.276,
+     "e": 55.423,
+     "en": "How small is tiny? The data are rounded to about 0.1 weight percent. Rounding alone produces eigenvalues of order n minus one times 0.1 squared over twelve, about 0.006.",
+     "th": "เล็กแค่ไหนจึงเรียกว่าเล็กมาก ข้อมูลถูกปัดเศษที่ประมาณ 0.1 เปอร์เซ็นต์โดยน้ำหนัก การปัดเศษอย่างเดียวทำให้เกิด eigenvalue ขนาดประมาณ n ลบหนึ่ง คูณ 0.1 กำลังสอง หารสิบสอง หรือประมาณ 0.006 ดังนั้น"
+    },
+    {
+     "s": 55.423,
+     "e": 63.776,
+     "en": "So these two eigenvalues are at the level of rounding: two linear relations hold in the data up to rounding.",
+     "th": "eigenvalue สองค่านี้อยู่ในระดับของการปัดเศษ หมายความว่ามีความสัมพันธ์เชิงเส้นสองข้อที่เป็นจริงในข้อมูลจนถึงระดับการปัดเศษ"
+    },
+    {
+     "s": 63.776,
+     "e": 71.745,
+     "en": "When two eigenvalues are both near zero, the two eigenvectors are not unique: any combination of them is also a near-relation.",
+     "th": "เมื่อ eigenvalue สองค่าใกล้ศูนย์ทั้งคู่ eigenvector สองตัวจะไม่มีเอกลักษณ์ ผลรวมเชิงเส้นใด ๆ ของทั้งสองก็เป็นความสัมพันธ์โดยประมาณเช่นกัน"
+    },
+    {
+     "s": 71.745,
+     "e": 77.329,
+     "en": "So the eigenvectors may look like mixtures, and you look for simple combinations of them.",
+     "th": "eigenvector จึงอาจดูเหมือนส่วนผสม และคุณต้องหาผลรวมที่เรียบง่ายของมัน"
+    },
+    {
+     "s": 77.329,
+     "e": 86.263,
+     "en": "One of them is easy to guess for weight percentages. The other is less obvious, and it reveals something about how the data were produced.",
+     "th": "ข้อหนึ่งเดาได้ง่ายสำหรับเปอร์เซ็นต์โดยน้ำหนัก อีกข้อหนึ่งไม่ชัดเจนนัก และมันเปิดเผยบางอย่างเกี่ยวกับวิธีที่ข้อมูลถูกสร้างขึ้น"
+    },
+    {
+     "s": 86.263,
+     "e": 93.066,
+     "en": "Lab 10 asks you to find both relations from the eigenvectors, and to decide which response was not measured.",
+     "th": "Lab 10 ให้คุณหาความสัมพันธ์ทั้งสองจาก eigenvector และตัดสินว่าผลตอบสนองใดไม่ได้ถูกวัด"
+    }
+   ]
+  },
+  {
+   "n": 28,
+   "file": "audio/slide-28.mp3",
+   "duration": 109.92,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.142,
+     "en": "Last topic of part three: where to sample, before any data are taken.",
+     "th": "หัวข้อสุดท้ายของส่วนที่สาม คือควรเก็บตัวอย่างที่ใด ก่อนจะมีข้อมูล"
+    },
+    {
+     "s": 5.142,
+     "e": 15.416,
+     "en": "Return to A to B to C with only B measured, and suppose you can afford four samples. The covariance formula of part two needs only J and sigma, not the data.",
+     "th": "กลับมาที่ A ไป B ไป C ที่วัดเฉพาะ B และสมมติว่าคุณเก็บได้สี่ตัวอย่าง สูตร covariance ในส่วนที่สองต้องใช้เพียง J และ sigma ไม่ต้องใช้ข้อมูล"
+    },
+    {
+     "s": 15.416,
+     "e": 24.974,
+     "en": "So for any set of sampling times you can compute the information matrix M, J transpose J over sigma squared, and the standard errors you would get.",
+     "th": "ดังนั้นสำหรับชุดเวลาเก็บตัวอย่างใด ๆ คุณคำนวณ information matrix M ซึ่งคือ J transpose J หาร sigma กำลังสอง และ standard error ที่จะได้"
+    },
+    {
+     "s": 24.974,
+     "e": 31.684,
+     "en": "The chart shows C B in graphite and the two scaled sensitivities in teal, with the four sample times in amber.",
+     "th": "กราฟแสดง C B เป็นสีเทาเข้ม และ scaled sensitivity สองเส้นเป็นสีเขียวหัวเป็ด โดยมีเวลาเก็บตัวอย่างสี่จุดเป็นสีอำพัน"
+    },
+    {
+     "s": 31.684,
+     "e": 49.724,
+     "en": "Uniform sampling at 2.5, 5, 7.5 and 10 minutes gives standard errors of 0.081 and 0.014. Press Early: four samples in the first two minutes give 0.070 and 0.081, a poor result for k two.",
+     "th": "การเก็บตัวอย่างสม่ำเสมอที่ 2.5, 5, 7.5 และ 10 นาทีให้ standard error 0.081 และ 0.014 กด Early ตัวอย่างสี่จุดในสองนาทีแรกให้ 0.070 และ 0.081 ซึ่งไม่ดีสำหรับ k สอง"
+    },
+    {
+     "s": 49.724,
+     "e": 63.803,
+     "en": "A D-optimal design maximizes the determinant of M, which gives the smallest joint confidence region. Press D-optimal: two samples at 1.25 minutes and two at 6.25 minutes.",
+     "th": "การออกแบบแบบ D-optimal ทำให้ determinant ของ M สูงที่สุด ซึ่งให้ joint confidence region ที่เล็กที่สุด กด D-optimal จะได้สองตัวอย่างที่ 1.25 นาที และสองตัวอย่างที่ 6.25 นาที"
+    },
+    {
+     "s": 63.803,
+     "e": 69.566,
+     "en": "The standard error of k one halves to 0.042, and k two stays at 0.016.",
+     "th": "standard error ของ k หนึ่ง ลดลงครึ่งหนึ่งเหลือ 0.042 และ k สอง อยู่ที่ 0.016"
+    },
+    {
+     "s": 69.566,
+     "e": 81.184,
+     "en": "The D-efficiency in the panel compares a design with the optimum. Uniform sampling scores 0.60. Move the sliders and see how close you can get.",
+     "th": "D-efficiency ในแผงเปรียบเทียบการออกแบบกับค่าเหมาะสมที่สุด การเก็บตัวอย่างแบบสม่ำเสมอได้ 0.60 ลองเลื่อนแถบเลื่อนดูว่าเข้าใกล้ได้แค่ไหน"
+    },
+    {
+     "s": 81.184,
+     "e": 88.88,
+     "en": "For two parameters the best four times are two replicates at two times, where the sensitivities are large and differ in shape.",
+     "th": "สำหรับสองพารามิเตอร์ เวลาที่ดีที่สุดสี่จุดคือการเก็บซ้ำสองครั้งที่สองเวลา ซึ่ง sensitivity มีขนาดใหญ่และรูปร่างต่างกัน"
+    },
+    {
+     "s": 88.88,
+     "e": 96.334,
+     "en": "But such a design cannot test the model, so add a few points for that. And it depends on theta, which you do not know yet:",
+     "th": "แต่การออกแบบเช่นนี้ทดสอบโมเดลไม่ได้ จึงควรเพิ่มจุดสำหรับเรื่องนั้น และมันขึ้นกับ theta ซึ่งคุณยังไม่รู้"
+    },
+    {
+     "s": 96.334,
+     "e": 100.697,
+     "en": "design with a prior guess, then design again once the first data are in.",
+     "th": "ให้ออกแบบด้วยค่าที่คาดไว้ แล้วออกแบบใหม่เมื่อได้ข้อมูลชุดแรก"
+    },
+    {
+     "s": 100.697,
+     "e": 109.855,
+     "en": "This sequential approach is how kinetic studies in industry are usually planned: a few screening runs, a fit, a design, and then the runs that matter.",
+     "th": "แนวทางแบบลำดับขั้นนี้คือวิธีที่การศึกษาจลนพลศาสตร์ในอุตสาหกรรมมักวางแผน คือการทดลองคัดกรองไม่กี่ครั้ง การปรับ การออกแบบ แล้วจึงทำการทดลองที่สำคัญ"
+    }
+   ]
+  },
+  {
+   "n": 29,
+   "file": "audio/slide-29.mp3",
+   "duration": 42.768,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.813,
+     "en": "Check 3 covers several responses and the design of experiments.",
+     "th": "แบบตรวจที่ 3 ครอบคลุมหลายผลตอบสนองและการออกแบบการทดลอง"
+    },
+    {
+     "s": 4.813,
+     "e": 16.579,
+     "en": "Question one asks why ordinary least squares on all five alpha-pinene responses can mislead. Question two asks what an exact relation does to the determinant criterion.",
+     "th": "ข้อหนึ่งถามว่าทำไม ordinary least squares บนผลตอบสนองทั้งห้าของ alpha-pinene อาจทำให้เข้าใจผิด ข้อสองถามว่าความสัมพันธ์แบบแม่นตรงมีผลอย่างไรต่อ determinant"
+    },
+    {
+     "s": 16.579,
+     "e": 24.934,
+     "en": "Question three asks why the D-optimal design repeats two times. Question four returns to the sensitivities of the dimer.",
+     "th": "criterion ข้อสามถามว่าทำไมการออกแบบแบบ D-optimal จึงเก็บซ้ำที่สองเวลา ข้อสี่กลับไปที่ sensitivity ของ dimer"
+    },
+    {
+     "s": 24.934,
+     "e": 30.75,
+     "en": "For question three, think about where the sensitivity curves on the design slide are large.",
+     "th": "สำหรับข้อสาม ให้คิดว่าเส้นโค้ง sensitivity บนหน้าการออกแบบมีค่ามากที่ใด"
+    },
+    {
+     "s": 30.75,
+     "e": 37.816,
+     "en": "For question four, go back to the sensitivity slide and compare the theta four and theta five curves for the dimer.",
+     "th": "สำหรับข้อสี่ ให้ย้อนกลับไปที่หน้า sensitivity และเปรียบเทียบเส้นโค้งของ theta สี่และ theta ห้าสำหรับ dimer"
+    },
+    {
+     "s": 37.816,
+     "e": 42.711,
+     "en": "Pause the narration, answer the four questions, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย ตอบคำถามสี่ข้อ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 30,
+   "file": "audio/slide-30.mp3",
+   "duration": 74.376,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.642,
+     "en": "A short tour of the tools.",
+     "th": "แนะนำเครื่องมือโดยสังเขป"
+    },
+    {
+     "s": 2.642,
+     "e": 11.979,
+     "en": "SciPy's least squares is enough for most problems in this course. It gives you the Jacobian at the answer, and you compute the covariance.",
+     "th": "least_squares ของ SciPy เพียงพอสำหรับปัญหาส่วนใหญ่ในวิชานี้ มันให้ Jacobian ที่คำตอบ แล้วคุณคำนวณ covariance เอง ส่วน curve_fit"
+    },
+    {
+     "s": 11.979,
+     "e": 15.539,
+     "en": "curve fit does that for you for an explicit function.",
+     "th": "ทำสิ่งนั้นให้สำหรับฟังก์ชันที่เขียนได้ชัดเจน"
+    },
+    {
+     "s": 15.539,
+     "e": 21.278,
+     "en": "For kinetics without a closed form, call solve I V P inside the residual function.",
+     "th": "สำหรับจลนพลศาสตร์ที่ไม่มีคำตอบรูปปิด ให้เรียก solve_ivp ภายในฟังก์ชัน residual"
+    },
+    {
+     "s": 21.278,
+     "e": 33.447,
+     "en": "Set its tolerances tighter than the finite-difference step, or the Jacobian becomes noisy and the fit stalls. Here the matrix exponential is exact, so the issue does not arise.",
+     "th": "ตั้งค่าความคลาดเคลื่อนที่ยอมรับได้ให้ละเอียดกว่าขนาดก้าวของ finite difference มิฉะนั้น Jacobian จะมีสัญญาณรบกวนและการปรับจะติดขัด ในที่นี้ matrix exponential ให้ค่าแม่นตรง ปัญหานี้จึงไม่เกิด"
+    },
+    {
+     "s": 33.447,
+     "e": 43.039,
+     "en": "For stiff kinetics, with fast and slow steps together, choose an implicit method such as BDF or Radau, and pass the Jacobian of the right-hand side if you can.",
+     "th": "สำหรับจลนพลศาสตร์แบบ stiff ที่มีขั้นเร็วและขั้นช้าร่วมกัน ให้เลือกวิธี implicit เช่น BDF หรือ Radau และส่ง Jacobian ของด้านขวาของสมการถ้าทำได้"
+    },
+    {
+     "s": 43.039,
+     "e": 51.053,
+     "en": "L M fit adds named parameters, bounds and expressions, and intervals by profiling the objective, which do not assume an ellipse.",
+     "th": "lmfit เพิ่มพารามิเตอร์ที่มีชื่อ ขอบเขต และนิพจน์ และช่วงความเชื่อมั่นจากการทำ profile ของฟังก์ชันเป้าหมาย ซึ่งไม่ต้องสมมติว่าเป็นวงรี"
+    },
+    {
+     "s": 51.053,
+     "e": 58.404,
+     "en": "Pyomo's parmest estimates parameters in equation-based models, with bootstrap and likelihood-ratio intervals.",
+     "th": "parmest ของ Pyomo ประมาณค่าพารามิเตอร์ในโมเดลที่เขียนเป็นสมการ พร้อมช่วงความเชื่อมั่นแบบ bootstrap และ likelihood"
+    },
+    {
+     "s": 58.404,
+     "e": 66.289,
+     "en": "And CasADi with Ipopt gives exact derivatives and handles stiff ODEs through collocation, which Session 11 introduces.",
+     "th": "ratio ส่วน CasADi กับ Ipopt ให้อนุพันธ์แบบแม่นตรง และจัดการ ODE แบบ stiff ด้วย collocation ซึ่งคาบที่ 11 จะแนะนำ"
+    },
+    {
+     "s": 66.289,
+     "e": 74.316,
+     "en": "Whichever tool you use, the checks of this session stay the same: residuals, identifiability, bounds and several starts.",
+     "th": "ไม่ว่าจะใช้เครื่องมือใด การตรวจในคาบนี้ยังเหมือนเดิม คือ residual, identifiability ขอบเขต และหลายจุดเริ่มต้น"
+    }
+   ]
+  },
+  {
+   "n": 31,
+   "file": "audio/slide-31.mp3",
+   "duration": 86.76,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.261,
+     "en": "What should a parameter estimate come with?",
+     "th": "ค่าประมาณพารามิเตอร์ควรมาพร้อมกับอะไรบ้าง"
+    },
+    {
+     "s": 3.261,
+     "e": 11.908,
+     "en": "The model and its assumptions; the data, with n, units and how sigma was judged; the objective and its weights, and any responses left out.",
+     "th": "โมเดลและสมมติฐาน ข้อมูลพร้อม n หน่วย และวิธีที่ใช้ตัดสินค่า sigma ฟังก์ชันเป้าหมายและน้ำหนัก และผลตอบสนองใดที่ไม่ได้ใช้"
+    },
+    {
+     "s": 11.908,
+     "e": 22.882,
+     "en": "The solver, its starts and status, and evidence that several starts reach the same answer. The estimates with standard errors and intervals, and the correlation matrix.",
+     "th": "solver จุดเริ่มต้น และ status และหลักฐานว่าหลายจุดเริ่มต้นให้คำตอบเดียวกัน ค่าประมาณพร้อม standard error และช่วงความเชื่อมั่น และเมทริกซ์สหสัมพันธ์"
+    },
+    {
+     "s": 22.882,
+     "e": 30.322,
+     "en": "s against the known measurement error, residual plots for every response, a statement on identifiability and on any active bound,",
+     "th": "s เทียบกับความคลาดเคลื่อนของการวัดที่ทราบ กราฟ residual ของทุกผลตอบสนอง ข้อความเรื่อง identifiability"
+    },
+    {
+     "s": 30.322,
+     "e": 34.671,
+     "en": "and predictions with their uncertainty in the range where they will be used.",
+     "th": "และขอบเขตที่ active และการทำนายพร้อมความไม่แน่นอนในช่วงที่จะนำไปใช้"
+    },
+    {
+     "s": 34.671,
+     "e": 42.434,
+     "en": "Think of the report as the evidence a colleague needs to reuse your numbers in a design calculation, as you will do in Session 11.",
+     "th": "ให้มองรายงานเป็นหลักฐานที่เพื่อนร่วมงานต้องใช้ในการนำตัวเลขของคุณไปใช้ในการคำนวณออกแบบ เช่นที่คุณจะทำในคาบที่ 11"
+    },
+    {
+     "s": 42.434,
+     "e": 51.162,
+     "en": "Three warnings. An R squared close to one says little on its own: a wrong model can reach 0.999 when the responses are large.",
+     "th": "คำเตือนสามข้อ R กำลังสองที่ใกล้หนึ่งบอกได้น้อยเมื่อดูลำพัง โมเดลที่ผิดอาจได้ 0.999 เมื่อผลตอบสนองมีค่ามาก"
+    },
+    {
+     "s": 51.162,
+     "e": 57.882,
+     "en": "A parameter with a standard error larger than its value is not determined, and you should say so.",
+     "th": "พารามิเตอร์ที่มี standard error มากกว่าค่าของมันเองถือว่ากำหนดไม่ได้ และคุณควรระบุไว้"
+    },
+    {
+     "s": 57.882,
+     "e": 66.0,
+     "en": "R squared compares the fit with a horizontal line through the mean, which is a weak test for a kinetic model whose responses change a lot.",
+     "th": "R กำลังสองเปรียบเทียบผลการปรับกับเส้นแนวนอนที่ผ่านค่าเฉลี่ย ซึ่งเป็นการทดสอบที่อ่อนสำหรับโมเดลจลนพลศาสตร์ที่ผลตอบสนองเปลี่ยนแปลงมาก"
+    },
+    {
+     "s": 66.0,
+     "e": 77.053,
+     "en": "And with a correlation of 0.999, rounding each parameter on its own changes the predictions, so give enough digits to reproduce them, or report the reparameterized form.",
+     "th": "และเมื่อสหสัมพันธ์เท่ากับ 0.999 การปัดเศษพารามิเตอร์แต่ละตัวแยกกันจะเปลี่ยนค่าทำนาย จึงควรให้จำนวนหลักมากพอที่จะคำนวณซ้ำได้ หรือรายงานในรูปที่เปลี่ยนพารามิเตอร์แล้ว"
+    },
+    {
+     "s": 77.053,
+     "e": 86.697,
+     "en": "Finally, share the code and the data when you can, as the lab page does. A reader who can rerun the fit can check every number in your report.",
+     "th": "สุดท้าย เผยแพร่โค้ดและข้อมูลเมื่อทำได้ เช่นเดียวกับที่หน้า lab ทำ ผู้อ่านที่รันการปรับซ้ำได้จะตรวจตัวเลขทุกตัวในรายงานของคุณได้"
+    }
+   ]
+  },
+  {
+   "n": 32,
+   "file": "audio/slide-32.mp3",
+   "duration": 39.576,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.708,
+     "en": "Check 4 is about judging and reporting a fit.",
+     "th": "แบบตรวจที่ 4 เกี่ยวกับการตัดสินและการรายงานผลการปรับ"
+    },
+    {
+     "s": 3.708,
+     "e": 11.683,
+     "en": "Question one gives a rate constant reported only with an R squared. Question two has an estimate at its lower bound.",
+     "th": "ข้อหนึ่งให้ค่าคงที่อัตราเร็วที่รายงานพร้อม R กำลังสองเท่านั้น ข้อสองมีค่าประมาณที่อยู่ที่ขอบล่าง"
+    },
+    {
+     "s": 11.683,
+     "e": 22.316,
+     "en": "Question three compares a three-parameter and a five-parameter model with an F test. Question four asks what to do when a fit converged from only one start.",
+     "th": "ข้อสามเปรียบเทียบโมเดลสามพารามิเตอร์กับห้าพารามิเตอร์ด้วย F test ข้อสี่ถามว่าควรทำอะไรเมื่อการปรับลู่เข้าจากจุดเริ่มต้นเพียงจุดเดียว"
+    },
+    {
+     "s": 22.316,
+     "e": 28.316,
+     "en": "For question three, the F quantile with two and fifteen degrees of freedom is 3.68.",
+     "th": "สำหรับข้อสาม ค่า F quantile ที่องศาเสรีสองและสิบห้าเท่ากับ 3.68"
+    },
+    {
+     "s": 28.316,
+     "e": 34.618,
+     "en": "For question two, remember what the covariance formula assumes about the gradient at the answer.",
+     "th": "สำหรับข้อสอง ให้นึกถึงสิ่งที่สูตร covariance สมมติเกี่ยวกับ gradient ที่คำตอบ"
+    },
+    {
+     "s": 34.618,
+     "e": 39.513,
+     "en": "Pause the narration, answer the four questions, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย ตอบคำถามสี่ข้อ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 33,
+   "file": "audio/slide-33.mp3",
+   "duration": 57.744,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.168,
+     "en": "Where does this go in the rest of the course?",
+     "th": "เนื้อหานี้ไปต่อที่ใดในส่วนที่เหลือของวิชา"
+    },
+    {
+     "s": 3.168,
+     "e": 9.304,
+     "en": "Session 11 optimizes dynamic models, the same kind of ODE models with fitted rate constants.",
+     "th": "คาบที่ 11 หาค่าเหมาะสมที่สุดของโมเดลพลวัต ซึ่งเป็นโมเดล ODE แบบเดียวกันที่มีค่าคงที่อัตราเร็วจากการปรับ"
+    },
+    {
+     "s": 9.304,
+     "e": 17.75,
+     "en": "Sensitivities become the derivatives the optimizer needs, and estimation and control can share the same collocation formulation.",
+     "th": "sensitivity กลายเป็นอนุพันธ์ที่ optimizer ต้องใช้ และการประมาณค่ากับการควบคุมใช้รูปแบบ collocation เดียวกันได้"
+    },
+    {
+     "s": 17.75,
+     "e": 29.355,
+     "en": "Session 12 treats uncertainty. The covariance of the estimates becomes the source of scenarios: sample theta from its confidence region, and optimize against all the samples.",
+     "th": "คาบที่ 12 ว่าด้วยความไม่แน่นอน covariance ของค่าประมาณกลายเป็นแหล่งของ scenario คือสุ่ม theta จาก confidence region แล้วหาค่าเหมาะสมที่สุดเทียบกับตัวอย่างทั้งหมด"
+    },
+    {
+     "s": 29.355,
+     "e": 39.658,
+     "en": "Session 13 is about nonconvex problems. Least-squares objectives can have several minima, and multistart and global methods apply to them too.",
+     "th": "คาบที่ 13 ว่าด้วยปัญหาที่ไม่ convex ฟังก์ชันเป้าหมายแบบ least squares อาจมีค่าต่ำสุดหลายค่า และวิธี multistart และวิธีหาค่าเหมาะสมที่สุดแบบ global ก็ใช้กับมันได้"
+    },
+    {
+     "s": 39.658,
+     "e": 48.842,
+     "en": "The design of experiments also returns there: the same information matrix tells you which measurements a plant should add before a model is used for optimization.",
+     "th": "การออกแบบการทดลองก็กลับมาที่นั่นด้วย information matrix เดียวกันบอกว่าโรงงานควรเพิ่มการวัดใดก่อนนำโมเดลไปใช้หาค่าเหมาะสมที่สุด"
+    },
+    {
+     "s": 48.842,
+     "e": 57.671,
+     "en": "In your project, any parameter you fit should come with standard errors, residual plots, and a statement of what the data can and cannot determine.",
+     "th": "ในโครงงานของคุณ พารามิเตอร์ใดที่ปรับจากข้อมูลควรมาพร้อม standard error กราฟ residual และข้อความว่าข้อมูลกำหนดอะไรได้และไม่ได้"
+    }
+   ]
+  },
+  {
+   "n": 34,
+   "file": "audio/slide-34.mp3",
+   "duration": 68.232,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.5,
+     "en": "Now Lab 10. Scan the code, or open the lab page.",
+     "th": "ต่อไปคือ Lab 10 สแกนโค้ด หรือเปิดหน้า lab"
+    },
+    {
+     "s": 5.5,
+     "e": 15.171,
+     "en": "You work with the alpha-pinene data. First you read a least-squares fit of the five rate constants: their standard errors and their correlations.",
+     "th": "คุณจะทำงานกับข้อมูล alpha-pinene ขั้นแรกคุณอ่านผลการปรับแบบ least squares ของค่าคงที่อัตราเร็วทั้งห้า ได้แก่ standard error"
+    },
+    {
+     "s": 15.171,
+     "e": 19.211,
+     "en": "Before you look, predict which one will be the least precise.",
+     "th": "และสหสัมพันธ์ ก่อนดู ให้ทำนายว่าตัวใดจะแม่นยำน้อยที่สุด"
+    },
+    {
+     "s": 19.211,
+     "e": 30.289,
+     "en": "Then you look at the residuals of each response, and use the eigenvectors to find the two linear relations in the data. One of them tells you that one response was not measured.",
+     "th": "จากนั้นคุณดู residual ของแต่ละผลตอบสนอง และใช้ eigenvector หาความสัมพันธ์เชิงเส้นสองข้อในข้อมูล ข้อหนึ่งบอกคุณว่ามีผลตอบสนองหนึ่งที่ไม่ได้ถูกวัด"
+    },
+    {
+     "s": 30.289,
+     "e": 37.276,
+     "en": "You refit without that response and explain what changes, and why the earlier answer looked more precise than it was.",
+     "th": "คุณปรับใหม่โดยไม่ใช้ผลตอบสนองนั้น และอธิบายว่าอะไรเปลี่ยนไป และทำไมคำตอบเดิมจึงดูแม่นยำกว่าที่เป็นจริง"
+    },
+    {
+     "s": 37.276,
+     "e": 44.895,
+     "en": "Finally you decide which responses must be measured to determine all five constants, and when one more sample would help most.",
+     "th": "สุดท้ายคุณตัดสินว่าต้องวัดผลตอบสนองใดบ้างจึงจะกำหนดค่าคงที่ทั้งห้าได้ และการเก็บตัวอย่างเพิ่มอีกหนึ่งครั้งที่เวลาใดจะช่วยได้มากที่สุด"
+    },
+    {
+     "s": 44.895,
+     "e": 56.513,
+     "en": "Everything runs on the lab page, on a laptop or a phone. Each step asks for a prediction or a number before you move on. In class you have about forty minutes.",
+     "th": "ทุกอย่างทำงานบนหน้า lab ทั้งบนแล็ปท็อปและโทรศัพท์ แต่ละขั้นต้องการคำทำนายหรือตัวเลขก่อนจะไปต่อ ในห้องเรียนคุณมีเวลาประมาณสี่สิบนาที"
+    },
+    {
+     "s": 56.513,
+     "e": 68.158,
+     "en": "A tip: the relation tester in Task 2 shows the value of a candidate combination in each sample. A combination that is the same in all eight samples, up to rounding, is a relation.",
+     "th": "เคล็ดลับ ตัวทดสอบความสัมพันธ์ใน Task 2 แสดงค่าของผลรวมที่เสนอในแต่ละตัวอย่าง ผลรวมที่มีค่าเท่ากันทั้งแปดตัวอย่าง จนถึงระดับการปัดเศษ คือความสัมพันธ์"
+    }
+   ]
+  },
+  {
+   "n": 35,
+   "file": "audio/slide-35.mp3",
+   "duration": 97.2,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.076,
+     "en": "To summarize.",
+     "th": "สรุป"
+    },
+    {
+     "s": 2.076,
+     "e": 11.658,
+     "en": "Least squares is maximum likelihood with independent normal errors of known relative size. Weights and robust losses cover the other cases.",
+     "th": "least squares คือ maximum likelihood เมื่อความคลาดเคลื่อนเป็นอิสระต่อกัน แจกแจงปกติ และทราบขนาดสัมพัทธ์ น้ำหนักและ robust loss ครอบคลุมกรณีอื่น"
+    },
+    {
+     "s": 11.658,
+     "e": 18.257,
+     "en": "Gauss–Newton uses J transpose J in place of the Hessian, and converged in three steps on the decay example.",
+     "th": "Gauss–Newton ใช้ J transpose J แทน Hessian และลู่เข้าในสามก้าวในตัวอย่างการสลายตัว"
+    },
+    {
+     "s": 18.257,
+     "e": 26.566,
+     "en": "Levenberg–Marquardt damps the step like a trust region, and reached the minimum from starts where Gauss–Newton left the physical region.",
+     "th": "Levenberg–Marquardt หน่วงก้าวเหมือน trust region และไปถึงค่าต่ำสุดจากจุดเริ่มต้นที่ Gauss–Newton ออกนอกบริเวณทางกายภาพ"
+    },
+    {
+     "s": 26.566,
+     "e": 36.658,
+     "en": "Both are optimization methods you already know, adapted to an objective with a special structure: a sum of squares whose first derivatives give an approximate Hessian for free.",
+     "th": "ทั้งสองเป็นวิธี optimization ที่คุณรู้จักแล้ว ซึ่งปรับให้เข้ากับฟังก์ชันเป้าหมายที่มีโครงสร้างพิเศษ คือผลรวมกำลังสองที่อนุพันธ์อันดับหนึ่งให้ Hessian โดยประมาณมาโดยไม่ต้องคำนวณเพิ่ม"
+    },
+    {
+     "s": 36.658,
+     "e": 43.621,
+     "en": "s squared times the inverse of J transpose J gives standard errors and correlations near the answer.",
+     "th": "s กำลังสองคูณ inverse ของ J transpose J ให้ standard error และสหสัมพันธ์ใกล้คำตอบ"
+    },
+    {
+     "s": 43.621,
+     "e": 49.825,
+     "en": "The correlation of ln k zero and E was 0.999, and zero after referring the rate to T ref.",
+     "th": "สหสัมพันธ์ของ ln k ศูนย์ และ E เท่ากับ 0.999 และเป็นศูนย์เมื่ออ้างอิงอัตราเร็วที่"
+    },
+    {
+     "s": 49.825,
+     "e": 57.684,
+     "en": "With late samples only, the exact region for k one had no upper limit, while the ellipse included negative values.",
+     "th": "T ref เมื่อใช้เฉพาะตัวอย่างช่วงหลัง region แบบแม่นตรงของ k หนึ่ง ไม่มีขอบบน ขณะที่วงรีรวมค่าติดลบ"
+    },
+    {
+     "s": 57.684,
+     "e": 66.724,
+     "en": "Residual patterns show a wrong model, and they also inflate the standard errors: the first-order fit to second-order data had s eight times the real noise.",
+     "th": "รูปแบบของ residual แสดงว่าโมเดลผิด และยังทำให้ standard error สูงเกินจริง การปรับแบบอันดับหนึ่งกับข้อมูลอันดับสองให้ s แปดเท่าของสัญญาณรบกวนจริง"
+    },
+    {
+     "s": 66.724,
+     "e": 72.105,
+     "en": "Check residuals, identifiability and bounds before trusting an interval.",
+     "th": "ตรวจ residual, identifiability และขอบเขต ก่อนเชื่อช่วงความเชื่อมั่น"
+    },
+    {
+     "s": 72.105,
+     "e": 82.783,
+     "en": "With several responses, look for linear relations in the data before choosing the objective: the alpha-pinene data have two. And choose sampling times from the sensitivities:",
+     "th": "เมื่อมีหลายผลตอบสนอง ให้หาความสัมพันธ์เชิงเส้นในข้อมูลก่อนเลือกฟังก์ชันเป้าหมาย ข้อมูล alpha-pinene มีสองข้อ และเลือกเวลาเก็บตัวอย่างจาก sensitivity การออกแบบแบบ D-optimal"
+    },
+    {
+     "s": 82.783,
+     "e": 88.092,
+     "en": "the D-optimal design halved the standard error of k one compared with uniform sampling.",
+     "th": "ลด standard error ของ k หนึ่ง ลงครึ่งหนึ่งเมื่อเทียบกับการเก็บตัวอย่างแบบสม่ำเสมอ"
+    },
+    {
+     "s": 88.092,
+     "e": 97.118,
+     "en": "And remember the order of work: look at the data and at identifiability first, fit, then check residuals and intervals, and only then report.",
+     "th": "และจำลำดับการทำงานไว้ ดูข้อมูลและ identifiability ก่อน ปรับ แล้วตรวจ residual และช่วงความเชื่อมั่น จากนั้นจึงรายงาน"
+    }
+   ]
+  },
+  {
+   "n": 36,
+   "file": "audio/slide-36.mp3",
+   "duration": 47.64,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.958,
+     "en": "Before the next session, finish Lab 10 if you did not finish it in class.",
+     "th": "ก่อนคาบหน้า ทำ Lab 10 ให้เสร็จถ้ายังทำไม่เสร็จในห้องเรียน"
+    },
+    {
+     "s": 4.958,
+     "e": 13.763,
+     "en": "Keep your card. Session 11 optimizes a dynamic model, and your card's model may have the rate constants you discussed today.",
+     "th": "เก็บการ์ดไว้ คาบที่ 11 หาค่าเหมาะสมที่สุดของโมเดลพลวัต และโมเดลในการ์ดของคุณอาจมีค่าคงที่อัตราเร็วที่คุณพูดถึงวันนี้"
+    },
+    {
+     "s": 13.763,
+     "e": 20.092,
+     "en": "Session 11 also uses Google Colab again, as in Lab 9, so keep that routine at hand.",
+     "th": "คาบที่ 11 ใช้ Google Colab อีกครั้งเหมือนใน Lab 9 จึงควรจำขั้นตอนนั้นไว้"
+    },
+    {
+     "s": 20.092,
+     "e": 26.933,
+     "en": "For reading, chapter 10 of Nocedal and Wright, Numerical Optimization, covers least-squares problems.",
+     "th": "สำหรับการอ่าน บทที่ 10 ของ Numerical Optimization โดย Nocedal และ Wright ครอบคลุมปัญหา least squares"
+    },
+    {
+     "s": 26.933,
+     "e": 38.737,
+     "en": "Or read Bates and Watts, Nonlinear Regression Analysis and Its Applications, chapters 2 and 4, or Englezos and Kalogerakis, Applied Parameter Estimation for Chemical Engineers.",
+     "th": "หรืออ่าน Nonlinear Regression Analysis and Its Applications ของ Bates และ Watts บทที่ 2 และ 4 หรือ Applied Parameter Estimation for Chemical Engineers ของ Englezos และ Kalogerakis"
+    },
+    {
+     "s": 38.737,
+     "e": 47.579,
+     "en": "Optionally, read the 1973 paper by Box, Hunter, MacGregor and Erjavec in Technometrics, the analysis behind Lab 10.",
+     "th": "ถ้าต้องการ อ่านบทความปี 1973 ของ Box, Hunter, MacGregor และ Erjavec ใน Technometrics ซึ่งเป็นการวิเคราะห์เบื้องหลัง Lab 10"
+    }
+   ]
+  },
+  {
+   "n": 37,
+   "file": "audio/slide-37.mp3",
+   "duration": 30.384,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.405,
+     "en": "Finally, the Exit Ticket and feedback.",
+     "th": "สุดท้ายคือ Exit Ticket และ feedback"
+    },
+    {
+     "s": 3.405,
+     "e": 9.171,
+     "en": "Scan the code, choose Session 10, and paste the answers that the lab page copies for you.",
+     "th": "สแกนโค้ด เลือก Session 10 แล้ววางคำตอบที่หน้า lab คัดลอกไว้ให้"
+    },
+    {
+     "s": 9.171,
+     "e": 15.5,
+     "en": "Then tell us about the pace, your confidence, how far you got in the lab, and what is still unclear.",
+     "th": "จากนั้นบอกเราเรื่องความเร็วในการสอน ความมั่นใจ ความคืบหน้าใน lab และสิ่งที่ยังไม่ชัดเจน"
+    },
+    {
+     "s": 15.5,
+     "e": 21.224,
+     "en": "If you studied on your own, choose On my own. The form is anonymous.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้เลือก On my own แบบฟอร์มนี้ไม่ระบุตัวตน"
+    },
+    {
+     "s": 21.224,
+     "e": 26.908,
+     "en": "Your answers are how the next session is adjusted, so short, honest answers help most.",
+     "th": "คำตอบของคุณใช้ปรับคาบถัดไป คำตอบสั้น ๆ ที่ตรงไปตรงมาจึงช่วยได้มากที่สุด"
+    },
+    {
+     "s": 26.908,
+     "e": 30.329,
+     "en": "Thank you, and see you in Session 11.",
+     "th": "ขอบคุณ แล้วพบกันในคาบที่ 11"
+    }
+   ]
+  }
+ ]
+}
