@@ -1,19 +1,20 @@
-"""2105623 Lab 4: multiperiod optimization.
+"""2105623 Session 4: multiperiod models (inventory, storage, the end of the horizon).
 
-Two time-indexed models, each solved with SciPy's HiGHS interface so that the
-same file runs in the browser (Pyodide) and in desktop Python:
+Part A  Food Manufacture: six-month oil blending with storage
+        (data from H. P. Williams, Model Building in Mathematical Programming,
+        5th ed., Section 12.1).
+Part B  A battery beside rooftop PV under the PEA time-of-use tariff for
+        medium general service, Schedule 3.2.3 (voltage below 22 kV): energy
+        4.3297 THB/kWh on-peak, 2.6369 off-peak, demand charge 210 THB/kW per
+        month on the highest on-peak demand; Ft and VAT not included.
+        Load and PV profiles are synthetic teaching data.
+          Lecture: a small factory (300 kWp PV, 300 kWh / 150 kW battery).
+          Lab 4:   an office building (200 kWp PV, 200 kWh / 100 kW battery).
+Part C  Forecast error and re-planning (rolling horizon) for the factory.
 
-  Part A  Food Manufacture: six-month oil blending with storage
-          (data from H. P. Williams, Model Building in Mathematical
-          Programming, 5th ed., Section 12.1).
-  Part B  24-hour dispatch of a battery beside rooftop PV under a
-          time-of-use tariff (PEA Tariff 2.2.2, energy charge only;
-          load and PV profiles are synthetic teaching data).
-
-Run   python multiperiod_lab.py          print every part
-      python multiperiod_lab.py --step   pause after each part
-      python multiperiod_lab.py --json   write the recorded results file
-
+Runs in the browser (Pyodide: NumPy, SciPy/HiGHS) and in desktop Python.
+    python multiperiod_lab.py          print every part
+    python multiperiod_lab.py --json   write multiperiod-results.json for the slides and the lab page
 Every result is checked by recomputing balances and the objective from the
 solution itself. A solver status of "optimal" is not treated as evidence.
 """
@@ -44,14 +45,15 @@ MAX_STOCK = 1000.0          # tonnes of each oil
 
 
 def food_manufacture(storage_cost=5.0, veg_capacity=200.0, nonveg_capacity=250.0,
-                     terminal=True, carryover=True):
-    """Maximize profit over six months. Returns plan, profit, checks and duals."""
+                     terminal=True, carryover=True, initial=INITIAL_STOCK):
+    """Maximize profit over six months. Returns the plan, profit, checks and the value of oil
+    (dual of each stock balance: GBP per extra tonne of oil i available in month t)."""
     nI, nT = len(OILS), len(MONTHS)
     n = 3 * nI * nT                                   # buy, use, stock
 
-    def b(i, t): return i * nT + t                    # buy[i, t]
-    def u(i, t): return nI * nT + i * nT + t          # use[i, t]
-    def s(i, t): return 2 * nI * nT + i * nT + t      # stock[i, t] at month end
+    def b(i, t): return i * nT + t
+    def u(i, t): return nI * nT + i * nT + t
+    def s(i, t): return 2 * nI * nT + i * nT + t
 
     c = np.zeros(n)                                   # minimize -profit
     for i in range(nI):
@@ -60,13 +62,13 @@ def food_manufacture(storage_cost=5.0, veg_capacity=200.0, nonveg_capacity=250.0
             c[u(i, t)] = -SELL
             c[s(i, t)] = storage_cost
 
-    A_eq, b_eq = [], []                               # stock balance
+    A_eq, b_eq = [], []                               # stock balance: s(t-1) + buy - use - s(t) = 0
     for i in range(nI):
         for t in range(nT):
             row = np.zeros(n)
             row[b(i, t)], row[u(i, t)], row[s(i, t)] = 1, -1, -1
             if t == 0:
-                b_eq.append(-INITIAL_STOCK)
+                b_eq.append(-initial)
             else:
                 row[s(i, t - 1)] = 1
                 b_eq.append(0.0)
@@ -77,7 +79,7 @@ def food_manufacture(storage_cost=5.0, veg_capacity=200.0, nonveg_capacity=250.0
         veg, nonveg, hmax, hmin = (np.zeros(n) for _ in range(4))
         for i in range(nI):
             (veg if IS_VEG[i] else nonveg)[u(i, t)] = 1
-            hmax[u(i, t)] = HARDNESS[i] - 6.0         # hardness <= 6
+            hmax[u(i, t)] = HARDNESS[i] - 6.0         # hardness <= 6, a ratio row as in Session 2
             hmin[u(i, t)] = 3.0 - HARDNESS[i]         # hardness >= 3
         A_ub += [veg, nonveg, hmax, hmin]
         b_ub += [veg_capacity, nonveg_capacity, 0.0, 0.0]
@@ -88,7 +90,7 @@ def food_manufacture(storage_cost=5.0, veg_capacity=200.0, nonveg_capacity=250.0
         for t in range(nT):
             lo, hi = 0.0, MAX_STOCK
             if not carryover:
-                lo = hi = INITIAL_STOCK
+                lo = hi = initial
             if terminal and t == nT - 1:
                 lo = hi = INITIAL_STOCK
             bounds.append((lo, hi))
@@ -103,23 +105,22 @@ def food_manufacture(storage_cost=5.0, veg_capacity=200.0, nonveg_capacity=250.0
     stock = np.array([[x[s(i, t)] for i in range(nI)] for t in range(nT)])
     product = use.sum(axis=1)
 
-    # Independent audit from the solution values only
-    prev = np.full(nI, INITIAL_STOCK)
+    prev = np.full(nI, initial)                       # independent audit from the solution only
     balance = []
     for t in range(nT):
         balance.append(np.abs(prev + buy[t] - use[t] - stock[t]).max())
         prev = stock[t]
     quality = (use @ HARDNESS) / np.where(product > 0, product, 1)
     profit = SELL * product.sum() - (PRICE * buy).sum() - storage_cost * stock.sum()
-    marg = res.ineqlin.marginals                      # d(-profit)/d(rhs)
-    duals = {name: -m for name, m in zip(ub_names, marg)}
+    duals = {name: -m for name, m in zip(ub_names, res.ineqlin.marginals)}
+    value = np.array(res.eqlin.marginals).reshape(nI, nT).T   # GBP per extra tonne available, [t, i]
+    r6 = lambda a: (np.round(a, 6) + 0.0).tolist()
     return {
-        "status": "optimal",
-        "profit": profit,
-        "solver_objective": -res.fun,
-        "buy": (buy.round(6) + 0.0).tolist(), "use": (use.round(6) + 0.0).tolist(),
-        "stock": (stock.round(6) + 0.0).tolist(), "product": (product.round(6) + 0.0).tolist(),
-        "hardness": quality.round(6).tolist(),
+        "status": "optimal", "profit": float(profit), "solver_objective": float(-res.fun),
+        "buy": r6(buy), "use": r6(use), "stock": r6(stock), "product": r6(product),
+        "hardness": np.round(quality, 6).tolist(), "value": r6(value),
+        "revenue": float(SELL * product.sum()), "purchase": float((PRICE * buy).sum()),
+        "storage": float(storage_cost * stock.sum()), "stock_months": float(stock.sum()),
         "checks": {
             "max_stock_balance_residual_t": float(max(balance)),
             "hardness_within_3_to_6": bool(np.all((quality > 3 - 1e-7) & (quality < 6 + 1e-7))),
@@ -134,24 +135,41 @@ def food_manufacture(storage_cost=5.0, veg_capacity=200.0, nonveg_capacity=250.0
     }
 
 
+def food_size():
+    nI, nT = len(OILS), len(MONTHS)
+    return {"variables": 3 * nI * nT, "balance_rows": nI * nT, "monthly_rows": 4 * nT,
+            "dof": 3 * nI * nT - nI * nT}
+
+
 # ---------------------------------------------------------------------------
-# Part B. Battery beside rooftop PV under a time-of-use tariff
+# Part B. A battery beside rooftop PV under PEA TOU, Schedule 3.2.3
 # ---------------------------------------------------------------------------
 HOURS = np.arange(24)                                 # hour t covers t:00 to t+1:00
-PEAK, OFFPEAK = 5.7982, 2.6369                        # THB/kWh, PEA 2.2.2, no Ft or VAT
-TOU_WEEKDAY = np.where((HOURS >= 9) & (HOURS < 22), PEAK, OFFPEAK)
-TOU_SATURDAY = np.full(24, OFFPEAK)                   # weekends are off-peak all day
-LOAD_WEEKDAY = np.array([55, 55, 55, 55, 55, 58, 65, 85, 120, 130, 135, 140,
-                         110, 135, 140, 135, 130, 115, 100, 95, 90, 80, 65, 60], float)
-LOAD_SATURDAY = np.array([55, 55, 55, 55, 55, 55, 60, 75, 99, 104, 109, 109,
-                          99, 104, 109, 104, 99, 85, 75, 70, 65, 60, 58, 55], float)
+PEAK, OFFPEAK = 4.3297, 2.6369                        # THB/kWh, PEA 3.2.3, without Ft and VAT
+DEMAND_MONTH = 210.0                                  # THB per kW per month, highest on-peak demand
+WEEKDAYS = 22                                         # the monthly demand charge spread over 22 weekdays
+DEMAND_DAY = DEMAND_MONTH / WEEKDAYS                  # THB per kW per weekday
+ON_PEAK = (HOURS >= 9) & (HOURS < 22)                 # Monday to Friday, 09:00 to 22:00
+TOU_WEEKDAY = np.where(ON_PEAK, PEAK, OFFPEAK)
+TOU_WEEKEND = np.full(24, OFFPEAK)                    # Saturday, Sunday and holidays are off-peak all day
 CLOUD = np.ones(24)
-CLOUD[12:17] = [0.7, 0.35, 0.3, 0.5, 0.8]             # cloudy afternoon
-BATTERY = {"E": 200.0, "P": 100.0, "eta_c": 0.95, "eta_d": 0.95,
-           "soc_min": 20.0, "soc0": 100.0, "wear": 0.05}   # wear: THB per kWh discharged
+CLOUD[12:17] = [0.7, 0.35, 0.3, 0.5, 0.8]             # a cloudy afternoon
+
+# lecture site: a small factory, one day shift
+LOAD_FACTORY = np.array([70, 70, 70, 70, 70, 80, 150, 190, 210, 215, 220, 220,
+                         180, 215, 220, 220, 210, 190, 130, 95, 85, 80, 75, 70], float)
+BAT_FACTORY = {"E": 300.0, "P": 150.0, "eta_c": 0.95, "eta_d": 0.95, "soc_min": 30.0, "soc0": 150.0, "wear": 0.05}
+KWP_FACTORY = 300.0
+# lab site: an office building
+LOAD_OFFICE = np.array([55, 55, 55, 55, 55, 58, 65, 85, 120, 130, 135, 140,
+                        110, 135, 140, 135, 130, 115, 100, 95, 90, 80, 65, 60], float)
+LOAD_OFFICE_SAT = np.array([55, 55, 55, 55, 55, 55, 60, 75, 99, 104, 109, 109,
+                            99, 104, 109, 104, 99, 85, 75, 70, 65, 60, 58, 55], float)
+BAT_OFFICE = {"E": 200.0, "P": 100.0, "eta_c": 0.95, "eta_d": 0.95, "soc_min": 20.0, "soc0": 100.0, "wear": 0.05}
+KWP_OFFICE = 200.0
 
 
-def pv_profile(kwp=200.0, cloud=None):
+def pv_profile(kwp, cloud=None):
     """Clear-sky PV output in kW for each hour (synthetic, sunrise 6:00, sunset 18:00)."""
     mid = HOURS + 0.5
     shape = np.clip(np.sin(np.pi * (mid - 6.0) / 12.0), 0, None) ** 1.3
@@ -159,249 +177,253 @@ def pv_profile(kwp=200.0, cloud=None):
     return pv * (CLOUD if cloud is True else (cloud if cloud is not None else 1.0))
 
 
-def dispatch(load, pv, price, export=False, export_price=0.0, curtail=True,
-             terminal=True, binary=False, soc_start=None, soc_end=None, battery=None):
-    """Least-cost 1-hour dispatch. Variables per hour: import, export, charge,
-    discharge, curtailment, state of charge (kWh at the end of the hour)."""
-    bat = dict(BATTERY, **(battery or {}))
+def dispatch(load, pv, price, bat, demand=0.0, peak_mask=ON_PEAK, curtail=True, terminal=True,
+             binary=False, soc_start=None, soc_end=None, d_floor=0.0):
+    """Least-cost hourly dispatch. Variables per hour: import, charge, discharge, curtailment,
+    state of charge (kWh at the end of the hour), plus one variable d for the highest on-peak
+    import (an epigraph, as in Session 2) when demand > 0, and binaries y when binary=True."""
     load, pv, price = (np.asarray(a, float) for a in (load, pv, price))
     n = len(load)
+    mask = np.asarray(peak_mask[-n:] if len(peak_mask) >= n else peak_mask, bool)
     soc_start = bat["soc0"] if soc_start is None else soc_start
     soc_end = bat["soc0"] if soc_end is None else soc_end
-    IMP, EXP, CH, DIS, CUR, SOC, Y = (k * n for k in range(7))
-    nv = 7 * n if binary else 6 * n
-
+    IMP, CH, DIS, CUR, SOC = (k * n for k in range(5))
+    D = 5 * n
+    Y = D + 1
+    nv = Y + (n if binary else 0)
     c = np.zeros(nv)
     c[IMP:IMP + n] = price
-    c[EXP:EXP + n] = -export_price
     c[DIS:DIS + n] = bat["wear"]
-
-    rows, lo, hi, names = [], [], [], []
-    for t in range(n):                                # power balance (kW, 1 h)
-        r = np.zeros(nv)
-        r[IMP + t], r[DIS + t], r[CH + t], r[EXP + t], r[CUR + t] = 1, 1, -1, -1, -1
-        rows.append(r); lo.append(load[t] - pv[t]); hi.append(load[t] - pv[t]); names.append(("power", t))
+    c[D] = demand
+    rows, lo, hi = [], [], []
+    for t in range(n):                                # power balance (kW over one hour = kWh)
+        r = np.zeros(nv); r[IMP + t], r[DIS + t], r[CH + t], r[CUR + t] = 1, 1, -1, -1
+        rows.append(r); lo.append(load[t] - pv[t]); hi.append(load[t] - pv[t])
     for t in range(n):                                # state-of-charge balance
-        r = np.zeros(nv)
-        r[SOC + t], r[CH + t], r[DIS + t] = 1, -bat["eta_c"], 1 / bat["eta_d"]
-        rhs = soc_start if t == 0 else 0.0
+        r = np.zeros(nv); r[SOC + t], r[CH + t], r[DIS + t] = 1, -bat["eta_c"], 1 / bat["eta_d"]
         if t > 0:
             r[SOC + t - 1] = -1
-        rows.append(r); lo.append(rhs); hi.append(rhs); names.append(("soc", t))
-    if binary:                                        # y = 1 charge allowed, y = 0 discharge allowed
+        rhs = soc_start if t == 0 else 0.0
+        rows.append(r); lo.append(rhs); hi.append(rhs)
+    n_eq = len(rows)
+    if demand > 0:                                    # d >= import(t) in every on-peak hour
         for t in range(n):
-            r = np.zeros(nv); r[CH + t], r[Y + t] = 1, -bat["P"]
-            rows.append(r); lo.append(-np.inf); hi.append(0.0); names.append(("ychg", t))
-            r = np.zeros(nv); r[DIS + t], r[Y + t] = 1, bat["P"]
-            rows.append(r); lo.append(-np.inf); hi.append(bat["P"]); names.append(("ydis", t))
-
+            if mask[t]:
+                r = np.zeros(nv); r[IMP + t], r[D] = 1, -1
+                rows.append(r); lo.append(-np.inf); hi.append(0.0)
+    if binary:                                        # y = 1 charging allowed, y = 0 discharging allowed
+        for t in range(n):
+            r = np.zeros(nv); r[CH + t], r[Y + t] = 1, -bat["P"]; rows.append(r); lo.append(-np.inf); hi.append(0.0)
+            r = np.zeros(nv); r[DIS + t], r[Y + t] = 1, bat["P"]; rows.append(r); lo.append(-np.inf); hi.append(bat["P"])
     lb, ub = np.zeros(nv), np.full(nv, np.inf)
-    ub[EXP:EXP + n] = np.inf if export else 0.0
-    ub[CH:CH + n] = bat["P"]
-    ub[DIS:DIS + n] = bat["P"]
+    ub[CH:CH + n] = bat["P"]; ub[DIS:DIS + n] = bat["P"]
     ub[CUR:CUR + n] = pv if curtail else 0.0
     lb[SOC:SOC + n], ub[SOC:SOC + n] = bat["soc_min"], bat["E"]
     if terminal:
         lb[SOC + n - 1] = max(soc_end, bat["soc_min"])
+    lb[D] = d_floor if demand > 0 else 0.0
+    ub[D] = np.inf if demand > 0 else 0.0
     if binary:
         ub[Y:Y + n] = 1.0
-
     A = np.array(rows)
     if binary:
         integ = np.zeros(nv); integ[Y:Y + n] = 1
-        res = milp(c, constraints=LinearConstraint(A, lo, hi), bounds=Bounds(lb, ub),
-                   integrality=integ)
+        res = milp(c, constraints=LinearConstraint(A, lo, hi), bounds=Bounds(lb, ub), integrality=integ)
         ok, x, marg = res.status == 0, res.x, None
     else:
-        eq = [i for i, (a, z) in enumerate(zip(lo, hi)) if a == z]
-        res = linprog(c, A_eq=A[eq], b_eq=np.array(lo)[eq], bounds=list(zip(lb, ub)),
-                      method="highs")
+        A_ub = A[n_eq:] if len(rows) > n_eq else None
+        res = linprog(c, A_eq=A[:n_eq], b_eq=np.array(lo[:n_eq]), A_ub=A_ub,
+                      b_ub=np.array(hi[n_eq:]) if A_ub is not None else None,
+                      bounds=list(zip(lb, ub)), method="highs")
         ok, x = res.status == 0, res.x
         marg = res.eqlin.marginals[:n] if ok else None
     if not ok:
         return {"status": "infeasible" if res.status == 2 else str(res.message), "cost": None}
-
-    g = {k: x[o:o + n] for k, o in (("imp", IMP), ("exp", EXP), ("ch", CH), ("dis", DIS),
-                                     ("cur", CUR), ("soc", SOC))}
+    g = {k: x[o:o + n] for k, o in (("imp", IMP), ("ch", CH), ("dis", DIS), ("cur", CUR), ("soc", SOC))}
     soc_prev = np.concatenate([[soc_start], g["soc"][:-1]])
-    power_res = g["imp"] + pv - g["cur"] + g["dis"] - load - g["ch"] - g["exp"]
+    power_res = g["imp"] + pv - g["cur"] + g["dis"] - load - g["ch"]
     soc_res = soc_prev + bat["eta_c"] * g["ch"] - g["dis"] / bat["eta_d"] - g["soc"]
-    cost = float(price @ g["imp"] - export_price * g["exp"].sum() + bat["wear"] * g["dis"].sum())
+    peak_imp = float(g["imp"][mask].max()) if mask.any() else 0.0
+    energy = float(price @ g["imp"]); wear = float(bat["wear"] * g["dis"].sum())
+    dcharge = float(demand * max(peak_imp, d_floor)) if demand > 0 else 0.0
+    cost = energy + wear + dcharge
     out = {k: (np.round(v, 6) + 0.0).tolist() for k, v in g.items()}
-    out.update({
-        "status": "optimal",
-        "cost": cost,
-        "energy_cost": float(price @ g["imp"]),
-        "simultaneous_kw": float(np.minimum(g["ch"], g["dis"]).max()),
-        "checks": {
-            "max_power_balance_residual_kw": float(np.abs(power_res).max()),
-            "max_soc_balance_residual_kwh": float(np.abs(soc_res).max()),
-            "objective_residual_thb": float(abs(cost - res.fun)),
-            "soc_end_kwh": float(g["soc"][-1]),
-        },
-        "marginal_thb_per_kwh": None if marg is None else np.round(marg, 4).tolist(),
-    })
+    out.update({"status": "optimal", "cost": cost, "energy_cost": energy, "wear_cost": wear, "demand_cost": dcharge,
+                "peak_import": peak_imp, "simultaneous_kw": float(np.minimum(g["ch"], g["dis"]).max()),
+                "hour_of_max_simultaneous": int(np.argmax(np.minimum(g["ch"], g["dis"]))),
+                "curtailed_kwh": float(g["cur"].sum()),
+                "checks": {"max_power_balance_residual_kw": float(np.abs(power_res).max()),
+                           "max_soc_balance_residual_kwh": float(np.abs(soc_res).max()),
+                           "objective_residual_thb": float(abs(cost - res.fun)), "soc_end_kwh": float(g["soc"][-1])},
+                "marginal_thb_per_kwh": None if marg is None else np.round(marg, 4).tolist()})
     return out
 
 
-def no_battery_cost(load, pv, price):
-    """Cost when the site has PV but no battery; surplus PV is curtailed."""
+def no_battery(load, pv, price, demand=0.0, peak_mask=ON_PEAK):
+    """Cost with PV but no battery; surplus PV is curtailed."""
     imp = np.clip(np.asarray(load) - np.asarray(pv), 0, None)
-    return float(np.asarray(price) @ imp)
+    peak = float(imp[peak_mask].max()) if demand > 0 else 0.0
+    energy = float(np.asarray(price) @ imp)
+    return {"cost": energy + demand * peak, "energy_cost": energy, "demand_cost": demand * peak,
+            "peak_import": float(imp[peak_mask].max()), "imp": (np.round(imp, 6) + 0.0).tolist()}
 
 
-def rolling_horizon(load, pv_actual, pv_forecast, price):
-    """Re-plan every hour to the end of the day. The current hour uses the
-    measured PV, later hours use the forecast. Only the first hour is applied."""
-    bat = BATTERY
-    soc, cost, applied = bat["soc0"], 0.0, {"ch": [], "dis": [], "imp": [], "soc": []}
+def soc_by_hand():
+    """The four-hour example on the slides, worked from the SoC balance."""
+    b = BAT_FACTORY; soc = 150.0; rows = []
+    for ch, dis in ((100, 0), (0, 0), (0, 150), (0, 50)):
+        new = soc + b["eta_c"] * ch - dis / b["eta_d"]
+        rows.append({"start": soc, "charge": ch, "discharge": dis, "end": new}); soc = new
+    return rows
+
+
+def arbitrage():
+    b = BAT_FACTORY
+    rt = b["eta_c"] * b["eta_d"]
+    return {"round_trip": rt, "cost_per_kwh_out": OFFPEAK / rt + b["wear"], "peak": PEAK, "offpeak": OFFPEAK,
+            "margin_per_kwh_out": PEAK - (OFFPEAK / rt + b["wear"]),
+            "breakeven_rt": (OFFPEAK) / (PEAK - b["wear"])}
+
+
+# ---------------------------------------------------------------------------
+# Part C. Forecast error and re-planning (factory, cloudy afternoon)
+# ---------------------------------------------------------------------------
+def rolling_horizon(load, pv_actual, pv_forecast, price, bat, demand=0.0):
+    """Re-plan every hour to the end of the day. The current hour uses the measured PV,
+    later hours use the forecast. Only the first hour is applied. The highest on-peak
+    import so far carries over as a floor on d."""
+    soc, d_floor, applied, plans = bat["soc0"], 0.0, {"ch": [], "dis": [], "imp": [], "soc": [], "cur": []}, []
     for h in range(len(load)):
         pv_view = np.concatenate([[pv_actual[h]], pv_forecast[h + 1:]])
-        plan = dispatch(load[h:], pv_view, price[h:], soc_start=soc, soc_end=bat["soc0"])
-        ch, dis, imp = plan["ch"][0], plan["dis"][0], plan["imp"][0]
+        plan = dispatch(load[h:], pv_view, price[h:], bat, demand=demand, peak_mask=ON_PEAK[h:],
+                        soc_start=soc, soc_end=bat["soc0"], d_floor=d_floor)
+        if h in (0, 11, 13, 15):
+            plans.append({"hour": h, "soc": [None] * h + plan["soc"], "ch": [None] * h + plan["ch"], "dis": [None] * h + plan["dis"]})
+        ch, dis, imp, cur = plan["ch"][0], plan["dis"][0], plan["imp"][0], plan["cur"][0]
         soc = soc + bat["eta_c"] * ch - dis / bat["eta_d"]
-        cost += price[h] * imp + bat["wear"] * dis
-        for k, v in (("ch", ch), ("dis", dis), ("imp", imp), ("soc", soc)):
+        if ON_PEAK[h]:
+            d_floor = max(d_floor, imp)
+        for k, v in (("ch", ch), ("dis", dis), ("imp", imp), ("soc", soc), ("cur", cur)):
             applied[k].append(round(float(v), 6) + 0.0)
-    applied["cost"] = float(cost)
+    imp = np.array(applied["imp"])
+    energy = float(price @ imp); wear = float(bat["wear"] * sum(applied["dis"]))
+    peak = float(imp[ON_PEAK].max())
+    applied.update(cost=energy + wear + demand * peak, energy_cost=energy, demand_cost=demand * peak, peak_import=peak,
+                   plans=plans)
     return applied
 
 
-def open_loop(load, pv_actual, pv_forecast, price):
+def open_loop(load, pv_actual, pv_forecast, price, bat, demand=0.0):
     """Fix the battery schedule from the morning forecast; the grid absorbs the error."""
-    plan = dispatch(load, pv_forecast, price)
+    plan = dispatch(load, pv_forecast, price, bat, demand=demand)
     ch, dis = np.array(plan["ch"]), np.array(plan["dis"])
     net = np.asarray(load) - np.asarray(pv_actual) + ch - dis
     imp = np.clip(net, 0, None)
-    return {"cost": float(np.asarray(price) @ imp + BATTERY["wear"] * dis.sum()),
-            "imp": (np.round(imp, 6) + 0.0).tolist()}
+    peak = float(imp[ON_PEAK].max())
+    energy = float(np.asarray(price) @ imp)
+    return {"cost": energy + bat["wear"] * dis.sum() + demand * peak, "energy_cost": energy,
+            "demand_cost": demand * peak, "peak_import": peak, "imp": (np.round(imp, 6) + 0.0).tolist(),
+            "ch": plan["ch"], "dis": plan["dis"], "soc": plan["soc"]}
 
 
 # ---------------------------------------------------------------------------
-# Everything the slides show, in one dictionary
+# Everything the slides and the lab show
 # ---------------------------------------------------------------------------
-def classroom_results():
-    pv_clear, pv_cloudy = pv_profile(), pv_profile(cloud=True)
-    R = {"meta": {"numpy": np.__version__, "scipy": __import__("scipy").__version__,
-                  "python": sys.version.split()[0]},
-         "data": {"hours": HOURS.tolist(), "tou_weekday": TOU_WEEKDAY.tolist(),
-                  "load_weekday": LOAD_WEEKDAY.tolist(), "load_saturday": LOAD_SATURDAY.tolist(),
-                  "pv_clear": np.round(pv_clear, 4).tolist(),
-                  "pv_cloudy": np.round(pv_cloudy, 4).tolist(), "battery": BATTERY,
-                  "oils": OILS, "months": MONTHS, "price": PRICE.tolist(),
-                  "hardness": HARDNESS.tolist()}}
-    # Part A
-    R["food"] = {"reference": food_manufacture()}
-    R["food"]["holding_sweep"] = []
+def lecture_results():
+    F = {"reference": food_manufacture(), "no_terminal": food_manufacture(terminal=False),
+         "no_carryover": food_manufacture(carryover=False), "size": food_size()}
+    ref = F["reference"]
+    # finite-difference check of one stock-balance dual: one more tonne of VEG1 at the start
+    plus = food_manufacture(initial=INITIAL_STOCK + 1.0, terminal=True)
+    F["dual_check"] = {"note": "all five initial stocks + 1 t", "profit_plus": plus["profit"] if plus["profit"] else None,
+                       "sum_values_month0": float(sum(ref["value"][0]))}
+    pv = pv_profile(KWP_FACTORY)
+    st = {"pv": np.round(pv, 4).tolist(), "load": LOAD_FACTORY.tolist(), "price": TOU_WEEKDAY.tolist(),
+          "battery": BAT_FACTORY, "kwp": KWP_FACTORY}
+    st["no_battery_energy"] = no_battery(LOAD_FACTORY, pv, TOU_WEEKDAY)
+    st["no_battery_demand"] = no_battery(LOAD_FACTORY, pv, TOU_WEEKDAY, demand=DEMAND_DAY)
+    st["energy_only"] = dispatch(LOAD_FACTORY, pv, TOU_WEEKDAY, BAT_FACTORY)
+    st["with_demand"] = dispatch(LOAD_FACTORY, pv, TOU_WEEKDAY, BAT_FACTORY, demand=DEMAND_DAY)
+    st["end_sweep"] = []
+    for e in (30, 75, 150, 225, 300):
+        r = dispatch(LOAD_FACTORY, pv, TOU_WEEKDAY, BAT_FACTORY, demand=DEMAND_DAY, soc_end=float(e))
+        st["end_sweep"].append({"end": e, "cost": r["cost"], "soc": r["soc"], "ch": r["ch"], "dis": r["dis"]})
+    nt = dispatch(LOAD_FACTORY, pv, TOU_WEEKDAY, BAT_FACTORY, demand=DEMAND_DAY, terminal=False)
+    st["no_terminal"] = {"cost": nt["cost"], "soc_end": nt["checks"]["soc_end_kwh"]}
+    st["soc_by_hand"] = soc_by_hand(); st["arbitrage"] = arbitrage()
+    pv_c = pv_profile(KWP_FACTORY, cloud=True)
+    U = {"pv_forecast": st["pv"], "pv_actual": np.round(pv_c, 4).tolist(),
+         "perfect": dispatch(LOAD_FACTORY, pv_c, TOU_WEEKDAY, BAT_FACTORY, demand=DEMAND_DAY),
+         "open_loop": open_loop(LOAD_FACTORY, pv_c, pv, TOU_WEEKDAY, BAT_FACTORY, demand=DEMAND_DAY),
+         "rolling": rolling_horizon(LOAD_FACTORY, pv_c, pv, TOU_WEEKDAY, BAT_FACTORY, demand=DEMAND_DAY),
+         "no_battery": no_battery(LOAD_FACTORY, pv_c, TOU_WEEKDAY, demand=DEMAND_DAY)}
+    return {"food": F, "storage": st, "uncertainty": U,
+            "tariff": {"peak": PEAK, "offpeak": OFFPEAK, "demand_month": DEMAND_MONTH, "weekdays": WEEKDAYS,
+                       "demand_day": DEMAND_DAY}}
+
+
+def lab_results():
+    """Results behind Lab 4 (office building). Not shown on the slides."""
+    hold = []
     for h in range(0, 11):
-        run = food_manufacture(storage_cost=h)
-        R["food"]["holding_sweep"].append(
-            {"h": h, "profit": run["profit"], "stock_total": float(np.sum(run["stock"])),
-             "buy": run["buy"], "stock": run["stock"]})
-    R["food"]["no_carryover"] = food_manufacture(carryover=False)
-    R["food"]["no_terminal"] = food_manufacture(terminal=False)
-    # Part B
-    base = dispatch(LOAD_WEEKDAY, pv_clear, TOU_WEEKDAY)
-    R["storage"] = {
-        "base": base,
-        "no_battery_cost": no_battery_cost(LOAD_WEEKDAY, pv_clear, TOU_WEEKDAY),
-        "no_terminal": dispatch(LOAD_WEEKDAY, pv_clear, TOU_WEEKDAY, terminal=False),
-        "base_binary": dispatch(LOAD_WEEKDAY, pv_clear, TOU_WEEKDAY, binary=True),
-        "saturday_lp_no_curtail": dispatch(LOAD_SATURDAY, pv_clear, TOU_SATURDAY, curtail=False),
-        "saturday_milp_no_curtail": dispatch(LOAD_SATURDAY, pv_clear, TOU_SATURDAY, curtail=False, binary=True),
-        "saturday_lp_curtail": dispatch(LOAD_SATURDAY, pv_clear, TOU_SATURDAY, curtail=True),
-    }
-    R["uncertainty"] = {
-        "perfect": dispatch(LOAD_WEEKDAY, pv_cloudy, TOU_WEEKDAY),
-        "open_loop": open_loop(LOAD_WEEKDAY, pv_cloudy, pv_clear, TOU_WEEKDAY),
-        "rolling": rolling_horizon(LOAD_WEEKDAY, pv_cloudy, pv_clear, TOU_WEEKDAY),
-        "no_battery_cost": no_battery_cost(LOAD_WEEKDAY, pv_cloudy, TOU_WEEKDAY),
-    }
-    R["lab"] = lab_sweeps()
+        r = food_manufacture(storage_cost=float(h))
+        hold.append({"h": h, "profit": r["profit"], "stock_months": r["stock_months"], "stock": r["stock"]})
+    pv = pv_profile(KWP_OFFICE)
+    base = dispatch(LOAD_OFFICE, pv, TOU_WEEKDAY, BAT_OFFICE, demand=DEMAND_DAY)
+    nb = no_battery(LOAD_OFFICE, pv, TOU_WEEKDAY, demand=DEMAND_DAY)
+    nt = dispatch(LOAD_OFFICE, pv, TOU_WEEKDAY, BAT_OFFICE, demand=DEMAND_DAY, terminal=False)
+    size = []
+    for E in (100, 150, 200, 250, 300, 350, 400):
+        b = dict(BAT_OFFICE, E=float(E), soc_min=0.1 * E, soc0=0.5 * E)
+        r = dispatch(LOAD_OFFICE, pv, TOU_WEEKDAY, b, demand=DEMAND_DAY)
+        size.append({"E": E, "cost": r["cost"], "saving": nb["cost"] - r["cost"], "peak_import": r["peak_import"],
+                     "soc": r["soc"], "ch": r["ch"], "dis": r["dis"],
+                     "max_residual": max(r["checks"]["max_power_balance_residual_kw"], r["checks"]["max_soc_balance_residual_kwh"])})
+    sat = {}
+    for name, kw in (("lp", {"curtail": False}), ("milp", {"curtail": False, "binary": True}),
+                     ("lp_curtail", {"curtail": True}), ("milp_curtail", {"curtail": True, "binary": True})):
+        r = dispatch(LOAD_OFFICE_SAT, pv, TOU_WEEKEND, BAT_OFFICE, **kw)
+        sat[name] = {"status": r["status"]} if r["cost"] is None else {
+            "status": r["status"], "cost": r["cost"], "ch": r["ch"], "dis": r["dis"], "soc": r["soc"], "cur": r["cur"],
+            "curtailed_kwh": r["curtailed_kwh"], "max_simultaneous_kw": r["simultaneous_kw"],
+            "hour_of_max": r["hour_of_max_simultaneous"]}
+    return {"holding": hold, "pv": np.round(pv, 4).tolist(), "load": LOAD_OFFICE.tolist(), "load_sat": LOAD_OFFICE_SAT.tolist(),
+            "price": TOU_WEEKDAY.tolist(), "battery": BAT_OFFICE, "kwp": KWP_OFFICE,
+            "base": base, "no_battery": nb, "no_terminal": {"cost": nt["cost"], "soc_end": nt["checks"]["soc_end_kwh"],
+                                                            "soc": nt["soc"], "ch": nt["ch"], "dis": nt["dis"]},
+            "size": size, "saturday": sat, "soc_task": {"start": 100.0, "charge": 80.0, "discharge": 60.0,
+                                                        "after_charge": 100 + 0.95 * 80, "after_discharge": 100 + 0.95 * 80 - 60 / 0.95}}
+
+
+def classroom_results():
+    R = {"meta": {"numpy": np.__version__, "scipy": __import__("scipy").__version__, "python": sys.version.split()[0]},
+         "data": {"months": MONTHS, "oils": OILS, "price": PRICE.tolist(), "hardness": HARDNESS.tolist(),
+                  "is_veg": IS_VEG.tolist(), "sell": SELL, "initial": INITIAL_STOCK, "max_stock": MAX_STOCK,
+                  "hours": HOURS.tolist(), "on_peak": ON_PEAK.tolist()}}
+    R["lecture"] = lecture_results()
+    R["lab"] = lab_results()
     return R
 
 
-def lab_sweeps():
-    """Results behind the student lab page: change one condition at a time."""
-    pv0 = pv_profile()
-
-    def day(load=LOAD_WEEKDAY, pv=pv0, price=TOU_WEEKDAY, battery=None, soc_end=None):
-        r = dispatch(load, pv, price, battery=battery, soc_end=soc_end)
-        nb = no_battery_cost(load, pv, price)
-        keep = {k: r[k] for k in ("ch", "dis", "soc", "imp", "cur")}
-        keep.update(cost=r["cost"], no_battery=nb, saving=nb - r["cost"],
-                    max_residual=max(r["checks"]["max_power_balance_residual_kw"],
-                                     r["checks"]["max_soc_balance_residual_kwh"]))
-        return keep
-
-    out = {"battery_kwh": [], "peak_factor": [], "end_soc": [], "pv_kwp": []}
-    for E in (100, 150, 200, 250, 300, 350, 400):        # keep 10% floor, start half full
-        out["battery_kwh"].append(dict(value=E, **day(battery={"E": float(E), "soc_min": 0.1 * E, "soc0": 0.5 * E})))
-    for f in (0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.4):
-        price = np.where((HOURS >= 9) & (HOURS < 22), PEAK * f, OFFPEAK)
-        out["peak_factor"].append(dict(value=f, **day(price=price)))
-    for e in (20, 60, 100, 140, 180):
-        out["end_soc"].append(dict(value=e, **day(soc_end=float(e))))
-    for k in (100, 150, 200, 250, 300):
-        out["pv_kwp"].append(dict(value=k, **day(pv=pv_profile(kwp=float(k)))))
-    sat = {}
-    for name, kw in (("lp", {}), ("milp", {"binary": True}),
-                     ("lp_curtail", {"curtail": True}), ("milp_curtail", {"curtail": True, "binary": True})):
-        args = dict(curtail=False); args.update(kw)
-        r = dispatch(LOAD_SATURDAY, pv0, TOU_SATURDAY, **args)
-        if r["cost"] is None:
-            sat[name] = {"status": r["status"]}
-        else:
-            sim = np.minimum(r["ch"], r["dis"])
-            sat[name] = {"status": r["status"], "cost": r["cost"], "ch": r["ch"], "dis": r["dis"],
-                         "soc": r["soc"], "cur": r["cur"], "curtailed_kwh": float(np.sum(r["cur"])),
-                         "max_simultaneous_kw": float(sim.max()), "hour_of_max": int(np.argmax(sim))}
-    out["saturday"] = sat
-    return out
-
-
-def _print_parts(R, step=False):
-    def pause():
-        if step:
-            input("\nPress Enter for the next part ...")
-    f = R["food"]["reference"]
-    print("PART 1  Food Manufacture, reference plan")
-    print(f"  profit = {f['profit']:,.2f} GBP (solver {f['solver_objective']:,.2f})")
-    for m, p, h in zip(MONTHS, f["product"], f["hardness"]):
-        print(f"  {m}: product {p:7.2f} t  hardness {h:5.3f}")
-    print("  checks:", f["checks"]); pause()
-    print("\nPART 2  What storage is worth")
-    print(f"  no carryover : {R['food']['no_carryover']['profit']:,.2f} GBP")
-    print(f"  no terminal  : {R['food']['no_terminal']['profit']:,.2f} GBP  (end effect)")
-    for row in R["food"]["holding_sweep"]:
-        print(f"  holding {row['h']:2d} GBP/t-month: profit {row['profit']:11,.2f}  "
-              f"total month-end stock {row['stock_total']:8.1f} t")
-    pause()
-    s = R["storage"]
-    print("\nPART 3  Weekday dispatch with TOU")
-    print(f"  no battery {s['no_battery_cost']:.2f} THB, with battery {s['base']['cost']:.2f} THB")
-    print("  checks:", s["base"]["checks"]); pause()
-    print("\nPART 4  Terminal condition")
-    print(f"  without SoC(24) >= SoC(0): {s['no_terminal']['cost']:.2f} THB, "
-          f"ends at {s['no_terminal']['checks']['soc_end_kwh']:.1f} kWh"); pause()
-    print("\nPART 5  Charge and discharge in the same hour")
-    print(f"  base LP simultaneous {s['base']['simultaneous_kw']:.3f} kW; MILP cost {s['base_binary']['cost']:.2f}")
-    print(f"  Saturday, no curtailment, LP  : simultaneous {s['saturday_lp_no_curtail']['simultaneous_kw']:.2f} kW")
-    print(f"  Saturday, no curtailment, MILP: {s['saturday_milp_no_curtail']['status']}")
-    hc = s["saturday_lp_curtail"]
-    print(f"  Saturday with curtailment, LP: simultaneous {hc['simultaneous_kw']:.3f} kW, "
-          f"curtailed {sum(hc['cur']):.1f} kWh"); pause()
-    u = R["uncertainty"]
-    print("\nPART 6  Forecast error and re-planning (cloudy afternoon)")
-    print(f"  no battery {u['no_battery_cost']:.2f} | fixed morning plan {u['open_loop']['cost']:.2f} | "
-          f"re-plan hourly {u['rolling']['cost']:.2f} | perfect forecast {u['perfect']['cost']:.2f} THB")
-
-
 if __name__ == "__main__":
-    results = classroom_results()
+    R = classroom_results()
     if "--json" in sys.argv:
-        with open("lab4-results.json", "w") as fh:
-            json.dump(results, fh, indent=1)
-        print("wrote lab4-results.json")
-    else:
-        _print_parts(results, step="--step" in sys.argv)
+        with open("multiperiod-results.json", "w") as fh:
+            json.dump(R, fh, indent=1)
+        print("wrote multiperiod-results.json")
+        sys.exit()
+    F = R["lecture"]["food"]
+    print("A reference profit", round(F["reference"]["profit"], 2), "| no terminal", round(F["no_terminal"]["profit"], 2),
+          "| no carryover", round(F["no_carryover"]["profit"], 2), "| checks", F["reference"]["checks"])
+    S = R["lecture"]["storage"]
+    for k in ("no_battery_energy", "no_battery_demand"):
+        print("B", k, {q: round(v, 1) for q, v in S[k].items() if q != "imp"})
+    for k in ("energy_only", "with_demand"):
+        r = S[k]; print("B", k, round(r["cost"], 1), "energy", round(r["energy_cost"], 1), "demand", round(r["demand_cost"], 1),
+                        "peak", round(r["peak_import"], 1), r["checks"])
+    U = R["lecture"]["uncertainty"]
+    print("C", {k: round(U[k]["cost"], 1) for k in ("no_battery", "open_loop", "rolling", "perfect")})
+    L = R["lab"]
+    print("Lab base", round(L["base"]["cost"], 1), "no battery", round(L["no_battery"]["cost"], 1), "no terminal", L["no_terminal"])
+    print("Lab saturday", {k: (v["status"], round(v.get("cost") or 0, 1), round(v.get("max_simultaneous_kw") or 0, 2), round(v.get("curtailed_kwh") or 0, 1)) for k, v in L["saturday"].items()})
+    print("Lab size", [(s["E"], round(s["saving"], 1)) for s in L["size"]])

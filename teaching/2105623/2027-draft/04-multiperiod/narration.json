@@ -1,0 +1,2177 @@
+{
+ "voice": "en-US-GuyNeural",
+ "rate": "-5%",
+ "provider": "Microsoft Edge neural speech (edge-tts)",
+ "synthetic_voice": true,
+ "total_seconds": 2539.4,
+ "slides": [
+  {
+   "n": 1,
+   "file": "audio/slide-01.mp3",
+   "duration": 40.68,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.695,
+     "en": "Welcome to Session 4 of Optimization of Chemical Processes.",
+     "th": "ยินดีต้อนรับสู่คาบที่ 4 ของวิชา Optimization of Chemical Processes"
+    },
+    {
+     "s": 4.695,
+     "e": 11.395,
+     "en": "Today is about multiperiod models: decisions that repeat over time and are linked by what is held in store.",
+     "th": "วันนี้ว่าด้วยโมเดลหลายช่วงเวลา คือการตัดสินใจที่เกิดซ้ำตามเวลา และเชื่อมกันด้วยสิ่งที่เก็บไว้"
+    },
+    {
+     "s": 11.395,
+     "e": 20.395,
+     "en": "We will write the stock balance that links the periods, read its dual as the value of what is stored, and see why the last period of every model needs a rule.",
+     "th": "เราจะเขียนสมดุลของคงคลังที่เชื่อมช่วงเวลา อ่านค่า dual ของมันในฐานะมูลค่าของสิ่งที่เก็บไว้ และดูว่าทำไมช่วงสุดท้ายของทุกโมเดลจึงต้องมีกฎ"
+    },
+    {
+     "s": 20.395,
+     "e": 27.895,
+     "en": "The examples are a six-month oil plan from Williams, and a battery beside rooftop solar under a Thai time-of-use tariff.",
+     "th": "ตัวอย่างคือแผนน้ำมันหกเดือนจากหนังสือของ Williams และแบตเตอรี่คู่กับโซลาร์บนหลังคา ภายใต้อัตราค่าไฟฟ้าตามช่วงเวลาของไทย"
+    },
+    {
+     "s": 27.895,
+     "e": 35.197,
+     "en": "On your own, the narration takes about fifty minutes; the activities, four checks and the lab fill the rest of the three hours.",
+     "th": "ถ้าเรียนเอง เสียงบรรยายใช้เวลาประมาณห้าสิบนาที ส่วนกิจกรรม แบบตรวจสี่ครั้ง และ lab จะใช้เวลาที่เหลือของสามชั่วโมง"
+    },
+    {
+     "s": 35.197,
+     "e": 40.605,
+     "en": "When the narration for a slide ends, press the right arrow key, or Next, to go on.",
+     "th": "เมื่อเสียงบรรยายของแต่ละหน้าจบ กดลูกศรขวาหรือปุ่ม Next เพื่อไปหน้าถัดไป"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "file": "audio/slide-02.mp3",
+   "duration": 42.768,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.05,
+     "en": "Here is the plan for the three hours.",
+     "th": "นี่คือแผนของสามชั่วโมง"
+    },
+    {
+     "s": 3.05,
+     "e": 10.552,
+     "en": "After a fifteen-minute retrieval check on Session 3, part one, about forty-five minutes, builds a time-indexed model of inventory:",
+     "th": "หลังทบทวนความจำจากคาบที่ 3 สิบห้านาที ส่วนที่หนึ่งประมาณสี่สิบห้านาที สร้างโมเดลคงคลังที่มีดัชนีเวลา ได้แก่"
+    },
+    {
+     "s": 10.552,
+     "e": 17.711,
+     "en": "the stock balance, the Food Manufacture problem, the value of oil month by month, and what happens at the end of the horizon.",
+     "th": "สมดุลของคงคลัง ปัญหา Food Manufacture มูลค่าของน้ำมันรายเดือน และสิ่งที่เกิดขึ้นตอนท้ายของช่วงเวลาที่วางแผน"
+    },
+    {
+     "s": 17.711,
+     "e": 22.282,
+     "en": "After a break and a second activity, part two, forty minutes, turns to storage:",
+     "th": "หลังพักและกิจกรรมที่สอง ส่วนที่สองสี่สิบนาที ว่าด้วยการกักเก็บ"
+    },
+    {
+     "s": 22.282,
+     "e": 30.395,
+     "en": "a battery under a time-of-use tariff with a demand charge, the end of the day, and a plan in which the battery charges and discharges at once.",
+     "th": "คือแบตเตอรี่ภายใต้อัตราค่าไฟฟ้าตามช่วงเวลาที่มีค่าความต้องการพลังไฟฟ้า ตอนท้ายของวัน และแผนที่แบตเตอรี่ชาร์จและคายประจุพร้อมกัน"
+    },
+    {
+     "s": 30.395,
+     "e": 37.25,
+     "en": "Part three, fifteen minutes, asks what happens when the forecast is wrong, and answers with a rolling horizon.",
+     "th": "ส่วนที่สาม สิบห้านาที ถามว่าจะเกิดอะไรขึ้นเมื่อการพยากรณ์ผิด และตอบด้วย rolling horizon"
+    },
+    {
+     "s": 37.25,
+     "e": 42.711,
+     "en": "There are four checks along the way, and the session ends with Lab 4 and the Exit Ticket.",
+     "th": "ระหว่างทางมีแบบตรวจสี่ครั้ง และคาบนี้จบด้วย Lab 4 และ Exit Ticket"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "file": "audio/slide-03.mp3",
+   "duration": 31.776,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.037,
+     "en": "Activity 1 is a retrieval check on Session 3.",
+     "th": "กิจกรรมที่ 1 คือการทบทวนความจำจากคาบที่ 3"
+    },
+    {
+     "s": 4.037,
+     "e": 13.776,
+     "en": "Answer the four questions without notes, in a sentence or two each. They cover the clause method, choosing M, the gap, and the start-up variable.",
+     "th": "ตอบคำถามทั้งสี่ข้อโดยไม่เปิดโน้ต ข้อละหนึ่งหรือสองประโยค คำถามครอบคลุมวิธี clause การเลือก M ค่า gap และตัวแปรการเริ่มเดินเครื่อง"
+    },
+    {
+     "s": 13.776,
+     "e": 19.658,
+     "en": "The last question matters again today: a battery has the same kind of state that a boiler had.",
+     "th": "คำถามข้อสุดท้ายจะสำคัญอีกครั้งในวันนี้ เพราะแบตเตอรี่มีสถานะแบบเดียวกับที่หม้อไอน้ำมี"
+    },
+    {
+     "s": 19.658,
+     "e": 24.368,
+     "en": "In class, write alone for five minutes, then compare with a partner.",
+     "th": "ในห้องเรียน เขียนคนเดียวห้านาที แล้วเทียบกับเพื่อน"
+    },
+    {
+     "s": 24.368,
+     "e": 31.711,
+     "en": "If you are studying on your own, stop here and write your answers, then press Show answers to check them, and go to the next slide.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้หยุดที่หน้านี้ เขียนคำตอบ แล้วกดปุ่ม Show answers เพื่อตรวจ จากนั้นจึงไปหน้าถัดไป"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "file": "audio/slide-04.mp3",
+   "duration": 38.952,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.866,
+     "en": "By the end of today you should be able to do six things.",
+     "th": "เมื่อจบคาบนี้ คุณควรทำได้หกอย่าง"
+    },
+    {
+     "s": 3.866,
+     "e": 10.211,
+     "en": "Write a time-indexed model with a stock or state balance, and state its initial and terminal conditions.",
+     "th": "เขียนโมเดลที่มีดัชนีเวลาพร้อมสมดุลของคงคลังหรือสถานะ และระบุเงื่อนไขเริ่มต้นและเงื่อนไขสุดท้าย"
+    },
+    {
+     "s": 10.211,
+     "e": 17.105,
+     "en": "Read the dual of a stock balance as the value of the stored item in each period, and say when carrying stock pays.",
+     "th": "อ่านค่า dual ของสมดุลคงคลังในฐานะมูลค่าของสิ่งที่เก็บไว้ในแต่ละช่วง และบอกได้ว่าเมื่อใดการเก็บคงคลังจึงคุ้ม"
+    },
+    {
+     "s": 17.105,
+     "e": 21.368,
+     "en": "Recognize an end-of-horizon effect, and choose a remedy.",
+     "th": "รู้จักผลกระทบปลายช่วงเวลา และเลือกวิธีแก้"
+    },
+    {
+     "s": 21.368,
+     "e": 28.303,
+     "en": "Model storage with efficiencies, a time-of-use tariff and a demand charge, and check the state balance by hand.",
+     "th": "สร้างโมเดลการกักเก็บที่มีประสิทธิภาพ อัตราค่าไฟฟ้าตามช่วงเวลา และค่าความต้องการพลังไฟฟ้า และตรวจสมดุลสถานะด้วยมือ"
+    },
+    {
+     "s": 28.303,
+     "e": 34.079,
+     "en": "Explain why a linear program may charge and discharge at once, and two ways to stop it.",
+     "th": "อธิบายว่าทำไม linear program อาจชาร์จและคายประจุพร้อมกัน และวิธีป้องกันสองวิธี"
+    },
+    {
+     "s": 34.079,
+     "e": 38.882,
+     "en": "And re-plan with a rolling horizon, and put a price on a forecast error.",
+     "th": "และวางแผนใหม่ด้วย rolling horizon และตีมูลค่าของความผิดพลาดในการพยากรณ์ได้"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "file": "audio/slide-05.mp3",
+   "duration": 61.536,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.484,
+     "en": "Many plant decisions are linked over time.",
+     "th": "การตัดสินใจหลายอย่างในโรงงานเชื่อมโยงกันตามเวลา"
+    },
+    {
+     "s": 3.484,
+     "e": 13.097,
+     "en": "Raw materials and products are held in stock from one month to the next. Tank levels, batteries and thermal stores link the hours of a day.",
+     "th": "วัตถุดิบและผลิตภัณฑ์ถูกเก็บเป็นคงคลังจากเดือนหนึ่งไปอีกเดือนหนึ่ง ระดับถัง แบตเตอรี่ และที่เก็บความร้อนเชื่อมชั่วโมงต่าง ๆ ในหนึ่งวัน กิจกรรมของตัวเร่งปฏิกิริยา"
+    },
+    {
+     "s": 13.097,
+     "e": 17.079,
+     "en": "Catalyst activity, fouling and maintenance link the weeks.",
+     "th": "การเกิดตะกรัน และการบำรุงรักษาเชื่อมสัปดาห์ต่าง ๆ"
+    },
+    {
+     "s": 17.079,
+     "e": 25.408,
+     "en": "What links the periods is a state: a stock, a level, a charge. Each period starts where the last one ended.",
+     "th": "สิ่งที่เชื่อมช่วงเวลาคือสถานะ เช่น คงคลัง ระดับ หรือประจุ แต่ละช่วงเริ่มต้นจากจุดที่ช่วงก่อนหน้าจบไว้"
+    },
+    {
+     "s": 25.408,
+     "e": 32.526,
+     "en": "Every one of these follows one equation: the state now equals the state before, plus what comes in, minus what goes out.",
+     "th": "ทั้งหมดนี้ใช้สมการเดียวกัน คือสถานะตอนนี้เท่ากับสถานะก่อนหน้า บวกสิ่งที่เข้ามา ลบสิ่งที่ออกไป"
+    },
+    {
+     "s": 32.526,
+     "e": 37.99,
+     "en": "Choosing the state is the first modeling decision. In a battery it is stored energy;",
+     "th": "การเลือกสถานะเป็นการตัดสินใจแรกในการสร้างโมเดล ในแบตเตอรี่ สถานะคือพลังงานที่เก็บไว้"
+    },
+    {
+     "s": 37.99,
+     "e": 44.868,
+     "en": "in a catalyst bed it might be activity, falling slowly with each tonne processed and reset by regeneration.",
+     "th": "ในเบดตัวเร่งปฏิกิริยา อาจเป็นความว่องไวที่ลดลงช้า ๆ ตามปริมาณที่ผ่านการผลิต และถูกรีเซ็ตด้วยการฟื้นฟูสภาพ"
+    },
+    {
+     "s": 44.868,
+     "e": 51.092,
+     "en": "The second is the period length: short enough to see what matters, long enough to keep the model small.",
+     "th": "การตัดสินใจที่สองคือความยาวของแต่ละช่วง สั้นพอที่จะเห็นสิ่งที่สำคัญ และยาวพอที่จะทำให้โมเดลมีขนาดเล็ก"
+    },
+    {
+     "s": 51.092,
+     "e": 61.461,
+     "en": "And every one of them raises the same question at the end: what is in the store when the horizon ends, and what is it worth? Keep that question in mind all session.",
+     "th": "และทุกกรณีต้องตอบคำถามเดียวกันตอนท้าย คือเมื่อสิ้นสุดช่วงเวลาที่วางแผน มีอะไรอยู่ในที่เก็บ และมีมูลค่าเท่าใด ให้จำคำถามนี้ไว้ตลอดคาบ"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "file": "audio/slide-06.mp3",
+   "duration": 87.0,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.839,
+     "en": "Here is the stock balance in the form we will use.",
+     "th": "นี่คือสมดุลของคงคลังในรูปแบบที่เราจะใช้"
+    },
+    {
+     "s": 3.839,
+     "e": 12.789,
+     "en": "For each oil i and each month t, the stock at the end of the month equals the stock at the end of the previous month, plus what was bought, minus what was used.",
+     "th": "สำหรับน้ำมันแต่ละชนิด i และแต่ละเดือน t คงคลังตอนสิ้นเดือนเท่ากับคงคลังตอนสิ้นเดือนก่อน บวกปริมาณที่ซื้อ ลบปริมาณที่ใช้"
+    },
+    {
+     "s": 12.789,
+     "e": 24.987,
+     "en": "The picture shows the same thing as a network. Each month is a node. Purchases flow in from above, use flows out below, and stock flows to the right, into the next month.",
+     "th": "ภาพแสดงสิ่งเดียวกันในรูปเครือข่าย แต่ละเดือนเป็นหนึ่งโหนด การซื้อไหลเข้ามาจากด้านบน การใช้ไหลออกด้านล่าง และคงคลังไหลไปทางขวาเข้าสู่เดือนถัดไป"
+    },
+    {
+     "s": 24.987,
+     "e": 32.171,
+     "en": "Each node conserves tonnes, which is why models like this can also be drawn, and sometimes solved, as flows in a network.",
+     "th": "แต่ละโหนดอนุรักษ์ปริมาณเป็นตัน นี่คือเหตุผลที่โมเดลแบบนี้วาด และบางครั้งแก้ได้ ในรูปการไหลในเครือข่าย"
+    },
+    {
+     "s": 32.171,
+     "e": 39.395,
+     "en": "The initial stock is a number: 500 tonnes of each oil. It is data, not a decision.",
+     "th": "คงคลังเริ่มต้นเป็นตัวเลข คือน้ำมันแต่ละชนิด 500 ตัน เป็นข้อมูล ไม่ใช่การตัดสินใจ"
+    },
+    {
+     "s": 39.395,
+     "e": 48.776,
+     "en": "The terminal stock, 500 tonnes at the end of June, is a modeling decision. We will see what happens without it at the end of part one.",
+     "th": "คงคลังสุดท้าย คือ 500 ตันตอนสิ้นเดือนมิถุนายน เป็นการตัดสินใจในการสร้างโมเดล เราจะเห็นว่าจะเกิดอะไรขึ้นถ้าไม่มีเงื่อนไขนี้ในตอนท้ายของส่วนที่หนึ่ง"
+    },
+    {
+     "s": 48.776,
+     "e": 55.842,
+     "en": "Stock is bounded between zero and 1,000 tonnes, and each tonne held at the end of a month costs 5 pounds.",
+     "th": "คงคลังมีขอบเขตระหว่างศูนย์ถึง 1,000 ตัน และแต่ละตันที่เก็บไว้ตอนสิ้นเดือนมีต้นทุน 5 ปอนด์"
+    },
+    {
+     "s": 55.842,
+     "e": 64.868,
+     "en": "Notice the timing convention: s t is the stock at the end of month t. Mixing up start-of-month and end-of-month stock is the most common error in these models.",
+     "th": "สังเกตข้อตกลงเรื่องเวลา s t คือคงคลังตอนสิ้นเดือน t การสับสนระหว่างคงคลังต้นเดือนกับปลายเดือนเป็นข้อผิดพลาดที่พบบ่อยที่สุดในโมเดลแบบนี้"
+    },
+    {
+     "s": 64.868,
+     "e": 75.658,
+     "en": "Holding cost here is charged on month-end stock. Charging it on the average stock, half of s t minus one plus s t, is also linear; choose one and say which.",
+     "th": "ในที่นี้ต้นทุนการเก็บคิดจากคงคลังปลายเดือน การคิดจากคงคลังเฉลี่ย คือครึ่งหนึ่งของ s t ลบหนึ่ง บวก s t ก็เป็นเชิงเส้นเช่นกัน ให้เลือกแบบใดแบบหนึ่งและระบุไว้"
+    },
+    {
+     "s": 75.658,
+     "e": 86.921,
+     "en": "Without the balance, six months would be six separate linear programs. With it, oil bought in one month can serve the next: that is the whole point of a multiperiod model.",
+     "th": "ถ้าไม่มีสมดุลนี้ หกเดือนจะเป็น linear program หกปัญหาที่แยกกัน เมื่อมีสมดุล น้ำมันที่ซื้อในเดือนหนึ่งใช้ในเดือนถัดไปได้ นี่คือแก่นของโมเดลหลายช่วงเวลา"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "file": "audio/slide-07.mp3",
+   "duration": 78.696,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 10.803,
+     "en": "The first model is Food Manufacture, from section 12.1 of Williams' Model Building in Mathematical Programming. The data on the slide are as published there.",
+     "th": "โมเดลแรกคือ Food Manufacture จากหัวข้อ 12.1 ของหนังสือ Model Building in Mathematical Programming ของ Williams ข้อมูลบนสไลด์เป็นไปตามที่ตีพิมพ์ไว้"
+    },
+    {
+     "s": 10.803,
+     "e": 20.671,
+     "en": "A food company refines and blends five oils into one product. Two oils are vegetable oils, three are not, and they are refined on separate lines.",
+     "th": "บริษัทอาหารกลั่นและผสมน้ำมันห้าชนิดเป็นผลิตภัณฑ์เดียว สองชนิดเป็นน้ำมันพืช อีกสามชนิดไม่ใช่ และกลั่นในสายการผลิตที่แยกกัน"
+    },
+    {
+     "s": 20.671,
+     "e": 27.25,
+     "en": "At most 200 tonnes of vegetable oil and 250 tonnes of the others can be refined in a month.",
+     "th": "ในหนึ่งเดือนกลั่นน้ำมันพืชได้ไม่เกิน 200 ตัน และน้ำมันอื่นได้ไม่เกิน 250 ตัน"
+    },
+    {
+     "s": 27.25,
+     "e": 37.658,
+     "en": "The table gives the purchase price of each oil in each month. Prices move by up to 50 pounds a tonne from month to month, and that is what makes storage interesting.",
+     "th": "ตารางแสดงราคาซื้อของน้ำมันแต่ละชนิดในแต่ละเดือน ราคาเปลี่ยนได้ถึง 50 ปอนด์ต่อตันจากเดือนหนึ่งไปอีกเดือน และนั่นคือสิ่งที่ทำให้การเก็บคงคลังน่าสนใจ"
+    },
+    {
+     "s": 37.658,
+     "e": 49.184,
+     "en": "The product sells for 150 pounds a tonne. Its hardness must lie between 3 and 6, and hardness blends linearly by weight, so the bottom row of the table matters.",
+     "th": "ผลิตภัณฑ์ขายได้ตันละ 150 ปอนด์ ความแข็งต้องอยู่ระหว่าง 3 ถึง 6 และความแข็งผสมกันเชิงเส้นตามน้ำหนัก แถวล่างสุดของตารางจึงสำคัญ"
+    },
+    {
+     "s": 49.184,
+     "e": 60.382,
+     "en": "Look at the range: VEG1, at 8.8, is too hard to use alone, and OIL1, at 2.0, is too soft. Only blends meet the specification.",
+     "th": "ดูช่วงค่า VEG1 ที่ 8.8 แข็งเกินกว่าจะใช้เดี่ยว ๆ และ OIL1 ที่ 2.0 นิ่มเกินไป มีเพียงของผสมเท่านั้นที่ผ่าน spec"
+    },
+    {
+     "s": 60.382,
+     "e": 70.421,
+     "en": "Each oil can be stored up to 1,000 tonnes at 5 pounds per tonne per month, and the company holds 500 tonnes of each at the start and must hold 500 at the end of June.",
+     "th": "น้ำมันแต่ละชนิดเก็บได้ไม่เกิน 1,000 ตัน ที่ 5 ปอนด์ต่อตันต่อเดือน บริษัทมีน้ำมันแต่ละชนิด 500 ตันตอนเริ่มต้น และต้องมี 500 ตันตอนสิ้นเดือนมิถุนายน"
+    },
+    {
+     "s": 70.421,
+     "e": 78.618,
+     "en": "The problem has been used to teach multiperiod models for decades, and its optimum is published, so it is a good test for your own code.",
+     "th": "ปัญหานี้ใช้สอนโมเดลหลายช่วงเวลามาหลายทศวรรษ และค่าที่ดีที่สุดได้รับการตีพิมพ์ไว้ จึงเป็นการทดสอบที่ดีสำหรับโค้ดของคุณเอง"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "file": "audio/slide-08.mp3",
+   "duration": 78.24,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.208,
+     "en": "Here is the model.",
+     "th": "นี่คือโมเดล"
+    },
+    {
+     "s": 2.208,
+     "e": 10.776,
+     "en": "The objective adds up, over six months, the revenue from the product, minus the cost of the oil bought, minus the cost of holding stock.",
+     "th": "ฟังก์ชันเป้าหมายรวมตลอดหกเดือน คือรายได้จากผลิตภัณฑ์ ลบต้นทุนน้ำมันที่ซื้อ ลบต้นทุนการเก็บคงคลัง"
+    },
+    {
+     "s": 10.776,
+     "e": 19.013,
+     "en": "The thirty stock balances link the months. Each month then has its own capacity rows and its own two hardness rows.",
+     "th": "สมดุลคงคลังสามสิบแถวเชื่อมเดือนต่าง ๆ จากนั้นแต่ละเดือนมีแถวกำลังการกลั่นและแถวความแข็งสองแถวของตัวเอง"
+    },
+    {
+     "s": 19.013,
+     "e": 31.0,
+     "en": "The hardness rows are Session 2's ratio rows. Hardness at most 6 becomes the sum of hardness minus 6, times use, at most zero, after multiplying through by the monthly product.",
+     "th": "แถวความแข็งคือแถวอัตราส่วนจากคาบที่ 2 ความแข็งไม่เกิน 6 กลายเป็นผลรวมของ ความแข็งลบ 6 คูณปริมาณที่ใช้ ไม่เกินศูนย์ หลังคูณตลอดด้วยปริมาณผลิตภัณฑ์ของเดือนนั้น"
+    },
+    {
+     "s": 31.0,
+     "e": 41.908,
+     "en": "Count the size. Buy, use and stock for five oils over six months give 90 variables. There are 30 balance rows and 24 monthly rows.",
+     "th": "นับขนาด การซื้อ การใช้ และคงคลัง ของน้ำมันห้าชนิดตลอดหกเดือน ให้ตัวแปร 90 ตัว มีแถวสมดุล 30 แถว และแถวรายเดือน 24 แถว"
+    },
+    {
+     "s": 41.908,
+     "e": 47.737,
+     "en": "After the balances, 60 degrees of freedom are left for the inequalities to decide.",
+     "th": "หลังหักสมดุลแล้ว เหลือ degrees of freedom 60 ให้อสมการเป็นตัวกำหนด"
+    },
+    {
+     "s": 47.737,
+     "e": 56.658,
+     "en": "Notice what is not in the model: no binary variables and no products of variables. Time made the model bigger, not harder.",
+     "th": "สังเกตสิ่งที่ไม่มีในโมเดล คือไม่มีตัวแปร binary และไม่มีผลคูณของตัวแปร เวลาทำให้โมเดลใหญ่ขึ้น ไม่ได้ทำให้ยากขึ้น"
+    },
+    {
+     "s": 56.658,
+     "e": 64.599,
+     "en": "The rows form a staircase: each month's rows involve only that month's variables and the stock carried in from the month before.",
+     "th": "แถวเรียงตัวเป็นขั้นบันได แถวของแต่ละเดือนเกี่ยวข้องเฉพาะตัวแปรของเดือนนั้น และคงคลังที่ยกมาจากเดือนก่อน"
+    },
+    {
+     "s": 64.599,
+     "e": 68.908,
+     "en": "Large planning models have exactly this shape, and solvers exploit it.",
+     "th": "โมเดลวางแผนขนาดใหญ่มีรูปแบบนี้ทุกประการ และ solver ใช้ประโยชน์จากโครงสร้างนี้"
+    },
+    {
+     "s": 68.908,
+     "e": 78.171,
+     "en": "One index, t, turned a one-month blend into a six-month plan, and the size grows linearly with the horizon. Press D to run it.",
+     "th": "ดัชนีเดียวคือ t เปลี่ยนการผสมหนึ่งเดือนเป็นแผนหกเดือน และขนาดของโมเดลเพิ่มขึ้นเชิงเส้นตามความยาวของช่วงเวลา กด D เพื่อรันโมเดล"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "file": "audio/slide-09.mp3",
+   "duration": 70.584,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.892,
+     "en": "The first check: five time-indexed rows to write.",
+     "th": "แบบตรวจครั้งแรก เขียนแถวที่มีดัชนีเวลาห้าข้อ"
+    },
+    {
+     "s": 3.892,
+     "e": 8.066,
+     "en": "Pause now, write them, and press Play to hear the solutions.",
+     "th": "หยุดตอนนี้ เขียนคำตอบ แล้วกด Play เพื่อฟังเฉลย"
+    },
+    {
+     "s": 8.066,
+     "e": 19.947,
+     "en": "One. If two percent of the stock evaporates each month, the loss applies to what was carried in: the stock equals 0.98 times last month's stock, plus purchases, minus use.",
+     "th": "ข้อหนึ่ง ถ้าคงคลังระเหยไปสองเปอร์เซ็นต์ทุกเดือน การสูญเสียเกิดกับสิ่งที่ยกมา คงคลังเท่ากับ 0.98 คูณคงคลังเดือนก่อน บวกการซื้อ ลบการใช้"
+    },
+    {
+     "s": 19.947,
+     "e": 28.355,
+     "en": "Two. A shared tank farm of 3,000 tonnes gives one row per month: the sum of all five stocks at most 3,000.",
+     "th": "ข้อสอง ถังรวมขนาด 3,000 ตัน ให้หนึ่งแถวต่อเดือน คือผลรวมของคงคลังทั้งห้าชนิดไม่เกิน 3,000"
+    },
+    {
+     "s": 28.355,
+     "e": 38.355,
+     "en": "Three. A capacity that changes in April is simply a right-hand side indexed by time: 200 for the first three months and 230 after that.",
+     "th": "ข้อสาม กำลังการผลิตที่เปลี่ยนในเดือนเมษายน เป็นเพียงค่าด้านขวาที่มีดัชนีเวลา คือ 200 สำหรับสามเดือนแรก และ 230 หลังจากนั้น"
+    },
+    {
+     "s": 38.355,
+     "e": 49.487,
+     "en": "Four. A finished-product stock has its own balance: f t equals f t minus one, plus production, minus sales, with its own initial and terminal values.",
+     "th": "ข้อสี่ คงคลังผลิตภัณฑ์สำเร็จรูปมีสมดุลของตัวเอง คือ f t เท่ากับ f t ลบหนึ่ง บวกการผลิต ลบการขาย พร้อมค่าเริ่มต้นและค่าสุดท้ายของตัวเอง"
+    },
+    {
+     "s": 49.487,
+     "e": 58.0,
+     "en": "Five. Twelve months give 3 times 5 times 12, which is 180 variables, and 60 balance rows.",
+     "th": "ข้อห้า สิบสองเดือนให้ 3 คูณ 5 คูณ 12 คือตัวแปร 180 ตัว และแถวสมดุล 60 แถว"
+    },
+    {
+     "s": 58.0,
+     "e": 66.724,
+     "en": "In every case, write the balance first and the limits second. The balance carries the time structure; the limits only bound it.",
+     "th": "ในทุกกรณี ให้เขียนสมดุลก่อน แล้วจึงเขียนขีดจำกัด สมดุลเป็นตัวแบกโครงสร้างของเวลา ส่วนขีดจำกัดเพียงกำหนดขอบเขต"
+    },
+    {
+     "s": 66.724,
+     "e": 70.513,
+     "en": "Press Show answers to compare in writing, then go on.",
+     "th": "กด Show answers เพื่อเทียบกับเฉลยที่เขียนไว้ แล้วไปต่อ"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "file": "audio/slide-10.mp3",
+   "duration": 82.344,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.655,
+     "en": "Here is the optimal plan.",
+     "th": "นี่คือแผนที่ดีที่สุด"
+    },
+    {
+     "s": 2.655,
+     "e": 15.658,
+     "en": "The profit is 107,843 pounds, the same value Williams publishes for this problem. Agreement with a published result is a strong check that the model is written correctly.",
+     "th": "กำไรคือ 107,843 ปอนด์ ซึ่งเท่ากับค่าที่ Williams ตีพิมพ์สำหรับปัญหานี้ การตรงกับผลที่ตีพิมพ์เป็นการตรวจที่ดีว่าโมเดลเขียนถูกต้อง"
+    },
+    {
+     "s": 15.658,
+     "e": 22.526,
+     "en": "Both refining limits bind in every month, so the plant makes 450 tonnes of product every month.",
+     "th": "ขีดจำกัดการกลั่นทั้งสองแบบ binding ทุกเดือน โรงงานจึงผลิตได้ 450 ตันทุกเดือน"
+    },
+    {
+     "s": 22.526,
+     "e": 32.513,
+     "en": "The chart shows the stock of each oil at the end of each month. The plan draws down its stock in the spring, while prices are high, and buys heavily in June.",
+     "th": "กราฟแสดงคงคลังของน้ำมันแต่ละชนิดตอนสิ้นแต่ละเดือน แผนดึงคงคลังลงในช่วงต้นปีที่ราคาสูง และซื้อจำนวนมากในเดือนมิถุนายน"
+    },
+    {
+     "s": 32.513,
+     "e": 40.895,
+     "en": "June is when VEG1, VEG2 and OIL2 are cheapest, and the plan must restore 500 tonnes of every oil by the end of the month.",
+     "th": "เดือนมิถุนายนเป็นเดือนที่ VEG1, VEG2 และ OIL2 ราคาถูกที่สุด และแผนต้องเติมน้ำมันทุกชนิดให้ถึง 500 ตันภายในสิ้นเดือน"
+    },
+    {
+     "s": 40.895,
+     "e": 52.868,
+     "en": "Look at VEG1, the hardest and most valuable oil. Its stock falls from 500 to zero by April, and the plan buys 659 tonnes in June to end at 500.",
+     "th": "ดู VEG1 ซึ่งเป็นน้ำมันที่แข็งที่สุดและมีค่าที่สุด คงคลังลดจาก 500 เป็นศูนย์ภายในเดือนเมษายน และแผนซื้อ 659 ตันในเดือนมิถุนายนเพื่อให้จบที่ 500"
+    },
+    {
+     "s": 52.868,
+     "e": 63.526,
+     "en": "OIL1 is never used: it is soft and expensive. Its 500 tonnes simply sit in the store all six months, because the terminal condition asks for them.",
+     "th": "OIL1 ไม่ถูกใช้เลย เพราะนิ่มและราคาแพง 500 ตันของมันอยู่ในที่เก็บตลอดหกเดือน เพราะเงื่อนไขสุดท้ายกำหนดไว้"
+    },
+    {
+     "s": 63.526,
+     "e": 72.947,
+     "en": "Hardness sits at its upper limit of 6 in four of the six months: hard vegetable oil is the valuable ingredient, and the plan uses as much as the rows allow.",
+     "th": "ความแข็งอยู่ที่ขีดจำกัดบนคือ 6 ในสี่จากหกเดือน น้ำมันพืชที่แข็งเป็นส่วนผสมที่มีค่า และแผนใช้มากที่สุดเท่าที่แถวยอมให้"
+    },
+    {
+     "s": 72.947,
+     "e": 82.276,
+     "en": "This also tells you what the plan is sensitive to: the June prices and the end condition. Change either, and the whole spring changes with it.",
+     "th": "สิ่งนี้ยังบอกว่าแผนอ่อนไหวต่ออะไร คือราคาเดือนมิถุนายนและเงื่อนไขสุดท้าย ถ้าเปลี่ยนอย่างใดอย่างหนึ่ง แผนทั้งช่วงต้นปีจะเปลี่ยนตาม"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "file": "audio/slide-11.mp3",
+   "duration": 73.608,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.116,
+     "en": "Before trusting the plan, check it from its own numbers, as in Session 1.",
+     "th": "ก่อนเชื่อแผน ให้ตรวจจากตัวเลขของมันเอง เหมือนในคาบที่ 1"
+    },
+    {
+     "s": 5.116,
+     "e": 20.829,
+     "en": "Take VEG1 in January. The stock starts at 500, nothing is bought, and 159.26 tonnes are used, so 340.74 tonnes remain. That is the value the solver reports.",
+     "th": "ดู VEG1 ในเดือนมกราคม คงคลังเริ่มที่ 500 ไม่มีการซื้อ ใช้ไป 159.26 ตัน จึงเหลือ 340.74 ตัน ซึ่งตรงกับค่าที่ solver รายงาน"
+    },
+    {
+     "s": 20.829,
+     "e": 34.434,
+     "en": "Now the hardness in January. Multiply each oil used by its hardness and add: 2,700. Divide by the 450 tonnes of product, and the hardness is exactly 6.",
+     "th": "ต่อไปคือความแข็งในเดือนมกราคม คูณน้ำมันแต่ละชนิดที่ใช้ด้วยความแข็งแล้วรวม ได้ 2,700 หารด้วยผลิตภัณฑ์ 450 ตัน ได้ความแข็งเท่ากับ 6 พอดี"
+    },
+    {
+     "s": 34.434,
+     "e": 47.75,
+     "en": "And the profit: revenue of 405,000, minus purchases of 248,407, minus storage of 48,750, gives 107,843.",
+     "th": "และกำไร รายได้ 405,000 ลบค่าซื้อ 248,407 ลบค่าเก็บ 48,750 ได้ 107,843"
+    },
+    {
+     "s": 47.75,
+     "e": 58.658,
+     "en": "The table runs the same checks for every oil and every month: the largest balance residual is zero, the hardness and capacity rows hold, and the recomputed objective matches the solver's.",
+     "th": "ตารางทำการตรวจแบบเดียวกันกับน้ำมันทุกชนิดและทุกเดือน ส่วนเหลือของสมดุลที่มากที่สุดเป็นศูนย์ แถวความแข็งและกำลังการกลั่นเป็นจริง และฟังก์ชันเป้าหมายที่คำนวณใหม่ตรงกับของ solver"
+    },
+    {
+     "s": 58.658,
+     "e": 65.408,
+     "en": "This takes a few lines of code and catches the most common multiperiod error: a balance that links the wrong months.",
+     "th": "การตรวจนี้ใช้โค้ดเพียงไม่กี่บรรทัด และจับข้อผิดพลาดที่พบบ่อยที่สุดของโมเดลหลายช่วงเวลา คือสมดุลที่เชื่อมเดือนผิด"
+    },
+    {
+     "s": 65.408,
+     "e": 73.539,
+     "en": "In your own models, write these checks as a function that runs after every solve, so that a later change to the model cannot quietly break them.",
+     "th": "ในโมเดลของคุณเอง ให้เขียนการตรวจเหล่านี้เป็นฟังก์ชันที่รันหลังการแก้ทุกครั้ง เพื่อไม่ให้การแก้ไขโมเดลในภายหลังทำให้มันเสียโดยไม่รู้ตัว"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "file": "audio/slide-12.mp3",
+   "duration": 106.104,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.234,
+     "en": "The duals of the stock balances tell you something no single month can: what a tonne of each oil is worth, in each month.",
+     "th": "ค่า dual ของสมดุลคงคลังบอกสิ่งที่ไม่มีเดือนใดเดือนหนึ่งบอกได้ คือน้ำมันแต่ละชนิดหนึ่งตันมีมูลค่าเท่าใด ในแต่ละเดือน"
+    },
+    {
+     "s": 7.234,
+     "e": 12.684,
+     "en": "Each number is the gain in profit from one more tonne of that oil available in that month.",
+     "th": "แต่ละตัวเลขคือกำไรที่เพิ่มขึ้นจากการมีน้ำมันชนิดนั้นเพิ่มอีกหนึ่งตันในเดือนนั้น"
+    },
+    {
+     "s": 12.684,
+     "e": 26.039,
+     "en": "Look at VEG1. Its value is 75 in January, then 80, 85, 90 and 95. The numbers in teal mark months where stock is carried into the next month.",
+     "th": "ดู VEG1 มูลค่าเป็น 75 ในเดือนมกราคม แล้วเป็น 80, 85, 90 และ 95 ตัวเลขสีเขียวหัวเป็ดคือเดือนที่มีการยกคงคลังไปเดือนถัดไป"
+    },
+    {
+     "s": 26.039,
+     "e": 37.592,
+     "en": "Whenever stock is carried from one month to the next, the value rises by exactly 5, the holding cost. A tonne next month is worth what it costs to keep a tonne until then.",
+     "th": "เมื่อใดที่ยกคงคลังจากเดือนหนึ่งไปเดือนถัดไป มูลค่าจะเพิ่มขึ้น 5 พอดี ซึ่งเท่ากับต้นทุนการเก็บ หนึ่งตันในเดือนหน้ามีมูลค่าเท่ากับต้นทุนการเก็บหนึ่งตันไว้จนถึงตอนนั้น"
+    },
+    {
+     "s": 37.592,
+     "e": 47.934,
+     "en": "The numbers in amber mark months where the oil is bought. There the value equals the market price: VEG1 in June is worth 90, its June price.",
+     "th": "ตัวเลขสีเหลืองอำพันคือเดือนที่ซื้อน้ำมัน ในเดือนเหล่านั้นมูลค่าเท่ากับราคาตลาด VEG1 ในเดือนมิถุนายนมีมูลค่า 90 ซึ่งเท่ากับราคาเดือนมิถุนายน"
+    },
+    {
+     "s": 47.934,
+     "e": 61.974,
+     "en": "OIL3 shows both rules at once. It is worth 85 in January and rises by 5 each month while it is carried, to 105 in May, when the plan buys 500 tonnes at exactly 105, its May price.",
+     "th": "OIL3 แสดงกฎทั้งสองข้อพร้อมกัน มีมูลค่า 85 ในเดือนมกราคม และเพิ่มขึ้นเดือนละ 5 ระหว่างที่ถูกเก็บไว้ จนถึง 105 ในเดือนพฤษภาคม ซึ่งแผนซื้อ 500 ตันที่ราคา 105 พอดี ซึ่งเป็นราคาของเดือนพฤษภาคม"
+    },
+    {
+     "s": 61.974,
+     "e": 74.724,
+     "en": "These are the dual constraints of the model. A value can never be above the price, or the plan would buy more. And it can never rise by more than 5 in a month, or the plan would carry more.",
+     "th": "นี่คือข้อจำกัดของ dual ของโมเดล มูลค่าไม่มีทางสูงกว่าราคา มิฉะนั้นแผนจะซื้อเพิ่ม และไม่มีทางเพิ่มเกิน 5 ในหนึ่งเดือน มิฉะนั้นแผนจะเก็บคงคลังเพิ่ม"
+    },
+    {
+     "s": 74.724,
+     "e": 86.237,
+     "en": "Check it by re-solving. Give the plant one more tonne of every oil at the start, and the profit rises by 405 pounds: exactly the sum of the five January values.",
+     "th": "ตรวจด้วยการแก้ใหม่ ให้น้ำมันทุกชนิดเพิ่มอีกหนึ่งตันตอนเริ่มต้น กำไรเพิ่มขึ้น 405 ปอนด์ ซึ่งเท่ากับผลรวมของมูลค่าในเดือนมกราคมทั้งห้าตัวพอดี"
+    },
+    {
+     "s": 86.237,
+     "e": 94.605,
+     "en": "This is the economics of every store: carry when the value rises by more than it costs to hold, buy when the price is at or below the value.",
+     "th": "นี่คือเศรษฐศาสตร์ของการเก็บทุกชนิด เก็บไว้เมื่อมูลค่าเพิ่มมากกว่าต้นทุนการเก็บ และซื้อเมื่อราคาเท่ากับหรือต่ำกว่ามูลค่า"
+    },
+    {
+     "s": 94.605,
+     "e": 106.013,
+     "en": "Planners use these values directly. Offered a spot cargo of OIL2 in March at 92 pounds, a planner with this table knows it is worth 95 in March, and buys.",
+     "th": "นักวางแผนใช้มูลค่าเหล่านี้โดยตรง ถ้ามีผู้เสนอขาย OIL2 ล็อตพิเศษในเดือนมีนาคมที่ 92 ปอนด์ นักวางแผนที่มีตารางนี้รู้ว่า OIL2 มีมูลค่า 95 ในเดือนมีนาคม และตัดสินใจซื้อ"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "file": "audio/slide-13.mp3",
+   "duration": 76.992,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.879,
+     "en": "This demo compares three versions of the same plan.",
+     "th": "demo นี้เปรียบเทียบแผนเดียวกันสามแบบ"
+    },
+    {
+     "s": 3.879,
+     "e": 10.789,
+     "en": "The reference plan uses storage freely between zero and 1,000 tonnes, and ends with 500 of each oil.",
+     "th": "แผนอ้างอิงใช้การเก็บได้อย่างอิสระระหว่างศูนย์ถึง 1,000 ตัน และจบด้วยน้ำมันแต่ละชนิด 500 ตัน"
+    },
+    {
+     "s": 10.789,
+     "e": 20.947,
+     "en": "Look at the shape of the reference curve: total stock falls through the spring as oil is used, and recovers in June. Storage is used to wait for cheap oil.",
+     "th": "ดูรูปร่างของเส้นอ้างอิง คงคลังรวมลดลงตลอดช่วงต้นปีเมื่อมีการใช้น้ำมัน และเพิ่มกลับในเดือนมิถุนายน การเก็บถูกใช้เพื่อรอน้ำมันราคาถูก"
+    },
+    {
+     "s": 20.947,
+     "e": 33.158,
+     "en": "Press Stock held at 500 tonnes. Now every oil must be held at exactly 500 every month, so purchases cannot be timed. The profit falls to 44,648:",
+     "th": "กด Stock held at 500 t ตอนนี้น้ำมันทุกชนิดต้องเก็บไว้ 500 ตันพอดีทุกเดือน จึงเลือกจังหวะการซื้อไม่ได้ กำไรลดลงเหลือ 44,648"
+    },
+    {
+     "s": 33.158,
+     "e": 39.053,
+     "en": "storage flexibility is worth about 63,000 pounds over six months here.",
+     "th": "ความยืดหยุ่นของการเก็บจึงมีมูลค่าประมาณ 63,000 ปอนด์ตลอดหกเดือนในกรณีนี้"
+    },
+    {
+     "s": 39.053,
+     "e": 48.763,
+     "en": "Now press No terminal condition. The profit jumps to 358,250 pounds, more than three times the reference.",
+     "th": "ต่อไปกด No terminal condition กำไรกระโดดเป็น 358,250 ปอนด์ มากกว่าแผนอ้างอิงถึงสามเท่า"
+    },
+    {
+     "s": 48.763,
+     "e": 59.184,
+     "en": "Watch the chart: total stock falls to zero by the end of June. The 2,500 tonnes the company started with are sold as product and never replaced.",
+     "th": "ดูกราฟ คงคลังรวมลดลงเป็นศูนย์ตอนสิ้นเดือนมิถุนายน น้ำมัน 2,500 ตันที่บริษัทมีตอนเริ่มต้นถูกขายเป็นผลิตภัณฑ์และไม่ถูกเติมกลับ"
+    },
+    {
+     "s": 59.184,
+     "e": 66.276,
+     "en": "Nothing in the solver output warns you about either case. The status is optimal both times.",
+     "th": "ไม่มีสิ่งใดในผลลัพธ์ของ solver เตือนคุณเลยทั้งสองกรณี สถานะเป็น optimal ทั้งสองครั้ง"
+    },
+    {
+     "s": 66.276,
+     "e": 76.921,
+     "en": "The second case is not a realistic plan; it is a measuring device. Comparing a model with and without a feature is the simplest way to put a value on that feature.",
+     "th": "กรณีที่สองไม่ใช่แผนที่สมจริง แต่เป็นเครื่องมือวัด การเปรียบเทียบโมเดลที่มีและไม่มีคุณลักษณะหนึ่ง เป็นวิธีที่ง่ายที่สุดในการตีมูลค่าให้คุณลักษณะนั้น"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "file": "audio/slide-14.mp3",
+   "duration": 83.088,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.063,
+     "en": "This is called an end-of-horizon effect, and every finite model has one.",
+     "th": "สิ่งนี้เรียกว่าผลกระทบปลายช่วงเวลา และทุกโมเดลที่มีช่วงเวลาจำกัดมีปัญหานี้"
+    },
+    {
+     "s": 5.063,
+     "e": 12.289,
+     "en": "The model sees no future after June, so stock left at the end has no value to it, and it runs the store down to zero.",
+     "th": "โมเดลไม่เห็นอนาคตหลังเดือนมิถุนายน คงคลังที่เหลือตอนท้ายจึงไม่มีมูลค่าสำหรับมัน และมันใช้ที่เก็บจนหมด"
+    },
+    {
+     "s": 12.289,
+     "e": 23.25,
+     "en": "The profit of 358,250 pounds is not a better plan. It is the same plant spending its inventory, and next July would pay for it.",
+     "th": "กำไร 358,250 ปอนด์ไม่ใช่แผนที่ดีกว่า มันคือโรงงานเดิมที่ใช้คงคลังของตัวเองไปจนหมด และเดือนกรกฎาคมจะเป็นผู้จ่ายคืน"
+    },
+    {
+     "s": 23.25,
+     "e": 32.434,
+     "en": "The difference, about 250,000 pounds, is roughly what it would cost to buy back 2,500 tonnes of oil at about 100 pounds a tonne.",
+     "th": "ส่วนต่างประมาณ 250,000 ปอนด์ ใกล้เคียงกับต้นทุนการซื้อน้ำมัน 2,500 ตันกลับคืนที่ราคาประมาณตันละ 100 ปอนด์"
+    },
+    {
+     "s": 32.434,
+     "e": 35.224,
+     "en": "There are three standard remedies.",
+     "th": "มีวิธีแก้มาตรฐานสามวิธี"
+    },
+    {
+     "s": 35.224,
+     "e": 45.592,
+     "en": "The first is a terminal stock, as Williams does: hold 500 tonnes at the end. It is simple, but the number 500 has to come from somewhere.",
+     "th": "วิธีแรกคือกำหนดคงคลังสุดท้าย เหมือนที่ Williams ทำ คือเก็บ 500 ตันตอนท้าย วิธีนี้ง่าย แต่ตัวเลข 500 ต้องมีที่มา"
+    },
+    {
+     "s": 45.592,
+     "e": 56.724,
+     "en": "The second is a terminal value: credit each tonne left at the end with an estimate of what it will be worth. The dual values from the previous slide are a good first estimate.",
+     "th": "วิธีที่สองคือกำหนดมูลค่าปลายทาง ให้เครดิตกับแต่ละตันที่เหลือตอนท้ายตามมูลค่าที่คาดว่าจะเป็น ค่า dual จากหน้าที่แล้วเป็นค่าประมาณเริ่มต้นที่ดี"
+    },
+    {
+     "s": 56.724,
+     "e": 66.368,
+     "en": "The third is a longer horizon: plan twelve months, act on the first, and re-plan next month. Part three uses this idea within a day.",
+     "th": "วิธีที่สามคือขยายช่วงเวลา วางแผนสิบสองเดือน ลงมือตามเดือนแรก แล้ววางแผนใหม่เดือนหน้า ส่วนที่สามใช้แนวคิดนี้ภายในหนึ่งวัน"
+    },
+    {
+     "s": 66.368,
+     "e": 74.75,
+     "en": "Whichever you choose, write it down and defend it. The terminal condition is as much a part of the model as any capacity.",
+     "th": "ไม่ว่าจะเลือกวิธีใด ให้เขียนไว้และให้เหตุผลได้ เงื่อนไขสุดท้ายเป็นส่วนหนึ่งของโมเดลเท่ากับข้อจำกัดกำลังการผลิตใด ๆ"
+    },
+    {
+     "s": 74.75,
+     "e": 83.026,
+     "en": "Engineers meet this every week: a model that schedules a plant for seven days will run its tanks down on Sunday unless it is told otherwise.",
+     "th": "วิศวกรพบปัญหานี้ทุกสัปดาห์ โมเดลที่วางตารางการผลิตเจ็ดวันจะใช้ถังจนเกือบหมดในวันอาทิตย์ ถ้าไม่ได้กำหนดไว้เป็นอย่างอื่น"
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "file": "audio/slide-15.mp3",
+   "duration": 55.44,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.537,
+     "en": "The second check asks you to read the values.",
+     "th": "แบบตรวจครั้งที่สองให้คุณอ่านค่ามูลค่าเหล่านี้"
+    },
+    {
+     "s": 3.537,
+     "e": 7.25,
+     "en": "Pause, answer the four questions, and press Play.",
+     "th": "หยุด ตอบคำถามทั้งสี่ข้อ แล้วกด Play"
+    },
+    {
+     "s": 7.25,
+     "e": 19.013,
+     "en": "One. No. In March a tonne of VEG1 adds only 85 pounds to the plan, and it would cost 110. The plan does not buy it.",
+     "th": "ข้อหนึ่ง ไม่ซื้อ ในเดือนมีนาคม VEG1 หนึ่งตันเพิ่มกำไรให้แผนเพียง 85 ปอนด์ แต่ต้องจ่าย 110 แผนจึงไม่ซื้อ"
+    },
+    {
+     "s": 19.013,
+     "e": 28.684,
+     "en": "Two. 90 pounds. One more tonne of OIL2 in store in February replaces a tonne the plan would otherwise buy at 90.",
+     "th": "ข้อสอง 90 ปอนด์ OIL2 ที่มีในที่เก็บเพิ่มอีกหนึ่งตันในเดือนกุมภาพันธ์ ใช้แทนหนึ่งตันที่แผนจะต้องซื้อที่ราคา 90"
+    },
+    {
+     "s": 28.684,
+     "e": 39.737,
+     "en": "Three. One more tonne of vegetable refining capacity in January would raise the six-month profit by 75 pounds, as long as the plan stays in the same range.",
+     "th": "ข้อสาม ถ้ากำลังการกลั่นน้ำมันพืชในเดือนมกราคมเพิ่มอีกหนึ่งตัน กำไรตลอดหกเดือนจะเพิ่มขึ้น 75 ปอนด์ ตราบใดที่แผนยังอยู่ในช่วงเดิม"
+    },
+    {
+     "s": 39.737,
+     "e": 53.072,
+     "en": "Four. Usually much less than the last months, because the effect fades with distance from the end. But check it: compare January from a twelve-month run and an eighteen-month run.",
+     "th": "ข้อสี่ โดยทั่วไปน้อยกว่าเดือนท้าย ๆ มาก เพราะผลกระทบจางลงตามระยะห่างจากปลายช่วงเวลา แต่ควรตรวจ โดยเทียบแผนเดือนมกราคมจากการรันสิบสองเดือนกับสิบแปดเดือน ถ้าตรงกัน"
+    },
+    {
+     "s": 53.072,
+     "e": 55.368,
+     "en": "If they agree, January is safe.",
+     "th": "แผนเดือนมกราคมก็ปลอดภัย"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "file": "audio/slide-16.mp3",
+   "duration": 12.648,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.432,
+     "en": "Take a ten-minute break.",
+     "th": "พักสิบนาที"
+    },
+    {
+     "s": 2.432,
+     "e": 8.645,
+     "en": "After the break, you will look for the quantities on your card that carry over from one period to the next.",
+     "th": "หลังพัก คุณจะหาปริมาณบนการ์ดของคุณที่ยกต่อจากช่วงหนึ่งไปอีกช่วงหนึ่ง"
+    },
+    {
+     "s": 8.645,
+     "e": 12.579,
+     "en": "If you are studying on your own, take the break as well.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้พักด้วยเช่นกัน"
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "file": "audio/slide-17.mp3",
+   "duration": 41.592,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.261,
+     "en": "Activity 2 adds time to your card.",
+     "th": "กิจกรรมที่ 2 เพิ่มเวลาให้การ์ดของคุณ"
+    },
+    {
+     "s": 3.261,
+     "e": 8.605,
+     "en": "Find the quantities that carry over from one period to the next, and name the state.",
+     "th": "หาปริมาณที่ยกต่อจากช่วงหนึ่งไปช่วงถัดไป และตั้งชื่อสถานะ"
+    },
+    {
+     "s": 8.605,
+     "e": 17.671,
+     "en": "Write its balance, with the initial condition. Choose the length of a period and of the horizon: an hour and a day, a month and a year.",
+     "th": "เขียนสมดุลของมัน พร้อมเงื่อนไขเริ่มต้น เลือกความยาวของหนึ่งช่วงและของช่วงเวลาที่วางแผน เช่น หนึ่งชั่วโมงกับหนึ่งวัน หรือหนึ่งเดือนกับหนึ่งปี"
+    },
+    {
+     "s": 17.671,
+     "e": 22.066,
+     "en": "Then decide what the store should hold at the end, and write down why.",
+     "th": "จากนั้นตัดสินใจว่าที่เก็บควรมีอะไรเหลืออยู่ตอนท้าย และเขียนเหตุผลไว้"
+    },
+    {
+     "s": 22.066,
+     "e": 29.118,
+     "en": "In class, take five minutes alone, then swap with a partner and ask: what would your model do in its last period?",
+     "th": "ในห้องเรียน ใช้เวลาห้านาทีคนเดียว แล้วแลกกับเพื่อน และถามว่า โมเดลของคุณจะทำอะไรในช่วงสุดท้าย"
+    },
+    {
+     "s": 29.118,
+     "e": 35.895,
+     "en": "If you have no card, use the boilers of Lab 3 with a hot-water tank between the boilers and the process.",
+     "th": "ถ้าไม่มีการ์ด ให้ใช้หม้อไอน้ำจาก Lab 3 โดยมีถังน้ำร้อนอยู่ระหว่างหม้อไอน้ำกับกระบวนการ"
+    },
+    {
+     "s": 35.895,
+     "e": 41.526,
+     "en": "If you are studying on your own, stop here, write it, and keep it for Session 5.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้หยุดที่หน้านี้ เขียนไว้ แล้วเก็บไว้ใช้ในคาบที่ 5"
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "file": "audio/slide-18.mp3",
+   "duration": 82.92,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.8,
+     "en": "Part two moves from months to hours, and from oil to electricity.",
+     "th": "ส่วนที่สองเปลี่ยนจากเดือนเป็นชั่วโมง และจากน้ำมันเป็นไฟฟ้า"
+    },
+    {
+     "s": 4.8,
+     "e": 14.092,
+     "en": "The site is a small factory with one day shift. Its load runs from 70 kilowatts at night to about 220 in the working day.",
+     "th": "สถานที่คือโรงงานขนาดเล็กที่ทำงานกะเดียว ภาระไฟฟ้าอยู่ที่ 70 กิโลวัตต์ตอนกลางคืน และประมาณ 220 ในช่วงทำงาน"
+    },
+    {
+     "s": 14.092,
+     "e": 21.921,
+     "en": "It has 300 kilowatts-peak of rooftop PV, which gives up to about 240 kilowatts at noon on a clear day.",
+     "th": "โรงงานมีโซลาร์บนหลังคา 300 กิโลวัตต์พีก ซึ่งผลิตได้สูงสุดประมาณ 240 กิโลวัตต์ตอนเที่ยงในวันฟ้าใส"
+    },
+    {
+     "s": 21.921,
+     "e": 35.263,
+     "en": "And it has a battery: 300 kilowatt-hours of energy and 150 kilowatts of power, 95 percent efficient each way, kept between 30 and 300 kilowatt-hours, and starting and ending the day at 150.",
+     "th": "และมีแบตเตอรี่ พลังงาน 300 กิโลวัตต์ชั่วโมง กำลัง 150 กิโลวัตต์ ประสิทธิภาพ 95 เปอร์เซ็นต์ในแต่ละทิศทาง รักษาไว้ระหว่าง 30 ถึง 300 กิโลวัตต์ชั่วโมง และเริ่มต้นและจบวันที่ 150"
+    },
+    {
+     "s": 35.263,
+     "e": 45.079,
+     "en": "Each kilowatt-hour discharged costs 0.05 baht in wear. The factory cannot export to the grid, but it may curtail PV.",
+     "th": "ทุกกิโลวัตต์ชั่วโมงที่คายประจุมีต้นทุนการสึกหรอ 0.05 บาท โรงงานส่งไฟฟ้าออกไปยังโครงข่ายไม่ได้ แต่ลดการผลิตของโซลาร์ได้"
+    },
+    {
+     "s": 45.079,
+     "e": 54.526,
+     "en": "The chart shows a clear weekday without the battery. PV covers the middle of the day; the load is met from the grid in the morning and the late afternoon.",
+     "th": "กราฟแสดงวันทำงานที่ฟ้าใสโดยไม่มีแบตเตอรี่ โซลาร์ครอบคลุมช่วงกลางวัน ภาระในช่วงเช้าและช่วงบ่ายแก่ ๆ มาจากโครงข่ายไฟฟ้า"
+    },
+    {
+     "s": 54.526,
+     "e": 64.539,
+     "en": "Look at the shape before modeling. The PV peak and the load peak nearly coincide at midday, so the battery's work is in the morning and the late afternoon.",
+     "th": "ดูรูปร่างก่อนสร้างโมเดล ช่วงสูงสุดของโซลาร์และของภาระเกือบตรงกันตอนเที่ยง งานของแบตเตอรี่จึงอยู่ในช่วงเช้าและบ่ายแก่ ๆ"
+    },
+    {
+     "s": 64.539,
+     "e": 74.184,
+     "en": "The battery holds 300 kilowatt-hours, about one and a half hours of the daytime load. Keep that ratio in mind when you read the plans.",
+     "th": "แบตเตอรี่เก็บได้ 300 กิโลวัตต์ชั่วโมง ประมาณหนึ่งชั่วโมงครึ่งของภาระช่วงกลางวัน ให้จำอัตราส่วนนี้ไว้เมื่ออ่านแผน"
+    },
+    {
+     "s": 74.184,
+     "e": 82.855,
+     "en": "The profiles are synthetic teaching data. Lab 4 uses a different site, an office building, so that its numbers are new.",
+     "th": "ข้อมูลภาระและโซลาร์เป็นข้อมูลสังเคราะห์เพื่อการสอน Lab 4 ใช้สถานที่อื่น คืออาคารสำนักงาน เพื่อให้ตัวเลขเป็นของใหม่"
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "file": "audio/slide-19.mp3",
+   "duration": 104.832,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 10.695,
+     "en": "The prices come from a real tariff: the Provincial Electricity Authority's time-of-use rate for a medium business, schedule 3.2.3, below 22 kilovolts.",
+     "th": "ราคามาจากอัตราค่าไฟฟ้าจริง คืออัตราตามช่วงเวลาของการไฟฟ้าส่วนภูมิภาค สำหรับกิจการขนาดกลาง ประเภท 3.2.3 แรงดันต่ำกว่า 22 กิโลโวลต์"
+    },
+    {
+     "s": 10.695,
+     "e": 22.671,
+     "en": "Energy costs 4.3297 baht per kilowatt-hour on-peak, Monday to Friday from 9 in the morning to 10 at night, and 2.6369 at all other times, including weekends and holidays.",
+     "th": "ค่าพลังงานไฟฟ้าคือ 4.3297 บาทต่อกิโลวัตต์ชั่วโมงในช่วง on-peak วันจันทร์ถึงศุกร์ เวลา 9 นาฬิกาถึง 22 นาฬิกา และ 2.6369 ในเวลาอื่นทั้งหมด รวมวันหยุดสุดสัปดาห์และวันหยุดราชการ"
+    },
+    {
+     "s": 22.671,
+     "e": 30.697,
+     "en": "There is also a demand charge of 210 baht per kilowatt per month, on the highest fifteen-minute demand in the on-peak period.",
+     "th": "นอกจากนี้ยังมีค่าความต้องการพลังไฟฟ้า 210 บาทต่อกิโลวัตต์ต่อเดือน คิดจากความต้องการพลังไฟฟ้าสูงสุดในช่วง 15 นาทีในช่วง on-peak"
+    },
+    {
+     "s": 30.697,
+     "e": 41.421,
+     "en": "Why a demand charge? The utility must build capacity for the highest demand, not the average, and this charge passes that cost to the customer who sets the peak.",
+     "th": "ทำไมต้องมีค่าความต้องการพลังไฟฟ้า เพราะการไฟฟ้าต้องสร้างกำลังการผลิตให้รองรับความต้องการสูงสุด ไม่ใช่ค่าเฉลี่ย ค่านี้จึงส่งต่อต้นทุนนั้นให้ลูกค้าที่ทำให้เกิดค่าสูงสุด"
+    },
+    {
+     "s": 41.421,
+     "e": 51.789,
+     "en": "Schedule 3 is for customers whose demand lies between 30 and 1,000 kilowatts. This factory, with a peak near 220, falls in it.",
+     "th": "ประเภทที่ 3 ใช้กับผู้ใช้ไฟฟ้าที่มีความต้องการพลังไฟฟ้าระหว่าง 30 ถึง 1,000 กิโลวัตต์ โรงงานนี้ซึ่งมีค่าสูงสุดประมาณ 220 จึงอยู่ในประเภทนี้"
+    },
+    {
+     "s": 51.789,
+     "e": 61.184,
+     "en": "Ft and VAT are added to a real bill and are not included here. Check the current schedule before using these numbers for a real decision.",
+     "th": "ค่า Ft และภาษีมูลค่าเพิ่มจะถูกบวกในบิลจริง และไม่ได้รวมไว้ในที่นี้ ให้ตรวจสอบอัตราปัจจุบันก่อนใช้ตัวเลขเหล่านี้ตัดสินใจจริง"
+    },
+    {
+     "s": 61.184,
+     "e": 69.658,
+     "en": "Two modeling choices follow. An hourly model sees the hourly average import, and a fifteen-minute peak can be higher.",
+     "th": "มีการตัดสินใจในการสร้างโมเดลสองข้อ ข้อแรก โมเดลรายชั่วโมงเห็นเพียงค่าเฉลี่ยรายชั่วโมงของไฟฟ้าที่ซื้อ ค่าสูงสุดใน 15 นาทีอาจสูงกว่านั้น"
+    },
+    {
+     "s": 69.658,
+     "e": 81.479,
+     "en": "And a one-day model has to carry part of a monthly charge. We give each of 22 weekdays one twenty-second of it: 9.55 baht per kilowatt of the day's highest on-peak import.",
+     "th": "ข้อสอง โมเดลหนึ่งวันต้องแบกรับส่วนหนึ่งของค่าใช้จ่ายรายเดือน เราให้วันทำงานแต่ละวันจาก 22 วันรับไปหนึ่งในยี่สิบสอง คือ 9.55 บาทต่อกิโลวัตต์ของไฟฟ้าที่ซื้อสูงสุดในช่วง on-peak"
+    },
+    {
+     "s": 81.479,
+     "e": 85.671,
+     "en": "In reality the worst quarter-hour of the month sets the bill.",
+     "th": "ของวันนั้น ในความเป็นจริง 15 นาทีที่แย่ที่สุดของเดือนเป็นตัวกำหนดบิล"
+    },
+    {
+     "s": 85.671,
+     "e": 93.118,
+     "en": "The energy spread pays for shifting energy in time. The demand charge pays for flattening the import.",
+     "th": "ส่วนต่างของราคาพลังงานจ่ายให้กับการย้ายพลังงานข้ามเวลา ส่วนค่าความต้องการพลังไฟฟ้าจ่ายให้กับการทำให้ไฟฟ้าที่ซื้อมีระดับเรียบ"
+    },
+    {
+     "s": 93.118,
+     "e": 98.782,
+     "en": "Notice that the on-peak period lasts thirteen hours, far longer than this battery can cover.",
+     "th": "สังเกตว่าช่วง on-peak ยาวสิบสามชั่วโมง นานกว่าที่แบตเตอรี่นี้จะรองรับได้มาก"
+    },
+    {
+     "s": 98.782,
+     "e": 104.75,
+     "en": "It has to choose where to discharge, and the two charges pull that choice in different directions.",
+     "th": "แบตเตอรี่ต้องเลือกว่าจะคายประจุที่ใด และค่าใช้จ่ายทั้งสองแบบดึงการเลือกนั้นไปคนละทาง"
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "file": "audio/slide-20.mp3",
+   "duration": 89.112,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.787,
+     "en": "Here is the model for one day in hourly steps.",
+     "th": "นี่คือโมเดลสำหรับหนึ่งวัน ทีละชั่วโมง"
+    },
+    {
+     "s": 3.787,
+     "e": 11.684,
+     "en": "The objective adds the energy bought at each hour's price, the wear on the battery, and 9.55 baht for each kilowatt of d.",
+     "th": "ฟังก์ชันเป้าหมายรวมค่าพลังงานที่ซื้อตามราคาของแต่ละชั่วโมง ค่าสึกหรอของแบตเตอรี่ และ 9.55 บาทสำหรับแต่ละกิโลวัตต์ของ d"
+    },
+    {
+     "s": 11.684,
+     "e": 24.013,
+     "en": "The power balance says that import, plus PV that is not curtailed, plus discharge, equals the load plus charging. It is in kilowatts, and over one hour a kilowatt is a kilowatt-hour.",
+     "th": "สมดุลกำลังไฟฟ้าบอกว่า ไฟฟ้าที่ซื้อ บวกโซลาร์ที่ไม่ได้ลด บวกการคายประจุ เท่ากับภาระบวกการชาร์จ หน่วยเป็นกิโลวัตต์ และในหนึ่งชั่วโมง หนึ่งกิโลวัตต์คือหนึ่งกิโลวัตต์ชั่วโมง"
+    },
+    {
+     "s": 24.013,
+     "e": 34.724,
+     "en": "The state-of-charge balance is a stock balance with losses: 95 percent of what is charged arrives, and taking out one kilowatt-hour costs one over 0.95 from the store.",
+     "th": "สมดุลสถานะประจุคือสมดุลคงคลังที่มีการสูญเสีย สิ่งที่ชาร์จเข้าไปถึงเพียง 95 เปอร์เซ็นต์ และการดึงออกหนึ่งกิโลวัตต์ชั่วโมงใช้พลังงานจากที่เก็บหนึ่งส่วน 0.95"
+    },
+    {
+     "s": 34.724,
+     "e": 43.171,
+     "en": "With fifteen-minute periods, the power terms would be multiplied by a quarter. Get the units right before anything else.",
+     "th": "ถ้าใช้ช่วงละ 15 นาที พจน์ของกำลังไฟฟ้าต้องคูณด้วยหนึ่งในสี่ ให้หน่วยถูกต้องก่อนสิ่งอื่นใด"
+    },
+    {
+     "s": 43.171,
+     "e": 53.434,
+     "en": "The variable d is Session 2's epigraph. It must be at least the import in every on-peak hour, and it is minimized, so it settles at the highest one.",
+     "th": "ตัวแปร d คือ epigraph จากคาบที่ 2 ต้องไม่น้อยกว่าไฟฟ้าที่ซื้อในทุกชั่วโมง on-peak และถูกทำให้ต่ำที่สุด จึงไปหยุดที่ค่าที่สูงที่สุด"
+    },
+    {
+     "s": 53.434,
+     "e": 61.763,
+     "en": "For 24 hours that is 121 variables, 48 balance rows and 13 demand rows: a small linear program.",
+     "th": "สำหรับ 24 ชั่วโมง มีตัวแปร 121 ตัว แถวสมดุล 48 แถว และแถวความต้องการพลังไฟฟ้า 13 แถว เป็น linear program ขนาดเล็ก"
+    },
+    {
+     "s": 61.763,
+     "e": 63.729,
+     "en": "Compare it with the oil model.",
+     "th": "เปรียบเทียบกับโมเดลน้ำมัน"
+    },
+    {
+     "s": 63.729,
+     "e": 75.211,
+     "en": "The state-of-charge balance is the stock balance, the power balance plays the part of the monthly rows, and the 150 kilowatt-hours at midnight are the 500 tonnes at the end of June.",
+     "th": "สมดุลสถานะประจุคือสมดุลคงคลัง สมดุลกำลังไฟฟ้าทำหน้าที่แบบแถวรายเดือน และ 150 กิโลวัตต์ชั่วโมงตอนเที่ยงคืนคือ 500 ตันตอนสิ้นเดือนมิถุนายน"
+    },
+    {
+     "s": 75.211,
+     "e": 86.993,
+     "en": "Why is no binary needed to stop charging and discharging in the same hour? On a normal day doing both would waste energy and cost money, so the optimum never does it.",
+     "th": "ทำไมจึงไม่ต้องใช้ตัวแปร binary เพื่อห้ามการชาร์จและคายประจุในชั่วโมงเดียวกัน ในวันปกติการทำทั้งสองอย่างจะทิ้งพลังงานและเสียเงิน คำตอบที่ดีที่สุดจึงไม่ทำ"
+    },
+    {
+     "s": 86.993,
+     "e": 89.039,
+     "en": "Slide 27 shows the exception.",
+     "th": "หน้าที่ 27 แสดงข้อยกเว้น"
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "file": "audio/slide-21.mp3",
+   "duration": 80.616,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.195,
+     "en": "Work the state of charge by hand once, so the numbers in the plans make sense.",
+     "th": "ลองคำนวณสถานะประจุด้วยมือสักครั้ง เพื่อให้ตัวเลขในแผนมีความหมาย"
+    },
+    {
+     "s": 5.195,
+     "e": 17.474,
+     "en": "Start at 150 kilowatt-hours. In hour one, charge at 100 kilowatts. Only 95 arrive, so the battery holds 245.",
+     "th": "เริ่มที่ 150 กิโลวัตต์ชั่วโมง ชั่วโมงที่หนึ่ง ชาร์จที่ 100 กิโลวัตต์ เข้าไปถึงเพียง 95 แบตเตอรี่จึงมี 245"
+    },
+    {
+     "s": 17.474,
+     "e": 22.408,
+     "en": "Hour two is idle, so the battery still holds 245.",
+     "th": "ชั่วโมงที่สองไม่ทำอะไร แบตเตอรี่จึงยังมี 245"
+    },
+    {
+     "s": 22.408,
+     "e": 35.75,
+     "en": "In hour three, deliver 150 kilowatts. That takes 150 over 0.95, which is 157.9, out of the battery, leaving 87.1.",
+     "th": "ชั่วโมงที่สาม จ่ายออก 150 กิโลวัตต์ ต้องดึง 150 หาร 0.95 คือ 157.9 ออกจากแบตเตอรี่ เหลือ 87.1"
+    },
+    {
+     "s": 35.75,
+     "e": 45.526,
+     "en": "In hour four, deliver 50 more. That takes 52.6, leaving 34.5, which is still above the floor of 30.",
+     "th": "ชั่วโมงที่สี่ จ่ายอีก 50 ต้องดึง 52.6 เหลือ 34.5 ซึ่งยังสูงกว่าขีดต่ำสุดที่ 30"
+    },
+    {
+     "s": 45.526,
+     "e": 52.645,
+     "en": "A fifth hour at 50 kilowatts would need another 52.6 and would break the floor, so the plan cannot do it.",
+     "th": "ชั่วโมงที่ห้าที่ 50 กิโลวัตต์จะต้องใช้อีก 52.6 และจะต่ำกว่าขีดต่ำสุด แผนจึงทำไม่ได้"
+    },
+    {
+     "s": 52.645,
+     "e": 60.404,
+     "en": "Notice the asymmetry: the loss on the way in is taken from what you buy, and the loss on the way out from what you stored.",
+     "th": "สังเกตความไม่สมมาตร การสูญเสียขาเข้าหักจากสิ่งที่ซื้อ ส่วนการสูญเสียขาออกหักจากสิ่งที่เก็บไว้ การเขียน"
+    },
+    {
+     "s": 60.404,
+     "e": 68.605,
+     "en": "Writing 0.95 times the discharge instead of the discharge over 0.95 is a common error, and it makes the battery better than it is.",
+     "th": "0.95 คูณการคายประจุแทนการคายประจุหาร 0.95 เป็นข้อผิดพลาดที่พบบ่อย และทำให้แบตเตอรี่ดูดีกว่าความเป็นจริง"
+    },
+    {
+     "s": 68.605,
+     "e": 80.553,
+     "en": "The round trip keeps 0.95 times 0.95, which is 90.25 percent, of what was bought. That number decides when storage pays, on the next slide.",
+     "th": "การชาร์จและคายประจุครบรอบเก็บพลังงานไว้ได้ 0.95 คูณ 0.95 คือ 90.25 เปอร์เซ็นต์ของที่ซื้อมา ตัวเลขนี้เป็นตัวกำหนดว่าเมื่อใดการกักเก็บจึงคุ้ม ในหน้าถัดไป"
+    }
+   ]
+  },
+  {
+   "n": 22,
+   "file": "audio/slide-22.mp3",
+   "duration": 94.104,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.787,
+     "en": "When does storing energy pay?",
+     "th": "เมื่อใดการกักเก็บพลังงานจึงคุ้ม"
+    },
+    {
+     "s": 2.787,
+     "e": 12.368,
+     "en": "To deliver one kilowatt-hour on-peak, the battery must buy one over 0.9025, which is 1.108 kilowatt-hours off-peak.",
+     "th": "เพื่อจ่ายพลังงานหนึ่งกิโลวัตต์ชั่วโมงในช่วง on-peak แบตเตอรี่ต้องซื้อหนึ่งส่วน 0.9025 คือ 1.108 กิโลวัตต์ชั่วโมงในช่วง off-peak"
+    },
+    {
+     "s": 12.368,
+     "e": 27.408,
+     "en": "At 2.6369 baht, plus 0.05 for wear, that kilowatt-hour costs 2.97 baht. It avoids 4.33 baht on-peak, so the margin is 1.36 baht per kilowatt-hour delivered.",
+     "th": "ที่ 2.6369 บาท บวก 0.05 สำหรับการสึกหรอ หนึ่งกิโลวัตต์ชั่วโมงนั้นมีต้นทุน 2.97 บาท แต่หลีกเลี่ยงค่า 4.33 บาทในช่วง on-peak ได้ ส่วนต่างจึงเป็น 1.36 บาทต่อกิโลวัตต์ชั่วโมงที่จ่ายออก"
+    },
+    {
+     "s": 27.408,
+     "e": 41.197,
+     "en": "Turn it around: storage pays as long as the round-trip efficiency is above 2.6369 over 4.28, which is about 0.62. This battery, at 0.90, clears it easily.",
+     "th": "กลับด้านดู การกักเก็บคุ้มตราบใดที่ประสิทธิภาพครบรอบสูงกว่า 2.6369 หาร 4.28 ประมาณ 0.62 แบตเตอรี่นี้ที่ 0.90 ผ่านเกณฑ์ได้สบาย"
+    },
+    {
+     "s": 41.197,
+     "e": 52.263,
+     "en": "Wear matters at the margin. If each kilowatt-hour discharged cost about 1.4 baht in wear, the margin would vanish and the battery would stop shifting energy altogether.",
+     "th": "ค่าสึกหรอมีผลต่อส่วนต่าง ถ้าการคายประจุแต่ละกิโลวัตต์ชั่วโมงมีค่าสึกหรอประมาณ 1.4 บาท ส่วนต่างจะหายไป และแบตเตอรี่จะหยุดย้ายพลังงานทั้งหมด"
+    },
+    {
+     "s": 52.263,
+     "e": 60.191,
+     "en": "For this battery the break-even efficiency, 0.62, is far below the actual 0.90, so the decision is not close.",
+     "th": "สำหรับแบตเตอรี่นี้ ประสิทธิภาพที่จุดคุ้มทุน 0.62 ต่ำกว่าค่าจริง 0.90 มาก การตัดสินใจจึงไม่ก้ำกึ่ง"
+    },
+    {
+     "s": 60.191,
+     "e": 66.461,
+     "en": "When the two are close, the uncertainty in the efficiency matters as much as the model.",
+     "th": "แต่ถ้าสองค่านี้ใกล้กัน ความไม่แน่นอนของค่าประสิทธิภาพสำคัญพอ ๆ กับตัวโมเดล"
+    },
+    {
+     "s": 66.461,
+     "e": 75.829,
+     "en": "The same test applies to any store: a tank of product, a thermal store, a stockpile. The spread must pay for the losses and the wear.",
+     "th": "การทดสอบเดียวกันใช้ได้กับที่เก็บทุกชนิด เช่น ถังผลิตภัณฑ์ ที่เก็บความร้อน หรือกองวัตถุดิบ ส่วนต่างของราคาต้องจ่ายค่าสูญเสียและค่าสึกหรอได้"
+    },
+    {
+     "s": 75.829,
+     "e": 83.171,
+     "en": "And between two off-peak hours, or two on-peak hours, storage never pays: there is no spread to pay for the losses.",
+     "th": "และระหว่างสองชั่วโมง off-peak หรือสองชั่วโมง on-peak การกักเก็บไม่มีทางคุ้ม เพราะไม่มีส่วนต่างมาจ่ายค่าสูญเสีย"
+    },
+    {
+     "s": 83.171,
+     "e": 94.039,
+     "en": "The linear program finds all of this by itself, but do the calculation anyway. It tells you which hours to expect in the plan, and it catches a wrong efficiency.",
+     "th": "linear program หาทั้งหมดนี้ได้เอง แต่ควรคำนวณไว้ด้วย เพราะบอกได้ว่าควรคาดหวังชั่วโมงใดในแผน และจับค่าประสิทธิภาพที่ผิดได้"
+    }
+   ]
+  },
+  {
+   "n": 23,
+   "file": "audio/slide-23.mp3",
+   "duration": 129.288,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.368,
+     "en": "Now the whole day, three ways. Press the buttons in turn.",
+     "th": "ต่อไปคือทั้งวัน สามแบบ กดปุ่มทีละปุ่ม"
+    },
+    {
+     "s": 5.368,
+     "e": 20.132,
+     "en": "With no battery, the day costs 7,876 baht with its share of the demand charge. At 17:00 the load is still high and the sun is low, and that hour sets the demand at 173 kilowatts.",
+     "th": "เมื่อไม่มีแบตเตอรี่ วันนี้มีต้นทุน 7,876 บาท รวมส่วนแบ่งของค่าความต้องการพลังไฟฟ้า ตอน 17 นาฬิกา ภาระยังสูงและแดดอ่อน ชั่วโมงนั้นกำหนดความต้องการพลังไฟฟ้าไว้ที่ 173 กิโลวัตต์"
+    },
+    {
+     "s": 20.132,
+     "e": 33.145,
+     "en": "Press Energy charge only. The battery charges off-peak before nine and from the midday surplus, and discharges in the afternoon. The energy cost falls by about 620 baht.",
+     "th": "กด Energy charge only แบตเตอรี่ชาร์จช่วง off-peak ก่อนเก้านาฬิกา และจากโซลาร์ส่วนเกินตอนเที่ยง แล้วคายประจุในช่วงบ่าย ค่าพลังงานลดลงประมาณ 620 บาท"
+    },
+    {
+     "s": 33.145,
+     "e": 36.21,
+     "en": "Follow the battery through that day.",
+     "th": "ติดตามแบตเตอรี่ตลอดวันนั้น มันชาร์จ"
+    },
+    {
+     "s": 36.21,
+     "e": 51.039,
+     "en": "It charges 127 kilowatts at 07:00 at the off-peak price, gives a little at 09:00 and 10:00, refills from surplus PV until it is full at 14:00, and empties between 14:00 and 17:00.",
+     "th": "127 กิโลวัตต์ตอน 7 นาฬิกาที่ราคา off-peak จ่ายออกเล็กน้อยตอน 9 และ 10 นาฬิกา เติมจากโซลาร์ส่วนเกินจนเต็มตอน 14 นาฬิกา และจ่ายจนหมดระหว่าง 14 ถึง 17 นาฬิกา"
+    },
+    {
+     "s": 51.039,
+     "e": 57.513,
+     "en": "But this plan ignores the demand charge, and the peak import is still 173 kilowatts.",
+     "th": "แต่แผนนี้ไม่สนใจค่าความต้องการพลังไฟฟ้า ไฟฟ้าที่ซื้อสูงสุดจึงยังอยู่ที่ 173 กิโลวัตต์"
+    },
+    {
+     "s": 57.513,
+     "e": 60.298,
+     "en": "Press With the demand charge.",
+     "th": "กด With the demand charge"
+    },
+    {
+     "s": 60.298,
+     "e": 75.618,
+     "en": "The energy cost is exactly the same, 5,605 baht, but the import is now flat at 77.4 kilowatts from 15:00 to 22:00, and the demand share falls from 1,651 to 739 baht.",
+     "th": "ค่าพลังงานเท่าเดิมพอดี คือ 5,605 บาท แต่ไฟฟ้าที่ซื้อตอนนี้เรียบอยู่ที่ 77.4 กิโลวัตต์ ตั้งแต่ 15 นาฬิกาถึง 22 นาฬิกา และส่วนแบ่งค่าความต้องการพลังไฟฟ้าลดจาก 1,651 เหลือ 739 บาท"
+    },
+    {
+     "s": 75.618,
+     "e": 87.487,
+     "en": "Notice the morning too. The import at 07:00 rises to 248 kilowatts while the battery charges, but off-peak hours carry no demand charge, so the plan does not mind.",
+     "th": "สังเกตช่วงเช้าด้วย ไฟฟ้าที่ซื้อตอน 7 นาฬิกาขึ้นไปถึง 248 กิโลวัตต์ระหว่างที่แบตเตอรี่ชาร์จ แต่ชั่วโมง off-peak ไม่มีค่าความต้องการพลังไฟฟ้า แผนจึงไม่สนใจ"
+    },
+    {
+     "s": 87.487,
+     "e": 96.641,
+     "en": "How can that be free? Every on-peak hour has the same energy price, so moving discharge from one on-peak hour to another costs nothing.",
+     "th": "ทำไมจึงไม่มีต้นทุนเพิ่ม ทุกชั่วโมง on-peak มีราคาพลังงานเท่ากัน การย้ายการคายประจุจากชั่วโมง on-peak หนึ่งไปอีกชั่วโมงหนึ่งจึงไม่มีต้นทุน"
+    },
+    {
+     "s": 96.641,
+     "e": 102.632,
+     "en": "The energy-only problem had many optimal plans, and the demand charge picks the flattest.",
+     "th": "ปัญหาที่มีแต่ค่าพลังงานมีแผนที่ดีที่สุดหลายแผน และค่าความต้องการพลังไฟฟ้าเลือกแผนที่เรียบที่สุด"
+    },
+    {
+     "s": 102.632,
+     "e": 113.487,
+     "en": "This is a general lesson: when a linear program has ties, a small secondary cost decides which optimum you get. Make sure the secondary cost is one you mean.",
+     "th": "นี่คือบทเรียนทั่วไป เมื่อ linear program มีคำตอบที่เท่ากันหลายคำตอบ ต้นทุนรองเล็ก ๆ จะเป็นตัวตัดสินว่าได้คำตอบใด ให้แน่ใจว่าต้นทุนรองนั้นเป็นสิ่งที่คุณตั้งใจ"
+    },
+    {
+     "s": 113.487,
+     "e": 126.638,
+     "en": "The lower chart shows the state of charge: full by early afternoon, and down to the floor of 30 by 22:00, the end of the on-peak period. The battery spends all its energy on the peak.",
+     "th": "กราฟด้านล่างแสดงสถานะประจุ เต็มตอนบ่ายต้น ๆ และลดลงถึงขีดต่ำสุดที่ 30 ภายใน 22 นาฬิกา ซึ่งเป็นเวลาสิ้นสุดช่วง on-peak แบตเตอรี่ใช้พลังงานทั้งหมดกับช่วง peak"
+    },
+    {
+     "s": 126.638,
+     "e": 129.211,
+     "en": "Press D for the code and the checks.",
+     "th": "กด D เพื่อดูโค้ดและการตรวจสอบ"
+    }
+   ]
+  },
+  {
+   "n": 24,
+   "file": "audio/slide-24.mp3",
+   "duration": 79.56,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.037,
+     "en": "The dual of each hour's power balance is the cost of one more kilowatt-hour of load in that hour.",
+     "th": "ค่า dual ของสมดุลกำลังไฟฟ้าในแต่ละชั่วโมง คือต้นทุนของภาระที่เพิ่มขึ้นอีกหนึ่งกิโลวัตต์ชั่วโมงในชั่วโมงนั้น"
+    },
+    {
+     "s": 6.037,
+     "e": 10.408,
+     "en": "In off-peak hours it is the grid price, 2.64.",
+     "th": "ในชั่วโมง off-peak มีค่าเท่ากับราคาของโครงข่าย คือ 2.64"
+    },
+    {
+     "s": 10.408,
+     "e": 15.395,
+     "en": "At 9:00 and 10:00 it is 2.97: 2.6369 over 0.9025, plus wear.",
+     "th": "ตอน 9 นาฬิกาและ 10 นาฬิกา มีค่า 2.97 คือ 2.6369 หาร 0.9025 บวกค่าสึกหรอ"
+    },
+    {
+     "s": 15.395,
+     "e": 26.105,
+     "en": "The battery serves those hours with energy bought off-peak, so one more kilowatt-hour there costs a round trip through the battery.",
+     "th": "แบตเตอรี่จ่ายไฟให้ชั่วโมงเหล่านั้นด้วยพลังงานที่ซื้อช่วง off-peak ภาระเพิ่มอีกหนึ่งกิโลวัตต์ชั่วโมงในชั่วโมงนั้นจึงมีต้นทุนเท่ากับการผ่านแบตเตอรี่หนึ่งรอบ"
+    },
+    {
+     "s": 26.105,
+     "e": 30.921,
+     "en": "In the on-peak afternoon it is 4.33, the grid price.",
+     "th": "ในช่วงบ่าย on-peak มีค่า 4.33 ซึ่งเท่ากับราคาของโครงข่าย"
+    },
+    {
+     "s": 30.921,
+     "e": 39.487,
+     "en": "A dual between the off-peak and on-peak prices always means the same thing: the battery, not the grid, is the marginal supplier in that hour.",
+     "th": "ค่า dual ที่อยู่ระหว่างราคา off-peak กับ on-peak มีความหมายเดียวกันเสมอ คือในชั่วโมงนั้นแบตเตอรี่เป็นผู้จ่ายไฟส่วนเพิ่ม ไม่ใช่โครงข่าย"
+    },
+    {
+     "s": 39.487,
+     "e": 51.118,
+     "en": "With the demand charge, the seven hours that sit at the peak share its 9.55 baht per kilowatt: each carries 4.33 plus 9.55 over 7, which is 5.69.",
+     "th": "เมื่อมีค่าความต้องการพลังไฟฟ้า เจ็ดชั่วโมงที่อยู่ที่ระดับสูงสุดแบ่งกันรับ 9.55 บาทต่อกิโลวัตต์ แต่ละชั่วโมงจึงมีค่า 4.33 บวก 9.55 หาร 7 คือ 5.69"
+    },
+    {
+     "s": 51.118,
+     "e": 62.447,
+     "en": "These are the prices to quote for a new load. A 10-kilowatt pump that runs at 18:00 costs 57 baht per hour, not the 43 the tariff seems to say.",
+     "th": "นี่คือราคาที่ควรใช้เมื่อพิจารณาภาระใหม่ ปั๊มขนาด 10 กิโลวัตต์ที่เดินตอน 18 นาฬิกามีต้นทุน 57 บาทต่อชั่วโมง ไม่ใช่ 43 อย่างที่อัตราค่าไฟฟ้าดูเหมือนจะบอก"
+    },
+    {
+     "s": 62.447,
+     "e": 71.987,
+     "en": "The duals are hourly prices that already include what the battery and the demand charge do. That is information no single tariff line contains.",
+     "th": "ค่า dual คือราคารายชั่วโมงที่รวมผลของแบตเตอรี่และค่าความต้องการพลังไฟฟ้าไว้แล้ว เป็นข้อมูลที่ไม่มีบรรทัดใดในอัตราค่าไฟฟ้าบอกไว้"
+    },
+    {
+     "s": 71.987,
+     "e": 79.487,
+     "en": "Press D to print all twenty-four. The solver returns them with every solve, at no extra cost.",
+     "th": "กด D เพื่อพิมพ์ทั้งยี่สิบสี่ค่า solver ให้ค่าเหล่านี้มากับการแก้ทุกครั้งโดยไม่มีต้นทุนเพิ่ม"
+    }
+   ]
+  },
+  {
+   "n": 25,
+   "file": "audio/slide-25.mp3",
+   "duration": 69.384,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.761,
+     "en": "The end of the day is the battery's version of June.",
+     "th": "ตอนท้ายของวันคือเดือนมิถุนายนของแบตเตอรี่"
+    },
+    {
+     "s": 3.761,
+     "e": 8.0,
+     "en": "Move the slider to change what the battery must hold at midnight.",
+     "th": "เลื่อนแถบเพื่อเปลี่ยนปริมาณที่แบตเตอรี่ต้องมีตอนเที่ยงคืน"
+    },
+    {
+     "s": 8.0,
+     "e": 20.103,
+     "en": "At 150 kilowatt-hours, the reference, the day costs 6,359 baht. Raise the requirement and each extra kilowatt-hour costs 2.78 baht:",
+     "th": "ที่ 150 กิโลวัตต์ชั่วโมงซึ่งเป็นค่าอ้างอิง วันนี้มีต้นทุน 6,359 บาท ถ้าเพิ่มข้อกำหนด ทุกกิโลวัตต์ชั่วโมงที่เพิ่มมีต้นทุน 2.78 บาท"
+    },
+    {
+     "s": 20.103,
+     "e": 25.513,
+     "en": "off-peak energy, 2.6369 over 0.95, bought in the last hour.",
+     "th": "คือพลังงาน off-peak 2.6369 หาร 0.95 ที่ซื้อในชั่วโมงสุดท้าย"
+    },
+    {
+     "s": 25.513,
+     "e": 33.566,
+     "en": "Now move it down to the floor of 30. The day looks 333 baht cheaper, and the battery ends empty.",
+     "th": "ต่อไปเลื่อนลงถึงขีดต่ำสุดที่ 30 วันนี้ดูถูกลง 333 บาท และแบตเตอรี่จบวันโดยไม่มีพลังงานเหลือ"
+    },
+    {
+     "s": 33.566,
+     "e": 43.013,
+     "en": "That saving is an end effect, exactly like the oil plan without its terminal condition. Tomorrow starts empty and pays to refill.",
+     "th": "การประหยัดนั้นเป็นผลกระทบปลายช่วงเวลา เหมือนแผนน้ำมันที่ไม่มีเงื่อนไขสุดท้ายทุกประการ พรุ่งนี้เริ่มต้นด้วยแบตเตอรี่ว่าง และต้องจ่ายเพื่อเติมกลับ"
+    },
+    {
+     "s": 43.013,
+     "e": 53.211,
+     "en": "End conditions also tie the days of a week together. Saturday has no on-peak hours, so the right state for Friday night is not the right state for Monday night.",
+     "th": "เงื่อนไขสุดท้ายยังเชื่อมวันต่าง ๆ ในสัปดาห์เข้าด้วยกัน วันเสาร์ไม่มีชั่วโมง on-peak สถานะที่เหมาะสมสำหรับคืนวันศุกร์จึงไม่ใช่สถานะที่เหมาะสมสำหรับคืนวันจันทร์"
+    },
+    {
+     "s": 53.211,
+     "e": 62.145,
+     "en": "For a daily model, the natural rule is to end where you started, so that every day is the same day. That is what the reference does.",
+     "th": "สำหรับโมเดลรายวัน กฎที่เป็นธรรมชาติคือจบวันที่จุดเดียวกับที่เริ่ม เพื่อให้ทุกวันเหมือนกัน ซึ่งเป็นสิ่งที่แผนอ้างอิงทำ"
+    },
+    {
+     "s": 62.145,
+     "e": 69.303,
+     "en": "The same idea gives a terminal value for the oil plan: price what is left at the end by what it would cost to replace.",
+     "th": "แนวคิดเดียวกันให้มูลค่าปลายทางสำหรับแผนน้ำมัน คือให้ราคากับสิ่งที่เหลือตอนท้ายตามต้นทุนที่ต้องจ่ายเพื่อหามาแทน"
+    }
+   ]
+  },
+  {
+   "n": 26,
+   "file": "audio/slide-26.mp3",
+   "duration": 70.776,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.116,
+     "en": "The third check is storage arithmetic.",
+     "th": "แบบตรวจครั้งที่สามคือการคำนวณเรื่องการกักเก็บ"
+    },
+    {
+     "s": 3.116,
+     "e": 6.829,
+     "en": "Pause, answer the four questions, and press Play.",
+     "th": "หยุด ตอบคำถามทั้งสี่ข้อ แล้วกด Play"
+    },
+    {
+     "s": 6.829,
+     "e": 23.118,
+     "en": "One. 120 plus 0.95 times 60 is 177 kilowatt-hours after the first hour. Then 177 minus 76 over 0.95, which is 80, leaves 97.",
+     "th": "ข้อหนึ่ง 120 บวก 0.95 คูณ 60 ได้ 177 กิโลวัตต์ชั่วโมงหลังชั่วโมงแรก แล้ว 177 ลบ 76 หาร 0.95 ซึ่งเท่ากับ 80 เหลือ 97"
+    },
+    {
+     "s": 23.118,
+     "e": 40.105,
+     "en": "Two. Yes. 2.6369 over 0.70 is 3.77 baht, below the on-peak 4.33. The margin is 0.56 baht per kilowatt-hour delivered, much smaller than the battery's.",
+     "th": "ข้อสอง คุ้ม 2.6369 หาร 0.70 ได้ 3.77 บาท ต่ำกว่าราคา on-peak 4.33 ส่วนต่างคือ 0.56 บาทต่อกิโลวัตต์ชั่วโมงที่จ่ายออก น้อยกว่าของแบตเตอรี่มาก"
+    },
+    {
+     "s": 40.105,
+     "e": 51.263,
+     "en": "Three. The terminal condition asks for 150 kilowatt-hours at midnight, and 23:00 is the last off-peak hour, the cheapest place to refill.",
+     "th": "ข้อสาม เงื่อนไขสุดท้ายกำหนด 150 กิโลวัตต์ชั่วโมงตอนเที่ยงคืน และ 23 นาฬิกาเป็นชั่วโมง off-peak สุดท้าย ซึ่งเป็นช่วงที่เติมได้ถูกที่สุด"
+    },
+    {
+     "s": 51.263,
+     "e": 63.171,
+     "en": "Four. The battery is limited by energy, not by price. It already discharges everything between its 300 kilowatt-hour top and its 30 kilowatt-hour floor across the peak.",
+     "th": "ข้อสี่ แบตเตอรี่ถูกจำกัดด้วยพลังงาน ไม่ใช่ราคา มันคายประจุทั้งหมดระหว่างระดับบนสุด 300 กิโลวัตต์ชั่วโมงกับขีดต่ำสุด 30 กิโลวัตต์ชั่วโมงตลอดช่วง peak อยู่แล้ว"
+    },
+    {
+     "s": 63.171,
+     "e": 70.711,
+     "en": "A higher demand charge doubles that part of the bill at the same peak; a lower peak needs a bigger battery.",
+     "th": "ค่าความต้องการพลังไฟฟ้าที่สูงขึ้นทำให้บิลส่วนนั้นเพิ่มเป็นสองเท่าที่ระดับสูงสุดเดิม การลดระดับสูงสุดต้องใช้แบตเตอรี่ที่ใหญ่ขึ้น"
+    }
+   ]
+  },
+  {
+   "n": 27,
+   "file": "audio/slide-27.mp3",
+   "duration": 101.808,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.432,
+     "en": "Here is a plan that is optimal for the linear program and impossible for the battery.",
+     "th": "นี่คือแผนที่ดีที่สุดสำหรับ linear program แต่เป็นไปไม่ได้สำหรับแบตเตอรี่"
+    },
+    {
+     "s": 5.432,
+     "e": 15.132,
+     "en": "Suppose the battery is full, PV exceeds the load, and the model allows neither export nor curtailment. The surplus has to go somewhere.",
+     "th": "สมมติว่าแบตเตอรี่เต็ม โซลาร์ผลิตได้มากกว่าภาระ และโมเดลไม่อนุญาตทั้งการส่งออกและการลดการผลิตของโซลาร์ พลังงานส่วนเกินต้องไปที่ใดที่หนึ่ง"
+    },
+    {
+     "s": 15.132,
+     "e": 20.967,
+     "en": "The linear program finds a way: it charges and discharges in the same hour.",
+     "th": "linear program หาทางได้ คือชาร์จและคายประจุในชั่วโมงเดียวกัน"
+    },
+    {
+     "s": 20.967,
+     "e": 31.026,
+     "en": "To hold the state of charge, 0.95 times the charge must equal the discharge over 0.95, so the discharge is 0.9025 times the charge.",
+     "th": "เพื่อรักษาสถานะประจุไว้ 0.95 คูณการชาร์จต้องเท่ากับการคายประจุหาร 0.95 การคายประจุจึงเท่ากับ 0.9025 คูณการชาร์จ"
+    },
+    {
+     "s": 31.026,
+     "e": 42.961,
+     "en": "The difference, 0.0975 times the charge, disappears in losses. At 150 kilowatts that burns up to 14.6 kilowatts of surplus.",
+     "th": "ส่วนต่าง 0.0975 คูณการชาร์จหายไปในการสูญเสีย ที่ 150 กิโลวัตต์ วิธีนี้เผาพลังงานส่วนเกินได้ถึง 14.6 กิโลวัตต์"
+    },
+    {
+     "s": 42.961,
+     "e": 49.513,
+     "en": "The controller of a real battery cannot do this. The plan is a modeling artifact.",
+     "th": "ตัวควบคุมของแบตเตอรี่จริงทำแบบนี้ไม่ได้ แผนนี้เป็นสิ่งแปลกปลอมที่เกิดจากการสร้างโมเดล"
+    },
+    {
+     "s": 49.513,
+     "e": 61.25,
+     "en": "With positive prices and real losses, a linear program never does this voluntarily: it would be paying to waste energy. When it does, the model has nowhere else to put the energy.",
+     "th": "เมื่อราคาเป็นบวกและมีการสูญเสียจริง linear program จะไม่ทำแบบนี้เอง เพราะเท่ากับจ่ายเงินเพื่อทิ้งพลังงาน เมื่อใดที่มันทำ แสดงว่าโมเดลไม่มีที่อื่นให้พลังงานไป"
+    },
+    {
+     "s": 61.25,
+     "e": 69.868,
+     "en": "There are two fixes. The physical fix is to let the model curtail PV, or export, which is what a real site does.",
+     "th": "มีวิธีแก้สองวิธี วิธีทางกายภาพคือให้โมเดลลดการผลิตของโซลาร์ หรือส่งออกได้ ซึ่งเป็นสิ่งที่สถานที่จริงทำ"
+    },
+    {
+     "s": 69.868,
+     "e": 81.936,
+     "en": "The logic fix is a binary from Session 3: charge at most 150 times y, discharge at most 150 times one minus y. Used alone, it may make the model infeasible, and that is information too:",
+     "th": "วิธีทางตรรกะคือใช้ตัวแปร binary จากคาบที่ 3 คือการชาร์จไม่เกิน 150 คูณ y และการคายประจุไม่เกิน 150 คูณ หนึ่งลบ y ถ้าใช้วิธีนี้อย่างเดียว โมเดลอาจไม่มีคำตอบ ซึ่งก็เป็นข้อมูลเช่นกัน"
+    },
+    {
+     "s": 81.936,
+     "e": 84.921,
+     "en": "the site really has nowhere to put the energy.",
+     "th": "คือสถานที่นั้นไม่มีที่ให้พลังงานไปจริง ๆ"
+    },
+    {
+     "s": 84.921,
+     "e": 89.447,
+     "en": "Lab 4 shows both repairs on an office building on a Saturday.",
+     "th": "Lab 4 แสดงวิธีแก้ทั้งสองแบบกับอาคารสำนักงานในวันเสาร์"
+    },
+    {
+     "s": 89.447,
+     "e": 97.599,
+     "en": "The same artifact appears in other models: a tank whose fill and drain both run, or a network that heats and cools the same stream.",
+     "th": "สิ่งแปลกปลอมแบบเดียวกันปรากฏในโมเดลอื่นด้วย เช่น ถังที่เติมและระบายพร้อมกัน หรือเครือข่ายที่ทั้งให้ความร้อนและทำให้เย็นกับ stream"
+    },
+    {
+     "s": 97.599,
+     "e": 101.737,
+     "en": "Whenever a model can destroy something through losses, look for it.",
+     "th": "เดียวกัน เมื่อใดที่โมเดลทำลายบางสิ่งผ่านการสูญเสียได้ ให้มองหาสิ่งนี้"
+    }
+   ]
+  },
+  {
+   "n": 28,
+   "file": "audio/slide-28.mp3",
+   "duration": 96.384,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.089,
+     "en": "Part three asks what happens when the forecast is wrong.",
+     "th": "ส่วนที่สามถามว่าจะเกิดอะไรขึ้นเมื่อการพยากรณ์ผิด"
+    },
+    {
+     "s": 4.089,
+     "e": 15.461,
+     "en": "The plan so far assumed that tomorrow's PV is known. In the morning, the forecast is a clear sky. In fact, clouds arrive at noon and stay until five.",
+     "th": "แผนที่ผ่านมาสมมติว่ารู้ค่าโซลาร์ของวันพรุ่งนี้ ในตอนเช้าการพยากรณ์บอกว่าฟ้าใส แต่ความจริงเมฆมาตอนเที่ยงและอยู่จนถึงห้าโมงเย็น"
+    },
+    {
+     "s": 15.461,
+     "e": 18.961,
+     "en": "The table compares four strategies for that day.",
+     "th": "ตารางเปรียบเทียบสี่กลยุทธ์สำหรับวันนั้น"
+    },
+    {
+     "s": 18.961,
+     "e": 24.053,
+     "en": "Without a battery, the cloudy day costs 9,409 baht.",
+     "th": "ถ้าไม่มีแบตเตอรี่ วันที่มีเมฆมีต้นทุน 9,409 บาท"
+    },
+    {
+     "s": 24.053,
+     "e": 29.392,
+     "en": "If the battery follows the plan made in the morning, the day costs 8,999.",
+     "th": "ถ้าแบตเตอรี่ทำตามแผนที่วางไว้ตอนเช้า วันนั้นมีต้นทุน 8,999"
+    },
+    {
+     "s": 29.392,
+     "e": 37.761,
+     "en": "The fixed plan charges at midday from the grid instead of from surplus PV, and it leaves the battery idle at 14:00,",
+     "th": "แผนที่ตายตัวชาร์จตอนเที่ยงจากโครงข่ายแทนที่จะชาร์จจากโซลาร์ส่วนเกิน และปล่อยแบตเตอรี่ว่างตอน 14 นาฬิกา"
+    },
+    {
+     "s": 37.761,
+     "e": 43.316,
+     "en": "when the clouds push the import to 166.7 kilowatts and set the demand charge.",
+     "th": "ซึ่งเมฆทำให้ไฟฟ้าที่ซื้อขึ้นไปถึง 166.7 กิโลวัตต์ และกำหนดค่าความต้องการพลังไฟฟ้า"
+    },
+    {
+     "s": 43.316,
+     "e": 52.395,
+     "en": "If the controller re-plans every hour, the day costs 8,633, and the peak import is 131.2 kilowatts.",
+     "th": "ถ้าตัวควบคุมวางแผนใหม่ทุกชั่วโมง วันนั้นมีต้นทุน 8,633 และไฟฟ้าที่ซื้อสูงสุดคือ 131.2 กิโลวัตต์"
+    },
+    {
+     "s": 52.395,
+     "e": 57.921,
+     "en": "And with a perfect forecast, known in the morning, it would cost 8,400.",
+     "th": "และถ้ารู้การพยากรณ์ที่ถูกต้องสมบูรณ์ตั้งแต่ตอนเช้า จะมีต้นทุน 8,400"
+    },
+    {
+     "s": 57.921,
+     "e": 68.421,
+     "en": "Every strategy costs more than on the clear day: less sun means more imports whatever you do. The comparison that matters is between strategies on the same day.",
+     "th": "ทุกกลยุทธ์มีต้นทุนสูงกว่าในวันฟ้าใส แดดน้อยลงแปลว่าต้องซื้อไฟฟ้ามากขึ้นไม่ว่าจะทำอย่างไร การเปรียบเทียบที่มีความหมายคือระหว่างกลยุทธ์ในวันเดียวกัน"
+    },
+    {
+     "s": 68.421,
+     "e": 76.342,
+     "en": "The chart shows the gap between the forecast and what happened. Every number in the table is a response to that gap.",
+     "th": "กราฟแสดงช่องว่างระหว่างการพยากรณ์กับสิ่งที่เกิดขึ้นจริง ตัวเลขทุกตัวในตารางคือการตอบสนองต่อช่องว่างนั้น"
+    },
+    {
+     "s": 76.342,
+     "e": 84.513,
+     "en": "The error is large but not unusual for one afternoon: at 14:00 the PV is less than a third of its clear-sky value.",
+     "th": "ความผิดพลาดนี้มาก แต่ไม่แปลกสำหรับช่วงบ่ายหนึ่งวัน ตอน 14 นาฬิกา โซลาร์ผลิตได้ไม่ถึงหนึ่งในสามของค่าในวันฟ้าใส"
+    },
+    {
+     "s": 84.513,
+     "e": 96.316,
+     "en": "Read the peak column too. Most of the difference between the strategies is in the demand charge, not in energy: the fixed plan's peak is about 36 kilowatts higher than the re-planned one.",
+     "th": "ให้อ่านคอลัมน์ค่าสูงสุดด้วย ความต่างส่วนใหญ่ระหว่างกลยุทธ์อยู่ที่ค่าความต้องการพลังไฟฟ้า ไม่ใช่ค่าพลังงาน ค่าสูงสุดของแผนที่ตายตัวสูงกว่าแผนที่วางใหม่ประมาณ 36 กิโลวัตต์"
+    }
+   ]
+  },
+  {
+   "n": 29,
+   "file": "audio/slide-29.mp3",
+   "duration": 75.264,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.826,
+     "en": "Here is how re-planning works.",
+     "th": "นี่คือวิธีการวางแผนใหม่"
+    },
+    {
+     "s": 2.826,
+     "e": 11.763,
+     "en": "At each hour, the controller measures what it can: the state of charge, and the PV right now. It forecasts the rest of the day.",
+     "th": "ในแต่ละชั่วโมง ตัวควบคุมวัดสิ่งที่วัดได้ คือสถานะประจุ และโซลาร์ในขณะนั้น และพยากรณ์ส่วนที่เหลือของวัน"
+    },
+    {
+     "s": 11.763,
+     "e": 19.842,
+     "en": "Then it solves the same linear program from now to midnight, with the same terminal condition, and applies only the first hour of the plan.",
+     "th": "จากนั้นแก้ linear program เดิมตั้งแต่ตอนนี้ถึงเที่ยงคืน ด้วยเงื่อนไขสุดท้ายเดิม และใช้แผนเพียงชั่วโมงแรก"
+    },
+    {
+     "s": 19.842,
+     "e": 26.593,
+     "en": "An hour later it does it again, with a new measurement and a shorter horizon. The diagram shows the pattern:",
+     "th": "หนึ่งชั่วโมงต่อมาก็ทำซ้ำ ด้วยค่าวัดใหม่และช่วงเวลาที่สั้นลง แผนภาพแสดงรูปแบบนี้ สีเทาคือส่วนที่ทำไปแล้ว"
+    },
+    {
+     "s": 26.593,
+     "e": 32.105,
+     "en": "grey is done, amber is applied now, and the white part is planned but will be re-planned.",
+     "th": "สีเหลืองอำพันคือส่วนที่ใช้ตอนนี้ และส่วนสีขาวคือส่วนที่วางแผนไว้แต่จะถูกวางแผนใหม่"
+    },
+    {
+     "s": 32.105,
+     "e": 43.211,
+     "en": "Two things carry from one solve to the next: the state of charge, and the highest on-peak import so far. The demand variable d cannot fall below what has already happened.",
+     "th": "มีสองสิ่งที่ส่งต่อจากการแก้ครั้งหนึ่งไปครั้งถัดไป คือสถานะประจุ และไฟฟ้าที่ซื้อสูงสุดในช่วง on-peak จนถึงตอนนั้น ตัวแปร d ต่ำกว่าสิ่งที่เกิดขึ้นไปแล้วไม่ได้"
+    },
+    {
+     "s": 43.211,
+     "e": 48.882,
+     "en": "That is twenty-four small linear programs instead of one, and each takes milliseconds.",
+     "th": "นั่นคือ linear program ขนาดเล็กยี่สิบสี่ปัญหาแทนที่จะเป็นปัญหาเดียว และแต่ละปัญหาใช้เวลาเพียงไม่กี่มิลลิวินาที"
+    },
+    {
+     "s": 48.882,
+     "e": 59.697,
+     "en": "Here the horizon shrinks as the day goes on. In continuous operation you would keep a fixed window, say 24 hours ahead, and the terminal condition moves with it.",
+     "th": "ในที่นี้ช่วงเวลาที่วางแผนหดลงเรื่อย ๆ ตามเวลาของวัน ในการเดินเครื่องต่อเนื่อง จะใช้หน้าต่างเวลาคงที่ เช่น 24 ชั่วโมงข้างหน้า และเงื่อนไขสุดท้ายเลื่อนไปพร้อมกัน"
+    },
+    {
+     "s": 59.697,
+     "e": 66.461,
+     "en": "Plants plan months the same way: plan twelve months, act on the first, and re-plan when new prices arrive.",
+     "th": "โรงงานวางแผนรายเดือนในลักษณะเดียวกัน คือวางแผนสิบสองเดือน ลงมือตามเดือนแรก และวางแผนใหม่เมื่อมีราคาใหม่"
+    },
+    {
+     "s": 66.461,
+     "e": 75.197,
+     "en": "This is model predictive control with a linear program inside. Session 11 does the same with dynamic process models.",
+     "th": "นี่คือ model predictive control ที่มี linear program อยู่ข้างใน คาบที่ 11 จะทำแบบเดียวกันกับโมเดลกระบวนการเชิงพลวัต"
+    }
+   ]
+  },
+  {
+   "n": 30,
+   "file": "audio/slide-30.mp3",
+   "duration": 61.872,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.668,
+     "en": "Move the slider to see the plan the controller makes at different hours.",
+     "th": "เลื่อนแถบเพื่อดูแผนที่ตัวควบคุมสร้างขึ้นในชั่วโมงต่าง ๆ"
+    },
+    {
+     "s": 4.668,
+     "e": 13.961,
+     "en": "The teal line is what actually happened to the state of charge. The dashed amber line is the plan made at the hour you choose, from then to midnight.",
+     "th": "เส้นสีเขียวหัวเป็ดคือสิ่งที่เกิดขึ้นจริงกับสถานะประจุ เส้นประสีเหลืองอำพันคือแผนที่สร้างในชั่วโมงที่คุณเลือก ตั้งแต่ตอนนั้นจนถึงเที่ยงคืน"
+    },
+    {
+     "s": 13.961,
+     "e": 23.947,
+     "en": "At midnight the forecast is clear sky. The plan charges before nine and from the midday surplus, and spreads the discharge over the afternoon and evening.",
+     "th": "ตอนเที่ยงคืน การพยากรณ์บอกว่าฟ้าใส แผนชาร์จก่อนเก้านาฬิกาและจากโซลาร์ส่วนเกินตอนเที่ยง และกระจายการคายประจุไปตลอดช่วงบ่ายและค่ำ"
+    },
+    {
+     "s": 23.947,
+     "e": 28.5,
+     "en": "At 11:00 nothing has changed yet, and neither has the plan.",
+     "th": "ตอน 11 นาฬิกา ยังไม่มีอะไรเปลี่ยน แผนก็ยังเหมือนเดิม"
+    },
+    {
+     "s": 28.5,
+     "e": 40.382,
+     "en": "At 13:00 the clouds have arrived and the midday surplus is gone. The new plan stops charging and starts discharging immediately, to hold the import down through the cloudy hours.",
+     "th": "ตอน 13 นาฬิกา เมฆมาแล้วและโซลาร์ส่วนเกินตอนเที่ยงหายไป แผนใหม่หยุดชาร์จและเริ่มคายประจุทันที เพื่อกดไฟฟ้าที่ซื้อให้ต่ำตลอดช่วงที่มีเมฆ"
+    },
+    {
+     "s": 40.382,
+     "e": 50.697,
+     "en": "At 15:00 less than a hundred kilowatt-hours are left. The plan uses them over the next four hours; after that the factory imports its full load.",
+     "th": "ตอน 15 นาฬิกา เหลือพลังงานไม่ถึงหนึ่งร้อยกิโลวัตต์ชั่วโมง แผนใช้พลังงานที่เหลือในสี่ชั่วโมงถัดไป หลังจากนั้นโรงงานซื้อไฟฟ้าเต็มภาระ"
+    },
+    {
+     "s": 50.697,
+     "e": 61.803,
+     "en": "Notice that the battery ends the afternoon emptier than the clear-sky plan intended. The clouds took energy the plan was counting on, and each new plan works with what is left.",
+     "th": "สังเกตว่าแบตเตอรี่จบช่วงบ่ายโดยมีพลังงานน้อยกว่าที่แผนฟ้าใสตั้งใจไว้ เมฆเอาพลังงานที่แผนคาดว่าจะได้ไป และแผนใหม่แต่ละแผนทำงานกับสิ่งที่เหลืออยู่"
+    }
+   ]
+  },
+  {
+   "n": 31,
+   "file": "audio/slide-31.mp3",
+   "duration": 68.544,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.497,
+     "en": "Two differences put a price on information.",
+     "th": "ผลต่างสองค่าช่วยตีราคาให้กับข้อมูล"
+    },
+    {
+     "s": 3.497,
+     "e": 15.303,
+     "en": "The value of feedback is the cost of the fixed plan minus the cost of re-planning: 8,999 minus 8,633, which is 366 baht on this day.",
+     "th": "มูลค่าของการป้อนกลับคือต้นทุนของแผนที่ตายตัว ลบต้นทุนของการวางแผนใหม่ คือ 8,999 ลบ 8,633 เท่ากับ 366 บาทในวันนี้"
+    },
+    {
+     "s": 15.303,
+     "e": 24.105,
+     "en": "Compare it with the cost of a controller that re-plans every hour. Here, it is software that solves a small LP once an hour.",
+     "th": "ให้เปรียบเทียบกับต้นทุนของตัวควบคุมที่วางแผนใหม่ทุกชั่วโมง ในที่นี้คือซอฟต์แวร์ที่แก้ LP ขนาดเล็กชั่วโมงละครั้ง"
+    },
+    {
+     "s": 24.105,
+     "e": 38.289,
+     "en": "The value of a perfect forecast is the cost of re-planning minus the perfect plan: 8,633 minus 8,400, which is 233 baht. Compare that with the price of a better forecast.",
+     "th": "มูลค่าของการพยากรณ์ที่สมบูรณ์คือต้นทุนของการวางแผนใหม่ ลบต้นทุนของแผนที่สมบูรณ์ คือ 8,633 ลบ 8,400 เท่ากับ 233 บาท ให้เปรียบเทียบกับราคาของการพยากรณ์ที่ดีขึ้น"
+    },
+    {
+     "s": 38.289,
+     "e": 46.513,
+     "en": "And the battery itself, with re-planning, saved 776 baht on a day nobody predicted, compared with no battery.",
+     "th": "และตัวแบตเตอรี่เอง เมื่อมีการวางแผนใหม่ ช่วยประหยัดได้ 776 บาทในวันที่ไม่มีใครพยากรณ์ไว้ เมื่อเทียบกับการไม่มีแบตเตอรี่"
+    },
+    {
+     "s": 46.513,
+     "e": 56.303,
+     "en": "All of these come from one synthetic day. A real decision needs an average over many days and many weathers, which is the subject of Session 12.",
+     "th": "ตัวเลขทั้งหมดนี้มาจากวันสังเคราะห์เพียงวันเดียว การตัดสินใจจริงต้องใช้ค่าเฉลี่ยจากหลายวันและหลายสภาพอากาศ ซึ่งเป็นหัวข้อของคาบที่ 12"
+    },
+    {
+     "s": 56.303,
+     "e": 62.513,
+     "en": "On a clear day the value of feedback would be zero, because the morning plan would have been right.",
+     "th": "ในวันฟ้าใส มูลค่าของการป้อนกลับจะเป็นศูนย์ เพราะแผนตอนเช้าถูกต้องอยู่แล้ว"
+    },
+    {
+     "s": 62.513,
+     "e": 68.474,
+     "en": "Its value depends on how wrong the forecast is, which is why it must be averaged over many days.",
+     "th": "มูลค่าของมันขึ้นกับว่าการพยากรณ์ผิดมากเพียงใด จึงต้องเฉลี่ยจากหลายวัน"
+    }
+   ]
+  },
+  {
+   "n": 32,
+   "file": "audio/slide-32.mp3",
+   "duration": 54.192,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.932,
+     "en": "The last check is about re-planning.",
+     "th": "แบบตรวจครั้งสุดท้ายว่าด้วยการวางแผนใหม่"
+    },
+    {
+     "s": 2.932,
+     "e": 6.645,
+     "en": "Pause, answer the four questions, and press Play.",
+     "th": "หยุด ตอบคำถามทั้งสี่ข้อ แล้วกด Play"
+    },
+    {
+     "s": 6.645,
+     "e": 18.329,
+     "en": "One. Each re-plan still uses a wrong forecast for the hours ahead. It reacts to the clouds after they arrive, while the perfect plan prepares for them before.",
+     "th": "ข้อหนึ่ง การวางแผนใหม่แต่ละครั้งยังใช้การพยากรณ์ที่ผิดสำหรับชั่วโมงข้างหน้า มันตอบสนองต่อเมฆหลังจากเมฆมาแล้ว ขณะที่แผนที่สมบูรณ์เตรียมรับไว้ก่อน"
+    },
+    {
+     "s": 18.329,
+     "e": 28.789,
+     "en": "Two. d is at least 120. Imports that have already happened cannot be undone, so they become a lower bound on the variable.",
+     "th": "ข้อสอง d ต้องไม่น้อยกว่า 120 ไฟฟ้าที่ซื้อไปแล้วย้อนคืนไม่ได้ จึงกลายเป็นขอบล่างของตัวแปร"
+    },
+    {
+     "s": 28.789,
+     "e": 37.737,
+     "en": "Three. Without it, every re-plan would empty the battery by midnight: the end effect from part one, repeated twenty-four times.",
+     "th": "ข้อสาม ถ้าไม่มีเงื่อนไขนี้ ทุกการวางแผนใหม่จะใช้แบตเตอรี่จนหมดภายในเที่ยงคืน ซึ่งคือผลกระทบปลายช่วงเวลาจากส่วนที่หนึ่ง ซ้ำยี่สิบสี่ครั้ง"
+    },
+    {
+     "s": 37.737,
+     "e": 39.957,
+     "en": "Four. From the cloudy hours.",
+     "th": "ข้อสี่ มาจากช่วงที่มีเมฆ"
+    },
+    {
+     "s": 39.957,
+     "e": 54.118,
+     "en": "The fixed plan charged from the grid at midday as if the surplus were there, and it left the battery idle at 14:00, so the import reached 166.7 kilowatts and set a higher demand charge.",
+     "th": "แผนที่ตายตัวชาร์จจากโครงข่ายตอนเที่ยงราวกับว่ามีโซลาร์ส่วนเกินอยู่ และปล่อยแบตเตอรี่ว่างตอน 14 นาฬิกา ไฟฟ้าที่ซื้อจึงขึ้นไปถึง 166.7 กิโลวัตต์ และทำให้ค่าความต้องการพลังไฟฟ้าสูงขึ้น"
+    }
+   ]
+  },
+  {
+   "n": 33,
+   "file": "audio/slide-33.mp3",
+   "duration": 52.608,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.576,
+     "en": "The same balance appears in harder settings, and the rest of the course meets several of them.",
+     "th": "สมดุลแบบเดียวกันปรากฏในสถานการณ์ที่ยากขึ้น และส่วนที่เหลือของวิชาจะพบหลายสถานการณ์"
+    },
+    {
+     "s": 5.576,
+     "e": 15.066,
+     "en": "Lot sizing adds a binary in each period: produce or not, with a set-up cost. It combines today's balance with Session 3's binaries.",
+     "th": "การกำหนดขนาดล็อตเพิ่มตัวแปร binary ในแต่ละช่วง คือผลิตหรือไม่ผลิต พร้อมต้นทุนการตั้งเครื่อง เป็นการรวมสมดุลของวันนี้กับตัวแปร binary จากคาบที่ 3"
+    },
+    {
+     "s": 15.066,
+     "e": 25.171,
+     "en": "Campaigns and changeovers add costs that depend on the order of products. Maintenance and catalyst life add a state that decays and is reset by an action.",
+     "th": "การผลิตเป็นรอบและการเปลี่ยนผลิตภัณฑ์เพิ่มต้นทุนที่ขึ้นกับลำดับของผลิตภัณฑ์ การบำรุงรักษาและอายุของตัวเร่งปฏิกิริยาเพิ่มสถานะที่เสื่อมลงและถูกรีเซ็ตด้วยการกระทำ"
+    },
+    {
+     "s": 25.171,
+     "e": 36.355,
+     "en": "Uncertain demand and prices lead to scenarios and recourse decisions in Session 12, and dynamic process models replace balances per period with differential equations in Session 11.",
+     "th": "ความต้องการและราคาที่ไม่แน่นอนนำไปสู่สถานการณ์จำลองและการตัดสินใจแก้ไขในคาบที่ 12 และโมเดลกระบวนการเชิงพลวัตแทนที่สมดุลรายช่วงด้วยสมการเชิงอนุพันธ์ในคาบที่ 11"
+    },
+    {
+     "s": 36.355,
+     "e": 44.803,
+     "en": "Seasonal storage needs long horizons. The usual trick is to keep the near periods detailed and aggregate the far ones.",
+     "th": "การกักเก็บข้ามฤดูต้องใช้ช่วงเวลาที่ยาว เทคนิคที่ใช้กันทั่วไปคือคงรายละเอียดของช่วงใกล้ไว้ และรวมช่วงที่ไกลออกไป"
+    },
+    {
+     "s": 44.803,
+     "e": 52.553,
+     "en": "In every one of them, the first questions are today's: what is the state, how is it balanced, and what must be true at the end?",
+     "th": "ในทุกกรณี คำถามแรกคือคำถามของวันนี้ สถานะคืออะไร สมดุลอย่างไร และอะไรต้องเป็นจริงตอนท้าย"
+    }
+   ]
+  },
+  {
+   "n": 34,
+   "file": "audio/slide-34.mp3",
+   "duration": 43.68,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.642,
+     "en": "Lab 4 has two parts.",
+     "th": "Lab 4 มีสองส่วน"
+    },
+    {
+     "s": 2.642,
+     "e": 9.974,
+     "en": "First, the oil plan of today's slides: you change the cost of storage and explain exactly how much the profit moves.",
+     "th": "ส่วนแรกคือแผนน้ำมันในสไลด์วันนี้ คุณจะเปลี่ยนต้นทุนการเก็บ และอธิบายว่ากำไรเปลี่ยนไปเท่าใดพอดี"
+    },
+    {
+     "s": 9.974,
+     "e": 20.395,
+     "en": "Then a battery for an office building. You will check the state-of-charge row by hand, read the weekday plan and its saving, and remove the end-of-day rule to see what happens.",
+     "th": "จากนั้นคือแบตเตอรี่สำหรับอาคารสำนักงาน คุณจะตรวจแถวสถานะประจุด้วยมือ อ่านแผนวันทำงานและการประหยัด และเอากฎตอนท้ายวันออกเพื่อดูว่าจะเกิดอะไรขึ้น"
+    },
+    {
+     "s": 20.395,
+     "e": 31.105,
+     "en": "On a Saturday with surplus PV, you will find an LP plan that cannot happen and try two repairs. Finally you change the battery size and explain the saving.",
+     "th": "ในวันเสาร์ที่มีโซลาร์ส่วนเกิน คุณจะพบแผนของ LP ที่เป็นไปไม่ได้ และลองวิธีแก้สองแบบ สุดท้ายคุณจะเปลี่ยนขนาดแบตเตอรี่และอธิบายการประหยัด"
+    },
+    {
+     "s": 31.105,
+     "e": 36.947,
+     "en": "Each step unlocks the next, and you get two tries for each number before the answer is shown.",
+     "th": "แต่ละขั้นจะเปิดขั้นถัดไป และตอบตัวเลขแต่ละตัวได้สองครั้งก่อนระบบจะแสดงคำตอบ"
+    },
+    {
+     "s": 36.947,
+     "e": 43.618,
+     "en": "You have forty minutes. If you are studying on your own, stop here and open the lab.",
+     "th": "คุณมีเวลาสี่สิบนาที ถ้าเรียนด้วยตนเอง ให้หยุดที่หน้านี้แล้วเปิด lab"
+    }
+   ]
+  },
+  {
+   "n": 35,
+   "file": "audio/slide-35.mp3",
+   "duration": 62.16,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.076,
+     "en": "To summarize.",
+     "th": "สรุป"
+    },
+    {
+     "s": 2.076,
+     "e": 10.276,
+     "en": "A state balance links the periods: the state now is the state before, plus what comes in, minus what goes out, with losses where they occur.",
+     "th": "สมดุลสถานะเชื่อมช่วงเวลาเข้าด้วยกัน สถานะตอนนี้คือสถานะก่อนหน้า บวกสิ่งที่เข้ามา ลบสิ่งที่ออกไป พร้อมการสูญเสียในจุดที่เกิดขึ้น"
+    },
+    {
+     "s": 10.276,
+     "e": 20.934,
+     "en": "The initial condition is data; the terminal condition is a modeling decision. Without one, the model spends its store, and the profit looks better than it is.",
+     "th": "เงื่อนไขเริ่มต้นเป็นข้อมูล เงื่อนไขสุดท้ายเป็นการตัดสินใจในการสร้างโมเดล ถ้าไม่มี โมเดลจะใช้ที่เก็บจนหมด และกำไรดูดีกว่าความเป็นจริง"
+    },
+    {
+     "s": 20.934,
+     "e": 30.066,
+     "en": "The dual of a balance is the value of the stored item in that period. Carrying pays when the value rises by more than the cost of holding.",
+     "th": "ค่า dual ของสมดุลคือมูลค่าของสิ่งที่เก็บไว้ในช่วงนั้น การเก็บคุ้มเมื่อมูลค่าเพิ่มขึ้นมากกว่าต้นทุนการเก็บ"
+    },
+    {
+     "s": 30.066,
+     "e": 40.447,
+     "en": "Storage pays when the price spread covers the round-trip losses and the wear. A demand charge is an epigraph, and it picks the flattest of equally cheap plans.",
+     "th": "การกักเก็บคุ้มเมื่อส่วนต่างของราคาครอบคลุมการสูญเสียครบรอบและการสึกหรอ ค่าความต้องการพลังไฟฟ้าคือ epigraph และเลือกแผนที่เรียบที่สุดจากแผนที่ถูกเท่ากัน"
+    },
+    {
+     "s": 40.447,
+     "e": 47.25,
+     "en": "Charging and discharging at once means the model has nowhere to put energy: add curtailment, or a binary.",
+     "th": "การชาร์จและคายประจุพร้อมกันแปลว่าโมเดลไม่มีที่ให้พลังงานไป ให้เพิ่มการลดการผลิตของโซลาร์ หรือใช้ตัวแปร binary"
+    },
+    {
+     "s": 47.25,
+     "e": 54.132,
+     "en": "And when forecasts change, re-plan with a rolling horizon, carrying the state and everything that cannot be undone.",
+     "th": "และเมื่อการพยากรณ์เปลี่ยน ให้วางแผนใหม่ด้วย rolling horizon โดยส่งต่อสถานะและทุกสิ่งที่ย้อนคืนไม่ได้"
+    },
+    {
+     "s": 54.132,
+     "e": 62.092,
+     "en": "If you keep one habit from today, make it this: before you trust a multiperiod plan, look at what it does in its last period.",
+     "th": "ถ้าจะเก็บนิสัยเดียวจากวันนี้ ให้เป็นข้อนี้ ก่อนเชื่อแผนหลายช่วงเวลา ให้ดูว่าแผนทำอะไรในช่วงสุดท้าย"
+    }
+   ]
+  },
+  {
+   "n": 36,
+   "file": "audio/slide-36.mp3",
+   "duration": 29.832,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.168,
+     "en": "Before Session 5, finish Lab 4 if you did not finish it in class.",
+     "th": "ก่อนคาบที่ 5 ทำ Lab 4 ให้เสร็จ ถ้ายังทำไม่เสร็จในห้อง"
+    },
+    {
+     "s": 5.168,
+     "e": 12.829,
+     "en": "Keep your card with its state and its terminal condition. Session 5 asks which of your rows are convex.",
+     "th": "เก็บการ์ดที่มีสถานะและเงื่อนไขสุดท้ายไว้ คาบที่ 5 จะถามว่าแถวใดของคุณเป็น convex"
+    },
+    {
+     "s": 12.829,
+     "e": 23.053,
+     "en": "Read Williams, sections 12.1 and 12.2, the two food manufacture problems, and chapter 4 on structured models, which covers multi-period models.",
+     "th": "อ่านหนังสือของ Williams หัวข้อ 12.1 และ 12.2 ซึ่งเป็นปัญหา food manufacture ทั้งสองข้อ และบทที่ 4 ว่าด้วยโมเดลที่มีโครงสร้าง ซึ่งครอบคลุมโมเดลหลายช่วงเวลา"
+    },
+    {
+     "s": 23.053,
+     "e": 29.776,
+     "en": "If you want practice, add the two percent monthly loss to the oil model and see which oils are still worth carrying.",
+     "th": "ถ้าต้องการฝึกเพิ่ม ลองเพิ่มการสูญเสียสองเปอร์เซ็นต์ต่อเดือนในโมเดลน้ำมัน แล้วดูว่าน้ำมันชนิดใดยังคุ้มที่จะเก็บไว้"
+    }
+   ]
+  },
+  {
+   "n": 37,
+   "file": "audio/slide-37.mp3",
+   "duration": 30.456,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.405,
+     "en": "Finally, the Exit Ticket and feedback.",
+     "th": "สุดท้ายคือ Exit Ticket และ feedback"
+    },
+    {
+     "s": 3.405,
+     "e": 9.276,
+     "en": "Scan the code, choose Session 4, and paste the answers that the lab page copies for you.",
+     "th": "สแกนโค้ด เลือก Session 4 แล้ววางคำตอบที่หน้า lab คัดลอกไว้ให้"
+    },
+    {
+     "s": 9.276,
+     "e": 15.605,
+     "en": "Then tell us about the pace, your confidence, how far you got in the lab, and what is still unclear.",
+     "th": "จากนั้นบอกเราเรื่องความเร็วในการสอน ความมั่นใจ ความคืบหน้าใน lab และสิ่งที่ยังไม่ชัดเจน"
+    },
+    {
+     "s": 15.605,
+     "e": 21.329,
+     "en": "If you studied on your own, choose On my own. The form is anonymous.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้เลือก On my own แบบฟอร์มนี้ไม่ระบุตัวตน"
+    },
+    {
+     "s": 21.329,
+     "e": 27.013,
+     "en": "Your answers are how the next session is adjusted, so short, honest answers help most.",
+     "th": "คำตอบของคุณใช้ปรับคาบถัดไป คำตอบสั้น ๆ ที่ตรงไปตรงมาจึงช่วยได้มากที่สุด"
+    },
+    {
+     "s": 27.013,
+     "e": 30.395,
+     "en": "Thank you, and see you in Session 5.",
+     "th": "ขอบคุณ แล้วพบกันในคาบที่ 5"
+    }
+   ]
+  }
+ ]
+}
