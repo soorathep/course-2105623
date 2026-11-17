@@ -244,11 +244,12 @@ STEAM = [120, 115, 110, 110, 115, 130, 165, 205, 235, 250, 255, 250,
 RESERVE = 0.10                                                     # committed capacity >= 1.1 x demand
 
 
-def boilers(M=None, M_b=None, relax=False, start_scale=1.0, hours=None, reserve=RESERVE, fix_u=None):
+def boilers(M=None, M_b=None, relax=False, start_scale=1.0, hours=None, reserve=RESERVE, fix_u=None, steam=None):
     """x[b,t] load, u[b,t] on/off (binary), s[b,t] start-up (continuous: s >= u_t - u_{t-1} and a
     positive start cost make it 0 or 1 whenever u is integer).
     Load rows: L u <= x <= M u, with M = UMAX (tight) unless M or M_b says otherwise; x <= UMAX always."""
     hours = list(range(24)) if hours is None else list(hours)
+    D = STEAM if steam is None else steam
     m = MILP()
     for b in BOILERS:
         for t in hours:
@@ -269,8 +270,8 @@ def boilers(M=None, M_b=None, relax=False, start_scale=1.0, hours=None, reserve=
                 else:
                     m.row(f"start {b} {t}", {f"s {b} {t}": 1, f"u {b} {t}": -1, f"u {b} {hours[prev - 1]}": 1}, lo=0.0)
     for t in hours:
-        m.row(f"steam {t}", {f"x {b} {t}": 1 for b in BOILERS}, lo=STEAM[t])
-        m.row(f"reserve {t}", {f"u {b} {t}": UMAX[b] for b in BOILERS}, lo=(1 + reserve) * STEAM[t])
+        m.row(f"steam {t}", {f"x {b} {t}": 1 for b in BOILERS}, lo=D[t])
+        m.row(f"reserve {t}", {f"u {b} {t}": UMAX[b] for b in BOILERS}, lo=(1 + reserve) * D[t])
     r = m.solve(relax=relax)
     if r["status"] != "optimal":
         return r
@@ -308,6 +309,129 @@ def enumerate_hour(t=19):
             "best": best, "milp_cost": one["cost"], "milp_on": [b for b in BOILERS if one["u"][b][0] > 0.5]}
 
 
+# ---------------------------------------------------------------------------
+# Part A5. Lecture additions for the three-hour version
+# ---------------------------------------------------------------------------
+LOGIC_RULES = [
+    {"rule": "If the dryer runs, the evaporator must run", "vars": ["D", "E"], "ineq": "y_E ≥ y_D",
+     "f": lambda v: (not v[0]) or v[1], "g": lambda v: v[1] >= v[0]},
+    {"rule": "Boiler 3 runs only if boiler 1 or boiler 2 runs", "vars": ["1", "2", "3"], "ineq": "y_3 ≤ y_1 + y_2",
+     "f": lambda v: (not v[2]) or v[0] or v[1], "g": lambda v: v[2] <= v[0] + v[1]},
+    {"rule": "If reactors A and B both run, scrubber C must run", "vars": ["A", "B", "C"], "ineq": "y_A + y_B − y_C ≤ 1",
+     "f": lambda v: (not (v[0] and v[1])) or v[2], "g": lambda v: v[0] + v[1] - v[2] <= 1},
+    {"rule": "If reactors A and B both run, scrubber C must run", "vars": ["A", "B", "C"], "ineq": "2 y_C ≥ y_A + y_B (a common wrong guess)",
+     "f": lambda v: (not (v[0] and v[1])) or v[2], "g": lambda v: 2 * v[2] >= v[0] + v[1]},
+]
+
+
+def logic_tables():
+    """Check each rule against its inequality on every 0/1 combination (a truth table)."""
+    out = []
+    for R_ in LOGIC_RULES:
+        rows = [{"y": list(v), "rule": bool(R_["f"](v)), "ineq": bool(R_["g"](v))}
+                for v in itertools.product([0, 1], repeat=len(R_["vars"]))]
+        out.append({"rule": R_["rule"], "vars": R_["vars"], "ineq": R_["ineq"], "rows": rows,
+                    "agree": all(r["rule"] == r["ineq"] for r in rows)})
+    return out
+
+
+def knapsack_by_hand():
+    """The LP relaxation of a single knapsack row: sort by saving per capital, fill, take a fraction of the next."""
+    order = sorted(range(5), key=lambda j: (-SAVE[j] / CAPEX[j], j))
+    left, val, steps = BUDGET, 0.0, []
+    for j in order:
+        take = min(1.0, left / CAPEX[j]) if left > 0 else 0.0
+        left -= take * CAPEX[j]; val += take * SAVE[j]
+        steps.append({"project": PROJ[j], "ratio": SAVE[j] / CAPEX[j], "take": take, "spent": BUDGET - left, "value": val})
+    lp = linprog(-np.array(SAVE), A_ub=[CAPEX], b_ub=[BUDGET], bounds=[(0, 1)] * 5, method="highs")
+    return {"steps": steps, "lp_by_hand": val, "lp_solver": float(-lp.fun)}
+
+
+def cover_cuts():
+    """Minimal covers of the budget row: sum of capital over C > budget, and every proper subset fits.
+    Cut: sum_{j in C} x_j <= |C| - 1. Valid for every integer plan; it can cut off the fractional root."""
+    covers = []
+    for k in range(2, 6):
+        for C in itertools.combinations(range(5), k):
+            if sum(CAPEX[j] for j in C) > BUDGET and all(sum(CAPEX[j] for j in C) - CAPEX[i] <= BUDGET for i in C):
+                covers.append(list(C))
+    root = linprog(-np.array(SAVE), A_ub=[CAPEX], b_ub=[BUDGET], bounds=[(0, 1)] * 5, method="highs")
+    xr = root.x
+    rows = [[1.0 if j in C else 0.0 for j in range(5)] for C in covers]
+    A = [CAPEX] + rows; b = [BUDGET] + [len(C) - 1 for C in covers]
+    cut = linprog(-np.array(SAVE), A_ub=A, b_ub=b, bounds=[(0, 1)] * 5, method="highs")
+    before = branch_and_bound(SAVE, [CAPEX], [BUDGET], [0] * 5, [1] * 5, range(5), maximize=True)
+    after = branch_and_bound(SAVE, A, b, [0] * 5, [1] * 5, range(5), maximize=True)
+    return {"covers": [{"set": [PROJ[j] for j in C], "capex": sum(CAPEX[j] for j in C), "rhs": len(C) - 1,
+                        "root_lhs": float(sum(xr[j] for j in C)), "violated": bool(sum(xr[j] for j in C) > len(C) - 1 + 1e-9)}
+                       for C in covers],
+            "root_x": (xr.round(6) + 0.0).tolist(), "root_lp": float(-root.fun),
+            "cut_x": (cut.x.round(6) + 0.0).tolist(), "cut_lp": float(-cut.fun),
+            "nodes_before": len(before["nodes"]), "nodes_after": len(after["nodes"]), "best": after["best"]}
+
+
+WEEKEND = [110, 105, 100, 100, 105, 115, 135, 160, 180, 190, 195, 195,
+           190, 185, 185, 180, 175, 170, 165, 155, 145, 135, 125, 115]   # t/h, a lighter day for the lecture demo
+
+
+def reserve_sweep():
+    """Lecture demo on the lighter profile: what the spinning reserve requirement costs."""
+    out = []
+    for r_ in (0.0, 0.05, 0.10, 0.15, 0.20, 0.25):
+        r = boilers(steam=WEEKEND, reserve=r_)
+        cap = [sum(UMAX[b] * r["u"][b][t] for b in BOILERS) for t in range(24)]
+        out.append({"reserve": r_, "cost": r["cost"], "starts": r["n_starts"], "u": r["u"], "capacity": cap,
+                    "parts": r["parts"], "nodes": r["nodes"]})
+    lp = boilers(steam=WEEKEND, relax=True)
+    return {"steam": WEEKEND, "cases": out, "lp_10": {"cost": lp["cost"], "u": lp["u"], "n_fractional": lp["n_fractional"]}}
+
+
+def startup_example():
+    """s_t >= u_t - u_{t-1}, s_t >= 0 with a positive start cost: s_t = max(0, u_t - u_{t-1})."""
+    u = [1, 0, 0, 1, 1, 1, 0, 1, 1, 0]
+    s_ = [max(0, u[t] - (u[t - 1] if t else 0)) for t in range(len(u))]
+    return {"u": u, "s": s_, "starts": sum(s_)}
+
+
+def milp_log():
+    """The HiGHS log for the aggregated location model, captured at the file-descriptor level (desktop only)."""
+    import os, tempfile
+    rng = np.random.default_rng(7)
+    n_sites, n_plants = 8, 20
+    F = rng.uniform(2000, 4000, n_sites); d = rng.uniform(5, 20, n_plants)
+    ps = rng.uniform(0, 100, (n_sites, 2)); pp = rng.uniform(0, 100, (n_plants, 2))
+    tc = 2.0 * np.linalg.norm(ps[:, None] - pp[None], axis=2) * d[None, :]
+    n = n_sites + n_sites * n_plants; c = np.concatenate([F, tc.ravel()])
+    A, b = [], []
+    for j in range(n_plants):
+        r = np.zeros(n); r[n_sites + np.arange(n_sites) * n_plants + j] = -1; A.append(r); b.append(-1.0)
+    for i in range(n_sites):
+        r = np.zeros(n); r[n_sites + i * n_plants:n_sites + (i + 1) * n_plants] = 1; r[i] = -n_plants; A.append(r); b.append(0.0)
+    integ = np.zeros(n); integ[:n_sites] = 1
+    fd, path = tempfile.mkstemp(); saved = os.dup(1); sys.stdout.flush(); os.dup2(fd, 1)
+    try:
+        h = milp(c, constraints=LinearConstraint(np.array(A), -np.inf, np.array(b)), integrality=integ,
+                 bounds=Bounds(0, 1), options={"disp": True, "presolve": False})
+    finally:
+        sys.stdout.flush(); os.dup2(saved, 1); os.close(fd)
+    text = open(path).read(); os.remove(path)
+    import re
+    rows = []
+    for ln in text.splitlines():
+        m_ = re.match(r"^\s*([A-Za-z]?)\s+(\d+)\s+(\d+)\s+(\d+)\s+([\d.]+%)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\S+)\s*$", ln)
+        if m_:
+            g = m_.groups()
+            rows.append({"src": g[0], "proc": int(g[1]), "expl": g[4], "best_bound": g[5], "best_sol": g[6], "gap": g[7],
+                         "cuts": int(g[8]), "lp_iters": int(g[11])})
+    rep = {}
+    for key in ("Status", "Primal bound", "Dual bound", "Gap", "Nodes", "LP iterations"):
+        m_ = re.search(r"^\s+" + key + r"\s+(.+)$", text.split("Solving report")[-1], re.M)
+        if m_:
+            rep[key] = m_.group(1).strip()
+    return {"log": text, "rows": rows, "report": rep, "obj": float(h.fun), "nodes": int(getattr(h, "mip_node_count", 0) or 0),
+            "gap": float(getattr(h, "mip_gap", 0.0) or 0.0), "bound": float(getattr(h, "mip_dual_bound", h.fun))}
+
+
 def lab_results():
     tight, tight_lp = boilers(), boilers(relax=True)
     loose, loose_lp = boilers(M=10000.0), boilers(M=10000.0, relax=True)
@@ -331,6 +455,13 @@ def classroom_results():
         "tree": project_tree(),
         "tree_data": {"projects": PROJ, "capex": CAPEX, "save": SAVE, "budget": BUDGET},
         "location": location(),
+        "logic": [{k: v for k, v in r.items()} for r in logic_tables()],
+        "knapsack": knapsack_by_hand(),
+        "covers": cover_cuts(),
+        "reserve": reserve_sweep(),
+        "startup": startup_example(),
+        "hour7": enumerate_hour(7),
+        "log": milp_log(),
     }
     R["lab"] = lab_results()
     return R
