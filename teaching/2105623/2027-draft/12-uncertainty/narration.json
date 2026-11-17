@@ -1,0 +1,2465 @@
+{
+ "voice": "en-US-GuyNeural",
+ "rate": "-5%",
+ "provider": "Microsoft Edge neural speech (edge-tts)",
+ "synthetic_voice": true,
+ "total_seconds": 2966.8,
+ "slides": [
+  {
+   "n": 1,
+   "file": "audio/slide-01.mp3",
+   "duration": 52.416,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.826,
+     "en": "Welcome to Session 12 of Optimization of Chemical Processes.",
+     "th": "ยินดีต้อนรับสู่คาบที่ 12 ของวิชา Optimization of Chemical Processes"
+    },
+    {
+     "s": 4.826,
+     "e": 16.592,
+     "en": "Session 11 ended with two loose ends. The batch profile was computed with a rate constant that was ten percent wrong, and the tank controller met a withdrawal that nobody had announced.",
+     "th": "คาบที่ 11 จบลงพร้อมเรื่องที่ยังค้างอยู่สองเรื่อง โปรไฟล์ของเครื่องปฏิกรณ์แบบกะถูกคำนวณด้วยค่าคงที่อัตราเร็วที่ผิดไปสิบเปอร์เซ็นต์ และตัวควบคุมระดับถังต้องเจอการดึงน้ำออกที่ไม่มีใครแจ้งล่วงหน้า"
+    },
+    {
+     "s": 16.592,
+     "e": 26.82,
+     "en": "Today the uncertainty goes into the optimization problem itself. Some decisions must be fixed before the data are known: a capacity, a recipe, a setpoint.",
+     "th": "วันนี้เราจะนำความไม่แน่นอนเข้าไปไว้ในปัญหา optimization โดยตรง การตัดสินใจบางอย่างต้องกำหนดก่อนรู้ข้อมูล เช่น กำลังการผลิต สูตรผสม หรือ setpoint"
+    },
+    {
+     "s": 26.82,
+     "e": 33.947,
+     "en": "We will see how to choose them well, how much it is worth to do so, and how to protect against bad outcomes.",
+     "th": "เราจะดูว่าจะเลือกค่าเหล่านี้ให้ดีได้อย่างไร การทำเช่นนั้นมีมูลค่าเท่าใด และจะป้องกันผลลัพธ์ที่เลวร้ายได้อย่างไร"
+    },
+    {
+     "s": 33.947,
+     "e": 39.632,
+     "en": "Everything today, including the lab, runs in the browser, on a laptop or a phone.",
+     "th": "ทุกอย่างในวันนี้รวมทั้ง lab ทำงานในเบราว์เซอร์ ใช้ได้ทั้งแล็ปท็อปและโทรศัพท์"
+    },
+    {
+     "s": 39.632,
+     "e": 46.934,
+     "en": "On your own, the narration takes about fifty minutes; the activities, four checks and the lab fill the rest of the three hours.",
+     "th": "ถ้าเรียนเอง เสียงบรรยายใช้เวลาประมาณห้าสิบนาที ส่วนกิจกรรม แบบตรวจสี่ครั้ง และ lab จะใช้เวลาที่เหลือของสามชั่วโมง"
+    },
+    {
+     "s": 46.934,
+     "e": 52.342,
+     "en": "When the narration for a slide ends, press the right arrow key, or Next, to go on.",
+     "th": "เมื่อเสียงบรรยายของแต่ละหน้าจบ กดลูกศรขวาหรือปุ่ม Next เพื่อไปหน้าถัดไป"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "file": "audio/slide-02.mp3",
+   "duration": 56.76,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.05,
+     "en": "Here is the plan for the three hours.",
+     "th": "นี่คือแผนของสามชั่วโมง"
+    },
+    {
+     "s": 3.05,
+     "e": 11.781,
+     "en": "After a ten-minute retrieval check on Session 11, part one, thirty-five minutes, separates decisions made before the data from decisions made after them,",
+     "th": "หลังทบทวนความจำจากคาบที่ 11 สิบนาที ส่วนที่หนึ่ง สามสิบห้านาที แยกการตัดสินใจที่ทำก่อนรู้ข้อมูลออกจากการตัดสินใจที่ทำหลังรู้ข้อมูล"
+    },
+    {
+     "s": 11.781,
+     "e": 18.868,
+     "en": "shows why a plan built on average data is judged too well, and builds the two-stage stochastic program on a capacity example.",
+     "th": "แสดงว่าทำไมแผนที่สร้างจากข้อมูลค่าเฉลี่ยจึงถูกประเมินดีเกินจริง และสร้าง two-stage stochastic program จากตัวอย่างการกำหนดกำลังการผลิต"
+    },
+    {
+     "s": 18.868,
+     "e": 28.145,
+     "en": "Part two, forty minutes, puts a value on information and on the stochastic model, asks where scenarios come from and how many are enough, adds risk with C-VaR,",
+     "th": "ส่วนที่สอง สี่สิบนาที ประเมินมูลค่าของข้อมูลและของโมเดล stochastic ถามว่า scenario มาจากไหนและต้องใช้กี่ scenario จึงพอ เพิ่มความเสี่ยงเข้าไปด้วย CVaR"
+    },
+    {
+     "s": 28.145,
+     "e": 32.145,
+     "en": "and turns a limit that may be broken rarely into a chance constraint.",
+     "th": "และเปลี่ยนข้อจำกัดที่ยอมให้ผิดได้นาน ๆ ครั้งให้เป็น chance constraint"
+    },
+    {
+     "s": 32.145,
+     "e": 37.586,
+     "en": "After a break and a second activity, part three, thirty minutes, is robust optimization:",
+     "th": "หลังพักและกิจกรรมที่สอง ส่วนที่สาม สามสิบนาที คือ robust optimization ได้แก่"
+    },
+    {
+     "s": 37.586,
+     "e": 45.167,
+     "en": "a fuel blend with uncertain sulfur, the budget of uncertainty, and the batch reactor of Session 11 with an uncertain k two.",
+     "th": "การผสมน้ำมันเชื้อเพลิงที่ปริมาณกำมะถันไม่แน่นอน budget of uncertainty และเครื่องปฏิกรณ์แบบกะของคาบที่ 11 ที่ k2"
+    },
+    {
+     "s": 45.167,
+     "e": 49.447,
+     "en": "It ends with how to choose a formulation and how to report the result.",
+     "th": "ไม่แน่นอน แล้วปิดท้ายด้วยวิธีเลือก formulation และวิธีรายงานผล"
+    },
+    {
+     "s": 49.447,
+     "e": 56.684,
+     "en": "Each part ends with a check of four questions. The session ends with Lab 12 and the Exit Ticket.",
+     "th": "แต่ละส่วนจบด้วยแบบตรวจสี่คำถาม คาบนี้จบด้วย Lab 12 และ Exit Ticket"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "file": "audio/slide-03.mp3",
+   "duration": 37.464,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.089,
+     "en": "Activity 1 is a retrieval check on Session 11.",
+     "th": "กิจกรรมที่ 1 คือการทบทวนความจำจากคาบที่ 11"
+    },
+    {
+     "s": 4.089,
+     "e": 6.426,
+     "en": "Answer the four questions without notes:",
+     "th": "ตอบคำถามสี่ข้อโดยไม่เปิดโน้ต ได้แก่"
+    },
+    {
+     "s": 6.426,
+     "e": 16.571,
+     "en": "the NLP variables in single shooting and in collocation, what MPC solves at every sample and why it needs a disturbance estimate, why the best batch temperature falls with time,",
+     "th": "ตัวแปรของ NLP ใน single shooting และใน collocation สิ่งที่ MPC แก้ในทุกครั้งที่สุ่มวัดและเหตุที่ต้องมีค่าประมาณของ disturbance เหตุที่อุณหภูมิที่ดีที่สุดของเครื่องปฏิกรณ์แบบกะลดลงตามเวลา"
+    },
+    {
+     "s": 16.571,
+     "e": 19.079,
+     "en": "and what suffered more when k two was wrong.",
+     "th": "และสิ่งใดเสียหายมากกว่าเมื่อ k2 ผิด"
+    },
+    {
+     "s": 19.079,
+     "e": 23.684,
+     "en": "Write alone for five minutes, then compare with a partner for five.",
+     "th": "เขียนคนเดียวห้านาที แล้วเปรียบเทียบกับเพื่อนอีกห้านาที"
+    },
+    {
+     "s": 23.684,
+     "e": 31.605,
+     "en": "Question four is where today starts: the profile lost almost nothing, but the predicted yield was wrong by about eight thousandths.",
+     "th": "คำถามข้อที่สี่คือจุดเริ่มต้นของวันนี้ โปรไฟล์แทบไม่เสียอะไร แต่ผลได้ที่ทำนายไว้คลาดไปประมาณแปดในพัน"
+    },
+    {
+     "s": 31.605,
+     "e": 37.408,
+     "en": "Pause the narration now. When you are done, press Show answers to check.",
+     "th": "หยุดเสียงบรรยายตอนนี้ เมื่อทำเสร็จ กด Show answers เพื่อตรวจคำตอบ"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "file": "audio/slide-04.mp3",
+   "duration": 52.728,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.866,
+     "en": "By the end of today you should be able to do six things.",
+     "th": "เมื่อจบวันนี้ คุณควรทำหกสิ่งต่อไปนี้ได้"
+    },
+    {
+     "s": 3.866,
+     "e": 13.566,
+     "en": "Tell decisions made here and now from decisions that can wait and see, and write a two-stage stochastic program with recourse as one linear program, the extensive form.",
+     "th": "แยกการตัดสินใจแบบ here-and-now ออกจากการตัดสินใจที่รอดูข้อมูลก่อนได้ และเขียน two-stage stochastic program ที่มี recourse ให้เป็น linear program เดียว ซึ่งเรียกว่า extensive form"
+    },
+    {
+     "s": 13.566,
+     "e": 23.855,
+     "en": "Compute four numbers, E V, R P, E E V and W S, and from them the value of the stochastic solution and the expected value of perfect information.",
+     "th": "คำนวณตัวเลขสี่ตัว คือ EV, RP, EEV และ WS แล้วใช้คำนวณ value of the stochastic solution และ expected value of perfect information"
+    },
+    {
+     "s": 23.855,
+     "e": 31.895,
+     "en": "Build scenarios by sampling, and judge a sample average approximation by how much its answer moves and by its value on new data.",
+     "th": "สร้าง scenario ด้วยการสุ่มตัวอย่าง และประเมิน sample average approximation จากการที่คำตอบเปลี่ยนไปมากน้อยเพียงใดและจากมูลค่าเมื่อทดสอบกับข้อมูลใหม่"
+    },
+    {
+     "s": 31.895,
+     "e": 37.605,
+     "en": "Add risk to the objective with C-VaR, and turn a chance constraint into a quantile.",
+     "th": "เพิ่มความเสี่ยงเข้าไปในฟังก์ชันเป้าหมายด้วย CVaR และเปลี่ยน chance constraint ให้เป็นการใช้ quantile"
+    },
+    {
+     "s": 37.605,
+     "e": 43.368,
+     "en": "Write the robust counterpart of a linear constraint with a budget of uncertainty, gamma.",
+     "th": "เขียน robust counterpart ของข้อจำกัดเชิงเส้นที่มี budget of uncertainty คือ Γ"
+    },
+    {
+     "s": 43.368,
+     "e": 52.671,
+     "en": "And choose between stochastic, chance-constrained and robust formulations for a process decision, then report the result with the numbers a reader needs to check it.",
+     "th": "และเลือกระหว่าง formulation แบบ stochastic แบบ chance-constrained และแบบ robust สำหรับการตัดสินใจในกระบวนการ แล้วรายงานผลพร้อมตัวเลขที่ผู้อ่านต้องใช้ตรวจสอบ"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "file": "audio/slide-05.mp3",
+   "duration": 84.384,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.208,
+     "en": "Here is where today sits in the course.",
+     "th": "นี่คือตำแหน่งของวันนี้ในรายวิชา"
+    },
+    {
+     "s": 3.208,
+     "e": 13.526,
+     "en": "Sessions 1 to 4 built linear and mixed-integer models with known demands, prices and compositions. Today the same models get data that are random.",
+     "th": "คาบที่ 1 ถึง 4 สร้างโมเดลเชิงเส้นและ mixed-integer ที่รู้ค่า demand ราคา และองค์ประกอบแน่นอน วันนี้โมเดลเดียวกันจะได้รับข้อมูลที่เป็นค่าสุ่ม"
+    },
+    {
+     "s": 13.526,
+     "e": 24.553,
+     "en": "Session 2 used Jensen's inequality to explain why a linear blending rule for vapor pressure under-predicts. The same inequality explains today's flaw of averages.",
+     "th": "คาบที่ 2 ใช้อสมการของ Jensen อธิบายว่าทำไมกฎการผสมเชิงเส้นของความดันไอจึงทำนายต่ำเกินไป อสมการเดียวกันนี้อธิบายปรากฏการณ์ flaw of averages ของวันนี้"
+    },
+    {
+     "s": 24.553,
+     "e": 33.145,
+     "en": "Session 6 gave LP duality. Today it turns a worst case inside a constraint into an ordinary linear program.",
+     "th": "คาบที่ 6 ให้ทฤษฎี duality ของ LP วันนี้เราใช้มันเปลี่ยนกรณีที่เลวร้ายที่สุดซึ่งอยู่ในข้อจำกัดให้กลายเป็น linear program ธรรมดา"
+    },
+    {
+     "s": 33.145,
+     "e": 41.539,
+     "en": "Session 10 gave the covariance of fitted parameters. That covariance is a source of scenarios for rate constants.",
+     "th": "คาบที่ 10 ให้ covariance ของพารามิเตอร์ที่ fit ได้ covariance นี้เป็นแหล่งของ scenario สำหรับค่าคงที่อัตราเร็ว"
+    },
+    {
+     "s": 41.539,
+     "e": 50.987,
+     "en": "Session 9's solvers and Session 11's dynamic model reappear in part three, when the batch profile is optimized over several values of k two at once.",
+     "th": "solver ของคาบที่ 9 และโมเดลพลวัตของคาบที่ 11 กลับมาอีกครั้งในส่วนที่สาม เมื่อโปรไฟล์ของกะถูกหาค่าเหมาะสมสำหรับ k2 หลายค่าพร้อมกัน"
+    },
+    {
+     "s": 50.987,
+     "e": 63.434,
+     "en": "And Sessions 4 and 11 re-planned as information arrived: the rolling plan for a battery, and MPC on two tanks. Re-planning is a form of recourse, and we will place it among today's methods.",
+     "th": "และคาบที่ 4 กับ 11 วางแผนใหม่เมื่อมีข้อมูลเข้ามา ได้แก่ แผนแบบ rolling สำหรับแบตเตอรี่ และ MPC บนถังสองใบ การวางแผนใหม่เป็น recourse รูปแบบหนึ่ง และเราจะจัดมันไว้ในกลุ่มวิธีของวันนี้"
+    },
+    {
+     "s": 63.434,
+     "e": 72.505,
+     "en": "A note on notation. The first-stage decision is x; a scenario s has probability p s; the second-stage decision in scenario s is y s.",
+     "th": "หมายเหตุเรื่องสัญลักษณ์ การตัดสินใจขั้นแรกคือ x scenario s มีความน่าจะเป็น ps การตัดสินใจขั้นที่สองใน scenario s คือ"
+    },
+    {
+     "s": 72.505,
+     "e": 84.303,
+     "en": "Beta weights risk, alpha is the tail fraction, epsilon the chance level, and gamma the budget of uncertainty. Multipliers stay lambda for equalities and mu for inequalities.",
+     "th": "ys β คือน้ำหนักของความเสี่ยง α คือสัดส่วนของส่วนหาง ε คือระดับของ chance และ Γ คือ budget of uncertainty ตัวคูณยังคงเป็น λ สำหรับสมการ และ μ สำหรับอสมการ"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "file": "audio/slide-06.mp3",
+   "duration": 98.376,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.3,
+     "en": "Uncertainty enters process models from four directions.",
+     "th": "ความไม่แน่นอนเข้าสู่โมเดลกระบวนการจากสี่ทาง"
+    },
+    {
+     "s": 4.3,
+     "e": 10.757,
+     "en": "The market: demands and prices, usually described by scenarios from forecasts or history. Supply:",
+     "th": "ด้านตลาด ได้แก่ demand และราคา ซึ่งมักอธิบายด้วย scenario จากการพยากรณ์หรือข้อมูลในอดีต ด้านวัตถุดิบ"
+    },
+    {
+     "s": 10.757,
+     "e": 18.071,
+     "en": "the composition of a feed or a cargo, described by the supplier's specification range or by assays. The model:",
+     "th": "ได้แก่ องค์ประกอบของสารป้อนหรือของน้ำมันแต่ละล็อต ซึ่งอธิบายด้วยช่วงตาม specification ของผู้ขายหรือด้วยผลวิเคราะห์"
+    },
+    {
+     "s": 18.071,
+     "e": 24.99,
+     "en": "rate constants and other fitted parameters, described by the covariance of the estimates. And operation:",
+     "th": "ด้านโมเดล ได้แก่ ค่าคงที่อัตราเร็วและพารามิเตอร์อื่นที่ fit มา ซึ่งอธิบายด้วย covariance ของค่าประมาณ"
+    },
+    {
+     "s": 24.99,
+     "e": 31.184,
+     "en": "disturbances such as the withdrawal from tank two, where feedback handles part of the problem.",
+     "th": "และด้านการเดินเครื่อง ได้แก่ disturbance เช่น การดึงน้ำออกจากถังที่สอง ซึ่ง feedback ช่วยจัดการได้บางส่วน"
+    },
+    {
+     "s": 31.184,
+     "e": 40.56,
+     "en": "What matters is the order of events. If the data are known before you decide, there is nothing special to do: solve again with the new data.",
+     "th": "สิ่งสำคัญคือลำดับของเหตุการณ์ ถ้ารู้ข้อมูลก่อนตัดสินใจ ก็ไม่ต้องทำอะไรพิเศษ แค่แก้ปัญหาใหม่ด้วยข้อมูลใหม่"
+    },
+    {
+     "s": 40.56,
+     "e": 44.816,
+     "en": "The methods of today are for decisions that must be fixed first.",
+     "th": "วิธีของวันนี้มีไว้สำหรับการตัดสินใจที่ต้องกำหนดก่อน"
+    },
+    {
+     "s": 44.816,
+     "e": 55.207,
+     "en": "A chemical engineering example: a catalyst must be chosen before the feed composition of next year is known, but the reactor temperature can be adjusted each week.",
+     "th": "ตัวอย่างทางวิศวกรรมเคมี คือต้องเลือกตัวเร่งปฏิกิริยาก่อนจะรู้องค์ประกอบของสารป้อนในปีหน้า แต่อุณหภูมิของเครื่องปฏิกรณ์ปรับได้ทุกสัปดาห์ ตัวเร่งปฏิกิริยาจึงเป็นการตัดสินใจแบบ"
+    },
+    {
+     "s": 55.207,
+     "e": 58.882,
+     "en": "The catalyst is here-and-now; the temperature is recourse.",
+     "th": "here-and-now ส่วนอุณหภูมิเป็น recourse"
+    },
+    {
+     "s": 58.882,
+     "e": 74.053,
+     "en": "The diagram shows the order. First, x is decided, here and now. Then the uncertain quantity, written xi, is revealed. Then the recourse decision y is chosen, and y may depend on xi.",
+     "th": "แผนภาพแสดงลำดับนี้ ขั้นแรกตัดสินใจ x แบบ here-and-now จากนั้นปริมาณที่ไม่แน่นอนซึ่งเขียนเป็น ξ จะถูกเปิดเผย แล้วจึงเลือกการตัดสินใจแบบ recourse คือ y ซึ่ง y ขึ้นกับ ξ ได้"
+    },
+    {
+     "s": 74.053,
+     "e": 85.829,
+     "en": "Here-and-now decisions include capacities, contracts, recipes, setpoints and a batch profile. Recourse decisions include production rates, purchases and controller moves.",
+     "th": "การตัดสินใจแบบ here-and-now ได้แก่ กำลังการผลิต สัญญา สูตรผสม setpoint และโปรไฟล์ของกะ ส่วนการตัดสินใจแบบ recourse ได้แก่ อัตราการผลิต การซื้อ และการปรับของตัวควบคุม"
+    },
+    {
+     "s": 85.829,
+     "e": 98.303,
+     "en": "The objective is the expected profit over xi, where the profit for each value of xi already uses the best recourse. Recourse is what the later decisions can repair once the data are seen.",
+     "th": "ฟังก์ชันเป้าหมายคือกำไรคาดหวังเมื่อเฉลี่ยตาม ξ โดยกำไรในแต่ละค่าของ ξ ใช้ recourse ที่ดีที่สุดไว้แล้ว recourse คือสิ่งที่การตัดสินใจในภายหลังแก้ไขได้เมื่อเห็นข้อมูลแล้ว"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "file": "audio/slide-07.mp3",
+   "duration": 125.952,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 17.598,
+     "en": "Here is the example for part one. A plant builds a capacity K, in tonnes per day, now. Demand d is known later: 40, 100 or 180 tonnes per day, with probabilities 0.3, 0.5 and 0.2.",
+     "th": "นี่คือตัวอย่างของส่วนที่หนึ่ง โรงงานสร้างกำลังการผลิต K หน่วยเป็นตันต่อวันในตอนนี้ ส่วน demand d จะรู้ภายหลัง คือ 40, 100 หรือ 180 ตันต่อวัน ด้วยความน่าจะเป็น 0.3, 0.5 และ"
+    },
+    {
+     "s": 17.598,
+     "e": 19.737,
+     "en": "The mean demand is 98.",
+     "th": "0.2 demand เฉลี่ยคือ 98"
+    },
+    {
+     "s": 19.737,
+     "e": 34.579,
+     "en": "Each tonne made earns 400 dollars. Demand above K is met by a toll manufacturer, which earns only 100 dollars per tonne. Capacity costs 225 dollars per day for each tonne per day.",
+     "th": "แต่ละตันที่ผลิตเองทำกำไร 400 ดอลลาร์ demand ที่เกิน K จะส่งให้ผู้รับจ้างผลิตทำแทน ซึ่งทำกำไรได้เพียง 100 ดอลลาร์ต่อตัน กำลังการผลิตมีต้นทุน 225 ดอลลาร์ต่อวันสำหรับทุก ๆ หนึ่งตันต่อวัน"
+    },
+    {
+     "s": 34.579,
+     "e": 50.553,
+     "en": "So the profit is 100 d, plus 300 times the smaller of K and d, minus 225 K. As a function of d, the teal line rises steeply until d reaches K, then more slowly. That is a concave function.",
+     "th": "ดังนั้นกำไรเท่ากับ 100d บวก 300 คูณค่าที่น้อยกว่าระหว่าง K กับ d ลบ 225K เมื่อมองเป็นฟังก์ชันของ d เส้นสีเขียวหัวเป็ดจะชันมากจนกระทั่ง d ถึง K แล้วจึงชันน้อยลง ซึ่งเป็นฟังก์ชัน concave"
+    },
+    {
+     "s": 50.553,
+     "e": 59.993,
+     "en": "The three amber circles are the scenarios; their size shows the probability. The teal dot on the dashed line is the profit at the mean demand.",
+     "th": "วงกลมสีเหลืองอำพันสามวงคือ scenario ขนาดของวงแสดงความน่าจะเป็น จุดสีเขียวหัวเป็ดบนเส้นประคือกำไรที่ demand เฉลี่ย"
+    },
+    {
+     "s": 59.993,
+     "e": 66.0,
+     "en": "The rust dot is the expected profit, the probability-weighted average of the three circles.",
+     "th": "ส่วนจุดสีสนิมคือกำไรคาดหวัง ซึ่งเป็นค่าเฉลี่ยถ่วงน้ำหนักด้วยความน่าจะเป็นของวงกลมทั้งสาม"
+    },
+    {
+     "s": 66.0,
+     "e": 78.316,
+     "en": "For a concave function, Jensen's inequality says that the expected value is at most the value at the mean. So a model that uses the mean demand overstates the profit of every capacity.",
+     "th": "สำหรับฟังก์ชัน concave อสมการของ Jensen บอกว่าค่าคาดหวังมีค่าไม่เกินค่าของฟังก์ชันที่ค่าเฉลี่ย ดังนั้นโมเดลที่ใช้ demand เฉลี่ยจะประเมินกำไรสูงเกินจริงสำหรับทุกค่าของกำลังการผลิต"
+    },
+    {
+     "s": 78.316,
+     "e": 93.5,
+     "en": "At K equal to 98, the capacity built for the mean, the model promises 17,150 dollars per day and the plant earns 11,930 on average. The gap is 5,220 dollars per day.",
+     "th": "ที่ K เท่ากับ 98 ซึ่งเป็นกำลังการผลิตที่สร้างตามค่าเฉลี่ย โมเดลสัญญาว่าจะได้ 17,150 ดอลลาร์ต่อวัน แต่โรงงานได้เฉลี่ยเพียง 11,930 ส่วนต่างคือ 5,220 ดอลลาร์ต่อวัน"
+    },
+    {
+     "s": 93.5,
+     "e": 104.172,
+     "en": "Move the slider. At K equal to 40 the gap is zero, because every scenario has demand of at least 40, so the profit is linear over the range that matters.",
+     "th": "ลองเลื่อนแถบเลื่อน ที่ K เท่ากับ 40 ส่วนต่างเป็นศูนย์ เพราะทุก scenario มี demand อย่างน้อย 40 กำไรจึงเป็นเชิงเส้นในช่วงที่มีผล"
+    },
+    {
+     "s": 104.172,
+     "e": 109.092,
+     "en": "The gap appears where the kink of the function falls between scenarios.",
+     "th": "ส่วนต่างจะเกิดขึ้นเมื่อจุดหักของฟังก์ชันอยู่ระหว่าง scenario"
+    },
+    {
+     "s": 109.092,
+     "e": 120.438,
+     "en": "Keep this picture in mind. Every time a plan is evaluated at average conditions, ask whether the outcome is a concave or a convex function of the uncertain input.",
+     "th": "จำภาพนี้ไว้ ทุกครั้งที่ประเมินแผนที่สภาวะเฉลี่ย ให้ถามว่าผลลัพธ์เป็นฟังก์ชัน concave หรือ convex ของข้อมูลนำเข้าที่ไม่แน่นอน ถ้าเป็น concave"
+    },
+    {
+     "s": 120.438,
+     "e": 125.868,
+     "en": "If it is concave, the average-case plan is optimistic; if convex, pessimistic.",
+     "th": "แผนที่ใช้กรณีเฉลี่ยจะมองโลกในแง่ดีเกินไป ถ้าเป็น convex จะมองในแง่ร้ายเกินไป"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "file": "audio/slide-08.mp3",
+   "duration": 111.84,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.224,
+     "en": "How much capacity should the plant build? Differentiate the expected profit with respect to K.",
+     "th": "โรงงานควรสร้างกำลังการผลิตเท่าใด ให้หาอนุพันธ์ของกำไรคาดหวังเทียบกับ K"
+    },
+    {
+     "s": 7.224,
+     "e": 19.25,
+     "en": "One more tonne per day of capacity costs 225 dollars per day. It earns 300 dollars more than the toll route, but only on days when demand exceeds K.",
+     "th": "กำลังการผลิตเพิ่มอีกหนึ่งตันต่อวันมีต้นทุน 225 ดอลลาร์ต่อวัน และทำกำไรได้มากกว่าการจ้างผลิต 300 ดอลลาร์ แต่เฉพาะในวันที่ demand เกิน K"
+    },
+    {
+     "s": 19.25,
+     "e": 25.303,
+     "en": "So the derivative is 300 times the probability that d exceeds K, minus 225.",
+     "th": "เท่านั้น อนุพันธ์จึงเท่ากับ 300 คูณความน่าจะเป็นที่ d เกิน K ลบ 225"
+    },
+    {
+     "s": 25.303,
+     "e": 36.488,
+     "en": "Build while that is positive. The optimum is where the probability that demand stays below K equals one minus 225 over 300, which is 0.25.",
+     "th": "ให้สร้างเพิ่มตราบที่ค่านี้ยังเป็นบวก จุดเหมาะสมคือจุดที่ความน่าจะเป็นที่ demand ไม่เกิน K เท่ากับหนึ่งลบ 225 ส่วน 300 ซึ่งเท่ากับ"
+    },
+    {
+     "s": 36.488,
+     "e": 41.316,
+     "en": "This number is the critical ratio of the newsvendor problem.",
+     "th": "0.25 ตัวเลขนี้คือ critical ratio ของปัญหา newsvendor"
+    },
+    {
+     "s": 41.316,
+     "e": 52.826,
+     "en": "The table works it out for our three scenarios. Below 40, every scenario exceeds K, and one more unit is worth 75 dollars per day.",
+     "th": "ตารางคำนวณให้ดูสำหรับ scenario ทั้งสาม เมื่อ K ต่ำกว่า 40 ทุก scenario มี demand เกิน K และกำลังการผลิตเพิ่มหนึ่งหน่วยมีค่า 75 ดอลลาร์ต่อวัน"
+    },
+    {
+     "s": 52.826,
+     "e": 63.105,
+     "en": "Between 40 and 100, only 70 percent of the probability exceeds K, and one more unit loses 15. Above 100 it loses 165.",
+     "th": "ระหว่าง 40 ถึง 100 มีความน่าจะเป็นเพียงร้อยละ 70 ที่ demand เกิน K หน่วยที่เพิ่มขาดทุน 15 ดอลลาร์ และเมื่อเกิน 100 ขาดทุน 165 ดอลลาร์"
+    },
+    {
+     "s": 63.105,
+     "e": 76.947,
+     "en": "So the best capacity is 40, the lowest demand, not 98, the mean. In the chart, the probability of exceeding K steps down at each scenario, and it crosses 0.75 at K equal to 40.",
+     "th": "กำลังการผลิตที่ดีที่สุดจึงเป็น 40 ซึ่งเท่ากับ demand ต่ำสุด ไม่ใช่ 98 ซึ่งเป็นค่าเฉลี่ย ในกราฟ ความน่าจะเป็นที่ demand เกิน K ลดลงเป็นขั้นที่แต่ละ scenario และตัดระดับ 0.75 ที่ K เท่ากับ 40"
+    },
+    {
+     "s": 76.947,
+     "e": 86.165,
+     "en": "The same argument works for any demand distribution. The optimal capacity is a quantile of demand, set by the ratio of costs.",
+     "th": "เหตุผลเดียวกันใช้ได้กับการแจกแจงของ demand ทุกแบบ กำลังการผลิตที่เหมาะสมคือ quantile หนึ่งของ demand ซึ่งกำหนดโดยอัตราส่วนของต้นทุน"
+    },
+    {
+     "s": 86.165,
+     "e": 92.237,
+     "en": "When capacity is expensive relative to the margin it protects, the quantile is low.",
+     "th": "เมื่อกำลังการผลิตมีราคาแพงเมื่อเทียบกับส่วนต่างกำไรที่มันปกป้อง quantile นั้นจะอยู่ต่ำ"
+    },
+    {
+     "s": 92.237,
+     "e": 98.181,
+     "en": "Notice that the expected profit is not differentiable at the scenario values: it has kinks.",
+     "th": "สังเกตว่ากำไรคาดหวังไม่สามารถหาอนุพันธ์ได้ที่ค่าของ scenario เพราะมีจุดหัก"
+    },
+    {
+     "s": 98.181,
+     "e": 106.516,
+     "en": "The optimum sits at a kink where the slope changes sign, which is the stationarity condition of Session 7 in its nonsmooth form.",
+     "th": "จุดเหมาะสมอยู่ที่จุดหักที่ความชันเปลี่ยนเครื่องหมาย ซึ่งก็คือเงื่อนไข stationarity ของคาบที่ 7 ในรูปแบบที่ไม่เรียบ"
+    },
+    {
+     "s": 106.516,
+     "e": 111.75,
+     "en": "A linear program finds such points without difficulty, because they are vertices.",
+     "th": "linear program หาจุดแบบนี้ได้โดยไม่ยาก เพราะมันคือจุดยอด"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "file": "audio/slide-09.mp3",
+   "duration": 113.688,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.761,
+     "en": "The capacity problem is a small case of a general form, the two-stage stochastic program with recourse.",
+     "th": "ปัญหากำลังการผลิตนี้เป็นกรณีเล็ก ๆ ของรูปแบบทั่วไป คือ two-stage stochastic program ที่มี recourse"
+    },
+    {
+     "s": 6.761,
+     "e": 15.949,
+     "en": "The first stage chooses x at cost c transpose x. For each scenario s, the second stage solves its own linear program:",
+     "th": "ขั้นแรกเลือก x ด้วยต้นทุน cᵀx สำหรับแต่ละ scenario s ขั้นที่สองแก้ linear program ของตัวเอง"
+    },
+    {
+     "s": 15.949,
+     "e": 26.539,
+     "en": "choose y to maximize q s transpose y, subject to W y at most h s minus T s x. Its optimal value, Q of x and xi s, is the recourse value.",
+     "th": "คือเลือก y ให้ qsᵀy มีค่ามากที่สุด ภายใต้ Wy ไม่เกิน hs ลบ Tsx ค่าที่เหมาะสมที่สุด Q(x, ξs) คือมูลค่าของ recourse"
+    },
+    {
+     "s": 26.539,
+     "e": 37.711,
+     "en": "With a finite number of scenarios, the whole problem is one linear program, the extensive form: x once, a copy of y for every scenario, and one block of rows for every scenario.",
+     "th": "เมื่อมีจำนวน scenario จำกัด ปัญหาทั้งหมดเป็น linear program เดียว เรียกว่า extensive form ซึ่งมี x หนึ่งชุด มี y หนึ่งชุดต่อหนึ่ง scenario และมีกลุ่มแถวของข้อจำกัดหนึ่งกลุ่มต่อหนึ่ง scenario"
+    },
+    {
+     "s": 37.711,
+     "e": 50.344,
+     "en": "For the capacity example, x is K. In each scenario, y is the own production and the toll purchase, with two rows: own production at most K, and own production plus toll at most the demand.",
+     "th": "ในตัวอย่างกำลังการผลิต x คือ K ในแต่ละ scenario y คือปริมาณที่ผลิตเองและปริมาณที่จ้างผลิต มีข้อจำกัดสองแถว คือ ผลิตเองไม่เกิน K และผลิตเองรวมกับจ้างผลิตไม่เกิน demand"
+    },
+    {
+     "s": 50.344,
+     "e": 56.026,
+     "en": "With S scenarios there are one plus two S variables, and HiGHS solves it in a moment.",
+     "th": "เมื่อมี S scenario จะมีตัวแปรหนึ่งบวกสอง S ตัว และ HiGHS แก้ได้ในพริบตา"
+    },
+    {
+     "s": 56.026,
+     "e": 67.447,
+     "en": "Because x appears only once, it cannot depend on the scenario. The extensive form enforces nonanticipativity, deciding without knowing the future, by construction.",
+     "th": "เนื่องจาก x ปรากฏเพียงครั้งเดียว มันจึงขึ้นกับ scenario ไม่ได้ extensive form จึงบังคับ nonanticipativity คือการตัดสินใจโดยไม่รู้อนาคต ไว้โดยโครงสร้าง"
+    },
+    {
+     "s": 67.447,
+     "e": 78.119,
+     "en": "One property must be checked: the second stage must have a feasible answer for every first-stage decision and every scenario. This is called relatively complete recourse.",
+     "th": "มีคุณสมบัติหนึ่งที่ต้องตรวจ คือขั้นที่สองต้องมีคำตอบที่เป็นไปได้สำหรับทุกการตัดสินใจขั้นแรกและทุก scenario เรียกว่า relatively complete recourse"
+    },
+    {
+     "s": 78.119,
+     "e": 82.55,
+     "en": "Here the toll manufacturer guarantees it, since any demand can be met.",
+     "th": "ในที่นี้ผู้รับจ้างผลิตรับประกันคุณสมบัตินี้ เพราะ demand ทุกค่าตอบสนองได้"
+    },
+    {
+     "s": 82.55,
+     "e": 93.658,
+     "en": "Without such a route, add a penalized slack, such as lost sales at a high cost, or the stochastic program can be infeasible for reasons that have nothing to do with the decision.",
+     "th": "ถ้าไม่มีทางเลือกแบบนี้ ให้เพิ่มตัวแปร slack ที่มีค่าปรับ เช่น ยอดขายที่เสียไปในราคาสูง มิฉะนั้น stochastic program อาจหาคำตอบไม่ได้ด้วยเหตุผลที่ไม่เกี่ยวกับการตัดสินใจเลย"
+    },
+    {
+     "s": 93.658,
+     "e": 104.211,
+     "en": "The picture shows the structure of the matrix. Each scenario has its own diagonal block W, and all scenarios share the column block of x. Large problems use that structure:",
+     "th": "ภาพแสดงโครงสร้างของเมทริกซ์ แต่ละ scenario มีบล็อก W ของตัวเองบนแนวทแยง และทุก scenario ใช้บล็อกคอลัมน์ของ x ร่วมกัน ปัญหาขนาดใหญ่ใช้ประโยชน์จากโครงสร้างนี้ เช่น Benders"
+    },
+    {
+     "s": 104.211,
+     "e": 113.605,
+     "en": "Benders, or L-shaped, decomposition adds cuts on x from each scenario, and progressive hedging solves the scenarios separately and pulls their x together.",
+     "th": "หรือ L-shaped decomposition เพิ่ม cut บน x จากแต่ละ scenario และ progressive hedging แก้แต่ละ scenario แยกกันแล้วดึงค่า x ของทุก scenario ให้เข้าหากัน"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "file": "audio/slide-10.mp3",
+   "duration": 116.064,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 8.316,
+     "en": "Four numbers describe a decision under uncertainty. The table gives the profit of three policies in each scenario.",
+     "th": "ตัวเลขสี่ตัวใช้บรรยายการตัดสินใจภายใต้ความไม่แน่นอน ตารางแสดงกำไรของนโยบายสามแบบในแต่ละ scenario"
+    },
+    {
+     "s": 8.316,
+     "e": 25.779,
+     "en": "Check one entry by hand. With K equal to 98 and demand 40: 100 times 40 is 4,000, plus 300 times 40 is 12,000, minus 225 times 98 is 22,050. The profit is minus 6,050 dollars per day:",
+     "th": "ลองตรวจหนึ่งช่องด้วยมือ เมื่อ K เท่ากับ 98 และ demand เท่ากับ 40 จะได้ 100 คูณ 40 เท่ากับ 4,000 บวก 300 คูณ 40 เท่ากับ 12,000 ลบ 225 คูณ 98 เท่ากับ 22,050 กำไรคือลบ 6,050 ดอลลาร์ต่อวัน"
+    },
+    {
+     "s": 25.779,
+     "e": 28.342,
+     "en": "idle capacity is expensive.",
+     "th": "กำลังการผลิตที่ว่างอยู่มีราคาแพง"
+    },
+    {
+     "s": 28.342,
+     "e": 39.895,
+     "en": "E V is the expected value problem: replace d by its mean, 98, and solve. It builds 98 and forecasts 17,150 dollars per day.",
+     "th": "EV คือ expected value problem คือแทน d ด้วยค่าเฉลี่ย 98 แล้วแก้ปัญหา ผลคือสร้าง 98 และพยากรณ์กำไร 17,150 ดอลลาร์ต่อวัน"
+    },
+    {
+     "s": 39.895,
+     "e": 50.711,
+     "en": "E E V is the expected result of using that decision: apply K equal to 98 in the real scenarios and average. It is 11,930.",
+     "th": "EEV คือผลคาดหวังเมื่อใช้การตัดสินใจนั้นจริง คือนำ K เท่ากับ 98 ไปใช้กับ scenario จริงแล้วหาค่าเฉลี่ย ได้ 11,930"
+    },
+    {
+     "s": 50.711,
+     "e": 61.829,
+     "en": "R P, the recourse problem, is the stochastic program itself: maximize the expected profit over K. It builds 40 and earns 12,800.",
+     "th": "RP คือ recourse problem ซึ่งก็คือ stochastic program นั่นเอง คือหา K ที่ทำให้กำไรคาดหวังมีค่ามากที่สุด ผลคือสร้าง 40 และได้ 12,800"
+    },
+    {
+     "s": 61.829,
+     "e": 74.237,
+     "en": "W S, wait-and-see, imagines choosing K after seeing d. Then K equals d, the profit is 175 d, and the average is 17,150.",
+     "th": "WS หรือ wait-and-see สมมติว่าเลือก K หลังเห็น d แล้ว ดังนั้น K เท่ากับ d กำไรเท่ากับ 175d และค่าเฉลี่ยคือ 17,150"
+    },
+    {
+     "s": 74.237,
+     "e": 80.451,
+     "en": "Here E V and W S are equal, because with perfect information the profit is linear in d.",
+     "th": "ในที่นี้ EV กับ WS เท่ากัน เพราะเมื่อมีข้อมูลสมบูรณ์ กำไรเป็นเชิงเส้นใน d โดยทั่วไป"
+    },
+    {
+     "s": 80.451,
+     "e": 89.632,
+     "en": "In general, for a linear program with uncertain right-hand sides, the optimal value is concave in the data, so W S is at most E V.",
+     "th": "สำหรับ linear program ที่ค่าด้านขวาไม่แน่นอน ค่าเหมาะสมที่สุดเป็นฟังก์ชัน concave ของข้อมูล WS จึงมีค่าไม่เกิน EV"
+    },
+    {
+     "s": 89.632,
+     "e": 100.539,
+     "en": "The number that would go into a business case is the E V forecast, 17,150. The number the plant would see is 11,930.",
+     "th": "ตัวเลขที่จะถูกใส่ในเอกสารเสนอโครงการคือค่าพยากรณ์ EV คือ 17,150 แต่ตัวเลขที่โรงงานจะได้เห็นจริงคือ 11,930"
+    },
+    {
+     "s": 100.539,
+     "e": 111.186,
+     "en": "These four numbers are cheap to compute for any model you already have: E V and W S need only the deterministic model, and E E V needs one more run with the decision fixed.",
+     "th": "ตัวเลขสี่ตัวนี้คำนวณได้ง่ายสำหรับโมเดลที่คุณมีอยู่แล้ว EV และ WS ต้องการเพียงโมเดลแบบ deterministic ส่วน EEV ต้องการการรันเพิ่มอีกหนึ่งครั้งโดยกำหนดการตัดสินใจไว้คงที่"
+    },
+    {
+     "s": 111.186,
+     "e": 115.987,
+     "en": "Compute them before you decide whether a stochastic model is worth the effort.",
+     "th": "ให้คำนวณตัวเลขเหล่านี้ก่อนตัดสินว่าโมเดล stochastic คุ้มค่ากับความพยายามหรือไม่"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "file": "audio/slide-11.mp3",
+   "duration": 90.888,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.945,
+     "en": "This demo draws the two curves against capacity.",
+     "th": "การสาธิตนี้วาดเส้นโค้งสองเส้นเทียบกับกำลังการผลิต"
+    },
+    {
+     "s": 3.945,
+     "e": 15.763,
+     "en": "The rust dashed line is what the mean-value model believes: the profit at demand 98. It peaks at K equal to 98, at 17,150 dollars per day.",
+     "th": "เส้นประสีสนิมคือสิ่งที่โมเดลค่าเฉลี่ยเชื่อ คือกำไรที่ demand 98 ซึ่งสูงสุดที่ K เท่ากับ 98 ที่ 17,150 ดอลลาร์ต่อวัน"
+    },
+    {
+     "s": 15.763,
+     "e": 29.105,
+     "en": "The teal curve is what the plant earns on average. It is piecewise linear and concave, with kinks at the three demand scenarios, so its maximum sits at a kink: K equal to 40, with 12,800.",
+     "th": "เส้นโค้งสีเขียวหัวเป็ดคือสิ่งที่โรงงานได้รับโดยเฉลี่ย เป็นเส้นตรงเป็นช่วง ๆ และ concave มีจุดหักที่ demand ทั้งสามค่า ค่าสูงสุดจึงอยู่ที่จุดหัก คือ K เท่ากับ 40 ได้ 12,800"
+    },
+    {
+     "s": 29.105,
+     "e": 35.695,
+     "en": "The amber dot is E E V, the true value of the mean-value capacity, and the sand line at the top is W S.",
+     "th": "จุดสีเหลืองอำพันคือ EEV ซึ่งเป็นมูลค่าจริงของกำลังการผลิตตามค่าเฉลี่ย และเส้นสีทรายด้านบนคือ WS"
+    },
+    {
+     "s": 35.695,
+     "e": 44.223,
+     "en": "Move the slider and watch the table of scenario profits. At small K, both curves agree, because every scenario has demand above K.",
+     "th": "เลื่อนแถบเลื่อนแล้วดูตารางกำไรในแต่ละ scenario ที่ K ต่ำ เส้นทั้งสองตรงกัน เพราะทุก scenario มี demand เกิน K"
+    },
+    {
+     "s": 44.223,
+     "e": 49.105,
+     "en": "Past 40, the mean-value model keeps rising while the true curve turns down.",
+     "th": "เมื่อเกิน 40 โมเดลค่าเฉลี่ยยังคงเพิ่มขึ้น ขณะที่เส้นจริงเริ่มลดลง"
+    },
+    {
+     "s": 49.105,
+     "e": 61.823,
+     "en": "Notice how flat the true curve is between 40 and 100: it loses only 15 dollars per day for each extra tonne per day. A plant might reasonably choose a little more than 40 for other reasons.",
+     "th": "สังเกตว่าเส้นจริงค่อนข้างแบนระหว่าง 40 ถึง 100 คือเสียเพียง 15 ดอลลาร์ต่อวันต่อกำลังการผลิตที่เพิ่มขึ้นหนึ่งตันต่อวัน โรงงานอาจเลือกมากกว่า 40 เล็กน้อยด้วยเหตุผลอื่นก็ได้"
+    },
+    {
+     "s": 61.823,
+     "e": 68.316,
+     "en": "The mean-value forecast, however, is wrong by more than 5,000 dollars per day at its own optimum.",
+     "th": "แต่ค่าพยากรณ์ของโมเดลค่าเฉลี่ยผิดไปมากกว่า 5,000 ดอลลาร์ต่อวันที่จุดเหมาะสมของมันเอง"
+    },
+    {
+     "s": 68.316,
+     "e": 73.383,
+     "en": "This also explains the sizes of the two gaps you will meet on the next slide.",
+     "th": "สิ่งนี้ยังอธิบายขนาดของส่วนต่างสองค่าที่คุณจะพบในหน้าถัดไป"
+    },
+    {
+     "s": 73.383,
+     "e": 82.737,
+     "en": "The decision error of the mean-value plan costs only 870 dollars per day, because the curve is flat, but its forecast error is six times larger.",
+     "th": "ความผิดพลาดในการตัดสินใจของแผนตามค่าเฉลี่ยมีต้นทุนเพียง 870 ดอลลาร์ต่อวัน เพราะเส้นโค้งแบน แต่ความผิดพลาดของค่าพยากรณ์ใหญ่กว่าถึงหกเท่า"
+    },
+    {
+     "s": 82.737,
+     "e": 90.816,
+     "en": "Press D to see the extensive form solved by HiGHS in Python. It prints the eight numbers of the last two slides.",
+     "th": "กด D เพื่อดู extensive form ที่แก้ด้วย HiGHS ใน Python ซึ่งพิมพ์ตัวเลขทั้งแปดตัวของสองหน้าที่ผ่านมา"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "file": "audio/slide-12.mp3",
+   "duration": 38.688,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.024,
+     "en": "Time for the first check: four questions on recourse and the mean-value trap.",
+     "th": "ถึงเวลาแบบตรวจครั้งแรก มีสี่คำถามเรื่อง recourse และกับดักของค่าเฉลี่ย"
+    },
+    {
+     "s": 5.024,
+     "e": 12.964,
+     "en": "Sort the decisions of a plant into here-and-now and recourse; explain the gap between 17,150 and what K equal to 98 really earns;",
+     "th": "จัดการตัดสินใจของโรงงานเป็นแบบ here-and-now และแบบ recourse อธิบายส่วนต่างระหว่าง 17,150 กับกำไรจริงของ K เท่ากับ"
+    },
+    {
+     "s": 12.964,
+     "e": 22.737,
+     "en": "find the new critical ratio and capacity when the margin rises to 500 dollars per tonne; and count the variables of an extensive form with a thousand scenarios.",
+     "th": "98 หา critical ratio และกำลังการผลิตใหม่เมื่อส่วนต่างกำไรเพิ่มเป็น 500 ดอลลาร์ต่อตัน และนับจำนวนตัวแปรของ extensive form ที่มีหนึ่งพัน scenario"
+    },
+    {
+     "s": 22.737,
+     "e": 32.224,
+     "en": "Question three uses the critical ratio with the new margin; question four asks you to count, and then to say why the structure of the matrix keeps the problem easy.",
+     "th": "คำถามข้อสามใช้ critical ratio กับส่วนต่างกำไรใหม่ ข้อสี่ให้คุณนับ แล้วบอกว่าทำไมโครงสร้างของเมทริกซ์จึงทำให้ปัญหายังแก้ได้ง่าย"
+    },
+    {
+     "s": 32.224,
+     "e": 38.632,
+     "en": "Take five minutes. Pause the narration now, and press Show answers when you are done.",
+     "th": "ใช้เวลาห้านาที หยุดเสียงบรรยายตอนนี้ และกด Show answers เมื่อทำเสร็จ"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "file": "audio/slide-13.mp3",
+   "duration": 112.128,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.826,
+     "en": "Two differences between the four numbers have names.",
+     "th": "ผลต่างของตัวเลขสี่ตัวนี้มีอยู่สองค่าที่มีชื่อเรียก"
+    },
+    {
+     "s": 3.826,
+     "e": 20.012,
+     "en": "The expected value of perfect information, E V P I, is W S minus R P: 17,150 minus 12,800, which is 4,350 dollars per day. It is the most that a perfect demand forecast could be worth.",
+     "th": "expected value of perfect information หรือ EVPI เท่ากับ WS ลบ RP คือ 17,150 ลบ 12,800 เท่ากับ 4,350 ดอลลาร์ต่อวัน เป็นมูลค่าสูงสุดที่การพยากรณ์ demand แบบสมบูรณ์จะมีได้"
+    },
+    {
+     "s": 20.012,
+     "e": 24.737,
+     "en": "A real forecast is never perfect, so it is worth less.",
+     "th": "การพยากรณ์จริงไม่เคยสมบูรณ์ จึงมีมูลค่าน้อยกว่านี้"
+    },
+    {
+     "s": 24.737,
+     "e": 34.183,
+     "en": "The value of the stochastic solution, V S S, is R P minus E E V: 12,800 minus 11,930, which is 870 dollars per day.",
+     "th": "value of the stochastic solution หรือ VSS เท่ากับ RP ลบ EEV คือ 12,800 ลบ 11,930 เท่ากับ 870 ดอลลาร์ต่อวัน"
+    },
+    {
+     "s": 34.183,
+     "e": 43.711,
+     "en": "It is what you gain by solving the stochastic problem instead of plugging in the mean. It costs only modeling effort.",
+     "th": "เป็นสิ่งที่ได้จากการแก้ปัญหาแบบ stochastic แทนการแทนค่าเฉลี่ยลงไป และมีต้นทุนเพียงแรงในการสร้างโมเดล"
+    },
+    {
+     "s": 43.711,
+     "e": 56.105,
+     "en": "For a maximization, E E V is at most R P, and R P is at most W S. The chart places the three numbers on one axis. Both gaps are never negative.",
+     "th": "สำหรับปัญหาหาค่ามากที่สุด EEV ไม่เกิน RP และ RP ไม่เกิน WS กราฟวางตัวเลขทั้งสามไว้บนแกนเดียวกัน ส่วนต่างทั้งสองไม่มีวันติดลบ"
+    },
+    {
+     "s": 56.105,
+     "e": 67.232,
+     "en": "The two answer different questions. E V P I asks whether better information is worth buying. V S S asks whether the stochastic model is worth building.",
+     "th": "ค่าทั้งสองตอบคำถามต่างกัน EVPI ถามว่าข้อมูลที่ดีกว่านี้คุ้มที่จะซื้อหรือไม่ VSS ถามว่าโมเดล stochastic คุ้มที่จะสร้างหรือไม่"
+    },
+    {
+     "s": 67.232,
+     "e": 78.579,
+     "en": "V S S can be zero while E V P I is large: the uncertainty matters, but the mean-value decision happens to be right. You will see such a case in part three.",
+     "th": "VSS อาจเป็นศูนย์ได้ในขณะที่ EVPI สูง คือความไม่แน่นอนมีผล แต่การตัดสินใจตามค่าเฉลี่ยบังเอิญถูกต้อง คุณจะเห็นกรณีแบบนี้ในส่วนที่สาม"
+    },
+    {
+     "s": 78.579,
+     "e": 89.776,
+     "en": "Both are expected values over the same scenarios, so they are only as good as the scenarios. Birge and Louveaux, chapter 4, give the proofs of the inequalities.",
+     "th": "ค่าทั้งสองเป็นค่าคาดหวังบน scenario ชุดเดียวกัน จึงดีได้เท่ากับคุณภาพของ scenario เท่านั้น Birge และ Louveaux บทที่ 4 ให้บทพิสูจน์ของอสมการเหล่านี้"
+    },
+    {
+     "s": 89.776,
+     "e": 101.599,
+     "en": "In practice, compute V S S first. If it is small compared with the decisions at stake, the mean-value model is good enough, and the effort is better spent on the data.",
+     "th": "ในทางปฏิบัติ ให้คำนวณ VSS ก่อน ถ้ามีค่าน้อยเมื่อเทียบกับมูลค่าของการตัดสินใจ โมเดลค่าเฉลี่ยก็เพียงพอ และควรใช้แรงไปกับข้อมูลแทน"
+    },
+    {
+     "s": 101.599,
+     "e": 105.329,
+     "en": "If it is large, the stochastic model pays for itself.",
+     "th": "ถ้ามีค่ามาก โมเดล stochastic ก็คุ้มค่า"
+    },
+    {
+     "s": 105.329,
+     "e": 112.053,
+     "en": "A consultant who offers a perfect forecast for 5,000 dollars per day is asking more than it can be worth.",
+     "th": "ที่ปรึกษาที่เสนอขายการพยากรณ์แบบสมบูรณ์ในราคา 5,000 ดอลลาร์ต่อวัน กำลังขอเงินมากกว่ามูลค่าที่การพยากรณ์นั้นจะมีได้"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "file": "audio/slide-14.mp3",
+   "duration": 97.872,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.776,
+     "en": "So far the scenarios were given. Where do they come from in practice?",
+     "th": "จนถึงตอนนี้ scenario ถูกกำหนดมาให้ ในทางปฏิบัติ scenario มาจากไหน"
+    },
+    {
+     "s": 5.776,
+     "e": 13.582,
+     "en": "From history: past demands or past assays, each treated as an equally likely scenario. From a fitted distribution:",
+     "th": "มาจากข้อมูลในอดีต คือ demand หรือผลวิเคราะห์ในอดีต โดยให้แต่ละค่าเป็น scenario ที่มีโอกาสเท่ากัน มาจากการแจกแจงที่"
+    },
+    {
+     "s": 13.582,
+     "e": 21.592,
+     "en": "sampled at random, which is Monte Carlo, or cut into bins of equal probability, as we will do for k two in part three.",
+     "th": "fit ไว้ โดยสุ่มตัวอย่างแบบ Monte Carlo หรือแบ่งเป็นช่วงที่มีความน่าจะเป็นเท่ากัน ซึ่งเราจะทำกับ k2 ในส่วนที่สาม"
+    },
+    {
+     "s": 21.592,
+     "e": 32.587,
+     "en": "From fitted model parameters: sample theta from a normal distribution centered on the estimate, with the covariance s squared times J transpose J inverse from Session 10.",
+     "th": "มาจากพารามิเตอร์ของโมเดลที่ fit ไว้ คือสุ่ม θ จากการแจกแจงปกติที่มีค่ากลางเป็นค่าประมาณ และมี covariance เท่ากับ s² คูณ (JᵀJ)⁻¹ จากคาบที่"
+    },
+    {
+     "s": 32.587,
+     "e": 35.737,
+     "en": "That keeps the correlation between the estimates.",
+     "th": "10 ซึ่งรักษาสหสัมพันธ์ระหว่างค่าประมาณไว้"
+    },
+    {
+     "s": 35.737,
+     "e": 43.382,
+     "en": "And from expert ranges and storylines, for multistage trees, followed by scenario reduction to keep the problem small.",
+     "th": "และมาจากช่วงค่าที่ผู้เชี่ยวชาญกำหนดและเรื่องราวสมมุติ สำหรับต้นไม้แบบหลายขั้น แล้วตามด้วยการลดจำนวน scenario เพื่อให้ปัญหามีขนาดเล็ก"
+    },
+    {
+     "s": 43.382,
+     "e": 56.105,
+     "en": "Plain random sampling needs many scenarios. Latin hypercube sampling, or choosing scenarios so that their mean and variance match the target exactly, gives the same accuracy with far fewer.",
+     "th": "การสุ่มตัวอย่างแบบธรรมดาต้องใช้ scenario จำนวนมาก การสุ่มแบบ Latin hypercube หรือการเลือก scenario ให้ค่าเฉลี่ยและความแปรปรวนตรงกับเป้าหมายพอดี ให้ความแม่นยำเท่ากันโดยใช้ scenario น้อยกว่ามาก"
+    },
+    {
+     "s": 56.105,
+     "e": 68.355,
+     "en": "Correlation is easy to lose. The chart shows two rate constants scaled by their standard errors, with a correlation of 0.9, as is common when both are fitted to the same data.",
+     "th": "สหสัมพันธ์เป็นสิ่งที่หายไปได้ง่าย กราฟแสดงค่าคงที่อัตราเร็วสองค่าที่หารด้วย standard error ของแต่ละค่า มีสหสัมพันธ์ 0.9 ซึ่งพบบ่อยเมื่อทั้งสองค่า fit จากข้อมูลชุดเดียวกัน"
+    },
+    {
+     "s": 68.355,
+     "e": 72.461,
+     "en": "The sand ellipse is the 95 percent region of the estimates.",
+     "th": "วงรีสีทรายคือบริเวณ 95 เปอร์เซ็นต์ของค่าประมาณ"
+    },
+    {
+     "s": 72.461,
+     "e": 77.486,
+     "en": "Sampled with the covariance, almost all points fall inside. Press Independent:",
+     "th": "เมื่อสุ่มโดยใช้ covariance จุดเกือบทั้งหมดตกอยู่ภายใน ลองกด Independent"
+    },
+    {
+     "s": 77.486,
+     "e": 85.5,
+     "en": "with the same spreads but no correlation, many scenarios land in the rust region, where the data say the parameters cannot be.",
+     "th": "เมื่อใช้ความกระจายเท่าเดิมแต่ไม่มีสหสัมพันธ์ scenario จำนวนมากตกอยู่ในบริเวณสีสนิม ซึ่งข้อมูลบอกว่าพารามิเตอร์ไม่สามารถอยู่ตรงนั้นได้"
+    },
+    {
+     "s": 85.5,
+     "e": 97.789,
+     "en": "So check your scenarios: do they reproduce the means, spreads and correlations you believe? In Lab 12, the demands for two products move in opposite directions, and that changes the answer.",
+     "th": "ดังนั้นต้องตรวจ scenario ว่าให้ค่าเฉลี่ย ความกระจาย และสหสัมพันธ์ตรงกับที่คุณเชื่อหรือไม่ ใน Lab 12 demand ของผลิตภัณฑ์สองชนิดเปลี่ยนไปในทิศทางตรงข้ามกัน และสิ่งนี้เปลี่ยนคำตอบ"
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "file": "audio/slide-15.mp3",
+   "duration": 128.28,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.394,
+     "en": "When demand has a continuous distribution, we cannot list every scenario.",
+     "th": "เมื่อ demand มีการแจกแจงแบบต่อเนื่อง เราไม่สามารถแจกแจงทุก scenario ได้"
+    },
+    {
+     "s": 5.394,
+     "e": 13.908,
+     "en": "Sample average approximation, S A A, draws N demands, gives each probability one over N, and solves the extensive form.",
+     "th": "sample average approximation หรือ SAA สุ่ม demand มา N ค่า ให้แต่ละค่ามีความน่าจะเป็นหนึ่งส่วน N แล้วแก้ extensive form"
+    },
+    {
+     "s": 13.908,
+     "e": 18.779,
+     "en": "Here demand is lognormal with a median of 90 tonnes per day.",
+     "th": "ในที่นี้ demand มีการแจกแจงแบบ lognormal มีค่ามัธยฐาน 90"
+    },
+    {
+     "s": 18.779,
+     "e": 30.039,
+     "en": "The exact optimum is the 25 percent quantile from the critical ratio, 64.2 tonnes per day, with an expected profit of 13,873 dollars per day.",
+     "th": "ตันต่อวัน คำตอบที่แท้จริงคือ quantile ที่ 25 เปอร์เซ็นต์ตาม critical ratio คือ 64.2 ตันต่อวัน มีกำไรคาดหวัง 13,873 ดอลลาร์ต่อวัน"
+    },
+    {
+     "s": 30.039,
+     "e": 43.791,
+     "en": "For each N, the left chart shows the capacity chosen by twenty independent samples. With five scenarios the answers range from about 30 to 95. With 500 they agree within a few tonnes.",
+     "th": "สำหรับแต่ละค่า N กราฟด้านซ้ายแสดงกำลังการผลิตที่ได้จากตัวอย่างอิสระยี่สิบชุด เมื่อมีห้า scenario คำตอบกระจายตั้งแต่ประมาณ 30 ถึง 95 เมื่อมี 500 scenario คำตอบตรงกันในระดับไม่กี่ตัน"
+    },
+    {
+     "s": 43.791,
+     "e": 48.276,
+     "en": "The spread shrinks roughly as one over the square root of N.",
+     "th": "ความกระจายลดลงโดยประมาณตามหนึ่งส่วนรากที่สองของ N"
+    },
+    {
+     "s": 48.276,
+     "e": 61.316,
+     "en": "The right chart compares two values for each sample. Across, the in-sample value: the objective the S A A reported. Up, the true expected profit of the capacity it chose.",
+     "th": "กราฟด้านขวาเปรียบเทียบค่าสองค่าของแต่ละตัวอย่าง แกนนอนคือค่า in-sample ซึ่งเป็นค่าฟังก์ชันเป้าหมายที่ SAA รายงาน แกนตั้งคือกำไรคาดหวังที่แท้จริงของกำลังการผลิตที่ SAA เลือก"
+    },
+    {
+     "s": 61.316,
+     "e": 72.034,
+     "en": "The true value can never exceed the optimum, the teal line. The in-sample value, on average, is above it. The table shows the averages:",
+     "th": "ค่าจริงไม่มีวันเกินค่าที่ดีที่สุด ซึ่งคือเส้นสีเขียวหัวเป็ด ส่วนค่า in-sample โดยเฉลี่ยอยู่สูงกว่าเส้นนั้น ตารางแสดงค่าเฉลี่ย"
+    },
+    {
+     "s": 72.034,
+     "e": 84.25,
+     "en": "with N equal to 20, the S A A reports 14,003 on average, against a true optimum of 13,873. The sample has been fitted, like a model fitted to its own data.",
+     "th": "เมื่อ N เท่ากับ 20 SAA รายงานค่าเฉลี่ย 14,003 เทียบกับค่าที่ดีที่สุดจริง 13,873 ตัวอย่างถูก fit ไปแล้ว เหมือนโมเดลที่ fit กับข้อมูลของตัวเอง"
+    },
+    {
+     "s": 84.25,
+     "e": 91.539,
+     "en": "This optimistic bias shrinks as N grows; Mak, Morton and Wood showed that it shrinks monotonically in expectation.",
+     "th": "ความลำเอียงในทางบวกนี้ลดลงเมื่อ N เพิ่มขึ้น Mak, Morton และ Wood แสดงว่าค่าคาดหวังของมันลดลงอย่างต่อเนื่อง"
+    },
+    {
+     "s": 91.539,
+     "e": 100.615,
+     "en": "The same two facts give a confidence interval on the quality of a decision. Average the in-sample values of several independent S A A runs:",
+     "th": "ข้อเท็จจริงสองข้อนี้ให้ช่วงความเชื่อมั่นของคุณภาพของการตัดสินใจ ให้หาค่าเฉลี่ยของค่า in-sample จาก SAA หลายชุดที่เป็นอิสระต่อกัน"
+    },
+    {
+     "s": 100.615,
+     "e": 109.432,
+     "en": "that estimates an upper bound on the true optimum. Evaluate your chosen decision on a large fresh sample: that estimates a lower bound.",
+     "th": "ซึ่งประมาณขอบเขตบนของค่าที่ดีที่สุดจริง แล้วประเมินการตัดสินใจที่เลือกด้วยตัวอย่างชุดใหม่ขนาดใหญ่ ซึ่งประมาณขอบเขตล่าง"
+    },
+    {
+     "s": 109.432,
+     "e": 113.776,
+     "en": "Their difference bounds how far your decision can be from the best.",
+     "th": "ผลต่างของทั้งสองบอกว่าการตัดสินใจของคุณห่างจากค่าที่ดีที่สุดได้มากเพียงใด"
+    },
+    {
+     "s": 113.776,
+     "e": 124.627,
+     "en": "Two lessons. Judge an S A A decision by evaluating it on a large fresh sample, never by its own objective. And increase N until the decision stops moving;",
+     "th": "บทเรียนสองข้อ ข้อแรก ประเมินการตัดสินใจจาก SAA ด้วยการทดสอบกับตัวอย่างชุดใหม่ขนาดใหญ่ ห้ามใช้ค่าฟังก์ชันเป้าหมายของมันเอง ข้อสอง เพิ่ม N จนกว่าการตัดสินใจจะไม่เปลี่ยนแล้ว"
+    },
+    {
+     "s": 124.627,
+     "e": 128.197,
+     "en": "the decision usually settles before the value does.",
+     "th": "ซึ่งโดยมากการตัดสินใจจะนิ่งก่อนค่าฟังก์ชันเป้าหมาย"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "file": "audio/slide-16.mp3",
+   "duration": 115.392,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 10.637,
+     "en": "The expected value treats a loss of 5,000 dollars on one day and a gain of 5,000 on another as cancelling. A plant manager may not see it that way.",
+     "th": "ค่าคาดหวังถือว่าการขาดทุน 5,000 ดอลลาร์ในวันหนึ่งกับการได้กำไร 5,000 ในอีกวันหนึ่งหักล้างกันได้ ผู้จัดการโรงงานอาจไม่มองเช่นนั้น"
+    },
+    {
+     "s": 10.637,
+     "e": 14.197,
+     "en": "Risk measures look at the bad outcomes separately.",
+     "th": "มาตรวัดความเสี่ยงจะพิจารณาผลลัพธ์ที่เลวร้ายแยกออกมา"
+    },
+    {
+     "s": 14.197,
+     "e": 26.469,
+     "en": "Value at risk, VaR at level alpha, is the profit that is exceeded with probability one minus alpha. With alpha equal to 0.1, it is the profit of the tenth percentile.",
+     "th": "value at risk หรือ VaR ที่ระดับ α คือค่ากำไรที่กำไรจริงจะสูงกว่าด้วยความน่าจะเป็นหนึ่งลบ α เมื่อ α เท่ากับ 0.1 ก็คือกำไรที่เปอร์เซ็นไทล์ที่สิบ ส่วน"
+    },
+    {
+     "s": 26.469,
+     "e": 32.421,
+     "en": "Conditional value at risk, C-VaR, is the mean profit in the worst fraction alpha.",
+     "th": "conditional value at risk หรือ CVaR คือกำไรเฉลี่ยในส่วนที่แย่ที่สุดสัดส่วน α"
+    },
+    {
+     "s": 32.421,
+     "e": 46.107,
+     "en": "The histogram shows 200 sampled demands at the risk-neutral capacity. The worst 20 outcomes are shaded rust. The amber line is VaR, about 4,200 dollars per day;",
+     "th": "ฮิสโตแกรมแสดง demand ที่สุ่มมา 200 ค่าที่กำลังการผลิตแบบไม่คำนึงถึงความเสี่ยง ผลลัพธ์ที่แย่ที่สุด 20 ค่าแรเงาด้วยสีสนิม เส้นสีเหลืองอำพันคือ VaR ประมาณ 4,200 ดอลลาร์ต่อวัน"
+    },
+    {
+     "s": 46.107,
+     "e": 53.842,
+     "en": "the rust line, their mean, is C-VaR, about 1,000. The mean of all outcomes is about 12,950.",
+     "th": "เส้นสีสนิมซึ่งเป็นค่าเฉลี่ยของส่วนนั้นคือ CVaR ประมาณ 1,000 ส่วนค่าเฉลี่ยของผลลัพธ์ทั้งหมดประมาณ 12,950"
+    },
+    {
+     "s": 53.842,
+     "e": 65.671,
+     "en": "C-VaR is preferred to VaR for two reasons. It looks at how bad the bad cases are, not only where they start. And it can be optimized as a linear program.",
+     "th": "CVaR ได้รับความนิยมมากกว่า VaR ด้วยเหตุผลสองข้อ ข้อแรก มันดูว่ากรณีที่แย่นั้นแย่เพียงใด ไม่ใช่เพียงว่าเริ่มต้นที่ไหน ข้อสอง มันหาค่าเหมาะสมได้ในรูป linear program"
+    },
+    {
+     "s": 65.671,
+     "e": 74.927,
+     "en": "C-VaR is also a coherent risk measure: among other things, combining two activities never makes it worse than the sum of their separate risks.",
+     "th": "CVaR ยังเป็น coherent risk measure ด้วย ซึ่งหมายความว่า เช่น การรวมกิจกรรมสองอย่างเข้าด้วยกันไม่มีวันทำให้ความเสี่ยงแย่กว่าผลรวมของความเสี่ยงที่แยกกัน"
+    },
+    {
+     "s": 74.927,
+     "e": 79.329,
+     "en": "VaR does not have that property, so it can penalize diversification.",
+     "th": "VaR ไม่มีคุณสมบัตินี้ จึงอาจลงโทษการกระจายความเสี่ยงได้"
+    },
+    {
+     "s": 79.329,
+     "e": 89.027,
+     "en": "Rockafellar and Uryasev showed that C-VaR equals the maximum over eta of eta minus one over alpha times the expected shortfall of profit below eta.",
+     "th": "Rockafellar และ Uryasev แสดงว่า CVaR เท่ากับค่าสูงสุดเมื่อเลือก η ของ η ลบหนึ่งส่วน α คูณค่าคาดหวังของส่วนที่กำไรต่ำกว่า η เมื่อมี"
+    },
+    {
+     "s": 89.027,
+     "e": 99.053,
+     "en": "With scenarios, add one free variable eta and one variable u s per scenario, with u s at least eta minus the profit in scenario s, and u s at least zero.",
+     "th": "scenario ให้เพิ่มตัวแปรอิสระ η หนึ่งตัว และตัวแปร us หนึ่งตัวต่อ scenario โดย us ไม่น้อยกว่า η ลบกำไรใน scenario s และ us ไม่น้อยกว่าศูนย์"
+    },
+    {
+     "s": 99.053,
+     "e": 112.774,
+     "en": "The objective mixes the two: one minus beta times the expected profit, plus beta times C-VaR. Beta equal to zero is risk neutral; beta equal to one cares only about the worst ten percent.",
+     "th": "ฟังก์ชันเป้าหมายผสมทั้งสองส่วน คือหนึ่งลบ β คูณกำไรคาดหวัง บวก β คูณ CVaR β เท่ากับศูนย์คือไม่คำนึงถึงความเสี่ยง β เท่ากับหนึ่งสนใจเฉพาะสิบเปอร์เซ็นต์ที่แย่ที่สุด"
+    },
+    {
+     "s": 112.774,
+     "e": 115.329,
+     "en": "The problem stays a linear program.",
+     "th": "และปัญหายังคงเป็น linear program"
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "file": "audio/slide-17.mp3",
+   "duration": 95.976,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.776,
+     "en": "Now vary beta. Each button solves the C-VaR linear program on the same 200 demands.",
+     "th": "ทีนี้ลองเปลี่ยน β แต่ละปุ่มแก้ linear program ของ CVaR บน demand 200 ค่าชุดเดิม"
+    },
+    {
+     "s": 7.776,
+     "e": 17.013,
+     "en": "The left chart is the trade-off: expected profit up, C-VaR of the worst ten percent across. Each dot is one value of beta.",
+     "th": "กราฟด้านซ้ายคือการแลกเปลี่ยนระหว่างสองเป้าหมาย แกนตั้งคือกำไรคาดหวัง แกนนอนคือ CVaR ของสิบเปอร์เซ็นต์ที่แย่ที่สุด แต่ละจุดคือค่า β หนึ่งค่า"
+    },
+    {
+     "s": 17.013,
+     "e": 27.03,
+     "en": "At beta equal to zero the capacity is 65 tonnes per day, the expected profit 12,951 and the C-VaR 1,016.",
+     "th": "ที่ β เท่ากับศูนย์ กำลังการผลิตคือ 65 ตันต่อวัน กำไรคาดหวัง 12,951 และ CVaR 1,016 ที่ β"
+    },
+    {
+     "s": 27.03,
+     "e": 37.237,
+     "en": "At beta equal to 0.5 the capacity falls to 39, the expected profit to 12,090, and the C-VaR rises to 6,121.",
+     "th": "เท่ากับ 0.5 กำลังการผลิตลดลงเหลือ 39 กำไรคาดหวังลดลงเหลือ 12,090 และ CVaR เพิ่มขึ้นเป็น 6,121"
+    },
+    {
+     "s": 37.237,
+     "e": 44.872,
+     "en": "So about 860 dollars per day of expected profit buys about 5,100 dollars per day in the mean of the worst days.",
+     "th": "ดังนั้นกำไรคาดหวังประมาณ 860 ดอลลาร์ต่อวัน แลกได้กับค่าเฉลี่ยของวันที่แย่ที่สุดที่ดีขึ้นประมาณ 5,100"
+    },
+    {
+     "s": 44.872,
+     "e": 50.803,
+     "en": "Whether that is worth it is a management decision, and the chart is how you present it.",
+     "th": "ดอลลาร์ต่อวัน การแลกนี้คุ้มหรือไม่เป็นการตัดสินใจของฝ่ายบริหาร และกราฟนี้คือวิธีนำเสนอ"
+    },
+    {
+     "s": 50.803,
+     "e": 62.579,
+     "en": "The histogram on the right shows why. Less capacity means less idle capacity on low-demand days, so the left tail moves right, at the cost of more toll purchases on high-demand days.",
+     "th": "ฮิสโตแกรมด้านขวาแสดงเหตุผล กำลังการผลิตที่น้อยลงหมายถึงกำลังการผลิตที่ว่างน้อยลงในวันที่ demand ต่ำ ส่วนหางด้านซ้ายจึงเลื่อนไปทางขวา โดยแลกกับการจ้างผลิตมากขึ้นในวันที่ demand สูง"
+    },
+    {
+     "s": 62.579,
+     "e": 66.651,
+     "en": "Between beta equal to 0.6 and 1, the capacity changes little.",
+     "th": "ระหว่าง β เท่ากับ 0.6 ถึง 1 กำลังการผลิตเปลี่ยนไม่มาก"
+    },
+    {
+     "s": 66.651,
+     "e": 77.618,
+     "en": "Beyond a point, extra weight on the tail buys almost nothing, because the worst days are already those with the lowest demand, where any capacity above demand is idle.",
+     "th": "เมื่อเลยจุดหนึ่งไป การเพิ่มน้ำหนักให้ส่วนหางแทบไม่ได้อะไรเพิ่ม เพราะวันที่แย่ที่สุดคือวันที่ demand ต่ำที่สุดอยู่แล้ว ซึ่งกำลังการผลิตที่เกิน demand จะว่างอยู่"
+    },
+    {
+     "s": 77.618,
+     "e": 82.957,
+     "en": "The curve is steep at first and flat later: the first steps of protection are cheap.",
+     "th": "เส้นโค้งชันในช่วงแรกและแบนในช่วงหลัง หมายความว่าการป้องกันในขั้นแรก ๆ มีราคาถูก"
+    },
+    {
+     "s": 82.957,
+     "e": 90.118,
+     "en": "That is typical, and it is the shape you will see again in Session 13, where two objectives are traded explicitly.",
+     "th": "ซึ่งเป็นลักษณะทั่วไป และเป็นรูปร่างที่คุณจะเห็นอีกในคาบที่ 13 ซึ่งแลกเปลี่ยนสองเป้าหมายกันอย่างชัดเจน"
+    },
+    {
+     "s": 90.118,
+     "e": 95.908,
+     "en": "Press D for the Python: the same linear program, with eta and one u per scenario.",
+     "th": "กด D เพื่อดูโค้ด Python ซึ่งเป็น linear program เดียวกันที่มี η และตัวแปร u หนึ่งตัวต่อ scenario"
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "file": "audio/slide-18.mp3",
+   "duration": 98.592,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.576,
+     "en": "Many decisions come in more than two stages: build now, expand next year, operate after that.",
+     "th": "การตัดสินใจหลายอย่างมีมากกว่าสองขั้น เช่น สร้างตอนนี้ ขยายในปีหน้า แล้วจึงเดินเครื่องหลังจากนั้น"
+    },
+    {
+     "s": 6.576,
+     "e": 13.474,
+     "en": "The scenario tree shows the information structure. From the root, demand in year one is high or low.",
+     "th": "ต้นไม้ของ scenario แสดงโครงสร้างของข้อมูล จากราก demand ในปีแรกสูงหรือต่ำ"
+    },
+    {
+     "s": 13.474,
+     "e": 19.963,
+     "en": "Each branch has its own expansion decision, x two, and then each leaf has its own operation, y.",
+     "th": "แต่ละกิ่งมีการตัดสินใจขยายของตัวเองคือ x2 จากนั้นแต่ละใบมีการเดินเครื่องของตัวเองคือ y"
+    },
+    {
+     "s": 19.963,
+     "e": 30.408,
+     "en": "Scenarios one and two share a history up to year one, so they must share x two. That is nonanticipativity: a decision at a node may use only what is known at that node.",
+     "th": "scenario ที่หนึ่งและสองมีประวัติเดียวกันจนถึงปีแรก จึงต้องใช้ x2 ค่าเดียวกัน นั่นคือ nonanticipativity การตัดสินใจที่โหนดหนึ่งใช้ได้เฉพาะสิ่งที่รู้ ณ โหนดนั้น"
+    },
+    {
+     "s": 30.408,
+     "e": 37.89,
+     "en": "Trees grow fast. Three branches over five stages give 243 scenarios; ten branches give 100,000.",
+     "th": "ต้นไม้โตเร็วมาก สามกิ่งในห้าขั้นให้ 243 scenario สิบกิ่งให้ 100,000"
+    },
+    {
+     "s": 37.89,
+     "e": 46.618,
+     "en": "In practice one uses two stages with a good recourse model, or a short tree that is re-optimized as data arrive.",
+     "th": "ในทางปฏิบัติจึงใช้สองขั้นที่มีโมเดล recourse ที่ดี หรือต้นไม้สั้น ๆ ที่หาค่าเหมาะสมใหม่เมื่อมีข้อมูลเข้ามา"
+    },
+    {
+     "s": 46.618,
+     "e": 60.631,
+     "en": "You have done the second already. On Session 4's cloudy afternoon, the fixed plan cost 8,999 baht, re-planning cost 8,633, and a perfect forecast 8,400.",
+     "th": "คุณเคยทำแบบหลังมาแล้ว ในบ่ายที่มีเมฆของคาบที่ 4 แผนที่ตายตัวมีต้นทุน 8,999 บาท การวางแผนใหม่มีต้นทุน 8,633 บาท และการพยากรณ์ที่สมบูรณ์มีต้นทุน 8,400"
+    },
+    {
+     "s": 60.631,
+     "e": 67.684,
+     "en": "Re-planning recovered 366 of the 599 baht that perfect information was worth.",
+     "th": "บาท การวางแผนใหม่เก็บคืนได้ 366 บาทจาก 599 บาทซึ่งเป็นมูลค่าของข้อมูลสมบูรณ์"
+    },
+    {
+     "s": 67.684,
+     "e": 75.862,
+     "en": "Rolling horizons and MPC re-solve whenever new information arrives. They are practical approximations of multistage recourse.",
+     "th": "rolling horizon และ MPC แก้ปัญหาใหม่ทุกครั้งที่มีข้อมูลใหม่ จึงเป็นการประมาณ recourse แบบหลายขั้นที่ใช้ได้จริง"
+    },
+    {
+     "s": 75.862,
+     "e": 86.118,
+     "en": "Their weakness is that each plan assumes a single future, so they do not hedge; a stochastic model inside the rolling plan is the next step when that matters.",
+     "th": "จุดอ่อนคือแต่ละแผนสมมติอนาคตเพียงแบบเดียว จึงไม่ได้กระจายความเสี่ยง เมื่อเรื่องนี้สำคัญ ขั้นต่อไปคือใส่โมเดล stochastic ไว้ในแผนแบบ rolling"
+    },
+    {
+     "s": 86.118,
+     "e": 95.049,
+     "en": "Multistage problems with long horizons and simple stage structure, such as reservoirs or storage, are solved by stochastic dual dynamic programming,",
+     "th": "ปัญหาหลายขั้นที่มี horizon ยาวและโครงสร้างแต่ละขั้นไม่ซับซ้อน เช่น อ่างเก็บน้ำหรือระบบกักเก็บพลังงาน แก้ได้ด้วย stochastic dual dynamic"
+    },
+    {
+     "s": 95.049,
+     "e": 98.526,
+     "en": "which builds cuts on the value of the state at each stage.",
+     "th": "programming ซึ่งสร้าง cut บนมูลค่าของสถานะในแต่ละขั้น"
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "file": "audio/slide-19.mp3",
+   "duration": 147.432,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 12.421,
+     "en": "Some limits are not about money. A tank level, a product specification, a temperature. Sometimes a rare violation is tolerable, and a chance constraint says how rare.",
+     "th": "ข้อจำกัดบางอย่างไม่ได้เกี่ยวกับเงิน เช่น ระดับของเหลวในถัง specification ของผลิตภัณฑ์ หรืออุณหภูมิ บางครั้งการละเมิดนาน ๆ ครั้งยังยอมรับได้ และ chance constraint ระบุว่าต้องนานเพียงใด"
+    },
+    {
+     "s": 12.421,
+     "e": 24.48,
+     "en": "Return to the two tanks of Session 11, under MPC with a horizon of 20 and the disturbance estimate on. A withdrawal of unknown size starts without warning.",
+     "th": "กลับมาที่ถังสองใบของคาบที่ 11 ซึ่งควบคุมด้วย MPC ที่มี horizon 20 และเปิดใช้ค่าประมาณของ disturbance การดึงน้ำออกที่ไม่รู้ขนาดเริ่มขึ้นโดยไม่มีการเตือน"
+    },
+    {
+     "s": 24.48,
+     "e": 33.447,
+     "en": "Its size is normal with mean 0.05 and standard deviation 0.015 cubic meters per minute, cut to between zero and 0.1.",
+     "th": "ขนาดของมันมีการแจกแจงปกติ ค่าเฉลี่ย 0.05 และส่วนเบี่ยงเบนมาตรฐาน 0.015 ลูกบาศก์เมตรต่อนาที โดยจำกัดให้อยู่ระหว่างศูนย์ถึง 0.1"
+    },
+    {
+     "s": 33.447,
+     "e": 45.018,
+     "en": "The level of tank two must stay above 1.45 meters, say to protect a pump. A higher setpoint gives more margin but uses buffer volume that is needed for upstream surges.",
+     "th": "ระดับของถังที่สองต้องอยู่เหนือ 1.45 เมตร เช่น เพื่อป้องกันปั๊ม setpoint ที่สูงขึ้นให้ระยะเผื่อมากขึ้น แต่กินปริมาตรสำรองที่ต้องใช้รับการไหลเข้าที่พุ่งขึ้นจากด้านต้นน้ำ"
+    },
+    {
+     "s": 45.018,
+     "e": 52.276,
+     "en": "We want the lowest setpoint for which the probability of staying above 1.45 is at least one minus epsilon.",
+     "th": "เราต้องการ setpoint ที่ต่ำที่สุดที่ทำให้ความน่าจะเป็นที่ระดับอยู่เหนือ 1.45 มีค่าอย่างน้อยหนึ่งลบ ε"
+    },
+    {
+     "s": 52.276,
+     "e": 64.125,
+     "en": "The trick is to find a quantity that increases with the random size. The dip D, the setpoint minus the lowest level, grows with d. So the chance constraint is equivalent to:",
+     "th": "เคล็ดลับคือหาปริมาณที่เพิ่มขึ้นตามขนาดที่สุ่มได้ การลดลงของระดับ D ซึ่งเท่ากับ setpoint ลบระดับต่ำสุด จะเพิ่มขึ้นตาม d ดังนั้น chance constraint จึงเทียบเท่ากับเงื่อนไขว่า"
+    },
+    {
+     "s": 64.125,
+     "e": 69.368,
+     "en": "the setpoint is at least 1.45 plus the one minus epsilon quantile of the dip.",
+     "th": "setpoint ต้องไม่น้อยกว่า 1.45 บวก quantile ที่หนึ่งลบ ε ของการลดลงของระดับ"
+    },
+    {
+     "s": 69.368,
+     "e": 85.276,
+     "en": "The histogram shows the dips for 200 sampled withdrawals, simulated in closed loop. For epsilon equal to 0.05, the 95th percentile is 0.077 meters, so the setpoint is 1.527 meters.",
+     "th": "ฮิสโตแกรมแสดงการลดลงของระดับสำหรับการดึงน้ำออกที่สุ่มมา 200 ครั้ง ซึ่งจำลองแบบวงปิด เมื่อ ε เท่ากับ 0.05 เปอร์เซ็นไทล์ที่ 95 คือ 0.077 เมตร setpoint จึงเท่ากับ 1.527 เมตร"
+    },
+    {
+     "s": 85.276,
+     "e": 100.499,
+     "en": "The table checks each setpoint on 200 new withdrawals. The setpoint from the mean withdrawal, 1.498 meters, fails half the time. The setpoint for epsilon 0.05 fails 4 percent of the time.",
+     "th": "ตารางตรวจ setpoint แต่ละค่ากับการดึงน้ำออกชุดใหม่ 200 ครั้ง setpoint ที่ได้จากการดึงน้ำออกขนาดเฉลี่ย คือ 1.498 เมตร ล้มเหลวครึ่งหนึ่งของเวลา setpoint สำหรับ ε เท่ากับ 0.05 ล้มเหลวร้อยละ 4"
+    },
+    {
+     "s": 100.499,
+     "e": 107.382,
+     "en": "The worst case, 1.566 meters, never fails, but costs four more centimeters of buffer.",
+     "th": "ส่วนกรณีเลวร้ายที่สุด 1.566 เมตร ไม่ล้มเหลวเลย แต่ต้องใช้ปริมาตรสำรองเพิ่มอีกสี่เซนติเมตร"
+    },
+    {
+     "s": 107.382,
+     "e": 118.658,
+     "en": "Note that the check uses new withdrawals. On the 200 samples that set the quantile, the violation rate would be at most five percent by construction, which proves nothing.",
+     "th": "สังเกตว่าการตรวจใช้การดึงน้ำออกชุดใหม่ ถ้าใช้ตัวอย่าง 200 ครั้งชุดที่ใช้กำหนด quantile อัตราการละเมิดจะไม่เกินห้าเปอร์เซ็นต์โดยโครงสร้างอยู่แล้ว ซึ่งไม่ได้พิสูจน์อะไร"
+    },
+    {
+     "s": 118.658,
+     "e": 129.915,
+     "en": "Why simulate instead of scaling the quantile of d? Up to a withdrawal of about 0.055, the dip is 0.95 meters per cubic meter per minute.",
+     "th": "ทำไมต้องจำลองแทนการคูณ quantile ของ d ด้วยค่าคงที่ จนถึงการดึงน้ำออกประมาณ 0.055 การลดลงของระดับเท่ากับ 0.95 เมตรต่อหนึ่งลูกบาศก์เมตรต่อนาที แต่เมื่อเกินกว่านั้น"
+    },
+    {
+     "s": 129.915,
+     "e": 137.803,
+     "en": "Above that, the valve saturates and the dip grows faster. Press D to see the dip for four sizes.",
+     "th": "วาล์วอิ่มตัวและการลดลงของระดับเพิ่มเร็วขึ้น กด D เพื่อดูการลดลงของระดับสำหรับการดึงน้ำออกสี่ขนาด"
+    },
+    {
+     "s": 137.803,
+     "e": 147.355,
+     "en": "The idea, Charnes and Cooper's from 1959, is general: if the random effect enters through a monotone function, a chance constraint becomes a quantile.",
+     "th": "แนวคิดนี้มาจาก Charnes และ Cooper ในปี 1959 และใช้ได้ทั่วไป ถ้าผลของตัวแปรสุ่มเข้ามาผ่านฟังก์ชันทางเดียว chance constraint จะกลายเป็นการใช้ quantile"
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "file": "audio/slide-20.mp3",
+   "duration": 32.52,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.603,
+     "en": "Second check: information, sampling, risk and chance.",
+     "th": "แบบตรวจครั้งที่สอง เรื่องข้อมูล การสุ่มตัวอย่าง ความเสี่ยง และ chance constraint"
+    },
+    {
+     "s": 4.603,
+     "e": 13.233,
+     "en": "Decide whether two forecasts are worth buying, say whether an S A A's in-sample value is too high or too low, read the effect of beta from the demo,",
+     "th": "ตัดสินว่าการพยากรณ์สองแบบคุ้มที่จะซื้อหรือไม่ บอกว่าค่า in-sample ของ SAA สูงหรือต่ำเกินไป อ่านผลของ β จากการสาธิต"
+    },
+    {
+     "s": 13.233,
+     "e": 16.303,
+     "en": "and explain why the tank setpoint needs a simulation.",
+     "th": "และอธิบายว่าทำไม setpoint ของถังจึงต้องใช้การจำลอง"
+    },
+    {
+     "s": 16.303,
+     "e": 26.053,
+     "en": "For question one, compare each price with E V P I first. For question four, look again at how the dip grows with the size of the withdrawal.",
+     "th": "สำหรับข้อหนึ่ง ให้เทียบราคาแต่ละรายการกับ EVPI ก่อน สำหรับข้อสี่ ให้ดูอีกครั้งว่าการลดลงของระดับเพิ่มขึ้นอย่างไรตามขนาดของการดึงน้ำออก"
+    },
+    {
+     "s": 26.053,
+     "e": 32.461,
+     "en": "Take five minutes. Pause the narration now, and press Show answers when you are done.",
+     "th": "ใช้เวลาห้านาที หยุดเสียงบรรยายตอนนี้ และกด Show answers เมื่อทำเสร็จ"
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "file": "audio/slide-21.mp3",
+   "duration": 9.144,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.432,
+     "en": "Take a ten-minute break.",
+     "th": "พักสิบนาที"
+    },
+    {
+     "s": 2.432,
+     "e": 9.092,
+     "en": "After the break, your card again. Think about which of its numbers you would least like to bet on.",
+     "th": "หลังพัก เรากลับมาที่การ์ดของคุณอีกครั้ง ลองคิดว่าตัวเลขใดในการ์ดที่คุณไม่อยากเดิมพันด้วยมากที่สุด"
+    }
+   ]
+  },
+  {
+   "n": 22,
+   "file": "audio/slide-22.mp3",
+   "duration": 55.488,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.789,
+     "en": "Activity 2: your card under uncertainty. Work in pairs.",
+     "th": "กิจกรรมที่ 2 การ์ดของคุณภายใต้ความไม่แน่นอน ทำเป็นคู่"
+    },
+    {
+     "s": 5.789,
+     "e": 16.408,
+     "en": "Name the two most uncertain inputs of your card's model, and where a distribution or range for each could come from. Sort the decisions into here-and-now and wait-and-see.",
+     "th": "ระบุข้อมูลนำเข้าสองตัวที่ไม่แน่นอนที่สุดของโมเดลในการ์ด และบอกว่าการแจกแจงหรือช่วงค่าของแต่ละตัวจะมาจากไหน แยกการตัดสินใจเป็นแบบ here-and-now และแบบรอดูข้อมูล"
+    },
+    {
+     "s": 16.408,
+     "e": 26.004,
+     "en": "Then choose: expected value, C-VaR, or a chance constraint. A safety or quality limit usually suits a chance constraint or a robust row;",
+     "th": "จากนั้นเลือกว่าจะใช้ค่าคาดหวัง CVaR หรือ chance constraint ข้อจำกัดด้านความปลอดภัยหรือคุณภาพมักเหมาะกับ chance constraint หรือ robust row"
+    },
+    {
+     "s": 26.004,
+     "e": 30.487,
+     "en": "money usually suits an expectation, with C-VaR when losses hurt.",
+     "th": "ส่วนเรื่องเงินมักเหมาะกับค่าคาดหวัง และใช้ CVaR เมื่อการขาดทุนส่งผลรุนแรง"
+    },
+    {
+     "s": 30.487,
+     "e": 40.656,
+     "en": "Finally, estimate by hand what a perfect forecast of the worst input would be worth: solve for a low and a high value, and compare with one decision made for the middle value.",
+     "th": "สุดท้าย ประมาณด้วยมือว่าการพยากรณ์ที่สมบูรณ์ของข้อมูลนำเข้าที่แย่ที่สุดจะมีมูลค่าเท่าใด โดยแก้ปัญหาที่ค่าต่ำและค่าสูง แล้วเปรียบเทียบกับการตัดสินใจหนึ่งครั้งที่ทำสำหรับค่ากลาง"
+    },
+    {
+     "s": 40.656,
+     "e": 46.145,
+     "en": "Your partner checks that every here-and-now decision is really fixed before the input is known.",
+     "th": "เพื่อนของคุณตรวจว่าการตัดสินใจแบบ here-and-now ทุกตัวถูกกำหนดก่อนรู้ข้อมูลจริง"
+    },
+    {
+     "s": 46.145,
+     "e": 55.421,
+     "en": "Pause the narration now; take ten minutes. Keep your answers: part three asks what a worst-case version of the same card would protect against.",
+     "th": "หยุดเสียงบรรยายตอนนี้ ใช้เวลาสิบนาที เก็บคำตอบไว้ เพราะส่วนที่สามจะถามว่าการ์ดเดียวกันในแบบกรณีเลวร้ายที่สุดจะป้องกันอะไร"
+    }
+   ]
+  },
+  {
+   "n": 23,
+   "file": "audio/slide-23.mp3",
+   "duration": 110.856,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 11.184,
+     "en": "Part three asks a different question. Instead of probabilities, take a set of values that the data might have, and require the constraint to hold for every value in the set.",
+     "th": "ส่วนที่สามถามคำถามอีกแบบหนึ่ง แทนที่จะใช้ความน่าจะเป็น ให้ใช้เซตของค่าที่ข้อมูลอาจเป็นได้ แล้วกำหนดให้ข้อจำกัดเป็นจริงสำหรับทุกค่าในเซตนั้น"
+    },
+    {
+     "s": 11.184,
+     "e": 20.618,
+     "en": "Write each uncertain coefficient as its nominal value a bar i, plus a deviation delta i times zeta i, where zeta i is between minus one and one.",
+     "th": "เขียนสัมประสิทธิ์ที่ไม่แน่นอนแต่ละตัวเป็นค่าปกติ āi บวกค่าเบี่ยงเบน δi คูณ ζi โดย ζi อยู่ระหว่างลบหนึ่งถึงหนึ่ง"
+    },
+    {
+     "s": 20.618,
+     "e": 32.84,
+     "en": "If every zeta may reach its limit at once, the set is a box, and the worst case simply adds delta i times the absolute value of x i to the row. Soyster proposed this in 1973.",
+     "th": "ถ้า ζ ทุกตัวไปถึงขอบได้พร้อมกัน เซตนั้นคือกล่อง และกรณีเลวร้ายที่สุดก็คือการบวก δi คูณค่าสัมบูรณ์ของ xi เข้าไปในแถว Soyster เสนอแนวทางนี้ในปี 1973"
+    },
+    {
+     "s": 32.84,
+     "e": 39.684,
+     "en": "It protects against every coefficient at its worst together, which is rarely needed and expensive.",
+     "th": "ซึ่งป้องกันกรณีที่สัมประสิทธิ์ทุกตัวแย่ที่สุดพร้อมกัน ซึ่งแทบไม่เกิดขึ้นและมีราคาแพง"
+    },
+    {
+     "s": 39.684,
+     "e": 49.105,
+     "en": "An ellipsoid, the norm of zeta at most omega, gives a second-order cone constraint. Ben-Tal and Nemirovski developed this case.",
+     "th": "วงรีซึ่งกำหนดให้ norm ของ ζ ไม่เกิน Ω จะให้ข้อจำกัดแบบ second-order cone Ben-Tal และ Nemirovski พัฒนากรณีนี้"
+    },
+    {
+     "s": 49.105,
+     "e": 58.037,
+     "en": "Bertsimas and Sim proposed a budget: each zeta is still between minus one and one, but the sum of their absolute values is at most gamma.",
+     "th": "Bertsimas และ Sim เสนอแนวคิด budget คือ ζ แต่ละตัวยังอยู่ระหว่างลบหนึ่งถึงหนึ่ง แต่ผลรวมของค่าสัมบูรณ์ต้องไม่เกิน"
+    },
+    {
+     "s": 58.037,
+     "e": 62.697,
+     "en": "Gamma says how many coefficients may be at their worst at the same time.",
+     "th": "Γ ค่า Γ บอกว่าสัมประสิทธิ์กี่ตัวที่แย่ที่สุดได้พร้อมกัน"
+    },
+    {
+     "s": 62.697,
+     "e": 65.59,
+     "en": "Robust optimization can also have recourse.",
+     "th": "robust optimization มี recourse ได้เช่นกัน"
+    },
+    {
+     "s": 65.59,
+     "e": 76.898,
+     "en": "In adjustable robust optimization, later decisions are written as functions of the uncertain data, often affine functions, so that they can respond once the data are seen.",
+     "th": "ใน adjustable robust optimization การตัดสินใจภายหลังถูกเขียนเป็นฟังก์ชันของข้อมูลที่ไม่แน่นอน ซึ่งมักเป็นฟังก์ชัน affine เพื่อให้ตอบสนองได้เมื่อเห็นข้อมูลแล้ว"
+    },
+    {
+     "s": 76.898,
+     "e": 82.289,
+     "en": "That reduces the conservatism of a plan that must work for every value in the set.",
+     "th": "วิธีนี้ลดความระมัดระวังเกินเหตุของแผนที่ต้องใช้ได้กับทุกค่าในเซต"
+    },
+    {
+     "s": 82.289,
+     "e": 93.703,
+     "en": "Move the slider. With two coefficients, gamma equal to zero is just the nominal point, gamma equal to one is the diamond, and gamma equal to two is the whole box.",
+     "th": "ลองเลื่อนแถบเลื่อน เมื่อมีสัมประสิทธิ์สองตัว Γ เท่ากับศูนย์คือจุดค่าปกติเพียงจุดเดียว Γ เท่ากับหนึ่งคือรูปข้าวหลามตัด และ Γ เท่ากับสองคือกล่องทั้งกล่อง"
+    },
+    {
+     "s": 93.703,
+     "e": 96.224,
+     "en": "The ellipse is drawn for comparison.",
+     "th": "วงรีวาดไว้เพื่อเปรียบเทียบ"
+    },
+    {
+     "s": 96.224,
+     "e": 107.93,
+     "en": "In every case the worst case is taken inside the constraint, so the optimization problem stays deterministic: a linear program for boxes and budgets, a cone program for ellipsoids.",
+     "th": "ในทุกกรณี กรณีเลวร้ายที่สุดถูกนำเข้าไปไว้ในข้อจำกัด ปัญหา optimization จึงยังเป็นแบบ deterministic คือเป็น linear program สำหรับกล่องและ budget และเป็น cone program"
+    },
+    {
+     "s": 107.93,
+     "e": 110.776,
+     "en": "The size of the set is the only tuning knob.",
+     "th": "สำหรับวงรี ขนาดของเซตเป็นตัวปรับเพียงตัวเดียว"
+    }
+   ]
+  },
+  {
+   "n": 24,
+   "file": "audio/slide-24.mp3",
+   "duration": 100.944,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.905,
+     "en": "Here is the lecture example: 100 tonnes of marine fuel blended at least cost from five components.",
+     "th": "นี่คือตัวอย่างในการบรรยาย คือการผสมน้ำมันเชื้อเพลิงเรือ 100 ตันด้วยต้นทุนต่ำที่สุดจากส่วนผสมห้าชนิด"
+    },
+    {
+     "s": 6.905,
+     "e": 18.808,
+     "en": "The sulfur must be at most 0.50 weight percent, the limit that the International Maritime Organization has applied to ships outside emission control areas since 2020.",
+     "th": "กำมะถันต้องไม่เกิน 0.50 เปอร์เซ็นต์โดยน้ำหนัก ซึ่งเป็นขีดจำกัดที่องค์การทางทะเลระหว่างประเทศใช้กับเรือที่อยู่นอกเขตควบคุมการปล่อยมลพิษตั้งแต่ปี 2020 และค่า"
+    },
+    {
+     "s": 18.808,
+     "e": 24.724,
+     "en": "A linear viscosity blending number must be at most 30. The prices are illustrative.",
+     "th": "viscosity blending number แบบเชิงเส้นต้องไม่เกิน 30 ราคาในตัวอย่างนี้เป็นค่าสมมุติ"
+    },
+    {
+     "s": 24.724,
+     "e": 38.553,
+     "en": "Each sulfur content has a nominal value and a range: for example, 0.40 plus or minus 0.15 for the low-sulfur residue. Each cargo may lie anywhere in its range, independently.",
+     "th": "ปริมาณกำมะถันของแต่ละส่วนผสมมีค่าปกติและช่วง เช่น 0.40 บวกลบ 0.15 สำหรับกากน้ำมันกำมะถันต่ำ แต่ละล็อตอาจมีค่าใดก็ได้ในช่วงของมันอย่างเป็นอิสระต่อกัน"
+    },
+    {
+     "s": 38.553,
+     "e": 53.671,
+     "en": "The nominal blend uses 45 tonnes of low-sulfur residue, 26.5 of cracked cycle oil and 28.5 of gasoil, and costs 48,990 dollars. The high-sulfur residue and the cutter are not used.",
+     "th": "การผสมตามค่าปกติใช้กากน้ำมันกำมะถันต่ำ 45 ตัน cracked cycle oil 26.5 ตัน และ gasoil 28.5 ตัน มีต้นทุน 48,990 ดอลลาร์ ไม่ใช้กากน้ำมันกำมะถันสูงและ cutter"
+    },
+    {
+     "s": 53.671,
+     "e": 65.28,
+     "en": "Like every LP solution, it sits on a vertex, here with the sulfur row exactly at 0.50. The histogram draws the blend's sulfur for 20,000 combinations of cargoes.",
+     "th": "เช่นเดียวกับคำตอบของ LP ทุกครั้ง คำตอบนี้อยู่ที่จุดยอด ซึ่งในที่นี้แถวของกำมะถันมีค่าเท่ากับ 0.50 พอดี ฮิสโตแกรมแสดงกำมะถันของน้ำมันผสมสำหรับการรวมกันของล็อตต่าง"
+    },
+    {
+     "s": 65.28,
+     "e": 75.671,
+     "en": "Because the errors are symmetric about the nominal values, about half of the combinations break the limit: 49.9 percent in the Python simulation.",
+     "th": "ๆ 20,000 แบบ เนื่องจากความคลาดเคลื่อนสมมาตรรอบค่าปกติ จึงมีประมาณครึ่งหนึ่งที่เกินขีดจำกัด คือ 49.9 เปอร์เซ็นต์ในการจำลองด้วย Python"
+    },
+    {
+     "s": 75.671,
+     "e": 79.342,
+     "en": "This is the general lesson about optimizing with nominal data:",
+     "th": "นี่คือบทเรียนทั่วไปของการหาค่าเหมาะสมด้วยข้อมูลค่าปกติ"
+    },
+    {
+     "s": 79.342,
+     "e": 87.908,
+     "en": "the optimizer pushes the solution against every limit it can, so whatever uncertainty remains in a tight constraint turns directly into violations.",
+     "th": "ตัวหาค่าเหมาะสมจะดันคำตอบไปชนขีดจำกัดทุกตัวที่ทำได้ ความไม่แน่นอนที่เหลืออยู่ในข้อจำกัดที่ตึงจึงกลายเป็นการละเมิดข้อจำกัดโดยตรง"
+    },
+    {
+     "s": 87.908,
+     "e": 100.882,
+     "en": "In practice a blender would add a margin, say 0.47 instead of 0.50, chosen by experience. The next two slides choose that margin from the data instead, and show what it costs.",
+     "th": "ในทางปฏิบัติ ผู้ผสมน้ำมันมักเพิ่มระยะเผื่อ เช่น ใช้ 0.47 แทน 0.50 โดยเลือกจากประสบการณ์ สองหน้าถัดไปจะเลือกระยะเผื่อนั้นจากข้อมูลแทน และแสดงว่ามีต้นทุนเท่าใด"
+    }
+   ]
+  },
+  {
+   "n": 25,
+   "file": "audio/slide-25.mp3",
+   "duration": 112.488,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.842,
+     "en": "How do we impose a budget of uncertainty in a linear program? Take the worst case, then use duality.",
+     "th": "เราจะกำหนด budget of uncertainty ใน linear program ได้อย่างไร ให้หากรณีเลวร้ายที่สุด แล้วใช้ duality"
+    },
+    {
+     "s": 7.842,
+     "e": 13.329,
+     "en": "Since the blend amounts x are not negative, only upward deviations of sulfur hurt.",
+     "th": "เนื่องจากปริมาณส่วนผสม x ไม่ติดลบ เฉพาะการเบี่ยงเบนของกำมะถันในทางที่สูงขึ้นเท่านั้นที่เป็นผลเสีย"
+    },
+    {
+     "s": 13.329,
+     "e": 24.368,
+     "en": "The worst extra sulfur for a given blend is the maximum of the sum of delta i x i zeta i, subject to the sum of zeta at most gamma, and each zeta between zero and one.",
+     "th": "ปริมาณกำมะถันส่วนเกินในกรณีเลวร้ายที่สุดของการผสมหนึ่ง ๆ คือค่าสูงสุดของผลรวม δi xi ζi ภายใต้ผลรวมของ ζ ไม่เกิน Γ และ ζ แต่ละตัวอยู่ระหว่างศูนย์ถึงหนึ่ง"
+    },
+    {
+     "s": 24.368,
+     "e": 29.067,
+     "en": "For a fixed x, that is a small linear program in zeta. Its dual is:",
+     "th": "เมื่อกำหนด x คงที่ นี่คือ linear program ขนาดเล็กในตัวแปร ζ ปัญหา"
+    },
+    {
+     "s": 29.067,
+     "e": 37.842,
+     "en": "minimize gamma times mu zero plus the sum of mu i, subject to mu zero plus mu i at least delta i x i, and all mu at least zero.",
+     "th": "dual ของมันคือ หาค่าต่ำสุดของ Γ คูณ μ0 บวกผลรวมของ μi ภายใต้ μ0 บวก μi ไม่น้อยกว่า δi xi และ μ ทุกตัวไม่น้อยกว่าศูนย์"
+    },
+    {
+     "s": 37.842,
+     "e": 43.725,
+     "en": "By weak duality, from Session 6, any feasible mu gives an upper bound on the worst case.",
+     "th": "จาก weak duality ในคาบที่ 6 μ ใด ๆ ที่เป็นไปได้ให้ขอบเขตบนของกรณีเลวร้ายที่สุด"
+    },
+    {
+     "s": 43.725,
+     "e": 54.699,
+     "en": "So if we put the mu inside our blending LP, and require the nominal sulfur plus gamma mu zero plus the sum of mu i to be at most 50, every blend that passes is safe.",
+     "th": "ดังนั้นถ้าเราใส่ μ ลงใน LP ของการผสม และกำหนดให้กำมะถันตามค่าปกติบวก Γ μ0 บวกผลรวมของ μi ไม่เกิน 50 ทุกการผสมที่ผ่านเงื่อนไขนี้จะปลอดภัย ที่จุดเหมาะสม"
+    },
+    {
+     "s": 54.699,
+     "e": 59.921,
+     "en": "At the optimum the bound is exact, by strong duality, so nothing is given away.",
+     "th": "ขอบเขตนี้เป็นค่าที่แท้จริงตาม strong duality จึงไม่เสียอะไรเพิ่ม"
+    },
+    {
+     "s": 59.921,
+     "e": 67.145,
+     "en": "The result is still a linear program, with n plus one new variables and n new rows for each uncertain constraint.",
+     "th": "ผลลัพธ์ยังคงเป็น linear program โดยมีตัวแปรใหม่ n บวกหนึ่งตัว และแถวใหม่ n แถวต่อข้อจำกัดที่ไม่แน่นอนหนึ่งข้อ"
+    },
+    {
+     "s": 67.145,
+     "e": 79.276,
+     "en": "Gamma equal to zero gives back the nominal row; gamma equal to n gives the box. For an integer gamma, the gamma largest terms delta i x i are at their worst together.",
+     "th": "Γ เท่ากับศูนย์ให้แถวตามค่าปกติกลับมา Γ เท่ากับ n ให้กล่อง เมื่อ Γ เป็นจำนวนเต็ม พจน์ δi xi ที่ใหญ่ที่สุด Γ พจน์จะแย่ที่สุดพร้อมกัน"
+    },
+    {
+     "s": 79.276,
+     "e": 81.382,
+     "en": "Gamma may also be fractional.",
+     "th": "และ Γ เป็นเศษส่วนได้ด้วย"
+    },
+    {
+     "s": 81.382,
+     "e": 92.204,
+     "en": "Bertsimas and Sim also bound the probability of violation when the errors are independent and symmetric: at most exp of minus gamma squared over two n.",
+     "th": "Bertsimas และ Sim ยังให้ขอบเขตของความน่าจะเป็นที่จะละเมิดข้อจำกัด เมื่อความคลาดเคลื่อนเป็นอิสระและสมมาตร คือไม่เกิน exp ของลบ Γ² ส่วนสอง n"
+    },
+    {
+     "s": 92.204,
+     "e": 100.961,
+     "en": "For five coefficients and gamma equal to two the bound is 0.67, far above what simulation will show. For small n, simulate.",
+     "th": "สำหรับสัมประสิทธิ์ห้าตัวและ Γ เท่ากับสอง ขอบเขตนี้เท่ากับ 0.67 ซึ่งสูงกว่าผลการจำลองมาก เมื่อ n มีค่าน้อย ให้ใช้การจำลอง"
+    },
+    {
+     "s": 100.961,
+     "e": 104.699,
+     "en": "The same steps work for any uncertainty set that is a polytope:",
+     "th": "ขั้นตอนเดียวกันใช้ได้กับเซตของความไม่แน่นอนใด ๆ ที่เป็น"
+    },
+    {
+     "s": 104.699,
+     "e": 112.408,
+     "en": "write the worst case as a linear program in the uncertain parameters, take its dual, and place the dual inside the original problem.",
+     "th": "polytope คือเขียนกรณีเลวร้ายที่สุดเป็น linear program ในพารามิเตอร์ที่ไม่แน่นอน หา dual ของมัน แล้วใส่ dual นั้นเข้าไปในปัญหาเดิม"
+    }
+   ]
+  },
+  {
+   "n": 26,
+   "file": "audio/slide-26.mp3",
+   "duration": 91.848,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.182,
+     "en": "This demo solves the robust blend for gamma from zero to five in steps of a quarter, and simulates each blend.",
+     "th": "การสาธิตนี้แก้ปัญหาการผสมแบบ robust สำหรับ Γ ตั้งแต่ศูนย์ถึงห้า ทีละหนึ่งในสี่ แล้วจำลองการผสมแต่ละแบบ"
+    },
+    {
+     "s": 7.182,
+     "e": 17.75,
+     "en": "The curve plots cost against the fraction of cargo combinations that break the limit. This is the price of robustness, the title of the Bertsimas and Sim paper.",
+     "th": "เส้นโค้งแสดงต้นทุนเทียบกับสัดส่วนของการรวมล็อตที่ละเมิดขีดจำกัด นี่คือ price of robustness ซึ่งเป็นชื่อบทความของ Bertsimas และ Sim"
+    },
+    {
+     "s": 17.75,
+     "e": 28.014,
+     "en": "At gamma equal to one, the cost rises by 1,283 dollars, 2.6 percent, and the violations fall from 49.9 to 7.6 percent.",
+     "th": "ที่ Γ เท่ากับหนึ่ง ต้นทุนเพิ่มขึ้น 1,283 ดอลลาร์ หรือ 2.6 เปอร์เซ็นต์ และการละเมิดลดลงจาก 49.9 เหลือ 7.6 เปอร์เซ็นต์ ที่ Γ"
+    },
+    {
+     "s": 28.014,
+     "e": 38.105,
+     "en": "At gamma equal to two they are about one in a thousand, at 3.9 percent extra cost. Full protection costs 4.3 percent.",
+     "th": "เท่ากับสอง การละเมิดเหลือประมาณหนึ่งในพัน โดยต้นทุนเพิ่มขึ้น 3.9 เปอร์เซ็นต์ การป้องกันเต็มรูปแบบมีต้นทุนเพิ่ม 4.3 เปอร์เซ็นต์"
+    },
+    {
+     "s": 38.105,
+     "e": 39.152,
+     "en": "Watch the bars.",
+     "th": "ดูแท่งกราฟ"
+    },
+    {
+     "s": 39.152,
+     "e": 50.868,
+     "en": "The robust blend keeps the 45 tonnes of low-sulfur residue, which is cheap and low in sulfur, and swaps cracked cycle oil for gasoil, the component with the smallest sulfur range.",
+     "th": "การผสมแบบ robust ยังคงใช้กากน้ำมันกำมะถันต่ำ 45 ตัน ซึ่งราคาถูกและมีกำมะถันต่ำ แล้วเปลี่ยน cracked cycle oil เป็น gasoil ซึ่งเป็นส่วนผสมที่มีช่วงของกำมะถันแคบที่สุด"
+    },
+    {
+     "s": 50.868,
+     "e": 60.684,
+     "en": "From gamma equal to three on, nothing changes. Only three components are in the blend, so three coefficients at their worst is already the box.",
+     "th": "ตั้งแต่ Γ เท่ากับสามขึ้นไปไม่มีอะไรเปลี่ยน เพราะการผสมมีส่วนผสมเพียงสามชนิด สัมประสิทธิ์สามตัวที่แย่ที่สุดจึงเท่ากับกล่องแล้ว"
+    },
+    {
+     "s": 60.684,
+     "e": 71.417,
+     "en": "Compare with a chance constraint. If the distribution of the sulfur contents were known well, a chance constraint at five percent would give a similar blend directly.",
+     "th": "ลองเทียบกับ chance constraint ถ้ารู้การแจกแจงของปริมาณกำมะถันได้ดี chance constraint ที่ห้าเปอร์เซ็นต์จะให้การผสมที่คล้ายกันได้โดยตรง แต่ robust row"
+    },
+    {
+     "s": 71.417,
+     "e": 76.816,
+     "en": "The robust row needs only the ranges, which is all a supplier's specification gives.",
+     "th": "ต้องการเพียงช่วงค่า ซึ่งเป็นข้อมูลทั้งหมดที่ specification ของผู้ขายให้มา"
+    },
+    {
+     "s": 76.816,
+     "e": 87.939,
+     "en": "The curve is steep at first: the first unit of gamma buys most of the protection. Choosing gamma is a business decision, and this curve is the evidence for it.",
+     "th": "เส้นโค้งชันในช่วงแรก หมายความว่า Γ หน่วยแรกซื้อการป้องกันได้เกือบทั้งหมด การเลือก Γ เป็นการตัดสินใจทางธุรกิจ และเส้นโค้งนี้คือหลักฐานประกอบการตัดสินใจ"
+    },
+    {
+     "s": 87.939,
+     "e": 91.763,
+     "en": "Press D for the robust LP and the simulation in Python.",
+     "th": "กด D เพื่อดู LP แบบ robust และการจำลองใน Python"
+    }
+   ]
+  },
+  {
+   "n": 27,
+   "file": "audio/slide-27.mp3",
+   "duration": 133.032,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.55,
+     "en": "Now we can close the question that Session 11 left open: the batch profile when k two is uncertain.",
+     "th": "ตอนนี้เราตอบคำถามที่คาบที่ 11 ทิ้งไว้ได้แล้ว คือโปรไฟล์ของเครื่องปฏิกรณ์แบบกะเมื่อ k2 ไม่แน่นอน"
+    },
+    {
+     "s": 6.55,
+     "e": 20.063,
+     "en": "Suppose a fit, as in Session 10, gives k two with a standard error of ten percent. Take the k two factor as lognormal and cut its distribution into seven bins of equal probability.",
+     "th": "สมมติว่าการ fit แบบในคาบที่ 10 ให้ k2 ที่มี standard error สิบเปอร์เซ็นต์ ให้ตัวคูณของ k2 มีการแจกแจงแบบ lognormal แล้วแบ่งการแจกแจงเป็นเจ็ดช่วงที่มีความน่าจะเป็นเท่ากัน"
+    },
+    {
+     "s": 20.063,
+     "e": 25.961,
+     "en": "The centers of the bins, from 0.86 to 1.16, are seven equally likely scenarios.",
+     "th": "ค่ากลางของแต่ละช่วง ตั้งแต่ 0.86 ถึง 1.16 คือ scenario เจ็ดตัวที่มีโอกาสเท่ากัน"
+    },
+    {
+     "s": 25.961,
+     "e": 39.645,
+     "en": "Three profiles of ten temperatures each are compared. The nominal profile is optimized for the factor one. The stochastic profile maximizes the mean of x two over the seven scenarios.",
+     "th": "เปรียบเทียบโปรไฟล์สามแบบ ซึ่งแต่ละแบบมีอุณหภูมิสิบค่า โปรไฟล์ตามค่าปกติหาค่าเหมาะสมที่ตัวคูณเท่ากับหนึ่ง โปรไฟล์แบบ stochastic ทำให้ค่าเฉลี่ยของ x2 ใน scenario ทั้งเจ็ดสูงที่สุด และโปรไฟล์แบบ"
+    },
+    {
+     "s": 39.645,
+     "e": 43.289,
+     "en": "The max-min profile maximizes the worst scenario.",
+     "th": "max-min ทำให้ scenario ที่แย่ที่สุดดีที่สุด"
+    },
+    {
+     "s": 43.289,
+     "e": 53.046,
+     "en": "The stochastic profile is the nominal profile: their mean yields agree to five digits, so the value of the stochastic solution is essentially zero.",
+     "th": "โปรไฟล์แบบ stochastic ก็คือโปรไฟล์ตามค่าปกติ ค่าเฉลี่ยของผลได้ตรงกันถึงห้าหลัก value of the stochastic solution จึงแทบเป็นศูนย์"
+    },
+    {
+     "s": 53.046,
+     "e": 56.145,
+     "en": "This is the flat optimum from Session 11 again.",
+     "th": "นี่คือ optimum ที่แบนของคาบที่ 11 อีกครั้ง"
+    },
+    {
+     "s": 56.145,
+     "e": 69.289,
+     "en": "The max-min profile runs about two kelvin cooler throughout. It raises the worst x two by 0.0007 and lowers the mean by 0.0006: a small trade either way.",
+     "th": "โปรไฟล์แบบ max-min ใช้อุณหภูมิต่ำกว่าประมาณสองเคลวินตลอดทั้งกะ เพิ่ม x2 ในกรณีที่แย่ที่สุด 0.0007 และลดค่าเฉลี่ยลง 0.0006 ซึ่งเป็นการแลกเปลี่ยนเล็กน้อยทั้งสองทาง"
+    },
+    {
+     "s": 69.289,
+     "e": 79.421,
+     "en": "Why is the loss so small while the prediction moves so much? At an optimum the derivative of the yield with respect to the profile is zero.",
+     "th": "ทำไมการสูญเสียจึงน้อย ขณะที่ค่าทำนายเปลี่ยนไปมาก ที่จุดเหมาะสม อนุพันธ์ของผลได้เทียบกับโปรไฟล์เป็นศูนย์"
+    },
+    {
+     "s": 79.421,
+     "e": 91.072,
+     "en": "So a profile that is slightly wrong loses yield only in second order, while the yield itself changes in first order with k two. Session 11 saw the same numbers:",
+     "th": "ดังนั้นโปรไฟล์ที่ผิดไปเล็กน้อยจะเสียผลได้เพียงในอันดับที่สอง ขณะที่ผลได้เองเปลี่ยนในอันดับที่หนึ่งตาม k2 คาบที่ 11 เห็นตัวเลขแบบเดียวกัน คือสูญเสีย"
+    },
+    {
+     "s": 91.072,
+     "e": 94.908,
+     "en": "a loss of 0.0003 against a prediction error of 0.008.",
+     "th": "0.0003 เทียบกับความคลาดเคลื่อนของการทำนาย 0.008"
+    },
+    {
+     "s": 94.908,
+     "e": 106.24,
+     "en": "What is not small is the spread. Across the seven scenarios, x two ranges from 0.597 to 0.622, and no profile changes that much.",
+     "th": "สิ่งที่ไม่เล็กคือความกระจาย ใน scenario ทั้งเจ็ด x2 มีค่าตั้งแต่ 0.597 ถึง 0.622 และไม่มีโปรไฟล์ใดเปลี่ยนช่วงนี้ได้มาก"
+    },
+    {
+     "s": 106.24,
+     "e": 116.342,
+     "en": "Notice also that the mean, 0.6098, is below the nominal prediction, 0.6101: the flaw of averages again, small here.",
+     "th": "สังเกตด้วยว่าค่าเฉลี่ย 0.6098 ต่ำกว่าค่าที่ทำนายตามค่าปกติ 0.6101 ซึ่งเป็น flaw of averages อีกครั้ง แม้จะเล็กในกรณีนี้"
+    },
+    {
+     "s": 116.342,
+     "e": 125.725,
+     "en": "So the advice for the plant is: keep the profile, report the yield as a range, and if the range matters downstream, estimate k two better.",
+     "th": "ดังนั้นคำแนะนำสำหรับโรงงานคือ ใช้โปรไฟล์เดิม รายงานผลได้เป็นช่วง และถ้าช่วงนี้มีผลต่อขั้นตอนถัดไป ให้ประมาณค่า k2 ให้ดีขึ้น"
+    },
+    {
+     "s": 125.725,
+     "e": 132.947,
+     "en": "Sometimes the decision is robust already and the prediction is not. Press D to run the three optimizations.",
+     "th": "บางครั้งการตัดสินใจนั้น robust อยู่แล้ว แต่การทำนายยังไม่ robust กด D เพื่อรันการหาค่าเหมาะสมทั้งสามแบบ"
+    }
+   ]
+  },
+  {
+   "n": 28,
+   "file": "audio/slide-28.mp3",
+   "duration": 95.472,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.592,
+     "en": "Which formulation fits which question? The table summarizes.",
+     "th": "formulation แบบใดเหมาะกับคำถามแบบใด ตารางนี้สรุปไว้"
+    },
+    {
+     "s": 5.592,
+     "e": 11.537,
+     "en": "The mean-value model needs only point estimates and gives one plan with an optimistic forecast.",
+     "th": "โมเดลค่าเฉลี่ยต้องการเพียงค่าประมาณแบบจุด และให้แผนเดียวพร้อมค่าพยากรณ์ที่สูงเกินจริง"
+    },
+    {
+     "s": 11.537,
+     "e": 18.039,
+     "en": "Use it when the value of the stochastic solution has been checked and is small, as for the batch profile.",
+     "th": "ใช้ได้เมื่อตรวจ value of the stochastic solution แล้วพบว่ามีค่าน้อย เช่นกรณีโปรไฟล์ของเครื่องปฏิกรณ์แบบกะ"
+    },
+    {
+     "s": 18.039,
+     "e": 26.872,
+     "en": "The two-stage stochastic program needs scenarios with probabilities and gives the best average with recourse, plus V S S and E V P I.",
+     "th": "two-stage stochastic program ต้องการ scenario พร้อมความน่าจะเป็น และให้ค่าเฉลี่ยที่ดีที่สุดเมื่อมี recourse พร้อมทั้ง VSS และ EVPI"
+    },
+    {
+     "s": 26.872,
+     "e": 31.487,
+     "en": "It suits money over many repetitions, when later decisions can repair.",
+     "th": "เหมาะกับเรื่องเงินที่เกิดซ้ำหลายครั้ง และเมื่อการตัดสินใจภายหลังแก้ไขได้"
+    },
+    {
+     "s": 31.487,
+     "e": 42.776,
+     "en": "Adding C-VaR uses the same data and gives a trade-off between the mean and the bad cases. It suits one-off investments, or any case where losses hurt more than gains help.",
+     "th": "การเพิ่ม CVaR ใช้ข้อมูลชุดเดิม และให้การแลกเปลี่ยนระหว่างค่าเฉลี่ยกับกรณีที่แย่ เหมาะกับการลงทุนครั้งเดียว หรือกรณีที่การขาดทุนส่งผลมากกว่าการได้กำไร"
+    },
+    {
+     "s": 42.776,
+     "e": 50.811,
+     "en": "A chance constraint needs a distribution of the uncertain data and gives limits that hold with probability one minus epsilon.",
+     "th": "chance constraint ต้องการการแจกแจงของข้อมูลที่ไม่แน่นอน และให้ข้อจำกัดที่เป็นจริงด้วยความน่าจะเป็นหนึ่งลบ ε"
+    },
+    {
+     "s": 50.811,
+     "e": 55.658,
+     "en": "It suits quality and soft operating limits, where a rare break is tolerated.",
+     "th": "เหมาะกับข้อจำกัดด้านคุณภาพและข้อจำกัดการเดินเครื่องแบบไม่เข้มงวด ที่ยอมให้ละเมิดได้นาน ๆ ครั้ง"
+    },
+    {
+     "s": 55.658,
+     "e": 66.908,
+     "en": "A robust model needs only an uncertainty set and gives feasibility for every value in it. It suits hard limits, little data, and ranges taken from specifications.",
+     "th": "โมเดลแบบ robust ต้องการเพียงเซตของความไม่แน่นอน และให้คำตอบที่เป็นไปได้สำหรับทุกค่าในเซต เหมาะกับข้อจำกัดที่เข้มงวด ข้อมูลน้อย และช่วงค่าที่ได้จาก specification"
+    },
+    {
+     "s": 66.908,
+     "e": 78.238,
+     "en": "Between stochastic and robust sits distributionally robust optimization: the worst expected value over a family of distributions close to the data. And the approaches combine:",
+     "th": "ระหว่าง stochastic กับ robust มี distributionally robust optimization ซึ่งใช้ค่าคาดหวังที่แย่ที่สุดบนกลุ่มของการแจกแจงที่ใกล้เคียงกับข้อมูล และวิธีเหล่านี้ใช้ร่วมกันได้"
+    },
+    {
+     "s": 78.238,
+     "e": 83.645,
+     "en": "a two-stage model with a chance constraint, or robust rows inside a stochastic plan.",
+     "th": "เช่น โมเดลสองขั้นที่มี chance constraint หรือ robust row ภายในแผนแบบ stochastic"
+    },
+    {
+     "s": 83.645,
+     "e": 86.058,
+     "en": "A practical sequence for a new problem:",
+     "th": "ลำดับที่ใช้ได้จริงสำหรับปัญหาใหม่คือ"
+    },
+    {
+     "s": 86.058,
+     "e": 95.408,
+     "en": "solve the deterministic model, compute E E V and V S S with a handful of scenarios, and only then decide which of these formulations the decision deserves.",
+     "th": "แก้โมเดลแบบ deterministic คำนวณ EEV และ VSS ด้วย scenario จำนวนไม่มาก แล้วจึงตัดสินว่าการตัดสินใจนี้ควรใช้ formulation แบบใด"
+    }
+   ]
+  },
+  {
+   "n": 29,
+   "file": "audio/slide-29.mp3",
+   "duration": 29.16,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.761,
+     "en": "Third check: robust rows and robust answers.",
+     "th": "แบบตรวจครั้งที่สาม เรื่อง robust row และคำตอบที่ robust"
+    },
+    {
+     "s": 3.761,
+     "e": 11.715,
+     "en": "Explain why the nominal blend fails about half the time, why gamma above three changes nothing here, write a box counterpart for two coefficients,",
+     "th": "อธิบายว่าทำไมการผสมตามค่าปกติจึงล้มเหลวประมาณครึ่งหนึ่ง ทำไม Γ ที่มากกว่าสามจึงไม่เปลี่ยนอะไรในที่นี้ เขียน box counterpart สำหรับสัมประสิทธิ์สองตัว"
+    },
+    {
+     "s": 11.715,
+     "e": 14.961,
+     "en": "and say what you would tell the plant about the batch yield.",
+     "th": "และบอกว่าคุณจะแจ้งโรงงานอย่างไรเกี่ยวกับผลได้ของกะ"
+    },
+    {
+     "s": 14.961,
+     "e": 22.697,
+     "en": "For question two, look back at the bars of the robust blend; for question four, think about who downstream depends on the yield.",
+     "th": "สำหรับข้อสอง ให้ดูแท่งกราฟของการผสมแบบ robust อีกครั้ง สำหรับข้อสี่ ให้คิดว่าใครในขั้นตอนถัดไปต้องพึ่งพาผลได้นี้"
+    },
+    {
+     "s": 22.697,
+     "e": 29.105,
+     "en": "Take five minutes. Pause the narration now, and press Show answers when you are done.",
+     "th": "ใช้เวลาห้านาที หยุดเสียงบรรยายตอนนี้ และกด Show answers เมื่อทำเสร็จ"
+    }
+   ]
+  },
+  {
+   "n": 30,
+   "file": "audio/slide-30.mp3",
+   "duration": 73.608,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.247,
+     "en": "A word on tools.",
+     "th": "พูดถึงเครื่องมือสักเล็กน้อย"
+    },
+    {
+     "s": 2.247,
+     "e": 10.216,
+     "en": "Everything today used SciPy's linprog with HiGHS: extensive forms, C-VaR rows and robust counterparts written by hand.",
+     "th": "ทุกอย่างในวันนี้ใช้ linprog ของ SciPy กับ HiGHS ได้แก่ extensive form แถวของ CVaR และ robust counterpart ที่เขียนเอง"
+    },
+    {
+     "s": 10.216,
+     "e": 15.105,
+     "en": "That is enough for small and medium problems, and it is what Lab 12 uses.",
+     "th": "ซึ่งเพียงพอสำหรับปัญหาขนาดเล็กและขนาดกลาง และเป็นสิ่งที่ Lab 12 ใช้"
+    },
+    {
+     "s": 15.105,
+     "e": 25.992,
+     "en": "For large scenario problems, Pyomo with M P I S P P Y builds the stochastic program from a deterministic model and solves it by progressive hedging and bounding methods in parallel;",
+     "th": "สำหรับปัญหาที่มี scenario จำนวนมาก Pyomo ร่วมกับ mpi-sppy สร้าง stochastic program จากโมเดลแบบ deterministic และแก้ด้วย progressive hedging กับวิธีหาขอบเขตแบบขนาน"
+    },
+    {
+     "s": 25.992,
+     "e": 28.026,
+     "en": "Knueven and coauthors describe it.",
+     "th": "ซึ่ง Knueven และคณะอธิบายไว้"
+    },
+    {
+     "s": 28.026,
+     "e": 37.039,
+     "en": "C V X P Y models convex problems, including C-VaR, ellipsoidal robust rows and Gaussian chance constraints, as cone constraints.",
+     "th": "CVXPY สร้างโมเดลของปัญหา convex รวมทั้ง CVaR, robust row แบบวงรี และ chance constraint แบบ Gaussian ในรูปข้อจำกัดแบบ cone"
+    },
+    {
+     "s": 37.039,
+     "e": 44.636,
+     "en": "RSOME, from Chen, Sim and Xiong, writes robust and distributionally robust models in a NumPy-like syntax.",
+     "th": "RSOME ของ Chen, Sim และ Xiong ใช้เขียนโมเดลแบบ robust และ distributionally robust ด้วยไวยากรณ์คล้าย NumPy"
+    },
+    {
+     "s": 44.636,
+     "e": 53.237,
+     "en": "And S D D P dot j l, in Julia, solves multistage stochastic programs with long horizons, such as reservoirs and storage.",
+     "th": "และ SDDP.jl ในภาษา Julia แก้ stochastic program แบบหลายขั้นที่มี horizon ยาว เช่น อ่างเก็บน้ำและระบบกักเก็บพลังงาน"
+    },
+    {
+     "s": 53.237,
+     "e": 62.487,
+     "en": "Whatever the tool: write the deterministic model first and check it, then add scenarios, and evaluate the decision on scenarios that were not used to choose it.",
+     "th": "ไม่ว่าจะใช้เครื่องมือใด ให้เขียนโมเดลแบบ deterministic ก่อนแล้วตรวจสอบ จากนั้นจึงเพิ่ม scenario และประเมินการตัดสินใจด้วย scenario ที่ไม่ได้ใช้ในการเลือกการตัดสินใจนั้น"
+    },
+    {
+     "s": 62.487,
+     "e": 73.539,
+     "en": "Commercial modeling systems, such as GAMS and AIMMS, also have stochastic extensions, and most solvers accept the extensive form directly as an ordinary LP or MILP.",
+     "th": "ระบบสร้างโมเดลเชิงพาณิชย์ เช่น GAMS และ AIMMS ก็มีส่วนขยายสำหรับปัญหา stochastic และ solver ส่วนใหญ่รับ extensive form ได้โดยตรงในรูป LP หรือ MILP ธรรมดา"
+    }
+   ]
+  },
+  {
+   "n": 31,
+   "file": "audio/slide-31.mp3",
+   "duration": 78.72,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.461,
+     "en": "A result under uncertainty is only useful if the reader can check it. Here is what a report must state.",
+     "th": "ผลลัพธ์ภายใต้ความไม่แน่นอนจะมีประโยชน์ก็ต่อเมื่อผู้อ่านตรวจสอบได้ นี่คือสิ่งที่รายงานต้องระบุ"
+    },
+    {
+     "s": 7.461,
+     "e": 16.764,
+     "en": "The uncertain inputs, their distributions or sets, and where they came from. Which correlations were kept, and why the others can be ignored.",
+     "th": "ข้อมูลนำเข้าที่ไม่แน่นอน การแจกแจงหรือเซตของมัน และแหล่งที่มา สหสัมพันธ์ใดที่เก็บไว้และทำไมจึงละเลยตัวอื่นได้ scenario"
+    },
+    {
+     "s": 16.764,
+     "e": 23.053,
+     "en": "How the scenarios were made, how many, and whether the decision is stable when they are redrawn.",
+     "th": "สร้างขึ้นอย่างไร มีจำนวนเท่าใด และการตัดสินใจคงที่หรือไม่เมื่อสุ่ม scenario ใหม่"
+    },
+    {
+     "s": 23.053,
+     "e": 34.944,
+     "en": "The decision evaluated on a large fresh sample, not on the scenarios that chose it. V S S and E V P I, or the cost of robustness, to show that the formulation mattered.",
+     "th": "การตัดสินใจที่ประเมินด้วยตัวอย่างชุดใหม่ขนาดใหญ่ ไม่ใช่ด้วย scenario ที่ใช้เลือก VSS และ EVPI หรือต้นทุนของความ robust เพื่อแสดงว่า formulation มีผล"
+    },
+    {
+     "s": 34.944,
+     "e": 44.513,
+     "en": "The risk settings, alpha, beta, epsilon or gamma, and how the decision changes with them. And the spread of outcomes, not only the mean.",
+     "th": "ค่าตั้งของความเสี่ยง คือ α, β, ε หรือ Γ และการตัดสินใจเปลี่ยนไปอย่างไรตามค่าเหล่านั้น และความกระจายของผลลัพธ์ ไม่ใช่เพียงค่าเฉลี่ย"
+    },
+    {
+     "s": 44.513,
+     "e": 49.626,
+     "en": "The panel shows one paragraph that does this for the capacity example of part two.",
+     "th": "กรอบด้านขวาแสดงย่อหน้าหนึ่งที่ทำเช่นนี้สำหรับตัวอย่างกำลังการผลิตในส่วนที่สอง"
+    },
+    {
+     "s": 49.626,
+     "e": 61.331,
+     "en": "It gives the sample size and distribution, the stability of the decision, the expected profit over the whole distribution, a bad-day percentile, and the comparison with the mean-value plan,",
+     "th": "ซึ่งระบุขนาดตัวอย่างและการแจกแจง ความคงที่ของการตัดสินใจ กำไรคาดหวังบนการแจกแจงทั้งหมด เปอร์เซ็นไทล์ของวันที่แย่ และการเปรียบเทียบกับแผนตามค่าเฉลี่ย"
+    },
+    {
+     "s": 61.331,
+     "e": 64.658,
+     "en": "which loses more than 3,900 dollars on one day in ten.",
+     "th": "ซึ่งขาดทุนมากกว่า 3,900 ดอลลาร์ในหนึ่งวันของทุกสิบวัน"
+    },
+    {
+     "s": 64.658,
+     "e": 69.724,
+     "en": "Every number in it can be checked, and none of them is the in-sample objective.",
+     "th": "ตัวเลขทุกตัวในย่อหน้านั้นตรวจสอบได้ และไม่มีตัวใดเป็นค่าฟังก์ชันเป้าหมายแบบ in-sample"
+    },
+    {
+     "s": 69.724,
+     "e": 78.645,
+     "en": "The same standard applies to your project report and to anything you present to a plant: state the uncertainty, show that the method mattered, and give the range.",
+     "th": "มาตรฐานเดียวกันนี้ใช้กับรายงานโครงงานของคุณและทุกสิ่งที่นำเสนอต่อโรงงาน คือระบุความไม่แน่นอน แสดงว่าวิธีที่ใช้มีผล และให้ช่วงของผลลัพธ์"
+    }
+   ]
+  },
+  {
+   "n": 32,
+   "file": "audio/slide-32.mp3",
+   "duration": 34.488,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.379,
+     "en": "Last check: choosing a formulation and judging a result.",
+     "th": "แบบตรวจครั้งสุดท้าย เรื่องการเลือก formulation และการประเมินผลลัพธ์"
+    },
+    {
+     "s": 4.379,
+     "e": 13.411,
+     "en": "Decide what to do with an unstable S A A plan, whether 95 good scenarios out of 100 guarantee a probability, which approach fits three process decisions,",
+     "th": "ตัดสินว่าจะทำอย่างไรกับแผนจาก SAA ที่ไม่คงที่ scenario ที่ดี 95 ตัวจาก 100 ตัวรับประกันความน่าจะเป็นได้หรือไม่ วิธีใดเหมาะกับการตัดสินใจในกระบวนการสามแบบ"
+    },
+    {
+     "s": 13.411,
+     "e": 17.868,
+     "en": "and which numbers to ask for in a report that shows only an expected profit.",
+     "th": "และควรขอตัวเลขใดเพิ่มจากรายงานที่แสดงเพียงกำไรคาดหวัง"
+    },
+    {
+     "s": 17.868,
+     "e": 28.013,
+     "en": "For question two, estimate the standard error of a proportion from 100 samples: the square root of 0.95 times 0.05 over 100.",
+     "th": "สำหรับข้อสอง ให้ประมาณ standard error ของสัดส่วนจากตัวอย่าง 100 ค่า คือรากที่สองของ 0.95 คูณ 0.05 หารด้วย 100"
+    },
+    {
+     "s": 28.013,
+     "e": 34.421,
+     "en": "Take five minutes. Pause the narration now, and press Show answers when you are done.",
+     "th": "ใช้เวลาห้านาที หยุดเสียงบรรยายตอนนี้ และกด Show answers เมื่อทำเสร็จ"
+    }
+   ]
+  },
+  {
+   "n": 33,
+   "file": "audio/slide-33.mp3",
+   "duration": 40.728,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.353,
+     "en": "Where does this go next?",
+     "th": "เนื้อหานี้จะไปต่อที่ไหน"
+    },
+    {
+     "s": 2.353,
+     "e": 15.447,
+     "en": "Session 13 is about multi-objective and nonconvex problems. You have already seen two-objective fronts today: expected profit against C-VaR, and blend cost against the violation probability.",
+     "th": "คาบที่ 13 ว่าด้วยปัญหาหลายเป้าหมายและปัญหา nonconvex วันนี้คุณได้เห็นแนวหน้าของสองเป้าหมายแล้ว คือกำไรคาดหวังเทียบกับ CVaR และต้นทุนการผสมเทียบกับความน่าจะเป็นที่จะละเมิดข้อจำกัด"
+    },
+    {
+     "s": 15.447,
+     "e": 26.382,
+     "en": "Session 14, Bayesian optimization, treats each evaluation as a noisy and expensive experiment, and uses a model of its own uncertainty to decide where to sample next.",
+     "th": "คาบที่ 14 Bayesian optimization มองการประเมินแต่ละครั้งว่าเป็นการทดลองที่มีสัญญาณรบกวนและมีราคาแพง และใช้โมเดลของความไม่แน่นอนของตัวมันเองในการตัดสินใจว่าจะสุ่มวัดที่ไหนต่อ"
+    },
+    {
+     "s": 26.382,
+     "e": 31.276,
+     "en": "Session 15 is project work, where these ideas meet your own model.",
+     "th": "คาบที่ 15 เป็นการทำโครงงาน ซึ่งแนวคิดเหล่านี้จะมาพบกับโมเดลของคุณเอง"
+    },
+    {
+     "s": 31.276,
+     "e": 40.658,
+     "en": "And for your project: name the uncertain inputs, check V S S before you build a stochastic model, and report the spread of the outcome, not only its mean.",
+     "th": "และสำหรับโครงงานของคุณ ให้ระบุข้อมูลนำเข้าที่ไม่แน่นอน ตรวจ VSS ก่อนสร้างโมเดล stochastic และรายงานความกระจายของผลลัพธ์ ไม่ใช่เพียงค่าเฉลี่ย"
+    }
+   ]
+  },
+  {
+   "n": 34,
+   "file": "audio/slide-34.mp3",
+   "duration": 53.04,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.958,
+     "en": "Lab 12 takes about forty minutes and runs entirely in the browser.",
+     "th": "Lab 12 ใช้เวลาประมาณสี่สิบนาที และทำงานในเบราว์เซอร์ทั้งหมด"
+    },
+    {
+     "s": 4.958,
+     "e": 11.756,
+     "en": "Part A sizes a dedicated line and a flexible line for two products whose demands move in opposite directions.",
+     "th": "ส่วน A กำหนดขนาดของสายการผลิตเฉพาะและสายการผลิตแบบยืดหยุ่นสำหรับผลิตภัณฑ์สองชนิดที่ demand"
+    },
+    {
+     "s": 11.756,
+     "e": 17.75,
+     "en": "You will compute the mean-value plan by hand, then E E V, the stochastic plan, V S S and E V P I.",
+     "th": "เปลี่ยนไปในทิศทางตรงข้ามกัน คุณจะคำนวณแผนตามค่าเฉลี่ยด้วยมือ แล้วหา EEV แผนแบบ stochastic VSS และ EVPI"
+    },
+    {
+     "s": 17.75,
+     "e": 28.184,
+     "en": "Part B adds a C-VaR term and asks what protection in the worst ten percent costs. Part C blends a low-sulfur fuel oil when the sulfur of one cargo is uncertain:",
+     "th": "ส่วน B เพิ่ม CVaR และถามว่าการป้องกันสิบเปอร์เซ็นต์ที่แย่ที่สุดมีต้นทุนเท่าใด ส่วน C ผสมน้ำมันเตากำมะถันต่ำเมื่อกำมะถันของน้ำมันล็อตหนึ่งไม่แน่นอน"
+    },
+    {
+     "s": 28.184,
+     "e": 35.184,
+     "en": "nominal, chance-constrained and robust. Part D asks you to explain your recommendation to the plant manager.",
+     "th": "ทั้งแบบค่าปกติ แบบ chance-constrained และแบบ robust ส่วน D ให้คุณอธิบายข้อเสนอแนะต่อผู้จัดการโรงงาน"
+    },
+    {
+     "s": 35.184,
+     "e": 43.039,
+     "en": "Scan the code or open the link. Write each prediction before you look; the next step stays locked until you do.",
+     "th": "สแกนโค้ดหรือเปิดลิงก์ เขียนคำทำนายของแต่ละข้อก่อนดูคำตอบ ขั้นต่อไปจะยังล็อกอยู่จนกว่าคุณจะทำ"
+    },
+    {
+     "s": 43.039,
+     "e": 46.092,
+     "en": "Pause the narration now and do the lab.",
+     "th": "หยุดเสียงบรรยายตอนนี้และทำ lab"
+    },
+    {
+     "s": 46.092,
+     "e": 52.974,
+     "en": "The lab checks your numbers as you go and shows the expected value after two tries, so you can always continue.",
+     "th": "lab จะตรวจตัวเลขของคุณไปทีละขั้น และแสดงค่าที่ถูกต้องหลังจากลองสองครั้ง คุณจึงทำต่อได้เสมอ"
+    }
+   ]
+  },
+  {
+   "n": 35,
+   "file": "audio/slide-35.mp3",
+   "duration": 74.976,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.761,
+     "en": "Here is what to take from today.",
+     "th": "นี่คือสิ่งที่ควรนำไปจากวันนี้"
+    },
+    {
+     "s": 2.761,
+     "e": 7.882,
+     "en": "Fix what must be fixed now, and let the recourse decisions depend on the data.",
+     "th": "กำหนดสิ่งที่ต้องกำหนดตอนนี้ และให้การตัดสินใจแบบ recourse ขึ้นกับข้อมูล"
+    },
+    {
+     "s": 7.882,
+     "e": 19.572,
+     "en": "A model run at the mean data forecasts too well. E E V shows by how much, V S S what the stochastic model is worth, and E V P I what a forecast can be worth.",
+     "th": "โมเดลที่ใช้ข้อมูลค่าเฉลี่ยจะพยากรณ์ดีเกินจริง EEV แสดงว่าเกินเท่าใด VSS แสดงมูลค่าของโมเดล stochastic และ EVPI แสดงมูลค่าสูงสุดของการพยากรณ์"
+    },
+    {
+     "s": 19.572,
+     "e": 30.079,
+     "en": "In the capacity example the mean-value plan built 98 tonnes per day, the stochastic plan 40, with V S S 870 and E V P I 4,350 dollars per day.",
+     "th": "ในตัวอย่างกำลังการผลิต แผนตามค่าเฉลี่ยสร้าง 98 ตันต่อวัน แผนแบบ stochastic สร้าง 40 โดยมี VSS 870 และ EVPI 4,350 ดอลลาร์ต่อวัน"
+    },
+    {
+     "s": 30.079,
+     "e": 38.711,
+     "en": "Scenarios are data. Check their spread and correlation, test the decision out of sample, and increase N until it settles.",
+     "th": "scenario คือข้อมูล ต้องตรวจความกระจายและสหสัมพันธ์ ทดสอบการตัดสินใจกับข้อมูลนอกตัวอย่าง และเพิ่ม N จนกว่าการตัดสินใจจะนิ่ง"
+    },
+    {
+     "s": 38.711,
+     "e": 41.299,
+     "en": "Risk is a choice that must be stated.",
+     "th": "ความเสี่ยงเป็นทางเลือกที่ต้องระบุ"
+    },
+    {
+     "s": 41.299,
+     "e": 49.13,
+     "en": "The capacity example traded about 860 dollars per day of expected profit for about 5,100 in the worst ten percent,",
+     "th": "ตัวอย่างกำลังการผลิตแลกกำไรคาดหวังประมาณ 860 ดอลลาร์ต่อวัน กับค่าเฉลี่ยของสิบเปอร์เซ็นต์ที่แย่ที่สุดที่ดีขึ้นประมาณ"
+    },
+    {
+     "s": 49.13,
+     "e": 55.395,
+     "en": "and the tank setpoint for five percent violations sat four centimeters below the worst case.",
+     "th": "5,100 และ setpoint ของถังสำหรับการละเมิดห้าเปอร์เซ็นต์อยู่ต่ำกว่ากรณีเลวร้ายที่สุดสี่เซนติเมตร"
+    },
+    {
+     "s": 55.395,
+     "e": 66.421,
+     "en": "C-VaR, chance constraints and robust rows keep the problem a linear or cone program. Each has a knob, beta, epsilon or gamma, that must be reported.",
+     "th": "CVaR, chance constraint และ robust row ทำให้ปัญหายังคงเป็น linear program หรือ cone program แต่ละแบบมีตัวปรับ คือ β, ε หรือ Γ ที่ต้องรายงาน"
+    },
+    {
+     "s": 66.421,
+     "e": 74.908,
+     "en": "And sometimes, as for the batch reactor, the decision is robust already and the prediction is not. Then report the range.",
+     "th": "และบางครั้ง เช่นในกรณีเครื่องปฏิกรณ์แบบกะ การตัดสินใจนั้น robust อยู่แล้ว แต่การทำนายยังไม่ใช่ ให้รายงานเป็นช่วง"
+    }
+   ]
+  },
+  {
+   "n": 36,
+   "file": "audio/slide-36.mp3",
+   "duration": 38.496,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.984,
+     "en": "Before the next session, finish Lab 12 if you did not finish in class.",
+     "th": "ก่อนคาบถัดไป ทำ Lab 12 ให้เสร็จถ้ายังทำในชั้นเรียนไม่เสร็จ"
+    },
+    {
+     "s": 4.984,
+     "e": 11.224,
+     "en": "Keep your card: Session 13 puts two objectives on it, and looks for more than one local optimum.",
+     "th": "เก็บการ์ดของคุณไว้ คาบที่ 13 จะใส่สองเป้าหมายลงในการ์ด และหา local optimum มากกว่าหนึ่งจุด"
+    },
+    {
+     "s": 11.224,
+     "e": 23.535,
+     "en": "For reading, take Birge and Louveaux, Introduction to Stochastic Programming, chapters 1 and 4, or the review by Sahinidis in Computers and Chemical Engineering, 2004. Optional:",
+     "th": "สำหรับการอ่าน ให้อ่าน Birge และ Louveaux หนังสือ Introduction to Stochastic Programming บทที่ 1 และ 4 หรือบทความปริทัศน์ของ Sahinidis ใน Computers and Chemical Engineering ปี 2004 ส่วนที่ไม่บังคับคือ"
+    },
+    {
+     "s": 23.535,
+     "e": 29.276,
+     "en": "Bertsimas and Sim on the price of robustness, and Rockafellar and Uryasev on C-VaR.",
+     "th": "Bertsimas และ Sim เรื่อง price of robustness และ Rockafellar กับ Uryasev เรื่อง CVaR"
+    },
+    {
+     "s": 29.276,
+     "e": 38.421,
+     "en": "Chapter 4 is short and contains the proofs behind E V P I and V S S; the Sahinidis review places these methods in process systems engineering.",
+     "th": "บทที่ 4 สั้นและมีบทพิสูจน์ที่อยู่เบื้องหลัง EVPI และ VSS ส่วนบทความปริทัศน์ของ Sahinidis วางวิธีเหล่านี้ไว้ในบริบทของ process systems engineering"
+    }
+   ]
+  },
+  {
+   "n": 37,
+   "file": "audio/slide-37.mp3",
+   "duration": 26.88,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.511,
+     "en": "To finish, open the Exit Ticket with the code, choose Session 12, and paste the answers that the lab page copies for you.",
+     "th": "สุดท้าย เปิด Exit Ticket ด้วยโค้ด เลือก Session 12 แล้ววางคำตอบที่หน้า lab คัดลอกไว้ให้"
+    },
+    {
+     "s": 7.511,
+     "e": 17.684,
+     "en": "Then answer the feedback questions: pace, confidence, how far you got in the lab, and what is still unclear. If you studied on your own, choose On my own.",
+     "th": "จากนั้นตอบคำถาม feedback เรื่องความเร็ว ความมั่นใจ ความคืบหน้าใน lab และสิ่งที่ยังไม่ชัดเจน ถ้าเรียนเอง ให้เลือก On my own"
+    },
+    {
+     "s": 17.684,
+     "e": 23.368,
+     "en": "Your answers are how the next session is adjusted, so short, honest answers help most.",
+     "th": "คำตอบของคุณใช้ปรับคาบถัดไป คำตอบสั้น ๆ ที่ตรงไปตรงมาจึงช่วยได้มากที่สุด"
+    },
+    {
+     "s": 23.368,
+     "e": 26.816,
+     "en": "Thank you, and see you in Session 13.",
+     "th": "ขอบคุณ แล้วพบกันในคาบที่ 13"
+    }
+   ]
+  }
+ ]
+}
