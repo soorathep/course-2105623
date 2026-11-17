@@ -1,0 +1,2501 @@
+{
+ "voice": "en-US-GuyNeural",
+ "rate": "-5%",
+ "provider": "Microsoft Edge neural speech (edge-tts)",
+ "synthetic_voice": true,
+ "total_seconds": 2872.1,
+ "slides": [
+  {
+   "n": 1,
+   "file": "audio/slide-01.mp3",
+   "duration": 57.888,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.932,
+     "en": "Welcome to Session 14 of Optimization of Chemical Processes.",
+     "th": "ยินดีต้อนรับสู่คาบที่ 14 ของวิชา Optimization of Chemical Processes"
+    },
+    {
+     "s": 4.932,
+     "e": 12.026,
+     "en": "Today has two topics with one theme: decisions made from few, expensive or unreliable pieces of evidence.",
+     "th": "วันนี้มีสองหัวข้อที่มีแก่นเดียวกัน คือการตัดสินใจจากหลักฐานที่มีน้อย มีราคาแพง หรือเชื่อถือได้ไม่เต็มที่"
+    },
+    {
+     "s": 12.026,
+     "e": 24.684,
+     "en": "The first is Bayesian optimization, B O for short. It is a way to choose the next experiment when each evaluation of the objective costs a day of reactor time, or hours of simulation.",
+     "th": "หัวข้อแรกคือ Bayesian optimization หรือ BO เป็นวิธีเลือกการทดลองครั้งถัดไป เมื่อการประเมินฟังก์ชันเป้าหมายแต่ละครั้งใช้เวลาเครื่องปฏิกรณ์หนึ่งวัน หรือใช้เวลาจำลองหลายชั่วโมง"
+    },
+    {
+     "s": 24.684,
+     "e": 31.855,
+     "en": "The second is AI-assisted modeling: how to use a language model to draft a model, and how to test what it wrote.",
+     "th": "หัวข้อที่สองคือการสร้างโมเดลโดยมี AI ช่วย คือการใช้ language model ร่างโมเดล และการทดสอบสิ่งที่มันเขียน"
+    },
+    {
+     "s": 31.855,
+     "e": 37.776,
+     "en": "In the first half we build B O from its parts, so that nothing in it is a black box to you.",
+     "th": "ในครึ่งแรกเราจะสร้าง BO จากส่วนประกอบของมัน เพื่อไม่ให้มีส่วนใดเป็นกล่องดำสำหรับคุณ"
+    },
+    {
+     "s": 37.776,
+     "e": 44.566,
+     "en": "In the second half, the tests come from the same habits of checking that have run through the course since Session 1.",
+     "th": "ในครึ่งหลัง การทดสอบมาจากนิสัยการตรวจสอบเดียวกับที่ใช้ตลอดรายวิชาตั้งแต่คาบที่ 1"
+    },
+    {
+     "s": 44.566,
+     "e": 53.316,
+     "en": "As in every session, the numbers on the slides come from code you can run yourself. Press D on a slide that shows a Python tag.",
+     "th": "เช่นเดียวกับทุกคาบ ตัวเลขบนสไลด์มาจากโค้ดที่คุณรันเองได้ กด D บนสไลด์ที่มีป้าย Python"
+    },
+    {
+     "s": 53.316,
+     "e": 57.829,
+     "en": "The lab runs entirely in the browser, on a laptop or a phone.",
+     "th": "lab ทั้งหมดทำงานในเบราว์เซอร์ บนแล็ปท็อปหรือโทรศัพท์ก็ได้"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "file": "audio/slide-02.mp3",
+   "duration": 56.064,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.918,
+     "en": "Here is the plan for three hours.",
+     "th": "นี่คือแผนสำหรับสามชั่วโมง"
+    },
+    {
+     "s": 2.918,
+     "e": 7.132,
+     "en": "We start with a ten-minute retrieval check on Session 13.",
+     "th": "เราเริ่มด้วยการทบทวนคาบที่ 13 เป็นเวลาสิบนาที"
+    },
+    {
+     "s": 7.132,
+     "e": 17.472,
+     "en": "Part one, thirty-five minutes, sets up the problem of expensive black boxes, compares ways to place a few experiments, and builds the Gaussian process, the model at the heart of B O.",
+     "th": "ส่วนที่หนึ่ง สามสิบห้านาที ตั้งปัญหาของ black box ที่ประเมินได้แพง เปรียบเทียบวิธีวางการทดลองจำนวนน้อย และสร้าง Gaussian process ซึ่งเป็นโมเดลหลักของ BO"
+    },
+    {
+     "s": 17.472,
+     "e": 25.895,
+     "en": "Part two, forty minutes, is the optimization loop itself: acquisition functions, noise, and a fair comparison with a grid and with random search.",
+     "th": "ส่วนที่สอง สี่สิบนาที คือวงรอบการหาค่าเหมาะสม ได้แก่ acquisition function สัญญาณรบกวน และการเปรียบเทียบอย่างเป็นธรรมกับตารางและการสุ่มค้นหา"
+    },
+    {
+     "s": 25.895,
+     "e": 34.938,
+     "en": "After a break and a second activity, part three covers practical extensions, limits and tools, and then turns to language models as modeling assistants,",
+     "th": "หลังพักและกิจกรรมที่สอง ส่วนที่สามครอบคลุมส่วนขยายในทางปฏิบัติ ข้อจำกัด และเครื่องมือ แล้วจึงไปที่ language model ในฐานะผู้ช่วยสร้างโมเดล"
+    },
+    {
+     "s": 34.938,
+     "e": 37.184,
+     "en": "with the tests that find their errors.",
+     "th": "พร้อมการทดสอบที่หาข้อผิดพลาดของมัน"
+    },
+    {
+     "s": 37.184,
+     "e": 42.921,
+     "en": "Each part ends with a check of four questions, and the answers are on the slide behind a button.",
+     "th": "แต่ละส่วนจบด้วยแบบตรวจสี่ข้อ และคำตอบอยู่บนสไลด์หลังปุ่ม"
+    },
+    {
+     "s": 42.921,
+     "e": 47.684,
+     "en": "The lab takes forty minutes, and the Exit Ticket closes the session.",
+     "th": "lab ใช้เวลาสี่สิบนาที และปิดคาบด้วย Exit Ticket"
+    },
+    {
+     "s": 47.684,
+     "e": 55.987,
+     "en": "If you study on your own, the narration takes about fifty minutes. Stop at every activity and check, then do the lab.",
+     "th": "ถ้าเรียนเอง คำบรรยายใช้เวลาประมาณห้าสิบนาที หยุดที่ทุกกิจกรรมและแบบตรวจ แล้วจึงทำ lab"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "file": "audio/slide-03.mp3",
+   "duration": 47.28,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.142,
+     "en": "Activity 1 is a retrieval check on Session 13.",
+     "th": "กิจกรรมที่ 1 คือการทบทวนคาบที่ 13"
+    },
+    {
+     "s": 4.142,
+     "e": 6.671,
+     "en": "Answer the four questions without notes:",
+     "th": "ตอบคำถามสี่ข้อโดยไม่ดูบันทึก ได้แก่"
+    },
+    {
+     "s": 6.671,
+     "e": 16.172,
+     "en": "the definition of a Pareto-optimal design, why no weighted sum can select an unsupported point, what a root bound of 500 against a plan of 400 tells you,",
+     "th": "นิยามของแบบที่เป็น Pareto optimal เหตุที่ผลรวมถ่วงน้ำหนักเลือกจุด unsupported ไม่ได้ สิ่งที่ root bound 500 เทียบกับแผน 400 บอก และสิ่งที่ผลลัพธ์เหมือนกัน"
+    },
+    {
+     "s": 16.172,
+     "e": 19.75,
+     "en": "and what 97 identical results out of 100 local runs prove.",
+     "th": "97 ครั้งจากการรัน local 100 ครั้งพิสูจน์ได้"
+    },
+    {
+     "s": 19.75,
+     "e": 25.487,
+     "en": "For question three, remember which number comes from a plan and which from a relaxation.",
+     "th": "สำหรับข้อสาม ให้จำว่าตัวเลขใดมาจากแผน และตัวเลขใดมาจาก relaxation"
+    },
+    {
+     "s": 25.487,
+     "e": 30.092,
+     "en": "Write alone for five minutes, then compare with a partner for five.",
+     "th": "เขียนคนเดียวห้านาที แล้วเปรียบเทียบกับเพื่อนอีกห้านาที"
+    },
+    {
+     "s": 30.092,
+     "e": 41.408,
+     "en": "The last question returns today. B O also samples the space, and it also proves nothing by itself. What it does is spend a small budget carefully.",
+     "th": "คำถามสุดท้ายจะกลับมาในวันนี้ BO ก็สุ่มตัวอย่างในปริภูมิ และก็พิสูจน์อะไรไม่ได้ด้วยตัวเองเช่นกัน สิ่งที่มันทำคือใช้งบประมาณที่มีน้อยอย่างระมัดระวัง"
+    },
+    {
+     "s": 41.408,
+     "e": 47.211,
+     "en": "Pause the narration now. When you are done, press Show answers to check.",
+     "th": "หยุดคำบรรยายตอนนี้ เมื่อเสร็จแล้วกด Show answers เพื่อตรวจ"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "file": "audio/slide-04.mp3",
+   "duration": 54.528,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.866,
+     "en": "By the end of today you should be able to do six things.",
+     "th": "เมื่อจบวันนี้ คุณควรทำหกสิ่งต่อไปนี้ได้"
+    },
+    {
+     "s": 3.866,
+     "e": 10.289,
+     "en": "First, say when an objective is expensive, and why the usual methods waste evaluations there.",
+     "th": "ข้อแรก บอกได้ว่าเมื่อใดฟังก์ชันเป้าหมายมีราคาแพง และเหตุใดวิธีทั่วไปจึงสิ้นเปลืองการประเมินในกรณีนั้น"
+    },
+    {
+     "s": 10.289,
+     "e": 20.842,
+     "en": "Second, fit a Gaussian process: compute its posterior mean and standard deviation by hand for a small case, and choose its length-scale from the data by the marginal likelihood.",
+     "th": "ข้อสอง fit Gaussian process ได้ คำนวณค่าเฉลี่ยและส่วนเบี่ยงเบนมาตรฐาน posterior ด้วยมือสำหรับกรณีเล็ก ๆ และเลือก length-scale จากข้อมูลด้วย marginal likelihood"
+    },
+    {
+     "s": 20.842,
+     "e": 25.184,
+     "en": "Outcome two is the mathematical core; the rest builds on it.",
+     "th": "ผลลัพธ์ข้อสองคือแกนทางคณิตศาสตร์ ส่วนที่เหลือต่อยอดจากข้อนี้"
+    },
+    {
+     "s": 25.184,
+     "e": 32.829,
+     "en": "Third, derive expected improvement, and explain how it balances exploiting what looks good against exploring what is unknown.",
+     "th": "ข้อสาม หาสูตร expected improvement และอธิบายว่ามันสมดุลระหว่างการใช้ประโยชน์จากสิ่งที่ดูดี กับการสำรวจสิ่งที่ยังไม่รู้อย่างไร"
+    },
+    {
+     "s": 32.829,
+     "e": 39.355,
+     "en": "Fourth, run B O with a small budget and noisy results, and compare it fairly with simpler designs.",
+     "th": "ข้อสี่ รัน BO ด้วยงบประมาณน้อยและผลที่มีสัญญาณรบกวน และเปรียบเทียบอย่างเป็นธรรมกับการออกแบบที่ง่ายกว่า"
+    },
+    {
+     "s": 39.355,
+     "e": 46.145,
+     "en": "Fifth, use a language model to draft a model, and write tests from the specification that find its errors.",
+     "th": "ข้อห้า ใช้ language model ร่างโมเดล และเขียนการทดสอบจากข้อกำหนดที่หาข้อผิดพลาดของมันได้"
+    },
+    {
+     "s": 46.145,
+     "e": 50.947,
+     "en": "And sixth, report both kinds of work with the evidence a reader needs.",
+     "th": "และข้อหก รายงานงานทั้งสองแบบพร้อมหลักฐานที่ผู้อ่านต้องการ"
+    },
+    {
+     "s": 50.947,
+     "e": 54.461,
+     "en": "Outcomes four and five are what the lab tests.",
+     "th": "ผลลัพธ์ข้อสี่และข้อห้าคือสิ่งที่ lab ทดสอบ"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "file": "audio/slide-05.mp3",
+   "duration": 89.088,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.445,
+     "en": "Today builds on several earlier sessions.",
+     "th": "วันนี้ต่อยอดจากหลายคาบก่อนหน้า"
+    },
+    {
+     "s": 3.445,
+     "e": 10.449,
+     "en": "In Session 5, a multistart from a grid of starting points mapped the basins of the six-hump camel function.",
+     "th": "ในคาบที่ 5 multistart จากตารางของจุดเริ่มต้นทำแผนที่แอ่งของฟังก์ชัน six-hump camel"
+    },
+    {
+     "s": 10.449,
+     "e": 16.092,
+     "en": "Today we search the same function again, with only twenty evaluations and no gradients.",
+     "th": "วันนี้เราค้นหาฟังก์ชันเดิมอีกครั้ง ด้วยการประเมินเพียงยี่สิบครั้งและไม่มี gradient"
+    },
+    {
+     "s": 16.092,
+     "e": 25.895,
+     "en": "In Session 8, gradients came from finite differences, and we saw that noise ruins them. The methods of today need no gradients and expect noise.",
+     "th": "ในคาบที่ 8 gradient มาจาก finite difference และเราเห็นว่าสัญญาณรบกวนทำให้มันใช้ไม่ได้ วิธีของวันนี้ไม่ต้องใช้ gradient และคาดว่าจะมีสัญญาณรบกวน"
+    },
+    {
+     "s": 25.895,
+     "e": 37.908,
+     "en": "In Session 10, a fitted model came with standard errors. A Gaussian process is a regression that also says where it is unsure, and B O uses that uncertainty to decide where to look.",
+     "th": "ในคาบที่ 10 โมเดลที่ fit แล้วมาพร้อมค่าคลาดเคลื่อนมาตรฐาน Gaussian process คือ regression ที่บอกด้วยว่ามันไม่แน่ใจที่ใด และ BO ใช้ความไม่แน่นอนนั้นตัดสินใจว่าจะค้นที่ไหน"
+    },
+    {
+     "s": 37.908,
+     "e": 46.403,
+     "en": "In Session 12, the objective of a sample average approximation was too optimistic, because the decision was fitted to the sample.",
+     "th": "ในคาบที่ 12 ค่าเป้าหมายของ sample average approximation มองโลกในแง่ดีเกินไป เพราะการตัดสินใจถูก fit กับตัวอย่าง"
+    },
+    {
+     "s": 46.403,
+     "e": 51.434,
+     "en": "The best of a set of noisy experiments is too optimistic for the same reason.",
+     "th": "ค่าที่ดีที่สุดจากชุดการทดลองที่มีสัญญาณรบกวนก็มองโลกในแง่ดีเกินไปด้วยเหตุผลเดียวกัน"
+    },
+    {
+     "s": 51.434,
+     "e": 58.908,
+     "en": "In Session 13, NSGA-II needed thousands of evaluations. B O works with tens.",
+     "th": "ในคาบที่ 13 NSGA-II ต้องการการประเมินหลายพันครั้ง BO ทำงานได้ด้วยหลักสิบครั้ง"
+    },
+    {
+     "s": 58.908,
+     "e": 67.921,
+     "en": "And from Session 1, the checks of units, balances and certificates return as tests, now for a model that someone else, or something else, wrote.",
+     "th": "และจากคาบที่ 1 การตรวจหน่วย สมดุล และ certificate กลับมาในรูปของการทดสอบ คราวนี้สำหรับโมเดลที่คนอื่นหรือสิ่งอื่นเป็นผู้เขียน"
+    },
+    {
+     "s": 67.921,
+     "e": 77.276,
+     "en": "A note on notation. m of x is the posterior mean of the Gaussian process, and s of x its posterior standard deviation.",
+     "th": "หมายเหตุเรื่องสัญลักษณ์ m(x) คือค่าเฉลี่ย posterior ของ Gaussian process และ s(x) คือส่วนเบี่ยงเบนมาตรฐาน posterior"
+    },
+    {
+     "s": 77.276,
+     "e": 89.013,
+     "en": "ell is a length-scale, sigma n the noise, y star the best value so far, and kappa the weight of s in the upper confidence bound. The letter mu stays reserved for multipliers.",
+     "th": "ℓ คือ length-scale σn คือสัญญาณรบกวน y* คือค่าที่ดีที่สุดจนถึงตอนนี้ และ κ คือน้ำหนักของ s ใน upper confidence bound ตัวอักษร μ ยังคงสงวนไว้สำหรับตัวคูณ"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "file": "audio/slide-06.mp3",
+   "duration": 91.536,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.605,
+     "en": "Part one starts with the setting. When is an objective expensive?",
+     "th": "ส่วนที่หนึ่งเริ่มจากบริบท เมื่อใดฟังก์ชันเป้าหมายจึงมีราคาแพง"
+    },
+    {
+     "s": 5.605,
+     "e": 16.447,
+     "en": "When one evaluation is an experiment: a reaction run that takes a day, a pilot campaign that costs tens of thousands of dollars, or a C F D case that takes hours on a cluster.",
+     "th": "เมื่อการประเมินหนึ่งครั้งคือการทดลองหนึ่งครั้ง เช่น การทำปฏิกิริยาที่ใช้เวลาหนึ่งวัน การทดลองระดับ pilot ที่มีค่าใช้จ่ายหลายหมื่นดอลลาร์ หรือการคำนวณ CFD ที่ใช้เวลาหลายชั่วโมงบน cluster"
+    },
+    {
+     "s": 16.447,
+     "e": 26.526,
+     "en": "There are no equations to differentiate, only inputs you set and an output you measure. The output is noisy: repeat a run and the yield differs.",
+     "th": "ไม่มีสมการให้หาอนุพันธ์ มีเพียงตัวแปรนำเข้าที่คุณตั้งและผลที่คุณวัด ผลที่วัดมีสัญญาณรบกวน ทำซ้ำแล้วผลได้จะต่างไป"
+    },
+    {
+     "s": 26.526,
+     "e": 32.961,
+     "en": "The budget is small, ten to a hundred evaluations, for two to twenty inputs whose ranges are known.",
+     "th": "งบประมาณมีน้อย สิบถึงหนึ่งร้อยครั้ง สำหรับตัวแปรนำเข้าสองถึงยี่สิบตัวที่รู้ช่วงค่า"
+    },
+    {
+     "s": 32.961,
+     "e": 38.566,
+     "en": "The question is which experiment to run next, so that the budget ends at a good point.",
+     "th": "คำถามคือควรทำการทดลองใดต่อไป เพื่อให้เมื่องบประมาณหมดเราได้จุดที่ดี"
+    },
+    {
+     "s": 38.566,
+     "e": 45.645,
+     "en": "The table lists the usual options. A grid needs k to the power d runs and does not learn from the results.",
+     "th": "ตารางแสดงทางเลือกที่ใช้กันทั่วไป ตารางต้องใช้ k ยกกำลัง d ครั้ง และไม่เรียนรู้จากผล"
+    },
+    {
+     "s": 45.645,
+     "e": 52.658,
+     "en": "Random search does not learn either, though it does well in many dimensions when only a few inputs matter.",
+     "th": "การสุ่มค้นหาก็ไม่เรียนรู้เช่นกัน แม้จะทำได้ดีในหลายมิติเมื่อมีเพียงไม่กี่ตัวแปรที่มีผล"
+    },
+    {
+     "s": 52.658,
+     "e": 63.576,
+     "en": "Gradient methods with finite differences need d plus one runs for each gradient, and noise swamps the differences. Nelder-Mead is local and needs many runs.",
+     "th": "วิธี gradient ที่ใช้ finite difference ต้องใช้ d บวกหนึ่งครั้งต่อหนึ่ง gradient และสัญญาณรบกวนกลบผลต่าง Nelder-Mead เป็นวิธีเฉพาะที่และต้องรันหลายครั้ง"
+    },
+    {
+     "s": 63.576,
+     "e": 66.079,
+     "en": "Evolutionary methods need thousands.",
+     "th": "วิธี evolutionary ต้องใช้หลายพันครั้ง"
+    },
+    {
+     "s": 66.079,
+     "e": 74.461,
+     "en": "Classical design of experiments with a response surface fits a quadratic model to a designed set of runs, which works well near an optimum.",
+     "th": "การออกแบบการทดลองแบบดั้งเดิมร่วมกับ response surface จะ fit โมเดลกำลังสองกับชุดการทดลองที่ออกแบบไว้ ซึ่งได้ผลดีเมื่ออยู่ใกล้จุดเหมาะสม"
+    },
+    {
+     "s": 74.461,
+     "e": 84.882,
+     "en": "Bayesian optimization keeps a model of the objective, with its uncertainty, and uses it to decide each next run. It typically needs tens of runs.",
+     "th": "Bayesian optimization เก็บโมเดลของฟังก์ชันเป้าหมายพร้อมความไม่แน่นอน แล้วใช้ตัดสินใจการทดลองครั้งถัดไปทีละครั้ง โดยทั่วไปต้องการหลักสิบครั้ง"
+    },
+    {
+     "s": 84.882,
+     "e": 91.461,
+     "en": "The method's own cost, fitting the model and searching it, is negligible against a day of reactor time.",
+     "th": "ต้นทุนของตัววิธีเอง คือการ fit โมเดลและค้นหาบนโมเดล น้อยมากเมื่อเทียบกับเวลาเครื่องปฏิกรณ์หนึ่งวัน"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "file": "audio/slide-07.mp3",
+   "duration": 89.592,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 10.487,
+     "en": "Before any learning, where should the first few experiments go? Here are three ways to place 16 runs in two inputs, both scaled to the range zero to one.",
+     "th": "ก่อนจะเรียนรู้อะไร การทดลองชุดแรกควรอยู่ที่ใด นี่คือสามวิธีในการวางการทดลอง 16 ครั้งในสองตัวแปร ซึ่งปรับสเกลเป็นช่วงศูนย์ถึงหนึ่งทั้งคู่"
+    },
+    {
+     "s": 10.487,
+     "e": 23.461,
+     "en": "The grid, four by four, looks systematic. But look at the tick marks on the axes, which are the projections of the points. The grid tests only four distinct values of each input.",
+     "th": "ตาราง สี่คูณสี่ ดูเป็นระบบ แต่ลองดูขีดบนแกน ซึ่งคือภาพฉายของจุด ตารางทดสอบค่าที่ต่างกันเพียงสี่ค่าในแต่ละตัวแปร"
+    },
+    {
+     "s": 23.461,
+     "e": 29.947,
+     "en": "If only one of the two inputs matters, three runs in four repeat information that the grid already has.",
+     "th": "ถ้ามีเพียงตัวแปรเดียวในสองตัวที่มีผล การทดลองสามในสี่ครั้งจะซ้ำข้อมูลที่ตารางมีอยู่แล้ว"
+    },
+    {
+     "s": 29.947,
+     "e": 39.829,
+     "en": "Press Random. The points clump in some places and leave gaps in others; the counts of distinct values are now 16, but the coverage is uneven.",
+     "th": "กด Random จุดจะรวมกลุ่มในบางที่และเว้นช่องว่างในบางที่ จำนวนค่าที่ต่างกันตอนนี้เป็น 16 แต่การครอบคลุมไม่สม่ำเสมอ"
+    },
+    {
+     "s": 39.829,
+     "e": 53.301,
+     "en": "Press Latin hypercube. Each input is cut into 16 slices, and each slice holds exactly one point. Every projection is spread evenly, and the plane is covered reasonably well.",
+     "th": "กด Latin hypercube ตัวแปรแต่ละตัวถูกแบ่งเป็น 16 ช่วง และแต่ละช่วงมีจุดหนึ่งจุดพอดี ภาพฉายทุกแกนกระจายสม่ำเสมอ และระนาบถูกครอบคลุมได้ค่อนข้างดี กด"
+    },
+    {
+     "s": 53.301,
+     "e": 55.934,
+     "en": "Press New draw to see another one.",
+     "th": "New draw เพื่อดีอีกชุดหนึ่ง"
+    },
+    {
+     "s": 55.934,
+     "e": 60.686,
+     "en": "The table shows why grids fail as the number of inputs grows.",
+     "th": "ตารางแสดงเหตุที่ตารางใช้ไม่ได้เมื่อจำนวนตัวแปรเพิ่มขึ้น"
+    },
+    {
+     "s": 60.686,
+     "e": 71.263,
+     "en": "With 20 runs, a grid gets 4.5 levels per input in two dimensions, 2.7 in three, 1.8 in five and 1.3 in ten, which is hardly a grid at all.",
+     "th": "ด้วยการทดลอง 20 ครั้ง ตารางได้ 4.5 ระดับต่อตัวแปรในสองมิติ 2.7 ในสามมิติ 1.8 ในห้ามิติ และ 1.3 ในสิบมิติ ซึ่งแทบไม่เป็นตารางเลย"
+    },
+    {
+     "s": 71.263,
+     "e": 81.697,
+     "en": "A space-filling design such as the Latin hypercube is the usual first batch of a B O campaign. Today's lab starts B O with six Latin hypercube runs.",
+     "th": "การออกแบบที่เติมเต็มปริภูมิอย่าง Latin hypercube เป็นชุดแรกตามปกติของการทำ BO lab วันนี้เริ่ม BO ด้วยการทดลองแบบ Latin hypercube หกครั้ง"
+    },
+    {
+     "s": 81.697,
+     "e": 89.513,
+     "en": "None of these designs uses the results of earlier runs. B O does, and that is where the savings come from.",
+     "th": "ไม่มีการออกแบบใดในนี้ใช้ผลของการทดลองก่อนหน้า BO ใช้ และนั่นคือที่มาของการประหยัด"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "file": "audio/slide-08.mp3",
+   "duration": 101.52,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.783,
+     "en": "Response surface methodology, from Box and Wilson in 1951, is the classical way to use results.",
+     "th": "response surface methodology ของ Box และ Wilson ปี 1951 เป็นวิธีดั้งเดิมในการใช้ผลการทดลอง"
+    },
+    {
+     "s": 6.783,
+     "e": 14.579,
+     "en": "Fit a quadratic to a designed experiment, move uphill along its gradient, run a new design there, and fit again.",
+     "th": "คือ fit ฟังก์ชันกำลังสองกับการทดลองที่ออกแบบไว้ เคลื่อนขึ้นตาม gradient ทำการทดลองชุดใหม่ที่นั่น แล้ว fit ใหม่"
+    },
+    {
+     "s": 14.579,
+     "e": 25.895,
+     "en": "It works well near an optimum, where a quadratic is a good local model. It is the standard tool in industrial experimentation, and it remains a good choice for fine tuning.",
+     "th": "วิธีนี้ได้ผลดีใกล้จุดเหมาะสม ซึ่งฟังก์ชันกำลังสองเป็นโมเดลเฉพาะที่ที่ดี เป็นเครื่องมือมาตรฐานในการทดลองทางอุตสาหกรรม และยังเป็นทางเลือกที่ดีสำหรับการปรับละเอียด"
+    },
+    {
+     "s": 25.895,
+     "e": 38.816,
+     "en": "The chart shows its weakness at the start of a search. The test function, dashed, has two peaks. Five runs are spread over the range, and the quadratic, in rust, follows neither peak.",
+     "th": "กราฟแสดงจุดอ่อนของมันในช่วงเริ่มการค้นหา ฟังก์ชันทดสอบซึ่งเป็นเส้นประมีสองยอด การทดลองห้าครั้งกระจายทั่วช่วง และฟังก์ชันกำลังสองสีสนิมไม่ตามยอดใดเลย"
+    },
+    {
+     "s": 38.816,
+     "e": 53.485,
+     "en": "The test function is Forrester's one-dimensional function, from Forrester, Sobester and Keane, 2008, with its sign changed so that we maximize. Its best value is 6.02 at x equal to 0.757;",
+     "th": "ฟังก์ชันทดสอบคือฟังก์ชันหนึ่งมิติของ Forrester จาก Forrester, Sobester และ Keane ปี 2008 โดยกลับเครื่องหมายเพื่อให้เราหาค่าสูงสุด ค่าดีที่สุดคือ 6.02 ที่ x เท่ากับ 0.757"
+    },
+    {
+     "s": 53.485,
+     "e": 57.776,
+     "en": "a lower peak, worth about 1, sits near x equal to 0.14.",
+     "th": "และมียอดที่ต่ำกว่า มีค่าประมาณ 1 อยู่ใกล้ x เท่ากับ 0.14"
+    },
+    {
+     "s": 57.776,
+     "e": 64.368,
+     "en": "The quadratic is not wrong; it answers a different question, about the local shape near a known good point.",
+     "th": "ฟังก์ชันกำลังสองไม่ได้ผิด มันตอบคำถามอื่น คือรูปร่างเฉพาะที่ใกล้จุดที่รู้แล้วว่าดี"
+    },
+    {
+     "s": 64.368,
+     "e": 77.461,
+     "en": "A surrogate is any cheap model fitted to the experiments. To decide where to run next, it is not enough for the surrogate to predict. It should also say where its prediction is unreliable.",
+     "th": "surrogate คือโมเดลราคาถูกใด ๆ ที่ fit กับผลการทดลอง การจะตัดสินใจว่าจะทดลองที่ใดต่อไป การทำนายอย่างเดียวไม่พอ มันควรบอกด้วยว่าการทำนายตรงไหนเชื่อถือไม่ได้"
+    },
+    {
+     "s": 77.461,
+     "e": 89.566,
+     "en": "The teal line and the sand band are a Gaussian process fitted to the same five runs. It passes through each run, and its band, plus or minus two standard deviations, widens away from them.",
+     "th": "เส้นสีเขียวหัวเป็ดและแถบสีทรายคือ Gaussian process ที่ fit กับการทดลองห้าครั้งเดียวกัน มันผ่านทุกจุดทดลอง และแถบบวกลบสองส่วนเบี่ยงเบนมาตรฐานกว้างขึ้นเมื่อห่างจากจุดเหล่านั้น"
+    },
+    {
+     "s": 89.566,
+     "e": 101.461,
+     "en": "Jones, Schonlau and Welch turned this idea into the efficient global optimization method in 1998. That method is B O with expected improvement, and it is what we build today.",
+     "th": "Jones, Schonlau และ Welch พัฒนาแนวคิดนี้เป็นวิธี efficient global optimization ในปี 1998 วิธีนั้นคือ BO ที่ใช้ expected improvement และคือสิ่งที่เราจะสร้างวันนี้"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "file": "audio/slide-09.mp3",
+   "duration": 93.12,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.918,
+     "en": "A Gaussian process is a probability distribution over functions.",
+     "th": "Gaussian process คือการแจกแจงความน่าจะเป็นบนฟังก์ชัน"
+    },
+    {
+     "s": 4.918,
+     "e": 12.805,
+     "en": "The definition is short. For any finite set of inputs, the function values at those inputs are jointly normal.",
+     "th": "นิยามสั้นมาก สำหรับชุดตัวแปรนำเข้าจำนวนจำกัดใด ๆ ค่าฟังก์ชันที่จุดเหล่านั้นมีการแจกแจงปกติร่วม"
+    },
+    {
+     "s": 12.805,
+     "e": 19.697,
+     "en": "Their mean is a prior mean m zero, and their covariance is given by a kernel, k of x and x prime.",
+     "th": "ค่าเฉลี่ยคือค่าเฉลี่ย prior m0 และความแปรปรวนร่วมกำหนดโดย kernel k(x, x′)"
+    },
+    {
+     "s": 19.697,
+     "e": 28.25,
+     "en": "The kernel encodes what we believe about the function before seeing data: mainly, how far apart two inputs can be and still have similar values.",
+     "th": "kernel บรรจุสิ่งที่เราเชื่อเกี่ยวกับฟังก์ชันก่อนเห็นข้อมูล โดยหลักคือ ตัวแปรนำเข้าสองค่าห่างกันได้เท่าใดโดยที่ค่าฟังก์ชันยังใกล้เคียงกัน"
+    },
+    {
+     "s": 28.25,
+     "e": 40.132,
+     "en": "Today we use the Matérn five-halves kernel, shown in the panel. r is the distance between the two inputs divided by the length-scale ell, and sigma f squared sets the vertical scale.",
+     "th": "วันนี้เราใช้ kernel Matérn 5/2 ที่แสดงในกรอบ r คือระยะห่างระหว่างตัวแปรนำเข้าสองค่าหารด้วย length-scale ℓ และ σf² กำหนดสเกลแนวตั้ง"
+    },
+    {
+     "s": 40.132,
+     "e": 45.095,
+     "en": "The chart shows five functions drawn from this prior with sigma f equal to one.",
+     "th": "กราฟแสดงห้าฟังก์ชันที่สุ่มจาก prior นี้ โดย σf เท่ากับหนึ่ง"
+    },
+    {
+     "s": 45.095,
+     "e": 55.579,
+     "en": "Each curve is computed as L times z, where L is the Cholesky factor of the covariance matrix over a hundred and one points, and z is a vector of standard normal numbers.",
+     "th": "แต่ละเส้นคำนวณจาก L คูณ z โดย L คือตัวประกอบ Cholesky ของเมทริกซ์ความแปรปรวนร่วมบนหนึ่งร้อยเอ็ดจุด และ z คือเวกเตอร์ของตัวเลขสุ่มแบบปกติมาตรฐาน"
+    },
+    {
+     "s": 55.579,
+     "e": 63.715,
+     "en": "Move the length-scale slider. With a small ell, the functions wiggle quickly; with a large ell, they are smooth and slow.",
+     "th": "เลื่อนแถบ length-scale เมื่อ ℓ เล็ก ฟังก์ชันจะแกว่งเร็ว เมื่อ ℓ ใหญ่ ฟังก์ชันจะเรียบและเปลี่ยนช้า"
+    },
+    {
+     "s": 63.715,
+     "e": 69.316,
+     "en": "The same random numbers are used for every ell, so the curves change shape smoothly.",
+     "th": "ตัวเลขสุ่มชุดเดียวกันใช้กับทุก ℓ เส้นจึงเปลี่ยนรูปอย่างต่อเนื่อง"
+    },
+    {
+     "s": 69.316,
+     "e": 78.171,
+     "en": "The sand band is plus or minus two prior standard deviations: about ninety-five percent of the function values fall inside it, whatever ell is.",
+     "th": "แถบสีทรายคือบวกลบสองส่วนเบี่ยงเบนมาตรฐานของ prior ค่าฟังก์ชันประมาณเก้าสิบห้าเปอร์เซ็นต์อยู่ในแถบนี้ ไม่ว่า ℓ จะเป็นเท่าใด"
+    },
+    {
+     "s": 78.171,
+     "e": 90.415,
+     "en": "Why Matérn five-halves rather than the squared exponential kernel? Its sample functions are twice differentiable but not infinitely smooth, which suits measured process data better.",
+     "th": "ทำไมใช้ Matérn 5/2 แทน kernel squared exponential ฟังก์ชันตัวอย่างของมันหาอนุพันธ์ได้สองครั้งแต่ไม่เรียบไม่จำกัด ซึ่งเหมาะกับข้อมูลกระบวนการที่วัดจริงมากกว่า"
+    },
+    {
+     "s": 90.415,
+     "e": 93.039,
+     "en": "It is the default in most B O software.",
+     "th": "และเป็นค่าตั้งต้นในซอฟต์แวร์ BO ส่วนใหญ่"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "file": "audio/slide-10.mp3",
+   "duration": 125.112,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 9.684,
+     "en": "Now condition on data. Given n observations y at inputs x one to x n, the prediction at a new point x star is again normal.",
+     "th": "ต่อไปคือการมีเงื่อนไขบนข้อมูล เมื่อมีค่าสังเกต y จำนวน n ค่าที่ x1 ถึง xn การทำนายที่จุดใหม่ x* ก็ยังมีการแจกแจงปกติ"
+    },
+    {
+     "s": 9.684,
+     "e": 19.921,
+     "en": "Its mean, m of x star, is the prior mean plus k star transposed, times the inverse of K plus sigma n squared times the identity, times y minus the prior mean.",
+     "th": "ค่าเฉลี่ย m(x*) คือค่าเฉลี่ย prior บวก k* ทรานสโพส คูณอินเวอร์สของ K บวก σn² คูณเมทริกซ์เอกลักษณ์ คูณ y ลบค่าเฉลี่ย prior"
+    },
+    {
+     "s": 19.921,
+     "e": 27.211,
+     "en": "Its variance, s squared, is the prior variance minus k star transposed times the same inverse times k star.",
+     "th": "ความแปรปรวน s² คือความแปรปรวน prior ลบ k* ทรานสโพส คูณอินเวอร์สเดียวกัน คูณ k*"
+    },
+    {
+     "s": 27.211,
+     "e": 38.105,
+     "en": "K is the covariance matrix of the observations, and k star holds the covariances between x star and each observation. Nothing is fitted here except the hyperparameters:",
+     "th": "K คือเมทริกซ์ความแปรปรวนร่วมของค่าสังเกต และ k* เก็บความแปรปรวนร่วมระหว่าง x* กับค่าสังเกตแต่ละค่า ในที่นี้ไม่มีการ fit อะไรนอกจาก hyperparameter"
+    },
+    {
+     "s": 38.105,
+     "e": 42.553,
+     "en": "this is simply the conditional distribution of a multivariate normal.",
+     "th": "นี่คือการแจกแจงแบบมีเงื่อนไขของการแจกแจงปกติหลายตัวแปรเท่านั้น"
+    },
+    {
+     "s": 42.553,
+     "e": 52.132,
+     "en": "Two things to notice. The mean is a weighted sum of the data. And s does not depend on y at all, only on where the data are.",
+     "th": "มีสองสิ่งที่ควรสังเกต ค่าเฉลี่ยคือผลรวมถ่วงน้ำหนักของข้อมูล และ s ไม่ขึ้นกับ y เลย ขึ้นกับเพียงตำแหน่งของข้อมูล"
+    },
+    {
+     "s": 52.132,
+     "e": 66.211,
+     "en": "Let us compute one case by hand. The prior mean is zero, the prior variance one, and there is no noise. Two observations, 1 and 2, have a correlation of 0.5 with each other.",
+     "th": "ลองคำนวณหนึ่งกรณีด้วยมือ ค่าเฉลี่ย prior เป็นศูนย์ ความแปรปรวน prior เป็นหนึ่ง และไม่มีสัญญาณรบกวน ค่าสังเกตสองค่าคือ 1 และ 2 มีสหสัมพันธ์ระหว่างกัน 0.5"
+    },
+    {
+     "s": 66.211,
+     "e": 70.5,
+     "en": "The new point has correlations 0.8 and 0.3 with them.",
+     "th": "จุดใหม่มีสหสัมพันธ์กับทั้งสองเป็น 0.8 และ 0.3"
+    },
+    {
+     "s": 70.5,
+     "e": 80.079,
+     "en": "K inverse times y is one over 0.75, times 1 minus 1 and minus 0.5 plus 2. That is zero and two.",
+     "th": "K อินเวอร์สคูณ y คือหนึ่งส่วน 0.75 คูณกับ 1 ลบ 1 และ ลบ 0.5 บวก 2 ได้ศูนย์และสอง"
+    },
+    {
+     "s": 80.079,
+     "e": 86.539,
+     "en": "So m of x star is 0.8 times zero plus 0.3 times two: 0.6.",
+     "th": "ดังนั้น m(x*) คือ 0.8 คูณศูนย์ บวก 0.3 คูณสอง ได้ 0.6"
+    },
+    {
+     "s": 86.539,
+     "e": 105.395,
+     "en": "For the variance, K inverse times k star is 0.867 and minus 0.133. s squared is one minus the sum of 0.8 times 0.867 and 0.3 times minus 0.133, which is 0.347, so s is 0.589.",
+     "th": "สำหรับความแปรปรวน K อินเวอร์สคูณ k* ได้ 0.867 และ ลบ 0.133 s² คือหนึ่งลบผลรวมของ 0.8 คูณ 0.867 กับ 0.3 คูณ ลบ 0.133 ได้ 0.347 ดังนั้น s เท่ากับ 0.589"
+    },
+    {
+     "s": 105.395,
+     "e": 112.106,
+     "en": "The point is closer to the first observation, yet the first observation gets zero weight.",
+     "th": "จุดใหม่อยู่ใกล้ค่าสังเกตแรกมากกว่า แต่ค่าสังเกตแรกกลับได้น้ำหนักศูนย์"
+    },
+    {
+     "s": 112.106,
+     "e": 121.724,
+     "en": "Given the second value, 2, the prior already expects the first to be 0.5 times 2, which is exactly 1. It adds no new information.",
+     "th": "เมื่อรู้ค่าที่สองคือ 2 แล้ว prior คาดอยู่แล้วว่าค่าแรกจะเป็น 0.5 คูณ 2 ซึ่งเท่ากับ 1 พอดี มันจึงไม่ได้เพิ่มข้อมูลใหม่"
+    },
+    {
+     "s": 121.724,
+     "e": 125.039,
+     "en": "Press D to check this with NumPy.",
+     "th": "กด D เพื่อตรวจด้วย NumPy"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "file": "audio/slide-11.mp3",
+   "duration": 82.992,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 10.421,
+     "en": "Here is the posterior on the test function, live. Three runs are made at x equal to 0.15, 0.5 and 0.85.",
+     "th": "นี่คือ posterior บนฟังก์ชันทดสอบแบบสด มีการทดลองสามครั้งที่ x เท่ากับ 0.15, 0.5 และ 0.85"
+    },
+    {
+     "s": 10.421,
+     "e": 19.0,
+     "en": "Click inside the chart to run an experiment at that x. The new value is added and the Gaussian process updates at once.",
+     "th": "คลิกในกราฟเพื่อทำการทดลองที่ x นั้น ค่าใหม่จะถูกเพิ่ม และ Gaussian process ปรับทันที"
+    },
+    {
+     "s": 19.0,
+     "e": 30.829,
+     "en": "Without noise, the mean passes through every run, and the band collapses to zero width there. Between runs, the band widens with the distance to the nearest run, at a rate set by ell.",
+     "th": "เมื่อไม่มีสัญญาณรบกวน ค่าเฉลี่ยผ่านทุกจุดทดลอง และแถบหดเหลือความกว้างศูนย์ที่จุดนั้น ระหว่างจุดทดลอง แถบจะกว้างขึ้นตามระยะห่างจากจุดที่ใกล้ที่สุด ด้วยอัตราที่ ℓ กำหนด"
+    },
+    {
+     "s": 30.829,
+     "e": 39.342,
+     "en": "Move the noise slider. Now the mean smooths the data instead of passing through them, and the band keeps some width even at the runs.",
+     "th": "เลื่อนแถบสัญญาณรบกวน ตอนนี้ค่าเฉลี่ยจะทำให้ข้อมูลเรียบแทนที่จะผ่านทุกจุด และแถบยังคงมีความกว้างอยู่บ้างแม้ที่จุดทดลอง"
+    },
+    {
+     "s": 39.342,
+     "e": 51.274,
+     "en": "Move the length-scale slider down. With a very small ell, the mean returns to the average of the data between runs, with spikes at the data, and the band returns to its prior width.",
+     "th": "เลื่อนแถบ length-scale ลง เมื่อ ℓ เล็กมาก ค่าเฉลี่ยจะกลับไปที่ค่าเฉลี่ยของข้อมูลระหว่างจุดทดลอง โดยมียอดแหลมที่จุดข้อมูล และแถบกลับไปกว้างเท่า"
+    },
+    {
+     "s": 51.274,
+     "e": 54.487,
+     "en": "The model has learned nothing between the points.",
+     "th": "prior โมเดลไม่ได้เรียนรู้อะไรระหว่างจุดเลย"
+    },
+    {
+     "s": 54.487,
+     "e": 61.921,
+     "en": "Move it up. With a very large ell, the mean becomes so stiff that it cannot bend to follow the data.",
+     "th": "เลื่อนขึ้น เมื่อ ℓ ใหญ่มาก ค่าเฉลี่ยจะแข็งจนโค้งตามข้อมูลไม่ได้"
+    },
+    {
+     "s": 61.921,
+     "e": 73.882,
+     "en": "Then press Show the true function, and add runs until the model has found the high peak. Count how many runs you needed, and where you chose to put them. You were doing B O by eye.",
+     "th": "จากนั้นกด Show the true function และเพิ่มการทดลองจนโมเดลพบยอดสูง นับว่าคุณใช้การทดลองกี่ครั้ง และเลือกวางไว้ที่ใด คุณกำลังทำ BO ด้วยตา"
+    },
+    {
+     "s": 73.882,
+     "e": 82.921,
+     "en": "The model here uses standardized data, as the Python module does: y is shifted by its mean and divided by its standard deviation before fitting.",
+     "th": "โมเดลในที่นี้ใช้ข้อมูลที่ปรับมาตรฐานแล้ว เหมือนกับโมดูล Python คือ y ถูกลบด้วยค่าเฉลี่ยและหารด้วยส่วนเบี่ยงเบนมาตรฐานก่อนการ fit"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "file": "audio/slide-12.mp3",
+   "duration": 108.384,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.039,
+     "en": "Who chooses ell and the noise? The data do, through the marginal likelihood.",
+     "th": "ใครเป็นผู้เลือก ℓ และสัญญาณรบกวน ข้อมูลเป็นผู้เลือก ผ่าน marginal likelihood"
+    },
+    {
+     "s": 6.039,
+     "e": 17.013,
+     "en": "The log marginal likelihood is the probability of the observed data under the Gaussian process, with the function itself integrated out. The formula has two parts.",
+     "th": "log marginal likelihood คือความน่าจะเป็นของข้อมูลที่สังเกตได้ภายใต้ Gaussian process โดยอินทิเกรตตัวฟังก์ชันออกไป สูตรมีสองส่วน"
+    },
+    {
+     "s": 17.013,
+     "e": 27.408,
+     "en": "The first part, minus one half z transposed K tilde inverse z, measures the data fit. It favors small length-scales, which can follow every point.",
+     "th": "ส่วนแรก ลบครึ่งหนึ่งของ z ทรานสโพส K̃ อินเวอร์ส z วัดความเข้ากันกับข้อมูล ส่วนนี้ชอบ length-scale เล็ก ซึ่งตามได้ทุกจุด"
+    },
+    {
+     "s": 27.408,
+     "e": 33.096,
+     "en": "The second part, minus one half the log determinant of K tilde, penalizes complexity.",
+     "th": "ส่วนที่สอง ลบครึ่งหนึ่งของ log determinant ของ K̃ ลงโทษความซับซ้อน ℓ"
+    },
+    {
+     "s": 33.096,
+     "e": 42.553,
+     "en": "A small ell makes the observations nearly independent, which spreads the probability over many possible data sets, and this term punishes that.",
+     "th": "เล็กทำให้ค่าสังเกตเกือบเป็นอิสระต่อกัน ซึ่งกระจายความน่าจะเป็นไปบนชุดข้อมูลที่เป็นไปได้จำนวนมาก และพจน์นี้ลงโทษสิ่งนั้น"
+    },
+    {
+     "s": 42.553,
+     "e": 53.467,
+     "en": "The balance chooses ell. The chart shows the log marginal likelihood for ten noise-free points of the test function, against ell on a log scale.",
+     "th": "จุดสมดุลเป็นตัวเลือก ℓ กราฟแสดง log marginal likelihood ของจุดไม่มีสัญญาณรบกวนสิบจุดของฟังก์ชันทดสอบ เทียบกับ ℓ บนสเกลลอการิทึม"
+    },
+    {
+     "s": 53.467,
+     "e": 57.908,
+     "en": "It peaks at ell equal to 0.294, with a value of minus 12.9.",
+     "th": "ค่าสูงสุดอยู่ที่ ℓ เท่ากับ 0.294 มีค่า ลบ 12.9"
+    },
+    {
+     "s": 57.908,
+     "e": 63.789,
+     "en": "The noise ratio is chosen the same way; with noise-free data it goes to its smallest value.",
+     "th": "อัตราส่วนสัญญาณรบกวนเลือกด้วยวิธีเดียวกัน เมื่อข้อมูลไม่มีสัญญาณรบกวน มันจะไปที่ค่าที่เล็กที่สุด"
+    },
+    {
+     "s": 63.789,
+     "e": 75.539,
+     "en": "The three small panels show the posterior at ell equal to 0.03, which spikes at the data, at the best value, and at 1.5, which cannot follow the steep part near x equal to 1.",
+     "th": "กราฟเล็กสามรูปแสดง posterior ที่ ℓ เท่ากับ 0.03 ซึ่งมียอดแหลมที่จุดข้อมูล ที่ค่าดีที่สุด และที่ 1.5 ซึ่งตามส่วนที่ชันใกล้ x เท่ากับ 1 ไม่ได้"
+    },
+    {
+     "s": 75.539,
+     "e": 88.56,
+     "en": "In today's module, the search over ell, one per input, and over the noise ratio, is done on a fixed grid of values. Every run, on the desktop or in the browser, then gives the same answer.",
+     "th": "ในโมดูลวันนี้ การค้นหา ℓ หนึ่งค่าต่อตัวแปร และอัตราส่วนสัญญาณรบกวน ทำบนตารางค่าคงที่ ทุกการรันไม่ว่าบนเครื่องหรือในเบราว์เซอร์จึงได้คำตอบเดียวกัน"
+    },
+    {
+     "s": 88.56,
+     "e": 92.211,
+     "en": "Libraries use gradients instead, with several starts.",
+     "th": "ไลบรารีทั่วไปใช้ gradient แทน โดยเริ่มจากหลายจุด"
+    },
+    {
+     "s": 92.211,
+     "e": 96.446,
+     "en": "In B O, the hyperparameters are refitted after every experiment.",
+     "th": "ใน BO hyperparameter ถูก fit ใหม่หลังทุกการทดลอง"
+    },
+    {
+     "s": 96.446,
+     "e": 105.697,
+     "en": "With very few points the marginal likelihood is flat and the fit is unreliable, which is one more reason to start with a space-filling design.",
+     "th": "เมื่อมีจุดน้อยมาก marginal likelihood จะแบนและการ fit เชื่อถือไม่ได้ ซึ่งเป็นอีกเหตุผลหนึ่งที่ควรเริ่มด้วยการออกแบบที่เติมเต็มปริภูมิ"
+    },
+    {
+     "s": 105.697,
+     "e": 108.316,
+     "en": "Press D to print the curve.",
+     "th": "กด D เพื่อพิมพ์เส้นโค้งนี้"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "file": "audio/slide-13.mp3",
+   "duration": 42.144,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.629,
+     "en": "Time for the first check: four questions on Gaussian processes.",
+     "th": "ถึงเวลาแบบตรวจแรก คำถามสี่ข้อเรื่อง Gaussian process"
+    },
+    {
+     "s": 4.629,
+     "e": 13.622,
+     "en": "Say what s is at an observed point, with and without noise; describe the fit when ell is far too small; explain why we scale inputs and standardize y;",
+     "th": "บอกว่า s ที่จุดสังเกตเป็นเท่าใด ทั้งเมื่อมีและไม่มีสัญญาณรบกวน อธิบายการ fit เมื่อ ℓ เล็กเกินไปมาก อธิบายเหตุที่เราปรับสเกลตัวแปรนำเข้าและปรับมาตรฐาน"
+    },
+    {
+     "s": 13.622,
+     "e": 17.553,
+     "en": "and recompute the by-hand example after y one changes from 1 to 3.",
+     "th": "y และคำนวณตัวอย่างด้วยมืออีกครั้งเมื่อ y1 เปลี่ยนจาก 1 เป็น 3"
+    },
+    {
+     "s": 17.553,
+     "e": 23.908,
+     "en": "For question four, you need only K inverse times y again; think about whether s changes at all.",
+     "th": "สำหรับข้อสี่ คุณต้องคำนวณเพียง K อินเวอร์สคูณ y ใหม่ และคิดว่า s เปลี่ยนหรือไม่"
+    },
+    {
+     "s": 23.908,
+     "e": 30.803,
+     "en": "For question three, think about what one value of ell means when one input is in degrees and another in minutes.",
+     "th": "สำหรับข้อสาม ให้คิดว่า ℓ ค่าเดียวหมายถึงอะไร เมื่อตัวแปรหนึ่งมีหน่วยเป็นองศา และอีกตัวเป็นนาที"
+    },
+    {
+     "s": 30.803,
+     "e": 35.671,
+     "en": "Question two connects to the slider you just moved on the posterior demo.",
+     "th": "ข้อสองเชื่อมกับแถบเลื่อนที่คุณเพิ่งลองในสาธิต posterior"
+    },
+    {
+     "s": 35.671,
+     "e": 42.079,
+     "en": "Take five minutes. Pause the narration now, and press Show answers when you are done.",
+     "th": "ใช้เวลาห้านาที หยุดคำบรรยายตอนนี้ และกด Show answers เมื่อเสร็จ"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "file": "audio/slide-14.mp3",
+   "duration": 91.872,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.616,
+     "en": "Part two assembles the loop.",
+     "th": "ส่วนที่สองประกอบวงรอบเข้าด้วยกัน"
+    },
+    {
+     "s": 2.616,
+     "e": 16.547,
+     "en": "Step one is the initial design: a space-filling set of runs. A common rule is about ten runs per input, from Loeppky, Sacks and Welch, 2009. When runs are very expensive, fewer are used;",
+     "th": "ขั้นแรกคือการออกแบบเริ่มต้น เป็นชุดการทดลองที่เติมเต็มปริภูมิ กฎทั่วไปคือประมาณสิบครั้งต่อตัวแปร จาก Loeppky, Sacks และ Welch ปี 2009 เมื่อการทดลองแพงมากจะใช้น้อยกว่านี้"
+    },
+    {
+     "s": 16.547,
+     "e": 19.303,
+     "en": "the lab uses six runs for two inputs.",
+     "th": "lab ใช้หกครั้งสำหรับสองตัวแปร"
+    },
+    {
+     "s": 19.303,
+     "e": 26.211,
+     "en": "Step two fits a Gaussian process to all runs so far, with ell and the noise chosen by the marginal likelihood.",
+     "th": "ขั้นที่สอง fit Gaussian process กับการทดลองทั้งหมดจนถึงตอนนั้น โดยเลือก ℓ และสัญญาณรบกวนด้วย marginal likelihood"
+    },
+    {
+     "s": 26.211,
+     "e": 37.197,
+     "en": "Step three is the acquisition. An acquisition function scores every candidate point using only m and s of the model. Its maximum is the next run.",
+     "th": "ขั้นที่สามคือ acquisition acquisition function ให้คะแนนจุดผู้สมัครทุกจุดโดยใช้เพียง m และ s ของโมเดล จุดที่ได้ค่าสูงสุดคือการทดลองถัดไป"
+    },
+    {
+     "s": 37.197,
+     "e": 43.066,
+     "en": "Searching it costs evaluations of the model, which are cheap, not experiments.",
+     "th": "การค้นหามันใช้การประเมินโมเดลซึ่งราคาถูก ไม่ใช่การทดลอง"
+    },
+    {
+     "s": 43.066,
+     "e": 48.895,
+     "en": "Step four runs the experiment, adds the result to the data, and returns to step two.",
+     "th": "ขั้นที่สี่ทำการทดลอง เพิ่มผลเข้าในข้อมูล แล้วกลับไปขั้นที่สอง"
+    },
+    {
+     "s": 48.895,
+     "e": 58.197,
+     "en": "Step five decides when to stop: when the budget is spent, when the best acquisition value has become small against the noise, or when a target has been met.",
+     "th": "ขั้นที่ห้าตัดสินใจว่าจะหยุดเมื่อใด คือเมื่องบประมาณหมด เมื่อค่า acquisition ที่ดีที่สุดเล็กเมื่อเทียบกับสัญญาณรบกวน หรือเมื่อถึงเป้าหมาย"
+    },
+    {
+     "s": 58.197,
+     "e": 70.145,
+     "en": "At the end, recommend the run with the best posterior mean, and confirm it with replicates before anyone builds on it. The next slides explain why the best mean, not the best observation.",
+     "th": "ในตอนท้าย แนะนำการทดลองที่มีค่าเฉลี่ย posterior ดีที่สุด และยืนยันด้วยการทดลองซ้ำก่อนที่ใครจะนำไปใช้ต่อ สไลด์ถัดไปอธิบายว่าทำไมใช้ค่าเฉลี่ยที่ดีที่สุด ไม่ใช่ค่าสังเกตที่ดีที่สุด"
+    },
+    {
+     "s": 70.145,
+     "e": 81.263,
+     "en": "In the lab you will see the hyperparameters change after every run. With six runs the model believes that temperature hardly matters, and that belief changes as data arrive.",
+     "th": "ใน lab คุณจะเห็น hyperparameter เปลี่ยนหลังทุกการทดลอง เมื่อมีหกการทดลอง โมเดลเชื่อว่าอุณหภูมิแทบไม่มีผล และความเชื่อนั้นเปลี่ยนไปเมื่อมีข้อมูลเพิ่ม"
+    },
+    {
+     "s": 81.263,
+     "e": 91.803,
+     "en": "The loop is sequential by default: one experiment, one refit. Part three shows how to choose several experiments at once when reactors run in parallel.",
+     "th": "โดยปกติวงรอบเป็นแบบลำดับ คือทดลองหนึ่งครั้ง fit ใหม่หนึ่งครั้ง ส่วนที่สามแสดงวิธีเลือกการทดลองหลายครั้งพร้อมกันเมื่อมีเครื่องปฏิกรณ์ทำงานขนานกัน"
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "file": "audio/slide-15.mp3",
+   "duration": 99.864,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.513,
+     "en": "Which experiment next? Three acquisition functions are common, all written here for maximization.",
+     "th": "การทดลองใดต่อไป acquisition function ที่ใช้กันทั่วไปมีสามแบบ ทั้งหมดเขียนไว้สำหรับการหาค่าสูงสุด"
+    },
+    {
+     "s": 7.513,
+     "e": 19.075,
+     "en": "The probability of improvement, P I, is the probability that the function at x exceeds y star, the best value so far. It is Phi of z, with z equal to m minus y star, divided by s.",
+     "th": "probability of improvement หรือ PI คือความน่าจะเป็นที่ฟังก์ชันที่ x มีค่าเกิน y* ซึ่งเป็นค่าที่ดีที่สุดจนถึงตอนนี้ เท่ากับ Φ(z) โดย z เท่ากับ m ลบ y* หารด้วย s"
+    },
+    {
+     "s": 19.075,
+     "e": 27.4,
+     "en": "Expected improvement, E I, is the expected amount by which the function exceeds y star, counting zero when it does not.",
+     "th": "expected improvement หรือ EI คือค่าคาดหวังของส่วนที่ฟังก์ชันเกิน y* โดยนับเป็นศูนย์เมื่อไม่เกิน"
+    },
+    {
+     "s": 27.4,
+     "e": 32.395,
+     "en": "Its closed form is m minus y star times Phi of z, plus s times phi of z.",
+     "th": "รูปปิดคือ m ลบ y* คูณ Φ(z) บวก s คูณ φ(z)"
+    },
+    {
+     "s": 32.395,
+     "e": 37.724,
+     "en": "The upper confidence bound, U C B, is simply m plus kappa times s.",
+     "th": "upper confidence bound หรือ UCB คือ m บวก κ คูณ s"
+    },
+    {
+     "s": 37.724,
+     "e": 47.132,
+     "en": "All three are high where m is high, which is exploitation, or where s is high, which is exploration. They differ in how they weigh the two.",
+     "th": "ทั้งสามมีค่าสูงที่ซึ่ง m สูง คือการใช้ประโยชน์ หรือที่ซึ่ง s สูง คือการสำรวจ ต่างกันที่การให้น้ำหนักสองสิ่งนี้"
+    },
+    {
+     "s": 47.132,
+     "e": 56.934,
+     "en": "P I ignores how large an improvement might be. It is happy with a tiny but certain gain, so it tends to sample right next to the best point so far.",
+     "th": "PI ไม่สนใจว่าการปรับปรุงจะใหญ่เพียงใด มันพอใจกับผลได้ที่เล็กแต่แน่นอน จึงมักเลือกจุดที่อยู่ติดกับจุดที่ดีที่สุดจนถึงตอนนี้"
+    },
+    {
+     "s": 56.934,
+     "e": 65.5,
+     "en": "E I weighs the size of an improvement by its probability, and has no parameter to tune. It is the most widely used.",
+     "th": "EI ถ่วงขนาดของการปรับปรุงด้วยความน่าจะเป็น และไม่มีพารามิเตอร์ต้องปรับ เป็นแบบที่ใช้กันแพร่หลายที่สุด"
+    },
+    {
+     "s": 65.5,
+     "e": 78.224,
+     "en": "U C B needs kappa. A value of about 2 is common; the theory that proves its convergence, by Srinivas and coauthors in 2010, uses a kappa that grows slowly with the number of runs.",
+     "th": "UCB ต้องการ κ ค่าประมาณ 2 ใช้กันทั่วไป ทฤษฎีที่พิสูจน์การลู่เข้าของมันโดย Srinivas และคณะ ปี 2010 ใช้ κ ที่เพิ่มขึ้นช้า ๆ ตามจำนวนการทดลอง"
+    },
+    {
+     "s": 78.224,
+     "e": 84.829,
+     "en": "In the lab you will compute E I for one point by hand, with the values of Phi and phi given on the page.",
+     "th": "ใน lab คุณจะคำนวณ EI ของจุดหนึ่งด้วยมือ โดยหน้าเว็บให้ค่า Φ และ φ"
+    },
+    {
+     "s": 84.829,
+     "e": 94.725,
+     "en": "The chart shows the Gaussian process after the three starting runs, and below it the three acquisition functions, each scaled to its own maximum, with its choice marked.",
+     "th": "กราฟแสดง Gaussian process หลังการทดลองเริ่มต้นสามครั้ง และด้านล่างคือ acquisition function ทั้งสาม แต่ละตัวปรับสเกลตามค่าสูงสุดของตัวเอง และทำเครื่องหมายจุดที่เลือก"
+    },
+    {
+     "s": 94.725,
+     "e": 99.789,
+     "en": "Here all three choose points near the best run on the left; they will not always agree.",
+     "th": "ในที่นี้ทั้งสามเลือกจุดใกล้การทดลองที่ดีที่สุดทางซ้าย แต่ไม่ได้ตรงกันเสมอไป"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "file": "audio/slide-16.mp3",
+   "duration": 108.144,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 19.026,
+     "en": "Now run the loop, one experiment at a time. Three runs are made at x equal to 0.15, 0.5 and 0.85. The best so far is 0.98, on the lower peak. No run has been near the high peak at 0.757.",
+     "th": "ต่อไปรันวงรอบทีละการทดลอง มีการทดลองสามครั้งที่ x เท่ากับ 0.15, 0.5 และ 0.85 ค่าดีที่สุดจนถึงตอนนี้คือ 0.98 บนยอดที่ต่ำกว่า ยังไม่มีการทดลองใดอยู่ใกล้ยอดสูงที่ 0.757"
+    },
+    {
+     "s": 19.026,
+     "e": 32.184,
+     "en": "Press Next experiment. E I picks x equal to 0.115, right next to the best run: exploitation. The result, 0.855, is a little worse.",
+     "th": "กด Next experiment EI เลือก x เท่ากับ 0.115 ติดกับการทดลองที่ดีที่สุด นี่คือการใช้ประโยชน์ ผลคือ 0.855 แย่ลงเล็กน้อย"
+    },
+    {
+     "s": 32.184,
+     "e": 46.461,
+     "en": "Press again. Now E I picks x equal to 1, the edge of the range, where s is largest: exploration. The result is very poor, minus 15.8, but it tells the model that the right-hand edge is low.",
+     "th": "กดอีกครั้ง ตอนนี้ EI เลือก x เท่ากับ 1 ซึ่งเป็นขอบของช่วงที่ s มากที่สุด นี่คือการสำรวจ ผลแย่มาก ลบ 15.8 แต่บอกโมเดลว่าขอบด้านขวามีค่าต่ำ"
+    },
+    {
+     "s": 46.461,
+     "e": 55.222,
+     "en": "The third choice is x equal to 0.785, and the result is 5.58: the model has found the high peak.",
+     "th": "ตัวเลือกที่สามคือ x เท่ากับ 0.785 ได้ผล 5.58 โมเดลพบยอดสูงแล้ว การทดลองอีกสองครั้งที่"
+    },
+    {
+     "s": 55.222,
+     "e": 65.066,
+     "en": "Two more runs, at 0.7 and 0.755, refine it, and the fifth new run reaches 6.018, within 0.003 of the maximum.",
+     "th": "0.7 และ 0.755 ขัดเกลาผลนี้ และการทดลองใหม่ครั้งที่ห้าได้ 6.018 ห่างจากค่าสูงสุดไม่เกิน 0.003"
+    },
+    {
+     "s": 65.066,
+     "e": 77.605,
+     "en": "Look at the acquisition in the lower chart as you step. Once the peak is found, E I checks places it has not seen, such as x equal to 0 and 0.33, before it returns to the peak.",
+     "th": "ดู acquisition ในกราฟล่างขณะกดทีละขั้น เมื่อพบยอดแล้ว EI ไปตรวจที่ที่ยังไม่เคยเห็น เช่น x เท่ากับ 0 และ 0.33 ก่อนจะกลับไปที่ยอด"
+    },
+    {
+     "s": 77.605,
+     "e": 93.342,
+     "en": "Press U C B and step through again. With kappa equal to 2, it explores more at first, at 0.09, 0.255 and 0.94, then finds the peak with its fourth choice and reaches 6.017 with its eighth.",
+     "th": "กด UCB แล้วกดทีละขั้นอีกครั้ง เมื่อ κ เท่ากับ 2 มันสำรวจมากกว่าในตอนแรก ที่ 0.09, 0.255 และ 0.94 แล้วพบยอดในตัวเลือกที่สี่ และได้ 6.017 ในตัวเลือกที่แปด"
+    },
+    {
+     "s": 93.342,
+     "e": 99.289,
+     "en": "The table on the right lists each new run, so that you can follow the numbers as well as the picture.",
+     "th": "ตารางทางขวาแสดงการทดลองใหม่แต่ละครั้ง เพื่อให้คุณติดตามได้ทั้งตัวเลขและภาพ"
+    },
+    {
+     "s": 99.289,
+     "e": 104.868,
+     "en": "Both find the high peak within four new runs, starting from three runs that all missed it.",
+     "th": "ทั้งสองพบยอดสูงภายในการทดลองใหม่สี่ครั้ง โดยเริ่มจากการทดลองสามครั้งที่พลาดยอดนั้นทั้งหมด"
+    },
+    {
+     "s": 104.868,
+     "e": 108.079,
+     "en": "Press D for the Python run of both.",
+     "th": "กด D เพื่อดูการรัน Python ของทั้งสองแบบ"
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "file": "audio/slide-17.mp3",
+   "duration": 113.976,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.142,
+     "en": "Where does the formula for expected improvement come from?",
+     "th": "สูตรของ expected improvement มาจากไหน"
+    },
+    {
+     "s": 4.142,
+     "e": 15.579,
+     "en": "The improvement at x is the amount by which f of x exceeds y star, or zero if it does not. Under the model, f of x is normal with mean m and standard deviation s.",
+     "th": "การปรับปรุงที่ x คือส่วนที่ f(x) เกิน y* หรือศูนย์ถ้าไม่เกิน ภายใต้โมเดล f(x) มีการแจกแจงปกติ ค่าเฉลี่ย m ส่วนเบี่ยงเบนมาตรฐาน s"
+    },
+    {
+     "s": 15.579,
+     "e": 23.008,
+     "en": "The expected improvement is the integral, from y star upward, of f minus y star times the normal density.",
+     "th": "expected improvement คืออินทิกรัลจาก y* ขึ้นไปของ f ลบ y* คูณความหนาแน่นแบบปกติ"
+    },
+    {
+     "s": 23.008,
+     "e": 29.316,
+     "en": "Substitute z, integrate, and you get m minus y star times Phi of z, plus s times phi of z.",
+     "th": "แทนค่า z แล้วอินทิเกรต จะได้ m ลบ y* คูณ Φ(z) บวก s คูณ φ(z)"
+    },
+    {
+     "s": 29.316,
+     "e": 41.497,
+     "en": "Its derivatives say the whole idea in one line. The derivative with respect to m is Phi of z, which is positive; the derivative with respect to s is phi of z, also positive.",
+     "th": "อนุพันธ์ของมันบอกแนวคิดทั้งหมดในบรรทัดเดียว อนุพันธ์เทียบกับ m คือ Φ(z) ซึ่งเป็นบวก อนุพันธ์เทียบกับ s คือ φ(z) ซึ่งเป็นบวกเช่นกัน EI"
+    },
+    {
+     "s": 41.497,
+     "e": 45.697,
+     "en": "E I prefers a better mean and a larger uncertainty, at once.",
+     "th": "ชอบทั้งค่าเฉลี่ยที่ดีกว่าและความไม่แน่นอนที่มากกว่า ในเวลาเดียวกัน"
+    },
+    {
+     "s": 45.697,
+     "e": 61.026,
+     "en": "The table compares two candidates. Candidate A sits next to the best run: its mean is 0.5 above y star and its s is only 0.1. Its E I is 0.500, almost exactly its mean gain.",
+     "th": "ตารางเปรียบเทียบผู้สมัครสองจุด จุด A อยู่ติดกับการทดลองที่ดีที่สุด ค่าเฉลี่ยสูงกว่า y* อยู่ 0.5 และ s เพียง 0.1 EI ของมันคือ 0.500 เกือบเท่ากับผลได้เฉลี่ยพอดี"
+    },
+    {
+     "s": 61.026,
+     "e": 72.447,
+     "en": "Candidate B is far from all runs. Its mean is 1 below y star, but its s is 3. Its E I is 0.763, larger than A's.",
+     "th": "จุด B อยู่ห่างจากการทดลองทั้งหมด ค่าเฉลี่ยต่ำกว่า y* อยู่ 1 แต่ s เท่ากับ 3 EI ของมันคือ 0.763 มากกว่าของ A"
+    },
+    {
+     "s": 72.447,
+     "e": 82.697,
+     "en": "B is predicted to be worse than the best run, yet its chance of being much better makes its expected gain larger. A point can win by promise or by ignorance.",
+     "th": "B ถูกทำนายว่าแย่กว่าการทดลองที่ดีที่สุด แต่โอกาสที่มันจะดีกว่ามากทำให้ผลได้คาดหวังมากกว่า จุดหนึ่งชนะได้ทั้งเพราะมีแววดี หรือเพราะเรายังไม่รู้จักมัน"
+    },
+    {
+     "s": 82.697,
+     "e": 90.237,
+     "en": "The chart shows E I against s for three values of m minus y star. All three curves rise with s.",
+     "th": "กราฟแสดง EI เทียบกับ s สำหรับ m ลบ y* สามค่า ทั้งสามเส้นเพิ่มขึ้นตาม s"
+    },
+    {
+     "s": 90.237,
+     "e": 102.658,
+     "en": "As runs accumulate, s shrinks everywhere and E I turns to exploitation by itself. If a campaign keeps sampling one spot, a margin xi, added to y star, adds exploration.",
+     "th": "เมื่อการทดลองสะสมมากขึ้น s หดลงทุกที่ และ EI หันไปใช้ประโยชน์เองโดยอัตโนมัติ ถ้าการทดลองวนอยู่ที่จุดเดียว การบวกส่วนเผื่อ ξ เข้ากับ y* จะเพิ่มการสำรวจ"
+    },
+    {
+     "s": 102.658,
+     "e": 110.803,
+     "en": "At a run made without noise, s is zero and m is at most y star, so E I is zero: it never repeats a noise-free experiment.",
+     "th": "ที่การทดลองที่ไม่มีสัญญาณรบกวน s เป็นศูนย์และ m ไม่เกิน y* ดังนั้น EI เป็นศูนย์ มันจึงไม่ทำการทดลองที่ไม่มีสัญญาณรบกวนซ้ำ"
+    },
+    {
+     "s": 110.803,
+     "e": 113.908,
+     "en": "Press D to compute the two values.",
+     "th": "กด D เพื่อคำนวณสองค่านี้"
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "file": "audio/slide-18.mp3",
+   "duration": 89.856,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.945,
+     "en": "Real experiments are noisy, and noise changes one important detail.",
+     "th": "การทดลองจริงมีสัญญาณรบกวน และสัญญาณรบกวนเปลี่ยนรายละเอียดสำคัญอย่างหนึ่ง"
+    },
+    {
+     "s": 4.945,
+     "e": 16.0,
+     "en": "Suppose several runs have the same true value, and each is measured with noise of standard deviation sigma n. The best of them is, on average, above the true value.",
+     "th": "สมมติว่าการทดลองหลายครั้งมีค่าจริงเท่ากัน และแต่ละครั้งวัดด้วยสัญญาณรบกวนที่มีส่วนเบี่ยงเบนมาตรฐาน σn ค่าที่ดีที่สุดในนั้นโดยเฉลี่ยจะสูงกว่าค่าจริง"
+    },
+    {
+     "s": 16.0,
+     "e": 26.447,
+     "en": "The table gives the expected excess: 0.56 sigma n for two runs, 1.16 for five, 1.54 for ten and 1.87 for twenty.",
+     "th": "ตารางให้ส่วนเกินคาดหวัง คือ 0.56 σn สำหรับสองครั้ง 1.16 สำหรับห้าครั้ง 1.54 สำหรับสิบครั้ง และ 1.87 สำหรับยี่สิบครั้ง"
+    },
+    {
+     "s": 26.447,
+     "e": 35.575,
+     "en": "This is a property of the normal distribution, not of B O. It is the same optimism as the sample average approximation of Session 12:",
+     "th": "นี่เป็นสมบัติของการแจกแจงปกติ ไม่ใช่ของ BO เป็นการมองโลกในแง่ดีแบบเดียวกับ sample average approximation ในคาบที่ 12"
+    },
+    {
+     "s": 35.575,
+     "e": 42.592,
+     "en": "selecting the best of noisy numbers selects favorable noise. It is sometimes called the winner's curse.",
+     "th": "การเลือกค่าที่ดีที่สุดจากตัวเลขที่มีสัญญาณรบกวนคือการเลือกสัญญาณรบกวนที่เป็นใจ บางครั้งเรียกว่า winner's curse"
+    },
+    {
+     "s": 42.592,
+     "e": 56.237,
+     "en": "Three practices follow. First, for y star in E I, use the best posterior mean at the runs made, not the best observation. The Gaussian process, with its noise term, averages nearby runs.",
+     "th": "จึงมีแนวปฏิบัติสามข้อ ข้อแรก ใช้ค่าเฉลี่ย posterior ที่ดีที่สุดที่จุดทดลองเป็น y* ใน EI ไม่ใช่ค่าสังเกตที่ดีที่สุด Gaussian process ที่มีพจน์สัญญาณรบกวนจะเฉลี่ยการทดลองที่อยู่ใกล้กัน"
+    },
+    {
+     "s": 56.237,
+     "e": 63.232,
+     "en": "Second, recommend the run with the best posterior mean, not the best observed value, and report it as m plus or minus two s.",
+     "th": "ข้อสอง แนะนำการทดลองที่มีค่าเฉลี่ย posterior ดีที่สุด ไม่ใช่ค่าสังเกตที่ดีที่สุด และรายงานเป็น m บวกลบสอง s"
+    },
+    {
+     "s": 63.232,
+     "e": 71.405,
+     "en": "Third, confirm the recommendation with two or three replicates before anyone builds on it. Replicates also measure the noise directly;",
+     "th": "ข้อสาม ยืนยันข้อแนะนำด้วยการทดลองซ้ำสองหรือสามครั้งก่อนที่ใครจะนำไปใช้ต่อ การทดลองซ้ำยังวัดสัญญาณรบกวนได้โดยตรง"
+    },
+    {
+     "s": 71.405,
+     "e": 75.158,
+     "en": "a center point repeated in the initial design does this early.",
+     "th": "การทำจุดกึ่งกลางซ้ำในการออกแบบเริ่มต้นช่วยให้รู้ได้ตั้งแต่ต้น"
+    },
+    {
+     "s": 75.158,
+     "e": 85.816,
+     "en": "There are versions of E I designed for noise, which integrate over it. With modest noise, the plug-in rule above works well, and it is what today's module uses.",
+     "th": "มี EI แบบที่ออกแบบสำหรับสัญญาณรบกวนโดยอินทิเกรตครอบคลุมสัญญาณรบกวน เมื่อสัญญาณรบกวนไม่มาก กฎแทนค่าข้างต้นใช้ได้ดี และเป็นสิ่งที่โมดูลวันนี้ใช้"
+    },
+    {
+     "s": 85.816,
+     "e": 89.776,
+     "en": "The lab measures this optimism on a real B O run.",
+     "th": "lab จะวัดการมองโลกในแง่ดีนี้บนการรัน BO จริง"
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "file": "audio/slide-19.mp3",
+   "duration": 109.32,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 14.967,
+     "en": "How much does all this help? Here is a fair comparison on Session 5's six-hump camel function, with its sign changed so that we maximize. The maximum is 1.0316, at two points.",
+     "th": "ทั้งหมดนี้ช่วยได้มากเพียงใด นี่คือการเปรียบเทียบอย่างเป็นธรรมบนฟังก์ชัน six-hump camel ของคาบที่ 5 โดยกลับเครื่องหมายเพื่อหาค่าสูงสุด ค่าสูงสุดคือ 1.0316 ที่สองจุด"
+    },
+    {
+     "s": 14.967,
+     "e": 16.487,
+     "en": "There is no noise.",
+     "th": "ไม่มีสัญญาณรบกวน"
+    },
+    {
+     "s": 16.487,
+     "e": 26.816,
+     "en": "Three methods get the same budget. B O starts with six Latin hypercube runs and then follows E I. Random search draws uniformly in the box.",
+     "th": "สามวิธีได้งบประมาณเท่ากัน BO เริ่มด้วยการทดลองแบบ Latin hypercube หกครั้งแล้วตาม EI การสุ่มค้นหาสุ่มแบบสม่ำเสมอในกล่อง"
+    },
+    {
+     "s": 26.816,
+     "e": 30.579,
+     "en": "The grids use five by four, or six by five, points.",
+     "th": "ตารางใช้ห้าคูณสี่ หรือหกคูณห้าจุด"
+    },
+    {
+     "s": 30.579,
+     "e": 37.974,
+     "en": "The comparison is fair because each method gets the same budget and the same function; only the way the runs are chosen differs.",
+     "th": "การเปรียบเทียบนี้เป็นธรรมเพราะทุกวิธีได้งบประมาณและฟังก์ชันเดียวกัน ต่างกันเพียงวิธีเลือกการทดลอง"
+    },
+    {
+     "s": 37.974,
+     "e": 42.299,
+     "en": "B O and random search are repeated with twenty different seeds.",
+     "th": "BO และการสุ่มค้นหาทำซ้ำด้วย seed ที่ต่างกันยี่สิบค่า"
+    },
+    {
+     "s": 42.299,
+     "e": 51.421,
+     "en": "The chart shows the median of the best value found so far, against the number of runs, with bands from the 25th to the 75th percentile.",
+     "th": "กราฟแสดงมัธยฐานของค่าที่ดีที่สุดที่พบจนถึงตอนนั้น เทียบกับจำนวนการทดลอง พร้อมแถบจากเปอร์เซ็นไทล์ที่ 25 ถึง 75"
+    },
+    {
+     "s": 51.421,
+     "e": 61.5,
+     "en": "For the first few runs, random search is ahead, because B O's first six runs are a fixed space-filling design. After that, B O climbs faster.",
+     "th": "ในการทดลองไม่กี่ครั้งแรก การสุ่มค้นหานำอยู่ เพราะการทดลองหกครั้งแรกของ BO เป็นการออกแบบเติมเต็มปริภูมิที่กำหนดไว้ หลังจากนั้น BO ไต่ขึ้นเร็วกว่า"
+    },
+    {
+     "s": 61.5,
+     "e": 71.877,
+     "en": "With twenty runs, the median best is 0.816 for B O, 0.687 for random search, and 0.750 for the five by four grid.",
+     "th": "ที่การทดลองยี่สิบครั้ง มัธยฐานของค่าดีที่สุดคือ 0.816 สำหรับ BO 0.687 สำหรับการสุ่มค้นหา และ 0.750"
+    },
+    {
+     "s": 71.877,
+     "e": 80.342,
+     "en": "With thirty runs, B O reaches 1.015, close to the maximum, while random search reaches 0.805.",
+     "th": "สำหรับตารางห้าคูณสี่ ที่สามสิบครั้ง BO ได้ 1.015 ใกล้ค่าสูงสุด ส่วนการสุ่มค้นหาได้ 0.805"
+    },
+    {
+     "s": 80.342,
+     "e": 91.724,
+     "en": "The six by five grid does worse than the five by four grid, at 0.485. Whether a grid does well depends on where its levels fall, not only on how many there are.",
+     "th": "ตารางหกคูณห้าทำได้แย่กว่าตารางห้าคูณสี่ ได้ 0.485 ตารางจะดีหรือไม่ขึ้นกับตำแหน่งที่ระดับตกลง ไม่ใช่เพียงจำนวนระดับ"
+    },
+    {
+     "s": 91.724,
+     "e": 99.049,
+     "en": "The map shows one B O run. The white points are the Latin hypercube; the amber points are E I's choices.",
+     "th": "แผนที่แสดงการรัน BO หนึ่งครั้ง จุดสีขาวคือ Latin hypercube จุดสีอำพันคือจุดที่"
+    },
+    {
+     "s": 99.049,
+     "e": 105.816,
+     "en": "Several sit on the edges of the box, where s was large, and the rest gather around the two peaks.",
+     "th": "EI เลือก หลายจุดอยู่บนขอบกล่องซึ่ง s มีค่ามาก ที่เหลือรวมกลุ่มรอบสองยอด"
+    },
+    {
+     "s": 105.816,
+     "e": 109.25,
+     "en": "Press D to run one seed of each in Python.",
+     "th": "กด D เพื่อรันแต่ละวิธีหนึ่ง seed ใน Python"
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "file": "audio/slide-20.mp3",
+   "duration": 38.904,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.339,
+     "en": "Second check: acquisition and noise.",
+     "th": "แบบตรวจที่สอง acquisition และสัญญาณรบกวน"
+    },
+    {
+     "s": 3.339,
+     "e": 12.527,
+     "en": "Say what E I is at a noise-free run, describe U C B with kappa equal to 0 and to 10, explain why the best observed yield is a poor y star when yields are noisy,",
+     "th": "บอกว่า EI ที่การทดลองที่ไม่มีสัญญาณรบกวนเป็นเท่าใด อธิบาย UCB เมื่อ κ เท่ากับ 0 และ 10 อธิบายเหตุที่ผลได้ที่สังเกตได้ดีที่สุดเป็น y* ที่ไม่ดีเมื่อผลได้มีสัญญาณรบกวน"
+    },
+    {
+     "s": 12.527,
+     "e": 16.579,
+     "en": "and decide whether B O suits a cheap simulation with an exact gradient.",
+     "th": "และตัดสินว่า BO เหมาะกับการจำลองราคาถูกที่มี gradient แน่นอนหรือไม่"
+    },
+    {
+     "s": 16.579,
+     "e": 22.013,
+     "en": "For question four, compare the cost of the method with the cost of an evaluation.",
+     "th": "สำหรับข้อสี่ ให้เปรียบเทียบต้นทุนของวิธีกับต้นทุนของการประเมินหนึ่งครั้ง"
+    },
+    {
+     "s": 22.013,
+     "e": 27.263,
+     "en": "For question two, think of the camel map: where would each setting put its runs?",
+     "th": "สำหรับข้อสอง ลองนึกถึงแผนที่ camel ว่าแต่ละค่าจะวางการทดลองไว้ที่ใด"
+    },
+    {
+     "s": 27.263,
+     "e": 32.434,
+     "en": "For question three, recall the expected excess of the best of noisy runs.",
+     "th": "สำหรับข้อสาม ให้นึกถึงส่วนเกินคาดหวังของค่าที่ดีที่สุดจากการทดลองที่มีสัญญาณรบกวน"
+    },
+    {
+     "s": 32.434,
+     "e": 38.842,
+     "en": "Take five minutes. Pause the narration now, and press Show answers when you are done.",
+     "th": "ใช้เวลาห้านาที หยุดคำบรรยายตอนนี้ และกด Show answers เมื่อเสร็จ"
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "file": "audio/slide-21.mp3",
+   "duration": 15.84,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.432,
+     "en": "Take a ten-minute break.",
+     "th": "พักสิบนาที"
+    },
+    {
+     "s": 2.432,
+     "e": 10.855,
+     "en": "After the break, your card again: which of its inputs would you vary in experiments, over which ranges, and how many runs could you afford?",
+     "th": "หลังพัก กลับมาที่การ์ดของคุณ ตัวแปรใดที่คุณจะเปลี่ยนในการทดลอง ในช่วงใด และจ่ายได้กี่ครั้ง"
+    },
+    {
+     "s": 10.855,
+     "e": 15.776,
+     "en": "If you study on your own, this is a good point to stop and come back later.",
+     "th": "ถ้าเรียนเอง จุดนี้เหมาะที่จะหยุดพักแล้วกลับมาเรียนต่อภายหลัง"
+    }
+   ]
+  },
+  {
+   "n": 22,
+   "file": "audio/slide-22.mp3",
+   "duration": 71.112,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.382,
+     "en": "Activity 2: your card as an expensive experiment. Work in pairs.",
+     "th": "กิจกรรมที่ 2 การ์ดของคุณในฐานะการทดลองที่มีราคาแพง ทำเป็นคู่"
+    },
+    {
+     "s": 6.382,
+     "e": 15.461,
+     "en": "Choose two or three inputs of your card that you would vary in real experiments or in a slow simulation, with their ranges and units, and the output you would measure.",
+     "th": "เลือกตัวแปรนำเข้าสองหรือสามตัวของการ์ดที่คุณจะเปลี่ยนในการทดลองจริงหรือในการจำลองที่ช้า พร้อมช่วงค่าและหน่วย และผลที่คุณจะวัด"
+    },
+    {
+     "s": 15.461,
+     "e": 21.158,
+     "en": "Estimate the noise, and the budget: how many runs in total, and how many at a time.",
+     "th": "ประมาณสัญญาณรบกวนและงบประมาณ คือจำนวนการทดลองทั้งหมด และทำพร้อมกันได้ครั้งละกี่การทดลอง"
+    },
+    {
+     "s": 21.158,
+     "e": 25.013,
+     "en": "Design the first batch: how many runs, and where.",
+     "th": "ออกแบบชุดแรก ว่ามีกี่การทดลองและวางที่ใด"
+    },
+    {
+     "s": 25.013,
+     "e": 30.75,
+     "en": "Finally, say what would make B O a poor choice for your card, and what you would use instead.",
+     "th": "สุดท้าย บอกว่าอะไรจะทำให้ BO เป็นทางเลือกที่ไม่ดีสำหรับการ์ดของคุณ และคุณจะใช้อะไรแทน"
+    },
+    {
+     "s": 30.75,
+     "e": 38.408,
+     "en": "Use a log scale for inputs that span decades, such as time or concentration, and repeat the center point to measure the noise.",
+     "th": "ใช้สเกลลอการิทึมสำหรับตัวแปรที่ครอบคลุมหลายอันดับ เช่น เวลาหรือความเข้มข้น และทำจุดกึ่งกลางซ้ำเพื่อวัดสัญญาณรบกวน"
+    },
+    {
+     "s": 38.408,
+     "e": 47.289,
+     "en": "If your card's model is a set of equations you can differentiate, B O is the wrong tool; say which solver from Sessions 6 to 11 you would use.",
+     "th": "ถ้าโมเดลในการ์ดของคุณเป็นชุดสมการที่หาอนุพันธ์ได้ BO เป็นเครื่องมือที่ไม่เหมาะ ให้บอกว่าจะใช้ solver ใดจากคาบที่ 6 ถึง 11"
+    },
+    {
+     "s": 47.289,
+     "e": 56.408,
+     "en": "If you have no card, use Session 11's batch reactor: choose two temperatures for a two-step profile in a pilot reactor, where each batch takes a day.",
+     "th": "ถ้าไม่มีการ์ด ให้ใช้เครื่องปฏิกรณ์แบบกะของคาบที่ 11 เลือกอุณหภูมิสองค่าสำหรับโปรไฟล์สองขั้นในเครื่องปฏิกรณ์ขนาด pilot ซึ่งแต่ละกะใช้เวลาหนึ่งวัน"
+    },
+    {
+     "s": 56.408,
+     "e": 63.118,
+     "en": "Your partner checks that the ranges are physically possible and that the budget is realistic for the plant or the lab.",
+     "th": "เพื่อนของคุณตรวจว่าช่วงค่าเป็นไปได้ทางกายภาพ และงบประมาณสมจริงสำหรับโรงงานหรือห้องปฏิบัติการ"
+    },
+    {
+     "s": 63.118,
+     "e": 71.053,
+     "en": "Pause the narration now; take ten minutes. Keep your answers: part three asks how you would handle runs that fail.",
+     "th": "หยุดคำบรรยายตอนนี้ ใช้เวลาสิบนาที เก็บคำตอบไว้ ส่วนที่สามจะถามว่าคุณจะจัดการกับการทดลองที่ล้มเหลวอย่างไร"
+    }
+   ]
+  },
+  {
+   "n": 23,
+   "file": "audio/slide-23.mp3",
+   "duration": 99.192,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.695,
+     "en": "Part three starts with what real campaigns need beyond the basic loop.",
+     "th": "ส่วนที่สามเริ่มจากสิ่งที่การทดลองจริงต้องการนอกเหนือจากวงรอบพื้นฐาน"
+    },
+    {
+     "s": 4.695,
+     "e": 17.573,
+     "en": "Parallel runs. If four reactors run at once, choose four points per round. A simple way is to pretend that each pending run returned the model's mean, refit, and choose the next point:",
+     "th": "การทดลองขนาน ถ้าเครื่องปฏิกรณ์สี่เครื่องทำงานพร้อมกัน ให้เลือกสี่จุดต่อรอบ วิธีง่าย ๆ คือสมมติว่าการทดลองที่รอผลแต่ละครั้งให้ค่าเท่ากับค่าเฉลี่ยของโมเดล fit ใหม่ แล้วเลือกจุดถัดไป"
+    },
+    {
+     "s": 17.573,
+     "e": 26.553,
+     "en": "the Kriging believer, or constant liar, of Ginsbourger and coauthors, 2010. A method called q E I scores the whole batch jointly.",
+     "th": "คือ Kriging believer หรือ constant liar ของ Ginsbourger และคณะ ปี 2010 วิธีที่เรียกว่า q-EI ให้คะแนนทั้งชุดพร้อมกัน"
+    },
+    {
+     "s": 26.553,
+     "e": 31.66,
+     "en": "Failed runs. Some conditions give no product, or off-spec product.",
+     "th": "การทดลองที่ล้มเหลว บางสภาวะไม่ได้ผลิตภัณฑ์ หรือได้ผลิตภัณฑ์ไม่ได้มาตรฐาน"
+    },
+    {
+     "s": 31.66,
+     "e": 42.408,
+     "en": "Model the probability that a run is feasible with a second model, and maximize E I times that probability, as in Gardner and coauthors, 2014.",
+     "th": "ให้สร้างโมเดลที่สองสำหรับความน่าจะเป็นที่การทดลองจะเป็นไปได้ แล้วหาค่าสูงสุดของ EI คูณความน่าจะเป็นนั้น เหมือนใน Gardner และคณะ ปี 2014"
+    },
+    {
+     "s": 42.408,
+     "e": 52.755,
+     "en": "Several objectives, as in Session 13: yield and cost, or yield and impurity. Expected hypervolume improvement extends E I to fronts;",
+     "th": "หลายเป้าหมาย เหมือนคาบที่ 13 เช่น ผลได้กับต้นทุน หรือผลได้กับสิ่งเจือปน expected hypervolume improvement ขยาย EI ไปสู่แนวหน้า"
+    },
+    {
+     "s": 52.755,
+     "e": 60.224,
+     "en": "ParEGO, by Knowles in 2006, uses random weighted combinations. The result is an estimated front.",
+     "th": "ส่วน ParEGO ของ Knowles ปี 2006 ใช้ผลรวมถ่วงน้ำหนักแบบสุ่ม ผลลัพธ์คือแนวหน้าที่ประมาณได้"
+    },
+    {
+     "s": 60.224,
+     "e": 69.789,
+     "en": "Categorical choices, such as a solvent or a catalyst, need one-hot inputs or special kernels; with few categories, one model per category works.",
+     "th": "ทางเลือกแบบหมวดหมู่ เช่น ตัวทำละลายหรือตัวเร่งปฏิกิริยา ต้องใช้ตัวแปรแบบ one-hot หรือ kernel พิเศษ ถ้ามีหมวดหมู่น้อย ใช้หนึ่งโมเดลต่อหมวดหมู่ก็ได้"
+    },
+    {
+     "s": 69.789,
+     "e": 78.5,
+     "en": "When a cheap simulation and an expensive experiment are both available, multi-fidelity B O lets many cheap runs guide the few expensive ones.",
+     "th": "เมื่อมีทั้งการจำลองราคาถูกและการทดลองราคาแพง multi-fidelity BO ใช้การรันราคาถูกจำนวนมากนำทางการทดลองราคาแพงไม่กี่ครั้ง"
+    },
+    {
+     "s": 78.5,
+     "e": 85.987,
+     "en": "And when a mechanistic model is almost right, use it as the prior mean, and let the Gaussian process learn only its error.",
+     "th": "และเมื่อโมเดลเชิงกลไกเกือบถูกต้อง ให้ใช้มันเป็นค่าเฉลี่ย prior แล้วให้ Gaussian process เรียนรู้เฉพาะความคลาดเคลื่อนของมัน"
+    },
+    {
+     "s": 85.987,
+     "e": 93.056,
+     "en": "In chemistry, Shields and coauthors, 2021, used B O with categorical and continuous inputs to optimize reactions,",
+     "th": "ในทางเคมี Shields และคณะ ปี 2021 ใช้ BO ที่มีตัวแปรทั้งแบบหมวดหมู่และแบบต่อเนื่องเพื่อหาสภาวะปฏิกิริยาที่เหมาะสม"
+    },
+    {
+     "s": 93.056,
+     "e": 99.132,
+     "en": "and reported that it needed fewer experiments than chemists working by hand on the same benchmark.",
+     "th": "และรายงานว่าใช้การทดลองน้อยกว่านักเคมีที่ตัดสินใจเองบนชุดทดสอบเดียวกัน"
+    }
+   ]
+  },
+  {
+   "n": 24,
+   "file": "audio/slide-24.mp3",
+   "duration": 94.392,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.974,
+     "en": "B O is not a universal tool. Five limits matter in practice.",
+     "th": "BO ไม่ใช่เครื่องมือที่ใช้ได้กับทุกอย่าง มีข้อจำกัดห้าข้อที่สำคัญในทางปฏิบัติ"
+    },
+    {
+     "s": 5.974,
+     "e": 14.929,
+     "en": "Many inputs. Above about twenty, a Gaussian process needs many runs to learn anything, and the acquisition is hard to search.",
+     "th": "ตัวแปรจำนวนมาก เมื่อเกินประมาณยี่สิบตัว Gaussian process ต้องการการทดลองจำนวนมากกว่าจะเรียนรู้อะไรได้ และค้นหา acquisition"
+    },
+    {
+     "s": 14.929,
+     "e": 25.803,
+     "en": "Screen the inputs first, or use trust-region B O, such as TuRBO, from Eriksson and coauthors, 2019, which searches a local region that moves and resizes.",
+     "th": "ได้ยาก ให้คัดกรองตัวแปรก่อน หรือใช้ trust-region BO เช่น TuRBO ของ Eriksson และคณะ ปี 2019 ซึ่งค้นหาในบริเวณเฉพาะที่ที่เคลื่อนที่และปรับขนาดได้"
+    },
+    {
+     "s": 25.803,
+     "e": 33.421,
+     "en": "Cliffs and regime changes. One length-scale per input cannot fit both a flat region and a sharp edge.",
+     "th": "หน้าผาและการเปลี่ยนระบอบ length-scale หนึ่งค่าต่อตัวแปร fit ทั้งบริเวณที่แบนและขอบที่คมพร้อมกันไม่ได้"
+    },
+    {
+     "s": 33.421,
+     "e": 41.0,
+     "en": "Many runs. The model costs order n cubed; hundreds of runs are fine, tens of thousands are not.",
+     "th": "การทดลองจำนวนมาก โมเดลมีต้นทุนอันดับ n ยกกำลังสาม หลายร้อยครั้งยังไม่เป็นปัญหา แต่หลายหมื่นครั้งไม่ได้"
+    },
+    {
+     "s": 41.0,
+     "e": 46.197,
+     "en": "Cheap functions. Use gradients and multistart instead.",
+     "th": "ฟังก์ชันราคาถูก ให้ใช้ gradient และ multistart แทน"
+    },
+    {
+     "s": 46.197,
+     "e": 51.408,
+     "en": "And the box. B O searches only the ranges you give it.",
+     "th": "และกล่อง BO ค้นหาเฉพาะในช่วงที่คุณกำหนดให้"
+    },
+    {
+     "s": 51.408,
+     "e": 58.408,
+     "en": "None of these limits is specific to Gaussian processes; they are the price of learning a function from few samples.",
+     "th": "ข้อจำกัดเหล่านี้ไม่ได้เป็นของ Gaussian process โดยเฉพาะ แต่เป็นราคาของการเรียนรู้ฟังก์ชันจากตัวอย่างจำนวนน้อย"
+    },
+    {
+     "s": 58.408,
+     "e": 70.645,
+     "en": "The panel lists good practice. Scale each input to the range zero to one, with log scales for inputs that span decades. Transform skewed outputs and standardize them.",
+     "th": "กรอบด้านขวาแสดงแนวปฏิบัติที่ดี ปรับสเกลตัวแปรแต่ละตัวให้อยู่ในช่วงศูนย์ถึงหนึ่ง และใช้สเกลลอการิทึมสำหรับตัวแปรที่ครอบคลุมหลายอันดับ แปลงผลที่เบ้แล้วปรับมาตรฐาน"
+    },
+    {
+     "s": 70.645,
+     "e": 78.289,
+     "en": "Give each input its own length-scale: a long ell means that the input hardly matters, which is useful information in itself.",
+     "th": "ให้ตัวแปรแต่ละตัวมี length-scale ของตัวเอง ℓ ที่ยาวหมายความว่าตัวแปรนั้นแทบไม่มีผล ซึ่งเป็นข้อมูลที่มีประโยชน์ในตัวเอง"
+    },
+    {
+     "s": 78.289,
+     "e": 88.147,
+     "en": "Check the model before trusting its acquisition: predict each run from the others, leave-one-out, and compare. Keep every run, including failures.",
+     "th": "ตรวจโมเดลก่อนเชื่อ acquisition ของมัน โดยทำนายการทดลองแต่ละครั้งจากครั้งอื่น แบบ leave-one-out แล้วเปรียบเทียบ เก็บทุกการทดลองรวมถึงที่ล้มเหลว"
+    },
+    {
+     "s": 88.147,
+     "e": 94.316,
+     "en": "And plot the best value so far against the run number; it is the campaign's progress report.",
+     "th": "และพล็อตค่าดีที่สุดจนถึงตอนนั้นเทียบกับลำดับการทดลอง ซึ่งเป็นรายงานความคืบหน้าของการทดลองทั้งชุด"
+    }
+   ]
+  },
+  {
+   "n": 25,
+   "file": "audio/slide-25.mp3",
+   "duration": 74.832,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.247,
+     "en": "A word on tools.",
+     "th": "พูดถึงเครื่องมือสักเล็กน้อย"
+    },
+    {
+     "s": 2.247,
+     "e": 11.829,
+     "en": "Today's module, bo lab dot py, writes a Gaussian process and expected improvement in about sixty lines of NumPy and SciPy, and runs in the browser.",
+     "th": "โมดูลวันนี้ bo_lab.py เขียน Gaussian process และ expected improvement ในประมาณหกสิบบรรทัดด้วย NumPy และ SciPy และรันในเบราว์เซอร์ได้"
+    },
+    {
+     "s": 11.829,
+     "e": 16.684,
+     "en": "It is good for learning, for small studies, and when you want full control.",
+     "th": "เหมาะสำหรับการเรียน การศึกษาขนาดเล็ก และเมื่อต้องการควบคุมทุกอย่างเอง"
+    },
+    {
+     "s": 16.684,
+     "e": 24.829,
+     "en": "scikit-learn's Gaussian process regressor gives Matérn and noise kernels with fitted hyperparameters; you write the acquisition yourself.",
+     "th": "GaussianProcessRegressor ของ scikit-learn มี kernel Matérn และ kernel สัญญาณรบกวนพร้อม hyperparameter ที่ fit แล้ว คุณเขียน acquisition เอง"
+    },
+    {
+     "s": 24.829,
+     "e": 36.724,
+     "en": "BoTorch, built on PyTorch, and Ax, which manages the experiments, provide batch, constrained, multi-objective and multi-fidelity B O, and suit real campaigns with parallel reactors.",
+     "th": "BoTorch ซึ่งสร้างบน PyTorch และ Ax ซึ่งจัดการการทดลอง มี BO แบบเป็นชุด มีข้อจำกัด หลายเป้าหมาย และ multi-fidelity เหมาะกับการทดลองจริงที่มีเครื่องปฏิกรณ์ขนาน"
+    },
+    {
+     "s": 36.724,
+     "e": 45.934,
+     "en": "Optuna does sequential model-based search with a tree-structured Parzen estimator by default, and handles many runs and mixed or conditional inputs well.",
+     "th": "Optuna ค้นหาแบบอิงโมเดลตามลำดับ โดยใช้ tree-structured Parzen estimator เป็นค่าตั้งต้น และรองรับการรันจำนวนมาก และตัวแปรผสมหรือแบบมีเงื่อนไขได้ดี"
+    },
+    {
+     "s": 45.934,
+     "e": 54.997,
+     "en": "For a first campaign in a laboratory, a short script around scikit-learn, or today's module, together with a careful log, is usually enough.",
+     "th": "สำหรับการทดลองชุดแรกในห้องปฏิบัติการ สคริปต์สั้น ๆ ที่ใช้ scikit-learn หรือโมดูลวันนี้ ร่วมกับบันทึกที่ละเอียด มักเพียงพอ"
+    },
+    {
+     "s": 54.997,
+     "e": 59.368,
+     "en": "The larger frameworks pay off when runs are parallel or constrained.",
+     "th": "กรอบงานที่ใหญ่กว่าจะคุ้มค่าเมื่อการทดลองทำแบบขนานหรือมีข้อจำกัด"
+    },
+    {
+     "s": 59.368,
+     "e": 65.789,
+     "en": "And always a log: a spreadsheet of conditions, results, dates, operators and failures.",
+     "th": "และต้องมีบันทึกเสมอ คือสเปรดชีตของสภาวะ ผล วันที่ ผู้ปฏิบัติ และความล้มเหลว"
+    },
+    {
+     "s": 65.789,
+     "e": 74.763,
+     "en": "Whatever the tool, record the seed, the kernel and its hyperparameters, and the acquisition, so that each choice can be reproduced and explained.",
+     "th": "ไม่ว่าจะใช้เครื่องมือใด ให้บันทึก seed kernel และ hyperparameter และ acquisition เพื่อให้ทำซ้ำและอธิบายแต่ละการเลือกได้"
+    }
+   ]
+  },
+  {
+   "n": 26,
+   "file": "audio/slide-26.mp3",
+   "duration": 98.472,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.958,
+     "en": "Now the second topic: a language model as a modeling assistant.",
+     "th": "ต่อไปคือหัวข้อที่สอง language model ในฐานะผู้ช่วยสร้างโมเดล"
+    },
+    {
+     "s": 4.958,
+     "e": 7.36,
+     "en": "Language models are often useful here.",
+     "th": "language model มักมีประโยชน์ในงานนี้"
+    },
+    {
+     "s": 7.36,
+     "e": 18.633,
+     "en": "They draft model code quickly from a written description, know the calls of solvers and libraries, write the data handling, plots and reports, explain error messages and solver logs,",
+     "th": "มันร่างโค้ดของโมเดลจากคำอธิบายได้เร็ว รู้วิธีเรียก solver และไลบรารี เขียนส่วนจัดการข้อมูล กราฟ และรายงาน อธิบายข้อความ error และ log ของ solver"
+    },
+    {
+     "s": 18.633,
+     "e": 19.803,
+     "en": "and suggest checks.",
+     "th": "และเสนอการตรวจสอบ"
+    },
+    {
+     "s": 19.803,
+     "e": 32.118,
+     "en": "They also make errors, and their errors are plausible. Units get mixed: tonnes per day against tonnes per week, hours against minutes. The direction of an inequality flips.",
+     "th": "มันก็ทำผิดได้ และข้อผิดพลาดดูน่าเชื่อ หน่วยปนกัน เช่น ตันต่อวันกับตันต่อสัปดาห์ ชั่วโมงกับนาที ทิศของอสมการกลับด้าน"
+    },
+    {
+     "s": 32.118,
+     "e": 41.864,
+     "en": "Indices are off by one; in Python, index minus one silently means the last element. Data are invented to fill a gap in the description.",
+     "th": "ดัชนีคลาดไปหนึ่ง ใน Python ดัชนีลบหนึ่งหมายถึงสมาชิกตัวสุดท้ายโดยไม่มีคำเตือน ข้อมูลถูกแต่งขึ้นเพื่อเติมช่องว่างในคำอธิบาย"
+    },
+    {
+     "s": 41.864,
+     "e": 46.092,
+     "en": "And the explanation of the code can be confident and wrong.",
+     "th": "และคำอธิบายโค้ดอาจมั่นใจแต่ผิด"
+    },
+    {
+     "s": 46.092,
+     "e": 53.434,
+     "en": "These are not exotic errors. People make them too; a fast draft simply makes them easy to miss.",
+     "th": "นี่ไม่ใช่ข้อผิดพลาดแปลกประหลาด คนก็ทำเช่นกัน เพียงแต่ร่างที่ได้มาเร็วทำให้มองข้ามได้ง่าย"
+    },
+    {
+     "s": 53.434,
+     "e": 66.161,
+     "en": "The workflow on the right keeps you in control. Write the specification yourself: the sets, the data with units, and each constraint in words. Ask for code in small functions.",
+     "th": "ขั้นตอนทางขวาช่วยให้คุณควบคุมได้ เขียนข้อกำหนดเอง ได้แก่ เซต ข้อมูลพร้อมหน่วย และข้อจำกัดแต่ละข้อเป็นถ้อยคำ ขอโค้ดเป็นฟังก์ชันเล็ก"
+    },
+    {
+     "s": 66.161,
+     "e": 70.066,
+     "en": "Write tests from the specification, not from the code.",
+     "th": "ๆ เขียนการทดสอบจากข้อกำหนด ไม่ใช่จากโค้ด"
+    },
+    {
+     "s": 70.066,
+     "e": 78.803,
+     "en": "Run them, fix, and run them all again. Keep the specification, the prompt, the code and the test results together.",
+     "th": "รันการทดสอบ แก้ไข แล้วรันทั้งหมดอีกครั้ง เก็บข้อกำหนด prompt โค้ด และผลการทดสอบไว้ด้วยกัน"
+    },
+    {
+     "s": 78.803,
+     "e": 85.434,
+     "en": "Used this way, a language model saves time on the routine parts of modeling, and leaves the judgment with you.",
+     "th": "เมื่อใช้แบบนี้ language model ช่วยประหยัดเวลาในส่วนที่เป็นงานประจำของการสร้างโมเดล และปล่อยให้การตัดสินใจยังอยู่กับคุณ"
+    },
+    {
+     "s": 85.434,
+     "e": 89.122,
+     "en": "You remain responsible for the model, whoever typed it.",
+     "th": "คุณยังคงรับผิดชอบโมเดล ไม่ว่าใครจะเป็นผู้พิมพ์"
+    },
+    {
+     "s": 89.122,
+     "e": 98.408,
+     "en": "Do not paste confidential plant data or personal data into an external tool, and follow your organization's and the course's rules on AI use.",
+     "th": "อย่าวางข้อมูลโรงงานที่เป็นความลับหรือข้อมูลส่วนบุคคลลงในเครื่องมือภายนอก และปฏิบัติตามกฎขององค์กรและของรายวิชาเรื่องการใช้ AI"
+    }
+   ]
+  },
+  {
+   "n": 27,
+   "file": "audio/slide-27.mp3",
+   "duration": 126.384,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 13.024,
+     "en": "Here is a small example. The specification: three plants, A, B and C, ship to three customers. Capacities are given in tonnes per day, and plants run seven days a week.",
+     "th": "นี่คือตัวอย่างเล็ก ๆ ข้อกำหนดคือ โรงงานสามแห่ง A, B และ C ส่งสินค้าให้ลูกค้าสามราย กำลังการผลิตกำหนดเป็นตันต่อวัน และโรงงานทำงานเจ็ดวันต่อสัปดาห์"
+    },
+    {
+     "s": 13.024,
+     "e": 20.289,
+     "en": "Demands are in tonnes per week. The table gives the cost per tonne for each plant and customer.",
+     "th": "ความต้องการเป็นตันต่อสัปดาห์ ตารางให้ต้นทุนต่อตันสำหรับแต่ละโรงงานและลูกค้า"
+    },
+    {
+     "s": 20.289,
+     "e": 28.645,
+     "en": "The code on the left was drafted for this specification, with three planted errors, and six tests were written from the specification alone.",
+     "th": "โค้ดทางซ้ายถูกร่างขึ้นสำหรับข้อกำหนดนี้ โดยมีข้อผิดพลาดที่ฝังไว้สามจุด และการทดสอบหกข้อเขียนจากข้อกำหนดเพียงอย่างเดียว"
+    },
+    {
+     "s": 28.645,
+     "e": 41.066,
+     "en": "As written, the solver reports success, with a cost of zero. Three tests fail: every customer gets its demand, the cost is at least the lower bound, and the known answer.",
+     "th": "ตามที่เขียน solver รายงานว่าสำเร็จ โดยมีต้นทุนเป็นศูนย์ การทดสอบสามข้อไม่ผ่าน คือลูกค้าทุกรายได้ตามความต้องการ ต้นทุนไม่ต่ำกว่าขอบเขตล่าง และคำตอบที่รู้แล้ว"
+    },
+    {
+     "s": 41.066,
+     "e": 48.329,
+     "en": "The demand rows say at most the demand, so shipping nothing is optimal. That is error 1, on line 12.",
+     "th": "แถวความต้องการเขียนว่าไม่เกินความต้องการ การไม่ส่งอะไรเลยจึงดีที่สุด นี่คือข้อผิดพลาดที่ 1 ในบรรทัดที่ 12"
+    },
+    {
+     "s": 48.329,
+     "e": 64.461,
+     "en": "Press Sign fixed. Now the model is infeasible, and five tests fail. The capacities are still per day, 45 tonnes in total, against a weekly demand of 310. That is error 2, on lines 2 and 9.",
+     "th": "กด Sign fixed ตอนนี้โมเดลไม่มีคำตอบที่เป็นไปได้ และการทดสอบห้าข้อไม่ผ่าน กำลังการผลิตยังเป็นต่อวัน รวม 45 ตัน เทียบกับความต้องการต่อสัปดาห์ 310 ตัน นี่คือข้อผิดพลาดที่ 2 ในบรรทัดที่ 2 และ 9"
+    },
+    {
+     "s": 64.461,
+     "e": 76.026,
+     "en": "Press plus units. The model solves, with a cost of 3,560 dollars per week, and five tests pass. A reader might stop here.",
+     "th": "กด + units โมเดลแก้ได้ ต้นทุน 3,560 ดอลลาร์ต่อสัปดาห์ และการทดสอบผ่านห้าข้อ ผู้อ่านอาจหยุดตรงนี้"
+    },
+    {
+     "s": 76.026,
+     "e": 89.224,
+     "en": "But the test that recomputes the cost of the plan from the specification's price table fails: the code read the cost matrix transposed, c j i instead of c i j. That is error 3, on line 5.",
+     "th": "แต่การทดสอบที่คำนวณต้นทุนของแผนใหม่จากตารางราคาในข้อกำหนดไม่ผ่าน โค้ดอ่านเมทริกซ์ต้นทุนแบบทรานสโพส คือ c[j][i] แทน c[i][j] นี่คือข้อผิดพลาดที่ 3 ในบรรทัดที่ 5"
+    },
+    {
+     "s": 89.224,
+     "e": 97.513,
+     "en": "Press plus index. All six tests pass, and the cost is 3,635 dollars per week.",
+     "th": "กด + index การทดสอบผ่านทั้งหกข้อ และต้นทุนเป็น 3,635 ดอลลาร์ต่อสัปดาห์"
+    },
+    {
+     "s": 97.513,
+     "e": 109.118,
+     "en": "Two lessons. Errors hide behind each other: each fix revealed the next. And a solver's success message is not evidence: it was there for a model that ships nothing.",
+     "th": "บทเรียนสองข้อ ข้อผิดพลาดซ่อนอยู่หลังกันและกัน การแก้แต่ละครั้งเผยข้อผิดพลาดถัดไป และข้อความว่าสำเร็จของ solver ไม่ใช่หลักฐาน มันปรากฏแม้กับโมเดลที่ไม่ส่งอะไรเลย"
+    },
+    {
+     "s": 109.118,
+     "e": 116.353,
+     "en": "Notice also which test never failed with the transposed matrix: the known answer, ten tonnes to customer C1.",
+     "th": "สังเกตด้วยว่าการทดสอบใดไม่เคยไม่ผ่านเมื่อเมทริกซ์ถูกทรานสโพส คือคำตอบที่รู้แล้ว สิบตันให้ลูกค้า C1"
+    },
+    {
+     "s": 116.353,
+     "e": 122.526,
+     "en": "Its cheapest plant, A, sits on the diagonal of the matrix, which transposing does not change.",
+     "th": "โรงงานที่ถูกที่สุดของมันคือ A ซึ่งอยู่บนเส้นทแยงของเมทริกซ์ ซึ่งการทรานสโพสไม่เปลี่ยน"
+    },
+    {
+     "s": 122.526,
+     "e": 126.303,
+     "en": "Press D to run the six tests on all four versions.",
+     "th": "กด D เพื่อรันการทดสอบทั้งหกข้อกับทั้งสี่รุ่น"
+    }
+   ]
+  },
+  {
+   "n": 28,
+   "file": "audio/slide-28.mp3",
+   "duration": 86.808,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.184,
+     "en": "The demo used several kinds of tests. The table names them, with what each tends to find.",
+     "th": "สาธิตนี้ใช้การทดสอบหลายแบบ ตารางระบุชื่อแต่ละแบบพร้อมสิ่งที่มักหาเจอ"
+    },
+    {
+     "s": 7.184,
+     "e": 16.736,
+     "en": "Check the solution against the specification: each customer gets its demand, and capacity per week is respected, in the specification's units.",
+     "th": "ตรวจคำตอบกับข้อกำหนด เช่น ลูกค้าแต่ละรายได้ตามความต้องการ และไม่เกินกำลังการผลิตต่อสัปดาห์ ในหน่วยของข้อกำหนด"
+    },
+    {
+     "s": 16.736,
+     "e": 20.276,
+     "en": "This finds sign errors, unit errors and missing rows.",
+     "th": "แบบนี้หาข้อผิดพลาดเรื่องเครื่องหมาย หน่วย และแถวที่ขาดหายได้"
+    },
+    {
+     "s": 20.276,
+     "e": 30.053,
+     "en": "Recompute: the cost of the plan, from the specification's price table, should equal the objective. This finds index and data-mapping errors.",
+     "th": "คำนวณใหม่ ต้นทุนของแผนจากตารางราคาในข้อกำหนดควรเท่ากับค่าเป้าหมาย แบบนี้หาข้อผิดพลาดของดัชนีและการจับคู่ข้อมูลได้"
+    },
+    {
+     "s": 30.053,
+     "e": 39.118,
+     "en": "Bound: no plan can cost less than each customer's demand times its cheapest price. This finds wrong directions and missing costs.",
+     "th": "ขอบเขต ไม่มีแผนใดมีต้นทุนต่ำกว่าความต้องการของลูกค้าแต่ละรายคูณราคาที่ถูกที่สุดของรายนั้น แบบนี้หาทิศทางที่ผิดและต้นทุนที่ขาดหายได้"
+    },
+    {
+     "s": 39.118,
+     "e": 47.224,
+     "en": "Known answer: a case small enough to solve by hand. Limiting case: zero demand should give zero production.",
+     "th": "คำตอบที่รู้แล้ว คือกรณีที่เล็กพอจะแก้ด้วยมือ กรณีสุดขั้ว คือความต้องการเป็นศูนย์ควรให้การผลิตเป็นศูนย์"
+    },
+    {
+     "s": 47.224,
+     "e": 56.957,
+     "en": "Metamorphic relation: change the input in a way whose effect you know, and check the effect. Double every quantity and the cost per tonne is unchanged;",
+     "th": "ความสัมพันธ์เชิง metamorphic คือเปลี่ยนข้อมูลนำเข้าในแบบที่รู้ผล แล้วตรวจผลนั้น เพิ่มทุกปริมาณเป็นสองเท่า ต้นทุนต่อตันต้องไม่เปลี่ยน"
+    },
+    {
+     "s": 56.957,
+     "e": 64.513,
+     "en": "list the customers in another order and the cost is the same. These find numbers typed into the code and index errors.",
+     "th": "สลับลำดับลูกค้า ต้นทุนต้องเท่าเดิม แบบนี้หาตัวเลขที่พิมพ์ฝังไว้ในโค้ดและข้อผิดพลาดของดัชนีได้"
+    },
+    {
+     "s": 64.513,
+     "e": 75.645,
+     "en": "Certificates, from Sessions 6 and 7: duals and KKT residuals. And an independent model: the same problem written another way, or by another person.",
+     "th": "certificate จากคาบที่ 6 และ 7 คือ dual และ residual ของ KKT และโมเดลอิสระ คือปัญหาเดียวกันที่เขียนอีกแบบหนึ่ง หรือเขียนโดยอีกคนหนึ่ง"
+    },
+    {
+     "s": 75.645,
+     "e": 86.724,
+     "en": "A test that passes shows only that this case did not reveal an error. Choose cases in which each constraint binds; a constraint that never binds in your tests is never tested.",
+     "th": "การทดสอบที่ผ่านแสดงเพียงว่ากรณีนี้ไม่เผยข้อผิดพลาด เลือกกรณีที่ข้อจำกัดแต่ละข้อมีผลจริง ข้อจำกัดที่ไม่เคยมีผลในการทดสอบของคุณก็คือไม่เคยถูกทดสอบ"
+    }
+   ]
+  },
+  {
+   "n": 29,
+   "file": "audio/slide-29.mp3",
+   "duration": 34.272,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.839,
+     "en": "Third check: testing a model you did not write.",
+     "th": "แบบตรวจที่สาม การทดสอบโมเดลที่คุณไม่ได้เขียนเอง"
+    },
+    {
+     "s": 3.839,
+     "e": 13.869,
+     "en": "Name the tests that catch a cost of zero and the likely error; explain why tests should come from the specification rather than the code; give a metamorphic test for a blending L P;",
+     "th": "ระบุการทดสอบที่จับต้นทุนเป็นศูนย์ได้และข้อผิดพลาดที่น่าจะเป็น อธิบายเหตุที่การทดสอบควรมาจากข้อกำหนดแทนโค้ด ยกตัวอย่างการทดสอบเชิง metamorphic สำหรับ LP การผสม"
+    },
+    {
+     "s": 13.869,
+     "e": 16.184,
+     "en": "and say what you know when all tests pass.",
+     "th": "และบอกว่าคุณรู้อะไรเมื่อการทดสอบผ่านทั้งหมด"
+    },
+    {
+     "s": 16.184,
+     "e": 22.645,
+     "en": "For question three, think of a change to the inputs whose effect on the answer you can predict without solving.",
+     "th": "สำหรับข้อสาม ให้คิดถึงการเปลี่ยนข้อมูลนำเข้าที่ทำนายผลต่อคำตอบได้โดยไม่ต้องแก้ปัญหา"
+    },
+    {
+     "s": 22.645,
+     "e": 27.803,
+     "en": "For question one, look back at which three tests failed for the version as written.",
+     "th": "สำหรับข้อหนึ่ง ให้ย้อนดูว่าการทดสอบสามข้อใดไม่ผ่านในรุ่นตามที่เขียน"
+    },
+    {
+     "s": 27.803,
+     "e": 34.211,
+     "en": "Take five minutes. Pause the narration now, and press Show answers when you are done.",
+     "th": "ใช้เวลาห้านาที หยุดคำบรรยายตอนนี้ และกด Show answers เมื่อเสร็จ"
+    }
+   ]
+  },
+  {
+   "n": 30,
+   "file": "audio/slide-30.mp3",
+   "duration": 79.152,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.366,
+     "en": "What must a report state, so that a reader can check the work?",
+     "th": "รายงานต้องระบุอะไรบ้าง เพื่อให้ผู้อ่านตรวจสอบงานได้"
+    },
+    {
+     "s": 4.366,
+     "e": 14.276,
+     "en": "For a B O campaign: the objective, its units, and the noise, estimated from replicates. The inputs and their ranges, with the scaling.",
+     "th": "สำหรับการทดลองแบบ BO ได้แก่ ฟังก์ชันเป้าหมาย หน่วย และสัญญาณรบกวนที่ประมาณจากการทดลองซ้ำ ตัวแปรนำเข้าและช่วงค่า พร้อมการปรับสเกล"
+    },
+    {
+     "s": 14.276,
+     "e": 24.359,
+     "en": "The budget, the initial design, the kernel, how ell and the noise were set, and the acquisition. The best value so far against the run number.",
+     "th": "งบประมาณ การออกแบบเริ่มต้น kernel วิธีกำหนด ℓ และสัญญาณรบกวน และ acquisition ค่าดีที่สุดจนถึงตอนนั้นเทียบกับลำดับการทดลอง"
+    },
+    {
+     "s": 24.359,
+     "e": 29.789,
+     "en": "And the recommendation, as m plus or minus two s, with the confirmation runs.",
+     "th": "และข้อแนะนำในรูป m บวกลบสอง s พร้อมการทดลองยืนยัน"
+    },
+    {
+     "s": 29.789,
+     "e": 43.217,
+     "en": "For a model drafted with a language model: which parts were generated, by which tool and version, and when. The specification and the prompt. The tests, their cases and their results.",
+     "th": "สำหรับโมเดลที่ร่างด้วย language model ได้แก่ ส่วนใดที่ถูกสร้างขึ้น ด้วยเครื่องมือและรุ่นใด และเมื่อใด ข้อกำหนดและ prompt การทดสอบ กรณีที่ใช้"
+    },
+    {
+     "s": 43.217,
+     "e": 48.763,
+     "en": "The errors found and how they were fixed. And what a person checked by hand.",
+     "th": "และผล ข้อผิดพลาดที่พบและวิธีแก้ และสิ่งที่คนตรวจด้วยมือ"
+    },
+    {
+     "s": 48.763,
+     "e": 52.911,
+     "en": "The note shows one sentence that reports the camel comparison:",
+     "th": "หมายเหตุแสดงประโยคหนึ่งที่รายงานการเปรียบเทียบบน camel"
+    },
+    {
+     "s": 52.911,
+     "e": 65.355,
+     "en": "B O with six Latin hypercube runs and twenty-four E I runs reached a median best of 1.01, against a maximum of 1.03 over twenty seeds, while random search reached 0.80 with the same budget.",
+     "th": "คือ BO ที่ใช้ Latin hypercube หกครั้งและ EI ยี่สิบสี่ครั้งได้มัธยฐานของค่าดีที่สุด 1.01 เทียบกับค่าสูงสุด 1.03 จากยี่สิบ seed ขณะที่การสุ่มค้นหาได้ 0.80 ด้วยงบประมาณเท่ากัน"
+    },
+    {
+     "s": 65.355,
+     "e": 69.513,
+     "en": "Every number in it can be checked against the demo of part two.",
+     "th": "ตัวเลขทุกตัวในนั้นตรวจกับสาธิตในส่วนที่สองได้"
+    },
+    {
+     "s": 69.513,
+     "e": 79.092,
+     "en": "The second list may feel unusual. It serves the same purpose as a methods section: a reader who knows how the model was made knows what to check.",
+     "th": "รายการที่สองอาจดูแปลก แต่มีจุดประสงค์เดียวกับส่วนวิธีการ ผู้อ่านที่รู้ว่าโมเดลถูกสร้างอย่างไรจะรู้ว่าต้องตรวจอะไร"
+    }
+   ]
+  },
+  {
+   "n": 31,
+   "file": "audio/slide-31.mp3",
+   "duration": 76.008,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.629,
+     "en": "Some practical rules for working with a language model on a model.",
+     "th": "กฎในทางปฏิบัติบางข้อสำหรับการทำงานกับ language model ในการสร้างโมเดล"
+    },
+    {
+     "s": 4.629,
+     "e": 16.605,
+     "en": "Give it the data as a table with units, and each constraint in words, and ask it to restate the model before writing code. Mismatches show up in the restatement, before any code exists.",
+     "th": "ให้ข้อมูลเป็นตารางพร้อมหน่วย และข้อจำกัดแต่ละข้อเป็นถ้อยคำ แล้วขอให้มันทวนโมเดลก่อนเขียนโค้ด ความไม่ตรงกันจะปรากฏในการทวน ก่อนจะมีโค้ดใด ๆ"
+    },
+    {
+     "s": 16.605,
+     "e": 26.776,
+     "en": "Ask it to list its assumptions, and to say where the description was incomplete instead of guessing. The invented data entry in the lab is exactly such a guess.",
+     "th": "ขอให้มันระบุสมมติฐาน และบอกว่าคำอธิบายไม่ครบตรงไหนแทนการเดา ข้อมูลที่ถูกแต่งขึ้นใน lab คือการเดาแบบนั้นพอดี"
+    },
+    {
+     "s": 26.776,
+     "e": 31.697,
+     "en": "Ask for code that prints the plan as a table you can read and check by hand.",
+     "th": "ขอโค้ดที่พิมพ์แผนเป็นตารางที่คุณอ่านและตรวจด้วยมือได้"
+    },
+    {
+     "s": 31.697,
+     "e": 38.855,
+     "en": "Keep the tests in a separate file that you wrote, and rerun all of them after every change, whether you or the tool made it.",
+     "th": "เก็บการทดสอบไว้ในไฟล์แยกที่คุณเขียนเอง และรันทั้งหมดใหม่หลังทุกการเปลี่ยนแปลง ไม่ว่าคุณหรือเครื่องมือเป็นผู้เปลี่ยน"
+    },
+    {
+     "s": 38.855,
+     "e": 45.789,
+     "en": "A language model can also write tests, but then check that they come from the specification and not from its own code.",
+     "th": "language model เขียนการทดสอบได้ด้วย แต่ต้องตรวจว่าการทดสอบนั้นมาจากข้อกำหนด ไม่ใช่จากโค้ดของมันเอง"
+    },
+    {
+     "s": 45.789,
+     "e": 56.75,
+     "en": "Treat its explanation of the code as a hypothesis, not as evidence. And record the tool, the version and the date: the same prompt can give different code next month.",
+     "th": "ถือว่าคำอธิบายโค้ดของมันเป็นสมมติฐาน ไม่ใช่หลักฐาน และบันทึกเครื่องมือ รุ่น และวันที่ prompt เดียวกันอาจให้โค้ดต่างออกไปในเดือนหน้า"
+    },
+    {
+     "s": 56.75,
+     "e": 65.789,
+     "en": "The panel previews the lab. The drafted schedule has three errors: a units error, an index error and an invented data entry.",
+     "th": "กรอบด้านขวาเป็นตัวอย่างของ lab ตารางการผลิตที่ถูกร่างมีข้อผิดพลาดสามจุด คือหน่วย ดัชนี และข้อมูลที่ถูกแต่งขึ้น"
+    },
+    {
+     "s": 65.789,
+     "e": 75.947,
+     "en": "Four of the eight tests pass with all three errors present. The units error does not show in this week's plan at all; only a test with a heavier case finds it.",
+     "th": "การทดสอบสี่ในแปดข้อผ่านแม้มีข้อผิดพลาดครบทั้งสามจุด ข้อผิดพลาดเรื่องหน่วยไม่ปรากฏในแผนของสัปดาห์นี้เลย มีเพียงการทดสอบที่ใช้กรณีที่หนักกว่าจึงหาเจอ"
+    }
+   ]
+  },
+  {
+   "n": 32,
+   "file": "audio/slide-32.mp3",
+   "duration": 38.592,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.155,
+     "en": "Last check: B O in practice.",
+     "th": "แบบตรวจสุดท้าย BO ในทางปฏิบัติ"
+    },
+    {
+     "s": 3.155,
+     "e": 14.769,
+     "en": "Decide what to report when the best observed yield is 71.4 percent but the model's mean there is 69.0 with s equal to 1.3; adapt B O to four reactors; judge plain B O for thirty inputs;",
+     "th": "ตัดสินใจว่าจะรายงานอะไร เมื่อผลได้ที่สังเกตได้ดีที่สุดคือ 71.4 เปอร์เซ็นต์ แต่ค่าเฉลี่ยของโมเดลที่จุดนั้นคือ 69.0 โดย s เท่ากับ 1.3 ปรับ BO สำหรับเครื่องปฏิกรณ์สี่เครื่อง ประเมิน BO แบบพื้นฐานสำหรับตัวแปรสามสิบตัว"
+    },
+    {
+     "s": 14.769,
+     "e": 17.579,
+     "en": "and say when you would stop a campaign early.",
+     "th": "และบอกว่าคุณจะหยุดการทดลองก่อนกำหนดเมื่อใด"
+    },
+    {
+     "s": 17.579,
+     "e": 22.592,
+     "en": "For question one, recall the table of expected excess on the noise slide.",
+     "th": "สำหรับข้อหนึ่ง ให้นึกถึงตารางส่วนเกินคาดหวังในสไลด์เรื่องสัญญาณรบกวน"
+    },
+    {
+     "s": 22.592,
+     "e": 32.132,
+     "en": "For question two, think about what the model should assume about a run whose result has not arrived yet. Question three connects to the limits slide.",
+     "th": "สำหรับข้อสอง ให้คิดว่าโมเดลควรสมมติอะไรเกี่ยวกับการทดลองที่ยังไม่ได้ผล ข้อสามเชื่อมกับสไลด์เรื่องข้อจำกัด"
+    },
+    {
+     "s": 32.132,
+     "e": 38.539,
+     "en": "Take five minutes. Pause the narration now, and press Show answers when you are done.",
+     "th": "ใช้เวลาห้านาที หยุดคำบรรยายตอนนี้ และกด Show answers เมื่อเสร็จ"
+    }
+   ]
+  },
+  {
+   "n": 33,
+   "file": "audio/slide-33.mp3",
+   "duration": 40.08,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.353,
+     "en": "Where does this go next?",
+     "th": "เรื่องนี้จะไปต่อที่ไหน"
+    },
+    {
+     "s": 2.353,
+     "e": 14.289,
+     "en": "Session 15 is project work. If your objective comes from experiments or from a slow simulation, write a B O plan: the inputs and ranges, the budget, and the initial design.",
+     "th": "คาบที่ 15 เป็นการทำโครงงาน ถ้าฟังก์ชันเป้าหมายของคุณมาจากการทดลองหรือจากการจำลองที่ช้า ให้เขียนแผน BO ได้แก่ ตัวแปรและช่วงค่า งบประมาณ และการออกแบบเริ่มต้น"
+    },
+    {
+     "s": 14.289,
+     "e": 22.855,
+     "en": "If you used a language model anywhere in your project, keep the specification, the tests and what they found, and include them in your report.",
+     "th": "ถ้าคุณใช้ language model ที่ใดในโครงงาน ให้เก็บข้อกำหนด การทดสอบ และสิ่งที่การทดสอบพบ และใส่ไว้ในรายงาน"
+    },
+    {
+     "s": 22.855,
+     "e": 30.882,
+     "en": "And for every model in the project, whoever wrote it, apply the course's checks: units, balances, certificates and tests.",
+     "th": "และสำหรับทุกโมเดลในโครงงาน ไม่ว่าใครเป็นผู้เขียน ให้ใช้การตรวจของรายวิชา คือ หน่วย สมดุล certificate และการทดสอบ"
+    },
+    {
+     "s": 30.882,
+     "e": 34.737,
+     "en": "The reporting checklist of today applies there directly.",
+     "th": "รายการตรวจสำหรับการรายงานของวันนี้ใช้ได้โดยตรงในโครงงาน"
+    },
+    {
+     "s": 34.737,
+     "e": 40.026,
+     "en": "Bring the problem, its data with units, and a first model to the next session.",
+     "th": "นำปัญหา ข้อมูลพร้อมหน่วย และโมเดลแรกมาในคาบถัดไป"
+    }
+   ]
+  },
+  {
+   "n": 34,
+   "file": "audio/slide-34.mp3",
+   "duration": 82.848,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.839,
+     "en": "Lab 14 takes about forty minutes, entirely in the browser.",
+     "th": "Lab 14 ใช้เวลาประมาณสี่สิบนาที ทั้งหมดในเบราว์เซอร์"
+    },
+    {
+     "s": 4.839,
+     "e": 18.145,
+     "en": "Part A is a C S T R whose yield you can only measure, with noise of about 1.5 points. You choose the temperature, 60 to 120 degrees Celsius, and the residence time, 1 to 60 minutes.",
+     "th": "ส่วน A คือ CSTR ที่คุณวัดผลได้เท่านั้น โดยมีสัญญาณรบกวนประมาณ 1.5 จุด คุณเลือกอุณหภูมิ 60 ถึง 120 องศาเซลเซียส และเวลาพัก 1 ถึง 60 นาที"
+    },
+    {
+     "s": 18.145,
+     "e": 26.895,
+     "en": "Twenty runs are spent three ways: a four by five grid, random search, and B O with six Latin hypercube runs and fourteen chosen by E I.",
+     "th": "การทดลองยี่สิบครั้งถูกใช้สามแบบ คือ ตารางสี่คูณห้า การสุ่มค้นหา และ BO ที่ใช้ Latin hypercube หกครั้งและอีกสิบสี่ครั้งที่ EI เลือก"
+    },
+    {
+     "s": 26.895,
+     "e": 34.587,
+     "en": "You compute one expected improvement by hand, follow B O run by run on maps of the model, and then see the hidden yield map.",
+     "th": "คุณคำนวณ expected improvement หนึ่งครั้งด้วยมือ ติดตาม BO ทีละการทดลองบนแผนที่ของโมเดล แล้วจึงเห็นแผนที่ผลได้ที่ซ่อนไว้"
+    },
+    {
+     "s": 34.587,
+     "e": 40.987,
+     "en": "Then you change one condition, the noise, the budget or the acquisition, and compare twenty repetitions.",
+     "th": "จากนั้นเปลี่ยนเงื่อนไขหนึ่งข้อ คือสัญญาณรบกวน งบประมาณ หรือ acquisition แล้วเปรียบเทียบการทำซ้ำยี่สิบครั้ง"
+    },
+    {
+     "s": 40.987,
+     "e": 50.0,
+     "en": "Part B is a batch-plant schedule drafted by a language model: three products, two reactors, five days. It contains three planted errors.",
+     "th": "ส่วน B คือตารางการผลิตของโรงงานแบบกะที่ร่างโดย language model มีผลิตภัณฑ์สามชนิด เครื่องปฏิกรณ์สองเครื่อง ห้าวัน"
+    },
+    {
+     "s": 50.0,
+     "e": 57.434,
+     "en": "You predict which of eight tests will fail, run them, find the errors in the code, and repair them one at a time.",
+     "th": "มีข้อผิดพลาดที่ฝังไว้สามจุด คุณทำนายว่าการทดสอบใดในแปดข้อจะไม่ผ่าน รันการทดสอบ หาข้อผิดพลาดในโค้ด และซ่อมทีละจุด"
+    },
+    {
+     "s": 57.434,
+     "e": 61.039,
+     "en": "Part C asks you to explain both to a colleague.",
+     "th": "ส่วน C ให้คุณอธิบายทั้งสองเรื่องให้เพื่อนร่วมงานฟัง"
+    },
+    {
+     "s": 61.039,
+     "e": 70.961,
+     "en": "In Part A, watch what the model believes after six runs, and how that changes. In Part B, notice which tests pass despite the errors, and why.",
+     "th": "ในส่วน A ให้สังเกตว่าโมเดลเชื่ออะไรหลังการทดลองหกครั้ง และสิ่งนั้นเปลี่ยนไปอย่างไร ในส่วน B ให้สังเกตว่าการทดสอบใดผ่านแม้มีข้อผิดพลาด และเพราะอะไร"
+    },
+    {
+     "s": 70.961,
+     "e": 76.829,
+     "en": "Work in order; each step unlocks the next, and the page keeps your answers on this device.",
+     "th": "ทำตามลำดับ แต่ละขั้นจะปลดล็อกขั้นถัดไป และหน้าเว็บเก็บคำตอบไว้ในอุปกรณ์นี้"
+    },
+    {
+     "s": 76.829,
+     "e": 82.776,
+     "en": "Scan the code or open the link. Pause the narration now and do the lab.",
+     "th": "สแกนรหัสหรือเปิดลิงก์ หยุดคำบรรยายตอนนี้แล้วทำ lab"
+    }
+   ]
+  },
+  {
+   "n": 35,
+   "file": "audio/slide-35.mp3",
+   "duration": 81.84,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.076,
+     "en": "To summarize.",
+     "th": "สรุป"
+    },
+    {
+     "s": 2.076,
+     "e": 9.686,
+     "en": "When runs are expensive, spend them with a model. A Gaussian process gives a prediction and its uncertainty;",
+     "th": "เมื่อการทดลองมีราคาแพง ให้ใช้มันโดยมีโมเดลช่วย Gaussian process ให้ค่าทำนายพร้อมความไม่แน่นอน"
+    },
+    {
+     "s": 9.686,
+     "e": 15.829,
+     "en": "by hand, two points gave a mean of 0.6 and a standard deviation of 0.589 at a new point.",
+     "th": "ในการคำนวณด้วยมือ สองจุดให้ค่าเฉลี่ย 0.6 และส่วนเบี่ยงเบนมาตรฐาน 0.589 ที่จุดใหม่"
+    },
+    {
+     "s": 15.829,
+     "e": 23.316,
+     "en": "The length-scale comes from the data, through the marginal likelihood: 0.294 for ten points of the test function.",
+     "th": "length-scale มาจากข้อมูล ผ่าน marginal likelihood ได้ 0.294 สำหรับสิบจุดของฟังก์ชันทดสอบ"
+    },
+    {
+     "s": 23.316,
+     "e": 34.066,
+     "en": "Expected improvement chooses runs that are promising or unexplored, and needs no tuning; on the test function it reached 6.018 of 6.021 in eleven runs.",
+     "th": "expected improvement เลือกการทดลองที่มีแววดีหรือยังไม่ได้สำรวจ และไม่ต้องปรับค่า บนฟังก์ชันทดสอบมันได้ 6.018 จาก 6.021 ในการทดลองสิบเอ็ดครั้ง"
+    },
+    {
+     "s": 34.066,
+     "e": 43.711,
+     "en": "On the camel, with twenty runs, B O's median best was 0.82, against 0.69 for random search and 0.75 for a grid.",
+     "th": "บน camel ที่การทดลองยี่สิบครั้ง มัธยฐานของค่าดีที่สุดของ BO คือ 0.82 เทียบกับ 0.69 ของการสุ่มค้นหา และ 0.75 ของตาราง"
+    },
+    {
+     "s": 43.711,
+     "e": 52.368,
+     "en": "With noise, the best observation is too optimistic. Recommend by the posterior mean, and confirm with replicates.",
+     "th": "เมื่อมีสัญญาณรบกวน ค่าสังเกตที่ดีที่สุดมองโลกในแง่ดีเกินไป ให้แนะนำตามค่าเฉลี่ย posterior และยืนยันด้วยการทดลองซ้ำ"
+    },
+    {
+     "s": 52.368,
+     "e": 61.342,
+     "en": "B O beats grids and random search at equal budget when inputs are few and runs are costly. It does not replace gradients when they are cheap.",
+     "th": "BO ชนะตารางและการสุ่มค้นหาที่งบประมาณเท่ากัน เมื่อมีตัวแปรน้อยและการทดลองมีราคาแพง แต่ไม่ได้แทนที่ gradient เมื่อ gradient หาได้ถูก"
+    },
+    {
+     "s": 61.342,
+     "e": 67.618,
+     "en": "Errors in a drafted model can hide behind each other, so rerun every test after every fix.",
+     "th": "ข้อผิดพลาดในโมเดลที่ร่างมาอาจซ่อนอยู่หลังกันและกัน จึงต้องรันการทดสอบทุกข้อใหม่หลังการแก้ทุกครั้ง"
+    },
+    {
+     "s": 67.618,
+     "e": 75.721,
+     "en": "And a language model drafts a model quickly, but tests written from the specification decide whether it is right.",
+     "th": "และ language model ร่างโมเดลได้เร็ว แต่การทดสอบที่เขียนจากข้อกำหนดเป็นตัวตัดสินว่าถูกต้องหรือไม่"
+    },
+    {
+     "s": 75.721,
+     "e": 81.763,
+     "en": "The shipping plan that cost zero as drafted costs 3,635 dollars a week once repaired.",
+     "th": "แผนการขนส่งที่ร่างมามีต้นทุนศูนย์ เมื่อซ่อมแล้วมีต้นทุน 3,635 ดอลลาร์ต่อสัปดาห์"
+    }
+   ]
+  },
+  {
+   "n": 36,
+   "file": "audio/slide-36.mp3",
+   "duration": 49.056,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.089,
+     "en": "Before the next session, finish Lab 14 if you did not finish in class.",
+     "th": "ก่อนคาบถัดไป ทำ Lab 14 ให้เสร็จถ้ายังไม่เสร็จในชั้นเรียน"
+    },
+    {
+     "s": 5.089,
+     "e": 10.947,
+     "en": "Bring your project problem to Session 15, with its data, units and a first model.",
+     "th": "นำปัญหาโครงงานของคุณมาในคาบที่ 15 พร้อมข้อมูล หน่วย และโมเดลแรก"
+    },
+    {
+     "s": 10.947,
+     "e": 20.222,
+     "en": "For reading, take Jones, Schonlau and Welch, 1998, in the Journal of Global Optimization, which introduced the efficient global optimization method;",
+     "th": "สำหรับการอ่าน ให้อ่าน Jones, Schonlau และ Welch ปี 1998 ใน Journal of Global Optimization ซึ่งเสนอวิธี efficient global optimization"
+    },
+    {
+     "s": 20.222,
+     "e": 25.327,
+     "en": "or the review by Shahriari and coauthors, 2016, in the Proceedings of the I E E E.",
+     "th": "หรือบทความปริทัศน์ของ Shahriari และคณะ ปี 2016 ใน Proceedings of the IEEE"
+    },
+    {
+     "s": 25.327,
+     "e": 36.224,
+     "en": "Optional: Rasmussen and Williams, Gaussian Processes for Machine Learning, chapters two and five; and Shields and coauthors, 2021, in Nature, on B O for chemical synthesis.",
+     "th": "อ่านเพิ่มเติม Rasmussen และ Williams, Gaussian Processes for Machine Learning บทที่สองและห้า และ Shields และคณะ ปี 2021 ใน Nature เรื่อง BO สำหรับการสังเคราะห์ทางเคมี"
+    },
+    {
+     "s": 36.224,
+     "e": 42.632,
+     "en": "Shahriari's review is a good map of the field, including the acquisition functions we did not cover.",
+     "th": "บทความปริทัศน์ของ Shahriari เป็นแผนที่ที่ดีของสาขานี้ รวมถึง acquisition function ที่เราไม่ได้ครอบคลุม"
+    },
+    {
+     "s": 42.632,
+     "e": 48.987,
+     "en": "Jones and coauthors is long but clear; read the first sections and the description of expected improvement.",
+     "th": "บทความของ Jones และคณะยาวแต่ชัดเจน ให้อ่านส่วนแรก ๆ และคำอธิบาย expected improvement"
+    }
+   ]
+  },
+  {
+   "n": 37,
+   "file": "audio/slide-37.mp3",
+   "duration": 31.992,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.629,
+     "en": "To finish, open the Exit Ticket with the code, choose Session 14, and paste the answers that the lab page copies for you.",
+     "th": "สุดท้าย เปิด Exit Ticket ด้วยรหัส เลือก Session 14 แล้ววางคำตอบที่หน้า lab คัดลอกให้"
+    },
+    {
+     "s": 7.629,
+     "e": 17.803,
+     "en": "Then answer the feedback questions: pace, confidence, how far you got in the lab, and what is still unclear. If you studied on your own, choose On my own.",
+     "th": "จากนั้นตอบคำถาม feedback ได้แก่ ความเร็วในการสอน ความมั่นใจ ทำ lab ได้ถึงไหน และอะไรที่ยังไม่ชัด ถ้าเรียนเอง ให้เลือก On my own"
+    },
+    {
+     "s": 17.803,
+     "e": 22.776,
+     "en": "If the code does not scan, use the link Open the Exit Ticket under it.",
+     "th": "ถ้าสแกนรหัสไม่ได้ ให้ใช้ลิงก์ Open the Exit Ticket ที่อยู่ด้านล่าง"
+    },
+    {
+     "s": 22.776,
+     "e": 28.461,
+     "en": "Your answers are how the next session is adjusted, so short, honest answers help most.",
+     "th": "คำตอบของคุณใช้ปรับคาบถัดไป คำตอบสั้น ๆ ที่ตรงไปตรงมาจึงช่วยได้มากที่สุด"
+    },
+    {
+     "s": 28.461,
+     "e": 31.921,
+     "en": "Thank you, and see you in Session 15.",
+     "th": "ขอบคุณ แล้วพบกันในคาบที่ 15"
+    }
+   ]
+  }
+ ]
+}

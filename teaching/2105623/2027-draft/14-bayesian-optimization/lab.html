@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Lab 14 · A hidden reactor yield, and a schedule to test · 2105623</title>
+<style>
+:root{--teal:#0F6E6B;--amber:#E29A2D;--rust:#BE654C;--graphite:#333F4A;--ink:#1C242B;--slate:#66727C;--mist:#B9C1C6;--paper:#F3F0EB;--sand:#DFC98F;--ok:#0F6E6B;--bad:#BE654C}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.55 "Helvetica Neue",Helvetica,Arial,sans-serif}
+main{max-width:820px;margin:0 auto;padding:18px 16px 80px}
+header h1{color:var(--teal);font-size:30px;margin:4px 0 2px}
+.kicker{color:var(--amber);font-weight:700;letter-spacing:.12em;font-size:13px;text-transform:uppercase}
+.sub{color:var(--slate);font-size:15px}
+.prog{position:sticky;top:0;background:var(--paper);padding:10px 0;z-index:3}
+.bar{height:8px;background:#e2ddd4;border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--teal);width:0;transition:width .3s}
+.prog span{font-size:13px;color:var(--slate)}
+.card{background:#fff;border-radius:14px;padding:18px 18px 16px;margin:14px 0;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.card h2{font-size:21px;margin:0 0 4px;color:var(--teal)}
+.card h3{font-size:17px;margin:16px 0 6px}
+.step{border-left:4px solid var(--mist);padding:2px 0 2px 14px;margin:14px 0}
+.step.done{border-color:var(--teal)}.step.locked{opacity:.45;pointer-events:none}
+.step.locked .chart,.step.locked .kpi,.step.locked .chk,.step.locked input[type=range],.step.locked .row{display:none}
+.step.locked::after{content:"Finish the step above to open this one.";display:block;font-size:13px;color:var(--slate)}
+.tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.08em;border-radius:6px;padding:2px 8px;margin-right:6px;color:#fff;background:var(--slate)}
+.tag.p{background:var(--amber)}.tag.r{background:var(--teal)}.tag.c{background:var(--graphite)}.tag.e{background:var(--rust)}
+textarea,input[type=text],select{font:inherit;font-size:16px;width:100%;border:1.5px solid var(--mist);border-radius:8px;padding:8px 10px;background:#fff}
+textarea{min-height:70px}
+button{font:inherit;font-size:15px;padding:8px 14px;border-radius:8px;border:none;background:var(--teal);color:#fff;cursor:pointer;margin:8px 8px 0 0}
+button.ghost{background:#fff;color:var(--teal);border:1.5px solid var(--teal)}
+button:disabled{opacity:.5;cursor:default}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.row label{flex:1 1 240px}
+.chk{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0}
+.chk input{width:150px}
+.fb{font-size:15px}.fb.ok{color:var(--ok);font-weight:700}.fb.bad{color:var(--bad)}
+.choices label{display:block;margin:4px 0}
+.kpi{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}.kpi div{background:var(--paper);border-radius:10px;padding:6px 12px;font-size:14px;color:var(--slate)}.kpi b{display:block;font-size:20px;color:var(--ink)}
+.chart{background:var(--paper);border-radius:12px;padding:6px;margin:8px 0}
+svg{width:100%;height:auto;display:block}
+input[type=range]{width:100%;accent-color:var(--teal)}
+.note{font-size:14px;color:var(--slate)}
+.hidden{display:none}
+pre.sum{white-space:pre-wrap;background:var(--paper);border-radius:10px;padding:12px;font-size:14px}
+a{color:var(--teal)}
+</style>
+<style>
+.step.locked > *:not(.tag){display:none}
+table.tb{border-collapse:collapse;width:100%;font-size:15px;margin:8px 0}
+table.tb th{background:var(--paper);text-align:left;padding:5px 8px;border-bottom:2px solid var(--mist)}
+table.tb td{padding:5px 8px;border-bottom:1px solid #e6e3dd}
+table.tb td.n,table.tb th.n{text-align:right;font-variant-numeric:tabular-nums}
+ol.rl{margin:4px 0 0;padding-left:22px;font-size:15px}
+.lights{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+.light{border-radius:999px;padding:3px 10px;font-size:14px;font-weight:700}
+.light.ok{background:#e3f0ef;color:var(--teal)}.light.bad{background:#f6e3de;color:var(--rust)}
+.code{background:#1f262d;color:#e8eef2;border-radius:10px;padding:10px 8px;font-family:Menlo,Consolas,monospace;font-size:13.5px;overflow-x:auto}
+.ln{display:flex;align-items:center;gap:8px;padding:3px 4px;border-radius:6px;white-space:pre}
+.ln.fixed{background:#24433f}
+.ln .no{color:#8a96a0;width:18px;text-align:right}
+.ln .tx{flex:1}
+.ln .okk{width:38px;color:#9fd6c9;font-size:12px;font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700}
+button.sm{width:38px;font-size:12px;padding:2px 9px;margin:0;background:transparent;color:#9fd6c9;border:1px solid #9fd6c9}
+.ctrlrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:8px 0;font-size:15px;color:var(--slate)}
+.ctrlrow input[type=range]{flex:1;min-width:160px;accent-color:var(--teal)}
+.wide{overflow-x:auto}.wide table.tb{font-size:12px}.wide table.tb td,.wide table.tb th{padding:3px 4px}
+@media (max-width:600px){table.tb{display:block;overflow-x:auto;font-size:13px}}
+.howto{background:#f6f3ee;border:1px solid var(--mist);border-radius:12px;padding:12px 16px;margin:4px 0 14px}
+.howto ol{margin:0 0 8px;padding-left:22px;font-size:15.5px;line-height:1.5}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+pre.log{background:#1f262d;color:#e8eef2;border-radius:10px;padding:10px 8px;font-family:Menlo,Consolas,monospace;font-size:11.5px;line-height:1.3;overflow-x:auto;max-height:420px}
+</style>
+
+</head>
+<body><main>
+<header><div class="kicker">2105623 · Session 14 · Lab</div><h1>A hidden reactor yield, and a schedule to test</h1>
+<div class="sub">About 40 minutes, on a laptop or a phone. Everything runs on this page.</div></header>
+<div class="prog"><div class="bar"><i id="pbar"></i></div><span id="ptext"></span></div>
+
+<section class="card"><h2>How this lab works</h2>
+<p>Part A looks for the best conditions of a reactor that you can only run, not see: each run gives a noisy yield, and you have 20 runs. A grid, random search and Bayesian optimization (BO) each spend the 20 runs; you compute one expected improvement by hand, follow BO run by run, and then see the hidden yield map. Part B tests a batch-plant schedule drafted by a language model, which contains three planted errors. Part C asks you to explain both. Write each prediction before you look; the next step stays locked until you do. Numbers are accepted within about 1% unless stated; after two tries the expected value is shown.</p>
+<p class="note">Studying on your own because class was cancelled? Watch the narrated slides for Session 14 first, then come back here. The runs on this page were recorded with NumPy and SciPy (<a href="bo_lab.py">bo_lab.py</a>); the maps are recomputed in your browser from the recorded runs.</p></section>
+
+<section class="card" id="data"><h2>Part A · The reactor (synthetic kinetics, hidden from you)</h2>
+<p>A CSTR makes product B from A. You choose the temperature, 60 to 120 °C, and the residence time, 1 to 60 min (searched on a log scale). You measure the yield of B, in % of the A fed. A repeated run gives a different yield: the noise has a standard deviation of about 1.5 points. Each run takes a day, and the budget is 20 runs.</p>
+<ul class="b" style="font-size:15px"><li>Grid: 4 temperatures (60, 80, 100, 120 °C) × 5 residence times (1, 2.8, 7.7, 21.6, 60 min)</li>
+<li>Random search: 20 runs at random in the box</li><li>BO: 6 runs in a Latin hypercube, then 14 runs, each at the maximum of expected improvement (EI) from a Gaussian process (Matérn 5/2, ℓ and noise by the marginal likelihood)</li>
+<li>Every method recommends its run with the best observed yield</li></ul></section>
+
+<section class="card" id="t1"><h2>Part A · BO against a grid and random search</h2>
+<div class="step" data-step="1a"><span class="tag p">PREDICT</span>With 20 runs each, whose recommended conditions will have the highest true yield?
+ <div class="choices"><label><input type="radio" name="p1" value="grid"> the grid</label><label><input type="radio" name="p1" value="random"> random search</label><label><input type="radio" name="p1" value="bo"> BO</label><label><input type="radio" name="p1" value="same"> about the same for all three</label></div>
+ <button data-save="1a">Save prediction</button></div>
+<div class="step" data-step="1b"><span class="tag r">RUN</span>BO's first 6 runs, and the GP fitted to them. The star is the candidate with the largest EI, where BO runs next.
+ <div class="wide" id="run1b"></div><div class="chart" id="ch1b"></div>
+ <div class="howto" id="hand"></div>
+ <div class="ctrlrow"><span>Φ(z) and φ(z) for z =</span><input type="text" id="zc" inputmode="decimal" style="width:90px"><b id="zcv"></b></div>
+ <div class="chk"><span>z = (m − y*)/s</span><input type="text" id="c1a" inputmode="decimal"><span class="fb" id="f1a"></span></div>
+ <div class="chk"><span>EI = (m − y*) Φ(z) + s φ(z)</span><input type="text" id="c1b" inputmode="decimal"><span class="fb" id="f1b"></span></div>
+ <div class="chk"><span>Why does BO run here, where m is below y*?</span><select id="c1c"><option value="">choose</option><option value="a">its mean is the highest of all candidates</option><option value="b">s is large enough that the yield may well beat y*</option><option value="c">it is at the center of the box</option></select><span class="fb" id="f1c"></span></div>
+ <button data-check="1b">Check</button></div>
+<div class="step" data-step="1c"><span class="tag r">RUN</span>Follow BO through its 14 runs. Left: the GP mean after each run, with the runs so far and the next run (star). Right: EI.
+ <div class="ctrlrow"><span>Runs made</span><input type="range" id="kS" min="6" max="20" step="1" value="6"><b id="kV"></b></div>
+ <div class="kpi"><div>Best observed yield, %<b id="kB"></b></div><div>Best GP mean at a run, %<b id="kM"></b></div><div>ℓ for T; for log τ<b id="kL" style="font-size:15px"></b></div></div>
+ <div class="chart" id="ch1c"></div><div class="wide" id="run1c"></div>
+ <div class="chk"><span>After 20 runs: BO's best observed yield, %</span><input type="text" id="c1d" inputmode="decimal"><span class="fb" id="f1d"></span></div>
+ <div class="chk"><span>Two of BO's runs repeat the same conditions. Which temperature, °C?</span><input type="text" id="c1e" inputmode="decimal"><span class="fb" id="f1e"></span></div>
+ <button data-check="1c">Check</button></div>
+<div class="step" data-step="1d"><span class="tag r">RUN</span>The hidden yield map, revealed, with the runs of each method. The true best yield is <b id="ymax"></b>% at <span id="yopt"></span>.
+ <div class="btnrow"><button id="mG" class="ghost">Grid</button><button id="mR" class="ghost">Random</button><button id="mB">BO</button></div>
+ <div class="chart" id="ch1d"></div><div class="wide" id="run1d"></div>
+ <div class="chk"><span>BO's best run: observed minus true yield, points</span><input type="text" id="c1f" inputmode="decimal"><span class="fb" id="f1f"></span></div>
+ <div class="chk"><span>Why is the best observed yield above the true yield there?</span><select id="c1g"><option value="">choose</option><option value="a">the GP overestimates yields</option><option value="b">the run with the best observed yield was picked partly for its favorable noise</option><option value="c">BO adds noise on purpose</option></select><span class="fb" id="f1g"></span></div>
+ <button data-check="1d">Check</button></div>
+<div class="step" data-step="2a"><span class="tag c">CHANGE</span>One run is one seed. Here all three methods are repeated with 20 seeds (new noise, new random runs, new Latin hypercubes). Choose one condition to change and compare it with the base case.
+ <div class="btnrow"><button id="cN">Noise 4 points</button><button id="cS">12 runs</button><button id="cU">UCB, κ = 2, instead of EI</button></div>
+ <div class="wide" id="run2a"></div>
+ <div class="chk"><span>Base case: in how many of 20 seeds does BO end within 1 point of the best yield?</span><input type="text" id="c2a" inputmode="numeric"><span class="fb" id="f2a"></span></div>
+ <div class="chk"><span>Noise 4 points: BO's median shortfall, points</span><input type="text" id="c2b" inputmode="decimal"><span class="fb" id="f2b"></span></div>
+ <div class="chk"><span>With 12 runs the 3 × 4 grid ends 0.43 points short in every seed. Why?</span><select id="c2c"><option value="">choose</option><option value="a">a grid is always best when runs are few</option><option value="b">its 90 °C level and one of its residence times happen to fall near the optimum</option><option value="c">the noise is smaller with fewer runs</option></select><span class="fb" id="f2c"></span></div>
+ <button data-check="2a">Check</button></div>
+</section>
+
+<section class="card" id="dataB"><h2>Part B · A schedule drafted by a language model</h2>
+<p>A batch plant makes three products in two reactors over five days. A batch of product p in reactor r makes a fixed amount, takes a fixed time and has a fixed cost. Each reactor has 20 h a day. P3 cannot be made in R1. Product due on a day must be in stock at the end of that day; stock costs 20 USD per tonne per day. The model chooses the number of batches (integers) and the stock. This specification was given to a language model, which drafted the model. The draft contains three planted errors: one in units, one in an index, and one invented data entry.</p>
+<div class="wide"><table class="tb" id="spT"></table><table class="tb" id="dmT"></table></div>
+<div class="code" id="llmCode" style="font-size:12.5px"></div>
+<p class="note">An excerpt; the full code is <code>schedule_llm</code> in <a href="bo_lab.py">bo_lab.py</a>, with switches that repair each error, and <code>sched_tests</code> with the eight tests.</p></section>
+
+<section class="card" id="t3"><h2>Part B · Eight tests</h2>
+<div class="step" data-step="3a"><span class="tag p">PREDICT</span>These tests were written from the specification, not from the code. Tick the ones you expect to fail on the drafted model.
+ <div id="pred3"></div>
+ <button data-save="3a">Save prediction</button></div>
+<div class="step" data-step="3b"><span class="tag r">RUN</span>The eight tests on the drafted model.
+ <div id="run3b"></div>
+ <div class="chk"><span>How many tests fail?</span><input type="text" id="c3a" inputmode="numeric"><span class="fb" id="f3a"></span></div>
+ <div class="chk"><span>Which test finds the units error?</span><select id="c3b"><option value="">choose</option><option value="T2">T2 reactor hours</option><option value="T4">T4 daily balance</option><option value="T7">T7 known answer</option><option value="T8">T8 doubling</option></select><span class="fb" id="f3b"></span></div>
+ <div class="chk"><span>Which line has the index error?</span><select id="c3c"><option value="">choose</option><option value="5">line 5</option><option value="7">line 7</option><option value="14">line 14</option><option value="15">line 15</option></select><span class="fb" id="f3c"></span></div>
+ <div class="chk"><span>T3, the balance over the whole week, passes despite the index error. Why?</span><select id="c3d"><option value="">choose</option><option value="a">the index error shifts each day's demand by one day, so the week's total is unchanged</option><option value="b">T3 is wrong</option><option value="c">the solver corrects the index</option></select><span class="fb" id="f3d"></span></div>
+ <button data-check="3b">Check</button></div>
+<div class="step" data-step="3c"><span class="tag c">CHANGE</span>Repair the errors one at a time and run the tests again.
+ <div class="btnrow"><button id="xU" class="ghost">Fix the units (line 7)</button><button id="xI" class="ghost">Fix the index (line 15)</button><button id="xD" class="ghost">Remove the invented entry (line 5)</button></div>
+ <div id="run3c"></div>
+ <div class="chk"><span>Weekly cost of the repaired model, USD</span><input type="text" id="c3e" inputmode="decimal"><span class="fb" id="f3e"></span></div>
+ <div class="chk"><span>By how much did the draft understate the weekly cost, USD?</span><input type="text" id="c3f" inputmode="decimal"><span class="fb" id="f3f"></span></div>
+ <button data-check="3c">Check</button></div>
+</section>
+
+<section class="card" id="t4"><h2>Part C · Explain</h2>
+<div class="step" data-step="4a"><span class="tag e">EXPLAIN</span>Write to a colleague: what BO did with 20 runs compared with the grid, which conditions you would recommend and how you would report their yield, and what you would do before anyone builds on it; then what the drafted schedule got wrong, which tests found each error, and why four tests passed with all three errors present.
+ <textarea id="e4"></textarea><button data-save="4a">Save</button></div>
+</section>
+
+<section class="card" id="fin"><h2>Finish: Exit Ticket and feedback</h2>
+<div class="step" data-step="fin"><p>Copy your answers, open the Exit Ticket, choose <b>Session 14</b>, paste them in the Exit Ticket box, and answer the feedback questions. Choose "On my own" if you did this lab outside class.</p>
+<pre class="sum" id="sum"></pre>
+<button id="copy">Copy my answers</button><a id="exitlink" target="_blank" rel="noopener"><button class="ghost" type="button">Open Exit Ticket and feedback</button></a>
+<p class="note" id="copied"></p>
+<p class="note">Want the code? <a href="bo_lab.py">bo_lab.py</a> has the GP and BO (<code>gp_fit</code>, <code>gp_pred</code>, <code>ei</code>, <code>bo</code>), the reactor (<code>cstr_yield</code>, <code>lab_methods</code>), and the drafted schedule with its tests (<code>schedule_llm</code>, <code>sched_tests</code>). It runs in desktop Python with NumPy and SciPy; try writing a ninth test.</p>
+<button class="ghost" id="reset">Clear my answers on this device</button></div>
+</section>
+</main>
+<script>
+const R = {"a":{"data":{"T":[60.0,120.0],"tau":[1.0,60.0],"Tref":90.0,"k_ref":[0.4,0.012,0.04],"E_R":[10000.0,2000.0,20000.0],"sigma":1.5},"opt":{"Y":67.3015246713,"T":93.693,"tau":11.4876614229},"seed":3,"run":{"grid":{"best_obs":64.5155742437,"true_at_best":66.2093301653,"shortfall":1.092194506,"k":12,"X":[[0.0,0.0],[0.0,0.25],[0.0,0.5],[0.0,0.75],[0.0,1.0],[0.3333333333,0.0],[0.3333333333,0.25],[0.3333333333,0.5],[0.3333333333,0.75],[0.3333333333,1.0],[0.6666666667,0.0],[0.6666666667,0.25],[0.6666666667,0.5],[0.6666666667,0.75],[0.6666666667,1.0],[1.0,0.0],[1.0,0.25],[1.0,0.5],[1.0,0.75],[1.0,1.0]],"y":[1.6851728882,8.1734429596,17.3319489811,35.509433433,46.0908439574,17.4627935882,34.5837612994,53.7900252367,63.8743790401,54.8916232805,41.6657103611,58.3294448404,64.5155742437,63.4015643668,44.7914704323,43.0486351877,48.5056495905,47.847023166,38.1018242847,24.458249937]},"random":{"best_obs":66.2887634819,"true_at_best":66.1776098127,"shortfall":1.1239148586,"k":2,"X":[[0.9701135092,0.7113698669],[0.0849883904,0.8375095238],[0.4774116658,0.7164335061],[0.5066277282,0.1350408213],[0.8997083341,0.1590558847],[0.3543872583,0.5188196459],[0.3746223891,0.5656614838],[0.9311965793,0.1459729046],[0.5928230034,0.1848825882],[0.704754882,0.6372678828],[0.3083558938,0.3070632167],[0.3296142037,0.5917289904],[0.1885416274,0.9808097219],[0.4522716991,0.0477110631],[0.7541587341,0.9488619429],[0.9358350858,0.2554163682],[0.2206667558,0.6596916293],[0.9636865103,0.0454928246],[0.9838417201,0.0308699447],[0.9723588996,0.3497865904]],"y":[42.6430269981,48.6654709748,66.2887634819,39.4835420585,53.5388177443,53.8833271404,58.3506420226,54.0752427876,51.138715453,62.9127389503,35.1003056911,57.559005644,54.3821172932,28.9774920713,46.4415486944,52.9349168373,53.4728619393,48.1824582579,50.3072949718,49.440166005]},"bo":{"best_obs":69.1511463047,"true_at_best":67.2867722475,"shortfall":0.0147524238,"k":17,"X":[[0.3330690629,0.2251976537],[0.8303545468,0.0322130211],[0.5236629705,0.4167687907],[0.867289646,0.8980276633],[0.3730428076,0.5025650254],[0.0442675058,0.736751608],[1.0,0.45],[0.35,0.425],[0.5,0.475],[0.6,0.45],[0.675,0.375],[0.425,1.0],[0.65,0.575],[0.55,0.675],[0.575,0.575],[0.575,0.55],[0.55,0.6],[0.55,0.6],[0.525,0.625],[0.6,0.55]],"y":[28.9885415589,49.8475552361,64.0900530324,41.1946591249,56.9920151832,37.2103596768,49.8497769342,50.4164467818,63.1788620407,66.2608931799,62.6265077987,52.060681328,66.239483061,66.5285588306,66.7997783589,64.3466200644,67.6153958658,69.1511463047,64.7612926233,67.7195404964],"steps":[{"n":6,"ell":[2.0,0.0699216747],"g":1e-06,"best":64.0900361622,"next":[1.0,0.45],"m":62.2636204489,"s":5.4503268171,"acq":1.3821116741},{"n":7,"ell":[0.373956347,0.0699216747],"g":1e-06,"best":64.0900354901,"next":[0.35,0.425],"m":62.3085901703,"s":5.4198628118,"acq":1.3872478525},{"n":8,"ell":[0.0977808119,0.1367399625],"g":1e-06,"best":64.0900366653,"next":[0.5,0.475],"m":62.80229798,"s":5.4717219411,"acq":1.5992065225},{"n":9,"ell":[0.1367399625,0.1912217436],"g":1e-06,"best":64.0900299498,"next":[0.6,0.45],"m":61.6378355801,"s":6.6612907424,"acq":1.6094329605},{"n":10,"ell":[0.2674108912,0.1912217436],"g":1e-06,"best":66.2608856597,"next":[0.675,0.375],"m":63.7158465531,"s":4.927847747,"acq":0.9499186161},{"n":11,"ell":[0.2674108912,0.2674108912],"g":1e-06,"best":66.2608617036,"next":[0.425,1.0],"m":48.5677882457,"s":12.4325115786,"acq":0.4331475151},{"n":12,"ell":[0.2674108912,0.1912217436],"g":1e-06,"best":66.2608788182,"next":[0.65,0.575],"m":59.0699518571,"s":6.3990592939,"acq":0.4188739271},{"n":13,"ell":[0.2674108912,0.2674108912],"g":0.001,"best":66.2843038648,"next":[0.55,0.675],"m":62.212585226,"s":5.5974490525,"acq":0.7632705919},{"n":14,"ell":[0.7313151047,0.7313151047],"g":0.001,"best":66.3227894304,"next":[0.575,0.575],"m":67.5564864051,"s":0.8455482338,"acq":1.2608842254},{"n":15,"ell":[0.7313151047,0.7313151047],"g":0.001,"best":67.2508267981,"next":[0.575,0.55],"m":67.2463705618,"s":0.6463204321,"acq":0.2556225576},{"n":16,"ell":[0.7313151047,1.0226955374],"g":0.001,"best":66.6785982749,"next":[0.55,0.6],"m":66.6062821103,"s":0.7653359476,"acq":0.2705287817},{"n":17,"ell":[0.7313151047,1.0226955374],"g":0.001,"best":66.8703251624,"next":[0.55,0.6],"m":66.8562465831,"s":0.6539664131,"acq":0.2539160166},{"n":18,"ell":[0.7313151047,1.0226955374],"g":0.001,"best":67.3116604002,"next":[0.525,0.625],"m":67.147943535,"s":0.8093898282,"acq":0.2476245142},{"n":19,"ell":[1.0226955374,1.0226955374],"g":0.001,"best":67.0362303437,"next":[0.6,0.55],"m":66.9618432776,"s":0.6997910263,"acq":0.2435584832}]}},"hand":{"m":62.2636204489,"s":5.4503268171,"best":64.0900361622,"z":-0.3351020544,"Phi":0.3687740516,"phi":0.3771602081,"ei":1.3821116741,"T":120.0,"tau":6.3120155872},"conditions":{"base":{"budget":20,"sigma":1.5,"acq":"ei","grid":{"median":1.092194506,"mean":1.4088928754,"worst":4.2591782004,"within1":0,"optimism":-0.016673128},"random":{"median":2.1100708192,"mean":2.4970804203,"worst":8.437094866,"within1":2,"optimism":0.666295582},"bo":{"median":0.2547407119,"mean":0.4515738467,"worst":1.7356062755,"within1":17,"optimism":2.0726623536},"bo_beats_grid":17},"noisy":{"budget":20,"sigma":4.0,"acq":"ei","grid":{"median":4.2591782004,"mean":3.4899739654,"worst":8.5486660308,"within1":0,"optimism":3.5301706041},"random":{"median":2.3115374915,"mean":3.2826572692,"worst":10.0647540796,"within1":1,"optimism":3.0687309948},"bo":{"median":0.9211188885,"mean":1.3236514567,"worst":5.6327246121,"within1":11,"optimism":5.8007924752},"bo_beats_grid":16},"small":{"budget":12,"sigma":1.5,"acq":"ei","grid":{"median":0.4309104417,"mean":0.4309104417,"worst":0.4309104417,"within1":20,"optimism":-0.0375740108},"random":{"median":2.2641436439,"mean":3.4370311458,"worst":11.004055996,"within1":2,"optimism":0.3479905045},"bo":{"median":0.4099480936,"mean":1.1525869756,"worst":8.2382898953,"within1":14,"optimism":0.6339229088},"bo_beats_grid":10},"ucb":{"budget":20,"sigma":1.5,"acq":"ucb","grid":{"median":1.092194506,"mean":1.4088928754,"worst":4.2591782004,"within1":0,"optimism":-0.016673128},"random":{"median":2.1100708192,"mean":2.4970804203,"worst":8.437094866,"within1":2,"optimism":0.666295582},"bo":{"median":0.3259947175,"mean":0.4816871168,"worst":1.3844549971,"within1":17,"optimism":2.0772416885},"bo_beats_grid":18}}},"b":{"data":{"products":["P1","P2","P3"],"reactors":["R1","R2"],"days":5,"size":{"P1/R1":8,"P2/R1":6,"P1/R2":10,"P2/R2":8,"P3/R2":5},"time":{"P1/R1":4,"P2/R1":5,"P1/R2":6,"P2/R2":6,"P3/R2":8},"cost":{"P1/R1":900,"P2/R1":800,"P1/R2":1100,"P2/R2":1000,"P3/R2":1200},"hours":20,"hold":20,"demand":{"P1":[0,30,0,30,10],"P2":[20,0,25,0,15],"P3":[0,10,0,15,5]},"stock0":{"P1":5,"P2":4,"P3":3}},"tests":["T1 solver reports optimal","T2 reactor hours per day at most 20","T3 stock balance over the week","T4 stock balance day by day","T5 no P3 batches in R1","T6 zero demand gives no batches","T7 known answer: 60 t of P1 on day 1 costs 6,700 USD","T8 doubling sizes, demands and stocks, halving holding cost, keeps the cost"],"combos":{"000":{"tests":[true,true,true,false,false,true,false,false],"cost":19719.9999999999,"batches":{"P1/R1":[1,0,1,0,0],"P1/R2":[0,0,2,0,3],"P2/R1":[0,0,0,0,0],"P2/R2":[2,2,0,3,0],"P3/R1":[1,0,2,0,3],"P3/R2":[0,0,0,0,0]},"stock":{"P1":[3.0,3.0,1.0,1.0,1.0],"P2":[5.0,1.0,1.0,0.0,0.0],"P3":[3.0,3.0,3.0,3.0,3.0]}},"001":{"tests":[true,false,true,false,true,true,false,true],"cost":22120.0,"batches":{"P1/R1":[1,0,1,0,0],"P1/R2":[0,0,2,0,3],"P2/R1":[0,0,0,0,0],"P2/R2":[2,2,0,3,0],"P3/R2":[1,0,2,0,3]},"stock":{"P1":[3.0,3.0,1.0,1.0,1.0],"P2":[5.0,1.0,1.0,0.0,0.0],"P3":[3.0,3.0,3.0,3.0,3.0]}},"010":{"tests":[true,true,true,true,false,true,false,false],"cost":19820.0,"batches":{"P1/R1":[0,2,0,0,0],"P1/R2":[0,1,0,3,1],"P2/R1":[0,0,3,0,1],"P2/R2":[2,0,1,0,1],"P3/R1":[0,2,0,3,1],"P3/R2":[0,0,0,0,0]},"stock":{"P1":[5.0,1.0,1.0,1.0,1.0],"P2":[0.0,0.0,1.0,1.0,0.0],"P3":[3.0,3.0,3.0,3.0,3.0]}},"011":{"tests":[true,false,true,true,true,true,false,true],"cost":22220.0,"batches":{"P1/R1":[0,2,0,0,0],"P1/R2":[0,1,0,3,1],"P2/R1":[0,0,3,0,1],"P2/R2":[2,0,1,0,1],"P3/R2":[0,2,0,3,1]},"stock":{"P1":[5.0,1.0,1.0,1.0,1.0],"P2":[0.0,0.0,1.0,1.0,0.0],"P3":[3.0,3.0,3.0,3.0,3.0]}},"100":{"tests":[true,true,true,false,false,true,true,false],"cost":19720.0,"batches":{"P1/R1":[1,0,1,0,0],"P1/R2":[0,0,2,0,3],"P2/R1":[0,0,0,0,0],"P2/R2":[2,2,0,3,0],"P3/R1":[1,0,2,0,3],"P3/R2":[0,0,0,0,0]},"stock":{"P1":[3.0,3.0,1.0,1.0,1.0],"P2":[5.0,1.0,1.0,0.0,0.0],"P3":[3.0,3.0,3.0,3.0,3.0]}},"101":{"tests":[true,true,true,false,true,true,true,true],"cost":22780.0,"batches":{"P1/R1":[1,0,4,0,2],"P1/R2":[0,0,0,0,1],"P2/R1":[0,0,0,4,0],"P2/R2":[2,2,0,0,0],"P3/R2":[1,0,2,2,1]},"stock":{"P1":[3.0,3.0,5.0,5.0,1.0],"P2":[5.0,1.0,1.0,0.0,0.0],"P3":[3.0,3.0,3.0,13.0,3.0]}},"110":{"tests":[true,true,true,true,false,true,true,false],"cost":19820.0,"batches":{"P1/R1":[0,2,0,0,0],"P1/R2":[0,1,0,3,1],"P2/R1":[0,0,3,0,1],"P2/R2":[2,0,1,0,1],"P3/R1":[0,2,0,3,1],"P3/R2":[0,0,0,0,0]},"stock":{"P1":[5.0,1.0,1.0,1.0,1.0],"P2":[0.0,0.0,1.0,1.0,0.0],"P3":[3.0,3.0,3.0,3.0,3.0]}},"111":{"tests":[true,true,true,true,true,true,true,true],"cost":22560.0,"batches":{"P1/R1":[0,2,0,4,1],"P1/R2":[0,1,0,0,0],"P2/R1":[0,0,3,0,1],"P2/R2":[2,0,1,0,1],"P3/R2":[1,1,1,2,1]},"stock":{"P1":[5.0,1.0,1.0,3.0,1.0],"P2":[0.0,0.0,1.0,1.0,0.0],"P3":[8.0,3.0,8.0,3.0,3.0]}}}}};
+const EXIT_URL = "https://soorathep.github.io/course-2105623/teaching/2105623/exit.html?s=14";
+const C={teal:"#0F6E6B",amber:"#E29A2D",rust:"#BE654C",graphite:"#333F4A",mist:"#B9C1C6",sand:"#DFC98F",ink:"#1C242B",slate:"#66727C",sky:"#5A91BE",sage:"#83A462"};
+const SEQ=["#F6F6F6","#D2DFDE","#AFC7C5","#8BB0AE","#689A97","#428380","#0F6D6A","#005553","#003F3D"];
+const $=id=>document.getElementById(id);
+const fmt=(x,d=0)=>x==null||!isFinite(x)?"–":Number(x).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d}).replace(/^-/,"−");
+const KEY="lab14-2027-v1"; let ST={};
+try{ST=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){ST={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(ST))}catch(e){}};
+const A=R.a,B=R.b,RUN=A.run,BO=RUN.bo,D=A.data;
+function svg(w,h){return `<svg viewBox="0 0 ${w} ${h}" font-family="Helvetica Neue,Arial,sans-serif" font-size="13" fill="${C.ink}" style="width:100%;height:auto">`}
+const hexrgb=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+function ramp(t){t=Math.max(0,Math.min(1,t));const k=t*(SEQ.length-1),i=Math.min(SEQ.length-2,Math.floor(k)),f=k-i,a=hexrgb(SEQ[i]),b=hexrgb(SEQ[i+1]);return `rgb(${a.map((v,j)=>Math.round(v+(b[j]-v)*f)).join(",")})`}
+
+/* GP, as in bo_lab.gp_fit / gp_pred */
+const SQ5=Math.sqrt(5),dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0);
+function k52(a,b,ell){let d2=0;for(let i=0;i<a.length;i++){const q=(a[i]-b[i])/ell[i];d2+=q*q}const d=Math.sqrt(d2);return (1+SQ5*d+5/3*d*d)*Math.exp(-SQ5*d)}
+function chol(A){const n=A.length,L=A.map(r=>r.map(()=>0));for(let i=0;i<n;i++)for(let j=0;j<=i;j++){let s=A[i][j];for(let k=0;k<j;k++)s-=L[i][k]*L[j][k];if(i===j)L[i][i]=Math.sqrt(Math.max(s,1e-300));else L[i][j]=s/L[j][j]}return L}
+function fsub(L,b){const n=b.length,x=new Array(n);for(let i=0;i<n;i++){let s=b[i];for(let k=0;k<i;k++)s-=L[i][k]*x[k];x[i]=s/L[i][i]}return x}
+function bsub(L,b){const n=b.length,x=new Array(n);for(let i=n-1;i>=0;i--){let s=b[i];for(let k=i+1;k<n;k++)s-=L[k][i]*x[k];x[i]=s/L[i][i]}return x}
+function gpFit(X,y,ell,g){const n=y.length,yb=y.reduce((s,v)=>s+v,0)/n,ys=Math.sqrt(y.reduce((s,v)=>s+(v-yb)**2,0)/n)||1,z=y.map(v=>(v-yb)/ys);
+ const K=X.map((a,i)=>X.map((b,j)=>k52(a,b,ell)+(i===j?g+1e-10:0))),L=chol(K),a=fsub(L,z);return {X,yb,ys,ell,g,L,alpha:bsub(L,a),sf2:dot(a,a)/n}}
+function gpPred(M,x){const ks=M.X.map(a=>k52(x,a,M.ell)),m=M.yb+M.ys*dot(ks,M.alpha),v=fsub(M.L,ks);return [m,Math.sqrt(Math.max(M.ys*M.ys*M.sf2*(1-dot(v,v)),0))]}
+const npdf=z=>Math.exp(-0.5*z*z)/Math.sqrt(2*Math.PI);
+function ncdf(z){const x=Math.abs(z)/Math.SQRT2,t=1/(1+0.5*x),r=t*Math.exp(-x*x-1.26551223+t*(1.00002368+t*(0.37409196+t*(0.09678418+t*(-0.18628806+t*(0.27886807+t*(-1.13520398+t*(1.48851587+t*(-0.82215223+t*0.17087277)))))))));return z>=0?1-r/2:r/2}
+const eiJS=(m,s,best)=>s>1e-12?(m-best)*ncdf((m-best)/s)+s*npdf((m-best)/s):Math.max(m-best,0);
+
+/* units: scaled [0,1]^2 <-> T (deg C), tau (min, log scale) */
+const toT=v=>D.T[0]+(D.T[1]-D.T[0])*v,toTau=v=>D.tau[0]*(D.tau[1]/D.tau[0])**v,LT=Math.log10(D.tau[1]/D.tau[0]);
+/* a map in (T, log tau) with optional values and points */
+function map(o){const w=o.w||360,h=o.h||300,l=46,t=24,X=w-l-10,Y=h-t-42,nx=o.n||30,px=v=>l+X*v,py=v=>t+Y*(1-v);let s=svg(w,h);
+ if(o.val){const vals=[];for(let j=0;j<nx;j++)for(let i=0;i<nx;i++)vals.push(o.val([(i+.5)/nx,(nx-j-.5)/nx]));const lo=o.lo!=null?o.lo:Math.min(...vals),hi=o.hi!=null?o.hi:Math.max(...vals);
+  vals.forEach((v,k)=>{const i=k%nx,j=Math.floor(k/nx);s+=`<rect x="${(l+i*X/nx).toFixed(1)}" y="${(t+j*Y/nx).toFixed(1)}" width="${(X/nx+.6).toFixed(1)}" height="${(Y/nx+.6).toFixed(1)}" fill="${ramp((v-lo)/((hi-lo)||1))}"/>`});
+  s+=`<text x="${l}" y="${t-8}" font-size="12.5" font-weight="700" fill="${C.ink}">${o.title||""}: light ${fmt(lo,o.dd==null?0:o.dd)}, dark ${fmt(hi,o.dd==null?0:o.dd)}</text>`}
+ [60,80,100,120].forEach(T=>s+=`<text x="${px((T-60)/60)}" y="${t+Y+15}" text-anchor="middle">${T}</text>`);
+ [1,3,10,30,60].forEach(u=>s+=`<text x="${l-5}" y="${py(Math.log10(u)/LT)+4}" text-anchor="end">${u}</text>`);
+ (o.pts||[]).forEach(p=>{const [x,y]=[px(p.v[0]),py(p.v[1])];s+=p.shape==="sq"?`<rect x="${x-p.r}" y="${y-p.r}" width="${2*p.r}" height="${2*p.r}" fill="${p.c}" stroke="${p.s||C.ink}" stroke-width="1.2"/>`:p.shape==="star"?`<text x="${x}" y="${y+7}" text-anchor="middle" font-size="22" fill="${C.rust}" stroke="#fff" stroke-width=".8">★</text>`:`<circle cx="${x}" cy="${y}" r="${p.r||5}" fill="${p.c}" stroke="${p.s||C.ink}" stroke-width="1.2"/>`;if(p.t)s+=`<text x="${x+7}" y="${y-6}" font-size="11" font-weight="700">${p.t}</text>`});
+ s+=`<rect x="${l}" y="${t}" width="${X}" height="${Y}" fill="none" stroke="${C.graphite}" stroke-width="1.2"/><text x="${l+X/2}" y="${h-6}" text-anchor="middle">T, °C</text><text transform="translate(12,${t+Y/2}) rotate(-90)" text-anchor="middle">τ, min (log)</text>`;return s+"</svg>"}
+const two=(a,b)=>`<div style="display:flex;gap:10px;flex-wrap:wrap"><div style="flex:1;min-width:260px">${a}</div><div style="flex:1;min-width:260px">${b}</div></div>`;
+const runRow=(x,y,i)=>`<tr><td>${i}</td><td class="n">${fmt(toT(x[0]),1)}</td><td class="n">${fmt(toTau(x[1]),2)}</td><td class="n">${fmt(y,2)}</td></tr>`;
+const runHead=`<tr><th>Run</th><th class="n">T, °C</th><th class="n">τ, min</th><th class="n">Yield, %</th></tr>`;
+function boState(n){const st=BO.steps[Math.min(n-6,BO.steps.length-1)],M=gpFit(BO.X.slice(0,n),BO.y.slice(0,n),st.ell,st.g);return {st,M}}
+
+/* Part A, step 1b */
+const S0=boState(6),H=A.hand;
+$("run1b").innerHTML=`<table class="tb">${runHead}${BO.X.slice(0,6).map((x,i)=>runRow(x,BO.y[i],i+1)).join("")}</table>`;
+$("ch1b").innerHTML=two(map({val:v=>gpPred(S0.M,v)[0],title:"m, %",pts:BO.X.slice(0,6).map(v=>({v,c:"#fff"})).concat([{v:S0.st.next,shape:"star"}])}),
+ map({val:v=>gpPred(S0.M,v)[1],title:"s, %",dd:1,pts:BO.X.slice(0,6).map(v=>({v,c:"#fff"})).concat([{v:S0.st.next,shape:"star"}])}));
+$("hand").innerHTML=`<b>At the star:</b> T = ${fmt(H.T,0)} °C, τ = ${fmt(H.tau,2)} min. The GP predicts m = ${fmt(H.m,2)}% with s = ${fmt(H.s,2)} points. The best GP mean at the six runs is y* = ${fmt(H.best,2)}%. Compute z and EI from these rounded values.`;
+$("zc").oninput=()=>{const z=num($("zc").value);$("zcv").textContent=isFinite(z)?`Φ = ${ncdf(z).toFixed(4)}, φ = ${npdf(z).toFixed(4)}`:""};
+
+/* step 1c */
+function draw1c(){const n=+$("kS").value,{st,M}=boState(n),done=n>=20,nxt=done?null:st.next;$("kV").textContent=`${n} of 20`;
+ const obs=BO.y.slice(0,n),best=Math.max(...obs),mb=Math.max(...BO.X.slice(0,n).map(v=>gpPred(M,v)[0]));
+ $("kB").textContent=fmt(best,2);$("kM").textContent=fmt(mb,2);$("kL").textContent=`${fmt(st.ell[0],2)}; ${fmt(st.ell[1],2)}`;
+ const pts=BO.X.slice(0,n).map((v,i)=>({v,c:i<6?"#fff":C.amber,r:i===n-1&&n>6?7:5}));if(nxt)pts.push({v:nxt,shape:"star"});
+ $("ch1c").innerHTML=two(map({val:v=>gpPred(M,v)[0],title:"m, %",lo:20,hi:72,pts}),map({val:v=>{const [m,s]=gpPred(M,v);return eiJS(m,s,mb)},title:"EI",dd:2,pts}));
+ $("run1c").innerHTML=`<table class="tb">${runHead}${BO.X.slice(6,n).map((x,i)=>runRow(x,BO.y[6+i],7+i)).join("")}</table>`;ST.kS=n;save()}
+$("kS").oninput=draw1c;
+
+/* step 1d */
+const opt=A.opt;$("ymax").textContent=fmt(opt.Y,2);$("yopt").textContent=`${fmt(opt.T,1)} °C and ${fmt(opt.tau,1)} min`;
+function cstr(v){const T=toT(v[0]),tau=toTau(v[1]),TK=T+273.15,TR=D.Tref+273.15,k=D.k_ref.map((kr,i)=>kr*Math.exp(-D.E_R[i]*(1/TK-1/TR)));return 100*k[0]*tau/((1+(k[0]+k[2])*tau)*(1+k[1]*tau))}
+let meth="bo";
+function draw1d(){const r=RUN[meth],k=r.k,pts=r.X.map((v,i)=>({v,c:i===k?C.amber:"#fff",r:i===k?7:4.5,shape:meth==="grid"?"sq":null}));
+ pts.push({v:[(opt.T-60)/60,Math.log10(opt.tau)/LT],shape:"star"});
+ $("ch1d").innerHTML=map({w:560,h:400,n:40,val:cstr,title:"true yield, %",lo:0,hi:70,pts});
+ $("run1d").innerHTML=`<table class="tb"><tr><th>Method</th><th class="n">Best observed, %</th><th class="n">True yield there, %</th><th class="n">Short of the best, points</th><th>Conditions</th></tr>`+
+  [["grid","Grid"],["random","Random"],["bo","BO"]].map(([m,t])=>{const q=RUN[m],v=q.X[q.k];return `<tr><td>${t}</td><td class="n">${fmt(q.best_obs,2)}</td><td class="n">${fmt(q.true_at_best,2)}</td><td class="n">${fmt(q.shortfall,2)}</td><td>${fmt(toT(v[0]),1)} °C, ${fmt(toTau(v[1]),1)} min</td></tr>`}).join("")+`</table><p class="note">Amber: the run each method recommends. Star: the true optimum.</p>`;
+ [["mG","grid"],["mR","random"],["mB","bo"]].forEach(([id,m])=>$(id).className=m===meth?"":"ghost")}
+[["mG","grid"],["mR","random"],["mB","bo"]].forEach(([id,m])=>$(id).onclick=()=>{meth=m;draw1d()});
+
+/* step 2a */
+let cond=null;
+function draw2a(){const CN=A.conditions,row=(k,t)=>{const c=CN[k];return ["grid","random","bo"].map(m=>`<tr><td>${t}</td><td>${{grid:"grid",random:"random",bo:"BO"}[m]}</td><td class="n">${fmt(c[m].median,2)}</td><td class="n">${fmt(c[m].worst,2)}</td><td class="n">${c[m].within1}</td><td class="n">${fmt(c[m].optimism,2)}</td></tr>`).join("")};
+ const lab={noisy:"noise 4 points",small:"12 runs",ucb:"UCB instead of EI"};
+ $("run2a").innerHTML=`<table class="tb"><tr><th>Case</th><th>Method</th><th class="n">Median shortfall</th><th class="n">Worst</th><th class="n">Seeds within 1 point</th><th class="n">Mean optimism</th></tr>${row("base","base: 20 runs, noise 1.5, EI")}${cond?row(cond,lab[cond]):""}</table>
+ <p class="note">Shortfall: best possible yield minus the true yield at the recommended run. Optimism: observed minus true yield at that run. BO beats the grid in ${CN.base.bo_beats_grid} of 20 seeds in the base case${cond?`, and in ${CN[cond].bo_beats_grid} with ${lab[cond]}`:""}.</p>`;
+ [["cN","noisy"],["cS","small"],["cU","ucb"]].forEach(([id,k])=>$(id).className=k===cond?"":"ghost");ST.cond=cond;save()}
+[["cN","noisy"],["cS","small"],["cU","ucb"]].forEach(([id,k])=>$(id).onclick=()=>{cond=k;draw2a()});
+
+/* Part B */
+const PD=B.data;
+$("spT").innerHTML=`<tr><th>Batch</th><th class="n">Size, t</th><th class="n">Time, h</th><th class="n">Cost, USD</th></tr>`+Object.keys(PD.size).map(k=>`<tr><td>${k.replace("/"," in ")}</td><td class="n">${PD.size[k]}</td><td class="n">${PD.time[k]}</td><td class="n">${fmt(PD.cost[k])}</td></tr>`).join("");
+$("dmT").innerHTML=`<tr><th>Due, t</th>${[1,2,3,4,5].map(d=>`<th class="n">day ${d}</th>`).join("")}</tr>`+PD.products.map(p=>`<tr><td>${p} (stock at start ${PD.stock0[p]} t)</td>${PD.demand[p].map(v=>`<td class="n">${v}</td>`).join("")}</tr>`).join("");
+const CODE=[
+"# Batch-plant schedule, drafted by a language model (excerpt)",
+"size = {\"P1/R1\": 8, \"P2/R1\": 6, \"P1/R2\": 10, \"P2/R2\": 8, \"P3/R2\": 5}   # t per batch",
+"time = {\"P1/R1\": 4, \"P2/R1\": 5, \"P1/R2\": 6, \"P2/R2\": 6, \"P3/R2\": 8}    # h per batch",
+"cost = {\"P1/R1\": 900, \"P2/R1\": 800, \"P1/R2\": 1100, \"P2/R2\": 1000, \"P3/R2\": 1200}",
+"size[\"P3/R1\"], time[\"P3/R1\"], cost[\"P3/R1\"] = 5, 6, 800   # fill the missing entry",
+"pairs = [f\"{p}/{r}\" for p in P for r in R if f\"{p}/{r}\" in size]",
+"avail = 20 * 60                          # convert hours to minutes",
+"made = lambda p, t: sum(size[q] * n[q, t] for q in pairs if q.startswith(p))",
+"for r in R:                              # reactor time on day t",
+"    for t in range(T):",
+"        add_row(sum(time[q] * n[q, t] for q in pairs if q.endswith(r)) <= avail)",
+"for p in P:                              # stock balance on day t",
+"    for t in range(T):",
+"        prev = stock0[p] if t == 0 else s[p, t - 1]",
+"        add_row(s[p, t] == prev + made(p, t) - demand[p][t - 1])",
+"minimize sum(cost[q] * n[q, t]) + 20 * sum(s[p, t]);  n integer >= 0,  s >= 0"];
+let FX={u:false,i:false,d:false};
+function drawCode(){$("llmCode").innerHTML=CODE.map((L,i)=>{const no=i+1,fx=(no===7&&FX.u)||(no===15&&FX.i)||(no===5&&FX.d);
+ let txt=L;if(no===7&&FX.u)txt="avail = 20                               # h per reactor per day";if(no===15&&FX.i)txt=L.replace("demand[p][t - 1]","demand[p][t]");if(no===5&&FX.d)txt="# P3 cannot be made in R1: no entry";
+ return `<div class="ln${fx?" fixed":""}"><span class="no">${no}</span><span class="tx">${txt.replace(/</g,"&lt;")}</span></div>`}).join("")}
+const TN=B.tests;
+$("pred3").innerHTML=TN.map((t,i)=>`<label style="display:block;font-size:15px;margin:3px 0"><input type="checkbox" class="pt" value="${i}"> ${t}</label>`).join("");
+const lights=(res)=>`<div class="lights" style="flex-direction:column;align-items:flex-start">${res.map((ok,i)=>`<span class="light ${ok?"ok":"bad"}">${ok?"PASS":"FAIL"} · ${TN[i]}</span>`).join("")}</div>`;
+const key=()=>`${+FX.u}${+FX.i}${+FX.d}`;
+const sched=c=>{const order=Object.keys(c.batches);return `<table class="tb"><tr><th>Batches</th>${[1,2,3,4,5].map(d=>`<th class="n">day ${d}</th>`).join("")}</tr>${order.map(k=>`<tr><td>${k.replace("/"," in ")}</td>${c.batches[k].map(v=>`<td class="n">${v}</td>`).join("")}</tr>`).join("")}</table>`};
+const C0=B.combos["000"];
+$("run3b").innerHTML=lights(C0.tests)+`<p class="note">Weekly cost reported by the draft: ${fmt(C0.cost)} USD.</p>`+sched(C0);
+function draw3c(){drawCode();const c=B.combos[key()];$("run3c").innerHTML=`<div class="kpi"><div>Tests passed<b class="a">${c.tests.filter(Boolean).length} of 8</b></div><div>Weekly cost, USD<b>${fmt(c.cost)}</b></div></div>`+lights(c.tests)+sched(c);
+ $("xU").className=FX.u?"":"ghost";$("xI").className=FX.i?"":"ghost";$("xD").className=FX.d?"":"ghost";ST.fx=FX;save()}
+$("xU").onclick=()=>{FX.u=!FX.u;draw3c()};$("xI").onclick=()=>{FX.i=!FX.i;draw3c()};$("xD").onclick=()=>{FX.d=!FX.d;draw3c()};
+
+/* steps */
+const ORDER=["1a","1b","1c","1d","2a","3a","3b","3c","4a"];
+function refresh(){let open=true;ORDER.forEach(id=>{const el=document.querySelector(`[data-step="${id}"]`),done=!!ST["done_"+id];el.classList.toggle("done",done);el.classList.toggle("locked",!done&&!open);if(!done&&open)open=false});
+ document.querySelector('[data-step="fin"]').classList.toggle("locked",!ORDER.every(id=>ST["done_"+id]));
+ const n=ORDER.filter(id=>ST["done_"+id]).length;$("pbar").style.width=(100*n/ORDER.length)+"%";$("ptext").textContent=`${n} of ${ORDER.length} steps done`;summary();save()}
+function need(id,msg){const st=document.querySelector(`[data-step="${id}"]`);let f=st.querySelector(".need");if(!f){f=document.createElement("div");f.className="fb bad need";st.appendChild(f)}f.textContent=msg;return false}
+function markDone(id){const nd=document.querySelector(`[data-step="${id}"] .need`);if(nd)nd.textContent="";ST["done_"+id]=true;refresh()}
+const radio=n=>{const r=document.querySelector(`input[name="${n}"]:checked`);return r?r.value:""};
+const num=s=>parseFloat(String(s).replace(/,/g,"").replace(/\s/g,"").replace("−","-").replace(/[×x]10\^?/i,"e").replace("%",""));
+document.querySelectorAll("[data-save]").forEach(b=>b.onclick=()=>{const id=b.dataset.save;
+ if(id==="1a"){if(!radio("p1"))return need(id,"Choose a prediction first.");ST.p1=radio("p1")}
+ if(id==="3a"){ST.p3=[...document.querySelectorAll(".pt:checked")].map(e=>+e.value);if(!ST.p3.length&&!ST.p3ok){ST.p3ok=1;return need(id,"No test ticked: do you expect all eight to pass? Press Save again to confirm.")}}
+ if(id==="4a"){if($("e4").value.trim().length<80)return need(id,"Write at least four sentences.");ST.e4=$("e4").value}
+ markDone(id)});
+function verdict(input,fb,ok,expected){ST["tries_"+input]=(ST["tries_"+input]||0)+(ok?0:1);const f=$(fb);f.className="fb "+(ok?"ok":"bad");
+ f.textContent=ok?"Correct":(ST["tries_"+input]>=2?`Not yet. Expected: ${expected}.`:"Not yet. Look again.");return ok||ST["tries_"+input]>=2}
+function checkNum(input,fb,target,rel,abs,shown){const v=num($(input).value);ST[input]=$(input).value;return verdict(input,fb,isFinite(v)&&Math.abs(v-target)<=Math.max(abs,rel*Math.abs(target)),shown)}
+function checkSel(input,fb,target,label){ST[input]=$(input).value;return verdict(input,fb,$(input).value===target,label||target)}
+const z2=(Math.round(H.m*100)/100-Math.round(H.best*100)/100)/(Math.round(H.s*100)/100);
+const T14={z:z2,ei:(Math.round(H.m*100)/100-Math.round(H.best*100)/100)*ncdf(z2)+(Math.round(H.s*100)/100)*npdf(z2),
+ boBest:BO.best_obs,rep:(()=>{const X=BO.X;for(let i=0;i<X.length;i++)for(let j=i+1;j<X.length;j++)if(Math.abs(X[i][0]-X[j][0])<1e-9&&Math.abs(X[i][1]-X[j][1])<1e-9)return toT(X[i][0]);return null})(),
+ opt:BO.best_obs-BO.true_at_best,within1:A.conditions.base.bo.within1,noisyMed:A.conditions.noisy.bo.median,
+ nFail:C0.tests.filter(t=>!t).length,cost:B.combos["111"].cost,under:B.combos["111"].cost-C0.cost};
+document.querySelectorAll("[data-check]").forEach(b=>b.onclick=()=>{const id=b.dataset.check;let ok=false;
+ if(id==="1b")ok=[checkNum("c1a","f1a",T14.z,0,0.006,T14.z.toFixed(3)),checkNum("c1b","f1b",T14.ei,0.01,0.01,fmt(T14.ei,2)),checkSel("c1c","f1c","b","its s is large enough that the yield may well beat y*")].every(Boolean);
+ if(id==="1c")ok=[checkNum("c1d","f1d",T14.boBest,0.002,0.05,fmt(T14.boBest,2)),checkNum("c1e","f1e",T14.rep,0,0.6,fmt(T14.rep,1))].every(Boolean);
+ if(id==="1d")ok=[checkNum("c1f","f1f",T14.opt,0.02,0.03,fmt(T14.opt,2)),checkSel("c1g","f1g","b","picked partly for its favorable noise")].every(Boolean);
+ if(id==="2a"){if(!cond)return need(id,"Choose a condition to change first.");ok=[checkNum("c2a","f2a",T14.within1,0,0.01,String(T14.within1)),checkNum("c2b","f2b",T14.noisyMed,0.02,0.02,fmt(T14.noisyMed,2)),checkSel("c2c","f2c","b","its levels happen to fall near the optimum")].every(Boolean)}
+ if(id==="3b")ok=[checkNum("c3a","f3a",T14.nFail,0,0.01,String(T14.nFail)),checkSel("c3b","f3b","T7","T7, the known answer"),checkSel("c3c","f3c","15","line 15"),checkSel("c3d","f3d","a","the shift leaves the week's total unchanged")].every(Boolean);
+ if(id==="3c"){if(!(FX.u&&FX.i&&FX.d))return need(id,"Repair all three errors first.");ok=[checkNum("c3e","f3e",T14.cost,0.001,1,fmt(T14.cost)),checkNum("c3f","f3f",T14.under,0.005,1,fmt(T14.under))].every(Boolean)}
+ if(ok)markDone(id);else save()});
+
+/* summary */
+function summary(){const sel=(id,map)=>map[ST[id]]||ST[id]||"?";
+ $("sum").textContent=[`Lab 14 answers`,
+ `A. Predicted: ${ST.p1||"?"}. EI by hand: z ${ST.c1a||"?"}, EI ${ST.c1b||"?"}; why there: ${sel("c1c",{b:"large s"})}; BO best observed ${ST.c1d||"?"}% (repeat at ${ST.c1e||"?"} C); optimism ${ST.c1f||"?"}; cause: ${sel("c1g",{b:"selection on noise"})}`,
+ `A2. Changed: ${ST.cond||"?"}. Base: BO within 1 point in ${ST.c2a||"?"} of 20; noise 4: BO median shortfall ${ST.c2b||"?"}; 12-run grid: ${sel("c2c",{b:"levels near the optimum"})}`,
+ `B. Predicted failing: ${(ST.p3||[]).map(i=>"T"+(i+1)).join(" ")||"none"}. Failing ${ST.c3a||"?"}; units error found by ${ST.c3b||"?"}; index error on line ${ST.c3c||"?"}; T3 passes because ${sel("c3d",{a:"the shift keeps the weekly total"})}; repaired cost ${ST.c3e||"?"} USD, understated by ${ST.c3f||"?"}`,
+ `C. ${ST.e4||"?"}`].join("\n")}
+$("copy").onclick=async()=>{try{await navigator.clipboard.writeText($("sum").textContent);$("copied").textContent="Copied. Paste it into the Exit Ticket box."}catch(e){$("copied").textContent="Copy did not work here. Select the text above and copy it."}};
+$("exitlink").href=EXIT_URL;
+$("reset").onclick=()=>{if(confirm("Clear all answers saved on this device?")){ST={};save();location.reload()}};
+
+/* restore */
+if(ST.p1){const r=document.querySelector(`input[name="p1"][value="${ST.p1}"]`);if(r)r.checked=true}
+(ST.p3||[]).forEach(i=>{const c=document.querySelector(`.pt[value="${i}"]`);if(c)c.checked=true});
+["e4","c1a","c1b","c1c","c1d","c1e","c1f","c1g","c2a","c2b","c2c","c3a","c3b","c3c","c3d","c3e","c3f"].forEach(id=>{if(ST[id]!=null)$(id).value=ST[id]});
+if(ST.kS)$("kS").value=ST.kS;if(ST.cond)cond=ST.cond;if(ST.fx)FX=ST.fx;
+draw1c();draw1d();draw2a();draw3c();refresh();
+</script>
+</body></html>
