@@ -3,12 +3,12 @@
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 3007.9,
+ "total_seconds": 3293.0,
  "slides": [
   {
    "n": 1,
    "file": "audio/slide-01.mp3",
-   "duration": 46.776,
+   "duration": 47.04,
    "hold": false,
    "cues": [
     {
@@ -43,13 +43,13 @@
     },
     {
      "s": 34.013,
-     "e": 41.316,
-     "en": "On your own, the narration takes about fifty minutes; the activities, four checks and the lab fill the rest of the three hours.",
-     "th": "ถ้าเรียนเอง เสียงบรรยายใช้เวลาประมาณห้าสิบนาที ส่วนกิจกรรม แบบตรวจสี่ครั้ง และ lab จะใช้เวลาที่เหลือของสามชั่วโมง"
+     "e": 41.566,
+     "en": "On your own, the narration takes about fifty-five minutes; the activities, four checks and the lab fill the rest of the three hours.",
+     "th": "ถ้าเรียนเอง เสียงบรรยายใช้เวลาประมาณห้าสิบห้านาที ส่วนกิจกรรม แบบตรวจสี่ครั้ง และ lab จะใช้เวลาที่เหลือของสามชั่วโมง"
     },
     {
-     "s": 41.316,
-     "e": 46.724,
+     "s": 41.566,
+     "e": 46.974,
      "en": "When the narration for a slide ends, press the right arrow key, or Next, to go on.",
      "th": "เมื่อเสียงบรรยายของแต่ละหน้าจบ กดลูกศรขวาหรือปุ่ม Next เพื่อไปหน้าถัดไป"
     }
@@ -58,7 +58,7 @@
   {
    "n": 2,
    "file": "audio/slide-02.mp3",
-   "duration": 43.968,
+   "duration": 48.144,
    "hold": false,
    "cues": [
     {
@@ -69,37 +69,37 @@
     },
     {
      "s": 3.05,
-     "e": 9.852,
-     "en": "After a fifteen-minute retrieval check on Session 5, part one, thirty-five minutes, covers the principles:",
-     "th": "หลังทบทวนความจำจากคาบที่ 5 สิบห้านาที ส่วนที่หนึ่งสามสิบห้านาที ว่าด้วยหลักการ ได้แก่ standard"
+     "e": 9.642,
+     "en": "After a ten-minute retrieval check on Session 5, part one, thirty-five minutes, covers the principles:",
+     "th": "หลังทบทวนความจำจากคาบที่ 5 สิบนาที ส่วนที่หนึ่งสามสิบห้านาที ว่าด้วยหลักการ ได้แก่ standard"
     },
     {
-     "s": 9.852,
-     "e": 17.671,
+     "s": 9.642,
+     "e": 17.513,
      "en": "standard form, bases and basic solutions, each vertex as a set of basic variables, the fundamental theorem, and degeneracy.",
      "th": "form, basis และ basic solution, แต่ละ vertex ในฐานะชุดของ basic variable, ทฤษฎีบทหลัก และ degeneracy"
     },
     {
-     "s": 17.671,
-     "e": 28.224,
+     "s": 17.513,
+     "e": 28.066,
      "en": "Part two, thirty minutes, is the simplex method: reduced costs, the ratio test, two pivots by hand, how it starts, why it can cycle, and how many pivots it needs.",
      "th": "ส่วนที่สอง สามสิบนาที คือวิธี simplex ได้แก่ reduced cost, ratio test, การ pivot สองครั้งด้วยมือ, วิธีเริ่มต้น, ทำไมจึงวนซ้ำได้ และต้องใช้กี่ pivot"
     },
     {
-     "s": 28.224,
-     "e": 34.497,
-     "en": "After a break and a second activity, part three, thirty-five minutes, derives the dual, proves strong duality,",
-     "th": "หลังพักและกิจกรรมที่สอง ส่วนที่สาม สามสิบห้านาที จะหา dual พิสูจน์ strong duality และแสดงว่าเกิดอะไรขึ้นกับ"
+     "s": 28.066,
+     "e": 37.949,
+     "en": "After a break and a second activity, part three, forty minutes, finds the best bound on the margin, which is the dual, derives it again from the Lagrangian, proves strong duality,",
+     "th": "หลังพักและกิจกรรมที่สอง ส่วนที่สาม สี่สิบนาที จะหาขอบบนที่ดีที่สุดของกำไร ซึ่งก็คือ dual แล้วหา dual อีกครั้งจาก Lagrangian พิสูจน์ strong duality วาดภาพของ dual"
     },
     {
-     "s": 34.497,
-     "e": 40.092,
-     "en": "and shows what happens to the basis when the right-hand sides or the objective coefficients change.",
-     "th": "basis เมื่อค่าทางขวาของข้อจำกัด หรือสัมประสิทธิ์ของฟังก์ชันเป้าหมายเปลี่ยน"
+     "s": 37.949,
+     "e": 44.263,
+     "en": "draws the dual, and shows what happens to the basis when the right-hand sides or the objective coefficients change.",
+     "th": "และแสดงว่าเกิดอะไรขึ้นกับ basis เมื่อค่าทางขวาของข้อจำกัด หรือสัมประสิทธิ์ของฟังก์ชันเป้าหมายเปลี่ยน"
     },
     {
-     "s": 40.092,
-     "e": 43.908,
+     "s": 44.263,
+     "e": 48.079,
      "en": "The session ends with Lab 6 and the Exit Ticket.",
      "th": "คาบนี้จบด้วย Lab 6 และ Exit Ticket"
     }
@@ -1392,99 +1392,197 @@
   {
    "n": 24,
    "file": "audio/slide-24.mp3",
-   "duration": 118.056,
+   "duration": 123.936,
    "hold": false,
    "cues": [
     {
      "s": 0.1,
-     "e": 6.566,
-     "en": "Part three: duality and sensitivity. First, where does the dual come from?",
-     "th": "ส่วนที่สาม duality และ sensitivity ก่อนอื่น dual มาจากไหน"
+     "e": 10.342,
+     "en": "Part three: duality and sensitivity. Start with a question you can answer with the plant's numbers: how could you prove that no plan earns more than some amount?",
+     "th": "ส่วนที่สาม duality และ sensitivity เริ่มจากคำถามที่ตอบได้ด้วยตัวเลขของโรงงานนี้ จะพิสูจน์อย่างไรว่าไม่มีแผนใดทำกำไรได้เกินค่าหนึ่ง"
     },
     {
-     "s": 6.566,
-     "e": 16.554,
-     "en": "Take the primal: maximize c transpose x subject to A x at most b, x non-negative. Give each row a price y at least zero, and form the Lagrangian:",
-     "th": "พิจารณา primal คือหาค่าสูงสุดของ c transpose x ภายใต้ A x ไม่เกิน b และ x ไม่เป็นลบ ให้แต่ละแถวมีราคา y ไม่ติดลบ แล้วสร้าง"
+     "s": 10.342,
+     "e": 15.149,
+     "en": "Multiply each row by a weight y i that is zero or more, and add the rows.",
+     "th": "คูณแต่ละแถวด้วยน้ำหนัก y i ที่ไม่ติดลบ แล้วบวกแถวทั้งหมด"
     },
     {
-     "s": 16.554,
-     "e": 23.395,
-     "en": "the margin plus the value of the unused resources, c transpose x plus y transpose times b minus A x.",
-     "th": "Lagrangian คือกำไรบวกมูลค่าของทรัพยากรที่ไม่ได้ใช้ c transpose x บวก y transpose คูณ b ลบ A x"
+     "s": 15.149,
+     "e": 23.658,
+     "en": "Multiplying by a non-negative number keeps each inequality pointing the same way, so the sum is still true for every feasible plan.",
+     "th": "การคูณด้วยจำนวนที่ไม่ติดลบทำให้อสมการแต่ละแถวยังชี้ไปทางเดิม ผลรวมจึงยังเป็นจริงสำหรับทุกแผนที่เป็นไปได้"
     },
     {
-     "s": 23.395,
-     "e": 29.921,
-     "en": "For any feasible plan, the extra term is non-negative, so the Lagrangian is at least the margin.",
-     "th": "สำหรับแผนที่เป็นไปได้ใด ๆ พจน์ที่เพิ่มมาไม่เป็นลบ Lagrangian จึงไม่น้อยกว่ากำไร"
+     "s": 23.658,
+     "e": 26.638,
+     "en": "The sum has a coefficient for each product.",
+     "th": "ผลรวมมีสัมประสิทธิ์ของแต่ละผลิตภัณฑ์"
     },
     {
-     "s": 29.921,
-     "e": 39.591,
-     "en": "Now maximize the Lagrangian over all x at least zero. It equals b transpose y when A transpose y is at least c, and it is infinite otherwise.",
-     "th": "ทีนี้หาค่าสูงสุดของ Lagrangian บน x ทุกตัวที่ไม่ติดลบ มันเท่ากับ b transpose y เมื่อ A transpose y ไม่น้อยกว่า c และเป็นอนันต์ในกรณีอื่น"
+     "s": 26.638,
+     "e": 37.542,
+     "en": "If the coefficient of x one is at least 400, and the coefficient of x two is at least 300, then, because x is non-negative, the margin is at most the left side,",
+     "th": "ถ้าสัมประสิทธิ์ของ x หนึ่งไม่น้อยกว่า 400 และสัมประสิทธิ์ของ x สองไม่น้อยกว่า 300 แล้ว เพราะ x ไม่ติดลบ กำไรจึงไม่เกินด้านซ้าย"
     },
     {
-     "s": 39.591,
-     "e": 50.487,
-     "en": "So every such y gives an upper bound b transpose y, and the best bound is the dual: minimize b transpose y subject to A transpose y at least c, y at least zero.",
-     "th": "y ทุกตัวแบบนี้จึงให้ขอบบน b transpose y และขอบบนที่ดีที่สุดคือ dual คือหาค่าต่ำสุดของ b transpose y ภายใต้ A transpose y ไม่น้อยกว่า c และ y ไม่ติดลบ"
+     "s": 37.542,
+     "e": 41.132,
+     "en": "and so at most 24 y one plus 16 y two plus 9 y three.",
+     "th": "และจึงไม่เกิน 24 y หนึ่ง บวก 16 y สอง บวก 9 y สาม"
     },
     {
-     "s": 50.487,
-     "e": 55.645,
-     "en": "That is Session 1's weak duality, now with the dual derived rather than given.",
-     "th": "นี่คือ weak duality ของคาบที่ 1 แต่ตอนนี้ dual ถูกหามาแทนที่จะถูกให้มา"
+     "s": 41.132,
+     "e": 56.25,
+     "en": "Try it with the sliders. The weights 200, zero, zero cover both products, and they prove that no plan earns more than 4,800 dollars a week. The weights zero, zero, 400 give 3,600.",
+     "th": "ลองด้วยแถบเลื่อน น้ำหนัก 200 ศูนย์ ศูนย์ ครอบคลุมทั้งสองผลิตภัณฑ์ และพิสูจน์ว่าไม่มีแผนใดได้เกิน 4,800 ดอลลาร์ต่อสัปดาห์ น้ำหนัก ศูนย์ ศูนย์ 400 ให้ 3,600"
     },
     {
-     "s": 55.645,
-     "e": 63.224,
-     "en": "Session 7 takes the same step for nonlinear problems: from the Lagrangian to a bound, the argument is identical.",
-     "th": "คาบที่ 7 ใช้ขั้นตอนเดียวกันกับปัญหาไม่เชิงเส้น จาก Lagrangian ไปสู่ขอบเขต เหตุผลเหมือนกันทุกประการ"
+     "s": 56.25,
+     "e": 71.855,
+     "en": "Now try 100, zero, 50. The number is 2,850, lower than the best plan, but Additive is not covered: its coefficient is only 350. A weighting that fails the cover test proves nothing.",
+     "th": "ทีนี้ลอง 100 ศูนย์ 50 ได้ตัวเลข 2,850 ซึ่งต่ำกว่าแผนที่ดีที่สุด แต่ Additive ไม่ถูกครอบคลุม สัมประสิทธิ์ของมันมีเพียง 350 น้ำหนักที่ไม่ผ่านการทดสอบการครอบคลุมพิสูจน์อะไรไม่ได้"
     },
     {
-     "s": 63.224,
-     "e": 72.342,
-     "en": "Written as one chain: for x feasible and y dual feasible, c transpose x is at most y transpose A x, which is at most y transpose b.",
-     "th": "เขียนเป็นสายเดียว สำหรับ x ที่เป็นไปได้ และ y ที่เป็น dual feasible c transpose x ไม่เกิน y transpose A x ซึ่งไม่เกิน y transpose b"
+     "s": 71.855,
+     "e": 83.119,
+     "en": "Push the bound down as far as you can while both products stay covered. You cannot go below 3,300, and you reach it at 100, zero, 100: Session 1's prices.",
+     "th": "กดขอบบนให้ต่ำที่สุดเท่าที่ทำได้ โดยให้ทั้งสองผลิตภัณฑ์ยังถูกครอบคลุม คุณลงได้ไม่ต่ำกว่า 3,300 และได้ค่านี้ที่ 100 ศูนย์ 100"
     },
     {
-     "s": 72.342,
-     "e": 82.092,
-     "en": "The first step uses A transpose y at least c together with x at least zero. The second uses A x at most b together with y at least zero.",
-     "th": "ขั้นแรกใช้ A transpose y ไม่น้อยกว่า c คู่กับ x ไม่ติดลบ ขั้นที่สองใช้ A x ไม่เกิน b คู่กับ y ไม่ติดลบ"
+     "s": 83.119,
+     "e": 89.224,
+     "en": "The bound then equals the margin of the plan six and three, so that plan is optimal.",
+     "th": "ซึ่งคือราคาของคาบที่ 1 ขอบบนนั้นเท่ากับกำไรของแผนหกกับสาม แผนนั้นจึงดีที่สุด"
     },
     {
-     "s": 82.092,
-     "e": 90.618,
-     "en": "The units agree: y is in dollars per hour and b in hours per week, so b transpose y is in dollars per week, the unit of the margin.",
-     "th": "หน่วยสอดคล้องกัน y มีหน่วยดอลลาร์ต่อชั่วโมง และ b มีหน่วยชั่วโมงต่อสัปดาห์ b transpose y จึงมีหน่วยดอลลาร์ต่อสัปดาห์ ซึ่งเป็นหน่วยของกำไร"
+     "s": 89.224,
+     "e": 99.097,
+     "en": "Finding the best bound is itself an LP: minimize b transpose y subject to A transpose y at least c and y at least zero. That LP is the dual.",
+     "th": "การหาขอบบนที่ดีที่สุดก็คือ LP อีกปัญหาหนึ่ง คือหาค่าต่ำสุดของ b transpose y ภายใต้ A transpose y ไม่น้อยกว่า c และ y ไม่ติดลบ LP"
     },
     {
-     "s": 90.618,
-     "e": 102.009,
-     "en": "A reading: an outside buyer offers prices for your hours. To make you sell, each product's hours must be worth at least its margin, which is A transpose y at least c.",
-     "th": "การตีความหนึ่งคือ ผู้ซื้อภายนอกเสนอราคาสำหรับชั่วโมงของคุณ เพื่อให้คุณยอมขาย ชั่วโมงที่แต่ละผลิตภัณฑ์ใช้ต้องมีค่าอย่างน้อยเท่ากำไรของมัน คือ A transpose y ไม่น้อยกว่า"
+     "s": 99.097,
+     "e": 105.539,
+     "en": "Its variables are the weights, and in the plant's units they are prices in dollars per hour.",
+     "th": "นี้คือ dual ตัวแปรของมันคือน้ำหนัก และในหน่วยของโรงงานคือราคาในหน่วยดอลลาร์ต่อชั่วโมง"
     },
     {
-     "s": 102.009,
-     "e": 104.737,
-     "en": "The buyer wants the cheapest such offer.",
-     "th": "c และผู้ซื้อต้องการข้อเสนอที่ถูกที่สุด"
+     "s": 105.539,
+     "e": 115.981,
+     "en": "Two conditions made the argument work: y at least zero, so the rows keep their direction, and x at least zero, so larger coefficients give a larger left side.",
+     "th": "มีเงื่อนไขสองข้อที่ทำให้เหตุผลนี้ใช้ได้ คือ y ไม่ติดลบ เพื่อให้แถวคงทิศทาง และ x ไม่ติดลบ เพื่อให้สัมประสิทธิ์ที่ใหญ่กว่าให้ด้านซ้ายที่ใหญ่กว่า"
     },
     {
-     "s": 104.737,
-     "e": 117.987,
-     "en": "A note on notation: y multiplies an inequality, so in Session 7 it is written mu. The KKT conditions of an LP are primal feasibility, dual feasibility and complementary slackness.",
-     "th": "หมายเหตุเรื่องสัญลักษณ์ y คูณกับอสมการ ในคาบที่ 7 จึงเขียนเป็น mu เงื่อนไข KKT ของ LP คือ primal feasibility, dual feasibility และ complementary slackness"
+     "s": 115.981,
+     "e": 119.987,
+     "en": "The sign rules on slide 26 come from exactly these two facts.",
+     "th": "กฎเครื่องหมายในหน้า 26 มาจากสองข้อนี้พอดี"
+    },
+    {
+     "s": 119.987,
+     "e": 123.868,
+     "en": "Press D to see the same bounds computed in Python.",
+     "th": "กด D เพื่อดูขอบบนเดียวกันที่คำนวณด้วย Python"
     }
    ]
   },
   {
    "n": 25,
    "file": "audio/slide-25.mp3",
-   "duration": 96.768,
+   "duration": 119.28,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.826,
+     "en": "The same dual follows from the Lagrangian, a route that works for any problem, including the nonlinear ones of Session 7.",
+     "th": "dual เดียวกันนี้หาได้จาก Lagrangian ซึ่งเป็นเส้นทางที่ใช้ได้กับปัญหาทุกแบบ รวมถึงปัญหาไม่เชิงเส้นในคาบที่ 7"
+    },
+    {
+     "s": 7.826,
+     "e": 17.784,
+     "en": "Take the primal: maximize c transpose x subject to A x at most b, x non-negative. Give each row a price y at least zero, and form the Lagrangian:",
+     "th": "พิจารณา primal คือหาค่าสูงสุดของ c transpose x ภายใต้ A x ไม่เกิน b และ x ไม่เป็นลบ ให้แต่ละแถวมีราคา y ไม่ติดลบ แล้วสร้าง"
+    },
+    {
+     "s": 17.784,
+     "e": 24.605,
+     "en": "the margin plus the value of the unused resources, c transpose x plus y transpose times b minus A x.",
+     "th": "Lagrangian คือกำไรบวกมูลค่าของทรัพยากรที่ไม่ได้ใช้ c transpose x บวก y transpose คูณ b ลบ A x"
+    },
+    {
+     "s": 24.605,
+     "e": 31.132,
+     "en": "For any feasible plan, the extra term is non-negative, so the Lagrangian is at least the margin.",
+     "th": "สำหรับแผนที่เป็นไปได้ใด ๆ พจน์ที่เพิ่มมาไม่เป็นลบ Lagrangian จึงไม่น้อยกว่ากำไร"
+    },
+    {
+     "s": 31.132,
+     "e": 40.802,
+     "en": "Now maximize the Lagrangian over all x at least zero. It equals b transpose y when A transpose y is at least c, and it is infinite otherwise.",
+     "th": "ทีนี้หาค่าสูงสุดของ Lagrangian บน x ทุกตัวที่ไม่ติดลบ มันเท่ากับ b transpose y เมื่อ A transpose y ไม่น้อยกว่า c และเป็นอนันต์ในกรณีอื่น"
+    },
+    {
+     "s": 40.802,
+     "e": 51.697,
+     "en": "So every such y gives an upper bound b transpose y, and the best bound is the dual: minimize b transpose y subject to A transpose y at least c, y at least zero.",
+     "th": "y ทุกตัวแบบนี้จึงให้ขอบบน b transpose y และขอบบนที่ดีที่สุดคือ dual คือหาค่าต่ำสุดของ b transpose y ภายใต้ A transpose y ไม่น้อยกว่า c และ y ไม่ติดลบ"
+    },
+    {
+     "s": 51.697,
+     "e": 56.855,
+     "en": "That is Session 1's weak duality, now with the dual derived rather than given.",
+     "th": "นี่คือ weak duality ของคาบที่ 1 แต่ตอนนี้ dual ถูกหามาแทนที่จะถูกให้มา"
+    },
+    {
+     "s": 56.855,
+     "e": 64.434,
+     "en": "Session 7 takes the same step for nonlinear problems: from the Lagrangian to a bound, the argument is identical.",
+     "th": "คาบที่ 7 ใช้ขั้นตอนเดียวกันกับปัญหาไม่เชิงเส้น จาก Lagrangian ไปสู่ขอบเขต เหตุผลเหมือนกันทุกประการ"
+    },
+    {
+     "s": 64.434,
+     "e": 73.553,
+     "en": "Written as one chain: for x feasible and y dual feasible, c transpose x is at most y transpose A x, which is at most y transpose b.",
+     "th": "เขียนเป็นสายเดียว สำหรับ x ที่เป็นไปได้ และ y ที่เป็น dual feasible c transpose x ไม่เกิน y transpose A x ซึ่งไม่เกิน y transpose b"
+    },
+    {
+     "s": 73.553,
+     "e": 83.303,
+     "en": "The first step uses A transpose y at least c together with x at least zero. The second uses A x at most b together with y at least zero.",
+     "th": "ขั้นแรกใช้ A transpose y ไม่น้อยกว่า c คู่กับ x ไม่ติดลบ ขั้นที่สองใช้ A x ไม่เกิน b คู่กับ y ไม่ติดลบ"
+    },
+    {
+     "s": 83.303,
+     "e": 91.829,
+     "en": "The units agree: y is in dollars per hour and b in hours per week, so b transpose y is in dollars per week, the unit of the margin.",
+     "th": "หน่วยสอดคล้องกัน y มีหน่วยดอลลาร์ต่อชั่วโมง และ b มีหน่วยชั่วโมงต่อสัปดาห์ b transpose y จึงมีหน่วยดอลลาร์ต่อสัปดาห์ ซึ่งเป็นหน่วยของกำไร"
+    },
+    {
+     "s": 91.829,
+     "e": 103.219,
+     "en": "A reading: an outside buyer offers prices for your hours. To make you sell, each product's hours must be worth at least its margin, which is A transpose y at least c.",
+     "th": "การตีความหนึ่งคือ ผู้ซื้อภายนอกเสนอราคาสำหรับชั่วโมงของคุณ เพื่อให้คุณยอมขาย ชั่วโมงที่แต่ละผลิตภัณฑ์ใช้ต้องมีค่าอย่างน้อยเท่ากำไรของมัน คือ A transpose y ไม่น้อยกว่า"
+    },
+    {
+     "s": 103.219,
+     "e": 105.947,
+     "en": "The buyer wants the cheapest such offer.",
+     "th": "c และผู้ซื้อต้องการข้อเสนอที่ถูกที่สุด"
+    },
+    {
+     "s": 105.947,
+     "e": 119.197,
+     "en": "A note on notation: y multiplies an inequality, so in Session 7 it is written mu. The KKT conditions of an LP are primal feasibility, dual feasibility and complementary slackness.",
+     "th": "หมายเหตุเรื่องสัญลักษณ์ y คูณกับอสมการ ในคาบที่ 7 จึงเขียนเป็น mu เงื่อนไข KKT ของ LP คือ primal feasibility, dual feasibility และ complementary slackness"
+    }
+   ]
+  },
+  {
+   "n": 26,
+   "file": "audio/slide-26.mp3",
+   "duration": 107.256,
    "hold": false,
    "cues": [
     {
@@ -1549,21 +1647,27 @@
     },
     {
      "s": 80.803,
-     "e": 88.447,
+     "e": 91.289,
+     "en": "The row combination of slide 24 gives the same signs: a greater-than-or-equal row must be weighted by a number at most zero, or adding it would turn the inequality the wrong way.",
+     "th": "การรวมแถวในหน้า 24 ให้เครื่องหมายเดียวกัน แถวแบบมากกว่าหรือเท่ากับต้องคูณด้วยตัวเลขที่ไม่เกินศูนย์ มิฉะนั้นการบวกเข้าไปจะทำให้อสมการกลับทิศ"
+    },
+    {
+     "s": 91.289,
+     "e": 98.934,
      "en": "An equality row has a free price: Session 4's stock balances were equalities, and the value of oil could have either sign.",
      "th": "แถวที่เป็นสมการมีราคาอิสระ สมดุลคงคลังในคาบที่ 4 เป็นสมการ และมูลค่าน้ำมันจึงเป็นบวกหรือลบก็ได้"
     },
     {
-     "s": 88.447,
-     "e": 96.711,
+     "s": 98.934,
+     "e": 107.197,
      "en": "And a free variable gives an equality in the dual: its reduced cost must be exactly zero, because it can move in either direction.",
      "th": "และตัวแปรอิสระให้สมการใน dual reduced cost ของมันต้องเป็นศูนย์พอดี เพราะมันเคลื่อนได้ทั้งสองทิศทาง"
     }
    ]
   },
   {
-   "n": 26,
-   "file": "audio/slide-26.mp3",
+   "n": 27,
+   "file": "audio/slide-27.mp3",
    "duration": 93.144,
    "hold": false,
    "cues": [
@@ -1642,8 +1746,100 @@
    ]
   },
   {
-   "n": 27,
-   "file": "audio/slide-27.mp3",
+   "n": 28,
+   "file": "audio/slide-28.mp3",
+   "duration": 125.328,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 9.697,
+     "en": "Now draw the dual. At the optimum separation has idle hours, so its price is zero, and we can look at the slice where y two is zero.",
+     "th": "ต่อไปวาดภาพของ dual ที่คำตอบที่ดีที่สุด การแยกมีชั่วโมงว่าง ราคาจึงเป็นศูนย์ เราจึงดูภาพตัดที่ y สองเท่ากับศูนย์ได้"
+    },
+    {
+     "s": 9.697,
+     "e": 18.421,
+     "en": "The two dual rows are three y one plus y three at least 400, for Additive, and two y one plus y three at least 300, for Binder.",
+     "th": "แถว dual สองแถวคือ สาม y หนึ่ง บวก y สาม ไม่น้อยกว่า 400 สำหรับ Additive และ สอง y หนึ่ง บวก y สาม ไม่น้อยกว่า 300"
+    },
+    {
+     "s": 18.421,
+     "e": 22.987,
+     "en": "The shaded region is every pair of prices that gives a valid bound.",
+     "th": "สำหรับ Binder บริเวณที่แรเงาคือคู่ราคาทุกคู่ที่ให้ขอบบนที่ใช้ได้"
+    },
+    {
+     "s": 22.987,
+     "e": 37.645,
+     "en": "Its corners give bounds of 3,600, 3,300 and 3,600. The dashed line is where the bound equals 3,300, and it touches the region only at the corner 100 and 100.",
+     "th": "มุมของบริเวณนี้ให้ขอบบน 3,600, 3,300 และ 3,600 เส้นประคือที่ซึ่งขอบบนเท่ากับ 3,300 และแตะบริเวณนี้เพียงที่มุม 100 กับ 100"
+    },
+    {
+     "s": 37.645,
+     "e": 51.382,
+     "en": "Now follow the prices of the simplex method, the numbered amber points. At iteration zero the prices are zero, and both dual rows are short, by 400 and by 300: exactly the two reduced costs.",
+     "th": "ทีนี้ไล่ดูราคาของวิธี simplex ซึ่งคือจุดสีส้มที่มีหมายเลข ที่รอบศูนย์ ราคาเป็นศูนย์ และแถว dual ทั้งสองขาดอยู่ 400 และ 300 ซึ่งคือ reduced cost ทั้งสองตัวพอดี"
+    },
+    {
+     "s": 51.382,
+     "e": 62.8,
+     "en": "After the first pivot the prices are 133.3, zero, zero. The Additive row is met, and the Binder row is short by 33.3, Binder's reduced cost.",
+     "th": "หลัง pivot ครั้งแรก ราคาเป็น 133.3 ศูนย์ ศูนย์ แถวของ Additive ผ่าน แต่แถวของ Binder ยังขาด 33.3 ซึ่งคือ reduced cost ของ"
+    },
+    {
+     "s": 62.8,
+     "e": 68.711,
+     "en": "After the second pivot the prices enter the region, and the method stops.",
+     "th": "Binder หลัง pivot ครั้งที่สอง ราคาเข้ามาในบริเวณ และวิธีนี้หยุด"
+    },
+    {
+     "s": 68.711,
+     "e": 79.526,
+     "en": "So a positive reduced cost is a dual row that is not yet met. The primal simplex method keeps the plan feasible and moves the prices until they become feasible.",
+     "th": "ดังนั้น reduced cost ที่เป็นบวกคือแถว dual ที่ยังไม่ผ่าน วิธี primal simplex รักษาให้แผนเป็นไปได้ และเลื่อนราคาจนราคาเป็นไปได้"
+    },
+    {
+     "s": 79.526,
+     "e": 87.253,
+     "en": "The dual simplex method does the reverse: it keeps the prices feasible and moves the plan until the plan becomes feasible.",
+     "th": "วิธี dual simplex ทำกลับกัน คือรักษาให้ราคาเป็นไปได้ และเลื่อนแผนจนแผนเป็นไปได้ นี่คือสิ่งที่"
+    },
+    {
+     "s": 87.253,
+     "e": 92.342,
+     "en": "That is what a solver does after b changes, because the old prices stay feasible.",
+     "th": "solver ทำหลังจาก b เปลี่ยน เพราะราคาเดิมยังเป็นไปได้อยู่"
+    },
+    {
+     "s": 92.342,
+     "e": 100.737,
+     "en": "The table lists all ten bases, sorted by one number: c transpose x B, which always equals b transpose y for the same basis.",
+     "th": "ตารางแสดง basis ทั้งสิบชุด เรียงตามตัวเลขหนึ่งตัว คือ c transpose x B ซึ่งเท่ากับ b transpose y ของ basis เดียวกันเสมอ"
+    },
+    {
+     "s": 100.737,
+     "e": 113.429,
+     "en": "The five primal-feasible bases are plans, and every one of them is at most 3,300. The five dual-feasible bases are bounds, and every one of them is at least 3,300.",
+     "th": "basis ที่เป็น primal feasible ห้าชุดคือแผน และทุกชุดไม่เกิน 3,300 basis ที่เป็น dual feasible ห้าชุดคือขอบบน และทุกชุดไม่น้อยกว่า 3,300 มีหนึ่งชุดที่ไม่เป็นทั้งสองอย่าง"
+    },
+    {
+     "s": 113.429,
+     "e": 117.763,
+     "en": "One basis is neither, and only one is both: the optimum.",
+     "th": "และมีเพียงชุดเดียวที่เป็นทั้งสอง คือคำตอบที่ดีที่สุด"
+    },
+    {
+     "s": 117.763,
+     "e": 125.263,
+     "en": "Weak duality says that the plans stay below the bounds. Strong duality says that the two groups meet.",
+     "th": "weak duality บอกว่าแผนอยู่ต่ำกว่าขอบบนเสมอ strong duality บอกว่าสองกลุ่มนี้มาบรรจบกัน"
+    }
+   ]
+  },
+  {
+   "n": 29,
+   "file": "audio/slide-29.mp3",
    "duration": 80.328,
    "hold": false,
    "cues": [
@@ -1704,8 +1900,8 @@
    ]
   },
   {
-   "n": 28,
-   "file": "audio/slide-28.mp3",
+   "n": 30,
+   "file": "audio/slide-30.mp3",
    "duration": 31.968,
    "hold": true,
    "cues": [
@@ -1742,8 +1938,8 @@
    ]
   },
   {
-   "n": 29,
-   "file": "audio/slide-29.mp3",
+   "n": 31,
+   "file": "audio/slide-31.mp3",
    "duration": 99.936,
    "hold": false,
    "cues": [
@@ -1816,8 +2012,8 @@
    ]
   },
   {
-   "n": 30,
-   "file": "audio/slide-30.mp3",
+   "n": 32,
+   "file": "audio/slide-32.mp3",
    "duration": 102.864,
    "hold": false,
    "cues": [
@@ -1896,9 +2092,9 @@
    ]
   },
   {
-   "n": 31,
-   "file": "audio/slide-31.mp3",
-   "duration": 82.224,
+   "n": 33,
+   "file": "audio/slide-33.mp3",
+   "duration": 91.632,
    "hold": false,
    "cues": [
     {
@@ -1939,33 +2135,39 @@
     },
     {
      "s": 57.316,
-     "e": 65.947,
+     "e": 66.711,
+     "en": "On the dual picture of slide 28, those are the dual-feasible bases: each gives a bound that is linear in b, and the best plan follows the lowest of them.",
+     "th": "ในภาพของ dual ในหน้า 28 สิ่งเหล่านี้คือ basis ที่เป็น dual feasible แต่ละตัวให้ขอบบนที่เป็นเชิงเส้นใน b และแผนที่ดีที่สุดเดินตามขอบบนที่ต่ำที่สุด"
+    },
+    {
+     "s": 66.711,
+     "e": 75.342,
      "en": "This is the general form of Session 1's warning that shadow prices are local: a price is the slope of one piece, not a forecast for large changes.",
      "th": "นี่คือรูปทั่วไปของคำเตือนในคาบที่ 1 ว่า shadow price เป็นค่าเฉพาะที่ ราคาคือความชันของช่วงหนึ่ง ไม่ใช่การพยากรณ์สำหรับการเปลี่ยนแปลงขนาดใหญ่"
     },
     {
-     "s": 65.947,
-     "e": 68.746,
+     "s": 75.342,
+     "e": 78.141,
      "en": "The curve also answers a renting question.",
      "th": "เส้นโค้งนี้ยังตอบคำถามเรื่องการเช่าได้"
     },
     {
-     "s": 68.746,
-     "e": 79.359,
+     "s": 78.141,
+     "e": 88.754,
      "en": "If an hour costs r dollars, renting pays only on the pieces whose slope is above r, so you rent up to the breakpoint where the slope falls below the rental price.",
      "th": "ถ้าชั่วโมงหนึ่งราคา r ดอลลาร์ การเช่าคุ้มเฉพาะช่วงที่ความชันสูงกว่า r คุณจึงเช่าได้ถึงจุดหักที่ความชันลดต่ำกว่าราคาเช่า"
     },
     {
-     "s": 79.359,
-     "e": 82.158,
+     "s": 88.754,
+     "e": 91.553,
      "en": "Lab 6 asks this question for its own plant.",
      "th": "Lab 6 ถามคำถามนี้กับโรงงานของมันเอง"
     }
    ]
   },
   {
-   "n": 32,
-   "file": "audio/slide-32.mp3",
+   "n": 34,
+   "file": "audio/slide-34.mp3",
    "duration": 104.592,
    "hold": false,
    "cues": [
@@ -2038,8 +2240,8 @@
    ]
   },
   {
-   "n": 33,
-   "file": "audio/slide-33.mp3",
+   "n": 35,
+   "file": "audio/slide-35.mp3",
    "duration": 97.776,
    "hold": false,
    "cues": [
@@ -2112,8 +2314,8 @@
    ]
   },
   {
-   "n": 34,
-   "file": "audio/slide-34.mp3",
+   "n": 36,
+   "file": "audio/slide-36.mp3",
    "duration": 78.792,
    "hold": false,
    "cues": [
@@ -2174,8 +2376,8 @@
    ]
   },
   {
-   "n": 35,
-   "file": "audio/slide-35.mp3",
+   "n": 37,
+   "file": "audio/slide-37.mp3",
    "duration": 86.448,
    "hold": false,
    "cues": [
@@ -2242,9 +2444,9 @@
    ]
   },
   {
-   "n": 36,
-   "file": "audio/slide-36.mp3",
-   "duration": 36.792,
+   "n": 38,
+   "file": "audio/slide-38.mp3",
+   "duration": 36.936,
    "hold": true,
    "cues": [
     {
@@ -2261,27 +2463,27 @@
     },
     {
      "s": 17.289,
-     "e": 25.276,
-     "en": "Item four is the degenerate case of the previous slide, so think about the direction of the change before you use the reported price.",
-     "th": "ข้อสี่คือกรณี degenerate ในหน้าก่อน ให้คิดถึงทิศทางของการเปลี่ยนก่อนใช้ราคาที่รายงาน"
+     "e": 25.434,
+     "en": "Item four is the degenerate vertex of slide 36, so think about the direction of the change before you use the reported price.",
+     "th": "ข้อสี่คือ vertex แบบ degenerate ในหน้า 36 ให้คิดถึงทิศทางของการเปลี่ยนก่อนใช้ราคาที่รายงาน"
     },
     {
-     "s": 25.276,
-     "e": 32.237,
+     "s": 25.434,
+     "e": 32.395,
      "en": "For items one to three, also say whether the basis changes, and if so, which variable enters or leaves.",
      "th": "สำหรับข้อหนึ่งถึงสาม ให้บอกด้วยว่า basis เปลี่ยนหรือไม่ และถ้าเปลี่ยน ตัวแปรใดเข้าหรือออก"
     },
     {
-     "s": 32.237,
-     "e": 36.724,
+     "s": 32.395,
+     "e": 36.882,
      "en": "Pause the narration, write your answers, and then press Show answers.",
      "th": "หยุดเสียงบรรยาย เขียนคำตอบ แล้วกด Show answers"
     }
    ]
   },
   {
-   "n": 37,
-   "file": "audio/slide-37.mp3",
+   "n": 39,
+   "file": "audio/slide-39.mp3",
    "duration": 49.848,
    "hold": false,
    "cues": [
@@ -2324,8 +2526,8 @@
    ]
   },
   {
-   "n": 38,
-   "file": "audio/slide-38.mp3",
+   "n": 40,
+   "file": "audio/slide-40.mp3",
    "duration": 64.704,
    "hold": true,
    "cues": [
@@ -2386,9 +2588,9 @@
    ]
   },
   {
-   "n": 39,
-   "file": "audio/slide-39.mp3",
-   "duration": 78.72,
+   "n": 41,
+   "file": "audio/slide-41.mp3",
+   "duration": 88.824,
    "hold": false,
    "cues": [
     {
@@ -2429,33 +2631,39 @@
     },
     {
      "s": 43.934,
-     "e": 50.594,
+     "e": 54.039,
+     "en": "Every basis gives a plan value and a bound at once. Plans sit below the optimum, bounds above it, and the optimum is the one basis that is both.",
+     "th": "basis ทุกตัวให้ค่าของแผนและขอบบนพร้อมกัน แผนอยู่ต่ำกว่าคำตอบที่ดีที่สุด ขอบบนอยู่สูงกว่า และคำตอบที่ดีที่สุดคือ basis เดียวที่เป็นทั้งสองอย่าง"
+    },
+    {
+     "s": 54.039,
+     "e": 60.699,
      "en": "Change b, and the plan moves while the prices stay, until a basic variable reaches zero and leaves.",
      "th": "เปลี่ยน b แล้วแผนขยับขณะที่ราคาคงที่ จนกว่าตัวแปร basic ถึงศูนย์และออก"
     },
     {
-     "s": 50.594,
-     "e": 57.921,
+     "s": 60.699,
+     "e": 68.026,
      "en": "Change c, and the prices move while the plan stays, until a reduced cost crosses zero and its variable enters.",
      "th": "เปลี่ยน c แล้วราคาขยับขณะที่แผนคงที่ จนกว่า reduced cost ข้ามศูนย์และตัวแปรของมันเข้า"
     },
     {
-     "s": 57.921,
-     "e": 66.539,
+     "s": 68.026,
+     "e": 76.645,
      "en": "Every price has a unit and a range, v star of b is piecewise linear and concave, and at a degenerate vertex you check both directions.",
      "th": "ราคาทุกตัวมีหน่วยและช่วง v star ของ b เป็นเชิงเส้นเป็นช่วงและ concave และที่ vertex แบบ degenerate ให้ตรวจทั้งสองทิศทาง"
     },
     {
-     "s": 66.539,
-     "e": 78.645,
+     "s": 76.645,
+     "e": 88.75,
      "en": "If you take one skill from today: given a final basis, compute x B, the prices y, the reduced costs, and the two kinds of range. The rest of the session follows from those four.",
      "th": "ถ้าจะนำทักษะเดียวจากวันนี้ไป คือเมื่อมี basis สุดท้าย ให้คำนวณ x B ราคา y reduced cost และช่วงทั้งสองแบบ ส่วนที่เหลือของคาบนี้ตามมาจากสี่อย่างนี้"
     }
    ]
   },
   {
-   "n": 40,
-   "file": "audio/slide-40.mp3",
+   "n": 42,
+   "file": "audio/slide-42.mp3",
    "duration": 42.912,
    "hold": false,
    "cues": [
@@ -2492,8 +2700,8 @@
    ]
   },
   {
-   "n": 41,
-   "file": "audio/slide-41.mp3",
+   "n": 43,
+   "file": "audio/slide-43.mp3",
    "duration": 30.384,
    "hold": true,
    "cues": [

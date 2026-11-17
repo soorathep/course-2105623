@@ -184,6 +184,47 @@ def solve(P, b=None, c=None):
             "slack": [float(v) for v in r.ineqlin.residual]}
 
 
+def row_bound(y, P=PLANT):
+    """Weak duality by hand: weight row i by y_i >= 0 and add the rows.
+    If the combined coefficients A^T y cover every margin c, then b^T y bounds the margin of every plan."""
+    A, b, c = P["A"], P["b"], P["c"]
+    cover = [sum(A[i][j] * y[i] for i in range(len(b))) for j in range(len(c))]
+    valid = all(v >= 0 for v in y) and all(cv >= cj for cv, cj in zip(cover, c))
+    return {"y": list(y), "cover": cover, "valid": valid, "bound": sum(bi * yi for bi, yi in zip(b, y))}
+
+
+def bound_examples(P=PLANT):
+    """A few weightings: three valid bounds, the best one, and one that fails the cover test."""
+    return [row_bound(y, P) for y in ([200, 0, 0], [0, 0, 400], [150, 0, 0], [100, 0, 100], [100, 0, 50])]
+
+
+def dual_picture(P=PLANT):
+    """Every basis gives prices y^T = c_B^T B^-1. A basis is dual feasible when no reduced cost is positive,
+    primal feasible when x_B >= 0; the optimum is the basis that is both. Also returns the prices along
+    the simplex path and the dual row each one violates."""
+    As, b, c, names = standard_form(P)
+    m, N = len(As), len(As[0])
+    out = []
+    for basis in itertools.combinations(range(N), m):
+        B = [[As[i][j] for j in basis] for i in range(m)]
+        xb = solve_fr(B, b)
+        if xb is None:
+            continue
+        Bt = [[B[i][k] for i in range(m)] for k in range(m)]          # B^T y = c_B
+        y = solve_fr(Bt, [c[j] for j in basis])
+        d = [c[j] - sum(As[i][j] * y[i] for i in range(m)) for j in range(N)]
+        out.append({"basis": [names[j] for j in basis], "y": [f2s(v) for v in y], "yf": [ffloat(v) for v in y],
+                    "xb": [f2s(v) for v in xb], "primal_feasible": all(v >= 0 for v in xb),
+                    "dual_feasible": all(v <= 0 for v in d), "bound": ffloat(sum(bi * yi for bi, yi in zip(b, y)))})
+    path = []
+    for it in simplex_trace(P, "dantzig")["iterations"]:
+        q = next(q for q in out if sorted(q["basis"]) == sorted(it["basis"]))
+        d = [Fr(v) for v in it["d"]]
+        viol = [{"col": names[j], "short": f2s(d[j])} for j in range(len(P["c"])) if d[j] > 0]
+        path.append({"iter": it["iter"], "basis": it["basis"], "y": q["y"], "yf": q["yf"], "violated": viol})
+    return {"bases": out, "path": path}
+
+
 def dual_lp(P):
     """min b y s.t. A^T y >= c, y >= 0."""
     A = np.array(P["A"], float)
@@ -310,7 +351,7 @@ def classroom_results():
     pv = value_function(PLANT, 0, np.arange(0, 40.01, 0.5))
     R["lecture"] = {"plant": PLANT, "bases": basic_solutions(PLANT), "simplex": tr, "simplex_bland": trb,
                     "phase1": phase_one_example(), "klee_minty": klee_minty_table(10),
-                    "dual": dual_lp(PLANT), "ranging": ranging(PLANT), "reactor": pv, "breakpoints": breakpoints(pv),
+                    "dual": dual_lp(PLANT), "bounds": bound_examples(PLANT), "dual_picture": dual_picture(PLANT), "ranging": ranging(PLANT), "reactor": pv, "breakpoints": breakpoints(pv),
                     "degenerate": degenerate_example()}
     R["lab"] = lab_results()
     return clean(R)
@@ -331,6 +372,11 @@ if __name__ == "__main__":
     print("B phase1", L["phase1"])
     print("B klee-minty", [(q["n"], q["dantzig_pivots"], q["two_pow"], q["highs_simplex"], q["highs_ipm"]) for q in L["klee_minty"]])
     print("C dual", L["dual"])
+    for q in L["bounds"]:
+        print("C bound", q["y"], "covers", q["cover"], "valid" if q["valid"] else "not a bound", q["bound"])
+    for q in L["dual_picture"]["bases"]:
+        print("C basis", q["basis"], "y", q["y"], "primal", q["primal_feasible"], "dual", q["dual_feasible"], q["bound"])
+    print("C path", [(q["basis"], q["y"], q["violated"]) for q in L["dual_picture"]["path"]])
     rg = L["ranging"]; print("D rhs", [(q["row"], q["lo"], q["hi"], round(q["price"], 3)) for q in rg["rhs"]])
     print("D cost", rg["cost"]); print("D breakpoints reactor", L["breakpoints"])
     dg = L["degenerate"]; print("D degenerate", dg["solution"]["x"], dg["solution"]["y"], dg["one_sided"], dg["dual_ranges"])
