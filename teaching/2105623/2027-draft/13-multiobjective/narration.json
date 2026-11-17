@@ -1,0 +1,2477 @@
+{
+ "voice": "en-US-GuyNeural",
+ "rate": "-5%",
+ "provider": "Microsoft Edge neural speech (edge-tts)",
+ "synthetic_voice": true,
+ "total_seconds": 2899.8,
+ "slides": [
+  {
+   "n": 1,
+   "file": "audio/slide-01.mp3",
+   "duration": 60.648,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.892,
+     "en": "Welcome to Session 13 of Optimization of Chemical Processes.",
+     "th": "ยินดีต้อนรับสู่คาบที่ 13 ของวิชา Optimization of Chemical Processes"
+    },
+    {
+     "s": 4.892,
+     "e": 13.575,
+     "en": "Today has two topics that meet often in practice. The first is problems with more than one objective, such as cost and emissions.",
+     "th": "วันนี้มีสองหัวข้อที่มักพบร่วมกันในทางปฏิบัติ หัวข้อแรกคือปัญหาที่มีเป้าหมายมากกว่าหนึ่งตัว เช่น ต้นทุนกับการปล่อยมลพิษ"
+    },
+    {
+     "s": 13.575,
+     "e": 19.921,
+     "en": "The second is nonconvex problems, where the answer a solver returns depends on where it starts.",
+     "th": "หัวข้อที่สองคือปัญหา nonconvex ซึ่งคำตอบที่ solver ให้มาขึ้นกับจุดเริ่มต้น"
+    },
+    {
+     "s": 19.921,
+     "e": 28.828,
+     "en": "Session 12 already drew two fronts without naming them: expected profit against C-VaR, and cost against the probability of breaking a limit.",
+     "th": "คาบที่ 12 วาดแนวหน้าไว้แล้วสองเส้นโดยยังไม่ได้ตั้งชื่อ คือกำไรคาดหวังเทียบกับ CVaR และต้นทุนเทียบกับความน่าจะเป็นที่จะละเมิดข้อจำกัด"
+    },
+    {
+     "s": 28.828,
+     "e": 35.461,
+     "en": "Today we make the method explicit, and then learn how a global solver proves that its answer is the best.",
+     "th": "วันนี้เราจะทำให้วิธีการชัดเจน แล้วเรียนรู้ว่า global solver พิสูจน์ได้อย่างไรว่าคำตอบของมันดีที่สุด"
+    },
+    {
+     "s": 35.461,
+     "e": 42.934,
+     "en": "The examples are small enough to check by hand, and every number on the slides comes from code you can run yourself by pressing D.",
+     "th": "ตัวอย่างมีขนาดเล็กพอที่จะตรวจด้วยมือได้ และตัวเลขทุกตัวบนสไลด์มาจากโค้ดที่คุณรันเองได้โดยกด D"
+    },
+    {
+     "s": 42.934,
+     "e": 47.868,
+     "en": "The lab has a browser part and a Colab part, so a laptop helps.",
+     "th": "lab มีส่วนที่ทำในเบราว์เซอร์และส่วนที่ทำใน Colab จึงควรใช้แล็ปท็อป"
+    },
+    {
+     "s": 47.868,
+     "e": 55.171,
+     "en": "On your own, the narration takes about fifty minutes; the activities, four checks and the lab fill the rest of the three hours.",
+     "th": "ถ้าเรียนเอง เสียงบรรยายใช้เวลาประมาณห้าสิบนาที ส่วนกิจกรรม แบบตรวจสี่ครั้ง และ lab จะใช้เวลาที่เหลือของสามชั่วโมง"
+    },
+    {
+     "s": 55.171,
+     "e": 60.579,
+     "en": "When the narration for a slide ends, press the right arrow key, or Next, to go on.",
+     "th": "เมื่อเสียงบรรยายของแต่ละหน้าจบ กดลูกศรขวาหรือปุ่ม Next เพื่อไปหน้าถัดไป"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "file": "audio/slide-02.mp3",
+   "duration": 65.664,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.05,
+     "en": "Here is the plan for the three hours.",
+     "th": "นี่คือแผนของสามชั่วโมง"
+    },
+    {
+     "s": 3.05,
+     "e": 9.836,
+     "en": "After a ten-minute retrieval check on Session 12, part one, thirty-five minutes, defines dominance and the Pareto front,",
+     "th": "หลังทบทวนความจำจากคาบที่ 12 สิบนาที ส่วนที่หนึ่ง สามสิบห้านาที นิยาม dominance และ Pareto front"
+    },
+    {
+     "s": 9.836,
+     "e": 17.632,
+     "en": "and traces the front of a production plan with profit against wastewater, first by the epsilon-constraint method and then by weighted sums.",
+     "th": "แล้ววาดแนวหน้าของแผนการผลิตที่มีกำไรเทียบกับน้ำเสีย ด้วยวิธี ε-constraint ก่อน แล้วจึงใช้ผลรวมถ่วงน้ำหนัก"
+    },
+    {
+     "s": 17.632,
+     "e": 20.974,
+     "en": "Part two, forty minutes, is about nonconvex problems:",
+     "th": "ส่วนที่สอง สี่สิบนาที ว่าด้วยปัญหา nonconvex ได้แก่"
+    },
+    {
+     "s": 20.974,
+     "e": 29.947,
+     "en": "Haverly's pooling problem, a local solver from many starts, McCormick envelopes, spatial branch and bound, and how to read a global solver's log.",
+     "th": "pooling problem ของ Haverly การใช้ local solver จากหลายจุดเริ่มต้น McCormick envelope, spatial branch and bound และวิธีอ่าน log ของ global solver"
+    },
+    {
+     "s": 29.947,
+     "e": 35.028,
+     "en": "After a break and a second activity, part three, thirty minutes, brings the two together:",
+     "th": "หลังพักและกิจกรรมที่สอง ส่วนที่สาม สามสิบนาที นำสองหัวข้อมารวมกัน ได้แก่"
+    },
+    {
+     "s": 35.028,
+     "e": 45.303,
+     "en": "discrete fronts with points that no weight can find, a price against a cap, the batch reactor's yield against batch time, choosing a point, evolutionary methods, tools and reporting.",
+     "th": "แนวหน้าแบบไม่ต่อเนื่องที่มีจุดซึ่งการถ่วงน้ำหนักหาไม่พบ ราคาเทียบกับเพดาน ผลได้ของเครื่องปฏิกรณ์แบบกะเทียบกับเวลาของกะ การเลือกจุด วิธี evolutionary เครื่องมือ และการรายงาน"
+    },
+    {
+     "s": 45.303,
+     "e": 53.355,
+     "en": "The lab's Colab part installs a global solver in under a minute; if Colab is not available, the lab page shows a recorded run.",
+     "th": "ส่วนที่ทำใน Colab ของ lab ติดตั้ง global solver ได้ภายในหนึ่งนาที ถ้าใช้ Colab ไม่ได้ หน้า lab มีผลการรันที่บันทึกไว้ให้"
+    },
+    {
+     "s": 53.355,
+     "e": 58.276,
+     "en": "If you study on your own, the Colab step can wait until the end of the lab.",
+     "th": "ถ้าเรียนเอง ขั้นตอนที่ใช้ Colab รอไว้ทำตอนท้ายของ lab ได้"
+    },
+    {
+     "s": 58.276,
+     "e": 65.592,
+     "en": "Each part ends with a check of four questions. The session ends with Lab 13 and the Exit Ticket.",
+     "th": "แต่ละส่วนจบด้วยแบบตรวจสี่คำถาม คาบนี้จบด้วย Lab 13 และ Exit Ticket"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "file": "audio/slide-03.mp3",
+   "duration": 54.024,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.076,
+     "en": "Activity 1 is a retrieval check on Session 12.",
+     "th": "กิจกรรมที่ 1 คือการทบทวนความจำจากคาบที่ 12"
+    },
+    {
+     "s": 4.076,
+     "e": 6.479,
+     "en": "Answer the four questions without notes:",
+     "th": "ตอบคำถามสี่ข้อโดยไม่เปิดโน้ต ได้แก่"
+    },
+    {
+     "s": 6.479,
+     "e": 14.802,
+     "en": "the definitions of V S S and E V P I, whether a sample average approximation's own objective is too high or too low, how C-VaR stayed linear,",
+     "th": "นิยามของ VSS และ EVPI ค่าฟังก์ชันเป้าหมายของ sample average approximation สูงหรือต่ำเกินไป CVaR ยังคงเป็นเชิงเส้นได้อย่างไร"
+    },
+    {
+     "s": 14.802,
+     "e": 18.026,
+     "en": "and what gamma controls in a budget-of-uncertainty row.",
+     "th": "และ Γ ควบคุมอะไรในแถวของ budget of uncertainty"
+    },
+    {
+     "s": 18.026,
+     "e": 25.355,
+     "en": "For question two, think about what happens to the optimum when the solver can fit its decision to the few samples it sees.",
+     "th": "สำหรับข้อสอง ให้คิดว่าค่าที่ดีที่สุดจะเป็นอย่างไร เมื่อ solver ปรับการตัดสินใจให้เข้ากับตัวอย่างไม่กี่ตัวที่มันเห็น"
+    },
+    {
+     "s": 25.355,
+     "e": 29.961,
+     "en": "Write alone for five minutes, then compare with a partner for five.",
+     "th": "เขียนคนเดียวห้านาที แล้วเปรียบเทียบกับเพื่อนอีกห้านาที"
+    },
+    {
+     "s": 29.961,
+     "e": 39.25,
+     "en": "These four ideas come back today: C-VaR against expected profit is a front, and the budget row was built by duality, which we use again for fronts.",
+     "th": "แนวคิดทั้งสี่นี้จะกลับมาในวันนี้ CVaR เทียบกับกำไรคาดหวังคือแนวหน้า และแถวของ budget สร้างขึ้นด้วย duality ซึ่งเราจะใช้อีกครั้งกับแนวหน้า"
+    },
+    {
+     "s": 39.25,
+     "e": 48.145,
+     "en": "The chart of expected profit against C-VaR from Session 12 was already a Pareto front. Keep it in mind for the next slides.",
+     "th": "กราฟกำไรคาดหวังเทียบกับ CVaR จากคาบที่ 12 เป็น Pareto front อยู่แล้ว จำไว้สำหรับหน้าถัดไป"
+    },
+    {
+     "s": 48.145,
+     "e": 53.947,
+     "en": "Pause the narration now. When you are done, press Show answers to check.",
+     "th": "หยุดเสียงบรรยายตอนนี้ เมื่อทำเสร็จ กด Show answers เพื่อตรวจคำตอบ"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "file": "audio/slide-04.mp3",
+   "duration": 49.488,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.866,
+     "en": "By the end of today you should be able to do six things.",
+     "th": "เมื่อจบวันนี้ คุณควรทำหกสิ่งต่อไปนี้ได้"
+    },
+    {
+     "s": 3.866,
+     "e": 10.724,
+     "en": "Define dominance, Pareto optimality, and the ideal and nadir points, and draw a front from a payoff table.",
+     "th": "นิยาม dominance, Pareto optimality, จุด ideal และจุด nadir และวาดแนวหน้าจากตาราง payoff"
+    },
+    {
+     "s": 10.724,
+     "e": 17.474,
+     "en": "Trace a front with the epsilon-constraint method, and read its slope as the multiplier mu of the epsilon row.",
+     "th": "วาดแนวหน้าด้วยวิธี ε-constraint และอ่านความชันของมันเป็นตัวคูณ μ ของแถว ε"
+    },
+    {
+     "s": 17.474,
+     "e": 24.066,
+     "en": "Explain which points a weighted sum, or a price, can find, and why caps find more on discrete problems.",
+     "th": "อธิบายว่าผลรวมถ่วงน้ำหนักหรือราคาหาจุดใดได้บ้าง และทำไมการกำหนดเพดานจึงหาจุดได้มากกว่าในปัญหาแบบไม่ต่อเนื่อง"
+    },
+    {
+     "s": 24.066,
+     "e": 31.145,
+     "en": "Recognize nonconvexity in a process model, and show by multistart that a local answer depends on the start.",
+     "th": "จำแนกความเป็น nonconvex ในโมเดลกระบวนการ และแสดงด้วย multistart ว่าคำตอบเฉพาะที่ขึ้นกับจุดเริ่มต้น"
+    },
+    {
+     "s": 31.145,
+     "e": 38.5,
+     "en": "Build a McCormick relaxation of a bilinear row, and follow spatial branch and bound to a certified global answer.",
+     "th": "สร้าง McCormick relaxation ของแถวที่มีพจน์ bilinear และติดตาม spatial branch and bound จนได้คำตอบ global ที่มีใบรับรอง"
+    },
+    {
+     "s": 38.5,
+     "e": 45.513,
+     "en": "And read a global solver's log, then report a front or a global result with the numbers a reader needs to check it.",
+     "th": "และอ่าน log ของ global solver แล้วรายงานแนวหน้าหรือผลแบบ global พร้อมตัวเลขที่ผู้อ่านต้องใช้ตรวจสอบ"
+    },
+    {
+     "s": 45.513,
+     "e": 49.421,
+     "en": "Each outcome is tested in one of the checks or in the lab.",
+     "th": "ผลลัพธ์การเรียนรู้แต่ละข้อจะถูกทดสอบในแบบตรวจหรือใน lab"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "file": "audio/slide-05.mp3",
+   "duration": 77.568,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.695,
+     "en": "Here is how today connects to earlier sessions.",
+     "th": "นี่คือความเชื่อมโยงของวันนี้กับคาบก่อน ๆ"
+    },
+    {
+     "s": 3.695,
+     "e": 10.701,
+     "en": "Session 5 introduced convexity, multistart, McCormick envelopes and a one-variable branch and bound.",
+     "th": "คาบที่ 5 แนะนำ convexity, multistart, McCormick envelope และ branch and bound แบบตัวแปรเดียว"
+    },
+    {
+     "s": 10.701,
+     "e": 17.013,
+     "en": "Today they meet a real nonconvex process problem, Haverly's pools, solved to a certificate.",
+     "th": "วันนี้สิ่งเหล่านี้จะพบกับปัญหากระบวนการ nonconvex จริง คือ pool ของ Haverly ซึ่งแก้ได้จนมีใบรับรอง"
+    },
+    {
+     "s": 17.013,
+     "e": 24.974,
+     "en": "Session 2 had a demo with a shared tank. Today explains why that shared tank makes the problem nonconvex.",
+     "th": "คาบที่ 2 มีการสาธิตถังที่ใช้ร่วมกัน วันนี้อธิบายว่าทำไมถังที่ใช้ร่วมกันนั้นจึงทำให้ปัญหาเป็น nonconvex"
+    },
+    {
+     "s": 24.974,
+     "e": 33.351,
+     "en": "Session 6 drew the value function of an LP as its right-hand side changes, and Session 7 read multipliers as marginal values.",
+     "th": "คาบที่ 6 วาด value function ของ LP เมื่อค่าด้านขวาเปลี่ยน และคาบที่ 7 อ่านตัวคูณเป็นมูลค่าส่วนเพิ่ม"
+    },
+    {
+     "s": 33.351,
+     "e": 40.066,
+     "en": "The front of an epsilon-constraint LP is exactly that value function, and its slopes are multipliers.",
+     "th": "แนวหน้าของ LP แบบ ε-constraint ก็คือ value function นั้นนั่นเอง และความชันของมันคือตัวคูณ"
+    },
+    {
+     "s": 40.066,
+     "e": 48.395,
+     "en": "Session 3 gave binaries and MIP gaps. Today binaries create fronts with points that no price can select.",
+     "th": "คาบที่ 3 ให้ตัวแปร binary และ MIP gap วันนี้ตัวแปร binary จะสร้างแนวหน้าที่มีจุดซึ่งไม่มีราคาใดเลือกได้"
+    },
+    {
+     "s": 48.395,
+     "e": 58.829,
+     "en": "Session 11's batch reactor returns in part three, as a front of yield against batch time, and Session 12's risk measures are a second objective you can use in your own project.",
+     "th": "เครื่องปฏิกรณ์แบบกะของคาบที่ 11 กลับมาในส่วนที่สาม ในรูปแนวหน้าของผลได้เทียบกับเวลาของกะ และมาตรวัดความเสี่ยงของคาบที่ 12 เป็นเป้าหมายที่สองที่คุณใช้ในโครงงานของคุณเองได้"
+    },
+    {
+     "s": 58.829,
+     "e": 70.629,
+     "en": "A note on notation. The objectives are f one and f two. Epsilon is now the bound on the second objective, a different epsilon from Session 12's chance level.",
+     "th": "หมายเหตุเรื่องสัญลักษณ์ เป้าหมายคือ f1 และ f2 ε ในวันนี้คือขอบเขตของเป้าหมายตัวที่สอง ซึ่งต่างจาก ε ที่เป็นระดับของ chance"
+    },
+    {
+     "s": 70.629,
+     "e": 77.5,
+     "en": "W is a weight, mu is the multiplier of an inequality, and q is the sulfur content of a pool.",
+     "th": "ในคาบที่ 12 w คือน้ำหนัก μ คือตัวคูณของอสมการ และ q คือปริมาณกำมะถันใน pool"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "file": "audio/slide-06.mp3",
+   "duration": 84.12,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.589,
+     "en": "Most design questions have more than one goal.",
+     "th": "คำถามด้านการออกแบบส่วนใหญ่มีเป้าหมายมากกว่าหนึ่งตัว"
+    },
+    {
+     "s": 3.589,
+     "e": 6.916,
+     "en": "The table lists the pairs we meet today and earlier:",
+     "th": "ตารางแสดงคู่ของเป้าหมายที่เราพบในวันนี้และก่อนหน้า"
+    },
+    {
+     "s": 6.916,
+     "e": 16.395,
+     "en": "profit against wastewater, investment against energy saved, yield against batch time, expected profit against C-VaR, and, in the lab, cost against CO₂.",
+     "th": "ได้แก่ กำไรเทียบกับน้ำเสีย เงินลงทุนเทียบกับพลังงานที่ประหยัดได้ ผลได้เทียบกับเวลาของกะ กำไรคาดหวังเทียบกับ CVaR และใน lab คือต้นทุนเทียบกับคาร์บอนไดออกไซด์"
+    },
+    {
+     "s": 16.395,
+     "e": 21.397,
+     "en": "If the objectives can honestly be priced into one number, do that and solve once.",
+     "th": "ถ้าเป้าหมายเหล่านั้นแปลงเป็นตัวเลขเดียวด้วยราคาได้อย่างสมเหตุสมผล"
+    },
+    {
+     "s": 21.397,
+     "e": 28.474,
+     "en": "The methods of today are for when they cannot, or when the trade-off itself is what the decision maker needs to see.",
+     "th": "ให้ทำเช่นนั้นแล้วแก้ปัญหาครั้งเดียว วิธีของวันนี้มีไว้สำหรับกรณีที่ทำเช่นนั้นไม่ได้ หรือเมื่อผู้ตัดสินใจต้องการเห็นการแลกเปลี่ยนนั้นเอง"
+    },
+    {
+     "s": 28.474,
+     "e": 31.74,
+     "en": "Usually no design is best in every objective at once.",
+     "th": "โดยทั่วไปไม่มีแบบใดดีที่สุดในทุกเป้าหมายพร้อมกัน"
+    },
+    {
+     "s": 31.74,
+     "e": 40.75,
+     "en": "The answer is then a set of designs, each better than the others in something, together with the rate at which one objective is traded for the other.",
+     "th": "คำตอบจึงเป็นเซตของแบบต่าง ๆ ซึ่งแต่ละแบบดีกว่าแบบอื่นในบางด้าน พร้อมกับอัตราที่เป้าหมายหนึ่งถูกแลกกับอีกเป้าหมายหนึ่ง"
+    },
+    {
+     "s": 40.75,
+     "e": 50.579,
+     "en": "In process design the classic pairs are cost against environmental impact, cost against safety or reliability, and productivity against selectivity.",
+     "th": "ในการออกแบบกระบวนการ คู่เป้าหมายคลาสสิกได้แก่ ต้นทุนเทียบกับผลกระทบต่อสิ่งแวดล้อม ต้นทุนเทียบกับความปลอดภัยหรือความน่าเชื่อถือ และผลิตภาพเทียบกับการเลือกเกิดผลิตภัณฑ์"
+    },
+    {
+     "s": 50.579,
+     "e": 57.259,
+     "en": "Decisions live in the decision space, x. Designs are compared in the objective space, the pair f one of x and f two of x.",
+     "th": "การตัดสินใจอยู่ในปริภูมิของตัวแปรตัดสินใจ x ส่วนการเปรียบเทียบแบบต่าง ๆ ทำในปริภูมิของเป้าหมาย คือคู่ f1(x) และ f2(x)"
+    },
+    {
+     "s": 57.259,
+     "e": 69.254,
+     "en": "Methods differ in when the decision maker states preferences: before solving, as with fixed weights; after seeing the front; or during the search, interactively. Today is mostly the second:",
+     "th": "วิธีต่าง ๆ แตกต่างกันตรงที่ผู้ตัดสินใจระบุความชอบเมื่อใด คือก่อนแก้ปัญหา เช่นการกำหนดน้ำหนักไว้ล่วงหน้า หลังเห็นแนวหน้าแล้ว หรือระหว่างการค้นหาแบบโต้ตอบ วันนี้ส่วนใหญ่เป็นแบบที่สอง"
+    },
+    {
+     "s": 69.254,
+     "e": 71.211,
+     "en": "compute the front, then choose.",
+     "th": "คือคำนวณแนวหน้าก่อนแล้วจึงเลือก"
+    },
+    {
+     "s": 71.211,
+     "e": 78.845,
+     "en": "A front also shows where a trade-off is cheap and where it is expensive. That is often the most useful thing it tells a manager:",
+     "th": "แนวหน้ายังแสดงว่าการแลกเปลี่ยนตรงไหนถูกและตรงไหนแพง ซึ่งมักเป็นสิ่งที่มีประโยชน์ที่สุดสำหรับผู้จัดการ"
+    },
+    {
+     "s": 78.845,
+     "e": 84.053,
+     "en": "the first steps toward a cleaner plant may cost little, and the last steps a great deal.",
+     "th": "ก้าวแรกไปสู่โรงงานที่สะอาดขึ้นอาจมีต้นทุนน้อย ส่วนก้าวสุดท้ายอาจมีต้นทุนสูงมาก"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "file": "audio/slide-07.mp3",
+   "duration": 91.296,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.313,
+     "en": "Two definitions carry the whole topic.",
+     "th": "นิยามสองข้อเป็นแกนของหัวข้อนี้ทั้งหมด"
+    },
+    {
+     "s": 3.313,
+     "e": 15.342,
+     "en": "Design x dominates design x prime if it is at least as good in every objective, and strictly better in at least one. A design is Pareto optimal if no feasible design dominates it.",
+     "th": "แบบ x dominate แบบ x′ ถ้า x ดีอย่างน้อยเท่ากันในทุกเป้าหมาย และดีกว่าอย่างแท้จริงในอย่างน้อยหนึ่งเป้าหมาย แบบหนึ่งเป็น Pareto optimal ถ้าไม่มีแบบที่เป็นไปได้ใด dominate มัน"
+    },
+    {
+     "s": 15.342,
+     "e": 22.821,
+     "en": "A weaker notion, weakly Pareto optimal, only requires that no design is strictly better in every objective at once.",
+     "th": "แนวคิดที่อ่อนกว่า คือ weakly Pareto optimal กำหนดเพียงว่าไม่มีแบบใดดีกว่าอย่างแท้จริงในทุกเป้าหมายพร้อมกัน"
+    },
+    {
+     "s": 22.821,
+     "e": 29.526,
+     "en": "Weakly Pareto points can sit on flat parts of a front, where one objective could still improve for free.",
+     "th": "จุด weakly Pareto อาจอยู่บนส่วนที่แบนของแนวหน้า ซึ่งเป้าหมายหนึ่งยังปรับให้ดีขึ้นได้โดยไม่เสียอะไร"
+    },
+    {
+     "s": 29.526,
+     "e": 42.632,
+     "en": "The chart shows forty candidate designs, both objectives to be minimized. The teal points are Pareto optimal; the teal staircase joins them into the front. The grey points are dominated.",
+     "th": "กราฟแสดงแบบที่เป็นไปได้สี่สิบแบบ โดยทั้งสองเป้าหมายต้องการค่าน้อยที่สุด จุดสีเขียวหัวเป็ดคือ Pareto optimal และเส้นขั้นบันไดสีเขียวหัวเป็ดเชื่อมจุดเหล่านั้นเป็นแนวหน้า จุดสีเทาคือแบบที่ถูก dominate"
+    },
+    {
+     "s": 42.632,
+     "e": 55.421,
+     "en": "Click a design. The sand area is everything it dominates. The amber outline is where a design would have to lie to dominate it. For a Pareto point that box is empty.",
+     "th": "ลองคลิกแบบหนึ่ง พื้นที่สีทรายคือทุกแบบที่มัน dominate ส่วนกรอบสีเหลืองอำพันคือบริเวณที่แบบอื่นต้องอยู่เพื่อจะ dominate มัน สำหรับจุด Pareto กรอบนั้นว่างเปล่า"
+    },
+    {
+     "s": 55.421,
+     "e": 63.861,
+     "en": "Two reference points help. The ideal point takes the best value of each objective separately; it is usually not attainable.",
+     "th": "มีจุดอ้างอิงสองจุดที่ช่วยได้ จุด ideal ใช้ค่าที่ดีที่สุดของแต่ละเป้าหมายแยกกัน ซึ่งโดยมากไม่สามารถทำได้จริง"
+    },
+    {
+     "s": 63.861,
+     "e": 73.118,
+     "en": "The nadir point takes the worst value of each objective over the Pareto set. Together they give the ranges used to scale the objectives.",
+     "th": "จุด nadir ใช้ค่าที่แย่ที่สุดของแต่ละเป้าหมายบนเซต Pareto ทั้งสองจุดร่วมกันให้ช่วงค่าที่ใช้ปรับสเกลของเป้าหมาย"
+    },
+    {
+     "s": 73.118,
+     "e": 82.855,
+     "en": "Ranking a set of designs by peeling off successive fronts is called nondominated sorting. Evolutionary methods use it, as part three shows.",
+     "th": "การจัดอันดับเซตของแบบต่าง ๆ ด้วยการลอกแนวหน้าออกทีละชั้นเรียกว่า nondominated sorting วิธี evolutionary ใช้วิธีนี้ ดังที่จะเห็นในส่วนที่สาม"
+    },
+    {
+     "s": 82.855,
+     "e": 91.224,
+     "en": "With a continuous feasible set, the Pareto set is a curve or a surface rather than a few points, and the methods of the next slides trace it.",
+     "th": "เมื่อเซตที่เป็นไปได้เป็นแบบต่อเนื่อง เซต Pareto จะเป็นเส้นโค้งหรือพื้นผิว ไม่ใช่เพียงไม่กี่จุด และวิธีในหน้าถัดไปจะวาดมันออกมา"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "file": "audio/slide-08.mp3",
+   "duration": 102.744,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.879,
+     "en": "Here is the lecture example for part one: a plant with three products and two shared units.",
+     "th": "นี่คือตัวอย่างในการบรรยายของส่วนที่หนึ่ง คือโรงงานที่มีผลิตภัณฑ์สามชนิดและหน่วยการผลิตที่ใช้ร่วมกันสองหน่วย"
+    },
+    {
+     "s": 5.879,
+     "e": 17.761,
+     "en": "P1 has the best margin, 150 dollars per tonne, and the most wastewater, 6 cubic meters per tonne. P3 has the lowest margin and the least wastewater.",
+     "th": "P1 มีส่วนต่างกำไรสูงสุด 150 ดอลลาร์ต่อตัน และมีน้ำเสียมากที่สุด 6 ลูกบาศก์เมตรต่อตัน P3 มีส่วนต่างกำไรต่ำสุดและมีน้ำเสียน้อยที่สุด"
+    },
+    {
+     "s": 17.761,
+     "e": 25.895,
+     "en": "The reactor has 24 hours a day and the separation 20. A contract takes at least 10 tonnes a day of P3.",
+     "th": "เครื่องปฏิกรณ์มีเวลา 24 ชั่วโมงต่อวัน และหน่วยแยกมี 20 ชั่วโมง มีสัญญาที่ต้องส่ง P3 อย่างน้อย 10 ตันต่อวัน"
+    },
+    {
+     "s": 25.895,
+     "e": 39.956,
+     "en": "The payoff table optimizes each objective alone. The most profitable plan makes 30 tonnes of P1 and 36 of P3, earns 7,020 dollars a day, and discharges 216 cubic meters.",
+     "th": "ตาราง payoff หาค่าที่ดีที่สุดของแต่ละเป้าหมายแยกกัน แผนที่ได้กำไรสูงสุดผลิต P1 30 ตันและ P3 36 ตัน ได้กำไร 7,020 ดอลลาร์ต่อวัน และปล่อยน้ำเสีย 216 ลูกบาศก์เมตร"
+    },
+    {
+     "s": 39.956,
+     "e": 45.25,
+     "en": "Only the reactor is tight, with a price of 280 dollars per hour.",
+     "th": "มีเพียงเครื่องปฏิกรณ์ที่ตึง โดยมีราคาเงา 280 ดอลลาร์ต่อชั่วโมง"
+    },
+    {
+     "s": 45.25,
+     "e": 57.658,
+     "en": "That price of 280 dollars per hour is a multiplier of a single-objective LP. On the front, the wastewater row will get a multiplier of its own, and that one carries the trade-off.",
+     "th": "ราคา 280 ดอลลาร์ต่อชั่วโมงนั้นเป็นตัวคูณของ LP ที่มีเป้าหมายเดียว บนแนวหน้า แถวของน้ำเสียจะมีตัวคูณของตัวเอง และตัวคูณนั้นคือการแลกเปลี่ยน"
+    },
+    {
+     "s": 57.658,
+     "e": 65.645,
+     "en": "The plan with the least wastewater makes only the contracted 10 tonnes of P3: 10 cubic meters and 700 dollars a day.",
+     "th": "แผนที่มีน้ำเสียน้อยที่สุดผลิตเพียง P3 10 ตันตามสัญญา ได้น้ำเสีย 10 ลูกบาศก์เมตรและกำไร 700 ดอลลาร์ต่อวัน"
+    },
+    {
+     "s": 65.645,
+     "e": 77.197,
+     "en": "Here that plan is trivial: make only what the contract requires. In larger problems each row of the payoff table is a real optimization, and the lexicographic step matters.",
+     "th": "ในที่นี้แผนนั้นตรงไปตรงมา คือผลิตเพียงตามที่สัญญากำหนด ในปัญหาที่ใหญ่กว่านี้ แต่ละแถวของตาราง payoff เป็นการหาค่าเหมาะสมจริง และขั้นตอนแบบ lexicographic มีความสำคัญ"
+    },
+    {
+     "s": 77.197,
+     "e": 88.092,
+     "en": "The diagonal of the payoff table, 7,020 dollars and 10 cubic meters, is the ideal point; no plan achieves both. The other entries bound the front.",
+     "th": "แนวทแยงของตาราง payoff คือ 7,020 ดอลลาร์และ 10 ลูกบาศก์เมตร เป็นจุด ideal ซึ่งไม่มีแผนใดทำได้ทั้งสองอย่างพร้อมกัน ส่วนช่องอื่นกำหนดขอบเขตของแนวหน้า"
+    },
+    {
+     "s": 88.092,
+     "e": 97.796,
+     "en": "One detail. If an objective has several optimal plans, take the one that is best in the other objective, a lexicographic payoff table.",
+     "th": "รายละเอียดหนึ่งข้อ ถ้าเป้าหมายหนึ่งมีแผนที่ดีที่สุดหลายแผน ให้เลือกแผนที่ดีที่สุดในอีกเป้าหมายหนึ่ง เรียกว่าตาราง payoff แบบ"
+    },
+    {
+     "s": 97.796,
+     "e": 102.684,
+     "en": "Otherwise the corner of the front may be only weakly Pareto optimal.",
+     "th": "lexicographic มิฉะนั้นมุมของแนวหน้าอาจเป็นเพียง weakly Pareto optimal"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "file": "audio/slide-09.mp3",
+   "duration": 130.08,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 12.211,
+     "en": "The epsilon-constraint method keeps one objective and turns the other into a constraint: maximize profit subject to wastewater at most epsilon. Each epsilon gives one point of the front.",
+     "th": "วิธี ε-constraint เก็บเป้าหมายหนึ่งไว้ แล้วเปลี่ยนอีกเป้าหมายหนึ่งเป็นข้อจำกัด คือหากำไรสูงสุดภายใต้น้ำเสียไม่เกิน ε แต่ละค่าของ ε ให้หนึ่งจุดบนแนวหน้า"
+    },
+    {
+     "s": 12.211,
+     "e": 23.632,
+     "en": "Move the slider from 10 to 216 cubic meters a day. The teal curve is the front; the amber dot is the plan for the chosen cap; the table shows the production.",
+     "th": "เลื่อนแถบเลื่อนจาก 10 ถึง 216 ลูกบาศก์เมตรต่อวัน เส้นสีเขียวหัวเป็ดคือแนวหน้า จุดสีเหลืองอำพันคือแผนสำหรับเพดานที่เลือก และตารางแสดงปริมาณการผลิต"
+    },
+    {
+     "s": 23.632,
+     "e": 33.185,
+     "en": "For an LP the front is piecewise linear and concave. It is the value function of Session 6, with epsilon as the right-hand side of one row.",
+     "th": "สำหรับ LP แนวหน้าเป็นเส้นตรงเป็นช่วง ๆ และ concave มันคือ value function ของคาบที่ 6 โดยมี ε เป็นค่าด้านขวาของแถวหนึ่ง"
+    },
+    {
+     "s": 33.185,
+     "e": 39.395,
+     "en": "Its slope on each piece is the multiplier mu of the wastewater row, drawn as the rust line.",
+     "th": "ความชันในแต่ละช่วงคือตัวคูณ μ ของแถวน้ำเสีย ซึ่งวาดเป็นเส้นสีสนิม"
+    },
+    {
+     "s": 39.395,
+     "e": 54.105,
+     "en": "The slopes are 70, 40, 20, 8.7 and 2.5 dollars per cubic meter. At 130 cubic meters, mu is 20: one more cubic meter of allowed wastewater is worth 20 dollars a day of profit.",
+     "th": "ความชันเท่ากับ 70, 40, 20, 8.7 และ 2.5 ดอลลาร์ต่อลูกบาศก์เมตร ที่ 130 ลูกบาศก์เมตร μ เท่ากับ 20 หมายความว่าการอนุญาตให้ปล่อยน้ำเสียเพิ่มอีกหนึ่งลูกบาศก์เมตรมีค่าเท่ากับกำไร 20 ดอลลาร์ต่อวัน"
+    },
+    {
+     "s": 54.105,
+     "e": 68.352,
+     "en": "The first two slopes can be read off the data. Below 50 cubic meters the plant makes only P3, and each cubic meter of its wastewater carries 70 dollars of margin, 70 divided by 1.",
+     "th": "ความชันสองค่าแรกอ่านได้จากข้อมูลโดยตรง เมื่อต่ำกว่า 50 ลูกบาศก์เมตร โรงงานผลิตเพียง P3 และน้ำเสียแต่ละลูกบาศก์เมตรของมันมาพร้อมส่วนต่างกำไร 70 ดอลลาร์ คือ 70 หารด้วย 1 ระหว่าง"
+    },
+    {
+     "s": 68.352,
+     "e": 74.684,
+     "en": "Between 50 and 100 it adds P2, at 100 dollars per 2.5 cubic meters, which is 40.",
+     "th": "50 ถึง 100 โรงงานเพิ่ม P2 ซึ่งได้ 100 ดอลลาร์ต่อน้ำเสีย 2.5 ลูกบาศก์เมตร คือ 40"
+    },
+    {
+     "s": 74.684,
+     "e": 79.222,
+     "en": "Read the front from right to left. The first cuts are cheap:",
+     "th": "อ่านแนวหน้าจากขวาไปซ้าย การลดในช่วงแรกมีราคาถูก จาก 216 ลงมาถึง"
+    },
+    {
+     "s": 79.222,
+     "e": 90.828,
+     "en": "from 216 down to 188 cubic meters costs only 70 dollars a day, at 2.5 dollars per cubic meter, by making less P1 and more P3 within the same reactor hours.",
+     "th": "188 ลูกบาศก์เมตรเสียกำไรเพียง 70 ดอลลาร์ต่อวัน หรือ 2.5 ดอลลาร์ต่อลูกบาศก์เมตร โดยผลิต P1 น้อยลงและ P3 มากขึ้นภายในชั่วโมงของเครื่องปฏิกรณ์เท่าเดิม เมื่อต่ำกว่า"
+    },
+    {
+     "s": 90.828,
+     "e": 96.408,
+     "en": "Below 100 cubic meters every further cubic meter costs at least 40 dollars.",
+     "th": "100 ลูกบาศก์เมตร ทุกลูกบาศก์เมตรที่ลดเพิ่มมีต้นทุนอย่างน้อย 40 ดอลลาร์"
+    },
+    {
+     "s": 96.408,
+     "e": 105.566,
+     "en": "The breakpoints are where the set of active rows changes, exactly as in Session 6's ranging: a product enters or leaves, or a unit becomes tight.",
+     "th": "จุดหักคือจุดที่เซตของแถวที่ active เปลี่ยน เหมือนกับการทำ ranging ในคาบที่ 6 คือมีผลิตภัณฑ์เข้าหรือออก หรือมีหน่วยการผลิตที่ตึงขึ้น"
+    },
+    {
+     "s": 105.566,
+     "e": 112.658,
+     "en": "Each slope is therefore a price that holds over a range of caps, and the range ends where the plan changes its structure.",
+     "th": "ความชันแต่ละค่าจึงเป็นราคาที่ใช้ได้ในช่วงหนึ่งของเพดาน และช่วงนั้นสิ้นสุดเมื่อแผนเปลี่ยนโครงสร้าง"
+    },
+    {
+     "s": 112.658,
+     "e": 122.171,
+     "en": "In the Python drawer, look at the plan at 176 cubic meters: P1 is replacing P2, which leaves the plan at 188.",
+     "th": "ใน Python ให้ดูแผนที่ 176 ลูกบาศก์เมตร P1 กำลังเข้ามาแทน P2 ซึ่งจะออกจากแผนที่ 188"
+    },
+    {
+     "s": 122.171,
+     "e": 130.0,
+     "en": "Press D for the LP in Python. The multiplier comes straight from HiGHS's marginals of the wastewater row.",
+     "th": "กด D เพื่อดู LP ใน Python ตัวคูณได้มาโดยตรงจาก marginal ของแถวน้ำเสียที่ HiGHS รายงาน"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "file": "audio/slide-10.mp3",
+   "duration": 94.416,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 9.695,
+     "en": "The other common method is the weighted sum: minimize one minus w times f one, plus w times f two, each scaled by its range from the payoff table.",
+     "th": "อีกวิธีหนึ่งที่ใช้บ่อยคือผลรวมถ่วงน้ำหนัก คือหาค่าต่ำสุดของหนึ่งลบ w คูณ f1 บวก w คูณ f2 โดยแต่ละเป้าหมายหารด้วยช่วงค่าจากตาราง payoff"
+    },
+    {
+     "s": 9.695,
+     "e": 21.987,
+     "en": "Geometrically each weight is a straight line of fixed slope, the rust dashed line. The answer is where that line last touches the feasible set. Move w and watch the line rotate.",
+     "th": "ในเชิงเรขาคณิต น้ำหนักแต่ละค่าคือเส้นตรงที่มีความชันคงที่ คือเส้นประสีสนิม คำตอบคือจุดที่เส้นนั้นแตะเซตที่เป็นไปได้เป็นจุดสุดท้าย ลองเลื่อน w แล้วดูเส้นหมุน"
+    },
+    {
+     "s": 21.987,
+     "e": 34.443,
+     "en": "On today's LP only vertices come back: six of them as w goes from zero to one. Between two vertices a whole edge ties at one particular weight, and the solver returns one end of it.",
+     "th": "บน LP ของวันนี้มีเพียงจุดยอดที่ได้คำตอบออกมา คือหกจุดเมื่อ w เปลี่ยนจากศูนย์ถึงหนึ่ง ระหว่างจุดยอดสองจุด ทั้งขอบจะเท่ากันที่น้ำหนักค่าหนึ่งพอดี และ solver คืนค่าปลายข้างใดข้างหนึ่ง"
+    },
+    {
+     "s": 34.443,
+     "e": 39.987,
+     "en": "The interior of each edge is Pareto optimal, but a weighted sum never reports it.",
+     "th": "จุดภายในของขอบเป็น Pareto optimal แต่ผลรวมถ่วงน้ำหนักไม่เคยรายงานมัน"
+    },
+    {
+     "s": 39.987,
+     "e": 46.237,
+     "en": "Switch to the convex curve: every point is reached by some weight, and the chosen point slides smoothly.",
+     "th": "เปลี่ยนเป็นเส้นโค้ง convex ทุกจุดถูกเลือกได้ด้วยน้ำหนักค่าใดค่าหนึ่ง และจุดที่เลือกเลื่อนไปอย่างต่อเนื่อง"
+    },
+    {
+     "s": 46.237,
+     "e": 50.478,
+     "en": "Now the nonconvex curve. The line touches only the two ends.",
+     "th": "ทีนี้ลองเส้นโค้ง nonconvex เส้นตรงแตะเพียงปลายทั้งสองข้าง"
+    },
+    {
+     "s": 50.478,
+     "e": 60.56,
+     "en": "As w passes a critical value, the answer jumps from one end to the other, and every point in between is never found, however fine the steps in w.",
+     "th": "เมื่อ w ผ่านค่าวิกฤตค่าหนึ่ง คำตอบกระโดดจากปลายข้างหนึ่งไปอีกข้างหนึ่ง และไม่มีจุดใดตรงกลางถูกพบเลย ไม่ว่าจะแบ่ง w ละเอียดเพียงใด"
+    },
+    {
+     "s": 60.56,
+     "e": 67.232,
+     "en": "Weighted sums are popular because they keep the problem's structure: an LP stays an LP with no extra row.",
+     "th": "ผลรวมถ่วงน้ำหนักเป็นที่นิยมเพราะรักษาโครงสร้างของปัญหาไว้ LP ยังเป็น LP โดยไม่มีแถวเพิ่ม"
+    },
+    {
+     "s": 67.232,
+     "e": 73.842,
+     "en": "But the epsilon-constraint method adds only one row per extra objective, which is just as cheap to solve.",
+     "th": "แต่วิธี ε-constraint เพิ่มเพียงหนึ่งแถวต่อเป้าหมายที่เพิ่มขึ้นหนึ่งตัว ซึ่งแก้ได้ง่ายพอ ๆ กัน"
+    },
+    {
+     "s": 73.842,
+     "e": 85.882,
+     "en": "Even on a convex front, equal steps in w do not give equal steps along the front: the points crowd where the front bends. The epsilon-constraint method controls the spacing directly.",
+     "th": "แม้บนแนวหน้าที่ convex ขั้นของ w ที่เท่ากันก็ไม่ให้ระยะห่างบนแนวหน้าที่เท่ากัน จุดจะไปกระจุกตรงที่แนวหน้าโค้ง วิธี ε-constraint ควบคุมระยะห่างได้โดยตรง"
+    },
+    {
+     "s": 85.882,
+     "e": 94.355,
+     "en": "For an LP the weighted sum is still useful as a quick check: it returns the vertices, and the weights at which it switches are the slopes of the front.",
+     "th": "สำหรับ LP ผลรวมถ่วงน้ำหนักยังมีประโยชน์ในการตรวจสอบอย่างรวดเร็ว เพราะมันคืนจุดยอด และน้ำหนักที่ทำให้คำตอบเปลี่ยนก็คือความชันของแนวหน้า"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "file": "audio/slide-11.mp3",
+   "duration": 88.104,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.734,
+     "en": "A few practical points make the epsilon-constraint method work well.",
+     "th": "มีข้อปฏิบัติไม่กี่ข้อที่ทำให้วิธี ε-constraint ทำงานได้ดี"
+    },
+    {
+     "s": 4.734,
+     "e": 14.509,
+     "en": "Build the payoff table first, lexicographically, to get the range of epsilon. Scale the objectives by their ranges before using any weights or distances;",
+     "th": "สร้างตาราง payoff ก่อนแบบ lexicographic เพื่อให้ได้ช่วงของ ε ปรับสเกลของเป้าหมายด้วยช่วงค่าก่อนใช้น้ำหนักหรือระยะทางใด ๆ"
+    },
+    {
+     "s": 14.509,
+     "e": 18.0,
+     "en": "a weight on raw dollars and cubic meters means nothing.",
+     "th": "เพราะน้ำหนักบนหน่วยดิบอย่างดอลลาร์กับลูกบาศก์เมตรไม่มีความหมาย"
+    },
+    {
+     "s": 18.0,
+     "e": 23.711,
+     "en": "Grid epsilon evenly between the payoff-table bounds, and refine where the front bends.",
+     "th": "แบ่ง ε เป็นช่วงเท่า ๆ กันระหว่างขอบเขตจากตาราง payoff และเพิ่มความละเอียดตรงที่แนวหน้าโค้ง"
+    },
+    {
+     "s": 23.711,
+     "e": 31.225,
+     "en": "A cap that is not tight returns a weakly Pareto point: the same second objective, and possibly a worse first one.",
+     "th": "เพดานที่ไม่ตึงจะให้จุด weakly Pareto คือเป้าหมายที่สองเท่าเดิม แต่เป้าหมายแรกอาจแย่กว่า วิธี augmented"
+    },
+    {
+     "s": 31.225,
+     "e": 39.265,
+     "en": "Mavrotas's augmented method, AUGMECON, from 2009, adds the slack of the epsilon row to the objective with a small weight.",
+     "th": "ของ Mavrotas ที่เรียกว่า AUGMECON ในปี 2009 เพิ่มค่า slack ของแถว ε เข้าไปในฟังก์ชันเป้าหมายด้วยน้ำหนักเล็ก"
+    },
+    {
+     "s": 39.265,
+     "e": 45.395,
+     "en": "The answer is then Pareto optimal, and a loop over caps can stop early when the row is slack.",
+     "th": "ๆ คำตอบจึงเป็น Pareto optimal และ loop ของเพดานหยุดก่อนได้เมื่อแถวนั้นไม่ตึง"
+    },
+    {
+     "s": 45.395,
+     "e": 56.684,
+     "en": "With three or more objectives, keep one as the objective and put the others under caps, on a grid. The method goes back to Haimes, Lasdon and Wismer in 1971.",
+     "th": "เมื่อมีเป้าหมายสามตัวหรือมากกว่า ให้เก็บตัวหนึ่งเป็นฟังก์ชันเป้าหมาย และกำหนดเพดานให้ตัวอื่นเป็นตาราง วิธีนี้ย้อนกลับไปถึง Haimes, Lasdon และ Wismer ในปี 1971"
+    },
+    {
+     "s": 56.684,
+     "e": 63.573,
+     "en": "With an LP, the answers between two vertices are exact points on the edge, and mu is the slope there.",
+     "th": "สำหรับ LP คำตอบระหว่างจุดยอดสองจุดคือจุดบนขอบพอดี และ μ คือความชันตรงนั้น สำหรับปัญหาที่มีตัวแปร"
+    },
+    {
+     "s": 63.573,
+     "e": 70.868,
+     "en": "With binaries, as in part three, the answers jump, and mu is no longer a slope, because a MILP has no duals.",
+     "th": "binary ดังในส่วนที่สาม คำตอบจะกระโดด และ μ ไม่ใช่ความชันอีกต่อไป เพราะ MILP ไม่มีตัวแปร dual"
+    },
+    {
+     "s": 70.868,
+     "e": 78.987,
+     "en": "Choose the grid with the user in mind: ten to twenty points usually show the shape, with more points where a decision is likely to be made.",
+     "th": "เลือกตารางของ ε โดยคำนึงถึงผู้ใช้ สิบถึงยี่สิบจุดมักแสดงรูปร่างได้เพียงพอ และเพิ่มจุดในบริเวณที่น่าจะมีการตัดสินใจ"
+    },
+    {
+     "s": 78.987,
+     "e": 88.026,
+     "en": "In Python the whole method is a short loop: build the payoff table, make a grid of caps, solve once per cap, and keep each answer with its multiplier.",
+     "th": "ใน Python วิธีนี้ทั้งหมดเป็น loop สั้น ๆ คือสร้างตาราง payoff สร้างตารางของเพดาน แก้ปัญหาหนึ่งครั้งต่อหนึ่งเพดาน และเก็บคำตอบแต่ละค่าพร้อมตัวคูณของมัน"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "file": "audio/slide-12.mp3",
+   "duration": 43.344,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.747,
+     "en": "Time for the first check: four questions on fronts, caps and weights.",
+     "th": "ถึงเวลาแบบตรวจครั้งแรก มีสี่คำถามเรื่องแนวหน้า เพดาน และน้ำหนัก"
+    },
+    {
+     "s": 4.747,
+     "e": 15.595,
+     "en": "Decide which of three designs are dominated, interpret a multiplier of 20 dollars per cubic meter for the plant manager, explain why a weight sweep returns only six points of an LP front,",
+     "th": "ตัดสินว่าแบบใดในสามแบบถูก dominate อธิบายตัวคูณ 20 ดอลลาร์ต่อลูกบาศก์เมตรให้ผู้จัดการโรงงานเข้าใจ อธิบายว่าทำไมการไล่น้ำหนักจึงได้เพียงหกจุดของแนวหน้าของ LP"
+    },
+    {
+     "s": 15.595,
+     "e": 17.961,
+     "en": "and say why scaling comes before weights.",
+     "th": "และบอกว่าทำไมต้องปรับสเกลก่อนกำหนดน้ำหนัก"
+    },
+    {
+     "s": 17.961,
+     "e": 23.855,
+     "en": "Question two asks for an interpretation in plain words, as you would give it to a manager.",
+     "th": "คำถามข้อสองต้องการการตีความด้วยภาษาธรรมดา เหมือนที่คุณจะอธิบายให้ผู้จัดการฟัง"
+    },
+    {
+     "s": 23.855,
+     "e": 28.382,
+     "en": "For question one, compare the designs one objective at a time.",
+     "th": "สำหรับข้อแรก ให้เปรียบเทียบแบบต่าง ๆ ทีละเป้าหมาย"
+    },
+    {
+     "s": 28.382,
+     "e": 36.882,
+     "en": "For question four, think about what a weight of 0.5 means when profit is in thousands of dollars and wastewater in tens of cubic meters.",
+     "th": "สำหรับข้อสี่ ให้คิดว่าน้ำหนัก 0.5 หมายความว่าอย่างไร เมื่อกำไรมีหลักพันดอลลาร์และน้ำเสียมีหลักสิบลูกบาศก์เมตร"
+    },
+    {
+     "s": 36.882,
+     "e": 43.289,
+     "en": "Take five minutes. Pause the narration now, and press Show answers when you are done.",
+     "th": "ใช้เวลาห้านาที หยุดเสียงบรรยายตอนนี้ และกด Show answers เมื่อทำเสร็จ"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "file": "audio/slide-13.mp3",
+   "duration": 106.656,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.303,
+     "en": "Part two turns to nonconvex problems. Where does nonconvexity come from in process models?",
+     "th": "ส่วนที่สองเปลี่ยนมาที่ปัญหา nonconvex ความเป็น nonconvex ในโมเดลกระบวนการมาจากไหน"
+    },
+    {
+     "s": 7.303,
+     "e": 15.749,
+     "en": "Bilinear balances are the most common source: a flow times a composition, or a flow times a temperature, when both are variables.",
+     "th": "แหล่งที่พบบ่อยที่สุดคือสมดุลแบบ bilinear คืออัตราการไหลคูณองค์ประกอบ หรืออัตราการไหลคูณอุณหภูมิ เมื่อทั้งสองเป็นตัวแปร ซึ่งพบใน"
+    },
+    {
+     "s": 15.749,
+     "e": 25.884,
+     "en": "They appear in pools, splitters and heat-exchanger networks. Concave costs from economies of scale, discrete choices, thermodynamics and dynamics add more;",
+     "th": "pool, splitter และเครือข่ายเครื่องแลกเปลี่ยนความร้อน ต้นทุนแบบ concave จาก economies of scale การเลือกแบบไม่ต่อเนื่อง อุณหพลศาสตร์ และพลวัต ก็เพิ่มความเป็น"
+    },
+    {
+     "s": 25.884,
+     "e": 29.197,
+     "en": "the table points to the sessions where we met each.",
+     "th": "nonconvex ได้อีก ตารางระบุคาบที่เราพบแต่ละแบบ"
+    },
+    {
+     "s": 29.197,
+     "e": 37.224,
+     "en": "So nonconvexity is not rare in process models: any mass balance on a stream whose composition is itself a variable has it.",
+     "th": "ดังนั้นความเป็น nonconvex ไม่ใช่เรื่องหายากในโมเดลกระบวนการ สมดุลมวลใด ๆ ของสายการไหลที่องค์ประกอบเป็นตัวแปรด้วยก็มีลักษณะนี้"
+    },
+    {
+     "s": 37.224,
+     "e": 47.527,
+     "en": "A convex problem has one optimal value, and any local solver that converges certifies it. A nonconvex problem can have several KKT points.",
+     "th": "ปัญหา convex มีค่าเหมาะสมที่สุดเพียงค่าเดียว และ local solver ใด ๆ ที่ลู่เข้าก็รับรองค่านั้นได้ ปัญหา nonconvex อาจมีจุด KKT"
+    },
+    {
+     "s": 47.527,
+     "e": 52.789,
+     "en": "A local solver returns one of them, and which one depends on the start.",
+     "th": "หลายจุด local solver คืนจุดใดจุดหนึ่ง และจุดใดนั้นขึ้นกับจุดเริ่มต้น"
+    },
+    {
+     "s": 52.789,
+     "e": 64.368,
+     "en": "This matters in practice. Refinery planning systems have long handled pools by recursion, a sequence of LPs, and their answers depend on the starting guesses for the pool qualities.",
+     "th": "เรื่องนี้มีผลในทางปฏิบัติ ระบบวางแผนของโรงกลั่นจัดการ pool ด้วยวิธี recursion ซึ่งเป็นการแก้ LP ต่อเนื่องกันมานาน และคำตอบของระบบเหล่านั้นขึ้นกับค่าเดาเริ่มต้นของคุณภาพของ pool"
+    },
+    {
+     "s": 64.368,
+     "e": 76.149,
+     "en": "There are three responses, in rising cost. Reformulate, since a better model may be convex or at least tighter. Multistart: run a local solver from many points.",
+     "th": "มีวิธีรับมือสามแบบ เรียงตามต้นทุนที่สูงขึ้น แบบแรกคือเปลี่ยนรูปแบบของโมเดล เพราะโมเดลที่ดีกว่าอาจเป็น convex หรืออย่างน้อยแน่นกว่า แบบที่สองคือ multistart คือรัน local"
+    },
+    {
+     "s": 76.149,
+     "e": 88.882,
+     "en": "If each run reaches the best basin with probability p, n runs all miss it with probability one minus p to the power n. But p is unknown, and multistart never proves anything.",
+     "th": "solver จากหลายจุด ถ้าแต่ละครั้งไปถึงแอ่งที่ดีที่สุดด้วยความน่าจะเป็น p การรัน n ครั้งจะพลาดทั้งหมดด้วยความน่าจะเป็นหนึ่งลบ p ยกกำลัง n แต่เราไม่รู้ค่า p และ multistart ไม่เคยพิสูจน์อะไรได้"
+    },
+    {
+     "s": 88.882,
+     "e": 100.895,
+     "en": "The third is global optimization: bounds from convex relaxations, branching to tighten them, and a gap that closes to a certificate. Today we try all three on one classic problem.",
+     "th": "แบบที่สามคือ global optimization คือหาขอบเขตจาก convex relaxation แตกกิ่งเพื่อทำให้ขอบเขตแน่นขึ้น จนช่องว่างปิดลงเป็นใบรับรอง วันนี้เราจะลองทั้งสามแบบกับปัญหาคลาสสิกหนึ่งปัญหา"
+    },
+    {
+     "s": 100.895,
+     "e": 106.592,
+     "en": "In the lab, a second instance of the same problem shows what happens when p is small.",
+     "th": "ใน lab ปัญหาเดียวกันกรณีที่สองจะแสดงว่าจะเกิดอะไรขึ้นเมื่อ p มีค่าน้อย"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "file": "audio/slide-14.mp3",
+   "duration": 107.952,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.208,
+     "en": "The problem is Haverly's pooling problem, from 1978, the smallest classic example of its kind.",
+     "th": "ปัญหานั้นคือ pooling problem ของ Haverly จากปี 1978 ซึ่งเป็นตัวอย่างคลาสสิกที่เล็กที่สุดในประเภทนี้"
+    },
+    {
+     "s": 7.208,
+     "e": 15.816,
+     "en": "Two crude streams, A with 3 percent sulfur at 6 dollars a barrel and B with 1 percent at 16 dollars, share one tank, the pool.",
+     "th": "น้ำมันดิบสองสาย คือ A ที่มีกำมะถัน 3 เปอร์เซ็นต์ราคา 6 ดอลลาร์ต่อบาร์เรล และ B ที่มี 1 เปอร์เซ็นต์ราคา 16 ดอลลาร์ ใช้ถังร่วมกันหนึ่งถังเรียกว่า"
+    },
+    {
+     "s": 15.816,
+     "e": 21.645,
+     "en": "A third stream, C, with 2 percent sulfur at 10 dollars, goes to the products directly.",
+     "th": "pool สายที่สาม คือ C ที่มีกำมะถัน 2 เปอร์เซ็นต์ราคา 10 ดอลลาร์ ไปยังผลิตภัณฑ์โดยตรง"
+    },
+    {
+     "s": 21.645,
+     "e": 35.145,
+     "en": "Product X sells at 9 dollars with at most 2.5 percent sulfur and a demand of up to 100 barrels. Product Y sells at 15 dollars with at most 1.5 percent sulfur and up to 200 barrels.",
+     "th": "ผลิตภัณฑ์ X ขายได้ 9 ดอลลาร์ มีกำมะถันได้ไม่เกิน 2.5 เปอร์เซ็นต์ และมี demand ไม่เกิน 100 บาร์เรล ผลิตภัณฑ์ Y ขายได้ 15 ดอลลาร์ มีกำมะถันได้ไม่เกิน 1.5 เปอร์เซ็นต์ และไม่เกิน 200 บาร์เรล"
+    },
+    {
+     "s": 35.145,
+     "e": 44.342,
+     "en": "Note that B, at 16 dollars, costs more than either product sells for. It is worth buying only to lower the sulfur of a blend.",
+     "th": "สังเกตว่า B ซึ่งราคา 16 ดอลลาร์ มีราคาสูงกว่าราคาขายของผลิตภัณฑ์ทั้งสองชนิด จึงคุ้มที่จะซื้อเพียงเพื่อลดกำมะถันของสารผสมเท่านั้น"
+    },
+    {
+     "s": 44.342,
+     "e": 48.814,
+     "en": "Pooling problems appear wherever streams share tanks or pipes before blending:",
+     "th": "pooling problem พบได้ทุกที่ที่สายการไหลใช้ถังหรือท่อร่วมกันก่อนการผสม เช่น"
+    },
+    {
+     "s": 48.814,
+     "e": 56.513,
+     "en": "crude and product blending in refineries, wastewater networks with shared treatment units, and natural gas networks with quality limits.",
+     "th": "การผสมน้ำมันดิบและผลิตภัณฑ์ในโรงกลั่น เครือข่ายน้ำเสียที่ใช้หน่วยบำบัดร่วมกัน และเครือข่ายก๊าซธรรมชาติที่มีข้อจำกัดด้านคุณภาพ"
+    },
+    {
+     "s": 56.513,
+     "e": 69.025,
+     "en": "The trouble is the pool's sulfur content, q. It is a variable, and it multiplies the flows out of the pool, in the sulfur balance of the pool and in both product specifications.",
+     "th": "ปัญหาอยู่ที่ปริมาณกำมะถันของ pool คือ q ซึ่งเป็นตัวแปร และคูณกับอัตราการไหลที่ออกจาก pool ทั้งในสมดุลกำมะถันของ pool และใน specification ของผลิตภัณฑ์ทั้งสอง พจน์"
+    },
+    {
+     "s": 69.025,
+     "e": 72.75,
+     "en": "Three bilinear terms make the feasible set nonconvex.",
+     "th": "bilinear สามพจน์นี้ทำให้เซตที่เป็นไปได้เป็น nonconvex"
+    },
+    {
+     "s": 72.75,
+     "e": 83.147,
+     "en": "The model on the slide is the P-formulation, with the flows and the pool quality as variables. Other formulations use the fraction of each feed in the pool instead;",
+     "th": "โมเดลบนสไลด์คือ P-formulation ซึ่งมีอัตราการไหลและคุณภาพของ pool เป็นตัวแปร รูปแบบอื่นใช้สัดส่วนของสารป้อนแต่ละตัวใน pool แทน"
+    },
+    {
+     "s": 83.147,
+     "e": 86.487,
+     "en": "they have the same optimum but different relaxations.",
+     "th": "ซึ่งมีค่าที่ดีที่สุดเท่ากันแต่มี relaxation ต่างกัน"
+    },
+    {
+     "s": 86.487,
+     "e": 95.566,
+     "en": "Without the pool, with A and B blended separately into each product, every sulfur row would be linear in the feed flows, and the problem would be an LP.",
+     "th": "ถ้าไม่มี pool คือผสม A และ B แยกกันเข้าไปในผลิตภัณฑ์แต่ละตัว แถวของกำมะถันทุกแถวจะเป็นเชิงเส้นในอัตราการไหลของสารป้อน และปัญหาจะเป็น LP"
+    },
+    {
+     "s": 95.566,
+     "e": 103.497,
+     "en": "Haverly studied recursion, the practice in refinery planning of guessing q, solving an LP, and updating q from the answer.",
+     "th": "Haverly ศึกษาวิธี recursion ซึ่งเป็นแนวปฏิบัติในการวางแผนโรงกลั่น คือเดาค่า q แก้ LP แล้วปรับ q จากคำตอบ"
+    },
+    {
+     "s": 103.497,
+     "e": 107.882,
+     "en": "He showed that it ended at different answers from different guesses.",
+     "th": "เขาแสดงว่าวิธีนี้จบที่คำตอบต่างกันเมื่อเริ่มจากค่าเดาต่างกัน"
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "file": "audio/slide-15.mp3",
+   "duration": 92.136,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 9.634,
+     "en": "Haverly's recursion contains a useful idea. Fix the pool quality q, and every row becomes linear in the flows: one LP per q.",
+     "th": "วิธี recursion ของ Haverly มีแนวคิดที่มีประโยชน์ซ่อนอยู่ ถ้ากำหนดคุณภาพของ pool คือ q ให้คงที่ ทุกแถวจะเป็นเชิงเส้นในอัตราการไหล คือ LP หนึ่งปัญหาต่อหนึ่งค่า q"
+    },
+    {
+     "s": 9.634,
+     "e": 17.342,
+     "en": "Move the slider. The curve V of q is the best profit for each pool quality, computed by 201 LPs.",
+     "th": "ลองเลื่อนแถบเลื่อน เส้นโค้ง V(q) คือกำไรที่ดีที่สุดสำหรับคุณภาพของ pool แต่ละค่า ซึ่งคำนวณจาก LP 201 ปัญหา"
+    },
+    {
+     "s": 17.342,
+     "e": 27.801,
+     "en": "It has two peaks. At q equal to 1, the pool holds only B, all of it goes to Y, blended one to one with C, and the profit is 400 dollars.",
+     "th": "เส้นโค้งมีสองยอด ที่ q เท่ากับ 1 pool มีเพียง B ซึ่งไปยัง Y ทั้งหมด ผสมกับ C ในอัตราส่วนหนึ่งต่อหนึ่ง และได้กำไร 400"
+    },
+    {
+     "s": 27.801,
+     "e": 38.184,
+     "en": "At q equal to 3, the pool holds only A, which goes to X with C, and the profit is 100. In between there is a stretch where nothing pays.",
+     "th": "ดอลลาร์ ที่ q เท่ากับ 3 pool มีเพียง A ซึ่งไปยัง X ร่วมกับ C และได้กำไร 100 ดอลลาร์ ระหว่างสองยอดมีช่วงที่ไม่มีอะไรทำกำไรได้"
+    },
+    {
+     "s": 38.184,
+     "e": 51.342,
+     "en": "Look at q equal to 2, where nothing pays. A pool at 2 percent sulfur is half A and half B, and costs 11 dollars a barrel, more than X sells for; and it has too much sulfur for Y, as C does.",
+     "th": "ลองดูที่ q เท่ากับ 2 ซึ่งไม่มีอะไรทำกำไรได้ pool ที่มีกำมะถัน 2 เปอร์เซ็นต์ประกอบด้วย A ครึ่งหนึ่งและ B ครึ่งหนึ่ง มีต้นทุน 11 ดอลลาร์ต่อบาร์เรล ซึ่งมากกว่าราคาขายของ X และมีกำมะถันมากเกินไปสำหรับ Y เช่นเดียวกับ C"
+    },
+    {
+     "s": 51.342,
+     "e": 62.592,
+     "en": "Two peaks in V of q are the nonconvexity made visible. A method that moves q locally, like recursion or a local NLP solver, climbs whichever peak is nearer.",
+     "th": "ยอดสองยอดใน V(q) คือความเป็น nonconvex ที่มองเห็นได้ วิธีที่เปลี่ยน q ทีละน้อย เช่น recursion หรือ local NLP solver จะปีนขึ้นยอดที่อยู่ใกล้กว่า"
+    },
+    {
+     "s": 62.592,
+     "e": 72.544,
+     "en": "Because a single variable carries all the nonconvexity, scanning it finds the global optimum: 400 dollars at q equal to 1. That works for one pool.",
+     "th": "เนื่องจากตัวแปรเดียวรับความเป็น nonconvex ไว้ทั้งหมด การไล่ค่าตัวแปรนี้จึงหาค่าที่ดีที่สุดแบบ global ได้ คือ 400 ดอลลาร์ที่ q เท่ากับ 1 วิธีนี้ใช้ได้กับ"
+    },
+    {
+     "s": 72.544,
+     "e": 81.421,
+     "en": "With many pools, each with its own quality, a grid over all of them grows exponentially, and we need the methods of the next slides.",
+     "th": "pool เดียว เมื่อมีหลาย pool ที่แต่ละ pool มีคุณภาพของตัวเอง ตารางของทุกค่าจะโตแบบเอกซ์โพเนนเชียล และเราต้องใช้วิธีในหน้าถัดไป"
+    },
+    {
+     "s": 81.421,
+     "e": 88.408,
+     "en": "The scan uses 201 LPs, one for every hundredth of a percent of sulfur; each takes a few milliseconds.",
+     "th": "การไล่ค่าใช้ LP 201 ปัญหา หนึ่งปัญหาต่อกำมะถันทุก ๆ 0.01 เปอร์เซ็นต์ และแต่ละปัญหาใช้เวลาไม่กี่มิลลิวินาที"
+    },
+    {
+     "s": 88.408,
+     "e": 92.066,
+     "en": "Press D to see five of the LPs in Python.",
+     "th": "กด D เพื่อดู LP ห้าปัญหาใน Python"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "file": "audio/slide-16.mp3",
+   "duration": 81.888,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 10.342,
+     "en": "Now the local approach. SLSQP solves the full problem, all seven variables free, from 100 random starting points within the bounds.",
+     "th": "ทีนี้มาดูวิธีแบบเฉพาะที่ SLSQP แก้ปัญหาเต็มรูปแบบ โดยตัวแปรทั้งเจ็ดตัวเป็นอิสระ เริ่มจากจุดสุ่ม 100 จุดภายในขอบเขต"
+    },
+    {
+     "s": 10.342,
+     "e": 24.026,
+     "en": "Ninety-seven runs end at 400 dollars; three end at 100. Every run reports success, and every answer is a KKT point. Nothing in the solver's output says which of the two is global.",
+     "th": "การรัน 97 ครั้งจบที่ 400 ดอลลาร์ และอีก 3 ครั้งจบที่ 100 ทุกการรันรายงานว่าสำเร็จ และทุกคำตอบเป็นจุด KKT ไม่มีอะไรในผลลัพธ์ของ solver ที่บอกว่าจุดใดในสองจุดนี้เป็นค่า global"
+    },
+    {
+     "s": 24.026,
+     "e": 34.197,
+     "en": "The chart plots the final profit against the starting q. The three runs that end at 100 all started with a high q, as Haverly found for recursion.",
+     "th": "กราฟแสดงกำไรสุดท้ายเทียบกับค่า q ที่จุดเริ่มต้น การรันสามครั้งที่จบที่ 100 ล้วนเริ่มด้วยค่า q สูง ตรงกับที่ Haverly พบสำหรับ recursion"
+    },
+    {
+     "s": 34.197,
+     "e": 43.671,
+     "en": "The counts depend on how the starts are drawn. Uniform starts within the bounds are a choice, and a different sampling would give a different fraction.",
+     "th": "จำนวนเหล่านี้ขึ้นกับวิธีสุ่มจุดเริ่มต้น การสุ่มแบบสม่ำเสมอภายในขอบเขตเป็นทางเลือกหนึ่ง และการสุ่มแบบอื่นจะให้สัดส่วนที่ต่างไป"
+    },
+    {
+     "s": 43.671,
+     "e": 57.8,
+     "en": "With p equal to 0.97, two starts miss the global optimum with probability less than one in a thousand. On this instance multistart works well. But you only know p after you know the answer.",
+     "th": "เมื่อ p เท่ากับ 0.97 การเริ่มสองครั้งจะพลาดค่า global ด้วยความน่าจะเป็นน้อยกว่าหนึ่งในพัน ในกรณีนี้ multistart ใช้ได้ดี แต่เราจะรู้ค่า p ก็ต่อเมื่อรู้คำตอบแล้ว ในกรณีอื่น"
+    },
+    {
+     "s": 57.8,
+     "e": 62.039,
+     "en": "On other instances p is small, and the lab gives you one.",
+     "th": "p อาจมีค่าน้อย และ lab มีกรณีแบบนั้นให้คุณลอง"
+    },
+    {
+     "s": 62.039,
+     "e": 68.368,
+     "en": "In the lab you will meet a less kind instance, where the multistart reaches the best answer far less often.",
+     "th": "ใน lab คุณจะพบกรณีที่ยากกว่านี้ ซึ่ง multistart ไปถึงคำตอบที่ดีที่สุดได้น้อยครั้งกว่ามาก"
+    },
+    {
+     "s": 68.368,
+     "e": 77.934,
+     "en": "Each run takes a fraction of a second, so the cost of a multistart is low here. The problem is not its cost but that it cannot prove anything.",
+     "th": "การรันแต่ละครั้งใช้เวลาไม่ถึงวินาที ต้นทุนของ multistart ในที่นี้จึงต่ำ ปัญหาไม่ได้อยู่ที่ต้นทุน แต่อยู่ที่มันพิสูจน์อะไรไม่ได้"
+    },
+    {
+     "s": 77.934,
+     "e": 81.816,
+     "en": "Press D to run the first 20 starts in your browser.",
+     "th": "กด D เพื่อรันจุดเริ่มต้น 20 จุดแรกในเบราว์เซอร์ของคุณ"
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "file": "audio/slide-17.mp3",
+   "duration": 105.456,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 11.868,
+     "en": "To prove an answer we need an upper bound on the profit, valid for every feasible plan. The standard tool for a bilinear term is the McCormick envelope, from 1976.",
+     "th": "การพิสูจน์คำตอบต้องมีขอบเขตบนของกำไรที่เป็นจริงสำหรับทุกแผนที่เป็นไปได้ เครื่องมือมาตรฐานสำหรับพจน์ bilinear คือ McCormick envelope จากปี 1976"
+    },
+    {
+     "s": 11.868,
+     "e": 21.585,
+     "en": "Replace each product q times P by a new variable w, and add four linear rows built from the bounds on q and P: two from below and two from above.",
+     "th": "แทนผลคูณ q คูณ P แต่ละตัวด้วยตัวแปรใหม่ w แล้วเพิ่มแถวเชิงเส้นสี่แถวที่สร้างจากขอบเขตของ q และ P คือสองแถวจากด้านล่างและสองแถวจากด้านบน แถวเหล่านี้คือ"
+    },
+    {
+     "s": 21.585,
+     "e": 26.776,
+     "en": "These are the tightest convex and concave envelopes of q times P over the box.",
+     "th": "convex envelope และ concave envelope ที่แน่นที่สุดของ q คูณ P บนกล่องนั้น"
+    },
+    {
+     "s": 26.776,
+     "e": 39.829,
+     "en": "The result is an LP that allows everything the original problem allows, and more. Its optimum is therefore an upper bound: 500 dollars for Haverly's problem, against a true optimum of 400.",
+     "th": "ผลลัพธ์คือ LP ที่ยอมให้ทุกอย่างที่ปัญหาเดิมยอม และยอมมากกว่านั้น ค่าเหมาะสมที่สุดของมันจึงเป็นขอบเขตบน คือ 500 ดอลลาร์สำหรับปัญหาของ Haverly เทียบกับค่าที่ดีที่สุดจริง 400"
+    },
+    {
+     "s": 39.829,
+     "e": 50.533,
+     "en": "The chart shows the envelope at a fixed q. The teal line is the true w equal to q times P; the sand band is everything the relaxation allows. Move P:",
+     "th": "กราฟแสดง envelope ที่ q คงที่ เส้นสีเขียวหัวเป็ดคือค่าจริง w เท่ากับ q คูณ P ส่วนแถบสีทรายคือทุกค่าที่ relaxation ยอมให้ ลองเลื่อน"
+    },
+    {
+     "s": 50.533,
+     "e": 55.671,
+     "en": "the envelope is exact at the ends of the box, and loosest in the middle.",
+     "th": "P จะเห็นว่า envelope แม่นยำที่ปลายของกล่อง และหลวมที่สุดตรงกลาง"
+    },
+    {
+     "s": 55.671,
+     "e": 65.961,
+     "en": "The widest gap is q upper minus q lower, times P upper, over four: here 2 times 100 over 4, which is 50, at q equal to 2 and P equal to 50.",
+     "th": "ช่องว่างที่กว้างที่สุดเท่ากับ q ขอบบนลบ q ขอบล่าง คูณ P ขอบบน หารด้วยสี่ ในที่นี้คือ 2 คูณ 100 หารด้วย 4 เท่ากับ 50 ที่ q เท่ากับ 2 และ P เท่ากับ 50"
+    },
+    {
+     "s": 65.961,
+     "e": 77.735,
+     "en": "Now press the buttons to shrink the range of q to one half of the box. The band narrows, and at the edge of the new box it closes completely. That is what branching buys:",
+     "th": "ทีนี้กดปุ่มเพื่อลดช่วงของ q ให้เหลือครึ่งหนึ่งของกล่อง แถบจะแคบลง และที่ขอบของกล่องใหม่แถบจะปิดสนิท นี่คือสิ่งที่การแตกกิ่งให้ คือ"
+    },
+    {
+     "s": 77.735,
+     "e": 80.145,
+     "en": "a tighter relaxation on each piece.",
+     "th": "relaxation ที่แน่นขึ้นในแต่ละส่วน"
+    },
+    {
+     "s": 80.145,
+     "e": 87.755,
+     "en": "With many bilinear terms, each gets its own envelope, and the relaxation is only as tight as the bounds on each factor.",
+     "th": "เมื่อมีพจน์ bilinear หลายพจน์ แต่ละพจน์มี envelope ของตัวเอง และ relaxation จะแน่นได้เพียงเท่าที่ขอบเขตของตัวประกอบแต่ละตัวยอมให้"
+    },
+    {
+     "s": 87.755,
+     "e": 92.829,
+     "en": "That is why bounds on flows and qualities taken from the physics matter so much.",
+     "th": "นี่คือเหตุที่ขอบเขตของอัตราการไหลและคุณภาพที่ได้จากหลักทางกายภาพมีความสำคัญมาก"
+    },
+    {
+     "s": 92.829,
+     "e": 105.382,
+     "en": "Note how the relaxation is built: one new variable and four rows for every bilinear term. That recipe is automatic, which is why global solvers can apply it to any factorable model.",
+     "th": "สังเกตวิธีสร้าง relaxation คือเพิ่มตัวแปรใหม่หนึ่งตัวและแถวสี่แถวต่อพจน์ bilinear หนึ่งพจน์ สูตรนี้ทำได้โดยอัตโนมัติ global solver จึงใช้มันกับโมเดลแบบ factorable ใดก็ได้"
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "file": "audio/slide-18.mp3",
+   "duration": 96.144,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 10.987,
+     "en": "Spatial branch and bound combines the two ideas. Branch on the variable that causes the nonconvexity, here q, and bound each piece with its McCormick LP.",
+     "th": "spatial branch and bound รวมสองแนวคิดเข้าด้วยกัน คือแตกกิ่งบนตัวแปรที่ทำให้เกิดความเป็น nonconvex ในที่นี้คือ q แล้วหาขอบเขตของแต่ละส่วนด้วย McCormick LP"
+    },
+    {
+     "s": 10.987,
+     "e": 26.584,
+     "en": "Press Next node. Node one is the whole range of q, from 1 to 3. Its relaxation gives an upper bound of 500. Fixing q at the ends and at the relaxed q gives real plans; the best earns 400.",
+     "th": "กด Next node โหนดแรกคือช่วงทั้งหมดของ q จาก 1 ถึง 3 relaxation ของมันให้ขอบเขตบน 500 การกำหนด q ไว้ที่ปลายช่วงและที่ค่า q จาก relaxation ให้แผนจริง ซึ่งแผนที่ดีที่สุดได้ 400 ช่องว่างคือ"
+    },
+    {
+     "s": 26.584,
+     "e": 32.64,
+     "en": "The gap is 100, so we branch at q equal to 2, where the relaxation put q.",
+     "th": "100 เราจึงแตกกิ่งที่ q เท่ากับ 2 ซึ่งเป็นค่าที่ relaxation เลือก"
+    },
+    {
+     "s": 32.64,
+     "e": 46.776,
+     "en": "Node two covers q from 1 to 2. Its bound is 400, no better than the plan we have, so it is pruned. Node three covers q from 2 to 3. Its bound is 100, also pruned.",
+     "th": "โหนดที่สองครอบคลุม q จาก 1 ถึง 2 ขอบเขตของมันคือ 400 ซึ่งไม่ดีกว่าแผนที่มีอยู่ จึงถูกตัดทิ้ง โหนดที่สามครอบคลุม q จาก 2 ถึง 3 ขอบเขตของมันคือ 100 ก็ถูกตัดทิ้งเช่นกัน"
+    },
+    {
+     "s": 46.776,
+     "e": 59.921,
+     "en": "Every interval is pruned after three nodes, so 400 is proven optimal, with a gap of zero. Notice that the grey curve V of q is drawn only for reference: the method never needed it.",
+     "th": "เมื่อครบสามโหนด ทุกช่วงถูกตัดทิ้งหมด จึงพิสูจน์ได้ว่า 400 เป็นค่าที่ดีที่สุด โดยมีช่องว่างเป็นศูนย์ สังเกตว่าเส้นโค้งสีเทา V(q) วาดไว้เพื่ออ้างอิงเท่านั้น วิธีนี้ไม่ได้ใช้มันเลย"
+    },
+    {
+     "s": 59.921,
+     "e": 61.882,
+     "en": "It used bounds, not a scan.",
+     "th": "แต่ใช้ขอบเขตแทนการไล่ค่า"
+    },
+    {
+     "s": 61.882,
+     "e": 72.579,
+     "en": "Branching where the relaxation puts q is a common rule, because the relaxed answer then lies on the boundary of both children, where their envelopes are exact, so it cannot reappear.",
+     "th": "การแตกกิ่งตรงค่า q ที่ relaxation เลือกเป็นกฎที่ใช้กันทั่วไป เพราะคำตอบของ relaxation จะอยู่บนขอบของกิ่งย่อยทั้งสอง ซึ่ง envelope แม่นยำพอดี คำตอบนั้นจึงไม่กลับมาอีก"
+    },
+    {
+     "s": 72.579,
+     "e": 78.421,
+     "en": "The proof did not depend on any starting point, which is the main difference from a multistart.",
+     "th": "การพิสูจน์นี้ไม่ได้ขึ้นกับจุดเริ่มต้นใดเลย ซึ่งเป็นความแตกต่างหลักจาก multistart"
+    },
+    {
+     "s": 78.421,
+     "e": 87.146,
+     "en": "This is exactly the one-variable branch and bound of Session 5, with an LP relaxation in place of a hand-made underestimator.",
+     "th": "นี่คือ branch and bound แบบตัวแปรเดียวของคาบที่ 5 โดยใช้ LP relaxation แทนฟังก์ชันประมาณต่ำที่สร้างด้วยมือ"
+    },
+    {
+     "s": 87.146,
+     "e": 96.079,
+     "en": "Real solvers branch on many variables and add cuts, but the logic is the same. Press D for the relaxation and the tree in Python.",
+     "th": "solver จริงแตกกิ่งบนตัวแปรหลายตัวและเพิ่ม cut แต่ตรรกะเหมือนกัน กด D เพื่อดู relaxation และต้นไม้ใน Python"
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "file": "audio/slide-19.mp3",
+   "duration": 102.528,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.474,
+     "en": "Here is what a real global solver reports on the same problem. The table is taken from SCIP's log.",
+     "th": "นี่คือสิ่งที่ global solver จริงรายงานสำหรับปัญหาเดียวกัน ตารางนำมาจาก log ของ SCIP"
+    },
+    {
+     "s": 7.474,
+     "e": 19.487,
+     "en": "The dual bound is an upper bound on the profit from SCIP's relaxation and cuts. The primal bound is the best plan found so far. The gap is the distance between them.",
+     "th": "dual bound คือขอบเขตบนของกำไรจาก relaxation และ cut ของ SCIP ส่วน primal bound คือแผนที่ดีที่สุดที่พบจนถึงขณะนั้น และ gap คือระยะห่างระหว่างสองค่านี้"
+    },
+    {
+     "s": 19.487,
+     "e": 36.163,
+     "en": "The first relaxation gives 550. A local NLP heuristic then finds the plan worth 400. Cuts at the root lower the bound to 475, then 470, then 400, and the gap closes without any branching:",
+     "th": "relaxation แรกให้ 550 จากนั้น heuristic แบบ local NLP พบแผนที่มีมูลค่า 400 การเพิ่ม cut ที่โหนดรากลดขอบเขตลงเป็น 475 จากนั้น 470 และ 400 แล้วช่องว่างก็ปิดลงโดยไม่ต้องแตกกิ่ง"
+    },
+    {
+     "s": 36.163,
+     "e": 36.961,
+     "en": "one node.",
+     "th": "ใช้เพียงหนึ่งโหนด"
+    },
+    {
+     "s": 36.961,
+     "e": 46.048,
+     "en": "Its first relaxation, 550, is looser than our plain McCormick bound of 500, because SCIP builds it from its own reformulation of the model;",
+     "th": "relaxation แรกของมันคือ 550 ซึ่งหลวมกว่าขอบเขต McCormick แบบธรรมดาของเราที่ 500 เพราะ SCIP สร้างมันจากการเปลี่ยนรูปแบบของโมเดลเอง"
+    },
+    {
+     "s": 46.048,
+     "e": 49.618,
+     "en": "its cuts then close the difference within a few rounds.",
+     "th": "จากนั้น cut ของมันก็ปิดส่วนต่างได้ภายในไม่กี่รอบ"
+    },
+    {
+     "s": 49.618,
+     "e": 60.026,
+     "en": "Global solvers use local solvers too: a local NLP heuristic found the plan worth 400 early, and the relaxation and cuts proved that nothing better exists.",
+     "th": "global solver ก็ใช้ local solver ด้วย heuristic แบบ local NLP พบแผนที่มีมูลค่า 400 ตั้งแต่ต้น แล้ว relaxation กับ cut ก็พิสูจน์ว่าไม่มีแผนใดดีกว่า"
+    },
+    {
+     "s": 60.026,
+     "e": 66.165,
+     "en": "Open-source choices include SCIP, which you will use from Python in the lab, and Couenne.",
+     "th": "ตัวเลือกแบบโอเพนซอร์สได้แก่ SCIP ซึ่งคุณจะใช้ผ่าน Python ใน lab และ Couenne"
+    },
+    {
+     "s": 66.165,
+     "e": 73.737,
+     "en": "Commercial ones include BARON, ANTIGONE and Gurobi, which has handled nonconvex quadratic rows since version 9.",
+     "th": "ตัวเลือกเชิงพาณิชย์ได้แก่ BARON, ANTIGONE และ Gurobi ซึ่งรองรับแถวกำลังสองแบบ nonconvex ตั้งแต่รุ่น 9"
+    },
+    {
+     "s": 73.737,
+     "e": 82.592,
+     "en": "MINLPLib, a public library of test problems, lists the same optimum for this instance, 400, from six global solvers.",
+     "th": "MINLPLib ซึ่งเป็นคลังปัญหาทดสอบสาธารณะ ระบุค่าที่ดีที่สุดเดียวกันสำหรับปัญหานี้ คือ 400 จาก global solver หกตัว"
+    },
+    {
+     "s": 82.592,
+     "e": 88.868,
+     "en": "The dual bound at the end is what you would quote as evidence; the rows before it show how that bound was earned.",
+     "th": "dual bound ตอนท้ายคือสิ่งที่คุณจะอ้างเป็นหลักฐาน ส่วนแถวก่อนหน้าแสดงว่าขอบเขตนั้นได้มาอย่างไร"
+    },
+    {
+     "s": 88.868,
+     "e": 102.447,
+     "en": "Two habits follow. Report the status, both bounds and the gap, not only the objective. And give every variable finite bounds: with no finite box there is no envelope, and no proof.",
+     "th": "จากตรงนี้มีนิสัยที่ควรมีสองข้อ ข้อแรก รายงานสถานะ ขอบเขตทั้งสอง และ gap ไม่ใช่เพียงค่าฟังก์ชันเป้าหมาย ข้อสอง กำหนดขอบเขตที่จำกัดให้ตัวแปรทุกตัว เพราะถ้าไม่มีกล่องที่จำกัดก็ไม่มี envelope และไม่มีการพิสูจน์"
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "file": "audio/slide-20.mp3",
+   "duration": 38.232,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.063,
+     "en": "Second check: nonconvexity and certificates.",
+     "th": "แบบตรวจครั้งที่สอง เรื่องความเป็น nonconvex และใบรับรอง"
+    },
+    {
+     "s": 4.063,
+     "e": 13.42,
+     "en": "Explain why the pool makes the problem nonconvex, judge what fifty identical multistart answers prove, find the widest gap of a McCormick envelope,",
+     "th": "อธิบายว่าทำไม pool ทำให้ปัญหาเป็น nonconvex ตัดสินว่าคำตอบจาก multistart ที่เหมือนกันห้าสิบครั้งพิสูจน์อะไรได้ หาช่องว่างที่กว้างที่สุดของ McCormick"
+    },
+    {
+     "s": 13.42,
+     "e": 17.592,
+     "en": "and interpret a primal bound of 980 against a dual bound of 1,000.",
+     "th": "envelope และตีความ primal bound 980 เทียบกับ dual bound 1,000"
+    },
+    {
+     "s": 17.592,
+     "e": 26.316,
+     "en": "For question three, use the formula on the McCormick slide; for question four, remember which bound comes from a plan and which from a relaxation.",
+     "th": "สำหรับข้อสาม ให้ใช้สูตรในหน้า McCormick สำหรับข้อสี่ ให้จำว่าขอบเขตใดมาจากแผนจริงและขอบเขตใดมาจาก relaxation"
+    },
+    {
+     "s": 26.316,
+     "e": 31.763,
+     "en": "For question two, think about what a multistart samples, and what it cannot see.",
+     "th": "สำหรับข้อสอง ให้คิดว่า multistart สุ่มอะไร และมองไม่เห็นอะไร"
+    },
+    {
+     "s": 31.763,
+     "e": 38.171,
+     "en": "Take five minutes. Pause the narration now, and press Show answers when you are done.",
+     "th": "ใช้เวลาห้านาที หยุดเสียงบรรยายตอนนี้ และกด Show answers เมื่อทำเสร็จ"
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "file": "audio/slide-21.mp3",
+   "duration": 15.216,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.432,
+     "en": "Take a ten-minute break.",
+     "th": "พักสิบนาที"
+    },
+    {
+     "s": 2.432,
+     "e": 10.237,
+     "en": "After the break, your card again. Think of a second objective for it, and whether its front would be convex.",
+     "th": "หลังพัก เรากลับมาที่การ์ดของคุณอีกครั้ง ลองคิดเป้าหมายที่สองให้การ์ด และคิดว่าแนวหน้าของมันจะเป็น convex หรือไม่"
+    },
+    {
+     "s": 10.237,
+     "e": 15.158,
+     "en": "If you study on your own, this is a good point to stop and come back later.",
+     "th": "ถ้าเรียนเอง จุดนี้เหมาะที่จะหยุดพักแล้วกลับมาเรียนต่อภายหลัง"
+    }
+   ]
+  },
+  {
+   "n": 22,
+   "file": "audio/slide-22.mp3",
+   "duration": 55.896,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.803,
+     "en": "Activity 2: your card with two objectives. Work in pairs.",
+     "th": "กิจกรรมที่ 2 การ์ดของคุณที่มีสองเป้าหมาย ทำเป็นคู่"
+    },
+    {
+     "s": 5.803,
+     "e": 16.395,
+     "en": "Name a second objective that conflicts with the first, with its units. Write the two rows of a payoff table, roughly: the plan that is best for each objective alone.",
+     "th": "ระบุเป้าหมายที่สองที่ขัดแย้งกับเป้าหมายแรก พร้อมหน่วย เขียนสองแถวของตาราง payoff อย่างคร่าว ๆ คือแผนที่ดีที่สุดสำหรับแต่ละเป้าหมายแยกกัน"
+    },
+    {
+     "s": 16.395,
+     "e": 21.114,
+     "en": "Then choose a method to trace the front, weights or caps, and give a reason.",
+     "th": "จากนั้นเลือกวิธีวาดแนวหน้า คือการถ่วงน้ำหนักหรือการกำหนดเพดาน พร้อมเหตุผล"
+    },
+    {
+     "s": 21.114,
+     "e": 28.776,
+     "en": "Finally, find one source of nonconvexity in your card's model, and say whether a local solver could stop at the wrong answer.",
+     "th": "สุดท้าย หาแหล่งของความเป็น nonconvex หนึ่งแหล่งในโมเดลของการ์ด และบอกว่า local solver อาจหยุดที่คำตอบที่ผิดได้หรือไม่"
+    },
+    {
+     "s": 28.776,
+     "e": 36.855,
+     "en": "If your card has no obvious second objective, a risk measure from Session 12, or a safety margin, is often a natural one.",
+     "th": "ถ้าการ์ดของคุณไม่มีเป้าหมายที่สองที่ชัดเจน มาตรวัดความเสี่ยงจากคาบที่ 12 หรือระยะเผื่อด้านความปลอดภัยมักเป็นตัวเลือกที่เหมาะสม"
+    },
+    {
+     "s": 36.855,
+     "e": 45.895,
+     "en": "Your partner checks that the two objectives really conflict. If one plan is best for both, there is no front, only an answer.",
+     "th": "เพื่อนของคุณตรวจว่าเป้าหมายทั้งสองขัดแย้งกันจริง ถ้ามีแผนหนึ่งที่ดีที่สุดสำหรับทั้งสองเป้าหมาย ก็ไม่มีแนวหน้า มีเพียงคำตอบเดียว"
+    },
+    {
+     "s": 45.895,
+     "e": 55.842,
+     "en": "Pause the narration now; take ten minutes. Keep your answers: part three asks whether a price on your second objective would find every point of your front.",
+     "th": "หยุดเสียงบรรยายตอนนี้ ใช้เวลาสิบนาที เก็บคำตอบไว้ เพราะส่วนที่สามจะถามว่าราคาบนเป้าหมายที่สองของคุณจะหาทุกจุดบนแนวหน้าได้หรือไม่"
+    }
+   ]
+  },
+  {
+   "n": 23,
+   "file": "audio/slide-23.mp3",
+   "duration": 123.096,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 9.132,
+     "en": "Part three brings the two topics together. Discrete decisions make fronts nonconvex, and that changes which methods can find them.",
+     "th": "ส่วนที่สามนำสองหัวข้อมารวมกัน การตัดสินใจแบบไม่ต่อเนื่องทำให้แนวหน้าเป็น nonconvex และสิ่งนี้เปลี่ยนว่าวิธีใดจะหาแนวหน้าได้"
+    },
+    {
+     "s": 9.132,
+     "e": 21.289,
+     "en": "Five heat-recovery projects can be built in any combination: 32 plans. The two objectives are the investment, to be minimized, and the energy saved per year, to be maximized.",
+     "th": "โครงการนำความร้อนกลับมาใช้ห้าโครงการสร้างได้ในทุกรูปแบบของการรวมกัน คือ 32 แผน เป้าหมายสองตัวคือเงินลงทุนที่ต้องการให้น้อยที่สุด และพลังงานที่ประหยัดได้ต่อปีที่ต้องการให้มากที่สุด"
+    },
+    {
+     "s": 21.289,
+     "e": 30.997,
+     "en": "Sixteen of the 32 plans are Pareto optimal. Only six of them lie on the upper convex hull, the dashed line; they are the supported points.",
+     "th": "แผน 16 แผนจาก 32 แผนเป็น Pareto optimal มีเพียงหกแผนที่อยู่บน convex hull ด้านบน ซึ่งคือเส้นประ เรียกว่าจุด supported"
+    },
+    {
+     "s": 30.997,
+     "e": 37.632,
+     "en": "The other ten, the open circles, are Pareto optimal but lie below the hull: unsupported points.",
+     "th": "อีกสิบแผนซึ่งเป็นวงกลมกลวงเป็น Pareto optimal แต่อยู่ใต้ hull เรียกว่าจุด unsupported"
+    },
+    {
+     "s": 37.632,
+     "e": 47.092,
+     "en": "The hull's edges correspond to prices of 130 to 214 dollars per megawatt-hour per year, the capital value placed on saving energy.",
+     "th": "ขอบของ hull สอดคล้องกับราคา 130 ถึง 214 ดอลลาร์ต่อเมกะวัตต์ชั่วโมงต่อปี ซึ่งคือมูลค่าเงินทุนที่ให้กับการประหยัดพลังงาน"
+    },
+    {
+     "s": 47.092,
+     "e": 56.966,
+     "en": "Choose Price on energy and move the slider. A price on energy is a weighted sum: maximize the price times the energy saved, minus the investment.",
+     "th": "เลือก Price on energy แล้วเลื่อนแถบเลื่อน ราคาของพลังงานคือผลรวมถ่วงน้ำหนัก คือหาค่าสูงสุดของราคาคูณพลังงานที่ประหยัดได้ลบเงินลงทุน"
+    },
+    {
+     "s": 56.966,
+     "e": 66.908,
+     "en": "As the price rises from 100 to 250 dollars per megawatt-hour per year, the choice jumps along the six hull points and never stops at the other ten.",
+     "th": "เมื่อราคาเพิ่มจาก 100 ถึง 250 ดอลลาร์ต่อเมกะวัตต์ชั่วโมงต่อปี การเลือกจะกระโดดไปตามจุดทั้งหกบน hull และไม่หยุดที่อีกสิบจุดเลย"
+    },
+    {
+     "s": 66.908,
+     "e": 75.261,
+     "en": "Now choose Budget cap. A cap on investment is the epsilon-constraint method, here a zero-one knapsack solved by MILP.",
+     "th": "ทีนี้เลือก Budget cap การกำหนดเพดานเงินลงทุนคือวิธี ε-constraint ซึ่งในที่นี้เป็นปัญหา knapsack แบบศูนย์หนึ่งที่แก้ด้วย"
+    },
+    {
+     "s": 75.261,
+     "e": 82.835,
+     "en": "With a budget of 200 thousand dollars, the best plan saves 1,300 megawatt-hours a year. It is unsupported:",
+     "th": "MILP เมื่อมีงบประมาณ 200,000 ดอลลาร์ แผนที่ดีที่สุดประหยัดได้ 1,300 เมกะวัตต์ชั่วโมงต่อปี แผนนี้เป็น"
+    },
+    {
+     "s": 82.835,
+     "e": 90.197,
+     "en": "no price would ever choose it, because it lies below the line from the empty plan to the pinch retrofit.",
+     "th": "unsupported คือไม่มีราคาใดเลือกมันเลย เพราะมันอยู่ใต้เส้นที่ลากจากแผนว่างเปล่าไปยังการปรับปรุงแบบ pinch"
+    },
+    {
+     "s": 90.197,
+     "e": 100.7,
+     "en": "Unsupported points are not inferior. The 200 thousand dollar plan saves more energy per dollar than its supported neighbors at that budget would allow.",
+     "th": "จุด unsupported ไม่ได้ด้อยกว่า แผน 200,000 ดอลลาร์ประหยัดพลังงานต่อดอลลาร์ได้มากกว่าที่จุด supported ข้างเคียงจะทำได้ภายใต้งบประมาณนั้น"
+    },
+    {
+     "s": 100.7,
+     "e": 103.947,
+     "en": "If the budget is fixed, it is the right answer.",
+     "th": "ถ้างบประมาณถูกกำหนดไว้แล้ว แผนนี้คือคำตอบที่ถูกต้อง"
+    },
+    {
+     "s": 103.947,
+     "e": 114.224,
+     "en": "So on discrete problems, caps reach every Pareto point, and weights reach only the supported ones. Press D for the enumeration and the knapsack in Python.",
+     "th": "ดังนั้นในปัญหาแบบไม่ต่อเนื่อง การกำหนดเพดานไปถึงทุกจุด Pareto ส่วนการถ่วงน้ำหนักไปถึงได้เฉพาะจุด supported กด D เพื่อดูการแจกแจงทุกกรณีและปัญหา knapsack ใน Python"
+    },
+    {
+     "s": 114.224,
+     "e": 123.026,
+     "en": "The same happens in any problem with discrete choices: unit selection, the number of parallel trains, or equipment that comes in standard sizes.",
+     "th": "สิ่งเดียวกันเกิดขึ้นกับทุกปัญหาที่มีการเลือกแบบไม่ต่อเนื่อง เช่น การเลือกหน่วยการผลิต จำนวนสายการผลิตที่ทำงานขนานกัน หรืออุปกรณ์ที่มีขนาดมาตรฐาน"
+    }
+   ]
+  },
+  {
+   "n": 24,
+   "file": "audio/slide-24.mp3",
+   "duration": 106.848,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 9.566,
+     "en": "Weights are prices, and caps are limits. When do they agree? Lagrangian duality from Session 7 answers that.",
+     "th": "น้ำหนักคือราคา และเพดานคือขีดจำกัด สองแบบนี้ให้ผลตรงกันเมื่อใด duality แบบ Lagrange จากคาบที่ 7 ตอบคำถามนี้"
+    },
+    {
+     "s": 9.566,
+     "e": 19.896,
+     "en": "For any price mu at least zero, the best profit under a cap epsilon is at most mu times epsilon plus the best value of profit minus mu times the second objective.",
+     "th": "สำหรับราคา μ ใด ๆ ที่ไม่น้อยกว่าศูนย์ กำไรที่ดีที่สุดภายใต้เพดาน ε มีค่าไม่เกิน μ คูณ ε บวกค่าที่ดีที่สุดของกำไรลบ μ"
+    },
+    {
+     "s": 19.896,
+     "e": 25.917,
+     "en": "For a convex problem, LPs included, there is a mu that makes this an equality: strong duality.",
+     "th": "คูณเป้าหมายที่สอง สำหรับปัญหา convex รวมทั้ง LP จะมี μ ที่ทำให้เป็นสมการ คือ strong"
+    },
+    {
+     "s": 25.917,
+     "e": 34.092,
+     "en": "Every cap then has a price that gives the same plan, and that price is the slope of the front, the multiplier of the epsilon row.",
+     "th": "duality ทุกเพดานจึงมีราคาที่ให้แผนเดียวกัน และราคานั้นคือความชันของแนวหน้า ซึ่งเป็นตัวคูณของแถว ε"
+    },
+    {
+     "s": 34.092,
+     "e": 44.987,
+     "en": "For nonconvex problems, MILPs included, there can be a duality gap. Some caps give plans that no price reproduces: the unsupported points we just saw.",
+     "th": "สำหรับปัญหา nonconvex รวมทั้ง MILP อาจมี duality gap บางเพดานให้แผนที่ไม่มีราคาใดสร้างซ้ำได้ ซึ่งคือจุด unsupported ที่เราเพิ่งเห็น"
+    },
+    {
+     "s": 44.987,
+     "e": 58.909,
+     "en": "The table shows the LP case. Each vertex of the wastewater front is chosen for a range of prices, and the ranges meet at the slopes, 70, 40, 20, 8.7 and 2.5 dollars per cubic meter.",
+     "th": "ตารางแสดงกรณีของ LP จุดยอดแต่ละจุดของแนวหน้าน้ำเสียถูกเลือกในช่วงของราคาช่วงหนึ่ง และช่วงเหล่านั้นมาบรรจบกันที่ความชัน คือ 70, 40, 20, 8.7 และ 2.5 ดอลลาร์ต่อลูกบาศก์เมตร"
+    },
+    {
+     "s": 58.909,
+     "e": 67.553,
+     "en": "At a price of exactly 20, the whole edge from 100 to 161 cubic meters ties, and the solver returns one end of it.",
+     "th": "ที่ราคา 20 พอดี ทั้งขอบตั้งแต่ 100 ถึง 161 ลูกบาศก์เมตรมีค่าเท่ากัน และ solver คืนปลายข้างใดข้างหนึ่ง"
+    },
+    {
+     "s": 67.553,
+     "e": 77.868,
+     "en": "At a vertex the multiplier is not unique: any value between the slopes on either side is valid, and that interval is exactly the range of prices that selects the vertex.",
+     "th": "ที่จุดยอด ตัวคูณไม่ได้มีค่าเดียว ค่าใด ๆ ระหว่างความชันทั้งสองข้างใช้ได้ทั้งหมด และช่วงนั้นก็คือช่วงของราคาที่เลือกจุดยอดนั้นพอดี"
+    },
+    {
+     "s": 77.868,
+     "e": 87.013,
+     "en": "Environmental policy reads the same way. A CO₂ price and a CO₂ cap select the same plant only where the front is convex.",
+     "th": "นโยบายด้านสิ่งแวดล้อมก็อ่านได้แบบเดียวกัน ราคาของคาร์บอนไดออกไซด์และเพดานของคาร์บอนไดออกไซด์จะเลือกการเดินโรงงานแบบเดียวกันเฉพาะเมื่อแนวหน้าเป็น"
+    },
+    {
+     "s": 87.013,
+     "e": 96.158,
+     "en": "Where a plant makes discrete choices, a cap can produce plans that no price would. Lab 13 tests this on a utility system.",
+     "th": "convex เมื่อโรงงานมีการเลือกแบบไม่ต่อเนื่อง เพดานอาจให้แผนที่ไม่มีราคาใดเลือก Lab 13 จะทดสอบเรื่องนี้กับระบบสาธารณูปโภค"
+    },
+    {
+     "s": 96.158,
+     "e": 106.776,
+     "en": "This is also why reporting only a weighted-sum front of a discrete problem can mislead: it hides the plans in between, which may be exactly the ones a budget or a regulation asks for.",
+     "th": "นี่ยังเป็นเหตุที่การรายงานเพียงแนวหน้าจากผลรวมถ่วงน้ำหนักของปัญหาแบบไม่ต่อเนื่องอาจทำให้เข้าใจผิด เพราะมันซ่อนแผนที่อยู่ระหว่างกลาง ซึ่งอาจเป็นแผนที่งบประมาณหรือข้อบังคับต้องการพอดี"
+    }
+   ]
+  },
+  {
+   "n": 25,
+   "file": "audio/slide-25.mp3",
+   "duration": 108.024,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 8.892,
+     "en": "Back to the batch reactor of Session 11, now with two objectives: the yield x two, to be maximized, and the batch time, to be minimized.",
+     "th": "กลับมาที่เครื่องปฏิกรณ์แบบกะของคาบที่ 11 ซึ่งตอนนี้มีสองเป้าหมาย คือผลได้ x2 ที่ต้องการให้มากที่สุด และเวลาของกะที่ต้องการให้น้อยที่สุด"
+    },
+    {
+     "s": 8.892,
+     "e": 12.864,
+     "en": "The front was computed by the epsilon-constraint method:",
+     "th": "แนวหน้าคำนวณด้วยวิธี ε-constraint คือกำหนดเวลาของกะไว้"
+    },
+    {
+     "s": 12.864,
+     "e": 22.202,
+     "en": "fix the batch time, and maximize x two over ten temperatures with SLSQP, for 23 batch times from a quarter of an hour to three hours.",
+     "th": "แล้วหาค่า x2 สูงสุดจากอุณหภูมิสิบค่าด้วย SLSQP สำหรับเวลาของกะ 23 ค่า ตั้งแต่หนึ่งในสี่ชั่วโมงถึงสามชั่วโมง ผลได้เพิ่มจาก"
+    },
+    {
+     "s": 22.202,
+     "e": 29.171,
+     "en": "The yield rises from 0.486 to 0.696, because a longer batch allows a cooler, more selective profile.",
+     "th": "0.486 เป็น 0.696 เพราะกะที่ยาวขึ้นยอมให้ใช้โปรไฟล์ที่เย็นกว่าและเลือกเกิดผลิตภัณฑ์ได้ดีกว่า"
+    },
+    {
+     "s": 29.171,
+     "e": 42.013,
+     "en": "The profiles change along the front. For a quarter of an hour the first temperature sits at the upper bound, 398 kelvin; for three hours the whole profile stays below 326 kelvin.",
+     "th": "โปรไฟล์อุณหภูมิเปลี่ยนไปตามแนวหน้า สำหรับกะหนึ่งในสี่ชั่วโมง อุณหภูมิช่วงแรกอยู่ที่ขอบบน 398 เคลวิน สำหรับกะสามชั่วโมง โปรไฟล์ทั้งหมดอยู่ต่ำกว่า 326 เคลวิน"
+    },
+    {
+     "s": 42.013,
+     "e": 51.771,
+     "en": "This front is convex, so weights would find every point. But neither objective is what the plant cares about in the end. A third criterion picks the point:",
+     "th": "แนวหน้านี้เป็น convex การถ่วงน้ำหนักจึงหาได้ทุกจุด แต่ไม่มีเป้าหมายใดในสองตัวนี้ที่โรงงานสนใจในท้ายที่สุด เกณฑ์ที่สามเป็นตัวเลือกจุด"
+    },
+    {
+     "s": 51.771,
+     "e": 62.53,
+     "en": "the margin per hour of the whole cycle, x two minus r, divided by the batch time plus the turnaround time t zero. Here r is the cost of the feed in units of the value of B.",
+     "th": "คือส่วนต่างกำไรต่อชั่วโมงของรอบการผลิตทั้งหมด เท่ากับ x2 ลบ r หารด้วยเวลาของกะบวกเวลาเตรียมเครื่อง t0 โดย r คือต้นทุนของสารป้อนในหน่วยของมูลค่าของ B"
+    },
+    {
+     "s": 62.53,
+     "e": 70.516,
+     "en": "Graphically, the best point is where the steepest line from the point minus t zero, r still touches the front.",
+     "th": "ในเชิงกราฟ จุดที่ดีที่สุดคือจุดที่เส้นที่ชันที่สุดซึ่งลากจากจุด (−t0, r) ยังแตะแนวหน้าได้"
+    },
+    {
+     "s": 70.516,
+     "e": 78.789,
+     "en": "With a turnaround of one hour and a feed cost of 0.4, the best batch time is 0.75 hours, with x two equal to 0.586.",
+     "th": "เมื่อเวลาเตรียมเครื่องเป็นหนึ่งชั่วโมงและต้นทุนสารป้อนเป็น 0.4 เวลาของกะที่ดีที่สุดคือ 0.75 ชั่วโมง โดยมี x2 เท่ากับ 0.586"
+    },
+    {
+     "s": 78.789,
+     "e": 91.855,
+     "en": "Move the sliders. A longer turnaround makes longer batches pay, because each batch carries more fixed time. A more expensive feed makes yield matter more, which also lengthens the batch.",
+     "th": "ลองเลื่อนแถบเลื่อน เวลาเตรียมเครื่องที่ยาวขึ้นทำให้กะที่ยาวขึ้นคุ้มค่า เพราะแต่ละกะแบกเวลาคงที่มากขึ้น สารป้อนที่ราคาสูงขึ้นทำให้ผลได้มีความสำคัญมากขึ้น ซึ่งทำให้กะยาวขึ้นเช่นกัน"
+    },
+    {
+     "s": 91.855,
+     "e": 95.908,
+     "en": "With no turnaround and free feed, the shortest batch wins.",
+     "th": "ถ้าไม่มีเวลาเตรียมเครื่องและสารป้อนไม่มีต้นทุน กะที่สั้นที่สุดจะดีที่สุด"
+    },
+    {
+     "s": 95.908,
+     "e": 104.092,
+     "en": "This is a common pattern: the front is computed once, and the economic choice is made later, when prices and turnaround times are known.",
+     "th": "นี่เป็นรูปแบบที่พบบ่อย คือคำนวณแนวหน้าครั้งเดียว แล้วจึงเลือกในเชิงเศรษฐศาสตร์ภายหลังเมื่อรู้ราคาและเวลาเตรียมเครื่อง"
+    },
+    {
+     "s": 104.092,
+     "e": 107.947,
+     "en": "Press D to compute three points of the front in Python.",
+     "th": "กด D เพื่อคำนวณสามจุดของแนวหน้าใน Python"
+    }
+   ]
+  },
+  {
+   "n": 26,
+   "file": "audio/slide-26.mp3",
+   "duration": 98.904,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 8.737,
+     "en": "Once a front is known, how do you choose a point on it? One common rule is the compromise point: the point nearest the ideal point.",
+     "th": "เมื่อรู้แนวหน้าแล้ว จะเลือกจุดบนแนวหน้าอย่างไร กฎที่ใช้บ่อยคือจุดประนีประนอม คือจุดที่ใกล้จุด ideal ที่สุด"
+    },
+    {
+     "s": 8.737,
+     "e": 18.974,
+     "en": "Nearest needs a distance, and a scaling. Each shortfall from the ideal is divided by its range from the payoff table, and the two are combined by a norm.",
+     "th": "คำว่าใกล้ที่สุดต้องมีระยะทางและการปรับสเกล ระยะที่ขาดจากจุด ideal ในแต่ละเป้าหมายหารด้วยช่วงค่าจากตาราง payoff แล้วรวมสองค่าด้วย norm"
+    },
+    {
+     "s": 18.974,
+     "e": 26.5,
+     "en": "The ideal point here is 7,020 dollars a day with 10 cubic meters of wastewater, which no single plan reaches.",
+     "th": "จุดอุดมคติในที่นี้คือ 7,020 ดอลลาร์ต่อวัน กับน้ำเสีย 10 ลูกบาศก์เมตร ซึ่งไม่มีแผนใดแผนเดียวทำได้"
+    },
+    {
+     "s": 26.5,
+     "e": 39.848,
+     "en": "With the Euclidean norm, the wastewater example gives 90.5 cubic meters and 5,120 dollars a day. The infinity norm balances the two shortfalls and gives 82.5 cubic meters.",
+     "th": "เมื่อใช้ norm แบบยุคลิด ตัวอย่างน้ำเสียให้ 90.5 ลูกบาศก์เมตรและ 5,120 ดอลลาร์ต่อวัน norm แบบอนันต์ทำให้ระยะที่ขาดทั้งสองสมดุลกัน และให้ 82.5 ลูกบาศก์เมตร ส่วน"
+    },
+    {
+     "s": 39.848,
+     "e": 46.289,
+     "en": "The one-norm is a weighted sum in disguise, and returns a vertex, 100 cubic meters.",
+     "th": "norm แบบหนึ่งก็คือผลรวมถ่วงน้ำหนักในอีกรูปหนึ่ง จึงคืนจุดยอดที่ 100 ลูกบาศก์เมตร"
+    },
+    {
+     "s": 46.289,
+     "e": 56.447,
+     "en": "Now press Raw units with the Euclidean norm. The answer jumps to 188 cubic meters and 6,950 dollars, next to the most profitable plan.",
+     "th": "ทีนี้กด Raw units โดยใช้ norm แบบยุคลิด คำตอบกระโดดไปที่ 188 ลูกบาศก์เมตรและ 6,950 ดอลลาร์ ใกล้กับแผนที่ทำกำไรสูงสุด"
+    },
+    {
+     "s": 56.447,
+     "e": 66.079,
+     "en": "Profit, in thousands of dollars, outweighs wastewater, in tens of cubic meters, so the units chose the point, not the trade-off.",
+     "th": "กำไรซึ่งมีหลักพันดอลลาร์มีน้ำหนักมากกว่าน้ำเสียซึ่งมีหลักสิบลูกบาศก์เมตร หน่วยจึงเป็นตัวเลือกจุด ไม่ใช่การแลกเปลี่ยน"
+    },
+    {
+     "s": 66.079,
+     "e": 77.014,
+     "en": "Other rules exist: the knee of the front, where the slope changes most; a price from outside the model, such as a discharge fee; or goal levels set by the decision maker.",
+     "th": "ยังมีกฎอื่นอีก เช่น จุดหักเข่าของแนวหน้าซึ่งความชันเปลี่ยนมากที่สุด ราคาจากภายนอกโมเดล เช่น ค่าธรรมเนียมการปล่อยน้ำเสีย หรือระดับเป้าหมายที่ผู้ตัดสินใจกำหนด"
+    },
+    {
+     "s": 77.014,
+     "e": 81.618,
+     "en": "None of them is neutral. State the rule and the scaling with the answer.",
+     "th": "ไม่มีกฎใดที่เป็นกลาง ให้ระบุกฎและการปรับสเกลไว้พร้อมกับคำตอบ"
+    },
+    {
+     "s": 81.618,
+     "e": 90.592,
+     "en": "A useful habit is to show two or three candidate points with their numbers, and let the decision maker choose, rather than presenting one point as the answer.",
+     "th": "นิสัยที่มีประโยชน์คือแสดงจุดที่เป็นตัวเลือกสองหรือสามจุดพร้อมตัวเลข แล้วให้ผู้ตัดสินใจเลือก แทนการนำเสนอจุดเดียวเป็นคำตอบ"
+    },
+    {
+     "s": 90.592,
+     "e": 98.829,
+     "en": "When you present a recommended point, show the front around it too, so that the decision maker can see what a small change in priorities would do.",
+     "th": "เมื่อนำเสนอจุดที่แนะนำ ให้แสดงแนวหน้ารอบ ๆ จุดนั้นด้วย เพื่อให้ผู้ตัดสินใจเห็นว่าการเปลี่ยนลำดับความสำคัญเล็กน้อยจะมีผลอย่างไร"
+    }
+   ]
+  },
+  {
+   "n": 27,
+   "file": "audio/slide-27.mp3",
+   "duration": 103.128,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.708,
+     "en": "With three or more objectives, and with black-box models, evolutionary methods are a common alternative.",
+     "th": "เมื่อมีเป้าหมายสามตัวหรือมากกว่า และเมื่อโมเดลเป็นกล่องดำ วิธีแบบ evolutionary เป็นทางเลือกที่ใช้บ่อย"
+    },
+    {
+     "s": 6.708,
+     "e": 19.355,
+     "en": "NSGA-II, by Deb and coauthors in 2002, evolves a population of designs, ranks them by nondomination, and keeps them spread along the front. pymoo implements it in Python.",
+     "th": "NSGA-II ของ Deb และคณะในปี 2002 พัฒนาประชากรของแบบต่าง ๆ จัดอันดับตาม nondomination และรักษาให้กระจายตัวตลอดแนวหน้า pymoo มีวิธีนี้ให้ใช้ใน Python"
+    },
+    {
+     "s": 19.355,
+     "e": 22.999,
+     "en": "The table compares it with the epsilon-constraint method.",
+     "th": "ตารางเปรียบเทียบกับวิธี ε-constraint วิธี ε-constraint"
+    },
+    {
+     "s": 22.999,
+     "e": 33.43,
+     "en": "The epsilon-constraint method needs a model a solver accepts and one solve per point, handles constraints exactly, and gives a certificate when each solve is global.",
+     "th": "ต้องการโมเดลที่ solver รับได้ และแก้หนึ่งครั้งต่อหนึ่งจุด จัดการข้อจำกัดได้แม่นยำ และให้ใบรับรองเมื่อการแก้แต่ละครั้งเป็นแบบ global ส่วน"
+    },
+    {
+     "s": 33.43,
+     "e": 42.855,
+     "en": "NSGA-II needs only function values, but thousands of them, handles constraints by penalties or by ranking feasibility first, and gives no certificate.",
+     "th": "NSGA-II ต้องการเพียงค่าของฟังก์ชัน แต่ต้องใช้หลายพันครั้ง จัดการข้อจำกัดด้วยการลงโทษหรือจัดอันดับความเป็นไปได้ก่อน และไม่ให้ใบรับรอง"
+    },
+    {
+     "s": 42.855,
+     "e": 52.039,
+     "en": "NSGA-II's population after a few hundred generations usually lies close to the front, but how close is not known unless the front is known by other means.",
+     "th": "ประชากรของ NSGA-II หลังจากหลายร้อยรุ่นมักอยู่ใกล้แนวหน้า แต่จะรู้ว่าใกล้เพียงใดก็ต่อเมื่อรู้แนวหน้าด้วยวิธีอื่น"
+    },
+    {
+     "s": 52.039,
+     "e": 64.013,
+     "en": "With three objectives, a grid of caps grows quickly, while a population spreads over the surface in one run. To show such a front, use pairwise plots or a table of representative points;",
+     "th": "เมื่อมีสามเป้าหมาย ตารางของเพดานจะโตอย่างรวดเร็ว ขณะที่ประชากรกระจายตัวบนพื้นผิวได้ในการรันครั้งเดียว การแสดงแนวหน้าแบบนี้ให้ใช้กราฟทีละคู่หรือตารางของจุดตัวแทน"
+    },
+    {
+     "s": 64.013,
+     "e": 65.934,
+     "en": "few people can read a surface.",
+     "th": "เพราะมีน้อยคนที่อ่านพื้นผิวได้"
+    },
+    {
+     "s": 65.934,
+     "e": 76.066,
+     "en": "Hypervolume, the region dominated by a set of points up to a reference point, measures how good an approximate front is, and is how evolutionary results are compared.",
+     "th": "hypervolume คือบริเวณที่ถูก dominate โดยเซตของจุดจนถึงจุดอ้างอิง ใช้วัดว่าแนวหน้าโดยประมาณดีเพียงใด และเป็นวิธีที่ใช้เปรียบเทียบผลของวิธี evolutionary"
+    },
+    {
+     "s": 76.066,
+     "e": 88.408,
+     "en": "Evolutionary methods also need tuning: population size, number of generations, and the operators that mix designs. Two runs with different seeds should be compared before trusting either.",
+     "th": "วิธี evolutionary ต้องปรับค่าด้วย ได้แก่ ขนาดประชากร จำนวนรุ่น และตัวดำเนินการที่ใช้ผสมแบบต่าง ๆ ควรเปรียบเทียบการรันสองครั้งที่ใช้ seed ต่างกันก่อนจะเชื่อผลของครั้งใดครั้งหนึ่ง"
+    },
+    {
+     "s": 88.408,
+     "e": 96.403,
+     "en": "For a process model with equations and constraints, the epsilon-constraint method with a good solver is usually better.",
+     "th": "สำหรับโมเดลกระบวนการที่มีสมการและข้อจำกัด วิธี ε-constraint กับ solver ที่ดีมักจะดีกว่า วิธี evolutionary"
+    },
+    {
+     "s": 96.403,
+     "e": 103.066,
+     "en": "Evolutionary methods suit black-box simulators, and Session 14 continues with expensive black boxes.",
+     "th": "เหมาะกับโปรแกรมจำลองแบบกล่องดำ และคาบที่ 14 จะต่อด้วยกล่องดำที่มีต้นทุนการประเมินสูง"
+    }
+   ]
+  },
+  {
+   "n": 28,
+   "file": "audio/slide-28.mp3",
+   "duration": 71.712,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.247,
+     "en": "A word on tools.",
+     "th": "พูดถึงเครื่องมือสักเล็กน้อย"
+    },
+    {
+     "s": 2.247,
+     "e": 12.075,
+     "en": "SciPy's linprog and milp, with HiGHS, run epsilon-constraint loops and weighted sums on LPs and MILPs: today's demos, and Parts A and B of the lab.",
+     "th": "linprog และ milp ของ SciPy ร่วมกับ HiGHS ใช้รัน loop ของ ε-constraint และผลรวมถ่วงน้ำหนักบน LP และ MILP ซึ่งคือการสาธิตของวันนี้ และส่วน A กับ B ของ lab"
+    },
+    {
+     "s": 12.075,
+     "e": 16.724,
+     "en": "Pyomo lets one model use many solvers, and makes loops over caps easy.",
+     "th": "ส่วน Pyomo ทำให้โมเดลเดียวใช้ solver ได้หลายตัว และทำ loop ของเพดานได้ง่าย"
+    },
+    {
+     "s": 16.724,
+     "e": 28.318,
+     "en": "SCIP, through PySCIPOpt, is an open-source global solver for mixed-integer nonlinear problems, with relaxations, cuts and spatial branching; you will use it in Colab.",
+     "th": "SCIP ผ่าน PySCIPOpt เป็น global solver แบบโอเพนซอร์สสำหรับปัญหา mixed-integer nonlinear ซึ่งมี relaxation, cut และการแตกกิ่งเชิงพื้นที่ คุณจะใช้มันใน Colab ส่วน"
+    },
+    {
+     "s": 28.318,
+     "e": 33.316,
+     "en": "BARON, ANTIGONE, Couenne and Gurobi are the other common global solvers.",
+     "th": "BARON, ANTIGONE, Couenne และ Gurobi เป็น global solver อื่นที่ใช้กันทั่วไป"
+    },
+    {
+     "s": 33.316,
+     "e": 43.592,
+     "en": "In the lab's notebook, one command installs SCIP into Colab, and the model is written with its bilinear rows as they are; SCIP builds the relaxations itself.",
+     "th": "ใน notebook ของ lab คำสั่งเดียวติดตั้ง SCIP ลงใน Colab และเขียนโมเดลพร้อมแถว bilinear ตามที่เป็น SCIP สร้าง relaxation เอง"
+    },
+    {
+     "s": 43.592,
+     "e": 49.184,
+     "en": "SCIP is open source and free to use, so the lab runs in Colab without a license.",
+     "th": "SCIP เป็นซอฟต์แวร์โอเพนซอร์สและใช้ได้โดยไม่มีค่าใช้จ่าย lab จึงรันใน Colab ได้โดยไม่ต้องมีใบอนุญาต"
+    },
+    {
+     "s": 49.184,
+     "e": 54.779,
+     "en": "pymoo provides NSGA-II and other evolutionary algorithms, hypervolume and plots.",
+     "th": "pymoo มี NSGA-II และอัลกอริทึม evolutionary อื่น ๆ รวมทั้ง hypervolume และการวาดกราฟ"
+    },
+    {
+     "s": 54.779,
+     "e": 63.276,
+     "en": "MINLPLib collects test instances with the best known bounds, useful for checking a model or a solver against known answers.",
+     "th": "MINLPLib รวบรวมปัญหาทดสอบพร้อมขอบเขตที่ดีที่สุดที่รู้ ซึ่งมีประโยชน์ในการตรวจโมเดลหรือ solver เทียบกับคำตอบที่รู้แล้ว"
+    },
+    {
+     "s": 63.276,
+     "e": 71.645,
+     "en": "Whatever the tool: solve the payoff table first; for a global run, give every variable finite bounds, and report both bounds and the gap.",
+     "th": "ไม่ว่าจะใช้เครื่องมือใด ให้แก้ตาราง payoff ก่อน สำหรับการรันแบบ global ให้กำหนดขอบเขตที่จำกัดให้ตัวแปรทุกตัว และรายงานขอบเขตทั้งสองพร้อม gap"
+    }
+   ]
+  },
+  {
+   "n": 29,
+   "file": "audio/slide-29.mp3",
+   "duration": 39.528,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.984,
+     "en": "Third check: prices, caps and choosing a point.",
+     "th": "แบบตรวจครั้งที่สาม เรื่องราคา เพดาน และการเลือกจุด"
+    },
+    {
+     "s": 3.984,
+     "e": 12.604,
+     "en": "Explain why no price selects the 200 thousand dollar project plan, find the range of prices that selects the wastewater vertex at 160.6 cubic meters,",
+     "th": "อธิบายว่าทำไมไม่มีราคาใดเลือกแผนโครงการ 200,000 ดอลลาร์ หาช่วงของราคาที่เลือกจุดยอดของแนวหน้าน้ำเสียที่ 160.6 ลูกบาศก์เมตร"
+    },
+    {
+     "s": 12.604,
+     "e": 21.684,
+     "en": "say why the economic best batch time is not an end of the front, and say what you would ask a colleague who reports a compromise solution without its scaling.",
+     "th": "บอกว่าทำไมเวลาของกะที่ดีที่สุดทางเศรษฐศาสตร์จึงไม่ใช่ปลายของแนวหน้า และบอกว่าคุณจะถามเพื่อนร่วมงานที่รายงานจุดประนีประนอมโดยไม่บอกการปรับสเกลว่าอะไร"
+    },
+    {
+     "s": 21.684,
+     "e": 26.474,
+     "en": "For question two, use the table of slopes on the price-or-cap slide.",
+     "th": "สำหรับข้อสอง ให้ใช้ตารางความชันในหน้าที่ว่าด้วยราคากับเพดาน"
+    },
+    {
+     "s": 26.474,
+     "e": 33.053,
+     "en": "For question one, draw the line from the empty plan to the 300 thousand dollar plan on the project chart.",
+     "th": "สำหรับข้อแรก ให้ลากเส้นจากแผนว่างเปล่าไปยังแผน 300,000 ดอลลาร์บนกราฟของโครงการ"
+    },
+    {
+     "s": 33.053,
+     "e": 39.461,
+     "en": "Take five minutes. Pause the narration now, and press Show answers when you are done.",
+     "th": "ใช้เวลาห้านาที หยุดเสียงบรรยายตอนนี้ และกด Show answers เมื่อทำเสร็จ"
+    }
+   ]
+  },
+  {
+   "n": 30,
+   "file": "audio/slide-30.mp3",
+   "duration": 70.536,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 8.0,
+     "en": "A front, or a global result, is only useful if the reader can check it. Here is what a report must state.",
+     "th": "แนวหน้าหรือผลแบบ global จะมีประโยชน์ก็ต่อเมื่อผู้อ่านตรวจสอบได้ นี่คือสิ่งที่รายงานต้องระบุ"
+    },
+    {
+     "s": 8.0,
+     "e": 13.175,
+     "en": "The objectives, their units and directions, and the payoff table. The method:",
+     "th": "เป้าหมาย หน่วย และทิศทางของแต่ละตัว พร้อมตาราง payoff วิธีที่ใช้ คือ ε-constraint"
+    },
+    {
+     "s": 13.175,
+     "e": 25.382,
+     "en": "epsilon-constraint with which grid, weights with what scaling, or an evolutionary run with how many evaluations. Whether each point was solved to global optimality, and the gap if not.",
+     "th": "กับตารางแบบใด การถ่วงน้ำหนักกับการปรับสเกลแบบใด หรือการรันแบบ evolutionary ด้วยจำนวนการประเมินเท่าใด และแต่ละจุดแก้ได้ถึงค่าที่ดีที่สุดแบบ global หรือไม่ ถ้าไม่ได้ gap เป็นเท่าใด"
+    },
+    {
+     "s": 25.382,
+     "e": 33.302,
+     "en": "The trade-off rates along the front, with units. How the recommended point was chosen, and the scaling behind that rule.",
+     "th": "อัตราการแลกเปลี่ยนตามแนวหน้าพร้อมหน่วย จุดที่แนะนำถูกเลือกอย่างไร และการปรับสเกลที่อยู่เบื้องหลังกฎนั้น"
+    },
+    {
+     "s": 33.302,
+     "e": 43.382,
+     "en": "And for a single nonconvex problem, the solver, both bounds and the gap; or, after a multistart, the number of starts and how many reached the best value.",
+     "th": "และสำหรับปัญหา nonconvex เดี่ยว ให้ระบุ solver ขอบเขตทั้งสอง และ gap หรือถ้าใช้ multistart ให้ระบุจำนวนจุดเริ่มต้นและจำนวนที่ไปถึงค่าที่ดีที่สุด"
+    },
+    {
+     "s": 43.382,
+     "e": 52.105,
+     "en": "The panel shows one sentence that does this for the wastewater front. Every number in it can be checked against the demo of part one.",
+     "th": "กรอบด้านขวาแสดงประโยคหนึ่งที่ทำเช่นนี้สำหรับแนวหน้าน้ำเสีย ตัวเลขทุกตัวในประโยคตรวจสอบได้กับการสาธิตในส่วนที่หนึ่ง"
+    },
+    {
+     "s": 52.105,
+     "e": 59.684,
+     "en": "Include the payoff table even when only one point is recommended, because it shows the range within which the decision was made.",
+     "th": "ให้ใส่ตาราง payoff ไว้ด้วยแม้จะแนะนำเพียงจุดเดียว เพราะมันแสดงช่วงที่ใช้ในการตัดสินใจ"
+    },
+    {
+     "s": 59.684,
+     "e": 70.461,
+     "en": "The same standard applies to a multistart. Write the number of starts, how they were drawn, and how many reached the best value, and say plainly that no bound was proven.",
+     "th": "มาตรฐานเดียวกันใช้กับ multistart ด้วย ให้เขียนจำนวนจุดเริ่มต้น วิธีสุ่ม และจำนวนที่ไปถึงค่าที่ดีที่สุด และระบุอย่างชัดเจนว่าไม่ได้พิสูจน์ขอบเขต"
+    }
+   ]
+  },
+  {
+   "n": 31,
+   "file": "audio/slide-31.mp3",
+   "duration": 101.28,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.958,
+     "en": "What if the problem is too large for a global solver?",
+     "th": "ถ้าปัญหาใหญ่เกินกว่าที่ global solver จะแก้ได้ล่ะ"
+    },
+    {
+     "s": 3.958,
+     "e": 14.397,
+     "en": "Global solvers prove optimality on problems with tens to a few thousand variables, depending on how many nonconvex terms there are and how tight their bounds are.",
+     "th": "global solver พิสูจน์ค่าที่ดีที่สุดได้สำหรับปัญหาที่มีตัวแปรตั้งแต่หลักสิบถึงไม่กี่พันตัว ขึ้นกับจำนวนพจน์ nonconvex และความแน่นของขอบเขต"
+    },
+    {
+     "s": 14.397,
+     "e": 16.895,
+     "en": "Beyond that, a sequence of steps helps.",
+     "th": "เมื่อเกินกว่านั้น มีลำดับขั้นตอนที่ช่วยได้"
+    },
+    {
+     "s": 16.895,
+     "e": 27.947,
+     "en": "Tighten first: bounds on every variable from the physics, redundant rows that strengthen the relaxation, and a formulation with fewer bilinear terms. Exploit structure:",
+     "th": "ขั้นแรกทำให้แน่นขึ้น คือกำหนดขอบเขตของตัวแปรทุกตัวจากหลักทางกายภาพ เพิ่มแถวซ้ำซ้อนที่ทำให้ relaxation แข็งแรงขึ้น และใช้รูปแบบโมเดลที่มีพจน์ bilinear น้อยลง จากนั้นใช้โครงสร้างของปัญหา"
+    },
+    {
+     "s": 27.947,
+     "e": 34.487,
+     "en": "if fixing a few variables leaves an LP, as the pool quality did today, branch or scan on those only.",
+     "th": "ถ้าการกำหนดตัวแปรไม่กี่ตัวให้คงที่ทำให้เหลือ LP เหมือนคุณภาพของ pool ในวันนี้ ให้แตกกิ่งหรือไล่ค่าเฉพาะตัวแปรเหล่านั้น"
+    },
+    {
+     "s": 34.487,
+     "e": 43.355,
+     "en": "Use a global solver on a reduced model, then polish with a local solver on the full model. Otherwise, multistart, and report it honestly:",
+     "th": "ใช้ global solver กับโมเดลที่ย่อแล้ว แล้วขัดเกลาด้วย local solver บนโมเดลเต็ม มิฉะนั้นให้ใช้ multistart และรายงานอย่างตรงไปตรงมา"
+    },
+    {
+     "s": 43.355,
+     "e": 48.368,
+     "en": "the number of starts, the spread of the answers, and that no bound was proven.",
+     "th": "คือจำนวนจุดเริ่มต้น ความกระจายของคำตอบ และระบุว่าไม่ได้พิสูจน์ขอบเขต"
+    },
+    {
+     "s": 48.368,
+     "e": 57.697,
+     "en": "Hybrid strategies are common in industry: a global solver on a planning model with a few pools, and local solvers on the detailed models that follow from it.",
+     "th": "กลยุทธ์แบบผสมพบบ่อยในอุตสาหกรรม คือใช้ global solver กับโมเดลวางแผนที่มี pool ไม่กี่ pool แล้วใช้ local solver กับโมเดลรายละเอียดที่ตามมา"
+    },
+    {
+     "s": 57.697,
+     "e": 64.339,
+     "en": "Two checks help in every case. Start a local solver from the best answer found; it should not move.",
+     "th": "มีการตรวจสองอย่างที่ช่วยได้ในทุกกรณี ข้อแรก เริ่ม local solver จากคำตอบที่ดีที่สุดที่พบ ซึ่งไม่ควรเคลื่อนไป"
+    },
+    {
+     "s": 64.339,
+     "e": 73.039,
+     "en": "And run your whole procedure on small cases with known answers, such as these Haverly instances, before trusting it on a large one.",
+     "th": "ข้อสอง รันขั้นตอนทั้งหมดของคุณกับกรณีเล็ก ๆ ที่รู้คำตอบแล้ว เช่นปัญหาของ Haverly เหล่านี้ ก่อนจะเชื่อผลกับปัญหาขนาดใหญ่"
+    },
+    {
+     "s": 73.039,
+     "e": 80.816,
+     "en": "Reporting a local answer honestly is not a weakness. It is what lets the reader decide how much to trust it.",
+     "th": "การรายงานคำตอบเฉพาะที่อย่างตรงไปตรงมาไม่ใช่จุดอ่อน มันคือสิ่งที่ทำให้ผู้อ่านตัดสินได้ว่าจะเชื่อคำตอบนั้นมากเพียงใด"
+    },
+    {
+     "s": 80.816,
+     "e": 90.776,
+     "en": "For the dynamic problems of Session 11, collocation with a multistart of Ipopt is the usual practice; global dynamic optimization is still a research topic.",
+     "th": "สำหรับปัญหาพลวัตของคาบที่ 11 แนวปฏิบัติทั่วไปคือ collocation กับ multistart ของ Ipopt ส่วน global dynamic optimization ยังเป็นหัวข้อวิจัยอยู่"
+    },
+    {
+     "s": 90.776,
+     "e": 101.197,
+     "en": "The panel sums up the pooling problem done four ways: a multistart without proof, a scan that proves it for one pool, branch and bound in three nodes, and SCIP at the root node.",
+     "th": "กรอบด้านขวาสรุป pooling problem ที่ทำสี่วิธี คือ multistart ที่ไม่มีการพิสูจน์ การไล่ค่าที่พิสูจน์ได้สำหรับ pool เดียว branch and bound ในสามโหนด และ SCIP ที่โหนดราก"
+    }
+   ]
+  },
+  {
+   "n": 32,
+   "file": "audio/slide-32.mp3",
+   "duration": 47.664,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.037,
+     "en": "Last check: methods and evidence.",
+     "th": "แบบตรวจครั้งสุดท้าย เรื่องวิธีการและหลักฐาน"
+    },
+    {
+     "s": 3.037,
+     "e": 13.175,
+     "en": "Decide what to report when a global solver stops with a 12 percent gap, when to prefer NSGA-II, whether a front of 15 points from caps against 6 from weights means an error,",
+     "th": "ตัดสินว่าจะรายงานอะไรเมื่อ global solver หยุดโดยมี gap 12 เปอร์เซ็นต์ เมื่อใดควรใช้ NSGA-II แนวหน้าที่ได้ 15 จุดจากเพดานเทียบกับ 6 จุดจากน้ำหนักแสดงว่ามีข้อผิดพลาดหรือไม่"
+    },
+    {
+     "s": 13.175,
+     "e": 16.671,
+     "en": "and how to tighten a McCormick relaxation without branching.",
+     "th": "และจะทำให้ McCormick relaxation แน่นขึ้นได้อย่างไรโดยไม่แตกกิ่ง"
+    },
+    {
+     "s": 16.671,
+     "e": 22.789,
+     "en": "For question three, recall the projects: sixteen Pareto plans, six of them supported.",
+     "th": "สำหรับข้อสาม ให้นึกถึงตัวอย่างโครงการ ซึ่งมีแผน Pareto สิบหกแผน โดยหกแผนเป็นแบบ supported"
+    },
+    {
+     "s": 22.789,
+     "e": 29.039,
+     "en": "For question one, think about what the two bounds tell the reader, and what the plan found is still worth.",
+     "th": "สำหรับข้อหนึ่ง ให้คิดว่าขอบเขตทั้งสองบอกอะไรแก่ผู้อ่าน และแผนที่พบแล้วยังมีคุณค่าเพียงใด"
+    },
+    {
+     "s": 29.039,
+     "e": 34.855,
+     "en": "For question two, recall what NSGA-II needs from the model, and what it cannot give.",
+     "th": "สำหรับข้อสอง ให้นึกถึงสิ่งที่ NSGA-II ต้องการจากโมเดล และสิ่งที่มันให้ไม่ได้"
+    },
+    {
+     "s": 34.855,
+     "e": 41.197,
+     "en": "For question four, remember that a McCormick envelope is only as tight as the bounds on each factor.",
+     "th": "สำหรับข้อสี่ ให้จำไว้ว่า envelope ของ McCormick แน่นได้เพียงเท่าที่ขอบเขตของตัวประกอบแต่ละตัวยอมให้"
+    },
+    {
+     "s": 41.197,
+     "e": 47.605,
+     "en": "Take five minutes. Pause the narration now, and press Show answers when you are done.",
+     "th": "ใช้เวลาห้านาที หยุดเสียงบรรยายตอนนี้ และกด Show answers เมื่อทำเสร็จ"
+    }
+   ]
+  },
+  {
+   "n": 33,
+   "file": "audio/slide-33.mp3",
+   "duration": 50.04,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.353,
+     "en": "Where does this go next?",
+     "th": "เนื้อหานี้จะไปต่อที่ไหน"
+    },
+    {
+     "s": 2.353,
+     "e": 13.326,
+     "en": "Session 14 is Bayesian optimization: black-box objectives with expensive evaluations, such as an experiment, where neither a front by caps nor a global bound is affordable.",
+     "th": "คาบที่ 14 คือ Bayesian optimization ซึ่งว่าด้วยฟังก์ชันเป้าหมายแบบกล่องดำที่การประเมินแต่ละครั้งมีต้นทุนสูง เช่น การทดลอง ซึ่งไม่สามารถวาดแนวหน้าด้วยเพดานหรือหาขอบเขตแบบ"
+    },
+    {
+     "s": 13.326,
+     "e": 20.303,
+     "en": "It builds a statistical model of the objective and its uncertainty, and uses it to choose the next experiment.",
+     "th": "global ได้ วิธีนี้สร้างโมเดลทางสถิติของฟังก์ชันเป้าหมายและความไม่แน่นอนของมัน แล้วใช้เลือกการทดลองครั้งถัดไป"
+    },
+    {
+     "s": 20.303,
+     "e": 27.658,
+     "en": "There, too, there can be two objectives, such as yield and cost of an experiment, and the ideas of today carry over.",
+     "th": "ในคาบนั้นก็อาจมีสองเป้าหมายได้เช่นกัน เช่น ผลได้และต้นทุนของการทดลอง และแนวคิดของวันนี้ก็นำไปใช้ต่อได้"
+    },
+    {
+     "s": 27.658,
+     "e": 37.921,
+     "en": "Bayesian optimization also works with a kind of bound: its statistical model gives each untested point a mean and an uncertainty, and the next experiment balances the two.",
+     "th": "Bayesian optimization ก็ทำงานกับขอบเขตในลักษณะหนึ่ง โมเดลทางสถิติของมันให้ค่าเฉลี่ยและความไม่แน่นอนแก่แต่ละจุดที่ยังไม่ได้ทดลอง และการทดลองครั้งถัดไปจะสมดุลระหว่างสองค่านี้"
+    },
+    {
+     "s": 37.921,
+     "e": 49.974,
+     "en": "Session 15 is project work. For your project: name a second objective, trace a front by the epsilon-constraint method, and state honestly whether each answer is global or local.",
+     "th": "คาบที่ 15 เป็นการทำโครงงาน สำหรับโครงงานของคุณ ให้ระบุเป้าหมายที่สอง วาดแนวหน้าด้วยวิธี ε-constraint และระบุอย่างตรงไปตรงมาว่าคำตอบแต่ละค่าเป็นแบบ global หรือเฉพาะที่"
+    }
+   ]
+  },
+  {
+   "n": 34,
+   "file": "audio/slide-34.mp3",
+   "duration": 73.944,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.539,
+     "en": "Lab 13 takes about forty minutes. Parts A and B run in the browser; Part C runs in Colab.",
+     "th": "Lab 13 ใช้เวลาประมาณสี่สิบนาที ส่วน A และ B ทำในเบราว์เซอร์ ส่วน C ทำใน Colab"
+    },
+    {
+     "s": 7.539,
+     "e": 19.27,
+     "en": "Part A is a utility system with five units that can be switched on or off: coal, gas and biomass boilers, a heat pump and a gas-turbine combined heat and power unit, plus grid electricity.",
+     "th": "ส่วน A คือระบบสาธารณูปโภคที่มีหน่วยการผลิตห้าหน่วยซึ่งเปิดหรือปิดได้ ได้แก่ หม้อไอน้ำถ่านหิน ก๊าซ และชีวมวล ปั๊มความร้อน และหน่วยผลิตไฟฟ้าและความร้อนร่วมแบบกังหันก๊าซ รวมทั้งไฟฟ้าจากระบบ"
+    },
+    {
+     "s": 19.27,
+     "e": 25.974,
+     "en": "You will trace cost against CO₂ with caps, and then with a carbon price, and compare which plans each finds.",
+     "th": "คุณจะวาดต้นทุนเทียบกับคาร์บอนไดออกไซด์ด้วยเพดาน แล้วด้วยราคาคาร์บอน และเปรียบเทียบว่าแต่ละแบบหาแผนใดได้บ้าง"
+    },
+    {
+     "s": 25.974,
+     "e": 37.387,
+     "en": "Part B is Haverly's second instance, with a larger demand for X: a multistart and a scan of the pool quality. Part C proves the answer with SCIP in Colab.",
+     "th": "ส่วน B คือปัญหาของ Haverly กรณีที่สอง ซึ่งมี demand ของ X มากขึ้น โดยใช้ multistart และการไล่ค่าคุณภาพของ pool ส่วน C พิสูจน์คำตอบด้วย SCIP ใน"
+    },
+    {
+     "s": 37.387,
+     "e": 41.658,
+     "en": "Part D asks you to explain both results to a site manager.",
+     "th": "Colab ส่วน D ให้คุณอธิบายผลทั้งสองให้ผู้จัดการโรงงานฟัง"
+    },
+    {
+     "s": 41.658,
+     "e": 49.842,
+     "en": "In Part A, watch which units switch on as the cap tightens. In Part B, look at where the starts that fail began.",
+     "th": "ในส่วน A ให้สังเกตว่าหน่วยใดถูกเปิดเมื่อเพดานเข้มงวดขึ้น ในส่วน B ให้ดูว่าจุดเริ่มต้นที่ล้มเหลวเริ่มจากตรงไหน"
+    },
+    {
+     "s": 49.842,
+     "e": 59.526,
+     "en": "Part D needs no code: a short note to a site manager on what the front looks like, what the first tonnes of CO₂ cost, and how you know the pooling answer is the best.",
+     "th": "ส่วน D ไม่ต้องเขียนโค้ด เป็นบันทึกสั้น ๆ ถึงผู้จัดการโรงงานว่าแนวหน้ามีลักษณะอย่างไร คาร์บอนไดออกไซด์ตันแรก ๆ มีต้นทุนเท่าใด และรู้ได้อย่างไรว่าคำตอบของปัญหา pooling ดีที่สุด"
+    },
+    {
+     "s": 59.526,
+     "e": 70.816,
+     "en": "Start Colab's Run all at the beginning, so the install runs while you work on Part A. Scan the codes or open the links. Without Colab, the lab page shows the recorded run.",
+     "th": "เริ่ม Run all ใน Colab ตั้งแต่ต้น เพื่อให้การติดตั้งทำงานไประหว่างที่คุณทำส่วน A สแกนโค้ดหรือเปิดลิงก์ ถ้าใช้ Colab ไม่ได้ หน้า lab มีผลการรันที่บันทึกไว้ให้"
+    },
+    {
+     "s": 70.816,
+     "e": 73.868,
+     "en": "Pause the narration now and do the lab.",
+     "th": "หยุดเสียงบรรยายตอนนี้และทำ lab"
+    }
+   ]
+  },
+  {
+   "n": 35,
+   "file": "audio/slide-35.mp3",
+   "duration": 79.992,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.761,
+     "en": "Here is what to take from today.",
+     "th": "นี่คือสิ่งที่ควรนำไปจากวันนี้"
+    },
+    {
+     "s": 2.761,
+     "e": 9.921,
+     "en": "With several objectives the answer is a front. Compute it, then choose a point with a stated rule.",
+     "th": "เมื่อมีหลายเป้าหมาย คำตอบคือแนวหน้า ให้คำนวณแนวหน้าก่อน แล้วเลือกจุดด้วยกฎที่ระบุไว้"
+    },
+    {
+     "s": 9.921,
+     "e": 20.939,
+     "en": "The epsilon-constraint method finds every Pareto point, and its multiplier is the trade-off rate: from 70 down to 2.5 dollars per cubic meter on the wastewater front.",
+     "th": "วิธี ε-constraint หาได้ทุกจุด Pareto และตัวคูณของมันคืออัตราการแลกเปลี่ยน ซึ่งมีค่าตั้งแต่ 70 ลงไปถึง 2.5 ดอลลาร์ต่อลูกบาศก์เมตรบนแนวหน้าน้ำเสีย"
+    },
+    {
+     "s": 20.939,
+     "e": 28.658,
+     "en": "Weighted sums, and prices, find only supported points: six vertices of that LP, and six of the sixteen project plans.",
+     "th": "ผลรวมถ่วงน้ำหนักและราคาหาได้เพียงจุด supported คือจุดยอดหกจุดของ LP นั้น และหกแผนจากสิบหกแผนของโครงการ"
+    },
+    {
+     "s": 28.658,
+     "e": 36.0,
+     "en": "On convex problems a price and a cap agree; on discrete or nonconvex ones, caps reach points that no price does.",
+     "th": "ในปัญหา convex ราคาและเพดานให้ผลตรงกัน ในปัญหาแบบไม่ต่อเนื่องหรือ nonconvex เพดานไปถึงจุดที่ไม่มีราคาใดไปถึง"
+    },
+    {
+     "s": 36.0,
+     "e": 43.921,
+     "en": "In the lab, a carbon price and a CO₂ cap give you the same lesson on a real utility system, with numbers you can check.",
+     "th": "ใน lab ราคาคาร์บอนและเพดานคาร์บอนไดออกไซด์จะให้บทเรียนเดียวกันบนระบบสาธารณูปโภคจริง พร้อมตัวเลขที่คุณตรวจสอบได้"
+    },
+    {
+     "s": 43.921,
+     "e": 53.383,
+     "en": "Nonconvex problems need either many starts, which prove nothing, or bounds, which prove everything they cover. Haverly's problem:",
+     "th": "ปัญหา nonconvex ต้องการการเริ่มจากหลายจุดซึ่งไม่พิสูจน์อะไร หรือขอบเขตซึ่งพิสูจน์ได้ทุกอย่างที่มันครอบคลุม ปัญหาของ Haverly ได้ 97 จาก 100"
+    },
+    {
+     "s": 53.383,
+     "e": 58.697,
+     "en": "97 of 100 starts, a root bound of 500, and three nodes to a proof of 400.",
+     "th": "จุดเริ่มต้น ขอบเขตที่รากเท่ากับ 500 และใช้สามโหนดในการพิสูจน์ว่า 400 ดีที่สุด"
+    },
+    {
+     "s": 58.697,
+     "e": 67.171,
+     "en": "The utility-system lab, with its carbon price and its caps, is where these ideas meet a decision that plants and regulators actually make.",
+     "th": "lab ระบบสาธารณูปโภคซึ่งมีทั้งราคาคาร์บอนและเพดาน คือจุดที่แนวคิดเหล่านี้มาพบกับการตัดสินใจที่โรงงานและหน่วยงานกำกับดูแลต้องทำจริง"
+    },
+    {
+     "s": 67.171,
+     "e": 73.039,
+     "en": "And report fronts with their method and scaling, and global results with both bounds and the gap.",
+     "th": "และรายงานแนวหน้าพร้อมวิธีและการปรับสเกล และรายงานผลแบบ global พร้อมขอบเขตทั้งสองและ gap"
+    },
+    {
+     "s": 73.039,
+     "e": 79.934,
+     "en": "When someone reports a single answer for a nonconvex model, ask how it was found, and what bound supports it.",
+     "th": "เมื่อมีคนรายงานคำตอบเดียวสำหรับโมเดล nonconvex ให้ถามว่าหาคำตอบนั้นมาอย่างไร และมีขอบเขตใดสนับสนุน"
+    }
+   ]
+  },
+  {
+   "n": 36,
+   "file": "audio/slide-36.mp3",
+   "duration": 48.192,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.432,
+     "en": "Before the next session, finish Lab 13 if you did not finish in class, including the Colab part.",
+     "th": "ก่อนคาบถัดไป ทำ Lab 13 ให้เสร็จถ้ายังทำในชั้นเรียนไม่เสร็จ รวมทั้งส่วนที่ทำใน Colab"
+    },
+    {
+     "s": 6.432,
+     "e": 11.934,
+     "en": "Keep your card: Session 14 treats an expensive experiment as the objective.",
+     "th": "เก็บการ์ดของคุณไว้ คาบที่ 14 จะมองการทดลองที่มีต้นทุนสูงเป็นฟังก์ชันเป้าหมาย"
+    },
+    {
+     "s": 11.934,
+     "e": 25.416,
+     "en": "For reading, take Mavrotas's 2009 paper on the epsilon-constraint method, or the review of global optimization by Floudas and coauthors in Computers and Chemical Engineering, 2005,",
+     "th": "สำหรับการอ่าน ให้อ่านบทความของ Mavrotas ปี 2009 เรื่องวิธี ε-constraint หรือบทความปริทัศน์เรื่อง global optimization ของ Floudas และคณะใน Computers and Chemical Engineering ปี 2005 พร้อมกับบันทึกสั้น"
+    },
+    {
+     "s": 25.416,
+     "e": 33.237,
+     "en": "with Haverly's short note of 1978. Optional: Deb and coauthors on NSGA-II, and McCormick's paper of 1976.",
+     "th": "ๆ ของ Haverly ปี 1978 ส่วนที่ไม่บังคับคือบทความของ Deb และคณะเรื่อง NSGA-II และบทความของ McCormick ปี 1976"
+    },
+    {
+     "s": 33.237,
+     "e": 41.224,
+     "en": "Mavrotas's paper is short and practical, with the payoff table, the grid and the augmented objective worked through on an example.",
+     "th": "บทความของ Mavrotas สั้นและนำไปใช้ได้จริง มีตาราง payoff ตารางของเพดาน และฟังก์ชันเป้าหมายแบบ augmented ที่แสดงวิธีทำผ่านตัวอย่าง"
+    },
+    {
+     "s": 41.224,
+     "e": 48.132,
+     "en": "Keep your notes on the lab: the utility system front is a good template for a project with a CO₂ objective.",
+     "th": "เก็บบันทึกของ lab ไว้ แนวหน้าของระบบสาธารณูปโภคเป็นแม่แบบที่ดีสำหรับโครงงานที่มีเป้าหมายด้านคาร์บอนไดออกไซด์"
+    }
+   ]
+  },
+  {
+   "n": 37,
+   "file": "audio/slide-37.mp3",
+   "duration": 33.264,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.563,
+     "en": "To finish, open the Exit Ticket with the code, choose Session 13, and paste the answers that the lab page copies for you.",
+     "th": "สุดท้าย เปิด Exit Ticket ด้วยโค้ด เลือก Session 13 แล้ววางคำตอบที่หน้า lab คัดลอกไว้ให้"
+    },
+    {
+     "s": 7.563,
+     "e": 19.132,
+     "en": "Then answer the feedback questions: pace, confidence, how far you got in the lab, whether Colab worked for you, and what is still unclear. If you studied on your own, choose On my own.",
+     "th": "จากนั้นตอบคำถาม feedback เรื่องความเร็ว ความมั่นใจ ความคืบหน้าใน lab Colab ใช้ได้หรือไม่ และสิ่งที่ยังไม่ชัดเจน ถ้าเรียนเอง ให้เลือก On my own"
+    },
+    {
+     "s": 19.132,
+     "e": 24.105,
+     "en": "If the code does not scan, use the link Open the Exit Ticket under it.",
+     "th": "ถ้าสแกนรหัสไม่ได้ ให้ใช้ลิงก์ Open the Exit Ticket ที่อยู่ด้านล่าง"
+    },
+    {
+     "s": 24.105,
+     "e": 29.789,
+     "en": "Your answers are how the next session is adjusted, so short, honest answers help most.",
+     "th": "คำตอบของคุณใช้ปรับคาบถัดไป คำตอบสั้น ๆ ที่ตรงไปตรงมาจึงช่วยได้มากที่สุด"
+    },
+    {
+     "s": 29.789,
+     "e": 33.197,
+     "en": "Thank you, and see you in Session 14.",
+     "th": "ขอบคุณ แล้วพบกันในคาบที่ 14"
+    }
+   ]
+  }
+ ]
+}
