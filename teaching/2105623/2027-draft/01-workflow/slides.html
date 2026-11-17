@@ -340,9 +340,9 @@ S.push({kicker:"Part 1 · Verify", title:"Certify the answer without trusting th
 <span class="lbl">Primal feasible</span>A x* = (24, 12, 9) ≤ b = (24, 16, 9), x* ≥ 0<br>
 <span class="lbl">Dual feasible</span>y = (100, 0, 100) ≥ 0, Aᵀy = (400, 300) ≥ c<br>
 <span class="lbl">No gap</span>cᵀx* = 3,300 = bᵀy</div></div>
-<p class="note">For max cᵀx s.t. Ax ≤ b, x ≥ 0, every dual-feasible y gives cᵀx ≤ bᵀy for every feasible x (weak duality). Equality proves both are optimal.</p></div>
+<p class="note">A: hours per tonne (rows: resources, columns: products); b: hours available; c: margins, USD/t; y: a price for each resource hour, USD/h.</p><p class="note">For max cᵀx s.t. Ax ≤ b, x ≥ 0, every dual-feasible y gives cᵀx ≤ bᵀy for every feasible x (weak duality). Equality proves both are optimal.</p></div>
 <div class="col"><ul class="b xs"><li>Three matrix-vector products, no solver needed: anyone can check this</li><li>The duals are the shadow prices from the previous slide; the certificate and the economics are the same object</li>
-<li>Every class in this course has its own kind of evidence: a primal-dual pair (LP), a KKT point (NLP), an incumbent and a bound (MILP)</li><li>Lab 1 ends with exactly this check on a flowsheet model</li></ul></div></div>`,
+<li>Every class in this course has its own kind of evidence: a primal-dual pair (LP), a KKT point (NLP: the first-order optimality conditions with constraints, Sessions 5 and 7), an incumbent and a bound (MILP)</li><li>Lab 1 ends with exactly this check on a flowsheet model</li></ul></div></div>`,
 py:{title:"Check the certificate", sub:"workflow_lab.lp_certificate()", code:
 `from workflow_lab import *
 c = lp_certificate(y=(100, 0, 100), x=(6, 3))
@@ -409,7 +409,7 @@ Convex set: x, y ∈ F ⇒ θx + (1 − θ)y ∈ F for θ ∈ [0, 1]<br>
 Convex function: f(θx + (1 − θ)y) ≤ θf(x) + (1 − θ)f(y)<br>
 Proof: let x be local and y ∈ F with f(y) &lt; f(x). Points z<sub>θ</sub> = (1 − θ)x + θy are feasible, and f(z<sub>θ</sub>) ≤ (1 − θ)f(x) + θf(y) &lt; f(x) for every small θ &gt; 0. So x is not local: contradiction.</div></div></div>
 <div class="col"><ul class="b xs"><li>Tests: f twice differentiable is convex if and only if its Hessian is positive semidefinite everywhere</li>
-<li>Convexity survives sums with positive weights, maxima, and composition with affine maps</li><li>g(x) ≤ 0 with g convex gives a convex set; g(x) ≥ 0 does not; equalities must be affine</li>
+<li>Convexity survives sums with positive weights, maxima, and composition with affine maps</li><li>g(x) ≤ 0 with g convex gives a convex set; g(x) ≥ 0 does not; equalities must be affine (linear plus a constant)</li>
 <li>Typical nonconvexities in chemical engineering: flow × composition, Arrhenius terms, cost ∝ size<sup>0.6</sup></li></ul></div></div>`});
 
 S.push({kicker:"Part 2 · Demo", title:"Same model, same solver, two answers", dhint:true, html:()=>`<div class="body"><div class="col w40">
@@ -443,13 +443,13 @@ S.push({kicker:"Part 2 · Classification", title:"Convexity and integrality deci
 <tr><td><b>Nonconvex NLP</b></td><td>anything else continuous</td><td>a local optimum, if all goes well</td><td>KKT residuals at that point only</td></tr>
 <tr><td><b>MILP</b></td><td>linear, some integers</td><td>best plan found and a bound</td><td>relative gap between them</td></tr>
 <tr><td><b>MINLP</b></td><td>nonlinear, some integers</td><td>local, or global with spatial branch and bound</td><td>gap, if the solver is global</td></tr></table>
-<ul class="b xs" style="margin-top:14px"><li>Linear versus nonlinear is the wrong first question; convex versus nonconvex is the right one</li><li>Uncertainty (Session 12) and multiple objectives (Session 13) cut across this table</li></ul></div></div>`});
+<ul class="b xs" style="margin-top:14px"><li>Linear versus nonlinear is the wrong first question; convex versus nonconvex is the right one</li><li>Uncertainty (Session 12) and multiple objectives (Session 13) cut across this table</li><li>QP: quadratic objective, linear constraints. SOCP: second-order cone program. KKT point: satisfies the first-order optimality conditions with constraints (Sessions 5 and 7)</li></ul></div></div>`});
 
 S.push({kicker:"Part 2 · Check your understanding · 5 minutes", title:"Classify five problems from chemical engineering", html:()=>`<div class="body"><div class="col w55"><div class="act"><span class="tag">PAUSE AND ANSWER</span>
 <ol style="font-size:19px;line-height:1.45;margin:0;padding-left:26px"><li>Blend crude oils to meet sulfur and density limits at least cost; qualities blend linearly</li>
 <li>Choose which of six heat exchangers to install and their areas; each has a fixed cost and cost ∝ area<sup>0.6</sup></li>
 <li>Fit Arrhenius parameters to rate data by least squares</li><li>Decide how many batches of each product to run on two reactors; linear costs</li>
-<li>Track a set point with linear dynamics, bounds on the inputs and a quadratic penalty (MPC)</li></ol>
+<li>Track a set point with linear dynamics, bounds on the inputs and a quadratic penalty (model predictive control, MPC)</li></ol>
 <p style="font-size:16px;margin:8px 0 0;color:${C.slate}">Give the class and the evidence a solver can give you.</p></div>
 <div class="ctrl" style="margin-top:10px"><button id="c3btn">Show answers</button></div></div>
 <div class="col"><div class="panel grow" id="c3ans" style="visibility:hidden"><ul class="b xs">
@@ -708,7 +708,7 @@ const NARR = {
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 3071.5,
+ "total_seconds": 3073.0,
  "slides": [
   {
    "n": 1,
@@ -2233,7 +2233,7 @@ const NARR = {
   {
    "n": 26,
    "file": "audio/slide-26.mp3",
-   "duration": 77.16,
+   "duration": 78.648,
    "hold": false,
    "cues": [
     {
@@ -2274,13 +2274,19 @@ const NARR = {
     },
     {
      "s": 52.5,
-     "e": 66.592,
-     "en": "Starting from many points, called multistart, often finds the better valley. It is a heuristic, not a proof. A guarantee needs convexity or a global method, which we meet in Session 13.",
-     "th": "การเริ่มจากหลายจุด เรียกว่า multistart มักหาหุบที่ดีกว่าได้ แต่เป็นวิธีฮิวริสติก ไม่ใช่การพิสูจน์ การรับประกันต้องอาศัย convexity หรือวิธีแบบ global ซึ่งจะพบในคาบที่ 13"
+     "e": 60.51,
+     "en": "Starting from many points, called multistart, often finds the better valley. It is a heuristic, not a proof.",
+     "th": "การเริ่มจากหลายจุด เรียกว่า multistart มักหาหุบที่ดีกว่าได้ แต่เป็นวิธีฮิวริสติก ไม่ใช่การพิสูจน์"
     },
     {
-     "s": 66.592,
-     "e": 77.092,
+     "s": 60.51,
+     "e": 68.079,
+     "en": "A guarantee needs convexity or a global method, which we meet in Session 5 and use again in Session 13.",
+     "th": "การรับประกันต้องอาศัย convexity หรือวิธีแบบ global ซึ่งจะพบในคาบที่ 5 และใช้อีกครั้งในคาบที่ 13"
+    },
+    {
+     "s": 68.079,
+     "e": 78.579,
      "en": "When you report the result of a nonconvex problem, say how many starts you used and how they were chosen, and give the best value found. Never call it the optimum.",
      "th": "เมื่อรายงานผลของปัญหาที่ไม่เป็น convex ให้บอกว่าใช้จุดเริ่มต้นกี่จุดและเลือกอย่างไร และให้ค่าที่ดีที่สุดที่พบ อย่าเรียกว่าคำตอบที่ดีที่สุด"
     }

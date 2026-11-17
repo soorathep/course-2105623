@@ -3,7 +3,7 @@
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 3071.5,
+ "total_seconds": 3073.0,
  "slides": [
   {
    "n": 1,
@@ -1528,7 +1528,7 @@
   {
    "n": 26,
    "file": "audio/slide-26.mp3",
-   "duration": 77.16,
+   "duration": 78.648,
    "hold": false,
    "cues": [
     {
@@ -1569,13 +1569,19 @@
     },
     {
      "s": 52.5,
-     "e": 66.592,
-     "en": "Starting from many points, called multistart, often finds the better valley. It is a heuristic, not a proof. A guarantee needs convexity or a global method, which we meet in Session 13.",
-     "th": "การเริ่มจากหลายจุด เรียกว่า multistart มักหาหุบที่ดีกว่าได้ แต่เป็นวิธีฮิวริสติก ไม่ใช่การพิสูจน์ การรับประกันต้องอาศัย convexity หรือวิธีแบบ global ซึ่งจะพบในคาบที่ 13"
+     "e": 60.51,
+     "en": "Starting from many points, called multistart, often finds the better valley. It is a heuristic, not a proof.",
+     "th": "การเริ่มจากหลายจุด เรียกว่า multistart มักหาหุบที่ดีกว่าได้ แต่เป็นวิธีฮิวริสติก ไม่ใช่การพิสูจน์"
     },
     {
-     "s": 66.592,
-     "e": 77.092,
+     "s": 60.51,
+     "e": 68.079,
+     "en": "A guarantee needs convexity or a global method, which we meet in Session 5 and use again in Session 13.",
+     "th": "การรับประกันต้องอาศัย convexity หรือวิธีแบบ global ซึ่งจะพบในคาบที่ 5 และใช้อีกครั้งในคาบที่ 13"
+    },
+    {
+     "s": 68.079,
+     "e": 78.579,
      "en": "When you report the result of a nonconvex problem, say how many starts you used and how they were chosen, and give the best value found. Never call it the optimum.",
      "th": "เมื่อรายงานผลของปัญหาที่ไม่เป็น convex ให้บอกว่าใช้จุดเริ่มต้นกี่จุดและเลือกอย่างไร และให้ค่าที่ดีที่สุดที่พบ อย่าเรียกว่าคำตอบที่ดีที่สุด"
     }

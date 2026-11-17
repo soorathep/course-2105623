@@ -259,7 +259,8 @@ max Σ<sub>t</sub> [150 Σ<sub>i</sub> use<sub>i,t</sub> − Σ<sub>i</sub> p<su
 s<sub>i,t</sub> = s<sub>i,t−1</sub> + buy<sub>i,t</sub> − use<sub>i,t</sub> &nbsp;&nbsp;(30 rows)<br>
 Σ<sub>veg</sub> use<sub>i,t</sub> ≤ 200, &nbsp;Σ<sub>other</sub> use<sub>i,t</sub> ≤ 250<br>
 Σ<sub>i</sub> (h<sub>i</sub> − 6) use<sub>i,t</sub> ≤ 0, &nbsp;Σ<sub>i</sub> (3 − h<sub>i</sub>) use<sub>i,t</sub> ≤ 0 &nbsp;(24 rows)<br>
-0 ≤ s<sub>i,t</sub> ≤ 1,000, &nbsp;s<sub>i,0</sub> = s<sub>i,6</sub> = 500</div></div></div>
+0 ≤ s<sub>i,t</sub> ≤ 1,000, &nbsp;s<sub>i,0</sub> = s<sub>i,6</sub> = 500</div></div>
+<p class="note" style="font-size:15px;margin-top:8px">Oil i, month t, all in tonnes: buy, use (refined), s (stock at month end). p<sub>i,t</sub>: price of oil i in month t; h<sub>i</sub>: its hardness; 150 GBP/t: product price; 5 GBP/t-month: holding cost.</p></div>
 <div class="col"><ul class="b xs"><li><span id="fms"></span></li><li>The hardness rows are Session 2's ratio rows: multiply through by the monthly product, which is positive when anything is made</li>
 <li>One index, t, turns a one-month blend into a six-month plan. The size grows linearly with the horizon</li></ul></div></div>`,
 draw:()=>{const z=LC.food.size;document.getElementById("fms").textContent=`${z.variables} variables (buy, use, stock for 5 oils × 6 months), ${z.balance_rows} balance rows, ${z.monthly_rows} monthly rows: ${z.dof} degrees of freedom after the balances`},
@@ -313,7 +314,7 @@ Profit: ${fmt(r.revenue)} − ${fmt(r.purchase,2)} − ${fmt(r.storage)} = <b>${
 
 S.push({kicker:"Part 1 · Derivation", title:"The dual of a stock balance is the value of the oil in that month", dhint:true, html:()=>`<div class="body"><div class="col w55"><table class="t" style="font-size:16px" id="fmv"></table>
 <p class="note">GBP per extra tonne of oil available in that month. <span style="color:${C.teal};font-weight:700">Teal</span>: stock carried into the next month. <span style="color:${C.amber};font-weight:700">Amber</span>: oil bought that month.</p></div>
-<div class="col"><ul class="b xs"><li>Carried from t to t + 1: v<sub>t+1</sub> = v<sub>t</sub> + 5. Holding a tonne for a month costs 5, so a tonne next month is worth exactly 5 more</li>
+<div class="col"><ul class="b xs"><li>v<sub>t</sub>: the dual of the stock balance of month t, read as the value of one more tonne in store that month</li><li>Carried from t to t + 1: v<sub>t+1</sub> = v<sub>t</sub> + 5. Holding a tonne for a month costs 5, so a tonne next month is worth exactly 5 more</li>
 <li>Bought in month t: v<sub>t</sub> = p<sub>t</sub>. If oil were worth more than its price, the plan would buy more</li>
 <li>Never v<sub>t</sub> &gt; p<sub>t</sub>, and never v<sub>t+1</sub> &gt; v<sub>t</sub> + 5: these are the dual constraints</li>
 <li>Check: one more tonne of every oil at the start raises the profit by <b id="fmd1"></b> GBP, the sum of the January values</li></ul></div></div>`,
@@ -402,7 +403,8 @@ min Σ<sub>t</sub> p<sub>t</sub> imp<sub>t</sub> + 0.05 Σ<sub>t</sub> dis<sub>t
 imp<sub>t</sub> + PV<sub>t</sub> − cur<sub>t</sub> + dis<sub>t</sub> = load<sub>t</sub> + ch<sub>t</sub> &nbsp;&nbsp;(power, kW)<br>
 SoC<sub>t</sub> = SoC<sub>t−1</sub> + 0.95 ch<sub>t</sub> − dis<sub>t</sub>/0.95 &nbsp;&nbsp;(energy, kWh)<br>
 d ≥ imp<sub>t</sub> for every on-peak hour t<br>
-0 ≤ ch<sub>t</sub>, dis<sub>t</sub> ≤ 150, &nbsp;30 ≤ SoC<sub>t</sub> ≤ 300, &nbsp;SoC<sub>24</sub> ≥ 150, &nbsp;0 ≤ cur<sub>t</sub> ≤ PV<sub>t</sub></div></div></div>
+0 ≤ ch<sub>t</sub>, dis<sub>t</sub> ≤ 150, &nbsp;30 ≤ SoC<sub>t</sub> ≤ 300, &nbsp;SoC<sub>24</sub> ≥ 150, &nbsp;0 ≤ cur<sub>t</sub> ≤ PV<sub>t</sub></div></div>
+<p class="note" style="font-size:15px;margin-top:8px">Hour t, kW: imp grid import, PV solar output, cur PV curtailed, ch charging, dis discharging, load demand. SoC: state of charge, kWh. p<sub>t</sub>: tariff, THB/kWh; 0.05 THB/kWh: wear; d: highest on-peak import, kW.</p></div>
 <div class="col"><ul class="b xs"><li>kW over one hour is kWh, so power and energy rows share numbers. With 15-minute periods, multiply power by 0.25</li>
 <li>The SoC balance is a stock balance with losses on the way in and on the way out</li>
 <li>d is Session 2's epigraph: it is minimized, so it settles at the highest on-peak import</li>

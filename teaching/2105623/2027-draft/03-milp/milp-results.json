@@ -660,7 +660,7 @@
     "bb_nodes": 123,
     "bb_best": 19168.142104258968,
     "highs_nodes": 5,
-    "highs_seconds": 0.03229215400006069,
+    "highs_seconds": 0.02029603099998667,
     "open": [
      3,
      6
@@ -706,7 +706,7 @@
     "bb_nodes": 1,
     "bb_best": 19168.142104258968,
     "highs_nodes": 1,
-    "highs_seconds": 0.0036912289999690984,
+    "highs_seconds": 0.002997951999986981,
     "open": [
      3,
      6
@@ -2408,7 +2408,7 @@
    ]
   },
   "log": {
-   "log": "Running HiGHS 1.12.0 (git hash: 4f96ee8): Copyright (c) 2025 HiGHS under MIT licence terms\nMIP has 28 rows; 168 cols; 328 nonzeros; 8 integer variables (8 binary)\nCoefficient ranges:\n  Matrix  [1e+00, 2e+01]\n  Cost    [5e+01, 4e+03]\n  Bound   [1e+00, 1e+00]\n  RHS     [1e+00, 1e+00]\n\nPresolve is switched off\n\nSolving MIP model with:\n   28 rows\n   168 cols (8 binary, 0 integer, 0 implied int., 160 continuous, 0 domain fixed)\n   328 nonzeros\n\nSrc: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;\n     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;\n     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;\n     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero\n\n        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      \nSrc  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time\n\n J       0       0         0   0.00%   -inf            36336.012572       Large        0      0      0         0     0.0s\n S       0       0         0   0.00%   0               33307.906161     100.00%        0      0      0         0     0.0s\n R       0       0         0   0.00%   11191.561053    33196.601167      66.29%        0      0      0        20     0.0s\n S       0       0         0   0.00%   11191.561053    30663.421198      63.50%       72      4      0        20     0.0s\n S       0       0         0   0.00%   12254.437202    28485.694425      56.98%      127     11      0        25     0.0s\n S       0       0         0   0.00%   14856.167523    28095.693693      47.12%      207     23      0        39     0.0s\n S       0       0         0   0.00%   17062.238253    24115.626432      29.25%      276     28      0        55     0.0s\n L       0       0         0   0.00%   17062.238253    19168.142104      10.99%      276     28      0        55     0.0s\n         5       0         3 100.00%   19168.142104    19168.142104       0.00%      282     27      8       204     0.0s\n\nSolving report\n  Status            Optimal\n  Primal bound      19168.1421043\n  Dual bound        19168.1421043\n  Gap               0% (tolerance: 0.01%)\n  P-D integral      0.00461695365789\n  Solution status   feasible\n                    19168.1421043 (objective)\n                    0 (bound viol.)\n                    0 (int. viol.)\n                    0 (row viol.)\n  Timing            0.02\n  Max sub-MIP depth 1\n  Nodes             5\n  Repair LPs        0\n  LP iterations     204\n                    84 (strong br.)\n                    35 (separation)\n                    24 (heuristics)\n",
+   "log": "Running HiGHS 1.12.0 (git hash: 4f96ee8): Copyright (c) 2025 HiGHS under MIT licence terms\nMIP has 28 rows; 168 cols; 328 nonzeros; 8 integer variables (8 binary)\nCoefficient ranges:\n  Matrix  [1e+00, 2e+01]\n  Cost    [5e+01, 4e+03]\n  Bound   [1e+00, 1e+00]\n  RHS     [1e+00, 1e+00]\n\nPresolve is switched off\n\nSolving MIP model with:\n   28 rows\n   168 cols (8 binary, 0 integer, 0 implied int., 160 continuous, 0 domain fixed)\n   328 nonzeros\n\nSrc: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;\n     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;\n     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;\n     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero\n\n        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      \nSrc  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time\n\n J       0       0         0   0.00%   -inf            36336.012572       Large        0      0      0         0     0.0s\n S       0       0         0   0.00%   0               33307.906161     100.00%        0      0      0         0     0.0s\n R       0       0         0   0.00%   11191.561053    33196.601167      66.29%        0      0      0        20     0.0s\n S       0       0         0   0.00%   11191.561053    30663.421198      63.50%       72      4      0        20     0.0s\n S       0       0         0   0.00%   12254.437202    28485.694425      56.98%      127     11      0        25     0.0s\n S       0       0         0   0.00%   14856.167523    28095.693693      47.12%      207     23      0        39     0.0s\n S       0       0         0   0.00%   17062.238253    24115.626432      29.25%      276     28      0        55     0.0s\n L       0       0         0   0.00%   17062.238253    19168.142104      10.99%      276     28      0        55     0.0s\n         5       0         3 100.00%   19168.142104    19168.142104       0.00%      282     27      8       204     0.0s\n\nSolving report\n  Status            Optimal\n  Primal bound      19168.1421043\n  Dual bound        19168.1421043\n  Gap               0% (tolerance: 0.01%)\n  P-D integral      0.00432181798795\n  Solution status   feasible\n                    19168.1421043 (objective)\n                    0 (bound viol.)\n                    0 (int. viol.)\n                    0 (row viol.)\n  Timing            0.02\n  Max sub-MIP depth 1\n  Nodes             5\n  Repair LPs        0\n  LP iterations     204\n                    84 (strong br.)\n                    35 (separation)\n                    24 (heuristics)\n",
    "rows": [
     {
      "src": "J",
@@ -2519,7 +2519,7 @@
   "tight": {
    "status": "optimal",
    "cost": 129240.0,
-   "seconds": 0.04217762999996921,
+   "seconds": 0.04054593700004716,
    "u": {
     "B1": [
      1.0,
@@ -2852,7 +2852,7 @@
   "tight_lp": {
    "status": "optimal",
    "cost": 123727.66666666667,
-   "seconds": 0.003921303999959491,
+   "seconds": 0.0032810099999665,
    "u": {
     "B1": [
      1.0,
@@ -3182,7 +3182,7 @@
   "loose": {
    "status": "optimal",
    "cost": 129240.0,
-   "seconds": 0.042027431999940745,
+   "seconds": 0.04052780299997494,
    "u": {
     "B1": [
      1.0,
@@ -3515,7 +3515,7 @@
   "loose_lp": {
    "status": "optimal",
    "cost": 121414.36675258381,
-   "seconds": 0.0034520520000569377,
+   "seconds": 0.0029070429999933367,
    "u": {
     "B1": [
      1.0,
@@ -3845,7 +3845,7 @@
   "small_M": {
    "status": "optimal",
    "cost": 131710.0,
-   "seconds": 0.040442414999915854,
+   "seconds": 0.03847764800002551,
    "u": {
     "B1": [
      1.0,

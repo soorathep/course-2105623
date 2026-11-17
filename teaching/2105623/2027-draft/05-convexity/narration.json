@@ -3,7 +3,7 @@
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 3010.3,
+ "total_seconds": 3057.2,
  "slides": [
   {
    "n": 1,
@@ -178,7 +178,7 @@
   {
    "n": 5,
    "file": "audio/slide-05.mp3",
-   "duration": 85.296,
+   "duration": 91.872,
    "hold": false,
    "cues": [
     {
@@ -189,55 +189,61 @@
     },
     {
      "s": 4.287,
-     "e": 15.605,
+     "e": 10.803,
+     "en": "Session 1 drew this map for the whole course. Today fills in its nonlinear rows.",
+     "th": "คาบที่ 1 วาดแผนที่นี้ไว้สำหรับทั้งวิชา วันนี้จะเติมแถวที่ไม่เชิงเส้นของมัน"
+    },
+    {
+     "s": 10.803,
+     "e": 22.171,
      "en": "For a linear program, the solver returns a vertex, and the dual gives a certificate: primal and dual feasible with equal objectives. That point is globally optimal.",
      "th": "สำหรับ linear program solver คืน vertex และ dual ให้ใบรับรอง คือ primal และ dual เป็นไปได้ทั้งคู่และมีค่าเป้าหมายเท่ากัน จุดนั้นเหมาะสมที่สุดแบบวงกว้าง"
     },
     {
-     "s": 15.605,
-     "e": 23.855,
+     "s": 22.171,
+     "e": 30.421,
      "en": "For a mixed-integer program, Session 3, the solver returns an incumbent and a bound, and the gap between them is the certificate.",
      "th": "สำหรับ mixed-integer program ในคาบที่ 3 solver คืน incumbent และ bound และช่องว่างระหว่างสองค่านี้คือใบรับรอง"
     },
     {
-     "s": 23.855,
-     "e": 31.329,
+     "s": 30.421,
+     "e": 37.895,
      "en": "For a nonlinear program, a local solver returns a point that satisfies the first-order conditions to a tolerance.",
      "th": "สำหรับ nonlinear program local solver คืนจุดที่ผ่านเงื่อนไขอันดับหนึ่งภายในค่าความคลาดเคลื่อนที่กำหนด"
     },
     {
-     "s": 31.329,
-     "e": 39.868,
+     "s": 37.895,
+     "e": 46.434,
      "en": "If the problem is convex, that point is global. If it is not, the point is certified only within its own neighborhood.",
      "th": "ถ้าปัญหาเป็น convex จุดนั้นเป็นคำตอบวงกว้าง ถ้าไม่ใช่ จุดนั้นได้รับการรับรองเฉพาะในบริเวณรอบตัวมันเท่านั้น"
     },
     {
-     "s": 39.868,
-     "e": 47.697,
+     "s": 46.434,
+     "e": 54.263,
      "en": "A global solver brings back the structure of branch and bound: an incumbent, a bound from convex relaxations, and a gap.",
      "th": "global solver นำโครงสร้างของ branch and bound กลับมา คือ incumbent, bound จาก convex relaxation และช่องว่าง"
     },
     {
-     "s": 47.697,
-     "e": 56.105,
+     "s": 54.263,
+     "e": 62.671,
      "en": "Notice the first bullet. The message Optimization terminated successfully reads the same in row three and in row four.",
      "th": "สังเกตข้อแรก ข้อความ Optimization terminated successfully เหมือนกันทุกตัวอักษรในแถวที่สามและแถวที่สี่"
     },
     {
-     "s": 56.105,
-     "e": 64.039,
+     "s": 62.671,
+     "e": 70.605,
      "en": "The solver does not know which row you are in. Only the model tells you, and today is about reading the model for that.",
      "th": "solver ไม่รู้ว่าคุณอยู่แถวไหน มีแต่ตัวโมเดลที่บอกได้ และวันนี้คือการอ่านโมเดลเพื่อหาคำตอบนั้น"
     },
     {
-     "s": 64.039,
-     "e": 74.12,
+     "s": 70.605,
+     "e": 80.686,
      "en": "Here is a concrete case. A heat-exchanger network model with stream splits has a bilinear energy balance, flow times temperature, at every mixer.",
      "th": "นี่คือกรณีที่เป็นรูปธรรม โมเดลเครือข่ายเครื่องแลกเปลี่ยนความร้อนที่มีการแยกสาย มีสมดุลพลังงานแบบ bilinear คืออัตราการไหลคูณอุณหภูมิ ที่ทุกจุดผสม"
     },
     {
-     "s": 74.12,
-     "e": 85.237,
+     "s": 80.686,
+     "e": 91.803,
      "en": "Two runs of IPOPT from different starts can both report optimal and differ by several percent in annual cost. Neither message is wrong; the model is in row four.",
      "th": "การรัน IPOPT สองครั้งจากจุดเริ่มต่างกันอาจรายงานว่า optimal ทั้งคู่ แต่ต้นทุนรายปีต่างกันหลายเปอร์เซ็นต์ ไม่มีข้อความใดผิด เพราะโมเดลอยู่ในแถวที่สี่"
     }
@@ -246,78 +252,78 @@
   {
    "n": 6,
    "file": "audio/slide-06.mp3",
-   "duration": 98.208,
+   "duration": 100.896,
    "hold": false,
    "cues": [
     {
      "s": 0.1,
-     "e": 3.155,
-     "en": "Part one begins with definitions.",
-     "th": "ส่วนที่หนึ่งเริ่มด้วยนิยาม"
+     "e": 5.853,
+     "en": "Part one begins with the definitions from Session 1, and adds two equivalent tests.",
+     "th": "ส่วนที่หนึ่งเริ่มด้วยนิยามจากคาบที่ 1 และเพิ่มการทดสอบที่สมมูลกันอีกสองแบบ"
     },
     {
-     "s": 3.155,
-     "e": 8.263,
+     "s": 5.853,
+     "e": 10.961,
      "en": "A set is convex if the segment between any two of its points stays inside it.",
      "th": "เซตเป็น convex ถ้าส่วนของเส้นตรงระหว่างสองจุดใด ๆ ในเซตยังอยู่ในเซตนั้น"
     },
     {
-     "s": 8.263,
-     "e": 20.316,
+     "s": 10.961,
+     "e": 23.013,
      "en": "A function is convex if, between any two points, the chord lies on or above the graph. In the figure, the amber chord from x to y is above the teal curve everywhere between them.",
      "th": "ฟังก์ชันเป็น convex ถ้าระหว่างสองจุดใด ๆ เส้นคอร์ดอยู่บนหรือเหนือกราฟ ในรูป คอร์ดสีส้มจาก x ถึง y อยู่เหนือเส้นสีเขียวตลอดช่วงระหว่างสองจุด"
     },
     {
-     "s": 20.316,
-     "e": 30.5,
+     "s": 23.013,
+     "e": 33.197,
      "en": "An equivalent statement: the epigraph, the set of points on or above the graph, is a convex set. That links convex functions to convex sets.",
      "th": "ข้อความที่สมมูลกันคือ epigraph ซึ่งเป็นเซตของจุดบนหรือเหนือกราฟ เป็นเซต convex นี่เชื่อมฟังก์ชัน convex เข้ากับเซต convex"
     },
     {
-     "s": 30.5,
-     "e": 39.473,
+     "s": 33.197,
+     "e": 42.17,
      "en": "If f is differentiable, convexity is equivalent to the first-order condition: the tangent plane at any point lies below the function everywhere.",
      "th": "ถ้า f หาอนุพันธ์ได้ convexity สมมูลกับเงื่อนไขอันดับหนึ่ง คือระนาบสัมผัสที่จุดใด ๆ อยู่ใต้ฟังก์ชันทุกที่"
     },
     {
-     "s": 39.473,
-     "e": 44.053,
+     "s": 42.17,
+     "e": 46.75,
      "en": "In the figure, the dashed tangent is below the curve over the whole range.",
      "th": "ในรูป เส้นสัมผัสเส้นประอยู่ใต้กราฟตลอดช่วง"
     },
     {
-     "s": 44.053,
-     "e": 52.224,
+     "s": 46.75,
+     "e": 54.921,
      "en": "That property is the one every lower bound in part three uses: a tangent gives a bound that is valid far from the point where it was taken.",
      "th": "สมบัตินี้คือสิ่งที่ lower bound ทุกตัวในส่วนที่สามใช้ เส้นสัมผัสให้ bound ที่ใช้ได้แม้ไกลจากจุดที่สร้างมัน"
     },
     {
-     "s": 52.224,
-     "e": 59.671,
+     "s": 54.921,
+     "e": 62.368,
      "en": "If f is twice differentiable, convexity is equivalent to a Hessian that is positive semidefinite at every point.",
      "th": "ถ้า f หาอนุพันธ์อันดับสองได้ convexity สมมูลกับ Hessian ที่เป็น positive semidefinite ทุกจุด"
     },
     {
-     "s": 59.671,
-     "e": 69.789,
+     "s": 62.368,
+     "e": 72.487,
      "en": "A convex problem minimizes a convex function subject to convex inequality constraints of the form g less than or equal to zero, and equality constraints that are affine.",
      "th": "ปัญหา convex คือการหาค่าต่ำสุดของฟังก์ชัน convex ภายใต้ข้อจำกัดอสมการ convex ในรูป g น้อยกว่าหรือเท่ากับศูนย์ และข้อจำกัดสมการที่เป็น affine"
     },
     {
-     "s": 69.789,
-     "e": 80.513,
+     "s": 72.487,
+     "e": 83.211,
      "en": "Two stronger notions are useful later. Strictly convex means the chord lies strictly above the graph, which rules out flat valleys and gives at most one minimizer.",
      "th": "มีสองแนวคิดที่เข้มกว่าซึ่งจะใช้ภายหลัง strictly convex แปลว่าคอร์ดอยู่เหนือกราฟอย่างเคร่งครัด ซึ่งตัดหุบที่แบนออกไป และทำให้มีจุดต่ำสุดได้ไม่เกินหนึ่งจุด"
     },
     {
-     "s": 80.513,
-     "e": 91.605,
+     "s": 83.211,
+     "e": 94.303,
      "en": "Strongly convex means the Hessian eigenvalues are bounded below by a positive number. That bound also sets how fast gradient methods converge, which is Session 8.",
      "th": "strongly convex แปลว่า eigenvalue ของ Hessian มีขอบล่างเป็นจำนวนบวก ขอบล่างนี้ยังกำหนดความเร็วในการลู่เข้าของวิธี gradient ซึ่งเป็นเรื่องของคาบที่ 8"
     },
     {
-     "s": 91.605,
-     "e": 98.132,
+     "s": 94.303,
+     "e": 100.829,
      "en": "A function is concave if its negative is convex. Linear functions are both.",
      "th": "ฟังก์ชันเป็น concave ถ้าค่าลบของมันเป็น convex ฟังก์ชันเชิงเส้นเป็นทั้งสองแบบ"
     }
@@ -326,102 +332,102 @@
   {
    "n": 7,
    "file": "audio/slide-07.mp3",
-   "duration": 131.736,
+   "duration": 136.392,
    "hold": false,
    "cues": [
     {
      "s": 0.1,
-     "e": 4.011,
-     "en": "Here is the result that makes convexity worth checking.",
-     "th": "นี่คือผลลัพธ์ที่ทำให้ convexity คุ้มค่าแก่การตรวจสอบ"
+     "e": 8.605,
+     "en": "Session 1 gave this proof in three lines. Here it is step by step, because every later argument today uses it.",
+     "th": "คาบที่ 1 ให้บทพิสูจน์นี้ในสามบรรทัด ที่นี่จะทำทีละขั้น เพราะทุกเหตุผลต่อจากนี้ในวันนี้ใช้มัน"
     },
     {
-     "s": 4.011,
-     "e": 10.171,
+     "s": 8.605,
+     "e": 14.816,
      "en": "Let x star be a local minimum: no feasible point within some radius r has a lower value.",
      "th": "ให้ x star เป็นจุดต่ำสุดเฉพาะที่ คือไม่มีจุดที่เป็นไปได้ภายในรัศมี r ใดที่มีค่าต่ำกว่า"
     },
     {
-     "s": 10.171,
-     "e": 15.645,
+     "s": 14.816,
+     "e": 20.289,
      "en": "Suppose, to get a contradiction, that some feasible point y has a lower value.",
      "th": "สมมติเพื่อหาข้อขัดแย้งว่ามีจุดที่เป็นไปได้ y ที่มีค่าต่ำกว่า"
     },
     {
-     "s": 15.645,
-     "e": 23.079,
+     "s": 20.289,
+     "e": 27.724,
      "en": "Walk a small step from x star toward y, to the point z. Choose the step small enough that z is inside the radius r.",
      "th": "เดินไปจาก x star ทางจุด y เป็นระยะสั้น ๆ ถึงจุด z เลือกระยะให้สั้นพอที่ z อยู่ในรัศมี r"
     },
     {
-     "s": 23.079,
-     "e": 35.461,
+     "s": 27.724,
+     "e": 40.105,
      "en": "Because the feasible set is convex, z is feasible. Because f is convex, f of z is at most the weighted average of f at x star and f at y, and that average is below f at x star.",
      "th": "เพราะเซตที่เป็นไปได้เป็น convex z จึงเป็นไปได้ และเพราะ f เป็น convex ค่า f ที่ z จึงไม่เกินค่าเฉลี่ยถ่วงน้ำหนักของ f ที่ x star และที่ y ซึ่งต่ำกว่า f ที่ x star"
     },
     {
-     "s": 35.461,
-     "e": 42.276,
+     "s": 40.105,
+     "e": 46.921,
      "en": "So there is a better feasible point arbitrarily close to x star, which contradicts local optimality.",
      "th": "ดังนั้นมีจุดที่เป็นไปได้และดีกว่าอยู่ใกล้ x star เท่าใดก็ได้ ซึ่งขัดกับความเป็นจุดต่ำสุดเฉพาะที่"
     },
     {
-     "s": 42.276,
-     "e": 48.776,
+     "s": 46.921,
+     "e": 53.421,
      "en": "Both halves of the assumption were used: convexity of the function, and convexity of the feasible set.",
      "th": "สมมติฐานทั้งสองส่วนถูกใช้ คือ convexity ของฟังก์ชัน และ convexity ของเซตที่เป็นไปได้"
     },
     {
-     "s": 48.776,
-     "e": 57.63,
+     "s": 53.421,
+     "e": 62.275,
      "en": "With the first-order condition you get more: if the gradient is zero at x star, the tangent plane is flat, and it lies below f everywhere.",
      "th": "เมื่อใช้เงื่อนไขอันดับหนึ่งจะได้มากกว่านั้น ถ้า gradient เป็นศูนย์ที่ x star ระนาบสัมผัสจะแบน และอยู่ใต้ f ทุกที่"
     },
     {
-     "s": 57.63,
-     "e": 61.579,
+     "s": 62.275,
+     "e": 66.224,
      "en": "A stationary point of a convex function is the global minimum.",
      "th": "จุดคงตัวของฟังก์ชัน convex จึงเป็นจุดต่ำสุดวงกว้าง"
     },
     {
-     "s": 61.579,
-     "e": 73.895,
+     "s": 66.224,
+     "e": 78.539,
      "en": "Now the warning that matters most for process models. A nonlinear equality almost never defines a convex set. A circle is not convex; the disc inside it is.",
      "th": "ต่อไปคือคำเตือนที่สำคัญที่สุดสำหรับโมเดลกระบวนการ สมการไม่เชิงเส้นแทบไม่เคยนิยามเซต convex วงกลมไม่ใช่ convex แต่แผ่นวงกลมข้างในเป็น"
     },
     {
-     "s": 73.895,
-     "e": 82.513,
+     "s": 78.539,
+     "e": 87.158,
      "en": "Component balances, with flow times composition, are equalities of this kind, and they are the usual reason a flowsheet model is nonconvex.",
      "th": "สมดุลขององค์ประกอบที่มีอัตราการไหลคูณองค์ประกอบเป็นสมการแบบนี้ และเป็นเหตุผลปกติที่ทำให้โมเดล flowsheet ไม่เป็น convex"
     },
     {
-     "s": 82.513,
-     "e": 94.524,
+     "s": 87.158,
+     "e": 99.169,
      "en": "A two-line example. Minimize x plus y on the circle x squared plus y squared equal to one. There are two stationary points, at minus and plus one over root two in each coordinate:",
      "th": "ตัวอย่างสองบรรทัด หาค่าต่ำสุดของ x บวก y บนวงกลม x กำลังสองบวก y กำลังสองเท่ากับหนึ่ง มีจุดคงตัวสองจุด ที่ลบและบวกหนึ่งหารรากสองในแต่ละพิกัด"
     },
     {
-     "s": 94.524,
-     "e": 105.0,
+     "s": 99.169,
+     "e": 109.645,
      "en": "one is the minimum and the other is the maximum. Replace the circle by the disc and the problem becomes convex, with the same minimum and no false candidate.",
      "th": "จุดหนึ่งเป็นจุดต่ำสุด อีกจุดเป็นจุดสูงสุด เปลี่ยนวงกลมเป็นแผ่นวงกลม ปัญหาจะเป็น convex มีจุดต่ำสุดเดิม และไม่มีผู้สมัครปลอม"
     },
     {
-     "s": 105.0,
-     "e": 114.329,
+     "s": 109.645,
+     "e": 118.974,
      "en": "And the converse fails: a nonconvex problem can still have a single minimum. Rosenbrock, in the lab, is the standard example.",
      "th": "และบทกลับไม่จริง ปัญหาที่ไม่ convex ก็อาจมีจุดต่ำสุดเพียงจุดเดียวได้ ฟังก์ชัน Rosenbrock ใน lab คือตัวอย่างมาตรฐาน"
     },
     {
-     "s": 114.329,
-     "e": 124.426,
+     "s": 118.974,
+     "e": 129.071,
      "en": "In practice the proof gives a recipe. Show that the objective is convex, that each inequality function is convex, and that each equality is affine.",
      "th": "ในทางปฏิบัติ บทพิสูจน์นี้ให้สูตรการทำงาน แสดงว่าฟังก์ชันเป้าหมายเป็น convex ฟังก์ชันอสมการแต่ละตัวเป็น convex และสมการแต่ละตัวเป็น"
     },
     {
-     "s": 124.426,
-     "e": 131.658,
+     "s": 129.071,
+     "e": 136.303,
      "en": "Then a single local solve answers the question, and the KKT multipliers from that solve are a certificate.",
      "th": "affine จากนั้นการแก้แบบเฉพาะที่ครั้งเดียวก็ตอบคำถามได้ และตัวคูณ KKT จากการแก้ครั้งนั้นคือใบรับรอง"
     }
@@ -688,7 +694,7 @@
   {
    "n": 11,
    "file": "audio/slide-11.mp3",
-   "duration": 112.848,
+   "duration": 124.656,
    "hold": false,
    "cues": [
     {
@@ -729,43 +735,55 @@
     },
     {
      "s": 52.855,
-     "e": 63.487,
+     "e": 58.148,
+     "en": "That is why Session 1 listed Arrhenius terms among the usual sources of nonconvexity:",
+     "th": "นี่คือเหตุที่คาบที่ 1 จัดพจน์ Arrhenius ไว้ในแหล่งความไม่ convex ที่พบบ่อย"
+    },
+    {
+     "s": 58.148,
+     "e": 64.671,
+     "en": "in a reactor model they multiply concentrations, and in Session 10 the activation energy itself is fitted.",
+     "th": "ในโมเดลเครื่องปฏิกรณ์มันคูณกับความเข้มข้น และในคาบที่ 10 พลังงานกระตุ้นเองก็เป็นตัวแปรที่ต้องประมาณค่า"
+    },
+    {
+     "s": 64.671,
+     "e": 75.303,
      "en": "x squared over y, for positive y, is the perspective of x squared, and convex. It appears when a pressure drop scales with flow squared over area.",
      "th": "x กำลังสองหาร y สำหรับ y เป็นบวก คือ perspective ของ x กำลังสอง และเป็น convex พบเมื่อความดันลดแปรตามอัตราการไหลกำลังสองหารพื้นที่"
     },
     {
-     "s": 63.487,
-     "e": 68.368,
+     "s": 75.303,
+     "e": 80.184,
      "en": "The demand charge, a maximum of linear functions, is convex.",
      "th": "demand charge ซึ่งเป็นค่าสูงสุดของฟังก์ชันเชิงเส้น เป็น convex"
     },
     {
-     "s": 68.368,
-     "e": 78.079,
+     "s": 80.184,
+     "e": 89.895,
      "en": "Equipment cost under the six-tenths rule, a times S to the zero point six, is concave: the exponent is below one, so the marginal cost falls with size.",
      "th": "ต้นทุนอุปกรณ์ตามกฎหกในสิบ a คูณ S กำลังศูนย์จุดหก เป็น concave เพราะเลขชี้กำลังต่ำกว่าหนึ่ง ต้นทุนส่วนเพิ่มจึงลดลงเมื่อขนาดโตขึ้น"
     },
     {
-     "s": 78.079,
-     "e": 87.697,
+     "s": 89.895,
+     "e": 99.513,
      "en": "Flow times composition, in a component balance, is bilinear: its Hessian has eigenvalues plus one and minus one, so it is neither convex nor concave.",
      "th": "อัตราการไหลคูณองค์ประกอบในสมดุลขององค์ประกอบเป็น bilinear Hessian มี eigenvalue บวกหนึ่งและลบหนึ่ง จึงไม่เป็นทั้ง convex และ concave"
     },
     {
-     "s": 87.697,
-     "e": 94.316,
+     "s": 99.513,
+     "e": 106.132,
      "en": "And as an equality, F times x equals m, it defines a hyperbola, which is not a convex set.",
      "th": "และเมื่อเป็นสมการ F คูณ x เท่ากับ m จะนิยามไฮเพอร์โบลา ซึ่งไม่ใช่เซต convex"
     },
     {
-     "s": 94.316,
-     "e": 103.684,
+     "s": 106.132,
+     "e": 115.5,
      "en": "The note at the bottom is easy to forget. A convex term helps in a minimized objective, or on the left of a less-than-or-equal constraint.",
      "th": "หมายเหตุด้านล่างลืมได้ง่าย พจน์ convex ช่วยเมื่ออยู่ในฟังก์ชันเป้าหมายที่หาค่าต่ำสุด หรืออยู่ทางซ้ายของข้อจำกัดแบบน้อยกว่าหรือเท่ากับ"
     },
     {
-     "s": 103.684,
-     "e": 112.776,
+     "s": 115.5,
+     "e": 124.592,
      "en": "The same term on the left of a greater-than-or-equal constraint makes the feasible set nonconvex. Direction matters as much as the term.",
      "th": "พจน์เดียวกันเมื่ออยู่ทางซ้ายของข้อจำกัดแบบมากกว่าหรือเท่ากับ ทำให้เซตที่เป็นไปได้ไม่เป็น convex ทิศทางสำคัญพอ ๆ กับตัวพจน์"
     }
@@ -1008,7 +1026,7 @@
   {
    "n": 15,
    "file": "audio/slide-15.mp3",
-   "duration": 104.04,
+   "duration": 106.44,
    "hold": false,
    "cues": [
     {
@@ -1091,16 +1109,22 @@
     },
     {
      "s": 91.882,
-     "e": 103.974,
-     "en": "In Session 3 you modeled the same shape with SOS2 pieces and binaries. That was not a modeling trick: an exact model of a concave cost needs combinatorics, as the next slide shows.",
-     "th": "ในคาบที่ 3 คุณสร้างโมเดลรูปร่างเดียวกันด้วย SOS2 และตัวแปรไบนารี นั่นไม่ใช่เทคนิคการสร้างโมเดลเท่านั้น โมเดลที่แม่นยำของต้นทุน concave ต้องใช้การจัดหมู่ ดังที่หน้าถัดไปจะแสดง"
+     "e": 101.232,
+     "en": "In Sessions 2 and 3 you met the same shape as a volume discount: the LP got it wrong, and one binary fixed it. That was not a modeling trick:",
+     "th": "ในคาบที่ 2 และ 3 คุณพบรูปร่างเดียวกันในรูปของส่วนลดตามปริมาณ LP ให้คำตอบผิด และตัวแปรไบนารีตัวเดียวแก้ได้ นั่นไม่ใช่เทคนิคการสร้างโมเดลเท่านั้น"
+    },
+    {
+     "s": 101.232,
+     "e": 106.368,
+     "en": "an exact model of a concave cost needs combinatorics, as the next slide shows.",
+     "th": "โมเดลที่แม่นยำของต้นทุน concave ต้องใช้การจัดหมู่ ดังที่หน้าถัดไปจะแสดง"
     }
    ]
   },
   {
    "n": 16,
    "file": "audio/slide-16.mp3",
-   "duration": 87.384,
+   "duration": 88.392,
    "hold": false,
    "cues": [
     {
@@ -1159,13 +1183,13 @@
     },
     {
      "s": 68.382,
-     "e": 76.355,
-     "en": "The piecewise-linear cost of Session 3 has the same structure: the minimum sits at a breakpoint, and the binaries choose which one.",
-     "th": "ต้นทุนเชิงเส้นเป็นช่วงในคาบที่ 3 มีโครงสร้างเดียวกัน จุดต่ำสุดอยู่ที่จุดหักของช่วง และตัวแปรไบนารีเลือกว่าเป็นจุดใด"
+     "e": 77.355,
+     "en": "The volume discount of Sessions 2 and 3 has the same structure: the best purchase sits at a breakpoint of the price tiers, and the binary chooses which one.",
+     "th": "ส่วนลดตามปริมาณในคาบที่ 2 และ 3 มีโครงสร้างเดียวกัน การซื้อที่ดีที่สุดอยู่ที่จุดหักของขั้นราคา และตัวแปรไบนารีเลือกว่าเป็นจุดใด"
     },
     {
-     "s": 76.355,
-     "e": 87.316,
+     "s": 77.355,
+     "e": 88.316,
      "en": "For design, the practical consequence is clear: the cost-optimal plant puts capacity at bounds, one unit at its maximum and the next one taking the rest, not in equal shares.",
      "th": "สำหรับการออกแบบ ผลในทางปฏิบัติชัดเจน โรงงานที่ต้นทุนต่ำสุดจะให้กำลังการผลิตอยู่ที่ขอบเขต หน่วยหนึ่งเต็มขนาดสูงสุด และหน่วยถัดไปรับส่วนที่เหลือ ไม่ใช่แบ่งเท่า ๆ กัน"
     }
@@ -1174,7 +1198,7 @@
   {
    "n": 17,
    "file": "audio/slide-17.mp3",
-   "duration": 97.728,
+   "duration": 100.104,
    "hold": false,
    "cues": [
     {
@@ -1215,31 +1239,37 @@
     },
     {
      "s": 49.816,
-     "e": 62.579,
-     "en": "The table shows L-BFGS-B from four starts. Three of them slide to an end. The fourth, started exactly at the equal split, stops at once: the gradient there is zero.",
-     "th": "ตารางแสดง L-BFGS-B จากสี่จุดเริ่ม สามจุดไถลไปที่ปลาย จุดที่สี่ซึ่งเริ่มที่การแบ่งเท่ากันพอดี หยุดทันที เพราะ gradient ที่นั่นเป็นศูนย์"
+     "e": 62.976,
+     "en": "The table shows L-BFGS-B, the version of BFGS that handles bounds, from four starts. Three of them slide to an end. The fourth, started exactly at the equal split, stops at once:",
+     "th": "ตารางแสดง L-BFGS-B ซึ่งเป็น BFGS ที่รองรับขอบเขตของตัวแปร จากสี่จุดเริ่ม สามจุดไถลไปที่ปลาย จุดที่สี่ซึ่งเริ่มที่การแบ่งเท่ากันพอดี หยุดทันที เพราะ"
     },
     {
-     "s": 62.579,
-     "e": 66.251,
+     "s": 62.976,
+     "e": 64.961,
+     "en": "the gradient there is zero.",
+     "th": "gradient ที่นั่นเป็นศูนย์"
+    },
+    {
+     "s": 64.961,
+     "e": 68.633,
      "en": "Why is the difference small here and large in practice?",
      "th": "ทำไมส่วนต่างที่นี่เล็ก แต่ในทางปฏิบัติใหญ่"
     },
     {
-     "s": 66.251,
-     "e": 78.643,
+     "s": 68.633,
+     "e": 81.025,
      "en": "Real installed cost has a fixed part as well, for foundations, piping and instruments, so the cost of each unit is a plus b times A to the n. Each unit avoided saves the whole fixed part a.",
      "th": "ต้นทุนติดตั้งจริงมีส่วนคงที่ด้วย เช่นฐานราก ท่อ และเครื่องมือวัด ต้นทุนของแต่ละเครื่องจึงเป็น a บวก b คูณ A ยกกำลัง n ทุกเครื่องที่ไม่ต้องสร้างช่วยประหยัดส่วนคงที่ a ทั้งก้อน"
     },
     {
-     "s": 78.643,
-     "e": 90.711,
+     "s": 81.025,
+     "e": 93.092,
      "en": "Move the slider. At eleven hundred square meters the cap is tall. At nineteen hundred, both units are near their maximum and the curve is almost flat, so the choice matters little.",
      "th": "เลื่อนแถบ ที่หนึ่งพันหนึ่งร้อยตารางเมตร โดมสูง ที่หนึ่งพันเก้าร้อย ทั้งสองเครื่องใกล้ขนาดสูงสุดและเส้นโค้งเกือบแบน การเลือกจึงมีผลน้อย"
     },
     {
-     "s": 90.711,
-     "e": 97.658,
+     "s": 93.092,
+     "e": 100.039,
      "en": "An engineer's instinct to share the duty equally is right when the cost is convex, and wrong when it is concave.",
      "th": "สัญชาตญาณของวิศวกรที่จะแบ่งภาระเท่า ๆ กัน ถูกเมื่อต้นทุนเป็น convex และผิดเมื่อเป็น concave"
     }
@@ -1964,7 +1994,7 @@
   {
    "n": 28,
    "file": "audio/slide-28.mp3",
-   "duration": 108.648,
+   "duration": 115.2,
    "hold": false,
    "cues": [
     {
@@ -2011,43 +2041,49 @@
     },
     {
      "s": 59.632,
-     "e": 64.692,
-     "en": "The example on the right is a one-variable function on zero to eight with two local minima:",
-     "th": "ตัวอย่างทางขวาเป็นฟังก์ชันตัวแปรเดียวบนช่วงศูนย์ถึงแปด มีจุดต่ำสุดเฉพาะที่สองจุด"
+     "e": 66.2,
+     "en": "The example on the right is the cost curve from the Session 1 demo, on zero to eight, with two local minima:",
+     "th": "ตัวอย่างทางขวาคือเส้นต้นทุนจากการสาธิตในคาบที่ 1 บนช่วงศูนย์ถึงแปด มีจุดต่ำสุดเฉพาะที่สองจุด"
     },
     {
-     "s": 64.692,
-     "e": 71.566,
+     "s": 66.2,
+     "e": 73.793,
      "en": "x equal to one point three two with f one point one three, and x equal to five point seven seven with f four point seven one.",
-     "th": "คือ x เท่ากับหนึ่งจุดสามสอง ที่ f หนึ่งจุดหนึ่งสาม และ x เท่ากับห้าจุดเจ็ดเจ็ด ที่ f สี่จุดเจ็ดหนึ่ง"
+     "th": "คือ x เท่ากับหนึ่งจุดสามสอง ที่ f หนึ่งจุดหนึ่งสาม และ x เท่ากับห้าจุดเจ็ดเจ็ด ที่ f"
     },
     {
-     "s": 71.566,
-     "e": 79.923,
+     "s": 73.793,
+     "e": 78.132,
+     "en": "In Session 1, BFGS found one or the other depending on where it started.",
+     "th": "สี่จุดเจ็ดหนึ่ง ในคาบที่ 1 BFGS พบจุดใดจุดหนึ่งขึ้นกับจุดเริ่ม"
+    },
+    {
+     "s": 78.132,
+     "e": 86.489,
      "en": "Its second derivative is smallest at x equal to three point seven five, minus two point zero two five, so alpha is one point zero one two five,",
      "th": "อนุพันธ์อันดับสองมีค่าน้อยที่สุดที่ x เท่ากับสามจุดเจ็ดห้า คือลบสองจุดศูนย์สองห้า alpha จึงเท่ากับหนึ่งจุดศูนย์หนึ่งสองห้า"
     },
     {
-     "s": 79.923,
-     "e": 83.289,
+     "s": 86.489,
+     "e": 89.855,
      "en": "and the largest gap at the root node is sixteen point two.",
      "th": "และช่องว่างที่ใหญ่ที่สุดที่โหนดราก คือสิบหกจุดสอง"
     },
     {
-     "s": 83.289,
-     "e": 94.211,
+     "s": 89.855,
+     "e": 100.777,
      "en": "For a concave term in one variable, such as a six-tenths cost, there is a simpler rule: the convex underestimator over an interval is the secant between its end points.",
      "th": "สำหรับพจน์ concave ตัวแปรเดียว เช่นต้นทุนตามกฎหกในสิบ มีกฎที่ง่ายกว่า ตัวประมาณล่างแบบ convex บนช่วงคือเส้นตัดระหว่างปลายทั้งสอง"
     },
     {
-     "s": 94.211,
-     "e": 97.895,
+     "s": 100.777,
+     "e": 104.461,
      "en": "Branching on the size tightens it, just as for alpha B B.",
      "th": "การแตกกิ่งบนขนาดทำให้มันแน่นขึ้น เช่นเดียวกับ alpha B B"
     },
     {
-     "s": 97.895,
-     "e": 108.566,
+     "s": 104.461,
+     "e": 115.132,
      "en": "The method is due to Androulakis, Maranas and Floudas, 1995. On the next slide, branch and bound uses it to find and prove the first minimum.",
      "th": "วิธีนี้มาจาก Androulakis, Maranas และ Floudas ปี 1995 หน้าถัดไป branch and bound จะใช้มันเพื่อหาและพิสูจน์จุดต่ำสุดแรก"
     }
@@ -2056,7 +2092,7 @@
   {
    "n": 29,
    "file": "audio/slide-29.mp3",
-   "duration": 107.304,
+   "duration": 116.112,
    "hold": false,
    "cues": [
     {
@@ -2127,13 +2163,19 @@
     },
     {
      "s": 86.276,
-     "e": 97.066,
+     "e": 95.066,
+     "en": "In Session 1, multistart on this curve could only suggest that one point three two was the best. Here seven nodes prove it.",
+     "th": "ในคาบที่ 1 การเริ่มหลายจุดบนเส้นนี้ทำได้เพียงบอกเป็นนัยว่าหนึ่งจุดสามสองดีที่สุด ที่นี่เจ็ดโหนดพิสูจน์ได้"
+    },
+    {
+     "s": 95.066,
+     "e": 105.855,
      "en": "This is the same logic as the branch and bound of Session 3, with the integrality relaxation replaced by a convex underestimator, and branching on a continuous variable.",
      "th": "นี่คือตรรกะเดียวกับ branch and bound ในคาบที่ 3 โดยแทน relaxation ของความเป็นจำนวนเต็มด้วยตัวประมาณล่างแบบ convex และแตกกิ่งบนตัวแปรต่อเนื่อง"
     },
     {
-     "s": 97.066,
-     "e": 107.237,
+     "s": 105.855,
+     "e": 116.026,
      "en": "In one variable seven nodes are enough. In many variables the number of boxes grows quickly, which is why global solvers are limited in size.",
      "th": "ในตัวแปรเดียว เจ็ดโหนดก็พอ ในหลายตัวแปร จำนวนกล่องเพิ่มเร็วมาก นี่คือเหตุที่ global solver จำกัดขนาดปัญหา"
     }

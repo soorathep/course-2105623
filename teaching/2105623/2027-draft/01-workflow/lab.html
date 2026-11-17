@@ -79,7 +79,7 @@ button.sm{width:38px;font-size:12px;padding:2px 9px;margin:0;background:transpar
 <div id="pfd"></div>
 <p>Isomerization A → B at steady state. Per-pass conversion of A is 60%. The separator recovers all B as product; unreacted A and the inert I are recycled, and 10% of the recycle loop is purged so that I cannot accumulate. Two fresh feeds are available. Maximize the hourly profit: product revenue minus feed cost minus purge disposal.</p>
 <table class="tb"><tr><th>Item</th><th>Value</th></tr><tbody id="dataRows"></tbody></table>
-<p><b>Restrictions</b> (flows in kmol/h)</p><ol class="rl">
+<p><b>Restrictions</b> (flows in kmol/h)</p><p class="note">F1, F2: fresh feeds; FA, FI: A and inert I in the fresh feed; AM, IM: A and I at the reactor inlet; Aout: unreacted A leaving the reactor; B: product; RA, RI: recycle; PA, PI: purge.</p><ol class="rl">
 <li>R1 Feed A: FA = 0.90 F1 + 0.995 F2</li><li>R2 Feed I: FI = 0.10 F1 + 0.005 F2</li>
 <li>R3 Mixer: AM = FA + RA and IM = FI + RI</li><li>R4 Reactor: Aout = (1 − X) AM and B = X AM; I passes through</li>
 <li>R5 Purge: PA = φ Aout and PI = φ IM</li><li>R6 Recycle: RA = (1 − φ) Aout and RI = (1 − φ) IM</li>

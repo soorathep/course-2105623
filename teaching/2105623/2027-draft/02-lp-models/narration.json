@@ -3,7 +3,7 @@
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 2968.8,
+ "total_seconds": 2971.5,
  "slides": [
   {
    "n": 1,
@@ -1564,7 +1564,7 @@
   {
    "n": 26,
    "file": "audio/slide-26.mp3",
-   "duration": 129.84,
+   "duration": 132.576,
    "hold": false,
    "cues": [
     {
@@ -1647,9 +1647,9 @@
     },
     {
      "s": 121.092,
-     "e": 129.776,
-     "en": "Multistart is a cheap defense, not a proof. Session 13 shows how to compute a bound that proves an answer is global.",
-     "th": "การเริ่มจากหลายจุดเป็นการป้องกันที่ใช้ต้นทุนต่ำ แต่ไม่ใช่การพิสูจน์ คาบที่ 13 จะแสดงวิธีคำนวณขอบเขตที่พิสูจน์ได้ว่าคำตอบเป็น global"
+     "e": 132.513,
+     "en": "Multistart is a cheap defense, not a proof. Session 5 shows how a global solver computes a bound that proves an answer is global, and Session 13 applies it to pooling.",
+     "th": "การเริ่มจากหลายจุดเป็นการป้องกันที่ใช้ต้นทุนต่ำ แต่ไม่ใช่การพิสูจน์ คาบที่ 5 จะแสดงว่า global solver คำนวณขอบเขตที่พิสูจน์ได้ว่าคำตอบเป็น global อย่างไร และคาบที่ 13 จะนำไปใช้กับปัญหา pooling"
     }
    ]
   },

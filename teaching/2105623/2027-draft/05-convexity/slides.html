@@ -252,21 +252,21 @@ S.push({kicker:"Learning outcomes", title:"By the end of today you can", html:()
 
 S.push({kicker:"Context", title:"From LP to NLP: what does the returned point mean?", html:()=>`<div class="body"><div class="col"><table class="t" style="font-size:18px">
 <tr><th>Problem class</th><th>What the solver returns</th><th>What certifies it</th></tr>
-<tr><td>LP (Sessions 2 and 4)</td><td>A vertex</td><td>Primal and dual feasible with equal objectives: global</td></tr>
+<tr><td>LP (Sessions 1, 2 and 4)</td><td>A vertex</td><td>Primal and dual feasible with equal objectives: global</td></tr>
 <tr><td>MILP (Session 3)</td><td>An incumbent and a bound</td><td>The gap between them</td></tr>
 <tr><td>Convex NLP</td><td>A point that satisfies the first-order conditions</td><td>Convexity: that point is global</td></tr>
 <tr><td>Nonconvex NLP, local solver</td><td>A point that satisfies the first-order conditions</td><td>Nothing beyond the neighborhood</td></tr>
 <tr><td>Nonconvex NLP, global solver</td><td>An incumbent and a bound</td><td>The gap, from convex relaxations</td></tr></table>
 <ul class="b xs" style="margin-top:16px"><li>The message "Optimization terminated successfully" means the same thing in rows 3 and 4. Only the model tells you which row you are in</li>
-<li>Today: how to tell convex from nonconvex, and what to do when the model is nonconvex</li></ul></div></div>`});
+<li>Session 1 drew this map for the whole course. Today fills in its nonlinear rows: how to tell convex from nonconvex, and what to do when the model is nonconvex</li></ul></div></div>`});
 
 /* ---------- Part 1 ---------- */
-S.push({kicker:"Part 1 · Definitions", title:"Convex sets, convex functions and three equivalent tests", html:()=>`<div class="body"><div class="col w55"><div class="panel"><div class="math" style="font-size:19px;line-height:1.75">
+S.push({kicker:"Part 1 · Definitions, from Session 1", title:"Convex sets, convex functions and three equivalent tests", html:()=>`<div class="body"><div class="col w55"><div class="panel"><div class="math" style="font-size:19px;line-height:1.75">
 <span class="lbl">Convex set</span>x, y ∈ S, θ ∈ [0, 1] ⇒ θx + (1 − θ)y ∈ S<br>
 <span class="lbl">Convex function</span>f(θx + (1 − θ)y) ≤ θ f(x) + (1 − θ) f(y)<br>
 <span class="lbl">First order</span>f(y) ≥ f(x) + ∇f(x)<sup>T</sup>(y − x) for all x, y<br>
 <span class="lbl">Second order</span>∇²f(x) positive semidefinite for all x<br>
-<span class="lbl">Convex problem</span>min f(x), g<sub>i</sub>(x) ≤ 0 with f, g<sub>i</sub> convex, h<sub>j</sub>(x) = 0 affine</div></div>
+<span class="lbl">Convex problem</span>min f(x), g<sub>i</sub>(x) ≤ 0 with f, g<sub>i</sub> convex, h<sub>j</sub>(x) = 0 affine (linear plus a constant)</div></div>
 <ul class="b xs" style="margin-top:10px"><li>Chord above the graph; equivalently, the epigraph {(x, t): f(x) ≤ t} is a convex set</li>
 <li>The tangent plane at any point is a global underestimator: the property every lower bound today uses</li>
 <li>Concave: −f convex. Linear functions are both</li></ul></div>
@@ -277,7 +277,7 @@ draw:()=>{const f=x=>0.12*x*x+0.25*Math.exp(0.35*x),df=x=>0.24*x+0.0875*Math.exp
  marks:[{x:a,y:f(a),c:C.amber,t:"x",dx:-6,anchor:"end"},{x:b,y:f(b),c:C.amber,t:"y",dx:10},{x:x0,y:f(x0),c:C.graphite,r:6}],
  legend:[{line:true,c:C.teal,t:"f"},{line:true,c:C.amber,t:"chord: above f"},{line:true,c:C.graphite,dash:true,t:"tangent: below f"}]})}});
 
-S.push({kicker:"Part 1 · Proof", title:"For a convex problem, every local minimum is global", html:()=>`<div class="body"><div class="col w55"><div class="panel"><div class="math" style="font-size:19px;line-height:1.7">
+S.push({kicker:"Part 1 · Proof, as in Session 1, step by step", title:"For a convex problem, every local minimum is global", html:()=>`<div class="body"><div class="col w55"><div class="panel"><div class="math" style="font-size:19px;line-height:1.7">
 Let x* be a local minimum: f(x*) ≤ f(x) for all feasible x with ‖x − x*‖ &lt; r.<br>
 Suppose some feasible y has f(y) &lt; f(x*).<br>
 Take z = x* + θ(y − x*) with θ small, so ‖z − x*‖ &lt; r.<br>
@@ -317,7 +317,7 @@ S.push({kicker:"Part 1 · Demo", title:"Quadratic forms: the eigenvalues decide 
 <div class="ctrl">c <input type="range" id="qc" min="-2" max="4" step="0.25" value="2"><b id="qcv"></b></div><p class="note" style="margin:0">a = 2 throughout</p></div>
 <div class="kpi" style="flex-wrap:wrap"><div>Eigenvalues<b id="qe"></b></div><div>Verdict<b class="a" id="qv"></b></div></div>
 <ul class="b xs" style="margin-top:10px"><li>Leading minors: a &gt; 0 and ac − b² &gt; 0 ⇔ positive definite (Sylvester)</li>
-<li>Semidefinite needs all principal minors ≥ 0, not only the leading ones</li><li>c = 2, b = 2: a valley of minima along x = −y</li></ul></div>
+<li>Semidefinite needs all principal minors ≥ 0 (here a, c and ac − b²), not only the leading ones</li><li>c = 2, b = 2: a valley of minima along x = −y</li></ul></div>
 <div class="col"><div class="panel grow"><div class="chart" id="ch-qf"></div></div></div></div>`,
 draw:()=>{const go=()=>{const a=2,b=+document.getElementById("qb").value,c=+document.getElementById("qc").value,m=(a+c)/2,r=Math.hypot((a-c)/2,b),e1=m-r,e2=m+r;
  document.getElementById("qbv").textContent=b.toFixed(2);document.getElementById("qcv").textContent=c.toFixed(2);
@@ -349,13 +349,13 @@ S.push({kicker:"Part 1 · Process terms", title:"Classify the terms you meet in 
 <tr><td>a S<sup>0.6</sup></td><td>Equipment cost, six-tenths rule</td><td style="color:${C.rust}"><b>concave</b></td><td>exponent below 1: marginal cost falls with size</td></tr>
 <tr><td>F · x</td><td>Flow × composition in a component balance</td><td style="color:${C.rust}"><b>neither</b></td><td>Hessian [0 1; 1 0], eigenvalues ±1</td></tr>
 <tr><td>F · x = m (equality)</td><td>Mixer or splitter balance</td><td style="color:${C.rust}"><b>nonconvex set</b></td><td>a hyperbola, not a convex region</td></tr></table>
-<p class="note">Convex in the right direction matters: a convex term helps in a minimized objective or on the left of g(x) ≤ 0, and hurts on the left of g(x) ≥ 0.</p></div></div>`});
+<p class="note" style="margin-top:6px">m: component flow. Session 1 listed Arrhenius terms among the usual nonconvexities: the factor alone is convex in T, but a rate k(T)·C is a product of variables, and fitting E is nonconvex (Session 10).</p><p class="note" style="margin-top:4px">Convex in the right direction matters: a convex term helps in a minimized objective or on the left of g(x) ≤ 0, and hurts on the left of g(x) ≥ 0.</p></div></div>`});
 
 S.push({kicker:"Part 1 · Hidden convexity", title:"Chemical equilibrium of ideal gases is a convex problem", html:()=>`<div class="body"><div class="col w55"><div class="panel"><div class="math" style="font-size:18px;line-height:1.7">
 Isomers A ⇌ B ⇌ C, fixed T and P, g<sub>i</sub> = G<sub>i</sub>°/RT = (0, −0.4, −0.9)<br>
-min G/RT = Σ<sub>i</sub> n<sub>i</sub> [ g<sub>i</sub> + ln(n<sub>i</sub>/N) ], &nbsp;N = Σ<sub>i</sub> n<sub>i</sub><br>
+min G/RT = Σ<sub>i</sub> n<sub>i</sub> [ g<sub>i</sub> + ln(n<sub>i</sub>/n<sub>T</sub>) ], &nbsp;n<sub>T</sub> = Σ<sub>i</sub> n<sub>i</sub><br>
 s.t. n<sub>A</sub> + n<sub>B</sub> + n<sub>C</sub> = 1 (atom balance), n ≥ 0</div></div>
-<ul class="b xs" style="margin-top:10px"><li>Σ n<sub>i</sub> ln(n<sub>i</sub>/N) is a relative entropy of n against a linear function of n: jointly convex. Element balances are linear. The problem is convex</li>
+<ul class="b xs" style="margin-top:10px"><li>Σ n<sub>i</sub> ln(n<sub>i</sub>/n<sub>T</sub>) is a relative entropy, Σ p<sub>i</sub> ln(p<sub>i</sub>/q<sub>i</sub>), with p = n and q<sub>i</sub> = n<sub>T</sub> linear in n: jointly convex. Element balances are linear. The problem is convex</li>
 <li>Stationarity gives x<sub>i</sub> = exp(−g<sub>i</sub>)/Σ exp(−g<sub>j</sub>)</li>
 <li>White, Johnson and Dantzig (1958) used this structure to compute equilibria of large mixtures; the same holds for any ideal-gas reaction set</li>
 <li>Lost for nonideal liquids: next slide</li></ul></div>
@@ -381,7 +381,7 @@ S.push({kicker:"Part 1 · Demo", title:"Lost convexity: a liquid that splits int
 g″(x) = 1/x + 1/(1 − x) − 2A, &nbsp;smallest at x = ½: 4 − 2A</div>
 <div class="ctrl" style="margin-top:8px">Margules A <input type="range" id="ma" min="0" max="3.5" step="0.1" value="2.5"><b id="mav"></b></div></div>
 <div class="kpi" style="flex-wrap:wrap"><div>g″(½)<b id="mg"></b></div><div>Phases at x = ½<b class="a" id="mp"></b></div></div>
-<ul class="b xs" style="margin-top:10px"><li>A ≤ 2: convex; one liquid at every composition</li><li>A &gt; 2: between the two tangent points the stable state is two liquids on the common tangent (the convex hull of g)</li>
+<ul class="b xs" style="margin-top:10px"><li>A ≤ 2: convex; one liquid at every composition</li><li>A &gt; 2: between the two tangent points the stable state is two liquids on the common tangent: the convex envelope of g, the largest convex function below it</li>
 <li>The one-phase point is the trivial solution of the split problem: a local method can stop there. The tangent-plane stability test (Michelsen, 1982) checks for this</li></ul></div>
 <div class="col"><div class="panel grow"><div class="chart" id="ch-m"></div></div></div></div>`,
 draw:()=>{const go=()=>{const A=+document.getElementById("ma").value,g=x=>x*Math.log(x)+(1-x)*Math.log(1-x)+A*x*(1-x),dg=x=>Math.log(x/(1-x))+A*(1-2*x);
@@ -397,9 +397,9 @@ draw:()=>{const go=()=>{const A=+document.getElementById("ma").value,g=x=>x*Math
  document.getElementById("ma").oninput=go;go()}});
 
 S.push({kicker:"Part 1 · Check your understanding · 5 minutes", title:"Convex or not?", html:()=>CHECK(1,
-OL+`<li>f(x, y) = x² + xy + y²</li><li>f(x, y) = x²/y on y &gt; 0; and f(x, y) = xy on x, y &gt; 0</li>
+OL+`<li>f(x, y) = x² + 3xy + y²</li><li>f(x, y) = x²/y on y &gt; 0; and f(x, y) = xy on x, y &gt; 0</li>
 <li>Show that e<sup>x+y</sup> + (x − y)² is convex without computing a Hessian</li><li>The set {(x, y): xy ≥ 1, x &gt; 0, y &gt; 0}</li><li>The set {(x, y): x² + y² = 1}</li></ol>`,
-`<li>1. Hessian [2 1; 1 2], eigenvalues 1 and 3: strictly convex</li><li>2. x²/y: convex (perspective of x²). xy: not convex, eigenvalues ±1 even on the positive quadrant</li>
+`<li>1. Hessian [2 3; 3 2], eigenvalues −1 and 5: not convex. Session 1's x² + xy + y² was convex: the cross term decides</li><li>2. x²/y: convex (perspective of x²). xy: not convex, eigenvalues ±1 even on the positive quadrant</li>
 <li>3. exp is convex and nondecreasing, x + y is affine; (x − y)² is a convex function of an affine one; a sum of convex functions is convex</li>
 <li>4. Convex: it is {y ≥ 1/x, x &gt; 0}, the epigraph of the convex function 1/x. A nonconvex function can define a convex set</li>
 <li>5. Not convex: the midpoint of (1, 0) and (−1, 0) is not on the circle. The disc x² + y² ≤ 1 is convex</li>`),
@@ -407,12 +407,12 @@ draw:()=>reveal("k1btn","k1ans")});
 
 /* ---------- Part 2 ---------- */
 S.push({kicker:"Part 2 · Economies of scale", title:"The six-tenths rule makes cost concave", html:()=>`<div class="body"><div class="col w45"><div class="panel"><div class="math" style="font-size:19px;line-height:1.7">
-C(S) = C<sub>0</sub> (S/S<sub>0</sub>)<sup>n</sup>, &nbsp;n ≈ 0.6<br>
+C(S) = C<sub>0</sub> (S/S<sub>0</sub>)<sup>n</sup>, &nbsp;n ≈ 0.6<br><span style="font-size:15px;font-family:Helvetica Neue,Arial,sans-serif">S: size (area, volume, power); C<sub>0</sub>: cost of a reference unit of size S<sub>0</sub></span><br>
 dC/dS = n C/S &nbsp;falls as S grows<br>d²C/dS² = n(n − 1) C/S² &lt; 0 for n &lt; 1</div></div>
 <ul class="b xs" style="margin-top:10px"><li>Typical exponents lie between about 0.4 and 0.9 by equipment type; tables are in Turton et al. and in Towler and Sinnott</li>
 <li>In a cost minimization, concave terms reward putting capacity in one place: one large unit rather than two small ones</li>
 <li>The marginal cost is infinite at S = 0, so "build nothing" is always a local minimum. Lab 5 meets this in a heat exchanger</li>
-<li>Session 3 handled the same shape with SOS2 pieces and binaries: an exact model of a concave cost needs combinatorics</li></ul></div>
+<li>Sessions 2 and 3 met the same shape as a volume discount: the LP got it wrong and one binary fixed it. An exact model of a concave cost needs combinatorics</li></ul></div>
 <div class="col"><div class="panel grow"><div class="chart" id="ch-6"></div></div></div></div>`,
 draw:()=>{const U=LC().unit,c=A=>U.C0*Math.pow(A/U.A0,U.n),xs=lin(0,1000,201);
  document.getElementById("ch-6").innerHTML=xyChart({w:620,h:450,xmin:0,xmax:1000,xstep:200,ymin:0,ymax:500,ystep:100,xlab:"Heat-exchanger area, m²",ylab:"Installed cost, kUSD",
@@ -421,7 +421,7 @@ draw:()=>{const U=LC().unit,c=A=>U.C0*Math.pow(A/U.A0,U.n),xs=lin(0,1000,201);
  legend:[{line:true,c:C.teal,t:"C = 100 (A/100)^0.6"},{line:true,c:C.amber,t:"chord: below the curve"},{line:true,c:C.graphite,dash:true,t:"ten 100 m² units"}]})}});
 
 S.push({kicker:"Part 2 · Proof", title:"A concave function on a polytope is minimized at a vertex", html:()=>`<div class="body"><div class="col w55"><div class="panel"><div class="math" style="font-size:19px;line-height:1.75">
-Every x in a bounded polytope P is a convex combination of its vertices:<br>x = Σ<sub>k</sub> θ<sub>k</sub> v<sub>k</sub>, &nbsp;θ<sub>k</sub> ≥ 0, &nbsp;Σ θ<sub>k</sub> = 1<br>
+A polytope P is a bounded set defined by linear inequalities.<br>Every x in P is a convex combination of its vertices:<br>x = Σ<sub>k</sub> θ<sub>k</sub> v<sub>k</sub>, &nbsp;θ<sub>k</sub> ≥ 0, &nbsp;Σ θ<sub>k</sub> = 1<br>
 f concave ⇒ f(x) ≥ Σ<sub>k</sub> θ<sub>k</sub> f(v<sub>k</sub>) ≥ min<sub>k</sub> f(v<sub>k</sub>)<br>so some vertex is at least as good as x. ∎</div></div></div>
 <div class="col"><ul class="b xs"><li>The same argument as for an LP, with an inequality where the LP has an equality</li>
 <li>But a vertex that is better than its neighbors need not be the best vertex: local minima are vertices, and there can be many</li>
@@ -430,10 +430,10 @@ f concave ⇒ f(x) ≥ Σ<sub>k</sub> θ<sub>k</sub> f(v<sub>k</sub>) ≥ min<su
 
 S.push({kicker:"Part 2 · Demo", title:"Two parallel exchangers: the equal split is the worst split", html:()=>`<div class="body"><div class="col w40">
 <div class="ctrl">Total area <input type="range" id="pu" min="0" max="4" step="1" value="2"><b id="puv"></b></div>
-<p class="note" style="margin-top:0">Each unit at most 1,000 m²; cost of each unit C = 100 (A/100)<sup>0.6</sup> kUSD.</p>
+<p class="note" style="margin-top:0">Each unit at most 1,000 m²; cost of each unit c(A) = 100 (A/100)<sup>0.6</sup> kUSD: the six-tenths rule with size S = area A, C<sub>0</sub> = 100 kUSD, S<sub>0</sub> = 100 m².</p>
 <div class="kpi" style="flex-wrap:wrap"><div>One unit at its maximum<b id="pue"></b></div><div>Equal split<b class="a" id="pum"></b></div></div>
 <table class="t" style="font-size:16px;margin-top:10px" id="put"></table>
-<p class="note">L-BFGS-B from four starts. The start at the equal split stops at once: the gradient there is zero.</p></div>
+<p class="note">L-BFGS-B (BFGS with bounds) from four starts. The start at the equal split stops at once: the gradient there is zero.</p></div>
 <div class="col"><div class="panel grow"><div class="chart" id="ch-pu"></div></div></div></div>`,
 draw:()=>{const go=()=>{const P=LC().parallel[+document.getElementById("pu").value],mn=Math.min(...P.cost),mx=Math.max(...P.cost),step=niceStep(mx-mn,4),lo=Math.floor(mn/step)*step,hi=Math.ceil(mx/step)*step+step;
  document.getElementById("puv").textContent=fmt(P.total)+" m²";document.getElementById("pue").textContent=fmt(P.end_cost,1)+" kUSD";document.getElementById("pum").textContent=fmt(P.equal_split_cost,1)+" kUSD";
@@ -451,9 +451,9 @@ print(f"equal split {r['equal_split_cost']:.2f}, one unit at its maximum {r['end
 out:()=>{const r=LC().parallel[2];return r.runs.map(q=>`start ${q.start.toFixed(1).padStart(7)} -> A1 = ${q.A1.toFixed(1).padStart(7)} m2, cost ${q.cost.toFixed(2)} kUSD`).join("\n")+`\nequal split ${r.equal_split_cost.toFixed(2)}, one unit at its maximum ${r.end_cost.toFixed(2)}`}}});
 
 S.push({kicker:"Part 2 · Worked example", title:"Why the solver stops at the equal split", html:()=>`<div class="body"><div class="col w55"><div class="panel"><div class="math" style="font-size:19px;line-height:1.75">
-φ(A<sub>1</sub>) = c(A<sub>1</sub>) + c(A<sub>T</sub> − A<sub>1</sub>)<br>
+<span style="font-size:15px;font-family:Helvetica Neue,Arial,sans-serif">A<sub>T</sub>: total area; unit 1 gets A<sub>1</sub>, unit 2 the rest; c: cost of one unit</span><br>φ(A<sub>1</sub>) = c(A<sub>1</sub>) + c(A<sub>T</sub> − A<sub>1</sub>)<br>
 φ′(A<sub>1</sub>) = c′(A<sub>1</sub>) − c′(A<sub>T</sub> − A<sub>1</sub>) = 0 at A<sub>1</sub> = A<sub>T</sub>/2<br>
-φ″(A<sub>T</sub>/2) = 2 c″(A<sub>T</sub>/2) = 2 n(n − 1) C<sub>0</sub> A<sup>n−2</sup>/A<sub>0</sub><sup>n</sup> &lt; 0<br>
+φ″(A<sub>T</sub>/2) = 2 c″(A<sub>T</sub>/2) = 2 n(n − 1) C<sub>0</sub> A<sup>n−2</sup>/S<sub>0</sub><sup>n</sup> &lt; 0<br>
 <span id="phi"></span></div></div></div>
 <div class="col"><ul class="b xs"><li>First-order condition met, second-order condition for a minimum failed: a strict local maximum along the feasible line</li>
 <li>A gradient method started exactly there has nowhere to go and reports success</li>
@@ -469,7 +469,7 @@ D = e<sup>u</sup>, L = e<sup>w</sup>: &nbsp;min log(π e<sup>u+w</sup> + (π/2) 
 s.t. &nbsp;log(π/4) + 2u + w ≥ log V &nbsp;(linear)<br>
 Optimum: L = D = (4V/π)<sup>1/3</sup> = <b id="vd"></b> m, area <b id="va"></b> m²</div></div>
 <ul class="b xs" style="margin-top:10px"><li>A posynomial (positive sum of power-law terms) becomes log-sum-exp in log variables: convex. Monomial constraints become linear</li>
-<li>Requires posynomial ≤ monomial. "Posynomial ≥" is not a GP: maximizing a recovered duty with a sum of terms breaks it</li>
+<li>A monomial is one power-law term, c D<sup>a</sup> L<sup>b</sup> with c &gt; 0. Requires posynomial ≤ monomial. "Posynomial ≥" is not a GP: maximizing a recovered duty with a sum of terms breaks it</li>
 <li>Developed from engineering design (Duffin, Peterson and Zener, 1967); Rao, Chapter 8</li></ul></div>
 <div class="col"><table class="t" style="font-size:17px" id="vt"></table>
 <p class="note">SLSQP in (u, w) from four starts. All four agree with the closed form, as convexity promises.</p></div></div>`,
@@ -515,7 +515,7 @@ notes:"Walk around; the bilinear balances and the cost curves are where most car
 /* ---------- Part 3 ---------- */
 S.push({kicker:"Part 3 · Optimality conditions", title:"What a stationary point is, and what it is not", html:()=>`<div class="body"><div class="col w45"><div class="panel"><div class="math" style="font-size:18px;line-height:1.75">
 <span class="lbl" style="width:190px">First order, necessary</span>∇f(x*) = 0<br><span class="lbl" style="width:190px">Second order, necessary</span>∇²f(x*) ⪰ 0<br>
-<span class="lbl" style="width:190px">Second order, sufficient</span>∇f(x*) = 0 and ∇²f(x*) ≻ 0:<br><span class="lbl" style="width:190px"></span>a strict local minimum</div></div>
+<span class="lbl" style="width:190px">Second order, sufficient</span>∇f(x*) = 0 and ∇²f(x*) ≻ 0:<br><span class="lbl" style="width:190px"></span>a strict local minimum<br><span style="font-size:15px;font-family:Helvetica Neue,Arial,sans-serif">⪰ 0: positive semidefinite; ≻ 0: positive definite</span></div></div>
 <ul class="b xs" style="margin-top:10px"><li>Necessary conditions filter candidates; sufficient conditions confirm them. A zero eigenvalue leaves the question open</li>
 <li>With constraints, ∇f = 0 becomes the KKT conditions and the Hessian is tested only along feasible directions: Session 7</li>
 <li>A local solver checks the first-order condition to a tolerance. The second-order check is yours</li></ul></div>
@@ -574,7 +574,7 @@ for p in (0.5, 0.2, 0.1, 0.05, 0.01):
 S.push({kicker:"Part 3 · Solvers", title:"Local and global solvers certify different things", html:()=>`<div class="body"><div class="col"><table class="t" style="font-size:17px">
 <tr><th></th><th>Local NLP solvers</th><th>Global solvers</th></tr>
 <tr><td>Examples</td><td>IPOPT, CONOPT, SNOPT, KNITRO; SciPy SLSQP and trust-constr</td><td>BARON, ANTIGONE, Couenne, SCIP; Gurobi for nonconvex quadratic models</td></tr>
-<tr><td>Returns</td><td>A point that satisfies the KKT conditions to a tolerance</td><td>An incumbent and a lower bound</td></tr>
+<tr><td>Returns</td><td>A point that satisfies the KKT conditions (the first-order conditions with constraints, Session 7) to a tolerance</td><td>An incumbent and a lower bound</td></tr>
 <tr><td>Certificate</td><td>Global only if the model is convex</td><td>The gap, as in MILP</td></tr>
 <tr><td>Method</td><td>Newton-type steps on the KKT system</td><td>Spatial branch and bound: convex relaxations, branching on continuous variables, bound tightening</td></tr>
 <tr><td>Size in practice</td><td>Hundreds of thousands of variables</td><td>Tens to a few thousand nonconvex terms, problem-dependent</td></tr>
@@ -597,8 +597,8 @@ w ≤ F<sup>U</sup>x + F x<sup>L</sup> − F<sup>U</sup>x<sup>L</sup> &nbsp;&nbs
 <tr><td style="white-space:nowrap">F ∈ [0, 5], x ∈ [0.2, 0.8]</td><td class="n">[2.5, 2.5]</td><td class="n">0 at F = 5</td></tr></table>
 <p class="note">Halving the F interval halves the error; halving both quarters it. In the last box the point sits on the edge F = 5, where the envelope is exact.</div></div></div>`});
 
-S.push({kicker:"Part 3 · Relaxation", title:"αBB: a convex underestimator for any smooth term", html:()=>`<div class="body"><div class="col w55"><div class="panel"><div class="math" style="font-size:18px;line-height:1.7">
-L(x) = f(x) + α Σ<sub>i</sub> (l<sub>i</sub> − x<sub>i</sub>)(u<sub>i</sub> − x<sub>i</sub>)<br>
+S.push({kicker:"Part 3 · Relaxation", title:"αBB (alpha branch and bound): a convex underestimator for any smooth term", html:()=>`<div class="body"><div class="col w55"><div class="panel"><div class="math" style="font-size:18px;line-height:1.7">
+On the box l ≤ x ≤ u: &nbsp;L(x) = f(x) + α Σ<sub>i</sub> (l<sub>i</sub> − x<sub>i</sub>)(u<sub>i</sub> − x<sub>i</sub>)<br>
 ∇²L = ∇²f + 2αI ⪰ 0 &nbsp;if &nbsp;α ≥ max(0, −½ min<sub>x∈box</sub> e<sub>min</sub>(∇²f(x)))<br>
 largest gap f − L = α Σ<sub>i</sub> (u<sub>i</sub> − l<sub>i</sub>)²/4, at the center</div></div>
 <ul class="b xs" style="margin-top:10px"><li>The added term is ≤ 0 on the box and 0 at its corners: L ≤ f, and L is convex, so min L is a valid lower bound found by a local solver</li>
@@ -606,9 +606,9 @@ largest gap f − L = α Σ<sub>i</sub> (u<sub>i</sub> − l<sub>i</sub>)²/4, a
 <li>The gap shrinks with the square of the box width: halve the box, quarter the gap</li>
 <li>Androulakis, Maranas and Floudas (1995); used inside BARON-type solvers with many other relaxations</li></ul></div>
 <div class="col"><div class="panel"><div class="math" style="font-size:17px;line-height:1.7">
-Example on [0, 8]: f(x) = (x − 1.5)²(x − 6)²/10 + 0.8x<br>
+Example on [0, 8]: the Session 1 demo cost<br>f(x) = (x − 1.5)²(x − 6)²/10 + 0.8x<br>
 f″ = [2(2x − 7.5)² + 4(x − 1.5)(x − 6)]/10<br>min f″ = −2.025 at x = 3.75 ⇒ α = 1.0125<br>largest gap at the root: 1.0125 × 64/4 = 16.2</div></div>
-<p class="note">Two local minima: x = 1.32 with f = 1.13 and x = 5.77 with f = 4.71. Next slide: branch and bound finds and proves the first.</p></div></div>`});
+<p class="note">Two local minima: x = 1.32 with f = 1.13 and x = 5.77 with f = 4.71. In Session 1, BFGS found one or the other depending on its start. Next slide: branch and bound finds the first and proves it global.</p></div></div>`});
 
 S.push({kicker:"Part 3 · Demo", title:"Spatial branch and bound in one variable", html:()=>`<div class="body"><div class="col w60"><div class="panel grow"><div class="chart" id="ch-bb"></div></div></div>
 <div class="col"><div class="ctrl"><button id="bbn">Next node</button><button id="bbr">Start again</button><span id="bbs"></span></div>
@@ -647,7 +647,7 @@ OL+`<li>On the camel, 58.8% of starts reach a global minimum. How many random st
 draw:()=>reveal("k3btn","k3ans")});
 
 S.push({kicker:"Part 3 · Reading solver output", title:"\"Success\" means the first-order test passed", html:()=>`<div class="body"><div class="col w55"><div class="panel"><pre class="code" style="font-size:15px;margin:0" id="rep"></pre></div>
-<ul class="b xs" style="margin-top:10px"><li>success and message: the gradient fell below gtol. Nothing about other minima</li>
+<ul class="b xs" style="margin-top:10px"><li>success and message: the gradient norm fell below gtol, the gradient tolerance. Nothing about other minima</li><li>nit, nfev: iterations and function evaluations</li>
 <li>gradient norm: confirm it yourself, in the units of the problem</li><li>Hessian eigenvalues (finite differences here): both positive, so a strict local minimum</li>
 <li>Yet f = −0.2155, and the global minimum is −1.0316</li></ul></div>
 <div class="col"><div class="panel grow"><b style="color:${C.teal}">Checklist before you report an NLP result</b><ol style="font-size:18px;line-height:1.5;margin:8px 0 0;padding-left:24px">
@@ -780,7 +780,7 @@ const NARR = {
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 3010.3,
+ "total_seconds": 3057.2,
  "slides": [
   {
    "n": 1,
@@ -955,7 +955,7 @@ const NARR = {
   {
    "n": 5,
    "file": "audio/slide-05.mp3",
-   "duration": 85.296,
+   "duration": 91.872,
    "hold": false,
    "cues": [
     {
@@ -966,55 +966,61 @@ const NARR = {
     },
     {
      "s": 4.287,
-     "e": 15.605,
+     "e": 10.803,
+     "en": "Session 1 drew this map for the whole course. Today fills in its nonlinear rows.",
+     "th": "คาบที่ 1 วาดแผนที่นี้ไว้สำหรับทั้งวิชา วันนี้จะเติมแถวที่ไม่เชิงเส้นของมัน"
+    },
+    {
+     "s": 10.803,
+     "e": 22.171,
      "en": "For a linear program, the solver returns a vertex, and the dual gives a certificate: primal and dual feasible with equal objectives. That point is globally optimal.",
      "th": "สำหรับ linear program solver คืน vertex และ dual ให้ใบรับรอง คือ primal และ dual เป็นไปได้ทั้งคู่และมีค่าเป้าหมายเท่ากัน จุดนั้นเหมาะสมที่สุดแบบวงกว้าง"
     },
     {
-     "s": 15.605,
-     "e": 23.855,
+     "s": 22.171,
+     "e": 30.421,
      "en": "For a mixed-integer program, Session 3, the solver returns an incumbent and a bound, and the gap between them is the certificate.",
      "th": "สำหรับ mixed-integer program ในคาบที่ 3 solver คืน incumbent และ bound และช่องว่างระหว่างสองค่านี้คือใบรับรอง"
     },
     {
-     "s": 23.855,
-     "e": 31.329,
+     "s": 30.421,
+     "e": 37.895,
      "en": "For a nonlinear program, a local solver returns a point that satisfies the first-order conditions to a tolerance.",
      "th": "สำหรับ nonlinear program local solver คืนจุดที่ผ่านเงื่อนไขอันดับหนึ่งภายในค่าความคลาดเคลื่อนที่กำหนด"
     },
     {
-     "s": 31.329,
-     "e": 39.868,
+     "s": 37.895,
+     "e": 46.434,
      "en": "If the problem is convex, that point is global. If it is not, the point is certified only within its own neighborhood.",
      "th": "ถ้าปัญหาเป็น convex จุดนั้นเป็นคำตอบวงกว้าง ถ้าไม่ใช่ จุดนั้นได้รับการรับรองเฉพาะในบริเวณรอบตัวมันเท่านั้น"
     },
     {
-     "s": 39.868,
-     "e": 47.697,
+     "s": 46.434,
+     "e": 54.263,
      "en": "A global solver brings back the structure of branch and bound: an incumbent, a bound from convex relaxations, and a gap.",
      "th": "global solver นำโครงสร้างของ branch and bound กลับมา คือ incumbent, bound จาก convex relaxation และช่องว่าง"
     },
     {
-     "s": 47.697,
-     "e": 56.105,
+     "s": 54.263,
+     "e": 62.671,
      "en": "Notice the first bullet. The message Optimization terminated successfully reads the same in row three and in row four.",
      "th": "สังเกตข้อแรก ข้อความ Optimization terminated successfully เหมือนกันทุกตัวอักษรในแถวที่สามและแถวที่สี่"
     },
     {
-     "s": 56.105,
-     "e": 64.039,
+     "s": 62.671,
+     "e": 70.605,
      "en": "The solver does not know which row you are in. Only the model tells you, and today is about reading the model for that.",
      "th": "solver ไม่รู้ว่าคุณอยู่แถวไหน มีแต่ตัวโมเดลที่บอกได้ และวันนี้คือการอ่านโมเดลเพื่อหาคำตอบนั้น"
     },
     {
-     "s": 64.039,
-     "e": 74.12,
+     "s": 70.605,
+     "e": 80.686,
      "en": "Here is a concrete case. A heat-exchanger network model with stream splits has a bilinear energy balance, flow times temperature, at every mixer.",
      "th": "นี่คือกรณีที่เป็นรูปธรรม โมเดลเครือข่ายเครื่องแลกเปลี่ยนความร้อนที่มีการแยกสาย มีสมดุลพลังงานแบบ bilinear คืออัตราการไหลคูณอุณหภูมิ ที่ทุกจุดผสม"
     },
     {
-     "s": 74.12,
-     "e": 85.237,
+     "s": 80.686,
+     "e": 91.803,
      "en": "Two runs of IPOPT from different starts can both report optimal and differ by several percent in annual cost. Neither message is wrong; the model is in row four.",
      "th": "การรัน IPOPT สองครั้งจากจุดเริ่มต่างกันอาจรายงานว่า optimal ทั้งคู่ แต่ต้นทุนรายปีต่างกันหลายเปอร์เซ็นต์ ไม่มีข้อความใดผิด เพราะโมเดลอยู่ในแถวที่สี่"
     }
@@ -1023,78 +1029,78 @@ const NARR = {
   {
    "n": 6,
    "file": "audio/slide-06.mp3",
-   "duration": 98.208,
+   "duration": 100.896,
    "hold": false,
    "cues": [
     {
      "s": 0.1,
-     "e": 3.155,
-     "en": "Part one begins with definitions.",
-     "th": "ส่วนที่หนึ่งเริ่มด้วยนิยาม"
+     "e": 5.853,
+     "en": "Part one begins with the definitions from Session 1, and adds two equivalent tests.",
+     "th": "ส่วนที่หนึ่งเริ่มด้วยนิยามจากคาบที่ 1 และเพิ่มการทดสอบที่สมมูลกันอีกสองแบบ"
     },
     {
-     "s": 3.155,
-     "e": 8.263,
+     "s": 5.853,
+     "e": 10.961,
      "en": "A set is convex if the segment between any two of its points stays inside it.",
      "th": "เซตเป็น convex ถ้าส่วนของเส้นตรงระหว่างสองจุดใด ๆ ในเซตยังอยู่ในเซตนั้น"
     },
     {
-     "s": 8.263,
-     "e": 20.316,
+     "s": 10.961,
+     "e": 23.013,
      "en": "A function is convex if, between any two points, the chord lies on or above the graph. In the figure, the amber chord from x to y is above the teal curve everywhere between them.",
      "th": "ฟังก์ชันเป็น convex ถ้าระหว่างสองจุดใด ๆ เส้นคอร์ดอยู่บนหรือเหนือกราฟ ในรูป คอร์ดสีส้มจาก x ถึง y อยู่เหนือเส้นสีเขียวตลอดช่วงระหว่างสองจุด"
     },
     {
-     "s": 20.316,
-     "e": 30.5,
+     "s": 23.013,
+     "e": 33.197,
      "en": "An equivalent statement: the epigraph, the set of points on or above the graph, is a convex set. That links convex functions to convex sets.",
      "th": "ข้อความที่สมมูลกันคือ epigraph ซึ่งเป็นเซตของจุดบนหรือเหนือกราฟ เป็นเซต convex นี่เชื่อมฟังก์ชัน convex เข้ากับเซต convex"
     },
     {
-     "s": 30.5,
-     "e": 39.473,
+     "s": 33.197,
+     "e": 42.17,
      "en": "If f is differentiable, convexity is equivalent to the first-order condition: the tangent plane at any point lies below the function everywhere.",
      "th": "ถ้า f หาอนุพันธ์ได้ convexity สมมูลกับเงื่อนไขอันดับหนึ่ง คือระนาบสัมผัสที่จุดใด ๆ อยู่ใต้ฟังก์ชันทุกที่"
     },
     {
-     "s": 39.473,
-     "e": 44.053,
+     "s": 42.17,
+     "e": 46.75,
      "en": "In the figure, the dashed tangent is below the curve over the whole range.",
      "th": "ในรูป เส้นสัมผัสเส้นประอยู่ใต้กราฟตลอดช่วง"
     },
     {
-     "s": 44.053,
-     "e": 52.224,
+     "s": 46.75,
+     "e": 54.921,
      "en": "That property is the one every lower bound in part three uses: a tangent gives a bound that is valid far from the point where it was taken.",
      "th": "สมบัตินี้คือสิ่งที่ lower bound ทุกตัวในส่วนที่สามใช้ เส้นสัมผัสให้ bound ที่ใช้ได้แม้ไกลจากจุดที่สร้างมัน"
     },
     {
-     "s": 52.224,
-     "e": 59.671,
+     "s": 54.921,
+     "e": 62.368,
      "en": "If f is twice differentiable, convexity is equivalent to a Hessian that is positive semidefinite at every point.",
      "th": "ถ้า f หาอนุพันธ์อันดับสองได้ convexity สมมูลกับ Hessian ที่เป็น positive semidefinite ทุกจุด"
     },
     {
-     "s": 59.671,
-     "e": 69.789,
+     "s": 62.368,
+     "e": 72.487,
      "en": "A convex problem minimizes a convex function subject to convex inequality constraints of the form g less than or equal to zero, and equality constraints that are affine.",
      "th": "ปัญหา convex คือการหาค่าต่ำสุดของฟังก์ชัน convex ภายใต้ข้อจำกัดอสมการ convex ในรูป g น้อยกว่าหรือเท่ากับศูนย์ และข้อจำกัดสมการที่เป็น affine"
     },
     {
-     "s": 69.789,
-     "e": 80.513,
+     "s": 72.487,
+     "e": 83.211,
      "en": "Two stronger notions are useful later. Strictly convex means the chord lies strictly above the graph, which rules out flat valleys and gives at most one minimizer.",
      "th": "มีสองแนวคิดที่เข้มกว่าซึ่งจะใช้ภายหลัง strictly convex แปลว่าคอร์ดอยู่เหนือกราฟอย่างเคร่งครัด ซึ่งตัดหุบที่แบนออกไป และทำให้มีจุดต่ำสุดได้ไม่เกินหนึ่งจุด"
     },
     {
-     "s": 80.513,
-     "e": 91.605,
+     "s": 83.211,
+     "e": 94.303,
      "en": "Strongly convex means the Hessian eigenvalues are bounded below by a positive number. That bound also sets how fast gradient methods converge, which is Session 8.",
      "th": "strongly convex แปลว่า eigenvalue ของ Hessian มีขอบล่างเป็นจำนวนบวก ขอบล่างนี้ยังกำหนดความเร็วในการลู่เข้าของวิธี gradient ซึ่งเป็นเรื่องของคาบที่ 8"
     },
     {
-     "s": 91.605,
-     "e": 98.132,
+     "s": 94.303,
+     "e": 100.829,
      "en": "A function is concave if its negative is convex. Linear functions are both.",
      "th": "ฟังก์ชันเป็น concave ถ้าค่าลบของมันเป็น convex ฟังก์ชันเชิงเส้นเป็นทั้งสองแบบ"
     }
@@ -1103,102 +1109,102 @@ const NARR = {
   {
    "n": 7,
    "file": "audio/slide-07.mp3",
-   "duration": 131.736,
+   "duration": 136.392,
    "hold": false,
    "cues": [
     {
      "s": 0.1,
-     "e": 4.011,
-     "en": "Here is the result that makes convexity worth checking.",
-     "th": "นี่คือผลลัพธ์ที่ทำให้ convexity คุ้มค่าแก่การตรวจสอบ"
+     "e": 8.605,
+     "en": "Session 1 gave this proof in three lines. Here it is step by step, because every later argument today uses it.",
+     "th": "คาบที่ 1 ให้บทพิสูจน์นี้ในสามบรรทัด ที่นี่จะทำทีละขั้น เพราะทุกเหตุผลต่อจากนี้ในวันนี้ใช้มัน"
     },
     {
-     "s": 4.011,
-     "e": 10.171,
+     "s": 8.605,
+     "e": 14.816,
      "en": "Let x star be a local minimum: no feasible point within some radius r has a lower value.",
      "th": "ให้ x star เป็นจุดต่ำสุดเฉพาะที่ คือไม่มีจุดที่เป็นไปได้ภายในรัศมี r ใดที่มีค่าต่ำกว่า"
     },
     {
-     "s": 10.171,
-     "e": 15.645,
+     "s": 14.816,
+     "e": 20.289,
      "en": "Suppose, to get a contradiction, that some feasible point y has a lower value.",
      "th": "สมมติเพื่อหาข้อขัดแย้งว่ามีจุดที่เป็นไปได้ y ที่มีค่าต่ำกว่า"
     },
     {
-     "s": 15.645,
-     "e": 23.079,
+     "s": 20.289,
+     "e": 27.724,
      "en": "Walk a small step from x star toward y, to the point z. Choose the step small enough that z is inside the radius r.",
      "th": "เดินไปจาก x star ทางจุด y เป็นระยะสั้น ๆ ถึงจุด z เลือกระยะให้สั้นพอที่ z อยู่ในรัศมี r"
     },
     {
-     "s": 23.079,
-     "e": 35.461,
+     "s": 27.724,
+     "e": 40.105,
      "en": "Because the feasible set is convex, z is feasible. Because f is convex, f of z is at most the weighted average of f at x star and f at y, and that average is below f at x star.",
      "th": "เพราะเซตที่เป็นไปได้เป็น convex z จึงเป็นไปได้ และเพราะ f เป็น convex ค่า f ที่ z จึงไม่เกินค่าเฉลี่ยถ่วงน้ำหนักของ f ที่ x star และที่ y ซึ่งต่ำกว่า f ที่ x star"
     },
     {
-     "s": 35.461,
-     "e": 42.276,
+     "s": 40.105,
+     "e": 46.921,
      "en": "So there is a better feasible point arbitrarily close to x star, which contradicts local optimality.",
      "th": "ดังนั้นมีจุดที่เป็นไปได้และดีกว่าอยู่ใกล้ x star เท่าใดก็ได้ ซึ่งขัดกับความเป็นจุดต่ำสุดเฉพาะที่"
     },
     {
-     "s": 42.276,
-     "e": 48.776,
+     "s": 46.921,
+     "e": 53.421,
      "en": "Both halves of the assumption were used: convexity of the function, and convexity of the feasible set.",
      "th": "สมมติฐานทั้งสองส่วนถูกใช้ คือ convexity ของฟังก์ชัน และ convexity ของเซตที่เป็นไปได้"
     },
     {
-     "s": 48.776,
-     "e": 57.63,
+     "s": 53.421,
+     "e": 62.275,
      "en": "With the first-order condition you get more: if the gradient is zero at x star, the tangent plane is flat, and it lies below f everywhere.",
      "th": "เมื่อใช้เงื่อนไขอันดับหนึ่งจะได้มากกว่านั้น ถ้า gradient เป็นศูนย์ที่ x star ระนาบสัมผัสจะแบน และอยู่ใต้ f ทุกที่"
     },
     {
-     "s": 57.63,
-     "e": 61.579,
+     "s": 62.275,
+     "e": 66.224,
      "en": "A stationary point of a convex function is the global minimum.",
      "th": "จุดคงตัวของฟังก์ชัน convex จึงเป็นจุดต่ำสุดวงกว้าง"
     },
     {
-     "s": 61.579,
-     "e": 73.895,
+     "s": 66.224,
+     "e": 78.539,
      "en": "Now the warning that matters most for process models. A nonlinear equality almost never defines a convex set. A circle is not convex; the disc inside it is.",
      "th": "ต่อไปคือคำเตือนที่สำคัญที่สุดสำหรับโมเดลกระบวนการ สมการไม่เชิงเส้นแทบไม่เคยนิยามเซต convex วงกลมไม่ใช่ convex แต่แผ่นวงกลมข้างในเป็น"
     },
     {
-     "s": 73.895,
-     "e": 82.513,
+     "s": 78.539,
+     "e": 87.158,
      "en": "Component balances, with flow times composition, are equalities of this kind, and they are the usual reason a flowsheet model is nonconvex.",
      "th": "สมดุลขององค์ประกอบที่มีอัตราการไหลคูณองค์ประกอบเป็นสมการแบบนี้ และเป็นเหตุผลปกติที่ทำให้โมเดล flowsheet ไม่เป็น convex"
     },
     {
-     "s": 82.513,
-     "e": 94.524,
+     "s": 87.158,
+     "e": 99.169,
      "en": "A two-line example. Minimize x plus y on the circle x squared plus y squared equal to one. There are two stationary points, at minus and plus one over root two in each coordinate:",
      "th": "ตัวอย่างสองบรรทัด หาค่าต่ำสุดของ x บวก y บนวงกลม x กำลังสองบวก y กำลังสองเท่ากับหนึ่ง มีจุดคงตัวสองจุด ที่ลบและบวกหนึ่งหารรากสองในแต่ละพิกัด"
     },
     {
-     "s": 94.524,
-     "e": 105.0,
+     "s": 99.169,
+     "e": 109.645,
      "en": "one is the minimum and the other is the maximum. Replace the circle by the disc and the problem becomes convex, with the same minimum and no false candidate.",
      "th": "จุดหนึ่งเป็นจุดต่ำสุด อีกจุดเป็นจุดสูงสุด เปลี่ยนวงกลมเป็นแผ่นวงกลม ปัญหาจะเป็น convex มีจุดต่ำสุดเดิม และไม่มีผู้สมัครปลอม"
     },
     {
-     "s": 105.0,
-     "e": 114.329,
+     "s": 109.645,
+     "e": 118.974,
      "en": "And the converse fails: a nonconvex problem can still have a single minimum. Rosenbrock, in the lab, is the standard example.",
      "th": "และบทกลับไม่จริง ปัญหาที่ไม่ convex ก็อาจมีจุดต่ำสุดเพียงจุดเดียวได้ ฟังก์ชัน Rosenbrock ใน lab คือตัวอย่างมาตรฐาน"
     },
     {
-     "s": 114.329,
-     "e": 124.426,
+     "s": 118.974,
+     "e": 129.071,
      "en": "In practice the proof gives a recipe. Show that the objective is convex, that each inequality function is convex, and that each equality is affine.",
      "th": "ในทางปฏิบัติ บทพิสูจน์นี้ให้สูตรการทำงาน แสดงว่าฟังก์ชันเป้าหมายเป็น convex ฟังก์ชันอสมการแต่ละตัวเป็น convex และสมการแต่ละตัวเป็น"
     },
     {
-     "s": 124.426,
-     "e": 131.658,
+     "s": 129.071,
+     "e": 136.303,
      "en": "Then a single local solve answers the question, and the KKT multipliers from that solve are a certificate.",
      "th": "affine จากนั้นการแก้แบบเฉพาะที่ครั้งเดียวก็ตอบคำถามได้ และตัวคูณ KKT จากการแก้ครั้งนั้นคือใบรับรอง"
     }
@@ -1465,7 +1471,7 @@ const NARR = {
   {
    "n": 11,
    "file": "audio/slide-11.mp3",
-   "duration": 112.848,
+   "duration": 124.656,
    "hold": false,
    "cues": [
     {
@@ -1506,43 +1512,55 @@ const NARR = {
     },
     {
      "s": 52.855,
-     "e": 63.487,
+     "e": 58.148,
+     "en": "That is why Session 1 listed Arrhenius terms among the usual sources of nonconvexity:",
+     "th": "นี่คือเหตุที่คาบที่ 1 จัดพจน์ Arrhenius ไว้ในแหล่งความไม่ convex ที่พบบ่อย"
+    },
+    {
+     "s": 58.148,
+     "e": 64.671,
+     "en": "in a reactor model they multiply concentrations, and in Session 10 the activation energy itself is fitted.",
+     "th": "ในโมเดลเครื่องปฏิกรณ์มันคูณกับความเข้มข้น และในคาบที่ 10 พลังงานกระตุ้นเองก็เป็นตัวแปรที่ต้องประมาณค่า"
+    },
+    {
+     "s": 64.671,
+     "e": 75.303,
      "en": "x squared over y, for positive y, is the perspective of x squared, and convex. It appears when a pressure drop scales with flow squared over area.",
      "th": "x กำลังสองหาร y สำหรับ y เป็นบวก คือ perspective ของ x กำลังสอง และเป็น convex พบเมื่อความดันลดแปรตามอัตราการไหลกำลังสองหารพื้นที่"
     },
     {
-     "s": 63.487,
-     "e": 68.368,
+     "s": 75.303,
+     "e": 80.184,
      "en": "The demand charge, a maximum of linear functions, is convex.",
      "th": "demand charge ซึ่งเป็นค่าสูงสุดของฟังก์ชันเชิงเส้น เป็น convex"
     },
     {
-     "s": 68.368,
-     "e": 78.079,
+     "s": 80.184,
+     "e": 89.895,
      "en": "Equipment cost under the six-tenths rule, a times S to the zero point six, is concave: the exponent is below one, so the marginal cost falls with size.",
      "th": "ต้นทุนอุปกรณ์ตามกฎหกในสิบ a คูณ S กำลังศูนย์จุดหก เป็น concave เพราะเลขชี้กำลังต่ำกว่าหนึ่ง ต้นทุนส่วนเพิ่มจึงลดลงเมื่อขนาดโตขึ้น"
     },
     {
-     "s": 78.079,
-     "e": 87.697,
+     "s": 89.895,
+     "e": 99.513,
      "en": "Flow times composition, in a component balance, is bilinear: its Hessian has eigenvalues plus one and minus one, so it is neither convex nor concave.",
      "th": "อัตราการไหลคูณองค์ประกอบในสมดุลขององค์ประกอบเป็น bilinear Hessian มี eigenvalue บวกหนึ่งและลบหนึ่ง จึงไม่เป็นทั้ง convex และ concave"
     },
     {
-     "s": 87.697,
-     "e": 94.316,
+     "s": 99.513,
+     "e": 106.132,
      "en": "And as an equality, F times x equals m, it defines a hyperbola, which is not a convex set.",
      "th": "และเมื่อเป็นสมการ F คูณ x เท่ากับ m จะนิยามไฮเพอร์โบลา ซึ่งไม่ใช่เซต convex"
     },
     {
-     "s": 94.316,
-     "e": 103.684,
+     "s": 106.132,
+     "e": 115.5,
      "en": "The note at the bottom is easy to forget. A convex term helps in a minimized objective, or on the left of a less-than-or-equal constraint.",
      "th": "หมายเหตุด้านล่างลืมได้ง่าย พจน์ convex ช่วยเมื่ออยู่ในฟังก์ชันเป้าหมายที่หาค่าต่ำสุด หรืออยู่ทางซ้ายของข้อจำกัดแบบน้อยกว่าหรือเท่ากับ"
     },
     {
-     "s": 103.684,
-     "e": 112.776,
+     "s": 115.5,
+     "e": 124.592,
      "en": "The same term on the left of a greater-than-or-equal constraint makes the feasible set nonconvex. Direction matters as much as the term.",
      "th": "พจน์เดียวกันเมื่ออยู่ทางซ้ายของข้อจำกัดแบบมากกว่าหรือเท่ากับ ทำให้เซตที่เป็นไปได้ไม่เป็น convex ทิศทางสำคัญพอ ๆ กับตัวพจน์"
     }
@@ -1785,7 +1803,7 @@ const NARR = {
   {
    "n": 15,
    "file": "audio/slide-15.mp3",
-   "duration": 104.04,
+   "duration": 106.44,
    "hold": false,
    "cues": [
     {
@@ -1868,16 +1886,22 @@ const NARR = {
     },
     {
      "s": 91.882,
-     "e": 103.974,
-     "en": "In Session 3 you modeled the same shape with SOS2 pieces and binaries. That was not a modeling trick: an exact model of a concave cost needs combinatorics, as the next slide shows.",
-     "th": "ในคาบที่ 3 คุณสร้างโมเดลรูปร่างเดียวกันด้วย SOS2 และตัวแปรไบนารี นั่นไม่ใช่เทคนิคการสร้างโมเดลเท่านั้น โมเดลที่แม่นยำของต้นทุน concave ต้องใช้การจัดหมู่ ดังที่หน้าถัดไปจะแสดง"
+     "e": 101.232,
+     "en": "In Sessions 2 and 3 you met the same shape as a volume discount: the LP got it wrong, and one binary fixed it. That was not a modeling trick:",
+     "th": "ในคาบที่ 2 และ 3 คุณพบรูปร่างเดียวกันในรูปของส่วนลดตามปริมาณ LP ให้คำตอบผิด และตัวแปรไบนารีตัวเดียวแก้ได้ นั่นไม่ใช่เทคนิคการสร้างโมเดลเท่านั้น"
+    },
+    {
+     "s": 101.232,
+     "e": 106.368,
+     "en": "an exact model of a concave cost needs combinatorics, as the next slide shows.",
+     "th": "โมเดลที่แม่นยำของต้นทุน concave ต้องใช้การจัดหมู่ ดังที่หน้าถัดไปจะแสดง"
     }
    ]
   },
   {
    "n": 16,
    "file": "audio/slide-16.mp3",
-   "duration": 87.384,
+   "duration": 88.392,
    "hold": false,
    "cues": [
     {
@@ -1936,13 +1960,13 @@ const NARR = {
     },
     {
      "s": 68.382,
-     "e": 76.355,
-     "en": "The piecewise-linear cost of Session 3 has the same structure: the minimum sits at a breakpoint, and the binaries choose which one.",
-     "th": "ต้นทุนเชิงเส้นเป็นช่วงในคาบที่ 3 มีโครงสร้างเดียวกัน จุดต่ำสุดอยู่ที่จุดหักของช่วง และตัวแปรไบนารีเลือกว่าเป็นจุดใด"
+     "e": 77.355,
+     "en": "The volume discount of Sessions 2 and 3 has the same structure: the best purchase sits at a breakpoint of the price tiers, and the binary chooses which one.",
+     "th": "ส่วนลดตามปริมาณในคาบที่ 2 และ 3 มีโครงสร้างเดียวกัน การซื้อที่ดีที่สุดอยู่ที่จุดหักของขั้นราคา และตัวแปรไบนารีเลือกว่าเป็นจุดใด"
     },
     {
-     "s": 76.355,
-     "e": 87.316,
+     "s": 77.355,
+     "e": 88.316,
      "en": "For design, the practical consequence is clear: the cost-optimal plant puts capacity at bounds, one unit at its maximum and the next one taking the rest, not in equal shares.",
      "th": "สำหรับการออกแบบ ผลในทางปฏิบัติชัดเจน โรงงานที่ต้นทุนต่ำสุดจะให้กำลังการผลิตอยู่ที่ขอบเขต หน่วยหนึ่งเต็มขนาดสูงสุด และหน่วยถัดไปรับส่วนที่เหลือ ไม่ใช่แบ่งเท่า ๆ กัน"
     }
@@ -1951,7 +1975,7 @@ const NARR = {
   {
    "n": 17,
    "file": "audio/slide-17.mp3",
-   "duration": 97.728,
+   "duration": 100.104,
    "hold": false,
    "cues": [
     {
@@ -1992,31 +2016,37 @@ const NARR = {
     },
     {
      "s": 49.816,
-     "e": 62.579,
-     "en": "The table shows L-BFGS-B from four starts. Three of them slide to an end. The fourth, started exactly at the equal split, stops at once: the gradient there is zero.",
-     "th": "ตารางแสดง L-BFGS-B จากสี่จุดเริ่ม สามจุดไถลไปที่ปลาย จุดที่สี่ซึ่งเริ่มที่การแบ่งเท่ากันพอดี หยุดทันที เพราะ gradient ที่นั่นเป็นศูนย์"
+     "e": 62.976,
+     "en": "The table shows L-BFGS-B, the version of BFGS that handles bounds, from four starts. Three of them slide to an end. The fourth, started exactly at the equal split, stops at once:",
+     "th": "ตารางแสดง L-BFGS-B ซึ่งเป็น BFGS ที่รองรับขอบเขตของตัวแปร จากสี่จุดเริ่ม สามจุดไถลไปที่ปลาย จุดที่สี่ซึ่งเริ่มที่การแบ่งเท่ากันพอดี หยุดทันที เพราะ"
     },
     {
-     "s": 62.579,
-     "e": 66.251,
+     "s": 62.976,
+     "e": 64.961,
+     "en": "the gradient there is zero.",
+     "th": "gradient ที่นั่นเป็นศูนย์"
+    },
+    {
+     "s": 64.961,
+     "e": 68.633,
      "en": "Why is the difference small here and large in practice?",
      "th": "ทำไมส่วนต่างที่นี่เล็ก แต่ในทางปฏิบัติใหญ่"
     },
     {
-     "s": 66.251,
-     "e": 78.643,
+     "s": 68.633,
+     "e": 81.025,
      "en": "Real installed cost has a fixed part as well, for foundations, piping and instruments, so the cost of each unit is a plus b times A to the n. Each unit avoided saves the whole fixed part a.",
      "th": "ต้นทุนติดตั้งจริงมีส่วนคงที่ด้วย เช่นฐานราก ท่อ และเครื่องมือวัด ต้นทุนของแต่ละเครื่องจึงเป็น a บวก b คูณ A ยกกำลัง n ทุกเครื่องที่ไม่ต้องสร้างช่วยประหยัดส่วนคงที่ a ทั้งก้อน"
     },
     {
-     "s": 78.643,
-     "e": 90.711,
+     "s": 81.025,
+     "e": 93.092,
      "en": "Move the slider. At eleven hundred square meters the cap is tall. At nineteen hundred, both units are near their maximum and the curve is almost flat, so the choice matters little.",
      "th": "เลื่อนแถบ ที่หนึ่งพันหนึ่งร้อยตารางเมตร โดมสูง ที่หนึ่งพันเก้าร้อย ทั้งสองเครื่องใกล้ขนาดสูงสุดและเส้นโค้งเกือบแบน การเลือกจึงมีผลน้อย"
     },
     {
-     "s": 90.711,
-     "e": 97.658,
+     "s": 93.092,
+     "e": 100.039,
      "en": "An engineer's instinct to share the duty equally is right when the cost is convex, and wrong when it is concave.",
      "th": "สัญชาตญาณของวิศวกรที่จะแบ่งภาระเท่า ๆ กัน ถูกเมื่อต้นทุนเป็น convex และผิดเมื่อเป็น concave"
     }
@@ -2741,7 +2771,7 @@ const NARR = {
   {
    "n": 28,
    "file": "audio/slide-28.mp3",
-   "duration": 108.648,
+   "duration": 115.2,
    "hold": false,
    "cues": [
     {
@@ -2788,43 +2818,49 @@ const NARR = {
     },
     {
      "s": 59.632,
-     "e": 64.692,
-     "en": "The example on the right is a one-variable function on zero to eight with two local minima:",
-     "th": "ตัวอย่างทางขวาเป็นฟังก์ชันตัวแปรเดียวบนช่วงศูนย์ถึงแปด มีจุดต่ำสุดเฉพาะที่สองจุด"
+     "e": 66.2,
+     "en": "The example on the right is the cost curve from the Session 1 demo, on zero to eight, with two local minima:",
+     "th": "ตัวอย่างทางขวาคือเส้นต้นทุนจากการสาธิตในคาบที่ 1 บนช่วงศูนย์ถึงแปด มีจุดต่ำสุดเฉพาะที่สองจุด"
     },
     {
-     "s": 64.692,
-     "e": 71.566,
+     "s": 66.2,
+     "e": 73.793,
      "en": "x equal to one point three two with f one point one three, and x equal to five point seven seven with f four point seven one.",
-     "th": "คือ x เท่ากับหนึ่งจุดสามสอง ที่ f หนึ่งจุดหนึ่งสาม และ x เท่ากับห้าจุดเจ็ดเจ็ด ที่ f สี่จุดเจ็ดหนึ่ง"
+     "th": "คือ x เท่ากับหนึ่งจุดสามสอง ที่ f หนึ่งจุดหนึ่งสาม และ x เท่ากับห้าจุดเจ็ดเจ็ด ที่ f"
     },
     {
-     "s": 71.566,
-     "e": 79.923,
+     "s": 73.793,
+     "e": 78.132,
+     "en": "In Session 1, BFGS found one or the other depending on where it started.",
+     "th": "สี่จุดเจ็ดหนึ่ง ในคาบที่ 1 BFGS พบจุดใดจุดหนึ่งขึ้นกับจุดเริ่ม"
+    },
+    {
+     "s": 78.132,
+     "e": 86.489,
      "en": "Its second derivative is smallest at x equal to three point seven five, minus two point zero two five, so alpha is one point zero one two five,",
      "th": "อนุพันธ์อันดับสองมีค่าน้อยที่สุดที่ x เท่ากับสามจุดเจ็ดห้า คือลบสองจุดศูนย์สองห้า alpha จึงเท่ากับหนึ่งจุดศูนย์หนึ่งสองห้า"
     },
     {
-     "s": 79.923,
-     "e": 83.289,
+     "s": 86.489,
+     "e": 89.855,
      "en": "and the largest gap at the root node is sixteen point two.",
      "th": "และช่องว่างที่ใหญ่ที่สุดที่โหนดราก คือสิบหกจุดสอง"
     },
     {
-     "s": 83.289,
-     "e": 94.211,
+     "s": 89.855,
+     "e": 100.777,
      "en": "For a concave term in one variable, such as a six-tenths cost, there is a simpler rule: the convex underestimator over an interval is the secant between its end points.",
      "th": "สำหรับพจน์ concave ตัวแปรเดียว เช่นต้นทุนตามกฎหกในสิบ มีกฎที่ง่ายกว่า ตัวประมาณล่างแบบ convex บนช่วงคือเส้นตัดระหว่างปลายทั้งสอง"
     },
     {
-     "s": 94.211,
-     "e": 97.895,
+     "s": 100.777,
+     "e": 104.461,
      "en": "Branching on the size tightens it, just as for alpha B B.",
      "th": "การแตกกิ่งบนขนาดทำให้มันแน่นขึ้น เช่นเดียวกับ alpha B B"
     },
     {
-     "s": 97.895,
-     "e": 108.566,
+     "s": 104.461,
+     "e": 115.132,
      "en": "The method is due to Androulakis, Maranas and Floudas, 1995. On the next slide, branch and bound uses it to find and prove the first minimum.",
      "th": "วิธีนี้มาจาก Androulakis, Maranas และ Floudas ปี 1995 หน้าถัดไป branch and bound จะใช้มันเพื่อหาและพิสูจน์จุดต่ำสุดแรก"
     }
@@ -2833,7 +2869,7 @@ const NARR = {
   {
    "n": 29,
    "file": "audio/slide-29.mp3",
-   "duration": 107.304,
+   "duration": 116.112,
    "hold": false,
    "cues": [
     {
@@ -2904,13 +2940,19 @@ const NARR = {
     },
     {
      "s": 86.276,
-     "e": 97.066,
+     "e": 95.066,
+     "en": "In Session 1, multistart on this curve could only suggest that one point three two was the best. Here seven nodes prove it.",
+     "th": "ในคาบที่ 1 การเริ่มหลายจุดบนเส้นนี้ทำได้เพียงบอกเป็นนัยว่าหนึ่งจุดสามสองดีที่สุด ที่นี่เจ็ดโหนดพิสูจน์ได้"
+    },
+    {
+     "s": 95.066,
+     "e": 105.855,
      "en": "This is the same logic as the branch and bound of Session 3, with the integrality relaxation replaced by a convex underestimator, and branching on a continuous variable.",
      "th": "นี่คือตรรกะเดียวกับ branch and bound ในคาบที่ 3 โดยแทน relaxation ของความเป็นจำนวนเต็มด้วยตัวประมาณล่างแบบ convex และแตกกิ่งบนตัวแปรต่อเนื่อง"
     },
     {
-     "s": 97.066,
-     "e": 107.237,
+     "s": 105.855,
+     "e": 116.026,
      "en": "In one variable seven nodes are enough. In many variables the number of boxes grows quickly, which is why global solvers are limited in size.",
      "th": "ในตัวแปรเดียว เจ็ดโหนดก็พอ ในหลายตัวแปร จำนวนกล่องเพิ่มเร็วมาก นี่คือเหตุที่ global solver จำกัดขนาดปัญหา"
     }

@@ -215,7 +215,7 @@ S.push({kicker:"Context", title:"Linear programming is the workhorse of plant pl
 /* Part 1 */
 S.push({kicker:"Part 1 · Blending", title:"Two gasoline grades from five components", html:()=>`<div class="body"><div class="col w60"><table class="t" style="font-size:18px" id="b1"></table></div>
 <div class="col"><table class="t" style="font-size:18px" id="b2"></table>
-<p class="note">x<sub>ig</sub> ≥ 0: m³/d of component i blended into grade g. Maximize Σ<sub>g</sub> p<sub>g</sub> Σ<sub>i</sub> x<sub>ig</sub> − Σ<sub>i</sub> c<sub>i</sub> Σ<sub>g</sub> x<sub>ig</sub>. Synthetic data of realistic size. RVP: Reid vapor pressure.</p></div></div>`,
+<p class="note">x<sub>ig</sub> ≥ 0: m³/d of component i blended into grade g. Maximize Σ<sub>g</sub> p<sub>g</sub> Σ<sub>i</sub> x<sub>ig</sub> − Σ<sub>i</sub> c<sub>i</sub> Σ<sub>g</sub> x<sub>ig</sub>, with p<sub>g</sub> the price of grade g and c<sub>i</sub> the cost of component i. Synthetic data of realistic size. RVP: Reid vapor pressure.</p></div></div>`,
 draw:()=>{const d=R.lecture.data;let s=`<tr><th>Component</th><th class="n">RON</th><th class="n">RVP, kPa</th><th class="n">Cost, USD/m³</th><th class="n">Available, m³/d</th></tr>`;
  d.comp.forEach(c=>{s+=`<tr><td><span style="display:inline-block;width:12px;height:12px;background:${CC[c]};margin-right:8px"></span>${c}</td><td class="n">${d.ron[c]}</td><td class="n">${d.rvp[c]}</td><td class="n">${d.cost[c]}</td><td class="n">${fmt(d.avail[c])}</td></tr>`});
  document.getElementById("b1").innerHTML=s;
@@ -223,7 +223,7 @@ draw:()=>{const d=R.lecture.data;let s=`<tr><th>Component</th><th class="n">RON<
 
 S.push({kicker:"Part 1 · Ratio specifications", title:"A specification on a mixture is a linear row", html:()=>`<div class="body"><div class="col w55"><div class="panel"><div class="math" style="font-size:24px">
 Σ<sub>i</sub> q<sub>i</sub> x<sub>ig</sub> / Σ<sub>i</sub> x<sub>ig</sub> ≥ Q<sub>g</sub><br>
-⇔ Σ<sub>i</sub> (q<sub>i</sub> − Q<sub>g</sub>) x<sub>ig</sub> ≥ 0 &nbsp;&nbsp;(multiply by Σ<sub>i</sub> x<sub>ig</sub> &gt; 0)</div></div>
+⇔ Σ<sub>i</sub> (q<sub>i</sub> − Q<sub>g</sub>) x<sub>ig</sub> ≥ 0 &nbsp;&nbsp;(multiply by Σ<sub>i</sub> x<sub>ig</sub> &gt; 0)<br><span style="font-size:15px">q<sub>i</sub>: property of component i (RON, or the RVP index); Q<sub>g</sub>: the limit for grade g</span></div></div>
 <p style="font-size:20px;margin:14px 0 0">Coefficient of LSR naphtha in the Premium RON row: 70 − 95 = <b>−25</b>. A component below the spec has a negative coefficient; it is allowed only if others carry it.</p></div>
 <div class="col"><ul class="b xs"><li><b>Exact when</b> (1) the property blends linearly on the basis of x (volume, mass or moles), and (2) the grade volume is positive</li>
 <li>At zero volume the row holds trivially: an impossible spec makes the grade <b>disappear</b>, not the model infeasible. Watch for it in the demo</li>
@@ -364,7 +364,7 @@ At a vertex of {x : Ax ≤ b, x ≥ 0} ⊂ ℝⁿ, n linearly independent constr
 If p variables are positive, only n − p bounds x<sub>j</sub> ≥ 0 are tight, so at least p rows are tight:<br>
 <b>positive variables ≤ tight rows</b></div></div>
 <p style="font-size:20px;margin:14px 0 0">Base blend: <b id="vx"></b>. Ten flows are possible; the solver uses only what the tight rows can pay for.</p></div>
-<div class="col"><ul class="b xs"><li>Simplex and interior point with crossover return a vertex. Interior point without crossover may return a point with every flow positive</li>
+<div class="col"><ul class="b xs"><li>Simplex and interior point with crossover return a vertex. Interior point without crossover (the final step that moves to a vertex) may return a point with every flow positive</li>
 <li>Read a recipe through its tight rows: each positive flow is "paid for" by a binding spec, capacity or demand</li>
 <li>Adding a specification can add a component to the blend; removing one can drop a component</li>
 <li>Degenerate vertices have more tight rows than positive flows: at RON 98 in the demo, 6 positive and 7 tight</li></ul></div></div>`,
@@ -448,7 +448,7 @@ S.push({kicker:"Part 2 · Demo", title:"One shared tank: two answers and a lost 
 <div class="ctrl"><span>Start</span><input type="range" id="pls" min="0" max="39" step="1" value="0"><b id="plv"></b></div>
 <div class="kpi" style="flex-wrap:wrap"><div>Profit found, USD/h<b class="a" id="plp"></b></div><div>Tank sulfur q, wt%<b id="plq"></b></div></div>
 <p class="note" id="pln"></p>
-<p class="note">Crudes A (3.2 wt% S) and B (0.8 wt% S) share one tank; crude C (2.3 wt% S) goes straight to the grades X (S ≤ 2.7) and Y (S ≤ 1.3). The tank balance q (a + b) = 3.2a + 0.8b multiplies two variables. SLSQP, a local method, from 40 random starts.</p></div>
+<p class="note">Crudes A (3.2 wt% S) and B (0.8 wt% S) share one tank; crude C (2.3 wt% S) goes straight to the grades X (S ≤ 2.7) and Y (S ≤ 1.3). With a and b the flows of crudes A and B into the tank, the tank balance q (a + b) = 3.2a + 0.8b multiplies two variables. SLSQP, a local method, from 40 random starts.</p></div>
 <div class="col"><div class="panel grow"><div class="chart" id="ch-pl"></div></div></div></div>`,
 draw:()=>{const P=R.lecture.pooling,sl=document.getElementById("pls"),up=()=>{const r=P.runs[+sl.value];
  document.getElementById("plv").textContent=`${r.start} of ${P.runs.length}`;document.getElementById("plp").textContent=fmt(r.profit,1);document.getElementById("plq").textContent=fmt(r.x[6],2);
@@ -548,7 +548,7 @@ print("correct discount plan:", t["discount"]["correct"])`,
 out:()=>{const t=R.lecture.tiers;return ["rising","discount"].map(k=>`${k} ${JSON.stringify(Object.fromEntries(Object.entries(t[k]).filter(e=>typeof e[1]==="number").map(e=>[e[0],+e[1].toFixed(1)])))}`).join("\n")+`\ncorrect discount plan: ${JSON.stringify(t.discount.correct)}`}}});
 
 S.push({kicker:"Part 3 · Linear-fractional", title:"Cheapest Premium per m³ when each batch has a fixed cost", dhint:true, html:()=>`<div class="body"><div class="col w45"><div class="panel"><div class="math" style="font-size:20px;line-height:1.6">
-min (Σ c<sub>i</sub>x<sub>i</sub> + F) / Σ x<sub>i</sub>, F = 40,000 USD/d<br>t = 1/Σ x<sub>i</sub>, y = t x:<br>min Σ c<sub>i</sub>y<sub>i</sub> + F t<br>s.t. Σ y<sub>i</sub> = 1, y<sub>i</sub> ≤ a<sub>i</sub> t, specs on y, t ≥ 1/3000</div></div>
+min (Σ c<sub>i</sub>x<sub>i</sub> + F) / Σ x<sub>i</sub>, F = 40,000 USD/d<br>t = 1/Σ x<sub>i</sub>, y = t x:<br>min Σ c<sub>i</sub>y<sub>i</sub> + F t<br>s.t. Σ y<sub>i</sub> = 1, y<sub>i</sub> ≤ a<sub>i</sub> t, specs on y, t ≥ 1/3000<br><span style="font-size:15px">c<sub>i</sub>: component cost; a<sub>i</sub>: availability, m³/d</span></div></div>
 <p style="font-size:19px;margin:12px 0 0">LP answer: <b id="ccv"></b></p></div>
 <div class="col"><div class="panel grow"><div class="chart" id="ch-cc"></div></div></div></div>`,
 draw:()=>{const cc=R.lecture.charnes_cooper,sc=cc.scan.filter(s=>s.cost_per_m3!=null);
@@ -701,7 +701,7 @@ const NARR = {
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 2968.8,
+ "total_seconds": 2971.5,
  "slides": [
   {
    "n": 1,
@@ -2262,7 +2262,7 @@ const NARR = {
   {
    "n": 26,
    "file": "audio/slide-26.mp3",
-   "duration": 129.84,
+   "duration": 132.576,
    "hold": false,
    "cues": [
     {
@@ -2345,9 +2345,9 @@ const NARR = {
     },
     {
      "s": 121.092,
-     "e": 129.776,
-     "en": "Multistart is a cheap defense, not a proof. Session 13 shows how to compute a bound that proves an answer is global.",
-     "th": "การเริ่มจากหลายจุดเป็นการป้องกันที่ใช้ต้นทุนต่ำ แต่ไม่ใช่การพิสูจน์ คาบที่ 13 จะแสดงวิธีคำนวณขอบเขตที่พิสูจน์ได้ว่าคำตอบเป็น global"
+     "e": 132.513,
+     "en": "Multistart is a cheap defense, not a proof. Session 5 shows how a global solver computes a bound that proves an answer is global, and Session 13 applies it to pooling.",
+     "th": "การเริ่มจากหลายจุดเป็นการป้องกันที่ใช้ต้นทุนต่ำ แต่ไม่ใช่การพิสูจน์ คาบที่ 5 จะแสดงว่า global solver คำนวณขอบเขตที่พิสูจน์ได้ว่าคำตอบเป็น global อย่างไร และคาบที่ 13 จะนำไปใช้กับปัญหา pooling"
     }
    ]
   },

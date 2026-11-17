@@ -85,7 +85,7 @@ button.sm{width:38px;font-size:12px;padding:2px 9px;margin:0;background:transpar
 <div class="step" data-step="1a"><span class="tag p">PREDICT</span>Is f convex?
  <div class="choices"><label><input type="radio" name="p1" value="yes, one minimum means convex"> yes: a function with one minimum is convex</label><label><input type="radio" name="p1" value="no"> no</label><label><input type="radio" name="p1" value="cannot tell without the Hessian"> I cannot tell without the Hessian</label></div>
  <button data-save="1a">Save prediction</button></div>
-<div class="step" data-step="1b"><span class="tag r">RUN</span>Move the point and read the Hessian. Shaded: where the Hessian is not positive semidefinite.
+<div class="step" data-step="1b"><span class="tag r">RUN</span>Move the point and read the Hessian. Shaded: where the Hessian is not positive semidefinite (PSD: no negative eigenvalue).
  <div class="ctrlrow"><span>x</span><input type="range" id="rx" min="-2" max="2" step="0.05" value="1"><b id="rxv"></b></div>
  <div class="ctrlrow"><span>y</span><input type="range" id="ry" min="-1" max="3" step="0.05" value="1"><b id="ryv"></b></div>
  <div class="kpi"><div>f<b id="rf"></b></div><div>Hessian<b id="rh" style="font-size:16px"></b></div><div>Eigenvalues<b id="re"></b></div><div>At this point<b id="rv"></b></div></div>
@@ -121,8 +121,8 @@ button.sm{width:38px;font-size:12px;padding:2px 9px;margin:0;background:transpar
 
 <!-- TASK 3 -->
 <section class="card" id="t3"><h2>Task 3 · A heat-recovery exchanger with economies of scale</h2>
-<p>Two streams of 50 kW/K each, 60 K apart: at most Q<sub>max</sub> = 3,000 kW can be recovered. Balanced counterflow: Q(A) = Q<sub>max</sub> NTU/(1 + NTU), NTU = UA/C, U = 0.5 kW/m²K, C = 50 kW/K. Heat not recovered is bought as low-pressure steam at v USD per kW-year (40 to start). Installed cost 17 A<sup>0.6</sup> kUSD, annualized at 0.2 per year.<br>
-TAC(A) = 3.4 A<sup>0.6</sup> + (v/1000) · 3000/(1 + 0.01A) &nbsp;kUSD/yr, &nbsp;0 ≤ A ≤ 300 m².</p>
+<p>Two streams of 50 kW/K each, 60 K apart: at most Q<sub>max</sub> = 3,000 kW can be recovered. Balanced counterflow: Q(A) = Q<sub>max</sub> NTU/(1 + NTU), NTU = UA/C, U = 0.5 kW/m²K, C = 50 kW/K (heat-capacity flow rate of each stream). Heat not recovered is bought as low-pressure steam at v USD per kW-year (40 to start). Installed cost 17 A<sup>0.6</sup> kUSD, annualized at 0.2 per year.<br>
+The total annual cost, TAC(A) = 3.4 A<sup>0.6</sup> + (v/1000) · 3000/(1 + 0.01A) &nbsp;kUSD/yr, &nbsp;0 ≤ A ≤ 300 m².</p>
 <div class="step" data-step="3a"><span class="tag p">PREDICT</span>A local solver (L-BFGS-B with the bounds) is started at A = 3 m². It returns
  <div class="choices"><label><input type="radio" name="p3" value="about 90 m2"> about 90 m²</label><label><input type="radio" name="p3" value="0 m2"> 0 m²: no exchanger</label><label><input type="radio" name="p3" value="300 m2"> 300 m², the upper bound</label></div>
  <button data-save="3a">Save prediction</button></div>
