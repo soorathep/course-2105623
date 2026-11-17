@@ -3,12 +3,12 @@
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 913.6,
+ "total_seconds": 2968.8,
  "slides": [
   {
    "n": 1,
    "file": "audio/slide-01.mp3",
-   "duration": 22.608,
+   "duration": 49.008,
    "hold": false,
    "cues": [
     {
@@ -31,7 +31,25 @@
     },
     {
      "s": 17.132,
-     "e": 22.539,
+     "e": 27.553,
+     "en": "Session 1 built the workflow: a statement, a model, a solver, and checks. Today we use that workflow on models of the kind plants actually run.",
+     "th": "คาบที่ 1 สร้างขั้นตอนการทำงาน คือ การเขียนปัญหา โมเดล solver และการตรวจสอบ วันนี้เราใช้ขั้นตอนนั้นกับโมเดลแบบที่โรงงานใช้งานจริง"
+    },
+    {
+     "s": 27.553,
+     "e": 36.224,
+     "en": "Each part has a worked example you can follow with a calculator, a demo you can move, and the Python behind it, which you open with the D key.",
+     "th": "แต่ละส่วนมีตัวอย่างที่ทำตามได้ด้วยเครื่องคิดเลข demo ที่ปรับค่าได้ และโค้ด Python เบื้องหลัง ซึ่งเปิดได้ด้วยปุ่ม D"
+    },
+    {
+     "s": 36.224,
+     "e": 43.526,
+     "en": "On your own, the narration takes about fifty minutes; the activities, four checks and the lab fill the rest of the three hours.",
+     "th": "ถ้าเรียนเอง เสียงบรรยายใช้เวลาประมาณห้าสิบนาที ส่วนกิจกรรม แบบตรวจสี่ครั้ง และ lab จะใช้เวลาที่เหลือของสามชั่วโมง"
+    },
+    {
+     "s": 43.526,
+     "e": 48.934,
      "en": "When the narration for a slide ends, press the right arrow key, or Next, to go on.",
      "th": "เมื่อเสียงบรรยายของแต่ละหน้าจบ กดลูกศรขวาหรือปุ่ม Next เพื่อไปหน้าถัดไป"
     }
@@ -40,7 +58,7 @@
   {
    "n": 2,
    "file": "audio/slide-02.mp3",
-   "duration": 31.896,
+   "duration": 60.456,
    "hold": false,
    "cues": [
     {
@@ -51,31 +69,55 @@
     },
     {
      "s": 3.05,
-     "e": 6.816,
-     "en": "We start with a short retrieval check on Session 1.",
-     "th": "เราเริ่มด้วยการทบทวนความจำสั้น ๆ จากคาบที่ 1"
+     "e": 6.526,
+     "en": "We start with a retrieval check on Session 1.",
+     "th": "เราเริ่มด้วยการทบทวนความจำจากคาบที่ 1"
     },
     {
-     "s": 6.816,
-     "e": 16.461,
-     "en": "Part one is blending: how a specification on a mixture becomes a linear row, on which basis a property blends, and why optimal blends use few components.",
-     "th": "ส่วนที่หนึ่งคือการผสม ได้แก่ spec ของของผสมกลายเป็นแถวเชิงเส้นได้อย่างไร คุณสมบัติผสมกันบนฐานใด และทำไม blend ที่เหมาะที่สุดจึงใช้ส่วนผสมไม่กี่ชนิด"
+     "s": 6.526,
+     "e": 7.99,
+     "en": "Part one is blending.",
+     "th": "ส่วนที่หนึ่งคือการผสม"
     },
     {
-     "s": 16.461,
-     "e": 20.408,
-     "en": "Part two writes a small refinery as a stream table.",
-     "th": "ส่วนที่สองเขียนโรงกลั่นขนาดเล็กเป็นตาราง stream"
+     "s": 7.99,
+     "e": 18.7,
+     "en": "We turn ratio specifications into linear rows, choose the basis on which a property blends, prove why the wrong basis is optimistic, recompute a recipe by hand,",
+     "th": "เราจะแปลง spec แบบอัตราส่วนให้เป็นแถวเชิงเส้น เลือกฐานที่คุณสมบัติผสมกัน พิสูจน์ว่าทำไมฐานที่ผิดจึงประเมินในทางที่ดีเกินจริง คำนวณสูตรผสมใหม่ด้วยมือ"
     },
     {
-     "s": 20.408,
-     "e": 28.105,
+     "s": 18.7,
+     "e": 22.026,
+     "en": "and turn the dual of a specification into a price.",
+     "th": "และแปลง dual ของ spec ให้เป็นราคา"
+    },
+    {
+     "s": 22.026,
+     "e": 30.184,
+     "en": "Part two writes a small refinery as a stream table, counts its degrees of freedom, and shows what happens when components share a tank.",
+     "th": "ส่วนที่สองเขียนโรงกลั่นขนาดเล็กเป็นตาราง stream นับ degrees of freedom และแสดงว่าเกิดอะไรขึ้นเมื่อส่วนผสมใช้ถังร่วมกัน"
+    },
+    {
+     "s": 30.184,
+     "e": 37.882,
      "en": "After the break and a second activity, part three covers reformulations that keep a model linear, and the ones that do not.",
      "th": "หลังพักและกิจกรรมที่สอง ส่วนที่สามว่าด้วยการแปลงรูปที่ทำให้โมเดลยังเป็นเชิงเส้น และการแปลงที่ทำไม่ได้"
     },
     {
-     "s": 28.105,
-     "e": 31.829,
+     "s": 37.882,
+     "e": 45.145,
+     "en": "There are four short checks along the way. Each one asks you to pause and answer before you hear the solution.",
+     "th": "ระหว่างทางมีแบบตรวจสั้น ๆ สี่ครั้ง แต่ละครั้งให้คุณหยุดและตอบก่อนฟังเฉลย"
+    },
+    {
+     "s": 45.145,
+     "e": 56.658,
+     "en": "In minutes: fifteen for the first activity, forty-five for part one, thirty for part two, a ten-minute break, ten for the second activity, twenty-five for part three, and forty for the lab.",
+     "th": "แบ่งเวลาเป็นนาที กิจกรรมแรกสิบห้า ส่วนที่หนึ่งสี่สิบห้า ส่วนที่สองสามสิบ พักสิบนาที กิจกรรมที่สองสิบ ส่วนที่สามยี่สิบห้า และ lab สี่สิบ"
+    },
+    {
+     "s": 56.658,
+     "e": 60.382,
      "en": "The session ends with Lab 2 and the Exit Ticket.",
      "th": "คาบนี้จบด้วย Lab 2 และ Exit Ticket"
     }
@@ -84,36 +126,42 @@
   {
    "n": 3,
    "file": "audio/slide-03.mp3",
-   "duration": 25.272,
+   "duration": 34.704,
    "hold": true,
    "cues": [
     {
      "s": 0.1,
-     "e": 3.182,
-     "en": "Activity 1 is a retrieval check.",
-     "th": "กิจกรรมที่ 1 คือการทบทวนความจำ"
+     "e": 3.918,
+     "en": "Activity 1 is a retrieval check on Session 1.",
+     "th": "กิจกรรมที่ 1 คือการทบทวนความจำจากคาบที่ 1"
     },
     {
-     "s": 3.182,
-     "e": 7.75,
+     "s": 3.918,
+     "e": 12.553,
+     "en": "The questions cover the checks you make before trusting a solver, the sign error in the Lab 1 mixer, the shadow price of packaging, and weak duality.",
+     "th": "คำถามครอบคลุมการตรวจสอบที่ทำก่อนเชื่อ solver ความผิดพลาดของเครื่องหมายใน mixer ของ Lab 1 shadow price ของงานบรรจุ และ weak duality"
+    },
+    {
+     "s": 12.553,
+     "e": 17.171,
      "en": "Answer the four questions without notes, in a sentence or two each.",
      "th": "ตอบคำถามทั้งสี่ข้อโดยไม่เปิดโน้ต ข้อละหนึ่งหรือสองประโยค"
     },
     {
-     "s": 7.75,
-     "e": 13.158,
+     "s": 17.171,
+     "e": 22.579,
      "en": "Recalling an idea before you look it up makes it stick far better than reading it again.",
      "th": "การดึงความรู้ออกมาเองก่อนเปิดดู ช่วยให้จำได้ดีกว่าการอ่านซ้ำมาก"
     },
     {
-     "s": 13.158,
-     "e": 17.868,
+     "s": 22.579,
+     "e": 27.289,
      "en": "In class, write alone for five minutes, then compare with a partner.",
      "th": "ในห้องเรียน เขียนคนเดียวห้านาที แล้วเทียบกับเพื่อน"
     },
     {
-     "s": 17.868,
-     "e": 25.211,
+     "s": 27.289,
+     "e": 34.632,
      "en": "If you are studying on your own, stop here and write your answers, then press Show answers to check them, and go to the next slide.",
      "th": "ถ้าคุณเรียนด้วยตนเอง ให้หยุดที่หน้านี้ เขียนคำตอบ แล้วกดปุ่ม Show answers เพื่อตรวจ จากนั้นจึงไปหน้าถัดไป"
     }
@@ -122,51 +170,63 @@
   {
    "n": 4,
    "file": "audio/slide-04.mp3",
-   "duration": 31.08,
+   "duration": 49.776,
    "hold": false,
    "cues": [
     {
      "s": 0.1,
-     "e": 3.918,
-     "en": "By the end of today you should be able to do five things.",
-     "th": "เมื่อจบคาบนี้ คุณควรทำได้ห้าอย่าง"
+     "e": 3.866,
+     "en": "By the end of today you should be able to do six things.",
+     "th": "เมื่อจบคาบนี้ คุณควรทำได้หกอย่าง"
     },
     {
-     "s": 3.918,
-     "e": 9.829,
-     "en": "Write a quality specification on a mixture as a linear row, and state when that is exact.",
-     "th": "เขียน spec คุณภาพของของผสมเป็นแถวเชิงเส้น และบอกได้ว่าเมื่อใดจึงถูกต้องแม่นยำ"
+     "s": 3.866,
+     "e": 10.737,
+     "en": "Write a quality specification on a mixture as a linear row, and state the two conditions that make it exact.",
+     "th": "เขียน spec คุณภาพของของผสมเป็นแถวเชิงเส้น และบอกเงื่อนไขสองข้อที่ทำให้ถูกต้องแม่นยำ"
     },
     {
-     "s": 9.829,
-     "e": 16.026,
+     "s": 10.737,
+     "e": 16.934,
      "en": "Choose the variable in which a property blends linearly, and bound the error of using the wrong one.",
      "th": "เลือกตัวแปรที่คุณสมบัติผสมกันแบบเชิงเส้น และประเมินขอบเขตความผิดพลาดเมื่อใช้ตัวแปรผิด"
     },
     {
-     "s": 16.026,
-     "e": 21.026,
+     "s": 16.934,
+     "e": 21.934,
      "en": "Build a planning model from a stream table, and audit it by column sums.",
      "th": "สร้างโมเดลวางแผนจากตาราง stream และตรวจสอบด้วยผลรวมของแต่ละคอลัมน์"
     },
     {
-     "s": 21.026,
-     "e": 25.039,
-     "en": "Predict how many variables are positive at an optimum.",
-     "th": "ทำนายได้ว่าที่จุดเหมาะที่สุดจะมีตัวแปรที่เป็นบวกกี่ตัว"
+     "s": 21.934,
+     "e": 30.079,
+     "en": "Predict how many variables are positive at an optimum, and convert the dual of a specification into a price per unit of quality.",
+     "th": "ทำนายจำนวนตัวแปรที่เป็นบวกที่จุดเหมาะที่สุด และแปลง dual ของ spec เป็นราคาต่อหน่วยคุณภาพ"
     },
     {
-     "s": 25.039,
-     "e": 31.013,
+     "s": 30.079,
+     "e": 36.737,
+     "en": "Count the degrees of freedom of a stream table, and explain why a shared tank makes a flowsheet nonconvex.",
+     "th": "นับ degrees of freedom ของตาราง stream และอธิบายว่าทำไมถังร่วมทำให้ flowsheet ไม่เป็น convex"
+    },
+    {
+     "s": 36.737,
+     "e": 42.711,
      "en": "And recognize which reformulations keep a model linear and which need integer variables.",
      "th": "และแยกได้ว่าการแปลงรูปใดทำให้โมเดลยังเป็นเชิงเส้น และแบบใดต้องใช้ตัวแปรจำนวนเต็ม"
+    },
+    {
+     "s": 42.711,
+     "e": 49.711,
+     "en": "Each outcome is tested by one of today's checks or by the lab, so you can see where you stand before the Exit Ticket.",
+     "th": "แต่ละผลการเรียนรู้ถูกทดสอบด้วยแบบตรวจของวันนี้หรือด้วย lab คุณจึงรู้ระดับของตนเองก่อนทำ Exit Ticket"
     }
    ]
   },
   {
    "n": 5,
    "file": "audio/slide-05.mp3",
-   "duration": 25.872,
+   "duration": 61.824,
    "hold": false,
    "cues": [
     {
@@ -189,22 +249,46 @@
     },
     {
      "s": 18.987,
-     "e": 21.921,
-     "en": "The solver is rarely the bottleneck.",
-     "th": "solver แทบไม่เคยเป็นคอขวด"
+     "e": 24.579,
+     "en": "Why does linear programming dominate here? There are three reasons.",
+     "th": "ทำไม linear programming จึงครองงานด้านนี้ มีเหตุผลสามข้อ"
     },
     {
-     "s": 21.921,
-     "e": 25.803,
-     "en": "The work is in writing rows that mean what the plant means.",
-     "th": "งานจริงอยู่ที่การเขียนแถวให้มีความหมายตรงกับโรงงาน"
+     "s": 24.579,
+     "e": 30.224,
+     "en": "First, the optimum is global, so two planners with the same data get the same plan.",
+     "th": "ข้อแรก คำตอบที่ดีที่สุดเป็น global นักวางแผนสองคนที่ใช้ข้อมูลเดียวกันจึงได้แผนเดียวกัน"
+    },
+    {
+     "s": 30.224,
+     "e": 38.132,
+     "en": "Second, the duals are prices: every constraint comes with its marginal value, and that is what a planner reports to management.",
+     "th": "ข้อสอง ค่า dual คือราคา ทุกข้อจำกัดมาพร้อมมูลค่าส่วนเพิ่ม และนั่นคือสิ่งที่นักวางแผนรายงานต่อผู้บริหาร"
+    },
+    {
+     "s": 38.132,
+     "e": 47.092,
+     "en": "Third, it scales: a refinery model with tens of thousands of rows solves in seconds, so it can be run many times a day for different scenarios.",
+     "th": "ข้อสาม ขยายขนาดได้ โมเดลโรงกลั่นที่มีหลายหมื่นแถวแก้ได้ในไม่กี่วินาที จึงรันได้หลายครั้งต่อวันสำหรับหลายสถานการณ์"
+    },
+    {
+     "s": 47.092,
+     "e": 53.908,
+     "en": "The solver is rarely the bottleneck. The work is in writing rows that mean what the plant means.",
+     "th": "solver แทบไม่เคยเป็นคอขวด งานจริงอยู่ที่การเขียนแถวให้มีความหมายตรงกับโรงงาน"
+    },
+    {
+     "s": 53.908,
+     "e": 61.75,
+     "en": "The price of all this is that every row must be linear. Today is about how far that reaches, and where it stops.",
+     "th": "สิ่งที่ต้องแลกคือทุกแถวต้องเป็นเชิงเส้น วันนี้ว่าด้วยว่าข้อกำหนดนี้ไปได้ไกลแค่ไหน และหยุดที่ใด"
     }
    ]
   },
   {
    "n": 6,
    "file": "audio/slide-06.mp3",
-   "duration": 34.776,
+   "duration": 87.408,
    "hold": false,
    "cues": [
     {
@@ -233,22 +317,52 @@
     },
     {
      "s": 23.947,
-     "e": 30.75,
-     "en": "The decision variables are the cubic meters per day of each component sent to each grade, ten variables in all.",
+     "e": 30.513,
+     "en": "The decision variables are the cubic meters per day of each component sent to each grade: ten variables.",
      "th": "ตัวแปรตัดสินใจคือปริมาณลูกบาศก์เมตรต่อวันของแต่ละส่วนผสมที่ส่งไปแต่ละเกรด รวมสิบตัวแปร"
     },
     {
-     "s": 30.75,
-     "e": 34.724,
-     "en": "The data are synthetic, but of realistic size.",
-     "th": "ข้อมูลเป็นข้อมูลสังเคราะห์ แต่มีขนาดสมจริง"
+     "s": 30.513,
+     "e": 42.987,
+     "en": "Look at the table before modeling. Butane has by far the highest vapor pressure, 360 kilopascals, and is the cheapest component, at 380 dollars per cubic meter.",
+     "th": "ดูตารางก่อนสร้างโมเดล butane มีความดันไอสูงที่สุดอย่างชัดเจน คือ 360 กิโลปาสคาล และเป็นส่วนผสมที่ถูกที่สุด ที่ 380 ดอลลาร์ต่อลูกบาศก์เมตร"
+    },
+    {
+     "s": 42.987,
+     "e": 56.013,
+     "en": "Reformate has the highest octane, 98, and the lowest vapor pressure, 25. Alkylate is clean on both counts, octane 96 and vapor pressure 30, but costs 700 dollars.",
+     "th": "reformate มีค่าออกเทนสูงที่สุด คือ 98 และความดันไอต่ำที่สุด คือ 25 ส่วน alkylate ดีทั้งสองด้าน คือค่าออกเทน 96 และความดันไอ 30 แต่ราคา 700 ดอลลาร์"
+    },
+    {
+     "s": 56.013,
+     "e": 61.197,
+     "en": "Light naphtha is cheap but has octane 70, below both specifications.",
+     "th": "light naphtha ราคาถูก แต่มีค่าออกเทน 70 ต่ำกว่า spec ของทั้งสองเกรด"
+    },
+    {
+     "s": 61.197,
+     "e": 68.102,
+     "en": "Regular sells for 690 dollars per cubic meter and Premium for 750. So the economics are a trade:",
+     "th": "Regular ขายได้ 690 ดอลลาร์ต่อลูกบาศก์เมตร และ Premium 750 เศรษฐศาสตร์ของปัญหานี้จึงเป็นการแลกเปลี่ยน"
+    },
+    {
+     "s": 68.102,
+     "e": 77.355,
+     "en": "cheap, volatile or low-octane components must be balanced by expensive, clean ones, and the specification rows decide the balance.",
+     "th": "ส่วนผสมที่ถูก ระเหยง่าย หรือค่าออกเทนต่ำ ต้องถูกชดเชยด้วยส่วนผสมที่แพงและสะอาด และแถว spec เป็นตัวกำหนดสมดุลนี้"
+    },
+    {
+     "s": 77.355,
+     "e": 87.342,
+     "en": "The objective is the daily margin: the value of each grade minus the cost of its components. The data are synthetic, but of realistic size.",
+     "th": "เป้าหมายคือกำไรส่วนเกินรายวัน คือมูลค่าของแต่ละเกรดลบต้นทุนของส่วนผสม ข้อมูลเป็นข้อมูลสังเคราะห์ แต่มีขนาดสมจริง"
     }
    ]
   },
   {
    "n": 7,
    "file": "audio/slide-07.mp3",
-   "duration": 46.032,
+   "duration": 102.264,
    "hold": false,
    "cues": [
     {
@@ -259,90 +373,330 @@
     },
     {
      "s": 7.353,
-     "e": 18.895,
-     "en": "A ratio of variables is not linear, but multiplying through by the total volume makes it linear: the sum over components of octane minus the specification, times the flow, must be at least zero.",
-     "th": "อัตราส่วนของตัวแปรไม่เป็นเชิงเส้น แต่ถ้าคูณตลอดด้วยปริมาตรรวม จะได้แถวเชิงเส้น คือผลรวมของ ค่าออกเทนลบ spec คูณปริมาณ ต้องไม่น้อยกว่าศูนย์"
+     "e": 16.105,
+     "en": "A ratio of variables is not linear. Multiply through by the total volume, which is positive, and it becomes linear.",
+     "th": "อัตราส่วนของตัวแปรไม่เป็นเชิงเส้น เมื่อคูณตลอดด้วยปริมาตรรวมซึ่งเป็นบวก จะกลายเป็นเชิงเส้น"
     },
     {
-     "s": 18.895,
-     "e": 26.171,
-     "en": "For light straight-run naphtha in Premium, the coefficient is 70 minus 95, which is minus 25.",
-     "th": "สำหรับ light straight-run naphtha ในเกรด Premium สัมประสิทธิ์คือ 70 ลบ 95 เท่ากับลบ 25"
+     "s": 16.105,
+     "e": 23.211,
+     "en": "The row reads: the sum over components of octane minus the specification, times the flow, is at least zero.",
+     "th": "แถวนั้นคือ ผลรวมของ ค่าออกเทนลบ spec คูณปริมาณ ต้องไม่น้อยกว่าศูนย์"
     },
     {
-     "s": 26.171,
-     "e": 34.224,
+     "s": 23.211,
+     "e": 34.358,
+     "en": "For light straight-run naphtha in Premium, the coefficient is 70 minus 95, which is minus 25. A component below the specification has a negative coefficient;",
+     "th": "สำหรับ light straight-run naphtha ในเกรด Premium สัมประสิทธิ์คือ 70 ลบ 95 เท่ากับลบ 25 ส่วนผสมที่ต่ำกว่า spec มีสัมประสิทธิ์เป็นลบ"
+    },
+    {
+     "s": 34.358,
+     "e": 37.039,
+     "en": "it is allowed only if others carry it.",
+     "th": "จะใช้ได้ก็ต่อเมื่อส่วนผสมอื่นชดเชยให้"
+    },
+    {
+     "s": 37.039,
+     "e": 47.763,
+     "en": "Check it on a small example. Six hundred cubic meters of reformate at 98 and four hundred of light naphtha at 70 give an average octane of 86.8.",
+     "th": "ลองตรวจกับตัวอย่างเล็ก ๆ reformate หกร้อยลูกบาศก์เมตรที่ค่าออกเทน 98 และ light naphtha สี่ร้อยที่ 70 ให้ค่าออกเทนเฉลี่ย 86.8"
+    },
+    {
+     "s": 47.763,
+     "e": 59.934,
+     "en": "The Premium row gives 600 times 3, plus 400 times minus 25, which is minus 8,200. That is below zero, so the blend fails, as it should.",
+     "th": "แถวของ Premium ให้ 600 คูณ 3 บวก 400 คูณลบ 25 เท่ากับลบ 8,200 ซึ่งต่ำกว่าศูนย์ ของผสมนี้จึงไม่ผ่าน spec ตามที่ควรเป็น"
+    },
+    {
+     "s": 59.934,
+     "e": 73.171,
+     "en": "Divide minus 8,200 by the volume, 1,000, and you get minus 8.2, which is exactly 86.8 minus 95. The row is the specification, scaled by the volume.",
+     "th": "หารลบ 8,200 ด้วยปริมาตร 1,000 ได้ลบ 8.2 ซึ่งเท่ากับ 86.8 ลบ 95 พอดี แถวนี้คือ spec ที่คูณด้วยปริมาตร"
+    },
+    {
+     "s": 73.171,
+     "e": 81.224,
      "en": "This is exact under two conditions: the property blends linearly on the basis of the variables, and the grade volume is positive.",
      "th": "การแปลงนี้ถูกต้องแม่นยำภายใต้สองเงื่อนไข คือคุณสมบัตินั้นผสมกันเชิงเส้นบนฐานของตัวแปร และปริมาตรของเกรดนั้นเป็นบวก"
     },
     {
-     "s": 34.224,
-     "e": 42.526,
+     "s": 81.224,
+     "e": 90.14,
      "en": "At zero volume the row holds trivially, so an impossible specification makes the grade disappear rather than making the model infeasible.",
-     "th": "ที่ปริมาตรศูนย์ แถวนี้เป็นจริงเสมอ ดังนั้น spec ที่เป็นไปไม่ได้จะทำให้เกรดนั้นหายไป แทนที่จะทำให้โมเดล infeasible"
+     "th": "ที่ปริมาตรศูนย์ แถวนี้เป็นจริงเสมอ spec ที่เป็นไปไม่ได้จึงทำให้เกรดนั้นหายไป แทนที่จะทำให้โมเดล infeasible"
     },
     {
-     "s": 42.526,
-     "e": 45.961,
-     "en": "Keep that in mind; we will see it in a demo.",
-     "th": "จำข้อนี้ไว้ เราจะเห็นมันใน demo"
+     "s": 90.14,
+     "e": 94.211,
+     "en": "A minimum-volume contract restores infeasibility as the signal.",
+     "th": "การมีสัญญาปริมาตรขั้นต่ำจะทำให้ความ infeasible กลับมาเป็นสัญญาณ"
+    },
+    {
+     "s": 94.211,
+     "e": 102.197,
+     "en": "And never divide by a variable in an LP. Multiply through, and check the sign of what you multiplied by.",
+     "th": "และอย่าหารด้วยตัวแปรใน LP ให้คูณตลอด แล้วตรวจเครื่องหมายของสิ่งที่นำมาคูณ"
     }
    ]
   },
   {
    "n": 8,
    "file": "audio/slide-08.mp3",
-   "duration": 52.68,
+   "duration": 76.152,
    "hold": false,
    "cues": [
     {
      "s": 0.1,
-     "e": 4.168,
-     "en": "The second condition is the one that is broken most often.",
-     "th": "เงื่อนไขที่สองคือข้อที่ถูกละเมิดบ่อยที่สุด"
+     "e": 5.839,
+     "en": "Here are all eight specification rows of the two-grade blend, coefficient by coefficient.",
+     "th": "นี่คือแถว spec ทั้งแปดแถวของการผสมสองเกรด ทีละสัมประสิทธิ์"
     },
     {
-     "s": 4.168,
-     "e": 11.092,
-     "en": "Octane is close to linear by volume, which is an approximation that refiners correct with interaction terms.",
-     "th": "ค่าออกเทนใกล้เคียงเชิงเส้นตามปริมาตร ซึ่งเป็นการประมาณที่โรงกลั่นแก้ด้วยพจน์ปฏิสัมพันธ์"
+     "s": 5.839,
+     "e": 13.961,
+     "en": "The octane rows use octane minus 91 for Regular and octane minus 95 for Premium, and each row must be at least zero.",
+     "th": "แถวค่าออกเทนใช้ค่าออกเทนลบ 91 สำหรับ Regular และค่าออกเทนลบ 95 สำหรับ Premium และแต่ละแถวต้องไม่น้อยกว่าศูนย์"
     },
     {
-     "s": 11.092,
-     "e": 20.342,
-     "en": "Vapor pressure is not linear by volume. A common index, vapor pressure to the power 1.25, does blend linearly.",
-     "th": "ความดันไอไม่ผสมกันเชิงเส้นตามปริมาตร แต่ดัชนีที่ใช้กันทั่วไป คือความดันไอยกกำลัง 1.25 ผสมกันเชิงเส้นได้"
+     "s": 13.961,
+     "e": 26.776,
+     "en": "The vapor pressure rows use the index, vapor pressure to the power 1.25, minus 60 to the power 1.25, which is 167. Each must be at most zero.",
+     "th": "แถวความดันไอใช้ดัชนี คือความดันไอยกกำลัง 1.25 ลบ 60 ยกกำลัง 1.25 ซึ่งเท่ากับ 167 และแต่ละแถวต้องไม่เกินศูนย์"
     },
     {
-     "s": 20.342,
-     "e": 31.447,
-     "en": "So the row is written on the index. For butane the coefficient is 1,568 minus 167, about 1,401.",
-     "th": "ดังนั้นจึงเขียนแถวบนดัชนี สำหรับ butane สัมประสิทธิ์คือ 1,568 ลบ 167 ประมาณ 1,401"
+     "s": 26.776,
+     "e": 40.0,
+     "en": "Read the signs. Light naphtha is minus 21 in Regular and minus 25 in Premium: it needs help with octane. Reformate is plus 7 and plus 3: it gives octane away.",
+     "th": "ให้อ่านเครื่องหมาย light naphtha เป็นลบ 21 ใน Regular และลบ 25 ใน Premium จึงต้องการความช่วยเหลือเรื่องออกเทน ส่วน reformate เป็นบวก 7 และบวก 3 จึงให้ค่าออกเทนแก่ส่วนผสม"
     },
     {
-     "s": 31.447,
-     "e": 37.961,
-     "en": "Because the index is convex, the true blend vapor pressure is never below the simple volume average.",
-     "th": "เพราะดัชนีเป็นฟังก์ชัน convex ความดันไอจริงของของผสมจึงไม่ต่ำกว่าค่าเฉลี่ยตามปริมาตรแบบธรรมดา"
+     "s": 40.0,
+     "e": 52.789,
+     "en": "In the vapor pressure rows, butane is plus 1,401, and light naphtha is plus 72: both use up the vapor pressure allowance. The other three components create allowance.",
+     "th": "ในแถวความดันไอ butane เป็นบวก 1,401 และ light naphtha เป็นบวก 72 ทั้งคู่ใช้ส่วนที่อนุญาตของความดันไอ ส่วนผสมอีกสามชนิดสร้างส่วนที่อนุญาตเพิ่ม"
     },
     {
-     "s": 37.961,
-     "e": 46.039,
-     "en": "The chart shows the gap: with ten percent butane the linear average says 70 kilopascals, and the true value is about 81.",
-     "th": "กราฟแสดงช่องว่างนี้ เมื่อมี butane สิบเปอร์เซ็นต์ ค่าเฉลี่ยเชิงเส้นบอก 70 กิโลปาสคาล แต่ค่าจริงประมาณ 81"
+     "s": 52.789,
+     "e": 65.053,
+     "en": "Notice that FCC gasoline is plus 1 in Regular but minus 3 in Premium: the same component helps one grade and hurts the other. In the optimal recipe, all of it goes to Regular.",
+     "th": "สังเกตว่า FCC gasoline เป็นบวก 1 ใน Regular แต่ลบ 3 ใน Premium ส่วนผสมเดียวกันช่วยเกรดหนึ่งแต่ทำให้อีกเกรดแย่ลง ในสูตรที่เหมาะที่สุด FCC gasoline ทั้งหมดไปที่ Regular"
     },
     {
-     "s": 46.039,
-     "e": 52.618,
-     "en": "A row written on vapor pressure itself under-predicts the blend and lets off-specification gasoline through.",
-     "th": "แถวที่เขียนบนความดันไอโดยตรงจะทำนายค่าต่ำเกินจริง และปล่อยให้น้ำมันที่ไม่ผ่าน spec หลุดออกไป"
+     "s": 65.053,
+     "e": 76.079,
+     "en": "Butane's coefficient is more than twelve times reformate's in absolute value. That is why a little butane goes a long way, and why its row must be written on the right basis.",
+     "th": "สัมประสิทธิ์ของ butane มีค่าสัมบูรณ์มากกว่าของ reformate เกินสิบสองเท่า นี่คือเหตุผลที่ butane เพียงเล็กน้อยมีผลมาก และทำไมแถวนี้ต้องเขียนบนฐานที่ถูกต้อง"
     }
    ]
   },
   {
    "n": 9,
    "file": "audio/slide-09.mp3",
-   "duration": 39.864,
+   "duration": 83.472,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.8,
+     "en": "The first check asks you to write four specifications as linear rows.",
+     "th": "แบบตรวจครั้งแรกให้คุณเขียน spec สี่ข้อเป็นแถวเชิงเส้น"
+    },
+    {
+     "s": 4.8,
+     "e": 9.921,
+     "en": "Pause now with P, write the four rows, and press Play to hear the solutions.",
+     "th": "หยุดตอนนี้ด้วยการกด P เขียนแถวทั้งสี่ แล้วกด Play เพื่อฟังเฉลย"
+    },
+    {
+     "s": 9.921,
+     "e": 19.276,
+     "en": "One. At least 30 percent alkylate in Premium: the alkylate flow minus 0.3 times the total Premium flow is at least zero.",
+     "th": "ข้อหนึ่ง alkylate อย่างน้อย 30 เปอร์เซ็นต์ใน Premium คือปริมาณ alkylate ลบ 0.3 คูณปริมาณ Premium ทั้งหมด ต้องไม่น้อยกว่าศูนย์"
+    },
+    {
+     "s": 19.276,
+     "e": 28.447,
+     "en": "In the first row, the total Premium flow includes alkylate itself. That is why its coefficient is 0.7 and not 1.",
+     "th": "ในแถวแรก ปริมาณ Premium รวมนับ alkylate ด้วย สัมประสิทธิ์ของมันจึงเป็น 0.7 ไม่ใช่ 1"
+    },
+    {
+     "s": 28.447,
+     "e": 37.803,
+     "en": "Two. Regular at least one and a half times Premium: the Regular total minus 1.5 times the Premium total is at least zero.",
+     "th": "ข้อสอง Regular อย่างน้อยหนึ่งเท่าครึ่งของ Premium คือปริมาณ Regular รวม ลบ 1.5 คูณปริมาณ Premium รวม ต้องไม่น้อยกว่าศูนย์"
+    },
+    {
+     "s": 37.803,
+     "e": 46.716,
+     "en": "Three is the trap. Sulfur is a mass fraction, but the flows are volumes. Convert each flow to mass with its density first:",
+     "th": "ข้อสามคือกับดัก กำมะถันเป็นสัดส่วนโดยมวล แต่ปริมาณเป็นปริมาตร ต้องแปลงแต่ละปริมาณเป็นมวลด้วยความหนาแน่นก่อน"
+    },
+    {
+     "s": 46.716,
+     "e": 52.079,
+     "en": "the sum of density times sulfur minus 10, times the flow, is at most zero.",
+     "th": "คือผลรวมของ ความหนาแน่นคูณ กำมะถันลบ 10 คูณปริมาณ ต้องไม่เกินศูนย์"
+    },
+    {
+     "s": 52.079,
+     "e": 61.658,
+     "en": "If the sulfur limit were set by volume, the densities would drop out. The basis of the limit decides the row, not the name of the property.",
+     "th": "ถ้าขีดจำกัดกำมะถันกำหนดโดยปริมาตร ความหนาแน่นจะหายไปจากแถว ฐานของขีดจำกัดเป็นตัวกำหนดแถว ไม่ใช่ชื่อของคุณสมบัติ"
+    },
+    {
+     "s": 61.658,
+     "e": 70.605,
+     "en": "Four. Benzene at most 1 percent by volume: the sum of benzene content minus 1, times the flow, is at most zero.",
+     "th": "ข้อสี่ เบนซีนไม่เกิน 1 เปอร์เซ็นต์โดยปริมาตร คือผลรวมของ ปริมาณเบนซีนลบ 1 คูณปริมาณ ต้องไม่เกินศูนย์"
+    },
+    {
+     "s": 70.605,
+     "e": 79.605,
+     "en": "In all four, the method is the same: move everything to one side, collect the coefficient of each flow, and check the basis on which the property blends.",
+     "th": "ทั้งสี่ข้อใช้วิธีเดียวกัน คือย้ายทุกพจน์ไปข้างเดียว รวมสัมประสิทธิ์ของแต่ละปริมาณ และตรวจฐานที่คุณสมบัตินั้นผสมกัน"
+    },
+    {
+     "s": 79.605,
+     "e": 83.395,
+     "en": "Press Show answers to compare in writing, then go on.",
+     "th": "กด Show answers เพื่อเทียบกับเฉลยที่เขียนไว้ แล้วไปต่อ"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "file": "audio/slide-10.mp3",
+   "duration": 72.024,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.682,
+     "en": "The second condition, blending on the right basis, is the one broken most often.",
+     "th": "เงื่อนไขที่สอง คือการผสมบนฐานที่ถูกต้อง เป็นข้อที่ถูกละเมิดบ่อยที่สุด"
+    },
+    {
+     "s": 5.682,
+     "e": 12.105,
+     "en": "Octane is close to linear by volume, an approximation that refiners correct with interaction terms.",
+     "th": "ค่าออกเทนใกล้เคียงเชิงเส้นตามปริมาตร ซึ่งเป็นการประมาณที่โรงกลั่นแก้ด้วยพจน์ปฏิสัมพันธ์"
+    },
+    {
+     "s": 12.105,
+     "e": 23.237,
+     "en": "Vapor pressure is not linear by volume. A common index, vapor pressure to the power 1.25, does blend linearly, so the row is written on the index.",
+     "th": "ความดันไอไม่ผสมกันเชิงเส้นตามปริมาตร แต่ดัชนีที่ใช้กันทั่วไป คือความดันไอยกกำลัง 1.25 ผสมกันเชิงเส้นได้ จึงเขียนแถวบนดัชนี"
+    },
+    {
+     "s": 23.237,
+     "e": 35.0,
+     "en": "The chart adds butane to a fifty-fifty base of reformate and FCC gasoline. The dashed line is the volume average of vapor pressure; the solid line is the true value through the index.",
+     "th": "กราฟเติม butane ลงในฐานที่มี reformate กับ FCC gasoline อย่างละครึ่ง เส้นประคือค่าเฉลี่ยของความดันไอตามปริมาตร เส้นทึบคือค่าจริงที่คำนวณผ่านดัชนี"
+    },
+    {
+     "s": 35.0,
+     "e": 45.513,
+     "en": "The true curve lies above the linear one everywhere. A row written on vapor pressure itself under-predicts the blend, and lets off-specification gasoline through.",
+     "th": "เส้นค่าจริงอยู่เหนือเส้นเชิงเส้นตลอด แถวที่เขียนบนความดันไอโดยตรงจะทำนายค่าต่ำเกินจริง และปล่อยให้น้ำมันที่ไม่ผ่าน spec หลุดออกไป"
+    },
+    {
+     "s": 45.513,
+     "e": 53.237,
+     "en": "Index blending is common for properties that do not mix linearly: vapor pressure, viscosity, pour point and flash point.",
+     "th": "การผสมด้วยดัชนีใช้กันทั่วไปกับคุณสมบัติที่ไม่ผสมกันแบบเชิงเส้น เช่น ความดันไอ ความหนืด pour point และ flash point"
+    },
+    {
+     "s": 53.237,
+     "e": 64.132,
+     "en": "The index function is fitted to laboratory or plant data. The exponent 1.25 is one common choice for vapor pressure, and refiners often fit their own.",
+     "th": "ฟังก์ชันดัชนีได้จากการ fit กับข้อมูลห้องปฏิบัติการหรือโรงงาน เลขชี้กำลัง 1.25 เป็นค่าที่ใช้กันทั่วไปสำหรับความดันไอ และโรงกลั่นมักหาค่าของตนเอง"
+    },
+    {
+     "s": 64.132,
+     "e": 71.961,
+     "en": "The modeling rule is the same in every case: write the row on the quantity that blends linearly, and convert back only to report.",
+     "th": "กฎการสร้างโมเดลเหมือนกันทุกกรณี คือเขียนแถวบนปริมาณที่ผสมกันเชิงเส้น และแปลงกลับเฉพาะตอนรายงานผล"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "file": "audio/slide-11.mp3",
+   "duration": 89.352,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.711,
+     "en": "Why does the linear row always err in the same direction? Jensen's inequality answers it in two lines.",
+     "th": "ทำไมแถวเชิงเส้นจึงผิดไปในทิศทางเดียวกันเสมอ อสมการของ Jensen ตอบได้ในสองบรรทัด"
+    },
+    {
+     "s": 7.711,
+     "e": 18.908,
+     "en": "Let phi of R be R to the power 1.25. It is convex and increasing. The blend's index is the volume average of the components' indices.",
+     "th": "ให้ phi(R) เท่ากับ R ยกกำลัง 1.25 ซึ่งเป็นฟังก์ชัน convex และเพิ่มขึ้น ดัชนีของของผสมคือค่าเฉลี่ยตามปริมาตรของดัชนีของส่วนผสม"
+    },
+    {
+     "s": 18.908,
+     "e": 27.868,
+     "en": "Jensen says that the average of phi is at least phi of the average. So phi of the true blend R is at least phi of the linear average.",
+     "th": "Jensen บอกว่าค่าเฉลี่ยของ phi ไม่น้อยกว่า phi ของค่าเฉลี่ย ดังนั้น phi ของค่า R จริงของของผสม จึงไม่น้อยกว่า phi ของค่าเฉลี่ยเชิงเส้น"
+    },
+    {
+     "s": 27.868,
+     "e": 35.171,
+     "en": "Because phi is increasing, we can remove it from both sides: the true blend vapor pressure is at least the linear average.",
+     "th": "เพราะ phi เป็นฟังก์ชันเพิ่มขึ้น จึงตัด phi ออกจากทั้งสองข้างได้ ความดันไอจริงของของผสมจึงไม่น้อยกว่าค่าเฉลี่ยเชิงเส้น"
+    },
+    {
+     "s": 35.171,
+     "e": 42.829,
+     "en": "With ten percent butane, the linear average says 69.8 kilopascals, and the true value is 80.7.",
+     "th": "เมื่อมี butane สิบเปอร์เซ็นต์ ค่าเฉลี่ยเชิงเส้นบอก 69.8 กิโลปาสคาล แต่ค่าจริงคือ 80.7"
+    },
+    {
+     "s": 42.829,
+     "e": 50.145,
+     "en": "The gap grows with the spread of the component values, so one very volatile component in a heavy base is the worst case.",
+     "th": "ช่องว่างนี้เพิ่มขึ้นตามความกระจายของค่าของส่วนผสม ส่วนผสมที่ระเหยง่ายมากหนึ่งชนิดในฐานที่หนักจึงเป็นกรณีที่แย่ที่สุด"
+    },
+    {
+     "s": 50.145,
+     "e": 59.302,
+     "en": "The general rule: if a property blends through a convex increasing index, a row written on the property itself is optimistic for a maximum limit.",
+     "th": "กฎทั่วไปคือ ถ้าคุณสมบัติผสมกันผ่านดัชนีที่เป็น convex และเพิ่มขึ้น แถวที่เขียนบนคุณสมบัตินั้นโดยตรงจะมองในแง่ดีเกินไปสำหรับขีดจำกัดค่าสูงสุด"
+    },
+    {
+     "s": 59.302,
+     "e": 65.197,
+     "en": "With a concave index the bias reverses, so work out the direction before you trust a shortcut.",
+     "th": "ถ้าดัชนีเป็น concave ความเอนเอียงจะกลับทิศ จึงต้องหาทิศทางก่อนเชื่อทางลัด"
+    },
+    {
+     "s": 65.197,
+     "e": 75.021,
+     "en": "The reverse case is worth one example. If a property blends through a concave index, such as a logarithm, the linear row over-predicts it.",
+     "th": "กรณีกลับกันควรดูหนึ่งตัวอย่าง ถ้าคุณสมบัติผสมกันผ่านดัชนีที่เป็น concave เช่น logarithm แถวเชิงเส้นจะทำนายค่าสูงเกินจริง"
+    },
+    {
+     "s": 75.021,
+     "e": 80.039,
+     "en": "For a maximum limit that error is on the safe side, but it costs money.",
+     "th": "สำหรับขีดจำกัดค่าสูงสุด ความผิดพลาดนี้อยู่ด้านปลอดภัย แต่ทำให้เสียเงิน"
+    },
+    {
+     "s": 80.039,
+     "e": 89.289,
+     "en": "This also explains the direction of the error on slide 14. The bias is not random: it always favors the volatile components.",
+     "th": "ข้อนี้ยังอธิบายทิศทางของความผิดพลาดในหน้า 14 ด้วย ความเอนเอียงไม่ได้สุ่ม แต่เข้าข้างส่วนผสมที่ระเหยง่ายเสมอ"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "file": "audio/slide-12.mp3",
+   "duration": 83.592,
    "hold": false,
    "cues": [
     {
@@ -365,28 +719,114 @@
     },
     {
      "s": 19.921,
-     "e": 26.553,
+     "e": 30.017,
+     "en": "Read the bars. Regular is mostly FCC gasoline, 1,500 cubic meters, with reformate, light naphtha and a little butane.",
+     "th": "อ่านแถบกราฟ Regular ส่วนใหญ่เป็น FCC gasoline 1,500 ลูกบาศก์เมตร มี reformate, light naphtha และ butane เล็กน้อย"
+    },
+    {
+     "s": 30.017,
+     "e": 37.289,
+     "en": "Premium is mostly reformate and alkylate, 703 and 600, with light naphtha and butane.",
+     "th": "Premium ส่วนใหญ่เป็น reformate และ alkylate คือ 703 และ 600 มี light naphtha และ butane"
+    },
+    {
+     "s": 37.289,
+     "e": 46.513,
+     "en": "Both grades take some butane and some light naphtha. They are cheap, and each grade has room under one of its specifications to absorb them.",
+     "th": "ทั้งสองเกรดใช้ butane และ light naphtha บ้าง เพราะราคาถูก และแต่ละเกรดยังมีช่องว่างใต้ spec ข้อหนึ่งที่รับส่วนผสมเหล่านี้ได้"
+    },
+    {
+     "s": 46.513,
+     "e": 53.145,
      "en": "Both grades sit exactly on their octane and vapor pressure limits, so four specification rows are tight.",
      "th": "ทั้งสองเกรดอยู่บนขีดจำกัดค่าออกเทนและความดันไอพอดี ดังนั้นแถว spec ทั้งสี่แถวจึง tight"
     },
     {
-     "s": 26.553,
-     "e": 32.158,
-     "en": "The table recomputes each property from the recipe with the nonlinear property model.",
-     "th": "ตารางคำนวณคุณสมบัติแต่ละตัวใหม่จากสูตรผสม ด้วยโมเดลคุณสมบัติแบบไม่เชิงเส้น"
+     "s": 53.145,
+     "e": 62.632,
+     "en": "Regular stops below its demand because the components that carry octane are used up: reformate, FCC gasoline and alkylate are all at their availability.",
+     "th": "Regular หยุดต่ำกว่าความต้องการ เพราะส่วนผสมที่ให้ค่าออกเทนถูกใช้หมดแล้ว reformate, FCC gasoline และ alkylate อยู่ที่ปริมาณสูงสุดที่มีทั้งหมด"
     },
     {
-     "s": 32.158,
-     "e": 39.789,
-     "en": "That is the verification: recompute the property, do not reread the row. Press D to see the code.",
-     "th": "นี่คือการตรวจสอบ คือคำนวณคุณสมบัติใหม่ ไม่ใช่อ่านแถวซ้ำ กด D เพื่อดูโค้ด"
+     "s": 62.632,
+     "e": 73.395,
+     "en": "The table recomputes each property from the recipe with the nonlinear property model. That is the verification: recompute the property, do not reread the row.",
+     "th": "ตารางคำนวณคุณสมบัติแต่ละตัวใหม่จากสูตรผสม ด้วยโมเดลคุณสมบัติแบบไม่เชิงเส้น นี่คือการตรวจสอบ คือคำนวณคุณสมบัติใหม่ ไม่ใช่อ่านแถวซ้ำ"
+    },
+    {
+     "s": 73.395,
+     "e": 83.526,
+     "en": "Notice the last column: the linear average of vapor pressure would be 51 to 56 kilopascals, well under the limit, although the true value is exactly at it.",
+     "th": "สังเกตคอลัมน์สุดท้าย ค่าเฉลี่ยเชิงเส้นของความดันไอจะอยู่ที่ 51 ถึง 56 กิโลปาสคาล ต่ำกว่าขีดจำกัดมาก ทั้งที่ค่าจริงอยู่ที่ขีดจำกัดพอดี"
     }
    ]
   },
   {
-   "n": 10,
-   "file": "audio/slide-10.mp3",
-   "duration": 45.096,
+   "n": 13,
+   "file": "audio/slide-13.mp3",
+   "duration": 98.04,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.392,
+     "en": "Here is the recomputation for Premium, term by term, so that you can do it with a calculator.",
+     "th": "นี่คือการคำนวณใหม่สำหรับ Premium ทีละพจน์ เพื่อให้คุณทำได้ด้วยเครื่องคิดเลข"
+    },
+    {
+     "s": 6.392,
+     "e": 14.632,
+     "en": "Four components are used: butane, light naphtha, reformate and alkylate, 1,500 cubic meters per day in total.",
+     "th": "ใช้ส่วนผสมสี่ชนิด คือ butane, light naphtha, reformate และ alkylate รวม 1,500 ลูกบาศก์เมตรต่อวัน"
+    },
+    {
+     "s": 14.632,
+     "e": 27.118,
+     "en": "For octane, multiply each volume by its octane and add: 142,500. Divide by 1,500, and the blend octane is 95.00.",
+     "th": "สำหรับค่าออกเทน คูณแต่ละปริมาตรด้วยค่าออกเทนแล้วรวม ได้ 142,500 หารด้วย 1,500 ได้ค่าออกเทนของของผสมเท่ากับ 95.00"
+    },
+    {
+     "s": 27.118,
+     "e": 41.763,
+     "en": "For vapor pressure, raise each component's vapor pressure to the power 1.25, multiply by its volume and add: 250,484. The average index is 166.99.",
+     "th": "สำหรับความดันไอ ยกกำลังความดันไอของแต่ละส่วนผสมด้วย 1.25 คูณด้วยปริมาตรแล้วรวม ได้ 250,484 ค่าเฉลี่ยของดัชนีคือ 166.99"
+    },
+    {
+     "s": 41.763,
+     "e": 52.276,
+     "en": "Then invert the index with the power 0.8, which is one over 1.25. The blend vapor pressure is 60.00 kilopascals.",
+     "th": "จากนั้นแปลงดัชนีกลับด้วยการยกกำลัง 0.8 ซึ่งเท่ากับหนึ่งส่วน 1.25 ได้ความดันไอของของผสม 60.00 กิโลปาสคาล"
+    },
+    {
+     "s": 52.276,
+     "e": 64.355,
+     "en": "Two numbers stand out. Reformate carries octane: 703 cubic meters at 98 contribute 68,938 of the 142,500.",
+     "th": "มีตัวเลขสองตัวที่เด่น reformate เป็นตัวให้ค่าออกเทน 703 ลูกบาศก์เมตรที่ 98 ให้ 68,938 จาก 142,500"
+    },
+    {
+     "s": 64.355,
+     "e": 77.974,
+     "en": "Butane is small in volume, 92 cubic meters, but its index term, 143,974, is more than half of the total. That is the vapor pressure problem in one number.",
+     "th": "butane มีปริมาตรน้อย คือ 92 ลูกบาศก์เมตร แต่พจน์ดัชนีของมัน 143,974 มากกว่าครึ่งหนึ่งของผลรวม นี่คือปัญหาความดันไอในตัวเลขเดียว"
+    },
+    {
+     "s": 77.974,
+     "e": 89.737,
+     "en": "Both land exactly on the limits, which confirms that the two Premium specification rows are tight and written correctly. You will recompute specifications the same way in Lab 2.",
+     "th": "ทั้งสองค่าอยู่บนขีดจำกัดพอดี ยืนยันว่าแถว spec ทั้งสองของ Premium tight และเขียนอย่างถูกต้อง คุณจะคำนวณ spec ใหม่ด้วยวิธีเดียวกันใน Lab 2"
+    },
+    {
+     "s": 89.737,
+     "e": 97.974,
+     "en": "Doing this once by hand is worth it. When a solver result looks too good, this is the calculation to do first.",
+     "th": "การทำด้วยมือสักครั้งคุ้มค่า เมื่อผลจาก solver ดูดีเกินจริง นี่คือการคำนวณที่ควรทำเป็นอย่างแรก"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "file": "audio/slide-14.mp3",
+   "duration": 76.368,
    "hold": false,
    "cues": [
     {
@@ -409,28 +849,46 @@
     },
     {
      "s": 22.974,
-     "e": 34.382,
-     "en": "Recompute the true vapor pressure, and Regular is at 64.9 kilopascals and Premium at 71.1. Both fail the 60 kilopascal limit.",
+     "e": 31.22,
+     "en": "The wrong row allows about 71 more cubic meters of butane per day, the cheapest component, in place of more expensive ones.",
+     "th": "แถวที่ผิดยอมให้ใช้ butane ซึ่งเป็นส่วนผสมที่ถูกที่สุด เพิ่มขึ้นประมาณ 71 ลูกบาศก์เมตรต่อวัน แทนส่วนผสมที่แพงกว่า"
+    },
+    {
+     "s": 31.22,
+     "e": 37.671,
+     "en": "It does so because it believes the blends are at 51 to 56 kilopascals when they are at the limit.",
+     "th": "เพราะมันเชื่อว่าของผสมอยู่ที่ 51 ถึง 56 กิโลปาสคาล ทั้งที่อยู่ที่ขีดจำกัดแล้ว"
+    },
+    {
+     "s": 37.671,
+     "e": 49.105,
+     "en": "Recompute the true vapor pressure: Regular is at 64.9 kilopascals and Premium at 71.1. Both fail the 60 kilopascal limit.",
      "th": "เมื่อคำนวณความดันไอจริง Regular อยู่ที่ 64.9 กิโลปาสคาล และ Premium อยู่ที่ 71.1 ทั้งคู่ไม่ผ่านขีดจำกัด 60 กิโลปาสคาล"
     },
     {
-     "s": 34.382,
-     "e": 37.566,
-     "en": "Nothing in the solver output warns you.",
-     "th": "ไม่มีสิ่งใดในผลลัพธ์ของ solver เตือนคุณเลย"
+     "s": 49.105,
+     "e": 58.211,
+     "en": "In a real refinery the error would appear later, as a failed laboratory test on the product tank, and the gasoline would have to be reblended at a cost.",
+     "th": "ในโรงกลั่นจริง ความผิดพลาดนี้จะปรากฏภายหลัง เมื่อผลทดสอบในห้องปฏิบัติการของถังผลิตภัณฑ์ไม่ผ่าน และต้องผสมน้ำมันใหม่โดยมีค่าใช้จ่าย"
     },
     {
-     "s": 37.566,
-     "e": 45.039,
+     "s": 58.211,
+     "e": 68.816,
+     "en": "Nothing in the solver output warns you. The extra 23,739 dollars is the value of selling gasoline that is off specification.",
+     "th": "ไม่มีสิ่งใดในผลลัพธ์ของ solver เตือนคุณเลย เงินที่เพิ่มขึ้น 23,739 ดอลลาร์คือมูลค่าของการขายน้ำมันที่ไม่ผ่าน spec"
+    },
+    {
+     "s": 68.816,
+     "e": 76.289,
      "en": "A row that is linear in the wrong variable is a modeling error, not an approximation, until you have bounded its error.",
      "th": "แถวที่เป็นเชิงเส้นในตัวแปรผิดตัว เป็นความผิดพลาดของการสร้างโมเดล ไม่ใช่การประมาณ จนกว่าคุณจะประเมินขอบเขตความผิดพลาดของมันได้"
     }
    ]
   },
   {
-   "n": 11,
-   "file": "audio/slide-11.mp3",
-   "duration": 39.36,
+   "n": 15,
+   "file": "audio/slide-15.mp3",
+   "duration": 59.832,
    "hold": false,
    "cues": [
     {
@@ -447,34 +905,114 @@
     },
     {
      "s": 11.474,
-     "e": 16.961,
-     "en": "At 97.5 reformate runs out and Premium volume starts to fall.",
+     "e": 21.158,
+     "en": "The margin curve bends down as the specification tightens, because each step must be paid for with a more expensive way to add octane, and the cheap ways are used first.",
+     "th": "เส้นกำไรส่วนเกินโค้งลงเมื่อ spec เข้มงวดขึ้น เพราะแต่ละขั้นต้องจ่ายด้วยวิธีเพิ่มค่าออกเทนที่แพงขึ้น และวิธีที่ถูกถูกใช้ไปก่อนแล้ว"
+    },
+    {
+     "s": 21.158,
+     "e": 30.961,
+     "en": "The kinks mark the points where the set of tight rows changes. Between kinks the slope is constant, and that slope is the price we compute on the next slide.",
+     "th": "จุดหักของเส้นคือจุดที่ชุดของแถวที่ tight เปลี่ยน ระหว่างจุดหักความชันคงที่ และความชันนั้นคือราคาที่เราจะคำนวณในหน้าถัดไป"
+    },
+    {
+     "s": 30.961,
+     "e": 36.868,
+     "en": "At 97.5, reformate runs out and Premium volume starts to fall.",
      "th": "ที่ 97.5 reformate หมด และปริมาตร Premium เริ่มลดลง"
     },
     {
-     "s": 16.961,
-     "e": 22.566,
-     "en": "Above 98 no component has a high enough octane, and Premium disappears.",
+     "s": 36.868,
+     "e": 42.605,
+     "en": "Above 98, no component has a high enough octane, and Premium disappears.",
      "th": "เมื่อสูงกว่า 98 ไม่มีส่วนผสมใดมีค่าออกเทนสูงพอ และ Premium หายไป"
     },
     {
-     "s": 22.566,
-     "e": 31.711,
+     "s": 42.605,
+     "e": 51.75,
      "en": "The model is still reported optimal: only zero volume satisfies the row. This is the zero-volume case from the ratio slide.",
      "th": "โมเดลยังถูกรายงานว่า optimal เพราะมีเพียงปริมาตรศูนย์ที่ทำให้แถวเป็นจริง นี่คือกรณีปริมาตรศูนย์ที่กล่าวไว้ในหน้าอัตราส่วน"
     },
     {
-     "s": 31.711,
-     "e": 39.303,
-     "en": "If a contract requires a minimum Premium volume, the model becomes infeasible instead, which is the signal you want.",
-     "th": "ถ้าสัญญากำหนดปริมาตร Premium ขั้นต่ำ โมเดลจะ infeasible แทน ซึ่งเป็นสัญญาณที่เราต้องการ"
+     "s": 51.75,
+     "e": 59.763,
+     "en": "Watch also the counts below the margin: the number of positive flows and the number of tight rows change together as the specification moves.",
+     "th": "ให้สังเกตตัวเลขใต้กำไรส่วนเกินด้วย จำนวนปริมาณที่เป็นบวกกับจำนวนแถวที่ tight เปลี่ยนไปพร้อมกันเมื่อ spec เปลี่ยน"
     }
    ]
   },
   {
-   "n": 12,
-   "file": "audio/slide-12.mp3",
-   "duration": 41.088,
+   "n": 16,
+   "file": "audio/slide-16.mp3",
+   "duration": 86.88,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 9.184,
+     "en": "The solver gives a dual for every row, but the dual of a ratio row is not in units anyone reports. Here is how to convert it.",
+     "th": "solver ให้ค่า dual ของทุกแถว แต่ dual ของแถวอัตราส่วนไม่ได้อยู่ในหน่วยที่ใครรายงาน นี่คือวิธีแปลง"
+    },
+    {
+     "s": 9.184,
+     "e": 15.368,
+     "en": "The Premium octane row has a dual of minus 7.28 dollars per day per unit of the row.",
+     "th": "แถวค่าออกเทนของ Premium มี dual เท่ากับลบ 7.28 ดอลลาร์ต่อวันต่อหนึ่งหน่วยของแถว"
+    },
+    {
+     "s": 15.368,
+     "e": 22.197,
+     "en": "The dual is negative because tightening a greater-than-or-equal row in a maximization can only reduce the margin.",
+     "th": "dual เป็นลบเพราะการทำให้แถวแบบมากกว่าหรือเท่ากับเข้มงวดขึ้น ในปัญหาหาค่าสูงสุด ทำได้เพียงลดกำไรส่วนเกิน"
+    },
+    {
+     "s": 22.197,
+     "e": 31.685,
+     "en": "Raise the specification Q by a small amount, delta Q. The row becomes: the same sum is at least delta Q times the Premium volume.",
+     "th": "เพิ่ม spec Q ขึ้นเล็กน้อยเป็นปริมาณ delta Q แถวจะกลายเป็น ผลรวมเดิมต้องไม่น้อยกว่า delta Q คูณปริมาตร"
+    },
+    {
+     "s": 31.685,
+     "e": 37.816,
+     "en": "So raising Q is the same as raising the right-hand side by delta Q times the volume.",
+     "th": "Premium การเพิ่ม Q จึงเท่ากับการเพิ่มด้านขวาด้วย delta Q คูณปริมาตร"
+    },
+    {
+     "s": 37.816,
+     "e": 49.605,
+     "en": "The change in margin is therefore the dual times the volume times delta Q: minus 7.28 times 1,500, which is minus 10,920 dollars per day per octane number.",
+     "th": "การเปลี่ยนแปลงของกำไรส่วนเกินจึงเท่ากับ dual คูณปริมาตร คูณ delta Q คือลบ 7.28 คูณ 1,500 ได้ลบ 10,920 ดอลลาร์ต่อวันต่อหนึ่งค่าออกเทน"
+    },
+    {
+     "s": 49.605,
+     "e": 62.882,
+     "en": "Re-solving with Q equal to 95.01 gives the same number. The conversion holds while the grade volume and the set of tight rows stay the same, which the sweep showed up to about 97.25.",
+     "th": "การแก้ใหม่ด้วย Q เท่ากับ 95.01 ให้ตัวเลขเดียวกัน การแปลงนี้ใช้ได้ตราบใดที่ปริมาตรของเกรดและชุดของแถวที่ tight ยังเหมือนเดิม ซึ่งการเลื่อนค่าแสดงว่าใช้ได้ถึงประมาณ 97.25"
+    },
+    {
+     "s": 62.882,
+     "e": 72.013,
+     "en": "The same conversion works for any ratio specification: multiply the dual by the volume of the grade, or by its mass if the row is written by mass.",
+     "th": "การแปลงแบบเดียวกันใช้ได้กับ spec แบบอัตราส่วนทุกข้อ คือคูณ dual ด้วยปริมาตรของเกรด หรือด้วยมวลถ้าแถวเขียนตามมวล"
+    },
+    {
+     "s": 72.013,
+     "e": 81.987,
+     "en": "Check it against the demo: a quarter of an octane number times 10,920 is 2,730 dollars per day, the number you saw on the slider.",
+     "th": "ตรวจกับ demo ได้ หนึ่งในสี่ของค่าออกเทนคูณ 10,920 เท่ากับ 2,730 ดอลลาร์ต่อวัน ซึ่งเป็นตัวเลขที่เห็นบนแถบเลื่อน"
+    },
+    {
+     "s": 81.987,
+     "e": 86.803,
+     "en": "This is the number a planner compares with the price of an octane booster.",
+     "th": "นี่คือตัวเลขที่นักวางแผนนำไปเทียบกับราคาของสารเพิ่มค่าออกเทน"
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "file": "audio/slide-17.mp3",
+   "duration": 79.488,
    "hold": false,
    "cues": [
     {
@@ -491,40 +1029,164 @@
     },
     {
      "s": 10.25,
-     "e": 17.197,
-     "en": "If p variables are positive, only n minus p of the bounds are tight, so at least p rows must be tight.",
-     "th": "ถ้ามีตัวแปรเป็นบวก p ตัว จะมีขอบล่างที่ tight เพียง n ลบ p ข้อ ดังนั้นต้องมีแถวที่ tight อย่างน้อย p แถว"
-    },
-    {
-     "s": 17.197,
      "e": 20.658,
-     "en": "Positive variables are at most tight rows.",
-     "th": "จำนวนตัวแปรที่เป็นบวก ไม่เกินจำนวนแถวที่ tight"
+     "en": "If p variables are positive, only n minus p of the bounds are tight, so at least p rows must be tight. Positive variables are at most tight rows.",
+     "th": "ถ้ามีตัวแปรเป็นบวก p ตัว จะมีขอบล่างที่ tight เพียง n ลบ p ข้อ ดังนั้นต้องมีแถวที่ tight อย่างน้อย p แถว จำนวนตัวแปรที่เป็นบวกจึงไม่เกินจำนวนแถวที่ tight"
     },
     {
      "s": 20.658,
-     "e": 25.697,
-     "en": "In the base blend, eight of the ten flows are positive, and eight rows are tight.",
-     "th": "ใน blend ฐาน มีปริมาณที่เป็นบวกแปดจากสิบตัว และมีแถวที่ tight แปดแถว"
+     "e": 30.658,
+     "en": "This is a statement about any linear program, not only blending. It is why LP plans look sparse: few products are made and few routes are used.",
+     "th": "ข้อความนี้เป็นจริงกับ linear program ทุกปัญหา ไม่ใช่เฉพาะการผสม นี่คือเหตุผลที่แผนจาก LP ดูเบาบาง คือผลิตสินค้าไม่กี่ชนิดและใช้เส้นทางไม่กี่เส้น"
     },
     {
-     "s": 25.697,
-     "e": 33.329,
-     "en": "Read a recipe through its tight rows: each positive flow is paid for by a binding specification, capacity or demand.",
-     "th": "ให้อ่านสูตรผสมผ่านแถวที่ tight แต่ละปริมาณที่เป็นบวกมีข้อจำกัดที่ binding รองรับอยู่ ไม่ว่าจะเป็น spec กำลังการผลิต หรือความต้องการ"
+     "s": 30.658,
+     "e": 41.0,
+     "en": "Planners sometimes find this unrealistic and add minimum-use rows to force diversity. Each such row, when it is tight, pays for one more positive flow.",
+     "th": "นักวางแผนบางครั้งเห็นว่าไม่สมจริง จึงเพิ่มแถวการใช้ขั้นต่ำเพื่อบังคับให้หลากหลาย แต่ละแถวแบบนี้เมื่อ tight จะรองรับปริมาณที่เป็นบวกเพิ่มได้หนึ่งตัว"
     },
     {
-     "s": 33.329,
-     "e": 41.026,
-     "en": "An interior-point solver without crossover may return a point with every flow positive, which is optimal but not a vertex.",
-     "th": "solver แบบ interior point ที่ไม่ทำ crossover อาจให้จุดที่ทุกปริมาณเป็นบวก ซึ่ง optimal แต่ไม่ใช่จุดยอด"
+     "s": 41.0,
+     "e": 53.197,
+     "en": "Simplex, and interior point with crossover, return a vertex. Interior point without crossover may return a point with every flow positive, which is optimal but not a vertex.",
+     "th": "simplex และ interior point ที่ทำ crossover จะให้จุดยอด ส่วน interior point ที่ไม่ทำ crossover อาจให้จุดที่ทุกปริมาณเป็นบวก ซึ่ง optimal แต่ไม่ใช่จุดยอด"
+    },
+    {
+     "s": 53.197,
+     "e": 59.5,
+     "en": "Adding a specification can add a component to the blend, and removing one can drop a component.",
+     "th": "การเพิ่ม spec อาจเพิ่มส่วนผสมเข้ามาในสูตร และการลบ spec อาจทำให้ส่วนผสมหนึ่งหายไป"
+    },
+    {
+     "s": 59.5,
+     "e": 67.618,
+     "en": "And degenerate vertices have more tight rows than positive flows: at octane 98 in the demo, six positive and seven tight.",
+     "th": "และจุดยอดแบบ degenerate มีแถวที่ tight มากกว่าปริมาณที่เป็นบวก เช่น ที่ค่าออกเทน 98 ใน demo มีค่าบวกหกตัวและแถวที่ tight เจ็ดแถว"
+    },
+    {
+     "s": 67.618,
+     "e": 79.408,
+     "en": "The count is also a check on any solver output. If a reported optimum has more positive variables than tight rows, either it is not a vertex, or some tiny values should be zero.",
+     "th": "การนับนี้ยังใช้ตรวจผลลัพธ์ของ solver ได้ทุกครั้ง ถ้าคำตอบที่รายงานมีตัวแปรที่เป็นบวกมากกว่าแถวที่ tight แสดงว่าไม่ใช่จุดยอด หรือมีค่าเล็กมากบางตัวที่ควรเป็นศูนย์"
     }
    ]
   },
   {
-   "n": 13,
-   "file": "audio/slide-13.mp3",
-   "duration": 35.136,
+   "n": 18,
+   "file": "audio/slide-18.mp3",
+   "duration": 68.76,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.971,
+     "en": "Here is the count for the base blend.",
+     "th": "นี่คือการนับสำหรับ blend ฐาน"
+    },
+    {
+     "s": 2.971,
+     "e": 12.776,
+     "en": "On the left, the ten possible flows. Eight are positive: FCC gasoline is used only in Regular, and alkylate only in Premium.",
+     "th": "ด้านซ้ายคือปริมาณที่เป็นไปได้ทั้งสิบตัว เป็นบวกแปดตัว FCC gasoline ใช้เฉพาะใน Regular และ alkylate ใช้เฉพาะใน Premium"
+    },
+    {
+     "s": 12.776,
+     "e": 23.934,
+     "en": "On the right, the eleven rows. Eight are tight: the availabilities of reformate, FCC gasoline and alkylate; the Premium demand; and all four quality rows.",
+     "th": "ด้านขวาคือแถวทั้งสิบเอ็ดแถว tight แปดแถว ได้แก่ ปริมาณที่มีของ reformate, FCC gasoline และ alkylate ความต้องการของ Premium และแถวคุณภาพทั้งสี่"
+    },
+    {
+     "s": 23.934,
+     "e": 28.737,
+     "en": "Eight positive flows and eight tight rows: the bound holds with equality.",
+     "th": "ปริมาณที่เป็นบวกแปดตัว และแถวที่ tight แปดแถว ขอบเขตจึงเป็นจริงแบบเท่ากันพอดี"
+    },
+    {
+     "s": 28.737,
+     "e": 41.312,
+     "en": "The duals put a price on each tight row. One more cubic meter per day of reformate is worth 127 dollars per day, FCC gasoline 105, and alkylate 49.",
+     "th": "ค่า dual ให้ราคากับแต่ละแถวที่ tight reformate เพิ่มอีกหนึ่งลูกบาศก์เมตรต่อวันมีมูลค่า 127 ดอลลาร์ต่อวัน FCC gasoline 105 และ alkylate 49 ความต้องการ"
+    },
+    {
+     "s": 41.312,
+     "e": 45.645,
+     "en": "One more cubic meter of Premium demand is worth 31.",
+     "th": "Premium เพิ่มอีกหนึ่งลูกบาศก์เมตรมีมูลค่า 31"
+    },
+    {
+     "s": 45.645,
+     "e": 54.421,
+     "en": "The slack rows, such as the butane supply and the Regular demand, have zero duals. More of them is worth nothing at this plan.",
+     "th": "แถวที่ไม่ tight เช่น ปริมาณ butane และความต้องการ Regular มี dual เป็นศูนย์ การมีเพิ่มขึ้นไม่มีมูลค่าเลยที่แผนนี้"
+    },
+    {
+     "s": 54.421,
+     "e": 64.724,
+     "en": "Read the recipe this way: each positive flow is paid for by a tight row. If you want a ninth component flow in the blend, something else must become tight first.",
+     "th": "ให้อ่านสูตรผสมแบบนี้ แต่ละปริมาณที่เป็นบวกมีแถวที่ tight รองรับอยู่ ถ้าต้องการปริมาณที่เป็นบวกตัวที่เก้า ต้องมีข้อจำกัดอื่นกลายเป็น tight ก่อน"
+    },
+    {
+     "s": 64.724,
+     "e": 68.684,
+     "en": "In Lab 2 you will make the same count for the refinery.",
+     "th": "ใน Lab 2 คุณจะนับแบบเดียวกันสำหรับโรงกลั่น"
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "file": "audio/slide-19.mp3",
+   "duration": 59.544,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.711,
+     "en": "The second check is about reading a vertex. Three short questions.",
+     "th": "แบบตรวจครั้งที่สองว่าด้วยการอ่านจุดยอด มีคำถามสั้นสามข้อ"
+    },
+    {
+     "s": 5.711,
+     "e": 9.645,
+     "en": "Pause now, answer, and press Play for the solutions.",
+     "th": "หยุดตอนนี้ ตอบ แล้วกด Play เพื่อฟังเฉลย"
+    },
+    {
+     "s": 9.645,
+     "e": 20.461,
+     "en": "One. A reported flow of three times ten to the minus nine is below the feasibility tolerance. It is zero, and it should be reported as zero.",
+     "th": "ข้อหนึ่ง ปริมาณที่รายงานว่าสามคูณสิบยกกำลังลบเก้า ต่ำกว่าค่าความคลาดเคลื่อนของความเป็นไปได้ จึงเป็นศูนย์ และควรรายงานเป็นศูนย์"
+    },
+    {
+     "s": 20.461,
+     "e": 31.658,
+     "en": "Solvers work with a feasibility tolerance, around ten to the minus seven for HiGHS by default. Values below it carry no meaning, so a report should round them to zero.",
+     "th": "solver ทำงานกับค่าความคลาดเคลื่อนของความเป็นไปได้ ซึ่งสำหรับ HiGHS มีค่าเริ่มต้นประมาณสิบยกกำลังลบเจ็ด ค่าที่ต่ำกว่านี้ไม่มีความหมาย รายงานจึงควรปัดเป็นศูนย์"
+    },
+    {
+     "s": 31.658,
+     "e": 40.303,
+     "en": "Two. With only five tight rows at an optimal vertex, at most five flows can be positive, in both grades together.",
+     "th": "ข้อสอง ถ้ามีแถวที่ tight เพียงห้าแถวที่จุดยอดที่ดีที่สุด ปริมาณที่เป็นบวกจะมีได้ไม่เกินห้าตัว รวมทั้งสองเกรด"
+    },
+    {
+     "s": 40.303,
+     "e": 47.066,
+     "en": "The bound counts all positive flows, across both grades, against all tight rows, across the whole model.",
+     "th": "ขอบเขตนี้นับปริมาณที่เป็นบวกทั้งหมดของทั้งสองเกรด เทียบกับแถวที่ tight ทั้งหมดของทั้งโมเดล"
+    },
+    {
+     "s": 47.066,
+     "e": 59.474,
+     "en": "Three. A new binding row can pay for one more flow, so the number of positive flows can rise by one. It can also stay the same, and the vertex may become degenerate.",
+     "th": "ข้อสาม แถวใหม่ที่ binding รองรับปริมาณที่เป็นบวกเพิ่มได้หนึ่งตัว จำนวนปริมาณที่เป็นบวกจึงเพิ่มได้หนึ่ง หรืออาจเท่าเดิม และจุดยอดอาจกลายเป็น degenerate"
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "file": "audio/slide-20.mp3",
+   "duration": 66.384,
    "hold": false,
    "cues": [
     {
@@ -535,34 +1197,52 @@
     },
     {
      "s": 5.721,
-     "e": 9.421,
-     "en": "A looser limit lets cheap butane into the pool.",
-     "th": "ขีดจำกัดที่หลวมขึ้นทำให้ butane ราคาถูกเข้ามาในการผสมได้"
+     "e": 15.618,
+     "en": "Vapor pressure limits are tighter in summer, when evaporation losses and smog formation matter most, and looser in winter, when engines need volatility to start.",
+     "th": "ขีดจำกัดความดันไอเข้มงวดกว่าในฤดูร้อน ซึ่งการสูญเสียจากการระเหยและการเกิดหมอกควันมีผลมากที่สุด และหลวมกว่าในฤดูหนาว ซึ่งเครื่องยนต์ต้องการการระเหยเพื่อสตาร์ต"
     },
     {
-     "s": 9.421,
-     "e": 18.605,
-     "en": "Between 45 and 75 kilopascals the margin rises from about 343,000 to 435,000 dollars per day.",
-     "th": "ระหว่าง 45 ถึง 75 กิโลปาสคาล กำไรส่วนเกินเพิ่มจากประมาณ 343,000 เป็น 435,000 ดอลลาร์ต่อวัน"
+     "s": 15.618,
+     "e": 28.553,
+     "en": "A looser limit lets cheap butane into the pool. Between 45 and 75 kilopascals the margin rises from about 343,000 to 435,000 dollars per day.",
+     "th": "ขีดจำกัดที่หลวมขึ้นทำให้ butane ราคาถูกเข้ามาในการผสมได้ ระหว่าง 45 ถึง 75 กิโลปาสคาล กำไรส่วนเกินเพิ่มจากประมาณ 343,000 เป็น 435,000 ดอลลาร์ต่อวัน"
     },
     {
-     "s": 18.605,
-     "e": 26.487,
+     "s": 28.553,
+     "e": 34.592,
+     "en": "Over this range, each kilopascal is worth about 3,000 dollars per day on average.",
+     "th": "ในช่วงนี้ แต่ละกิโลปาสคาลมีมูลค่าเฉลี่ยประมาณ 3,000 ดอลลาร์ต่อวัน"
+    },
+    {
+     "s": 34.592,
+     "e": 42.474,
      "en": "The vapor pressure rows stay tight up to 72.5 kilopascals, so the plan keeps its structure while the numbers move.",
      "th": "แถวความดันไอยัง tight จนถึง 72.5 กิโลปาสคาล แผนจึงคงโครงสร้างเดิม ขณะที่ตัวเลขเปลี่ยนไป"
     },
     {
-     "s": 26.487,
-     "e": 35.079,
+     "s": 42.474,
+     "e": 51.066,
      "en": "At 75, all 300 cubic meters of butane are used, and the butane supply binds instead of the Premium vapor pressure.",
      "th": "ที่ 75 butane ถูกใช้หมดทั้ง 300 ลูกบาศก์เมตร และข้อจำกัดปริมาณ butane จะ binding แทนความดันไอของ Premium"
+    },
+    {
+     "s": 51.066,
+     "e": 57.855,
+     "en": "That is the vertex picture again: one row leaves the tight set and another joins it, and the count stays balanced.",
+     "th": "นี่คือภาพของจุดยอดอีกครั้ง แถวหนึ่งออกจากชุดที่ tight และอีกแถวหนึ่งเข้ามาแทน จำนวนจึงยังสมดุล"
+    },
+    {
+     "s": 57.855,
+     "e": 66.329,
+     "en": "Watch the butane number on the left as you move the slider: it rises from about 24 to 300 cubic meters per day across the range.",
+     "th": "สังเกตตัวเลข butane ด้านซ้ายขณะเลื่อนแถบ มันเพิ่มจากประมาณ 24 เป็น 300 ลูกบาศก์เมตรต่อวันตลอดช่วงนี้"
     }
    ]
   },
   {
-   "n": 14,
-   "file": "audio/slide-14.mp3",
-   "duration": 29.496,
+   "n": 21,
+   "file": "audio/slide-21.mp3",
+   "duration": 75.36,
    "hold": false,
    "cues": [
     {
@@ -579,28 +1259,52 @@
     },
     {
      "s": 11.868,
-     "e": 16.605,
-     "en": "Heavy naphtha can be reformed into high-octane reformate, or sold.",
-     "th": "heavy naphtha นำไปผ่าน reformer เป็น reformate ที่มีค่าออกเทนสูง หรือขายออกไปก็ได้"
+     "e": 25.066,
+     "en": "The distillation yields are fixed. Each cubic meter of crude gives 2 percent LPG, 10 percent light naphtha, 18 percent heavy naphtha, 38 percent distillate and 32 percent residue.",
+     "th": "yield ของการกลั่นคงที่ น้ำมันดิบแต่ละลูกบาศก์เมตรให้ LPG 2 เปอร์เซ็นต์ light naphtha 10 เปอร์เซ็นต์ heavy naphtha 18 เปอร์เซ็นต์ distillate 38 เปอร์เซ็นต์ และ residue 32 เปอร์เซ็นต์"
     },
     {
-     "s": 16.605,
-     "e": 21.882,
-     "en": "Light naphtha and reformate go to the gasoline pool with bought butane and alkylate.",
+     "s": 25.066,
+     "e": 36.592,
+     "en": "Heavy naphtha can be reformed or sold. The reformer turns each cubic meter of heavy naphtha into 0.85 of high-octane reformate and 0.15 of LPG.",
+     "th": "heavy naphtha นำไปผ่าน reformer หรือขายออกไปก็ได้ reformer เปลี่ยน heavy naphtha แต่ละลูกบาศก์เมตรเป็น reformate ค่าออกเทนสูง 0.85 และ LPG 0.15"
+    },
+    {
+     "s": 36.592,
+     "e": 42.553,
+     "en": "Light naphtha and reformate go to the gasoline pool, together with bought butane and alkylate.",
      "th": "light naphtha และ reformate เข้าสู่การผสมน้ำมันเบนซิน ร่วมกับ butane และ alkylate ที่ซื้อเข้ามา"
     },
     {
-     "s": 21.882,
-     "e": 29.434,
-     "en": "Each box is an activity run at a level, with fixed volume yields. This is the plant of Lab 2.",
-     "th": "แต่ละกล่องเป็นกิจกรรมที่ทำงานที่ระดับหนึ่ง โดยมี yield เชิงปริมาตรคงที่ นี่คือโรงงานของ Lab 2"
+     "s": 42.553,
+     "e": 52.908,
+     "en": "Notice that sales are allowed for every intermediate: LPG, naphtha, distillate and residue. Each sale is a column in the model, with a price.",
+     "th": "สังเกตว่าทุกผลิตภัณฑ์ขั้นกลางขายได้ ได้แก่ LPG, naphtha, distillate และ residue การขายแต่ละรายการเป็นหนึ่งคอลัมน์ในโมเดล และมีราคา"
+    },
+    {
+     "s": 52.908,
+     "e": 57.934,
+     "en": "In Lab 2 you will see which of these sales the optimal plan actually uses.",
+     "th": "ใน Lab 2 คุณจะเห็นว่าแผนที่เหมาะที่สุดใช้การขายรายการใดจริง"
+    },
+    {
+     "s": 57.934,
+     "e": 69.211,
+     "en": "Each box is an activity run at a level, with fixed volume yields. The crude unit is limited to 8,000 cubic meters per day and the reformer to 1,100.",
+     "th": "แต่ละกล่องเป็นกิจกรรมที่ทำงานที่ระดับหนึ่ง โดยมี yield เชิงปริมาตรคงที่ หน่วยกลั่นน้ำมันดิบจำกัดที่ 8,000 ลูกบาศก์เมตรต่อวัน และ reformer ที่ 1,100"
+    },
+    {
+     "s": 69.211,
+     "e": 75.303,
+     "en": "This is the plant of Lab 2. The next slide turns the picture into a table.",
+     "th": "นี่คือโรงงานของ Lab 2 หน้าถัดไปจะแปลงภาพนี้เป็นตาราง"
     }
    ]
   },
   {
-   "n": 15,
-   "file": "audio/slide-15.mp3",
-   "duration": 39.864,
+   "n": 22,
+   "file": "audio/slide-22.mp3",
+   "duration": 85.44,
    "hold": false,
    "cues": [
     {
@@ -623,28 +1327,120 @@
     },
     {
      "s": 15.461,
-     "e": 26.434,
+     "e": 24.66,
+     "en": "Read one row as an example. The heavy naphtha row has plus 0.18 from the crude unit, minus 1 for the reformer feed and minus 1 for sales:",
+     "th": "ลองอ่านหนึ่งแถวเป็นตัวอย่าง แถว heavy naphtha มีบวก 0.18 จากหน่วยกลั่น ลบ 1 สำหรับป้อน reformer และลบ 1 สำหรับการขาย"
+    },
+    {
+     "s": 24.66,
+     "e": 29.526,
+     "en": "heavy naphtha made equals heavy naphtha reformed plus heavy naphtha sold.",
+     "th": "คือ heavy naphtha ที่ผลิต เท่ากับที่ป้อน reformer บวกที่ขาย"
+    },
+    {
+     "s": 29.526,
+     "e": 40.671,
+     "en": "Read one column the same way. The reformer column has minus 1 for heavy naphtha, plus 0.85 for reformate and plus 0.15 for LPG.",
+     "th": "อ่านหนึ่งคอลัมน์แบบเดียวกัน คอลัมน์ reformer มีลบ 1 สำหรับ heavy naphtha บวก 0.85 สำหรับ reformate และบวก 0.15 สำหรับ LPG"
+    },
+    {
+     "s": 40.671,
+     "e": 51.645,
      "en": "Audit the table by column sums. The distillation column sums to one: one cubic meter in, one out. The reformer column sums to zero.",
      "th": "ตรวจสอบตารางด้วยผลรวมของคอลัมน์ คอลัมน์หอกลั่นรวมได้หนึ่ง คือเข้าหนึ่งลูกบาศก์เมตร ออกหนึ่ง ส่วนคอลัมน์ reformer รวมได้ศูนย์"
     },
     {
-     "s": 26.434,
-     "e": 33.789,
-     "en": "A typo such as 0.51 for 0.15 creates volume from nothing, and no solver will object.",
-     "th": "การพิมพ์ผิด เช่น 0.51 แทน 0.15 จะสร้างปริมาตรขึ้นมาจากความว่างเปล่า และไม่มี solver ใดทักท้วง"
+     "s": 51.645,
+     "e": 62.803,
+     "en": "A typo such as 0.51 for 0.15 creates volume from nothing, and no solver will object. The model simply makes money from the extra volume.",
+     "th": "การพิมพ์ผิด เช่น 0.51 แทน 0.15 จะสร้างปริมาตรขึ้นมาจากความว่างเปล่า และไม่มี solver ใดทักท้วง โมเดลจะทำกำไรจากปริมาตรที่เกินมานั้นเลย"
     },
     {
-     "s": 33.789,
-     "e": 39.803,
+     "s": 62.803,
+     "e": 68.816,
      "en": "Summing all rows gives plant-wide closure: crude plus purchases equals products plus sales.",
      "th": "ผลรวมของทุกแถวให้สมดุลทั้งโรงงาน คือ น้ำมันดิบบวกของที่ซื้อ เท่ากับผลิตภัณฑ์บวกของที่ขาย"
+    },
+    {
+     "s": 68.816,
+     "e": 75.263,
+     "en": "The blend of part one sits on top of this table: the pool rows take light naphtha and reformate from here.",
+     "th": "การผสมในส่วนที่หนึ่งวางอยู่บนตารางนี้ แถวของการผสมรับ light naphtha และ reformate มาจากที่นี่"
+    },
+    {
+     "s": 75.263,
+     "e": 85.355,
+     "en": "The table is also the documentation of the model. An engineer can check it line by line against the process flow diagram, without reading any code.",
+     "th": "ตารางนี้ยังเป็นเอกสารของโมเดลด้วย วิศวกรตรวจทีละบรรทัดเทียบกับ process flow diagram ได้ โดยไม่ต้องอ่านโค้ด"
     }
    ]
   },
   {
-   "n": 16,
-   "file": "audio/slide-16.mp3",
-   "duration": 40.896,
+   "n": 23,
+   "file": "audio/slide-23.mp3",
+   "duration": 78.864,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.866,
+     "en": "How many decisions does the refinery really have?",
+     "th": "โรงกลั่นนี้มีการตัดสินใจจริง ๆ กี่อย่าง"
+    },
+    {
+     "s": 3.866,
+     "e": 9.284,
+     "en": "Count the columns: 17 activity levels. Count the balance rows: 8.",
+     "th": "นับคอลัมน์ได้ 17 ระดับของกิจกรรม นับแถวสมดุลได้ 8 แถว"
+    },
+    {
+     "s": 9.284,
+     "e": 17.171,
+     "en": "Each balance is one equation, so the balances fix 8 combinations of the 17 levels, provided the rows are independent.",
+     "th": "แต่ละสมดุลเป็นหนึ่งสมการ สมดุลจึงกำหนดค่าผลรวมเชิงเส้นของระดับกิจกรรมได้ 8 แบบ จาก 17 ระดับ โดยมีเงื่อนไขว่าแถวต้องเป็นอิสระต่อกัน"
+    },
+    {
+     "s": 17.171,
+     "e": 29.618,
+     "en": "That condition matters. Compute the rank of the balance matrix rather than counting rows. Here the rank is 8, so there are 17 minus 8, which is 9 degrees of freedom.",
+     "th": "เงื่อนไขนี้สำคัญ ให้คำนวณ rank ของเมทริกซ์สมดุล แทนการนับแถว ในที่นี้ rank เท่ากับ 8 จึงมี degrees of freedom เท่ากับ 17 ลบ 8 คือ 9"
+    },
+    {
+     "s": 29.618,
+     "e": 38.632,
+     "en": "A duplicated balance, or one that is the sum of others, adds a row and no information. Counting rows would then give the wrong answer.",
+     "th": "สมดุลที่ซ้ำกัน หรือสมดุลที่เป็นผลรวมของแถวอื่น เพิ่มแถวแต่ไม่เพิ่มข้อมูล การนับแถวจึงจะให้คำตอบที่ผิด"
+    },
+    {
+     "s": 38.632,
+     "e": 50.408,
+     "en": "For example, the plant-wide closure from the previous slide is the sum of all the stream rows. Add it to the model as a ninth row, and the row count rises to 9 while the rank stays at 8.",
+     "th": "ตัวอย่างเช่น สมดุลทั้งโรงงานจากหน้าที่แล้วคือผลรวมของทุกแถว stream ถ้าเพิ่มเป็นแถวที่เก้าในโมเดล จำนวนแถวจะเป็น 9 แต่ rank ยังเป็น 8"
+    },
+    {
+     "s": 50.408,
+     "e": 62.355,
+     "en": "The 9 free levels are decided by the inequalities: capacities, supplies, demands and specifications. At an optimal vertex, enough of them are tight to pin all 9 down.",
+     "th": "ระดับอิสระทั้ง 9 ถูกกำหนดโดยอสมการ ได้แก่ กำลังการผลิต ปริมาณวัตถุดิบ ความต้องการ และ spec ที่จุดยอดที่ดีที่สุด จะมีอสมการ tight มากพอที่จะกำหนดค่าทั้ง 9 ได้"
+    },
+    {
+     "s": 62.355,
+     "e": 73.829,
+     "en": "If the degrees of freedom were zero, there would be nothing to optimize. If the count comes out negative, the balances are inconsistent or redundant, and the rank check tells you which.",
+     "th": "ถ้า degrees of freedom เป็นศูนย์ ก็ไม่มีอะไรให้ optimize ถ้านับได้ค่าติดลบ แสดงว่าสมดุลขัดแย้งกันหรือซ้ำซ้อน และการตรวจ rank จะบอกได้ว่าเป็นแบบใด"
+    },
+    {
+     "s": 73.829,
+     "e": 78.789,
+     "en": "This is the same count a process simulator makes before it solves a flowsheet.",
+     "th": "นี่คือการนับแบบเดียวกับที่ process simulator ทำก่อนแก้ flowsheet"
+    }
+   ]
+  },
+  {
+   "n": 24,
+   "file": "audio/slide-24.mp3",
+   "duration": 79.896,
    "hold": false,
    "cues": [
     {
@@ -661,72 +1457,268 @@
     },
     {
      "s": 11.395,
-     "e": 19.697,
-     "en": "Total flow times composition, with both as variables, is bilinear. That is pooling, in Session 13.",
-     "th": "ปริมาณรวมคูณองค์ประกอบ เมื่อทั้งคู่เป็นตัวแปร เป็น bilinear ซึ่งคือปัญหา pooling ในคาบที่ 13"
+     "e": 24.118,
+     "en": "Total flow times composition, with both as variables, is bilinear. That is the pooling problem. You will see a small one in two slides, and the full treatment in Session 13.",
+     "th": "ปริมาณรวมคูณองค์ประกอบ เมื่อทั้งคู่เป็นตัวแปร เป็น bilinear ซึ่งคือปัญหา pooling คุณจะเห็นตัวอย่างเล็ก ๆ ในอีกสองหน้า และเรียนเต็มรูปแบบในคาบที่ 13"
     },
     {
-     "s": 19.697,
-     "e": 28.776,
-     "en": "Yields that depend on temperature or severity are nonlinear, and units that are either on above a minimum rate or off are logical, for Session 3.",
-     "th": "yield ที่ขึ้นกับอุณหภูมิหรือ severity ไม่เป็นเชิงเส้น และหน่วยที่ต้องเดินเหนืออัตราขั้นต่ำหรือปิดไปเลย เป็นเงื่อนไขเชิงตรรกะ สำหรับคาบที่ 3"
+     "s": 24.118,
+     "e": 34.342,
+     "en": "Yields that depend on temperature or severity are nonlinear. Units that either run above a minimum rate or are off need logic, which is Session 3.",
+     "th": "yield ที่ขึ้นกับอุณหภูมิหรือ severity ไม่เป็นเชิงเส้น หน่วยที่ต้องเดินเหนืออัตราขั้นต่ำหรือปิดไปเลย ต้องใช้เงื่อนไขเชิงตรรกะ ซึ่งอยู่ในคาบที่ 3"
     },
     {
-     "s": 28.776,
-     "e": 34.355,
+     "s": 34.342,
+     "e": 39.921,
      "en": "Today's pool is linear because each component goes from its own tank straight into a grade.",
      "th": "การผสมในวันนี้เป็นเชิงเส้น เพราะแต่ละส่วนผสมไหลจากถังของตัวเองเข้าสู่เกรดโดยตรง"
     },
     {
-     "s": 34.355,
-     "e": 40.829,
+     "s": 39.921,
+     "e": 46.395,
      "en": "Put the components into one shared tank first, and the grade properties become products of variables.",
      "th": "ถ้านำส่วนผสมเข้าถังรวมก่อน คุณสมบัติของแต่ละเกรดจะกลายเป็นผลคูณของตัวแปร"
+    },
+    {
+     "s": 46.395,
+     "e": 58.092,
+     "en": "Go back to the flowsheet. Every arrow carries one component from its own tank, and every unit has fixed yields. That is why the refinery of Lab 2 is linear.",
+     "th": "ย้อนกลับไปดู flowsheet ทุกลูกศรนำส่วนผสมหนึ่งชนิดจากถังของตัวเอง และทุกหน่วยมี yield คงที่ นี่คือเหตุผลที่โรงกลั่นใน Lab 2 เป็นเชิงเส้น"
+    },
+    {
+     "s": 58.092,
+     "e": 70.947,
+     "en": "The last row of the table is worth noticing. Tank levels that link one day to the next are linear, but they multiply the size of the model by the number of periods. That is Session 4.",
+     "th": "แถวสุดท้ายของตารางควรสังเกต ระดับถังที่เชื่อมวันหนึ่งกับวันถัดไปเป็นเชิงเส้น แต่ทำให้ขนาดของโมเดลคูณด้วยจำนวนช่วงเวลา ซึ่งอยู่ในคาบที่ 4"
+    },
+    {
+     "s": 70.947,
+     "e": 79.816,
+     "en": "A useful habit: for each equation, ask which quantities in it are decisions. A product of two decisions is the warning sign.",
+     "th": "นิสัยที่มีประโยชน์คือ สำหรับแต่ละสมการ ให้ถามว่าปริมาณใดในสมการเป็นตัวแปรตัดสินใจ ผลคูณของตัวแปรตัดสินใจสองตัวคือสัญญาณเตือน"
     }
    ]
   },
   {
-   "n": 17,
-   "file": "audio/slide-17.mp3",
-   "duration": 24.528,
+   "n": 25,
+   "file": "audio/slide-25.mp3",
+   "duration": 72.144,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.116,
+     "en": "The third check: decide whether each of five statements gives a linear row.",
+     "th": "แบบตรวจครั้งที่สาม ให้ตัดสินว่าข้อความทั้งห้าข้อให้แถวเชิงเส้นหรือไม่"
+    },
+    {
+     "s": 5.116,
+     "e": 9.0,
+     "en": "Pause now, answer, and press Play for the solutions.",
+     "th": "หยุดตอนนี้ ตอบ แล้วกด Play เพื่อฟังเฉลย"
+    },
+    {
+     "s": 9.0,
+     "e": 16.105,
+     "en": "One. A fixed 30 percent purge is linear: the purge equals 0.3 times the inlet.",
+     "th": "ข้อหนึ่ง การ purge คงที่ 30 เปอร์เซ็นต์เป็นเชิงเส้น คือปริมาณ purge เท่ากับ 0.3 คูณปริมาณขาเข้า"
+    },
+    {
+     "s": 16.105,
+     "e": 27.829,
+     "en": "Two. A split fraction that is a decision, with the outlet composition tracked as a variable, is bilinear: a flow times a composition. It is nonconvex.",
+     "th": "ข้อสอง สัดส่วนการแยกที่เป็นตัวแปรตัดสินใจ โดยติดตามองค์ประกอบขาออกเป็นตัวแปร เป็น bilinear คือปริมาณคูณองค์ประกอบ และไม่เป็น convex"
+    },
+    {
+     "s": 27.829,
+     "e": 33.926,
+     "en": "Three. A fixed 60 percent conversion of A, written in component flows, is linear:",
+     "th": "ข้อสาม conversion ของ A คงที่ 60 เปอร์เซ็นต์ เขียนในรูปปริมาณขององค์ประกอบ เป็นเชิงเส้น"
+    },
+    {
+     "s": 33.926,
+     "e": 42.105,
+     "en": "for one-to-one stoichiometry, the B formed is 0.6 times the A fed, and the unreacted A is 0.4 times the A fed.",
+     "th": "สำหรับปริมาณสัมพันธ์หนึ่งต่อหนึ่ง B ที่เกิดขึ้นเท่ากับ 0.6 คูณ A ที่ป้อน และ A ที่เหลือเท่ากับ 0.4 คูณ A ที่ป้อน"
+    },
+    {
+     "s": 42.105,
+     "e": 53.408,
+     "en": "Four. A yield that depends on a temperature you choose is nonlinear, and usually nonconvex. That is a nonlinear program, from Session 5.",
+     "th": "ข้อสี่ yield ที่ขึ้นกับอุณหภูมิที่เราเลือก ไม่เป็นเชิงเส้น และมักไม่เป็น convex เป็น nonlinear program ซึ่งเริ่มในคาบที่ 5"
+    },
+    {
+     "s": 53.408,
+     "e": 65.092,
+     "en": "Five. The heater duty is F times c p times the temperature difference. With both temperatures fixed, the duty is a constant times F, which is linear.",
+     "th": "ข้อห้า ภาระความร้อนของ heater เท่ากับ F คูณ cp คูณผลต่างอุณหภูมิ เมื่ออุณหภูมิทั้งสองคงที่ ภาระความร้อนเท่ากับค่าคงที่คูณ F ซึ่งเป็นเชิงเส้น"
+    },
+    {
+     "s": 65.092,
+     "e": 72.079,
+     "en": "Notice the pattern in four and five: the same physics is linear or not depending on which quantities are decisions.",
+     "th": "สังเกตรูปแบบในข้อสี่และข้อห้า ฟิสิกส์เดียวกันเป็นเชิงเส้นหรือไม่ ขึ้นกับว่าปริมาณใดเป็นตัวแปรตัดสินใจ"
+    }
+   ]
+  },
+  {
+   "n": 26,
+   "file": "audio/slide-26.mp3",
+   "duration": 129.84,
    "hold": false,
    "cues": [
     {
      "s": 0.1,
-     "e": 3.655,
-     "en": "Build the rows from the data, not by hand.",
-     "th": "สร้างแถวจากข้อมูล ไม่ใช่เขียนด้วยมือ"
+     "e": 3.813,
+     "en": "Here is the smallest version of the shared-tank problem.",
+     "th": "นี่คือปัญหาถังร่วมในรูปแบบที่เล็กที่สุด"
     },
     {
-     "s": 3.655,
-     "e": 10.605,
+     "s": 3.813,
+     "e": 14.645,
+     "en": "Crudes A and B, with 3.2 and 0.8 weight percent sulfur, go into one tank. Crude C, with 2.3 percent, goes straight to the products.",
+     "th": "น้ำมันดิบ A และ B ซึ่งมีกำมะถัน 3.2 และ 0.8 เปอร์เซ็นต์โดยน้ำหนัก เข้าสู่ถังเดียวกัน ส่วนน้ำมันดิบ C ซึ่งมี 2.3 เปอร์เซ็นต์ ไปยังผลิตภัณฑ์โดยตรง"
+    },
+    {
+     "s": 14.645,
+     "e": 23.987,
+     "en": "There are two products: X, with at most 2.7 percent sulfur, and Y, with at most 1.3 percent, which sells for almost twice as much.",
+     "th": "มีผลิตภัณฑ์สองชนิด คือ X ซึ่งมีกำมะถันไม่เกิน 2.7 เปอร์เซ็นต์ และ Y ซึ่งมีไม่เกิน 1.3 เปอร์เซ็นต์ และขายได้ราคาเกือบสองเท่า"
+    },
+    {
+     "s": 23.987,
+     "e": 33.842,
+     "en": "The tank's sulfur content q is a decision. Its balance, q times the tank outflow equals the sulfur fed, multiplies two variables.",
+     "th": "ปริมาณกำมะถันในถัง q เป็นตัวแปรตัดสินใจ สมดุลของถัง คือ q คูณปริมาณที่ออกจากถัง เท่ากับกำมะถันที่ป้อนเข้า เป็นการคูณตัวแปรสองตัว"
+    },
+    {
+     "s": 33.842,
+     "e": 42.342,
+     "en": "We solved it with SLSQP, a local method, from 40 random starts. Move the slider to see each run.",
+     "th": "เราแก้ปัญหานี้ด้วย SLSQP ซึ่งเป็นวิธีแบบ local จากจุดเริ่มต้นสุ่ม 40 จุด เลื่อนแถบเพื่อดูผลของแต่ละครั้ง"
+    },
+    {
+     "s": 42.342,
+     "e": 55.934,
+     "en": "38 starts find a profit of 637.5 dollars per hour. The tank runs at 1.3 percent sulfur, with about 42 units of A and 158 of B, and all of it goes to Y.",
+     "th": "38 จุดเริ่มต้นได้กำไร 637.5 ดอลลาร์ต่อชั่วโมง ถังทำงานที่กำมะถัน 1.3 เปอร์เซ็นต์ ใช้ A ประมาณ 42 หน่วย และ B 158 หน่วย และส่งทั้งหมดไปยัง Y"
+    },
+    {
+     "s": 55.934,
+     "e": 69.592,
+     "en": "Two starts, number 6 is one of them, stop at 131.3. There the tank runs at 2.7 percent, and its blend goes to X. The solver reports success for both.",
+     "th": "สองจุดเริ่มต้น ซึ่งจุดที่ 6 เป็นหนึ่งในนั้น หยุดที่ 131.3 ถังทำงานที่ 2.7 เปอร์เซ็นต์ และส่งของผสมไปยัง X solver รายงานว่าสำเร็จทั้งสองกรณี"
+    },
+    {
+     "s": 69.592,
+     "e": 77.526,
+     "en": "Try it: drag the slider to start 6 and then to start 13. Those are the two runs that stop at the poor plan.",
+     "th": "ลองเลื่อนแถบไปที่จุดเริ่มต้นที่ 6 และที่ 13 นี่คือสองครั้งที่หยุดที่แผนที่ไม่ดี"
+    },
+    {
+     "s": 77.526,
+     "e": 83.066,
+     "en": "Nothing in the output of that run tells you that a plan almost five times better exists.",
+     "th": "ไม่มีสิ่งใดในผลลัพธ์ของการรันครั้งนั้นบอกว่ามีแผนที่ดีกว่าเกือบห้าเท่าอยู่"
+    },
+    {
+     "s": 83.066,
+     "e": 93.833,
+     "en": "In the good plan the tank makes a low-sulfur blend for the valuable product Y. In the poor plan it makes a high-sulfur blend for X, and Y is not made at all.",
+     "th": "ในแผนที่ดี ถังผลิตของผสมกำมะถันต่ำให้ผลิตภัณฑ์ Y ที่มีมูลค่าสูง ในแผนที่ไม่ดี ถังผลิตของผสมกำมะถันสูงให้ X และไม่ผลิต Y เลย"
+    },
+    {
+     "s": 93.833,
+     "e": 98.671,
+     "en": "Small changes to either plan make it worse, so each is a local optimum.",
+     "th": "การเปลี่ยนแผนใดแผนหนึ่งเล็กน้อยทำให้แย่ลง แต่ละแผนจึงเป็น local optimum"
+    },
+    {
+     "s": 98.671,
+     "e": 108.645,
+     "en": "The feasible set is curved. Two feasible plans averaged together need not be feasible, and a local method only sees the neighborhood where it starts.",
+     "th": "เซตที่ feasible เป็นรูปโค้ง ค่าเฉลี่ยของแผนที่ feasible สองแผนไม่จำเป็นต้อง feasible และวิธีแบบ local มองเห็นเฉพาะบริเวณใกล้จุดเริ่มต้น"
+    },
+    {
+     "s": 108.645,
+     "e": 121.092,
+     "en": "If each crude had its own tank, the problem would be a linear program, with an optimum of 768.75: the dashed line. Even the best shared-tank plan earns less.",
+     "th": "ถ้าน้ำมันดิบแต่ละชนิดมีถังของตัวเอง ปัญหาจะเป็น linear program และมีค่าที่ดีที่สุด 768.75 ซึ่งคือเส้นประ แม้แผนที่ดีที่สุดของถังร่วมก็ได้กำไรน้อยกว่า"
+    },
+    {
+     "s": 121.092,
+     "e": 129.776,
+     "en": "Multistart is a cheap defense, not a proof. Session 13 shows how to compute a bound that proves an answer is global.",
+     "th": "การเริ่มจากหลายจุดเป็นการป้องกันที่ใช้ต้นทุนต่ำ แต่ไม่ใช่การพิสูจน์ คาบที่ 13 จะแสดงวิธีคำนวณขอบเขตที่พิสูจน์ได้ว่าคำตอบเป็น global"
+    }
+   ]
+  },
+  {
+   "n": 27,
+   "file": "audio/slide-27.mp3",
+   "duration": 50.616,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.826,
+     "en": "Back to the refinery, and to how its model should be built: from the data, not by hand.",
+     "th": "กลับมาที่โรงกลั่น และวิธีสร้างโมเดลของมัน คือสร้างจากข้อมูล ไม่ใช่เขียนด้วยมือ"
+    },
+    {
+     "s": 5.826,
+     "e": 12.776,
      "en": "The yields live in dictionaries, the rows are generated in loops, and the same code serves four streams or four hundred.",
      "th": "yield เก็บอยู่ใน dictionary แถวถูกสร้างใน loop และโค้ดชุดเดียวกันใช้ได้ทั้งกับสี่ stream หรือสี่ร้อย stream"
     },
     {
-     "s": 10.605,
-     "e": 15.329,
+     "s": 12.776,
+     "e": 17.5,
      "en": "Audits such as the column sums run on the data before the solver runs.",
      "th": "การตรวจสอบ เช่น ผลรวมของคอลัมน์ ทำกับข้อมูลก่อนที่ solver จะทำงาน"
     },
     {
-     "s": 15.329,
-     "e": 20.145,
+     "s": 17.5,
+     "e": 19.88,
+     "en": "The code on the slide shows the pattern.",
+     "th": "โค้ดบนสไลด์แสดงรูปแบบนี้ yield"
+    },
+    {
+     "s": 19.88,
+     "e": 29.632,
+     "en": "The yields are a dictionary, an assertion checks that they sum to one before any row is written, and the octane rows for each grade are built in one loop over the pool.",
+     "th": "อยู่ใน dictionary มี assertion ตรวจว่าผลรวมเท่ากับหนึ่งก่อนเขียนแถวใด ๆ และแถวค่าออกเทนของแต่ละเกรดสร้างใน loop เดียวบนส่วนผสมทั้งหมด"
+    },
+    {
+     "s": 29.632,
+     "e": 35.197,
+     "en": "If a sixth crude-unit product is added next year, only the dictionary changes.",
+     "th": "ถ้าปีหน้าหน่วยกลั่นมีผลิตภัณฑ์ชนิดที่หก จะต้องแก้เฉพาะ dictionary"
+    },
+    {
+     "s": 35.197,
+     "e": 41.408,
+     "en": "When a yield changes, you change one number in one place, and every row that uses it changes with it.",
+     "th": "เมื่อ yield เปลี่ยน คุณแก้ตัวเลขเพียงตัวเดียวในที่เดียว และทุกแถวที่ใช้ตัวเลขนั้นจะเปลี่ยนตาม"
+    },
+    {
+     "s": 41.408,
+     "e": 46.224,
      "en": "Pyomo does the same with sets, parameters and indexed constraints.",
      "th": "Pyomo ทำแบบเดียวกันด้วย set, parameter และ constraint แบบมีดัชนี"
     },
     {
-     "s": 20.145,
-     "e": 24.461,
+     "s": 46.224,
+     "e": 50.539,
      "en": "Press D to run the refinery model and see its closure check.",
      "th": "กด D เพื่อรันโมเดลโรงกลั่นและดูการตรวจสมดุล"
     }
    ]
   },
   {
-   "n": 18,
-   "file": "audio/slide-18.mp3",
-   "duration": 7.296,
+   "n": 28,
+   "file": "audio/slide-28.mp3",
+   "duration": 11.232,
    "hold": false,
    "cues": [
     {
@@ -740,13 +1732,19 @@
      "e": 7.237,
      "en": "After the break you will rewrite your card from Session 1 as linear rows.",
      "th": "หลังพัก คุณจะเขียนการ์ดจากคาบที่ 1 ใหม่ให้เป็นแถวเชิงเส้น"
+    },
+    {
+     "s": 7.237,
+     "e": 11.171,
+     "en": "If you are studying on your own, take the break as well.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้พักด้วยเช่นกัน"
     }
    ]
   },
   {
-   "n": 19,
-   "file": "audio/slide-19.mp3",
-   "duration": 33.984,
+   "n": 29,
+   "file": "audio/slide-29.mp3",
+   "duration": 44.808,
    "hold": true,
    "cues": [
     {
@@ -769,28 +1767,34 @@
     },
     {
      "s": 17.211,
-     "e": 21.092,
-     "en": "Mark anything that cannot be linear, and say why.",
-     "th": "ทำเครื่องหมายข้อที่เป็นเชิงเส้นไม่ได้ และบอกเหตุผล"
+     "e": 22.697,
+     "en": "Count your degrees of freedom, and mark anything that cannot be linear, and say why.",
+     "th": "นับ degrees of freedom ของคุณ ทำเครื่องหมายข้อที่เป็นเชิงเส้นไม่ได้ และบอกเหตุผล"
     },
     {
-     "s": 21.092,
-     "e": 28.0,
+     "s": 22.697,
+     "e": 29.605,
      "en": "In class, take five minutes alone, then swap with a partner and find one row that is linear in the wrong variable.",
      "th": "ในห้องเรียน ใช้เวลาห้านาทีคนเดียว แล้วแลกกับเพื่อน และหาแถวหนึ่งที่เป็นเชิงเส้นในตัวแปรผิดตัว"
     },
     {
-     "s": 28.0,
-     "e": 33.921,
+     "s": 29.605,
+     "e": 38.816,
+     "en": "This is where today's material meets your own problem. The most common finding is a ratio written on the wrong basis, so look for that first.",
+     "th": "นี่คือจุดที่เนื้อหาวันนี้มาพบกับปัญหาของคุณเอง สิ่งที่พบบ่อยที่สุดคืออัตราส่วนที่เขียนบนฐานที่ผิด จึงควรหาสิ่งนี้ก่อน"
+    },
+    {
+     "s": 38.816,
+     "e": 44.737,
      "en": "If you are studying on your own, stop here, rewrite your card, and keep it for Session 3.",
      "th": "ถ้าคุณเรียนด้วยตนเอง ให้หยุดที่หน้านี้ เขียนการ์ดใหม่ แล้วเก็บไว้ใช้ในคาบที่ 3"
     }
    ]
   },
   {
-   "n": 20,
-   "file": "audio/slide-20.mp3",
-   "duration": 37.296,
+   "n": 30,
+   "file": "audio/slide-30.mp3",
+   "duration": 54.792,
    "hold": false,
    "cues": [
     {
@@ -819,22 +1823,206 @@
     },
     {
      "s": 27.026,
-     "e": 31.658,
-     "en": "Each one has a condition, and each condition is about convexity.",
-     "th": "แต่ละแบบมีเงื่อนไข และทุกเงื่อนไขเกี่ยวกับความเป็น convex"
+     "e": 32.355,
+     "en": "Each one has a condition, and each condition is about convexity or a sign.",
+     "th": "แต่ละแบบมีเงื่อนไข และทุกเงื่อนไขเกี่ยวกับความเป็น convex หรือเครื่องหมาย"
     },
     {
-     "s": 31.658,
-     "e": 37.224,
+     "s": 32.355,
+     "e": 41.342,
+     "en": "Read the table row by row. The second column is the linear form, and the third column is the condition under which it is exact.",
+     "th": "อ่านตารางทีละแถว คอลัมน์ที่สองคือรูปแบบเชิงเส้น และคอลัมน์ที่สามคือเงื่อนไขที่ทำให้ถูกต้องแม่นยำ"
+    },
+    {
+     "s": 41.342,
+     "e": 46.908,
      "en": "Break the condition and the reformulation returns a wrong answer with the status optimal.",
      "th": "ถ้าละเมิดเงื่อนไข การแปลงรูปจะให้คำตอบที่ผิด โดยยังมีสถานะ optimal"
+    },
+    {
+     "s": 46.908,
+     "e": 54.737,
+     "en": "Over the next slides we prove the first, use the second in a demo, watch the third fail in another demo, and derive the fourth.",
+     "th": "ในหน้าต่อ ๆ ไป เราจะพิสูจน์แบบแรก ใช้แบบที่สองใน demo ดูแบบที่สามใช้ไม่ได้ในอีก demo หนึ่ง และพิสูจน์แบบที่สี่"
     }
    ]
   },
   {
-   "n": 21,
-   "file": "audio/slide-21.mp3",
-   "duration": 42.84,
+   "n": 31,
+   "file": "audio/slide-31.mp3",
+   "duration": 105.48,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.013,
+     "en": "Why is the epigraph exact? Compare two problems.",
+     "th": "ทำไม epigraph จึงถูกต้องแม่นยำ ลองเปรียบเทียบสองปัญหา"
+    },
+    {
+     "s": 5.013,
+     "e": 18.211,
+     "en": "Problem A minimizes, over x, the largest of several functions f k. Problem B minimizes t over x and t, with t at least every f k. If each f k is linear, B is a linear program.",
+     "th": "ปัญหา A หาค่าต่ำสุดเทียบกับ x ของค่าที่มากที่สุดในบรรดาฟังก์ชัน fk ปัญหา B หาค่าต่ำสุดของ t เทียบกับ x และ t โดย t ต้องไม่น้อยกว่าทุก fk ถ้า fk ทุกตัวเป็นเชิงเส้น B เป็น linear program"
+    },
+    {
+     "s": 18.211,
+     "e": 28.652,
+     "en": "A one-line example: minimize the larger of x and 2 minus x. The epigraph form minimizes t, with t at least x and t at least 2 minus x.",
+     "th": "ตัวอย่างหนึ่งบรรทัด หาค่าต่ำสุดของค่าที่มากกว่าระหว่าง x กับ 2 ลบ x รูปแบบ epigraph คือหาค่าต่ำสุดของ t โดย t ไม่น้อยกว่า x และไม่น้อยกว่า 2"
+    },
+    {
+     "s": 28.652,
+     "e": 34.066,
+     "en": "The answer is x equal to 1 and t equal to 1, where the two lines meet.",
+     "th": "ลบ x คำตอบคือ x เท่ากับ 1 และ t เท่ากับ 1 ซึ่งเป็นจุดที่เส้นทั้งสองตัดกัน"
+    },
+    {
+     "s": 34.066,
+     "e": 44.618,
+     "en": "Take any x. Setting t equal to the largest f k gives a feasible point of B with the same value. So the optimum of B is no higher than the optimum of A.",
+     "th": "เลือก x ใด ๆ ถ้าให้ t เท่ากับ fk ที่มากที่สุด จะได้จุดที่ feasible ของ B ที่มีค่าเท่ากัน ดังนั้นค่าที่ดีที่สุดของ B ไม่สูงกว่าของ A"
+    },
+    {
+     "s": 44.618,
+     "e": 59.0,
+     "en": "Now take any feasible point of B. There, t is at least the largest f k, so its value is no lower than A's value at the same x. So the optimum of B is no lower either, and the two are equal.",
+     "th": "ต่อไปเลือกจุดที่ feasible ใด ๆ ของ B ที่จุดนั้น t ไม่น้อยกว่า fk ที่มากที่สุด ค่าของมันจึงไม่ต่ำกว่าค่าของ A ที่ x เดียวกัน ดังนั้นค่าที่ดีที่สุดของ B ก็ไม่ต่ำกว่าด้วย ทั้งสองจึงเท่ากัน"
+    },
+    {
+     "s": 59.0,
+     "e": 64.855,
+     "en": "At the optimum, t equals the largest f k, because otherwise t could be lowered.",
+     "th": "ที่จุดที่ดีที่สุด t เท่ากับ fk ที่มากที่สุด เพราะถ้าไม่เท่า ก็ลด t ลงได้อีก"
+    },
+    {
+     "s": 64.855,
+     "e": 75.724,
+     "en": "The argument uses only one thing: the objective pushes t down. If you maximize a maximum, t floats upward without limit and the reformulation fails.",
+     "th": "ข้อพิสูจน์นี้ใช้เพียงสิ่งเดียว คือฟังก์ชันเป้าหมายกด t ลง ถ้าหาค่าสูงสุดของค่าสูงสุด t จะลอยขึ้นไม่มีขีดจำกัด และการแปลงรูปจะใช้ไม่ได้"
+    },
+    {
+     "s": 75.724,
+     "e": 82.679,
+     "en": "The absolute value is the maximum of x and minus x, so it is fine to minimize it, but not to maximize it.",
+     "th": "ค่าสัมบูรณ์คือค่าที่มากกว่าระหว่าง x กับลบ x จึงหาค่าต่ำสุดได้ แต่หาค่าสูงสุดไม่ได้"
+    },
+    {
+     "s": 82.679,
+     "e": 90.158,
+     "en": "The largest distance from 3 on the interval from 0 to 5 is at an end point, and choosing which end needs a binary.",
+     "th": "ระยะห่างจาก 3 ที่มากที่สุดบนช่วง 0 ถึง 5 อยู่ที่ปลายช่วง และการเลือกว่าปลายใดต้องใช้ตัวแปร binary"
+    },
+    {
+     "s": 90.158,
+     "e": 96.684,
+     "en": "Convex piecewise-linear costs are maxima of lines, and that is why rising price tiers worked.",
+     "th": "ต้นทุนเชิงเส้นเป็นช่วงที่เป็น convex คือค่าสูงสุดของเส้นตรงหลายเส้น นั่นคือเหตุผลที่ราคาขั้นบันไดแบบเพิ่มขึ้นใช้ได้"
+    },
+    {
+     "s": 96.684,
+     "e": 105.395,
+     "en": "We will use the same tool later in the course: whenever a maximum appears in an objective that is minimized, the epigraph is the first thing to try.",
+     "th": "เราจะใช้เครื่องมือนี้อีกในวิชานี้ เมื่อใดที่มีค่าสูงสุดอยู่ในฟังก์ชันเป้าหมายที่ต้องการทำให้ต่ำสุด epigraph คือสิ่งแรกที่ควรลอง"
+    }
+   ]
+  },
+  {
+   "n": 32,
+   "file": "audio/slide-32.mp3",
+   "duration": 122.352,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.603,
+     "en": "Here is a reformulation you will use in practice: fitting a line to plant data.",
+     "th": "นี่คือการแปลงรูปที่คุณจะได้ใช้จริง คือการ fit เส้นตรงกับข้อมูลจากโรงงาน"
+    },
+    {
+     "s": 5.603,
+     "e": 17.571,
+     "en": "Eight readings of heat duty against feed rate. Three fits are shown: least squares, which minimizes the sum of squared residuals; L1, which minimizes the sum of absolute residuals;",
+     "th": "ข้อมูลแปดค่าของภาระความร้อนเทียบกับอัตราป้อน แสดงการ fit สามแบบ คือ least squares ซึ่งทำให้ผลรวมกำลังสองของส่วนเหลือต่ำสุด L1 ซึ่งทำให้ผลรวมค่าสัมบูรณ์ของส่วนเหลือต่ำสุด และ L"
+    },
+    {
+     "s": 17.571,
+     "e": 21.671,
+     "en": "and L infinity, which minimizes the largest absolute residual.",
+     "th": "infinity ซึ่งทำให้ค่าสัมบูรณ์ของส่วนเหลือที่มากที่สุดต่ำสุด"
+    },
+    {
+     "s": 21.671,
+     "e": 31.145,
+     "en": "L1 and L infinity are linear programs by the epigraph. Least squares is a quadratic program, with a closed-form solution.",
+     "th": "L1 และ L infinity เป็น linear program ด้วย epigraph ส่วน least squares เป็น quadratic program ที่มีคำตอบรูปแบบปิด"
+    },
+    {
+     "s": 31.145,
+     "e": 41.671,
+     "en": "Each fit is one call to linprog. For L1 with eight readings there are ten variables, the intercept, the slope and eight bounds, and sixteen inequalities.",
+     "th": "แต่ละการ fit คือการเรียก linprog หนึ่งครั้ง สำหรับ L1 กับข้อมูลแปดค่า มีตัวแปรสิบตัว คือจุดตัดแกน ความชัน และขอบเขตแปดตัว และมีอสมการสิบหกข้อ"
+    },
+    {
+     "s": 41.671,
+     "e": 52.263,
+     "en": "On clean data the three lines nearly coincide, with slopes of 0.502, 0.500 and 0.500 megawatts per ton per hour.",
+     "th": "กับข้อมูลที่ไม่มีค่าผิดปกติ เส้นทั้งสามเกือบทับกัน โดยมีความชัน 0.502, 0.500 และ 0.500 เมกะวัตต์ต่อตันต่อชั่วโมง"
+    },
+    {
+     "s": 52.263,
+     "e": 60.553,
+     "en": "Now press One bad reading. The reading at 40 tons per hour becomes 30 megawatts instead of 22.2.",
+     "th": "ต่อไปกดปุ่ม One bad reading ค่าที่ 40 ตันต่อชั่วโมงกลายเป็น 30 เมกะวัตต์ แทนที่จะเป็น 22.2"
+    },
+    {
+     "s": 60.553,
+     "e": 71.263,
+     "en": "The L1 line does not move at all: the slope stays at 0.5. It treats the bad reading as an outlier, and leaves a residual of 7.9 there.",
+     "th": "เส้น L1 ไม่ขยับเลย ความชันยังเป็น 0.5 มันมองค่าที่ผิดเป็นค่าผิดปกติ และปล่อยส่วนเหลือไว้ที่จุดนั้น 7.9"
+    },
+    {
+     "s": 71.263,
+     "e": 81.158,
+     "en": "Least squares tilts to a slope of 0.595. Squaring makes a large residual expensive, so the line is pulled toward the bad point.",
+     "th": "least squares เอียงไปที่ความชัน 0.595 การยกกำลังสองทำให้ส่วนเหลือที่มากมีราคาแพง เส้นจึงถูกดึงเข้าหาจุดที่ผิด"
+    },
+    {
+     "s": 81.158,
+     "e": 90.513,
+     "en": "L infinity moves the most, to an intercept of 5.2: it minimizes the worst error, 4.0, and spreads that error across the data.",
+     "th": "L infinity ขยับมากที่สุด จุดตัดแกนเป็น 5.2 มันทำให้ความผิดพลาดที่แย่ที่สุดต่ำสุด คือ 4.0 และกระจายความผิดพลาดนั้นไปทั่วข้อมูล"
+    },
+    {
+     "s": 90.513,
+     "e": 95.356,
+     "en": "The table on the slide reports the largest residual of each fit.",
+     "th": "ตารางบนสไลด์รายงานส่วนเหลือที่มากที่สุดของแต่ละการ fit"
+    },
+    {
+     "s": 95.356,
+     "e": 105.118,
+     "en": "On the bad data, L infinity has the smallest, 4.0, by construction, and L1 the largest, 7.9, because it leaves the bad point alone.",
+     "th": "กับข้อมูลที่มีค่าผิด L infinity มีค่าน้อยที่สุด คือ 4.0 ตามนิยาม และ L1 มีค่ามากที่สุด คือ 7.9 เพราะมันไม่สนใจจุดที่ผิด"
+    },
+    {
+     "s": 105.118,
+     "e": 111.197,
+     "en": "No fit is wrong here. Each norm answers a different question about the data.",
+     "th": "ไม่มีการ fit ใดผิด แต่ละ norm ตอบคำถามที่แตกต่างกันเกี่ยวกับข้อมูล"
+    },
+    {
+     "s": 111.197,
+     "e": 122.276,
+     "en": "So choose the norm on purpose. Use L1 for robust fits to data with occasional bad readings, and L infinity when a correlation must stay within a tolerance everywhere.",
+     "th": "ดังนั้นให้เลือก norm อย่างมีเหตุผล ใช้ L1 เมื่อต้องการ fit ที่ทนต่อข้อมูลที่ผิดเป็นครั้งคราว และใช้ L infinity เมื่อสหสัมพันธ์ต้องอยู่ในค่าความคลาดเคลื่อนที่ยอมรับได้ทุกจุด"
+    }
+   ]
+  },
+  {
+   "n": 33,
+   "file": "audio/slide-33.mp3",
+   "duration": 85.008,
    "hold": false,
    "cues": [
     {
@@ -851,34 +2039,58 @@
     },
     {
      "s": 17.868,
-     "e": 23.447,
+     "e": 28.224,
+     "en": "It buys the first 300 cubic meters at 720, and its margin, 365,851 dollars per day, is also the true margin.",
+     "th": "LP ซื้อ 300 ลูกบาศก์เมตรแรกที่ 720 และกำไรส่วนเกิน 365,851 ดอลลาร์ต่อวัน ก็เป็นกำไรส่วนเกินจริงด้วย"
+    },
+    {
+     "s": 28.224,
+     "e": 37.645,
+     "en": "Here the natural order and the cost order agree. Both tier variables are allowed, and minimizing cost fills the cheaper one first.",
+     "th": "ในกรณีนี้ ลำดับตามธรรมชาติกับลำดับของต้นทุนตรงกัน ตัวแปรทั้งสองขั้นใช้ได้ และการทำให้ต้นทุนต่ำสุดจะเติมขั้นที่ถูกกว่าก่อน"
+    },
+    {
+     "s": 37.645,
+     "e": 43.224,
      "en": "Now press the discount button: 780 for the first tier, 700 after that.",
      "th": "ต่อไปกดปุ่มส่วนลด คือ 780 สำหรับขั้นแรก และ 700 หลังจากนั้น"
     },
     {
-     "s": 23.447,
-     "e": 29.092,
+     "s": 43.224,
+     "e": 48.868,
      "en": "The linear program buys only the cheap second tier, which the contract does not allow.",
      "th": "linear program ซื้อเฉพาะขั้นที่สองที่ถูกกว่า ซึ่งสัญญาไม่อนุญาต"
     },
     {
-     "s": 29.092,
-     "e": 36.974,
+     "s": 48.868,
+     "e": 62.605,
+     "en": "The LP reports 371,851. Under the contract the plan it chose pays 780 for the first tier, and the true margin is 347,851.",
+     "th": "LP รายงาน 371,851 แต่ภายใต้สัญญา แผนที่มันเลือกต้องจ่าย 780 สำหรับขั้นแรก และกำไรส่วนเกินจริงคือ 347,851"
+    },
+    {
+     "s": 62.605,
+     "e": 70.487,
      "en": "It overstates the margin by 24,000 dollars per day, and picks the wrong quantity: the correct plan buys all 600.",
      "th": "มันประเมินกำไรสูงเกินจริง 24,000 ดอลลาร์ต่อวัน และเลือกปริมาณผิด แผนที่ถูกต้องคือซื้อทั้ง 600"
     },
     {
-     "s": 36.974,
-     "e": 42.776,
+     "s": 70.487,
+     "e": 79.132,
+     "en": "In the language of the last derivation: a discount cost is concave, not a maximum of lines, so the epigraph argument does not apply.",
+     "th": "ในภาษาของการพิสูจน์ที่แล้ว ต้นทุนแบบส่วนลดเป็น concave ไม่ใช่ค่าสูงสุดของเส้นตรง ข้อพิสูจน์ของ epigraph จึงใช้ไม่ได้"
+    },
+    {
+     "s": 79.132,
+     "e": 84.934,
      "en": "Enforcing tier one before tier two needs a binary variable, which is Session 3.",
      "th": "การบังคับให้ใช้ขั้นแรกก่อนขั้นที่สองต้องใช้ตัวแปร binary ซึ่งอยู่ในคาบที่ 3"
     }
    ]
   },
   {
-   "n": 22,
-   "file": "audio/slide-22.mp3",
-   "duration": 40.56,
+   "n": 34,
+   "file": "audio/slide-34.mp3",
+   "duration": 81.624,
    "hold": false,
    "cues": [
     {
@@ -895,34 +2107,144 @@
     },
     {
      "s": 9.776,
-     "e": 15.566,
-     "en": "We want the lowest cost per cubic meter, which is a ratio of two linear functions.",
-     "th": "เราต้องการต้นทุนต่อลูกบาศก์เมตรที่ต่ำที่สุด ซึ่งเป็นอัตราส่วนของฟังก์ชันเชิงเส้นสองฟังก์ชัน"
+     "e": 19.705,
+     "en": "We want the lowest cost per cubic meter, which is a ratio of two linear functions. A small batch spreads the fixed cost thinly over few cubic meters;",
+     "th": "เราต้องการต้นทุนต่อลูกบาศก์เมตรที่ต่ำที่สุด ซึ่งเป็นอัตราส่วนของฟังก์ชันเชิงเส้นสองฟังก์ชัน batch ขนาดเล็กเฉลี่ยต้นทุนคงที่ไปบนปริมาตรน้อย"
     },
     {
-     "s": 15.566,
-     "e": 24.461,
+     "s": 19.705,
+     "e": 22.75,
+     "en": "a large batch needs more expensive components.",
+     "th": "ส่วน batch ขนาดใหญ่ต้องใช้ส่วนผสมที่แพงขึ้น"
+    },
+    {
+     "s": 22.75,
+     "e": 31.645,
      "en": "Set t equal to one over the volume, and y equal to t times x. The problem becomes a linear program in y and t.",
      "th": "ให้ t เท่ากับหนึ่งส่วนปริมาตร และ y เท่ากับ t คูณ x ปัญหาจะกลายเป็น linear program ในตัวแปร y และ t"
     },
     {
-     "s": 24.461,
-     "e": 32.566,
+     "s": 31.645,
+     "e": 39.75,
      "en": "One solve gives 2,482 cubic meters per day at 624.53 dollars per cubic meter.",
      "th": "การแก้เพียงครั้งเดียวได้ 2,482 ลูกบาศก์เมตรต่อวัน ที่ 624.53 ดอลลาร์ต่อลูกบาศก์เมตร"
     },
     {
-     "s": 32.566,
-     "e": 40.5,
+     "s": 39.75,
+     "e": 51.211,
+     "en": "The best batch uses all 1,200 cubic meters of reformate, with about 1,159 of FCC gasoline and 123 of butane, and no alkylate.",
+     "th": "batch ที่ดีที่สุดใช้ reformate ทั้งหมด 1,200 ลูกบาศก์เมตร ร่วมกับ FCC gasoline ประมาณ 1,159 และ butane 123 โดยไม่ใช้ alkylate"
+    },
+    {
+     "s": 51.211,
+     "e": 53.299,
+     "en": "The chart shows the trade-off.",
+     "th": "กราฟแสดงการแลกเปลี่ยนนี้"
+    },
+    {
+     "s": 53.299,
+     "e": 64.684,
+     "en": "The cost per cubic meter falls steeply at small volumes, where the fixed cost dominates, and rises slowly beyond about 2,500, where more expensive components are needed.",
+     "th": "ต้นทุนต่อลูกบาศก์เมตรลดลงอย่างรวดเร็วที่ปริมาตรน้อย ซึ่งต้นทุนคงที่มีผลมาก และเพิ่มขึ้นช้า ๆ เมื่อเกินประมาณ 2,500 ซึ่งต้องใช้ส่วนผสมที่แพงขึ้น"
+    },
+    {
+     "s": 64.684,
+     "e": 72.618,
      "en": "The teal curve checks it by solving one ordinary linear program for each fixed volume. The minimum agrees.",
      "th": "เส้นสีเขียวหัวเป็ดตรวจสอบด้วยการแก้ linear program ธรรมดาหนึ่งครั้งต่อหนึ่งปริมาตรคงที่ และค่าต่ำสุดตรงกัน"
+    },
+    {
+     "s": 72.618,
+     "e": 81.539,
+     "en": "Without the transformation you would scan volumes, as the teal curve does. With it, one linear program gives the exact answer.",
+     "th": "ถ้าไม่มีการแปลงนี้ ต้องไล่ค่าปริมาตรเหมือนเส้นสีเขียวหัวเป็ด แต่เมื่อใช้การแปลง linear program เพียงครั้งเดียวให้คำตอบที่แม่นยำ"
     }
    ]
   },
   {
-   "n": 23,
-   "file": "audio/slide-23.mp3",
-   "duration": 35.808,
+   "n": 35,
+   "file": "audio/slide-35.mp3",
+   "duration": 104.136,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.339,
+     "en": "Here is the transformation step by step.",
+     "th": "นี่คือการแปลงทีละขั้น"
+    },
+    {
+     "s": 3.339,
+     "e": 14.25,
+     "en": "We minimize c transpose x plus alpha, divided by d transpose x plus beta, subject to A x at most b, and we assume the denominator is positive on the feasible set.",
+     "th": "เราหาค่าต่ำสุดของ c ทรานสโพส x บวก alpha หารด้วย d ทรานสโพส x บวก beta ภายใต้ Ax ไม่เกิน b และสมมติว่าตัวส่วนเป็นบวกบนเซตที่ feasible"
+    },
+    {
+     "s": 14.25,
+     "e": 20.753,
+     "en": "Step one: set t equal to one over the denominator, which is positive, and set y equal to t times x.",
+     "th": "ขั้นที่หนึ่ง ให้ t เท่ากับหนึ่งส่วนตัวส่วน ซึ่งเป็นบวก และให้ y เท่ากับ t คูณ x"
+    },
+    {
+     "s": 20.753,
+     "e": 27.751,
+     "en": "Step two: the objective, multiplied out, becomes c transpose y plus alpha t, which is linear in y and t.",
+     "th": "ขั้นที่สอง เมื่อกระจายฟังก์ชันเป้าหมาย จะได้ c ทรานสโพส y บวก alpha t ซึ่งเป็นเชิงเส้นใน y และ t"
+    },
+    {
+     "s": 27.751,
+     "e": 35.188,
+     "en": "Step three: multiply A x at most b by t. Because t is positive, the inequality keeps its direction: A y at most b t.",
+     "th": "ขั้นที่สาม คูณ Ax ไม่เกิน b ด้วย t เพราะ t เป็นบวก อสมการจึงคงทิศทางเดิม ได้ Ay ไม่เกิน bt"
+    },
+    {
+     "s": 35.188,
+     "e": 41.434,
+     "en": "Step four: the definition of t becomes the normalization d transpose y plus beta t equals one.",
+     "th": "ขั้นที่สี่ นิยามของ t กลายเป็นเงื่อนไข normalization คือ d ทรานสโพส y บวก beta t เท่ากับหนึ่ง"
+    },
+    {
+     "s": 41.434,
+     "e": 47.803,
+     "en": "Step five: solve the linear program in y and t, and recover x as y divided by t.",
+     "th": "ขั้นที่ห้า แก้ linear program ใน y และ t แล้วหา x กลับจาก y หารด้วย t"
+    },
+    {
+     "s": 47.803,
+     "e": 58.803,
+     "en": "Every feasible x gives a feasible y and t with the same objective, and every solution with t positive gives back an x. So the two problems have the same optimum.",
+     "th": "ทุก x ที่ feasible ให้ y และ t ที่ feasible โดยมีค่าฟังก์ชันเป้าหมายเท่ากัน และทุกคำตอบที่ t เป็นบวกให้ x กลับคืนมาได้ สองปัญหานี้จึงมีค่าที่ดีที่สุดเท่ากัน"
+    },
+    {
+     "s": 58.803,
+     "e": 67.711,
+     "en": "The positive denominator is what makes the multiplication safe. It is the same sign check as for the blending ratio in part one.",
+     "th": "ตัวส่วนที่เป็นบวกคือสิ่งที่ทำให้การคูณปลอดภัย เป็นการตรวจเครื่องหมายแบบเดียวกับอัตราส่วนการผสมในส่วนที่หนึ่ง"
+    },
+    {
+     "s": 67.711,
+     "e": 78.947,
+     "en": "In the batch example, the denominator is the volume, so t is one over the volume. The linear program returns t equal to one over 2,482.",
+     "th": "ในตัวอย่าง batch ตัวส่วนคือปริมาตร t จึงเท่ากับหนึ่งส่วนปริมาตร linear program ให้ t เท่ากับหนึ่งส่วน 2,482"
+    },
+    {
+     "s": 78.947,
+     "e": 91.355,
+     "en": "Ratios are everywhere in process economics: cost per unit of product, energy per ton, yield per unit of feed. With a positive denominator, each one is a single linear program.",
+     "th": "อัตราส่วนพบได้ทั่วไปในเศรษฐศาสตร์กระบวนการ เช่น ต้นทุนต่อหน่วยผลิตภัณฑ์ พลังงานต่อตัน yield ต่อหน่วยวัตถุดิบ เมื่อตัวส่วนเป็นบวก แต่ละอย่างแก้ได้ด้วย linear program เพียงครั้งเดียว"
+    },
+    {
+     "s": 91.355,
+     "e": 104.053,
+     "en": "In numbers, t is one over 2,482, about 0.000403. Multiply y by 2,482 to recover the recipe.",
+     "th": "ในเชิงตัวเลข t เท่ากับหนึ่งส่วน 2,482 ประมาณ 0.000403 คูณ y ด้วย 2,482 เพื่อหาสูตรผสมกลับคืน"
+    }
+   ]
+  },
+  {
+   "n": 36,
+   "file": "audio/slide-36.mp3",
+   "duration": 72.624,
    "hold": false,
    "cues": [
     {
@@ -939,28 +2261,126 @@
     },
     {
      "s": 11.671,
-     "e": 20.316,
+     "e": 19.224,
+     "en": "A minimum run rate is typical of furnaces and compressors: they run above some fraction of capacity, or they are off.",
+     "th": "อัตราการเดินขั้นต่ำพบได้ทั่วไปใน furnace และ compressor ซึ่งต้องเดินเหนือสัดส่วนหนึ่งของกำลังการผลิต หรือปิดไปเลย"
+    },
+    {
+     "s": 19.224,
+     "e": 27.868,
      "en": "Inventory that carries over time is Session 4. Yields that depend on operating conditions are nonlinear programs.",
      "th": "สินค้าคงคลังที่ต่อเนื่องข้ามช่วงเวลาอยู่ในคาบที่ 4 ส่วน yield ที่ขึ้นกับสภาวะการเดินเครื่องเป็น nonlinear program"
     },
     {
-     "s": 20.316,
-     "e": 26.947,
+     "s": 27.868,
+     "e": 36.395,
+     "en": "Yields that depend on conditions are typical of reactors: the yield of a cracker depends on its outlet temperature, which is itself a decision.",
+     "th": "yield ที่ขึ้นกับสภาวะพบได้ทั่วไปใน reactor เช่น yield ของ cracker ขึ้นกับอุณหภูมิขาออก ซึ่งเป็นตัวแปรตัดสินใจเอง"
+    },
+    {
+     "s": 36.395,
+     "e": 43.026,
      "en": "Uncertain prices are Session 12, and shared tanks with variable compositions are Session 13.",
      "th": "ราคาที่ไม่แน่นอนอยู่ในคาบที่ 12 และถังรวมที่องค์ประกอบเปลี่ยนได้อยู่ในคาบที่ 13"
     },
     {
-     "s": 26.947,
-     "e": 35.75,
+     "s": 43.026,
+     "e": 50.066,
+     "en": "Uncertain prices appear whenever purchases are committed before sales are known, such as crude bought a month ahead.",
+     "th": "ราคาที่ไม่แน่นอนเกิดขึ้นเมื่อต้องตัดสินใจซื้อก่อนรู้ราคาขาย เช่น การซื้อน้ำมันดิบล่วงหน้าหนึ่งเดือน"
+    },
+    {
+     "s": 50.066,
+     "e": 58.868,
      "en": "Stay in linear programming as long as the plant allows: the answer is global, the duals are prices, and the certificate is three matrix products.",
      "th": "ให้อยู่ใน linear programming ให้นานที่สุดเท่าที่โรงงานยอม เพราะคำตอบเป็น global ค่า dual คือราคา และ certificate คือการคูณเมทริกซ์เพียงสามครั้ง"
+    },
+    {
+     "s": 58.868,
+     "e": 66.763,
+     "en": "Read this list as a map of the course. Each item is a reason to leave linear programming, and each has its own session.",
+     "th": "ให้อ่านรายการนี้เป็นแผนที่ของวิชา แต่ละข้อเป็นเหตุผลที่ต้องออกจาก linear programming"
+    },
+    {
+     "s": 66.763,
+     "e": 72.553,
+     "en": "When you meet a new problem, name its symptom from this list before you choose a solver.",
+     "th": "และแต่ละข้อมีคาบของตัวเอง เมื่อพบปัญหาใหม่ ให้ระบุอาการจากรายการนี้ก่อนเลือก solver"
     }
    ]
   },
   {
-   "n": 24,
-   "file": "audio/slide-24.mp3",
-   "duration": 31.68,
+   "n": 37,
+   "file": "audio/slide-37.mp3",
+   "duration": 87.36,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.339,
+     "en": "The last check: which of these five problems can be solved as a linear program?",
+     "th": "แบบตรวจครั้งสุดท้าย ปัญหาใดในห้าข้อนี้แก้เป็น linear program ได้"
+    },
+    {
+     "s": 5.339,
+     "e": 9.211,
+     "en": "Pause, decide, and press Play for the solutions.",
+     "th": "หยุด ตัดสินใจ แล้วกด Play เพื่อฟังเฉลย"
+    },
+    {
+     "s": 9.211,
+     "e": 23.697,
+     "en": "One. Minimizing the maximum of two lines is an epigraph: minimize t, with t at least 2x plus 1 and at least minus x plus 4. The lines cross at x equal to 1, where the value is 3.",
+     "th": "ข้อหนึ่ง การหาค่าต่ำสุดของค่าสูงสุดของเส้นตรงสองเส้นคือ epigraph หาค่าต่ำสุดของ t โดย t ไม่น้อยกว่า 2x บวก 1 และไม่น้อยกว่า ลบ x บวก 4 เส้นทั้งสองตัดกันที่ x เท่ากับ 1 ซึ่งมีค่าเท่ากับ 3"
+    },
+    {
+     "s": 23.697,
+     "e": 38.334,
+     "en": "Two. Maximizing the distance from 3 is maximizing a convex function, so the epigraph does not apply. Compare the end points: x equal to 0 gives 3, and x equal to 5 gives 2.",
+     "th": "ข้อสอง การหาค่าสูงสุดของระยะห่างจาก 3 คือการหาค่าสูงสุดของฟังก์ชัน convex จึงใช้ epigraph ไม่ได้ เทียบปลายช่วง x เท่ากับ 0 ให้ 3 และ x เท่ากับ 5 ให้"
+    },
+    {
+     "s": 38.334,
+     "e": 40.618,
+     "en": "The answer is x equal to 0.",
+     "th": "2 คำตอบคือ x เท่ากับ 0"
+    },
+    {
+     "s": 40.618,
+     "e": 48.232,
+     "en": "Three. The ratio 3x plus 2 over x plus 1 has a positive denominator, so Charnes-Cooper applies.",
+     "th": "ข้อสาม อัตราส่วน 3x บวก 2 ส่วน x บวก 1 มีตัวส่วนเป็นบวก จึงใช้ Charnes-Cooper ได้"
+    },
+    {
+     "s": 48.232,
+     "e": 58.145,
+     "en": "Its derivative, one over x plus 1 squared, is positive, so the ratio rises, and the minimum is at x equal to 0, with value 2.",
+     "th": "อนุพันธ์ของมันคือ หนึ่งส่วน x บวก 1 ยกกำลังสอง ซึ่งเป็นบวก อัตราส่วนจึงเพิ่มขึ้น และค่าต่ำสุดอยู่ที่ x เท่ากับ 0 มีค่าเท่ากับ 2"
+    },
+    {
+     "s": 58.145,
+     "e": 69.763,
+     "en": "Four. A volume discount is a concave cost. A linear program would buy only at the cheap price, so it needs a binary variable, in Session 3.",
+     "th": "ข้อสี่ ส่วนลดตามปริมาณเป็นต้นทุนแบบ concave linear program จะซื้อเฉพาะที่ราคาถูก จึงต้องใช้ตัวแปร binary ในคาบที่ 3"
+    },
+    {
+     "s": 69.763,
+     "e": 78.263,
+     "en": "Five. Minimizing the sum of absolute residuals is L1 regression, a linear program, as in the demo.",
+     "th": "ข้อห้า การหาค่าต่ำสุดของผลรวมค่าสัมบูรณ์ของส่วนเหลือคือ L1 regression ซึ่งเป็น linear program เหมือนใน demo"
+    },
+    {
+     "s": 78.263,
+     "e": 87.276,
+     "en": "The general test behind all five: a linear reformulation exists when the objective pushes the new variable in the direction that makes its bound tight.",
+     "th": "หลักทั่วไปเบื้องหลังทั้งห้าข้อคือ การแปลงเป็นเชิงเส้นทำได้เมื่อฟังก์ชันเป้าหมายผลักตัวแปรใหม่ไปในทิศทางที่ทำให้ขอบเขตของมัน tight"
+    }
+   ]
+  },
+  {
+   "n": 38,
+   "file": "audio/slide-38.mp3",
+   "duration": 46.92,
    "hold": true,
    "cues": [
     {
@@ -971,40 +2391,52 @@
     },
     {
      "s": 3.721,
-     "e": 10.618,
-     "en": "You will write two specification coefficients yourself, then read the plan and recompute every specification.",
-     "th": "คุณจะเขียนสัมประสิทธิ์ของ spec สองตัวด้วยตนเอง แล้วอ่านแผนและคำนวณ spec ทุกตัวใหม่"
+     "e": 12.421,
+     "en": "You will write two specification coefficients yourself, then read the plan and recompute every specification, as we did for Premium by hand.",
+     "th": "คุณจะเขียนสัมประสิทธิ์ของ spec สองตัวด้วยตนเอง แล้วอ่านแผนและคำนวณ spec ทุกตัวใหม่ เหมือนที่เราทำกับ Premium ด้วยมือ"
     },
     {
-     "s": 10.618,
-     "e": 16.066,
+     "s": 12.421,
+     "e": 17.868,
      "en": "You will solve again with the wrong vapor pressure basis and find out what it would have cost.",
      "th": "คุณจะแก้โมเดลอีกครั้งด้วยฐานความดันไอที่ผิด และดูว่าจะเสียหายเท่าใด"
     },
     {
-     "s": 16.066,
-     "e": 22.605,
+     "s": 17.868,
+     "e": 24.408,
      "en": "Then you will audit the stream table, price the reformer, and find the Premium price at which the plan changes.",
      "th": "จากนั้นจะตรวจสอบตาราง stream ประเมินมูลค่าของ reformer และหาราคา Premium ที่แผนเปลี่ยน"
     },
     {
-     "s": 22.605,
-     "e": 27.329,
+     "s": 24.408,
+     "e": 32.276,
+     "en": "The lab checks each step before it unlocks the next. You have two tries for each number, then the answer is shown.",
+     "th": "lab ตรวจแต่ละขั้นก่อนเปิดขั้นถัดไป คุณตอบตัวเลขแต่ละตัวได้สองครั้ง จากนั้นระบบจะแสดงคำตอบ"
+    },
+    {
+     "s": 32.276,
+     "e": 37.829,
+     "en": "In class, work in pairs, but write your own answers: the Exit Ticket uses them.",
+     "th": "ในห้องเรียน ทำงานเป็นคู่ได้ แต่เขียนคำตอบของตนเอง เพราะ Exit Ticket ใช้คำตอบเหล่านั้น"
+    },
+    {
+     "s": 37.829,
+     "e": 42.553,
      "en": "You have forty minutes. A calculator helps.",
      "th": "คุณมีเวลาสี่สิบนาที เครื่องคิดเลขจะช่วยได้"
     },
     {
-     "s": 27.329,
-     "e": 31.618,
+     "s": 42.553,
+     "e": 46.842,
      "en": "If you are studying on your own, stop here and open the lab.",
      "th": "ถ้าเรียนด้วยตนเอง ให้หยุดที่หน้านี้แล้วเปิด lab"
     }
    ]
   },
   {
-   "n": 25,
-   "file": "audio/slide-25.mp3",
-   "duration": 32.256,
+   "n": 39,
+   "file": "audio/slide-39.mp3",
+   "duration": 68.232,
    "hold": false,
    "cues": [
     {
@@ -1015,40 +2447,58 @@
     },
     {
      "s": 2.076,
-     "e": 9.329,
-     "en": "Multiply a ratio specification through by the volume, and check that the property blends linearly on that basis.",
-     "th": "คูณ spec แบบอัตราส่วนตลอดด้วยปริมาตร และตรวจว่าคุณสมบัตินั้นผสมกันเชิงเส้นบนฐานนั้น"
+     "e": 11.0,
+     "en": "Multiply a ratio specification through by the volume, check that the property blends linearly on that basis, and check that the volume is positive.",
+     "th": "คูณ spec แบบอัตราส่วนตลอดด้วยปริมาตร ตรวจว่าคุณสมบัตินั้นผสมกันเชิงเส้นบนฐานนั้น และตรวจว่าปริมาตรเป็นบวก"
     },
     {
-     "s": 9.329,
-     "e": 15.487,
-     "en": "Choose the blending variable before writing the row, and recompute properties from the recipe.",
-     "th": "เลือกตัวแปรสำหรับการผสมก่อนเขียนแถว และคำนวณคุณสมบัติใหม่จากสูตรผสม"
+     "s": 11.0,
+     "e": 20.526,
+     "en": "If a property blends through a convex index, a row on the property itself is optimistic. Jensen's inequality tells you the direction.",
+     "th": "ถ้าคุณสมบัติผสมกันผ่านดัชนีที่เป็น convex แถวที่เขียนบนคุณสมบัตินั้นโดยตรงจะมองในแง่ดีเกินไป อสมการของ Jensen บอกทิศทางได้"
     },
     {
-     "s": 15.487,
-     "e": 19.855,
+     "s": 20.526,
+     "e": 30.711,
+     "en": "Recompute properties from the recipe; do not reread the row. And convert the dual of a specification to a price by multiplying by the grade volume.",
+     "th": "คำนวณคุณสมบัติใหม่จากสูตรผสม ไม่ใช่อ่านแถวซ้ำ และแปลง dual ของ spec เป็นราคาโดยคูณด้วยปริมาตรของเกรด"
+    },
+    {
+     "s": 30.711,
+     "e": 35.079,
      "en": "At a vertex, positive variables are at most tight rows.",
      "th": "ที่จุดยอด จำนวนตัวแปรที่เป็นบวกไม่เกินจำนวนแถวที่ tight"
     },
     {
-     "s": 19.855,
-     "e": 24.026,
-     "en": "Write plants as stream tables and audit them by column sums.",
-     "th": "เขียนโรงงานเป็นตาราง stream และตรวจสอบด้วยผลรวมของคอลัมน์"
+     "s": 35.079,
+     "e": 41.382,
+     "en": "Write plants as stream tables, audit them by column sums, and count degrees of freedom with the rank.",
+     "th": "เขียนโรงงานเป็นตาราง stream ตรวจสอบด้วยผลรวมของคอลัมน์ และนับ degrees of freedom ด้วย rank"
     },
     {
-     "s": 24.026,
-     "e": 32.184,
-     "en": "And know which reformulations stay linear: epigraphs, convex tiers and Charnes-Cooper do; concave costs and pooling do not.",
-     "th": "และรู้ว่าการแปลงรูปใดยังเป็นเชิงเส้น epigraph ต้นทุนขั้นบันไดแบบ convex และ Charnes-Cooper ยังเป็น แต่ต้นทุนแบบ concave และ pooling ไม่เป็น"
+     "s": 41.382,
+     "e": 48.197,
+     "en": "A shared tank makes the model bilinear, and a local solver can stop at a poor plan while reporting success.",
+     "th": "ถังร่วมทำให้โมเดลเป็น bilinear และ solver แบบ local อาจหยุดที่แผนที่ไม่ดี โดยยังรายงานว่าสำเร็จ"
+    },
+    {
+     "s": 48.197,
+     "e": 59.961,
+     "en": "And know which reformulations stay linear: minimized maxima, L1 and L infinity fits, convex tiers and Charnes-Cooper do; maximized maxima, concave costs and pooling do not.",
+     "th": "และรู้ว่าการแปลงรูปใดยังเป็นเชิงเส้น ค่าสูงสุดที่ต้องการทำให้ต่ำสุด การ fit แบบ L1 และ L infinity ต้นทุนขั้นบันไดแบบ convex และ Charnes-Cooper ยังเป็น แต่ค่าสูงสุดที่ต้องการทำให้สูงสุด ต้นทุนแบบ concave และ pooling ไม่เป็น"
+    },
+    {
+     "s": 59.961,
+     "e": 68.171,
+     "en": "If you keep one habit from today, make it this: after every solve, recompute what matters from the recipe, outside the model.",
+     "th": "ถ้าจะเก็บนิสัยเดียวจากวันนี้ ให้เป็นข้อนี้ หลังการแก้ทุกครั้ง ให้คำนวณสิ่งที่สำคัญใหม่จากสูตรผสม นอกโมเดล"
     }
    ]
   },
   {
-   "n": 26,
-   "file": "audio/slide-26.mp3",
-   "duration": 21.72,
+   "n": 40,
+   "file": "audio/slide-40.mp3",
+   "duration": 36.384,
    "hold": false,
    "cues": [
     {
@@ -1071,16 +2521,28 @@
     },
     {
      "s": 15.776,
-     "e": 21.658,
+     "e": 25.474,
+     "en": "Chapter 3 covers building LP models, chapter 4 structured models such as the stream table, and chapter 9 integer models, which prepare you for Session 3.",
+     "th": "บทที่ 3 ว่าด้วยการสร้างโมเดล LP บทที่ 4 ว่าด้วยโมเดลที่มีโครงสร้าง เช่น ตาราง stream และบทที่ 9 ว่าด้วยโมเดลจำนวนเต็ม ซึ่งเตรียมคุณสำหรับคาบที่ 3"
+    },
+    {
+     "s": 25.474,
+     "e": 31.355,
      "en": "If you want practice, write the two-grade blend in Pyomo and check that you get the same margin.",
      "th": "ถ้าต้องการฝึกเพิ่ม ลองเขียน blend สองเกรดด้วย Pyomo และตรวจว่าได้กำไรส่วนเกินเท่ากัน"
+    },
+    {
+     "s": 31.355,
+     "e": 36.316,
+     "en": "Bring the card and your Lab 2 answers to Session 3; we start from both.",
+     "th": "นำการ์ดและคำตอบ Lab 2 มาในคาบที่ 3 เราจะเริ่มจากทั้งสองอย่าง"
     }
    ]
   },
   {
-   "n": 27,
-   "file": "audio/slide-27.mp3",
-   "duration": 24.648,
+   "n": 41,
+   "file": "audio/slide-41.mp3",
+   "duration": 30.336,
    "hold": true,
    "cues": [
     {
@@ -1109,7 +2571,13 @@
     },
     {
      "s": 21.224,
-     "e": 24.592,
+     "e": 26.908,
+     "en": "Your answers are how the next session is adjusted, so short, honest answers help most.",
+     "th": "คำตอบของคุณใช้ปรับคาบถัดไป คำตอบสั้น ๆ ที่ตรงไปตรงมาจึงช่วยได้มากที่สุด"
+    },
+    {
+     "s": 26.908,
+     "e": 30.276,
      "en": "Thank you, and see you in Session 3.",
      "th": "ขอบคุณ แล้วพบกันในคาบที่ 3"
     }

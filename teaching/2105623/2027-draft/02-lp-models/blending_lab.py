@@ -210,6 +210,94 @@ def charnes_cooper(fixed=40000.0, vmax=3000.0):
             "recipe": {i: r["x"][f"y {i}"] * V for i in COMP}, "scan": scan}
 
 
+def spec_rows():
+    """The eight specification rows of the two-grade blend, coefficient by coefficient."""
+    out = []
+    for i in COMP:
+        out.append({"comp": i, "RON": RON[i], "RVP": RVP[i], "index": float(rvp_index(RVP[i])),
+                    "ron_reg": RON[i] - RON_MIN["Regular"], "ron_pre": RON[i] - RON_MIN["Premium"],
+                    "rvp_row": float(rvp_index(RVP[i]) - rvp_index(RVP_MAX))})
+    return {"rows": out, "index_spec": float(rvp_index(RVP_MAX))}
+
+
+def recompute_premium():
+    """Recompute Premium's octane and true RVP from the optimal recipe, term by term."""
+    b = blend(); v = b["recipe"]["Premium"]; V = sum(v.values())
+    terms = [{"comp": i, "v": v[i], "v_ron": v[i] * RON[i], "index": float(rvp_index(RVP[i])),
+              "v_index": float(v[i] * rvp_index(RVP[i]))} for i in COMP if v[i] > 1e-9]
+    avg_index = sum(t["v_index"] for t in terms) / V
+    return {"terms": terms, "volume": V, "ron": sum(t["v_ron"] for t in terms) / V,
+            "avg_index": avg_index, "rvp_true": rvp_from_index(avg_index)}
+
+
+def spec_dual():
+    """The dual of the Premium octane row, converted into USD/d per octane number:
+    raising Q by dQ is the same as asking sum_i (RON_i - Q) x_i >= dQ * V, so d(margin)/dQ = dual * V."""
+    b = blend(); y = b["duals"]["RON Premium"]; V = b["props"]["Premium"]["volume"]
+    up = blend(ron_min={"Premium": RON_MIN["Premium"] + 0.01})
+    return {"dual": y, "volume": V, "predicted_per_ron": y * V,
+            "finite_difference_per_ron": (up["margin"] - b["margin"]) / 0.01}
+
+
+def line_fits(outlier=False):
+    """Fit y = a + b x to plant data three ways. L1 and L-infinity fits are LPs (epigraph);
+    least squares is a QP solved here by lstsq. An outlier shows how each one responds."""
+    x = np.array([10, 15, 20, 25, 30, 35, 40, 45], float)
+    y = np.array([7.1, 9.4, 12.2, 14.4, 17.3, 19.4, 22.2, 24.6])
+    if outlier:
+        y = y.copy(); y[6] = 30.0
+    n = len(x)
+    ls = np.linalg.lstsq(np.vstack([np.ones(n), x]).T, y, rcond=None)[0]
+    # L1: min sum t_i, t_i >= +/-(y_i - a - b x_i); variables a, b, t
+    c = np.concatenate([[0, 0], np.ones(n)])
+    A = np.vstack([np.hstack([-np.ones((n, 1)), -x[:, None], -np.eye(n)]), np.hstack([np.ones((n, 1)), x[:, None], -np.eye(n)])])
+    r1 = linprog(c, A_ub=A, b_ub=np.concatenate([-y, y]), bounds=[(None, None)] * 2 + [(0, None)] * n, method="highs")
+    # L-infinity: min t, t >= +/-(y_i - a - b x_i)
+    A2 = np.vstack([np.hstack([-np.ones((n, 1)), -x[:, None], -np.ones((n, 1))]), np.hstack([np.ones((n, 1)), x[:, None], -np.ones((n, 1))])])
+    r2 = linprog([0, 0, 1], A_ub=A2, b_ub=np.concatenate([-y, y]), bounds=[(None, None)] * 2 + [(0, None)], method="highs")
+    fit = lambda ab: {"a": float(ab[0]), "b": float(ab[1]), "max_abs": float(np.max(np.abs(y - ab[0] - ab[1] * x))),
+                      "sum_abs": float(np.sum(np.abs(y - ab[0] - ab[1] * x))), "sum_sq": float(np.sum((y - ab[0] - ab[1] * x) ** 2))}
+    return {"x": x.tolist(), "y": y.tolist(), "ls": fit(ls), "l1": fit(r1.x[:2]), "linf": fit(r2.x[:2])}
+
+
+# A small pooling problem: two crudes share one tank before the two grades; a third goes direct.
+POOL_DATA = {"S": {"A": 3.2, "B": 0.8, "C": 2.3}, "cost": {"A": 5.2, "B": 15.7, "C": 11.6},   # wt% sulfur, USD/t
+             "price": {"X": 8.7, "Y": 16.7}, "demand": {"X": 100.0, "Y": 200.0}, "smax": {"X": 2.7, "Y": 1.3}}
+
+
+def pooling(starts=40, seed=1):
+    """Sulfur balance in the shared tank: q (a + b) = S_A a + S_B b, with q a variable: bilinear.
+    A local NLP method (SLSQP) from random starts; and the LP if every crude had its own tank."""
+    from scipy.optimize import minimize
+    d = POOL_DATA; S, cst, P, D, Q = d["S"], d["cost"], d["price"], d["demand"], d["smax"]
+    def neg_profit(v):
+        a, b, px, py, cx, cy, q = v
+        return -(P["X"] * (px + cx) + P["Y"] * (py + cy) - cst["A"] * a - cst["B"] * b - cst["C"] * (cx + cy))
+    cons = [{"type": "eq", "fun": lambda v: v[0] + v[1] - v[2] - v[3]},
+            {"type": "eq", "fun": lambda v: v[6] * (v[2] + v[3]) - S["A"] * v[0] - S["B"] * v[1]},
+            {"type": "ineq", "fun": lambda v: Q["X"] * (v[2] + v[4]) - v[6] * v[2] - S["C"] * v[4]},
+            {"type": "ineq", "fun": lambda v: Q["Y"] * (v[3] + v[5]) - v[6] * v[3] - S["C"] * v[5]},
+            {"type": "ineq", "fun": lambda v: D["X"] - v[2] - v[4]}, {"type": "ineq", "fun": lambda v: D["Y"] - v[3] - v[5]}]
+    bnds = [(0, 300)] * 6 + [(S["B"], S["A"])]
+    rng = np.random.default_rng(seed); runs = []
+    for k in range(starts):
+        x0 = np.concatenate([rng.uniform(0, 200, 6), [rng.uniform(S["B"], S["A"])]])
+        r = minimize(neg_profit, x0, method="SLSQP", bounds=bnds, constraints=cons, options={"maxiter": 500, "ftol": 1e-9})
+        runs.append({"start": k + 1, "ok": bool(r.success), "profit": float(-r.fun), "x": [round(float(v), 3) for v in r.x]})
+    # each crude in its own tank: blend A, B, C straight into X and Y, which is an LP
+    m = LP()
+    for c_ in "ABC":
+        for g in "XY":
+            m.var(f"{c_}>{g}", obj=P[g] - cst[c_])
+    for g in "XY":
+        m.row(f"demand {g}", {f"{c_}>{g}": 1 for c_ in "ABC"}, "<=", D[g])
+        m.row(f"S {g}", {f"{c_}>{g}": S[c_] - Q[g] for c_ in "ABC"}, "<=")
+    lp = m.solve()
+    vals = sorted({round(r["profit"], 1) for r in runs if r["ok"]})
+    return {"data": d, "runs": runs, "distinct": [{"profit": v, "count": sum(1 for r in runs if r["ok"] and round(r["profit"], 1) == v)} for v in vals],
+            "separate_tanks_lp": lp["obj"]}
+
+
 # ---------------------------------------------------------------------------
 # Part B. Lab 2: a small refinery as a stream table
 # ---------------------------------------------------------------------------
@@ -291,6 +379,29 @@ def refinery(rvp_basis="index", ref_cap=None, premium_price=None, rvp_max=None, 
     return out
 
 
+def stream_dof():
+    """Degrees of freedom of the refinery stream table: columns minus the rank of the balance rows."""
+    names = ["LPG", "LSR", "HN", "Reformate", "Distillate", "Residue", "Butane", "Alkylate"]
+    cols = ["CDU", "REF", "buy Butane", "buy Alkylate", "sell LPG", "sell Distillate", "sell Residue",
+            "sell LSR as naphtha", "sell HN as naphtha"] + [f"{i}>{g}" for g in GRADES for i in POOL]
+    ix = {c: k for k, c in enumerate(cols)}
+    A = np.zeros((len(names), len(cols)))
+    def put(r, terms):
+        for c, a in terms.items():
+            A[names.index(r), ix[c]] += a
+    bl = lambda i: {f"{i}>{g}": -1 for g in GRADES}
+    put("LPG", {"CDU": CDU_YIELD["LPG"], "REF": REF_YIELD["LPG"], "sell LPG": -1})
+    put("LSR", {"CDU": CDU_YIELD["LSR"], "sell LSR as naphtha": -1, **bl("LSR")})
+    put("HN", {"CDU": CDU_YIELD["HN"], "REF": -1, "sell HN as naphtha": -1})
+    put("Reformate", {"REF": REF_YIELD["Reformate"], **bl("Reformate")})
+    put("Distillate", {"CDU": CDU_YIELD["Distillate"], "sell Distillate": -1})
+    put("Residue", {"CDU": CDU_YIELD["Residue"], "sell Residue": -1})
+    put("Butane", {"buy Butane": 1, **bl("Butane")}); put("Alkylate", {"buy Alkylate": 1, **bl("Alkylate")})
+    rank = int(np.linalg.matrix_rank(A))
+    return {"columns": len(cols), "balance_rows": len(names), "rank": rank, "dof": len(cols) - rank,
+            "column_sums": {c: round(float(A[:, ix[c]].sum()), 9) for c in ("CDU", "REF")}}
+
+
 def lab_results():
     base = refinery()
     lin = refinery(rvp_basis="linear")
@@ -337,6 +448,12 @@ def classroom_results():
         "butane_curve": butane_curve(),
         "tiers": price_tiers(),
         "charnes_cooper": charnes_cooper(),
+        "spec_rows": spec_rows(),
+        "recompute": recompute_premium(),
+        "spec_dual": spec_dual(),
+        "fits": {"clean": line_fits(), "outlier": line_fits(outlier=True)},
+        "pooling": pooling(),
+        "dof": stream_dof(),
     }
     R["lab"] = lab_results()
     return R
