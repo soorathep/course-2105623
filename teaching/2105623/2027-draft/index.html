@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>2105623 · 2027 draft sessions</title>
+<link rel="icon" type="image/png" href="/course-2105623/favicon.png">
+<style>
+body{margin:0;background:#F3F0EB;color:#1C242B;font-family:"Helvetica Neue",Arial,sans-serif;line-height:1.5}
+main{max-width:980px;margin:0 auto;padding:36px 22px 60px}
+.kicker{color:#E29A2D;font-weight:700;letter-spacing:.12em;font-size:13px;text-transform:uppercase}
+h1{color:#0F6E6B;font-size:32px;margin:6px 0 8px}
+p{margin:0 0 14px;max-width:760px}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;margin-top:18px}
+th,td{padding:11px 14px;text-align:left;vertical-align:top;border-bottom:1px solid #E4E0D8}
+th{background:#E9E4DB;font-size:14px}
+td.n{width:34px;color:#66727C;font-weight:700}
+.sub{color:#66727C;font-size:14px}
+a{color:#0F6E6B;font-weight:700;text-decoration:none;white-space:nowrap}
+a:hover{text-decoration:underline}
+.who{color:#333F4A;font-weight:600;margin:0 0 16px}
+.note{color:#66727C;font-size:14px;margin-top:18px}
+@media (max-width:640px){h1{font-size:25px}th,td{padding:9px 8px}.sub{display:none}}
+</style>
+</head>
+<body>
+<main>
+<div class="kicker">Draft for the 2027 offering</div>
+<h1>2105623 Optimization of Chemical Processes</h1>
+<p class="who">Soorathep Kheawhom, Ph.D., FRSC<br>Department of Chemical Engineering, Chulalongkorn University</p>
+<p>Fifteen sessions. Each has narrated slides (English narration, captions in English or Thai) and a lab page that runs Python in the browser.</p>
+<table>
+<tr><th>#</th><th>Session</th><th>Slides</th><th>Lab</th></tr>
+<tr><td class="n">1</td><td><b>The optimization workflow</b><br><span class="sub">From a sentence about a plant to an answer you can defend</span></td><td><a href="01-workflow/slides.html">Slides</a></td><td><a href="01-workflow/lab.html">Lab 1</a></td></tr>
+<tr><td class="n">2</td><td><b>LP models: blending, planning, flowsheets</b><br><span class="sub">Plant specifications as linear rows, and where linearity ends</span></td><td><a href="02-lp-models/slides.html">Slides</a></td><td><a href="02-lp-models/lab.html">Lab 2</a></td></tr>
+<tr><td class="n">3</td><td><b>MILP: logical and discrete decisions</b><br><span class="sub">Binary variables, big-M, and why the formulation decides what a solver can prove</span></td><td><a href="03-milp/slides.html">Slides</a></td><td><a href="03-milp/lab.html">Lab 3</a></td></tr>
+<tr><td class="n">4</td><td><b>Multiperiod models: inventory, storage and the end of the horizon</b><br><span class="sub">Time-indexed variables, the stock balance, what storage is worth, and why the last period needs a rule</span></td><td><a href="04-multiperiod/slides.html">Slides</a></td><td><a href="04-multiperiod/lab.html">Lab 4</a></td></tr>
+<tr><td class="n">5</td><td><b>Convexity and optimality: when is a local answer the answer?</b><br><span class="sub">Convex sets and functions, where process models lose convexity, optimality conditions, and what a solver can certify</span></td><td><a href="05-convexity/slides.html">Slides</a></td><td><a href="05-convexity/lab.html">Lab 5</a></td></tr>
+<tr><td class="n">6</td><td><b>LP from the inside: bases, the simplex method, duality and sensitivity</b><br><span class="sub">How a solver finds the vertex, why its prices prove the answer, and over what range those prices hold</span></td><td><a href="06-lp-theory/slides.html">Slides</a></td><td><a href="06-lp-theory/lab.html">Lab 6</a></td></tr>
+<tr><td class="n">7</td><td><b>Lagrange multipliers and the KKT conditions</b><br><span class="sub">Why the gradients line up at an optimum, what the multipliers are worth, and when the conditions prove anything</span></td><td><a href="07-lagrange-kkt/slides.html">Slides</a></td><td><a href="07-lagrange-kkt/lab.html">Lab 7</a></td></tr>
+<tr><td class="n">8</td><td><b>Algorithms for unconstrained optimization</b><br><span class="sub">How steepest descent, Newton&#x27;s method and BFGS reach ∇f = 0, why units matter, and how to tell when to stop</span></td><td><a href="08-unconstrained/slides.html">Slides</a></td><td><a href="08-unconstrained/lab.html">Lab 8</a></td></tr>
+<tr><td class="n">9</td><td><b>Algorithms for constrained optimization</b><br><span class="sub">Penalty and augmented Lagrangian methods, SQP and interior points: how solvers reach a KKT point, and how to read what they report</span></td><td><a href="09-nlp-solvers/slides.html">Slides</a></td><td><a href="09-nlp-solvers/lab.html">Lab 9</a></td></tr>
+<tr><td class="n">10</td><td><b>Parameter estimation</b><br><span class="sub">Fitting rate constants to data: least squares as an optimization problem, how sure you can be of the answer, and what multiresponse data can hide</span></td><td><a href="10-parameter-estimation/slides.html">Slides</a></td><td><a href="10-parameter-estimation/lab.html">Lab 10</a></td></tr>
+<tr><td class="n">11</td><td><b>Dynamic optimization and MPC</b><br><span class="sub">Decisions that are functions of time: optimal operating profiles by shooting and collocation, and model predictive control, which re-solves the problem at every sample</span></td><td><a href="11-dynamic-optimization/slides.html">Slides</a></td><td><a href="11-dynamic-optimization/lab.html">Lab 11</a></td></tr>
+<tr><td class="n">12</td><td><b>Optimization under uncertainty</b><br><span class="sub">Decisions made before the data are known: two-stage stochastic programs, the value of information, risk, chance constraints and robust optimization</span></td><td><a href="12-uncertainty/slides.html">Slides</a></td><td><a href="12-uncertainty/lab.html">Lab 12</a></td></tr>
+<tr><td class="n">13</td><td><b>Multi-objective and nonconvex optimization</b><br><span class="sub">When there is more than one goal, and when a solver&#x27;s answer depends on where it starts: Pareto fronts, the ε-constraint method, a pooling problem, and how a global solver proves its answer</span></td><td><a href="13-multiobjective/slides.html">Slides</a></td><td><a href="13-multiobjective/lab.html">Lab 13</a></td></tr>
+<tr><td class="n">14</td><td><b>Bayesian optimization and AI-assisted modeling</b><br><span class="sub">When each evaluation is an experiment: Gaussian-process surrogates, expected improvement, and how to test a model that a language model wrote</span></td><td><a href="14-bayesian-optimization/slides.html">Slides</a></td><td><a href="14-bayesian-optimization/lab.html">Lab 14</a></td></tr>
+<tr><td class="n">15</td><td><b>Project review and course wrap-up</b><br><span class="sub">One checklist for every model in the course: how to apply it to your own project, how to review someone else&#x27;s, and what the fifteen sessions add up to</span></td><td><a href="15-project-review/slides.html">Slides</a></td><td><a href="15-project-review/lab.html">Lab 15</a></td></tr>
+</table>
+<p class="note">These pages are drafts: they are reachable by link only and are not listed by search engines. The current course page is at <a href="../">teaching/2105623</a>.</p>
+</main>
+</body>
+</html>

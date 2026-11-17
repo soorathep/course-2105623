@@ -213,7 +213,7 @@ function bfgs(f,g,x0,maxit=200){let x=x0.slice(),gx=g(x),H=[[1,0],[0,1]];const p
 const S = [];
 S.push({cls:"title-slide", html:()=>`<p class="kicker">Session 5 · Lab 5</p><h1>Convexity and optimality: when is a local answer the answer?</h1>
 <div class="sub">Convex sets and functions, where process models lose convexity, optimality conditions, and what a solver can certify</div>
-<div class="meta">2105623 Optimization of Chemical Processes<br>Department of Chemical Engineering, Chulalongkorn University<br>Draft for the 2027 offering</div><p style="margin-top:28px;font-size:19px"><a href="?narrate=1#1" style="color:${C.teal}">Studying on your own? Start the narrated session</a></p>`,
+<div class="meta">2105623 Optimization of Chemical Processes<br>Soorathep Kheawhom, Ph.D., FRSC<br>Department of Chemical Engineering, Chulalongkorn University<br>Draft for the 2027 offering</div><p style="margin-top:28px;font-size:19px"><a href="?narrate=1#1" style="color:${C.teal}">Studying on your own? Start the narrated session</a></p>`,
 notes:"Sessions 2 to 4 were linear or mixed-integer. Today the first nonlinear session: the question is what a returned point means."});
 
 S.push({kicker:"Plan for today", title:"Three hours, two activities, four checks and a lab", html:()=>`<div class="body"><div class="col"><table class="t" style="font-size:18px">
