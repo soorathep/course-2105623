@@ -1,0 +1,2447 @@
+{
+ "voice": "en-US-GuyNeural",
+ "rate": "-5%",
+ "provider": "Microsoft Edge neural speech (edge-tts)",
+ "synthetic_voice": true,
+ "total_seconds": 2919.1,
+ "slides": [
+  {
+   "n": 1,
+   "file": "audio/slide-01.mp3",
+   "duration": 46.608,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.787,
+     "en": "Welcome to Session 7 of Optimization of Chemical Processes.",
+     "th": "ยินดีต้อนรับสู่คาบที่ 7 ของวิชา Optimization of Chemical Processes"
+    },
+    {
+     "s": 4.787,
+     "e": 15.334,
+     "en": "Session 6 ended with prices on linear rows. Each row of an LP had a price, and the best bound on the margin came from weighting the rows and adding them.",
+     "th": "คาบที่ 6 จบด้วยราคาของแถวเชิงเส้น แต่ละแถวของ LP มีราคา และขอบบนที่ดีที่สุดของกำไรได้จากการถ่วงน้ำหนักแถวแล้วบวกกัน"
+    },
+    {
+     "s": 15.334,
+     "e": 20.539,
+     "en": "Today the rows become nonlinear, and the prices become Lagrange multipliers.",
+     "th": "วันนี้แถวจะกลายเป็นไม่เชิงเส้น และราคาจะกลายเป็น Lagrange multiplier"
+    },
+    {
+     "s": 20.539,
+     "e": 33.842,
+     "en": "We will answer three questions. Why do the gradients line up at a constrained optimum? What are the multipliers worth? And when do the conditions prove that a point is the answer?",
+     "th": "เราจะตอบสามคำถาม ทำไม gradient จึงเรียงตัวกันที่จุดเหมาะสมที่สุดภายใต้ข้อจำกัด multiplier มีค่าเท่าใด และเมื่อใดที่เงื่อนไขเหล่านี้พิสูจน์ได้ว่าจุดหนึ่งคือคำตอบ"
+    },
+    {
+     "s": 33.842,
+     "e": 41.145,
+     "en": "On your own, the narration takes about fifty minutes; the activities, four checks and the lab fill the rest of the three hours.",
+     "th": "ถ้าเรียนเอง เสียงบรรยายใช้เวลาประมาณห้าสิบนาที ส่วนกิจกรรม แบบตรวจสี่ครั้ง และ lab จะใช้เวลาที่เหลือของสามชั่วโมง"
+    },
+    {
+     "s": 41.145,
+     "e": 46.553,
+     "en": "When the narration for a slide ends, press the right arrow key, or Next, to go on.",
+     "th": "เมื่อเสียงบรรยายของแต่ละหน้าจบ กดลูกศรขวาหรือปุ่ม Next เพื่อไปหน้าถัดไป"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "file": "audio/slide-02.mp3",
+   "duration": 45.84,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.05,
+     "en": "Here is the plan for the three hours.",
+     "th": "นี่คือแผนของสามชั่วโมง"
+    },
+    {
+     "s": 3.05,
+     "e": 9.7,
+     "en": "After a ten-minute retrieval check on Session 6, part one, thirty-five minutes, covers Lagrange multipliers:",
+     "th": "หลังทบทวนความจำจากคาบที่ 6 สิบนาที ส่วนที่หนึ่ง สามสิบห้านาที ว่าด้วย Lagrange multiplier ได้แก่"
+    },
+    {
+     "s": 9.7,
+     "e": 16.105,
+     "en": "why the gradients line up, the cheapest tank, what lambda measures, and the rule of equal marginal value.",
+     "th": "ทำไม gradient จึงเรียงตัวกัน ถังที่ประหยัดที่สุด lambda วัดอะไร และกฎของมูลค่าส่วนเพิ่มที่เท่ากัน"
+    },
+    {
+     "s": 16.105,
+     "e": 27.816,
+     "en": "Part two, forty minutes, adds inequalities: the four KKT conditions, the cone picture, how to find the active set by testing guesses, what mu measures, and how the LP of Session 6 fits.",
+     "th": "ส่วนที่สอง สี่สิบนาที เพิ่มอสมการ ได้แก่ เงื่อนไข KKT สี่ข้อ ภาพกรวย การหา active set ด้วยการทดสอบการเดา mu วัดอะไร และ LP ของคาบที่ 6 เข้ากับกรอบนี้อย่างไร"
+    },
+    {
+     "s": 27.816,
+     "e": 38.532,
+     "en": "After a break and a second activity, part three, thirty minutes, asks when the conditions are necessary and when they are sufficient, adds second-order conditions and the Lagrangian dual,",
+     "th": "หลังพักและกิจกรรมที่สอง ส่วนที่สาม สามสิบนาที ถามว่าเมื่อใดเงื่อนไขเป็นเงื่อนไขจำเป็น และเมื่อใดเป็นเงื่อนไขเพียงพอ เพิ่มเงื่อนไขอันดับสองและ Lagrangian dual"
+    },
+    {
+     "s": 38.532,
+     "e": 41.895,
+     "en": "and reads multipliers from solvers and from process models.",
+     "th": "และอ่าน multiplier จาก solver และจากโมเดลกระบวนการ"
+    },
+    {
+     "s": 41.895,
+     "e": 45.776,
+     "en": "The session ends with Lab 7 and the Exit Ticket.",
+     "th": "คาบนี้จบด้วย Lab 7 และ Exit Ticket"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "file": "audio/slide-03.mp3",
+   "duration": 34.656,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.063,
+     "en": "Activity 1 is a retrieval check on Session 6.",
+     "th": "กิจกรรมที่ 1 คือการทบทวนความจำจากคาบที่ 6"
+    },
+    {
+     "s": 4.063,
+     "e": 14.368,
+     "en": "Answer the four questions without notes. They cover a basis, a positive reduced cost, the range of a shadow price, and the bound you get by weighting the rows.",
+     "th": "ตอบคำถามสี่ข้อโดยไม่เปิดโน้ต คำถามครอบคลุม basis, reduced cost ที่เป็นบวก ช่วงของ shadow price และขอบบนที่ได้จากการถ่วงน้ำหนักแถว"
+    },
+    {
+     "s": 14.368,
+     "e": 24.658,
+     "en": "Question four is today's bridge. Weighting the rows by prices and adding them to the objective is exactly the Lagrangian, which we now use for any problem.",
+     "th": "ข้อสี่คือสะพานไปสู่วันนี้ การถ่วงน้ำหนักแถวด้วยราคาแล้วบวกเข้ากับฟังก์ชันเป้าหมายก็คือ Lagrangian ซึ่งวันนี้เราจะใช้กับปัญหาทุกแบบ"
+    },
+    {
+     "s": 24.658,
+     "e": 34.579,
+     "en": "In class, write alone for five minutes, then compare with a partner. On your own, pause the narration, write your answers, and then press Show answers.",
+     "th": "ในห้องเรียน เขียนคนเดียวห้านาที แล้วเทียบกับเพื่อน ถ้าเรียนเอง ให้หยุดเสียงบรรยาย เขียนคำตอบ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "file": "audio/slide-04.mp3",
+   "duration": 49.344,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.866,
+     "en": "By the end of today you should be able to do six things.",
+     "th": "เมื่อจบวันนี้ คุณควรทำหกอย่างต่อไปนี้ได้"
+    },
+    {
+     "s": 3.866,
+     "e": 12.488,
+     "en": "Explain, from a picture and from a first-order argument, why the gradient of f plus lambda times the gradient of h is zero at a constrained optimum,",
+     "th": "อธิบายได้ทั้งจากภาพและจากเหตุผลอันดับหนึ่ง ว่าทำไม gradient ของ f บวก lambda คูณ gradient ของ h จึงเป็นศูนย์ที่จุดเหมาะสมที่สุดภายใต้ข้อจำกัด"
+    },
+    {
+     "s": 12.488,
+     "e": 15.092,
+     "en": "and solve small problems with that condition.",
+     "th": "และแก้ปัญหาเล็ก ๆ ด้วยเงื่อนไขนั้นได้"
+    },
+    {
+     "s": 15.092,
+     "e": 22.566,
+     "en": "Read lambda and mu as sensitivities, with units, and use the rule of equal marginal value in allocation problems.",
+     "th": "อ่าน lambda และ mu เป็นความไวพร้อมหน่วย และใช้กฎมูลค่าส่วนเพิ่มที่เท่ากันในปัญหาการจัดสรรได้"
+    },
+    {
+     "s": 22.566,
+     "e": 29.316,
+     "en": "State the four KKT conditions, check them with residuals, and find the active set by testing guesses.",
+     "th": "บอกเงื่อนไข KKT สี่ข้อได้ ตรวจด้วยค่า residual และหา active set ด้วยการทดสอบการเดาได้"
+    },
+    {
+     "s": 29.316,
+     "e": 37.5,
+     "en": "Say when the conditions are necessary and when they are sufficient: constraint qualifications, convexity and second-order conditions.",
+     "th": "บอกได้ว่าเมื่อใดเงื่อนไขเป็นเงื่อนไขจำเป็น และเมื่อใดเป็นเงื่อนไขเพียงพอ ได้แก่ constraint qualification, convexity และเงื่อนไขอันดับสอง"
+    },
+    {
+     "s": 37.5,
+     "e": 42.842,
+     "en": "Form the Lagrangian dual of a nonlinear problem and explain a duality gap.",
+     "th": "สร้าง Lagrangian dual ของปัญหาไม่เชิงเส้นได้ และอธิบาย duality gap ได้"
+    },
+    {
+     "s": 42.842,
+     "e": 49.289,
+     "en": "And read the multipliers a solver reports, check their sign, and interpret them in a process model.",
+     "th": "และอ่าน multiplier ที่ solver รายงาน ตรวจเครื่องหมาย และตีความในโมเดลกระบวนการได้"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "file": "audio/slide-05.mp3",
+   "duration": 78.6,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.195,
+     "en": "Everything today connects to something you have already used.",
+     "th": "ทุกอย่างในวันนี้เชื่อมกับสิ่งที่คุณเคยใช้มาแล้ว"
+    },
+    {
+     "s": 4.195,
+     "e": 14.776,
+     "en": "In Session 5 you tested points with the gradient and the Hessian, for problems without constraints. Today the point must stay on a constraint, and the tests change.",
+     "th": "ในคาบที่ 5 คุณทดสอบจุดด้วย gradient และ Hessian สำหรับปัญหาที่ไม่มีข้อจำกัด วันนี้จุดต้องอยู่บนข้อจำกัด และการทดสอบจะเปลี่ยนไป"
+    },
+    {
+     "s": 14.776,
+     "e": 24.5,
+     "en": "In Session 6 the prices y gave the best bound on the margin. Those prices are multipliers, and the weighted sum of rows is the Lagrangian.",
+     "th": "ในคาบที่ 6 ราคา y ให้ขอบบนที่ดีที่สุดของกำไร ราคาเหล่านั้นคือ multiplier และผลรวมถ่วงน้ำหนักของแถวคือ Lagrangian"
+    },
+    {
+     "s": 24.5,
+     "e": 32.618,
+     "en": "Complementary slackness, from Sessions 1 and 6, becomes one of the four KKT conditions, for nonlinear rows as well.",
+     "th": "complementary slackness จากคาบที่ 1 และ 6 กลายเป็นหนึ่งในเงื่อนไข KKT สี่ข้อ และใช้กับแถวไม่เชิงเส้นด้วย"
+    },
+    {
+     "s": 32.618,
+     "e": 40.474,
+     "en": "Shadow prices held on an interval. Multipliers are also local slopes, now for any smooth model.",
+     "th": "shadow price ใช้ได้ในช่วงหนึ่ง multiplier ก็เป็นความชันเฉพาะที่เช่นกัน แต่ตอนนี้ใช้กับโมเดลที่เรียบใด ๆ"
+    },
+    {
+     "s": 40.474,
+     "e": 47.461,
+     "en": "Session 5 designed a vessel with length equal to diameter, 2.335 meters, by geometric programming.",
+     "th": "คาบที่ 5 ออกแบบภาชนะที่ความยาวเท่ากับเส้นผ่านศูนย์กลาง 2.335 เมตร ด้วย geometric programming"
+    },
+    {
+     "s": 47.461,
+     "e": 54.237,
+     "en": "Today Lagrange gives the same vessel in three lines, and also the value of one more cubic meter.",
+     "th": "วันนี้ Lagrange ให้ภาชนะเดียวกันในสามบรรทัด และยังให้มูลค่าของปริมาตรที่เพิ่มอีกหนึ่งลูกบาศก์เมตร"
+    },
+    {
+     "s": 54.237,
+     "e": 64.066,
+     "en": "And Session 5 said that local solvers return KKT points. Today you will see what a KKT point is, and when it is the global optimum.",
+     "th": "และคาบที่ 5 บอกว่า local solver คืนจุด KKT วันนี้คุณจะเห็นว่าจุด KKT คืออะไร และเมื่อใดที่มันคือจุดเหมาะสมที่สุดวงกว้าง"
+    },
+    {
+     "s": 64.066,
+     "e": 76.278,
+     "en": "One note on notation, used for the rest of the course: mu for multipliers of inequalities, which are zero or positive, and lambda for multipliers of equalities, which can have either sign.",
+     "th": "หมายเหตุเรื่องสัญลักษณ์ที่ใช้ตลอดวิชา mu สำหรับ multiplier ของอสมการ ซึ่งเป็นศูนย์หรือบวก และ lambda สำหรับ multiplier ของสมการ ซึ่งเป็นบวกหรือลบก็ได้"
+    },
+    {
+     "s": 76.278,
+     "e": 78.539,
+     "en": "Eigenvalues are not written lambda.",
+     "th": "ค่าเฉพาะจะไม่เขียนเป็น lambda"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "file": "audio/slide-06.mp3",
+   "duration": 103.488,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.434,
+     "en": "Part one: Lagrange multipliers. First, one form for every problem.",
+     "th": "ส่วนที่หนึ่ง Lagrange multiplier เริ่มจากรูปแบบเดียวสำหรับทุกปัญหา"
+    },
+    {
+     "s": 6.434,
+     "e": 14.961,
+     "en": "We always minimize f of x, subject to inequality rows g i of x at most zero, and equality rows h j of x equal to zero.",
+     "th": "เราหาค่าต่ำสุดของ f ของ x เสมอ ภายใต้แถวอสมการ g i ของ x ไม่เกินศูนย์ และแถวสมการ h j ของ x เท่ากับศูนย์"
+    },
+    {
+     "s": 14.961,
+     "e": 25.613,
+     "en": "The Lagrangian adds the rows to the objective, each with its multiplier: L equals f, plus the sum of mu i times g i, plus the sum of lambda j times h j.",
+     "th": "Lagrangian บวกแถวเข้ากับฟังก์ชันเป้าหมาย โดยแต่ละแถวมี multiplier ของตัวเอง L เท่ากับ f บวกผลรวมของ mu i คูณ g i บวกผลรวมของ lambda j คูณ"
+    },
+    {
+     "s": 25.613,
+     "e": 29.303,
+     "en": "The mu are zero or positive, and the lambda are free.",
+     "th": "h j โดย mu เป็นศูนย์หรือบวก และ lambda เป็นอิสระ"
+    },
+    {
+     "s": 29.303,
+     "e": 37.162,
+     "en": "The sign rule has a simple reason. An equality pins x to a surface, so its multiplier can push either way.",
+     "th": "กฎเครื่องหมายมีเหตุผลง่าย ๆ สมการตรึง x ไว้บนพื้นผิว multiplier ของมันจึงดันได้ทั้งสองทาง"
+    },
+    {
+     "s": 37.162,
+     "e": 44.434,
+     "en": "An inequality only blocks one side, so its multiplier can only push back, and mu is never negative.",
+     "th": "อสมการกั้นเพียงด้านเดียว multiplier ของมันจึงดันกลับได้อย่างเดียว mu จึงไม่เคยติดลบ"
+    },
+    {
+     "s": 44.434,
+     "e": 51.079,
+     "en": "This is Session 6's weighted sum of rows, now added to the objective, and allowed to be nonlinear.",
+     "th": "นี่คือผลรวมถ่วงน้ำหนักของแถวจากคาบที่ 6 ที่ตอนนี้บวกเข้ากับฟังก์ชันเป้าหมาย และยอมให้ไม่เป็นเชิงเส้น"
+    },
+    {
+     "s": 51.079,
+     "e": 63.809,
+     "en": "The table converts any model to this form. A maximization becomes the minimization of minus P. A greater-than row is written as b minus q, at most zero.",
+     "th": "ตารางแปลงโมเดลใด ๆ ให้อยู่ในรูปนี้ การหาค่าสูงสุดกลายเป็นการหาค่าต่ำสุดของลบ P แถวแบบมากกว่าเขียนเป็น b ลบ q ไม่เกินศูนย์"
+    },
+    {
+     "s": 63.809,
+     "e": 70.382,
+     "en": "An equality is written as q minus b, equal to zero. And bounds become two rows.",
+     "th": "สมการเขียนเป็น q ลบ b เท่ากับศูนย์ และขอบเขตกลายเป็นสองแถว"
+    },
+    {
+     "s": 70.382,
+     "e": 74.527,
+     "en": "For example, the electrolyzers of slide 12 maximize hydrogen.",
+     "th": "ตัวอย่าง electrolyzer ในหน้า 12 หาค่าสูงสุดของไฮโดรเจน"
+    },
+    {
+     "s": 74.527,
+     "e": 84.622,
+     "en": "In the course form we minimize minus the total hydrogen, the total power becomes one equality row, and each stack's limits become two inequality rows:",
+     "th": "ในรูปแบบของวิชา เราหาค่าต่ำสุดของลบไฮโดรเจนรวม กำลังไฟฟ้ารวมกลายเป็นแถวสมการหนึ่งแถว และขีดจำกัดของแต่ละ stack กลายเป็นแถวอสมการสองแถว"
+    },
+    {
+     "s": 84.622,
+     "e": 88.5,
+     "en": "zero minus P at most zero, and P minus P max at most zero.",
+     "th": "คือศูนย์ลบ P ไม่เกินศูนย์ และ P ลบ P max ไม่เกินศูนย์"
+    },
+    {
+     "s": 88.5,
+     "e": 98.439,
+     "en": "Why insist on one form? Because then a multiplier always means the same thing: relaxing its row by one unit lowers the minimum by about mu.",
+     "th": "ทำไมต้องยึดรูปแบบเดียว เพราะแล้ว multiplier จะมีความหมายเดียวกันเสมอ คือการผ่อนแถวของมันหนึ่งหน่วยทำให้ค่าต่ำสุดลดลงประมาณ"
+    },
+    {
+     "s": 98.439,
+     "e": 103.408,
+     "en": "Solvers use other forms, so we will convert their numbers to this one.",
+     "th": "mu solver ใช้รูปแบบอื่น เราจึงจะแปลงตัวเลขของมันมาเป็นรูปนี้"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "file": "audio/slide-07.mp3",
+   "duration": 105.024,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.263,
+     "en": "Why do the gradients line up at a constrained optimum? Here is the argument.",
+     "th": "ทำไม gradient จึงเรียงตัวกันที่จุดเหมาะสมที่สุดภายใต้ข้อจำกัด นี่คือเหตุผล"
+    },
+    {
+     "s": 6.263,
+     "e": 17.75,
+     "en": "Take a point on the constraint, and move a small step epsilon along a direction d that stays on it, to first order. Staying on the constraint means grad h dot d equals zero.",
+     "th": "เลือกจุดหนึ่งบนข้อจำกัด แล้วขยับก้าวเล็ก ๆ epsilon ไปตามทิศทาง d ที่ยังอยู่บนข้อจำกัดในอันดับหนึ่ง การอยู่บนข้อจำกัดหมายความว่า grad h dot d เท่ากับศูนย์"
+    },
+    {
+     "s": 17.75,
+     "e": 23.947,
+     "en": "Then f changes by epsilon times grad f dot d, plus terms of order epsilon squared.",
+     "th": "แล้ว f จะเปลี่ยนไป epsilon คูณ grad f dot d บวกพจน์อันดับ epsilon กำลังสอง"
+    },
+    {
+     "s": 23.947,
+     "e": 32.132,
+     "en": "At point A in the picture, that rate is about two: moving along the curve in one direction raises f, and moving the other way lowers it.",
+     "th": "ที่จุด A ในภาพ อัตรานั้นประมาณสอง การเคลื่อนตามเส้นโค้งไปทางหนึ่งทำให้ f เพิ่ม และการเคลื่อนไปอีกทางทำให้ f ลด"
+    },
+    {
+     "s": 32.132,
+     "e": 40.868,
+     "en": "If grad f dot d is not zero for some such d, choose the sign of epsilon to make f fall. Then the point is not a minimum.",
+     "th": "ถ้า grad f dot d ไม่เป็นศูนย์สำหรับ d บางตัว ให้เลือกเครื่องหมายของ epsilon เพื่อให้ f ลดลง จุดนั้นจึงไม่ใช่ค่าต่ำสุด"
+    },
+    {
+     "s": 40.868,
+     "e": 51.867,
+     "en": "So at a minimum, grad f dot d is zero for every direction tangent to the constraint. Grad f is normal to the constraint, just as grad h is, so the two are parallel:",
+     "th": "ดังนั้นที่ค่าต่ำสุด grad f dot d เป็นศูนย์สำหรับทุกทิศทางที่สัมผัสข้อจำกัด grad f ตั้งฉากกับข้อจำกัดเช่นเดียวกับ grad h ทั้งสองจึงขนานกัน คือ grad f"
+    },
+    {
+     "s": 51.867,
+     "e": 56.0,
+     "en": "grad f plus lambda grad h equals zero, for some number lambda.",
+     "th": "บวก lambda grad h เท่ากับศูนย์ สำหรับตัวเลข lambda บางค่า"
+    },
+    {
+     "s": 56.0,
+     "e": 64.363,
+     "en": "Together with h of x equal to zero, that is n plus one equations for the n coordinates and lambda. In terms of the Lagrangian:",
+     "th": "เมื่อรวมกับ h ของ x เท่ากับศูนย์ จะได้ n บวกหนึ่งสมการ สำหรับพิกัด n ตัวและ lambda ในแง่ของ Lagrangian"
+    },
+    {
+     "s": 64.363,
+     "e": 71.145,
+     "en": "its gradient with respect to x is zero, and its derivative with respect to lambda, which is h, is zero.",
+     "th": "คือ gradient เทียบ x เป็นศูนย์ และอนุพันธ์เทียบ lambda ซึ่งก็คือ h เป็นศูนย์"
+    },
+    {
+     "s": 71.145,
+     "e": 80.618,
+     "en": "With several equality rows, the same argument gives grad f as a combination of all the grad h j, provided those gradients are linearly independent.",
+     "th": "เมื่อมีแถวสมการหลายแถว เหตุผลเดียวกันให้ grad f เป็นการรวมของ grad h j ทั้งหมด โดยมีเงื่อนไขว่า gradient เหล่านั้นเป็นอิสระเชิงเส้น"
+    },
+    {
+     "s": 80.618,
+     "e": 90.617,
+     "en": "The picture shows the two cases. At A, the contour of f through the point crosses the constraint, so moving along the constraint still lowers f.",
+     "th": "ภาพแสดงสองกรณี ที่ A เส้นระดับของ f ที่ผ่านจุดนั้นตัดข้อจำกัด การเคลื่อนตามข้อจำกัดจึงยังลด f ได้"
+    },
+    {
+     "s": 90.617,
+     "e": 97.513,
+     "en": "At B, the contour only touches the constraint, and grad f, in amber, is parallel to grad h, in teal.",
+     "th": "ที่ B เส้นระดับเพียงแตะข้อจำกัด และ grad f สีส้มขนานกับ grad h สีเขียว"
+    },
+    {
+     "s": 97.513,
+     "e": 104.947,
+     "en": "The argument needs grad h to be nonzero at the point. Part three shows what goes wrong when it is not.",
+     "th": "เหตุผลนี้ต้องการให้ grad h ไม่เป็นศูนย์ที่จุดนั้น ส่วนที่สามจะแสดงว่าเกิดอะไรขึ้นเมื่อไม่เป็นเช่นนั้น"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "file": "audio/slide-08.mp3",
+   "duration": 115.176,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 14.039,
+     "en": "Now try it. The constraint is the ellipse x one squared over four, plus x two squared, equal to one. The objective is the squared distance to the cross, at 0.6 and 0.35.",
+     "th": "ลองทำดู ข้อจำกัดคือวงรี x หนึ่งกำลังสองหารสี่ บวก x สองกำลังสอง เท่ากับหนึ่ง ฟังก์ชันเป้าหมายคือระยะทางกำลังสองถึงเครื่องหมายกากบาท ที่ 0.6 และ 0.35"
+    },
+    {
+     "s": 14.039,
+     "e": 24.132,
+     "en": "Move the angle slider to slide the point along the ellipse. The amber arrow is grad f, the teal arrow is grad h, and the dashed line is the tangent.",
+     "th": "เลื่อนแถบมุมเพื่อพาจุดไปตามวงรี ลูกศรสีส้มคือ grad f ลูกศรสีเขียวคือ grad h และเส้นประคือเส้นสัมผัส"
+    },
+    {
+     "s": 24.132,
+     "e": 32.173,
+     "en": "Before you press anything, predict where the stationary points are. The cross is inside the ellipse, closer to the top.",
+     "th": "ก่อนกดอะไร ให้ทำนายว่าจุดคงตัวอยู่ที่ไหน เครื่องหมายกากบาทอยู่ในวงรีและใกล้ด้านบน"
+    },
+    {
+     "s": 32.173,
+     "e": 37.868,
+     "en": "So expect the nearest point near the top, and the farthest point at the far left end.",
+     "th": "จึงคาดว่าจุดที่ใกล้ที่สุดอยู่ใกล้ด้านบน และจุดที่ไกลที่สุดอยู่ที่ปลายซ้ายสุด"
+    },
+    {
+     "s": 37.868,
+     "e": 46.428,
+     "en": "When the two arrows are not parallel, grad f has a part along the tangent, and the rust arrow shows the direction in which f falls along the curve.",
+     "th": "เมื่อลูกศรทั้งสองไม่ขนานกัน grad f มีส่วนที่อยู่ตามเส้นสัมผัส และลูกศรสีสนิมแสดงทิศทางที่ f ลดลงตามเส้นโค้ง ตารางแสดงความชันนั้น"
+    },
+    {
+     "s": 46.428,
+     "e": 51.923,
+     "en": "The table shows that slope, and the best lambda with what is left of grad f plus lambda grad h.",
+     "th": "และ lambda ที่ดีที่สุดพร้อมส่วนที่เหลือของ grad f บวก lambda grad h"
+    },
+    {
+     "s": 51.923,
+     "e": 62.908,
+     "en": "Press Next stationary point. There are four points where the rust arrow vanishes and the residual is zero. The plot of f along the curve has two minima and two maxima.",
+     "th": "กด Next stationary point มีสี่จุดที่ลูกศรสีสนิมหายไปและค่า residual เป็นศูนย์ กราฟของ f ตามเส้นโค้งมีค่าต่ำสุดสองจุดและค่าสูงสุดสองจุด"
+    },
+    {
+     "s": 62.908,
+     "e": 70.513,
+     "en": "All four satisfy the Lagrange condition. The condition finds candidates; it does not tell minima from maxima.",
+     "th": "ทั้งสี่จุดผ่านเงื่อนไขของ Lagrange เงื่อนไขนี้หาจุดผู้สมัคร แต่แยกค่าต่ำสุดออกจากค่าสูงสุดไม่ได้"
+    },
+    {
+     "s": 70.513,
+     "e": 82.75,
+     "en": "The last row of the table, the curvature of the Lagrangian along the curve, does: it is positive at the two minima and negative at the two maxima. Part three explains that test.",
+     "th": "แถวสุดท้ายของตาราง คือความโค้งของ Lagrangian ตามเส้นโค้ง ทำได้ โดยเป็นบวกที่ค่าต่ำสุดสองจุด และเป็นลบที่ค่าสูงสุดสองจุด ส่วนที่สามจะอธิบายการทดสอบนี้"
+    },
+    {
+     "s": 82.75,
+     "e": 91.194,
+     "en": "Watch lambda in the table as well. It is negative at all four points, because grad f and grad h both point outward there.",
+     "th": "ดู lambda ในตารางด้วย มันเป็นลบที่ทั้งสี่จุด เพราะ grad f และ grad h ชี้ออกด้านนอกทั้งคู่ เครื่องหมายของ"
+    },
+    {
+     "s": 91.194,
+     "e": 98.184,
+     "en": "So the sign of an equality multiplier says nothing about minimum or maximum; only the curvature does.",
+     "th": "multiplier ของสมการจึงไม่บอกอะไรเรื่องค่าต่ำสุดหรือค่าสูงสุด มีเพียงความโค้งที่บอกได้"
+    },
+    {
+     "s": 98.184,
+     "e": 111.316,
+     "en": "And of the two minima, only one is global, with f equal to 0.354, against 1.635 for the other. That is Session 5's point about local solvers, now with a constraint.",
+     "th": "และในค่าต่ำสุดสองจุด มีเพียงจุดเดียวที่เป็นค่าต่ำสุดวงกว้าง โดย f เท่ากับ 0.354 เทียบกับ 1.635 ของอีกจุด นี่คือประเด็นของคาบที่ 5 เรื่อง local solver แต่ตอนนี้มีข้อจำกัดด้วย"
+    },
+    {
+     "s": 111.316,
+     "e": 115.092,
+     "en": "Press D to see the four points computed in Python.",
+     "th": "กด D เพื่อดูสี่จุดนี้ที่คำนวณด้วย Python"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "file": "audio/slide-09.mp3",
+   "duration": 125.64,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.787,
+     "en": "A worked example from process design: the closed cylindrical tank with the least surface for a volume of ten cubic meters.",
+     "th": "ตัวอย่างจากการออกแบบกระบวนการ ถังทรงกระบอกปิดที่มีพื้นที่ผิวน้อยที่สุดสำหรับปริมาตรสิบลูกบาศก์เมตร"
+    },
+    {
+     "s": 7.787,
+     "e": 17.487,
+     "en": "The objective is the area, two pi r squared plus two pi r h. The constraint is pi r squared h, minus V, equal to zero.",
+     "th": "ฟังก์ชันเป้าหมายคือพื้นที่ สองพาย r กำลังสอง บวก สองพาย r h ข้อจำกัดคือ พาย r กำลังสอง h ลบ V เท่ากับศูนย์"
+    },
+    {
+     "s": 17.487,
+     "e": 28.982,
+     "en": "Write the Lagrangian with one multiplier, lambda. The derivative with respect to h gives two pi r plus lambda pi r squared equal to zero, so lambda is minus two over r.",
+     "th": "เขียน Lagrangian ที่มี multiplier หนึ่งตัวคือ lambda อนุพันธ์เทียบ h ให้ สองพาย r บวก lambda พาย r กำลังสอง เท่ากับศูนย์ lambda จึงเท่ากับลบสองหาร r"
+    },
+    {
+     "s": 28.982,
+     "e": 39.184,
+     "en": "Put that into the derivative with respect to r: four pi r, plus two pi h, minus four pi h, is zero, so h equals two r. The height equals the diameter.",
+     "th": "แทนค่านี้ในอนุพันธ์เทียบ r จะได้ สี่พาย r บวก สองพาย h ลบ สี่พาย h เท่ากับศูนย์ h จึงเท่ากับสอง r ความสูงเท่ากับเส้นผ่านศูนย์กลาง"
+    },
+    {
+     "s": 39.184,
+     "e": 55.211,
+     "en": "For ten cubic meters, r is 1.168 meters and h is 2.335 meters, the vessel of Session 5. The area is 25.69 square meters, and lambda is minus 1.713 square meters per cubic meter.",
+     "th": "สำหรับสิบลูกบาศก์เมตร r เท่ากับ 1.168 เมตร และ h เท่ากับ 2.335 เมตร ซึ่งคือภาชนะของคาบที่ 5 พื้นที่เท่ากับ 25.69 ตารางเมตร และ lambda เท่ากับลบ 1.713 ตารางเมตรต่อลูกบาศก์เมตร"
+    },
+    {
+     "s": 55.211,
+     "e": 63.539,
+     "en": "Lambda is negative here. That is allowed: the constraint is an equality, so its multiplier can have either sign.",
+     "th": "ที่นี่ lambda เป็นลบ ซึ่งทำได้ เพราะข้อจำกัดเป็นสมการ multiplier ของมันจึงเป็นบวกหรือลบก็ได้"
+    },
+    {
+     "s": 63.539,
+     "e": 73.403,
+     "en": "What does it mean? The derivative of the best area with respect to the volume is minus lambda, 1.713 square meters per cubic meter.",
+     "th": "มันหมายความว่าอะไร อนุพันธ์ของพื้นที่ที่ดีที่สุดเทียบกับปริมาตรคือลบ lambda คือ 1.713 ตารางเมตรต่อลูกบาศก์เมตร"
+    },
+    {
+     "s": 73.403,
+     "e": 83.342,
+     "en": "One more cubic meter of volume costs about 1.71 square meters of plate. A finite difference on the closed form gives the same number.",
+     "th": "ปริมาตรที่เพิ่มหนึ่งลูกบาศก์เมตรต้องใช้แผ่นโลหะเพิ่มประมาณ 1.71 ตารางเมตร finite difference บนสูตรปิดให้ตัวเลขเดียวกัน"
+    },
+    {
+     "s": 83.342,
+     "e": 90.724,
+     "en": "Real vessels add heads, wall thickness, and a cost per square meter that changes with size, but the method stays the same.",
+     "th": "ภาชนะจริงมีฝาหัวท้าย ความหนาผนัง และต้นทุนต่อตารางเมตรที่เปลี่ยนตามขนาด แต่วิธีการยังเหมือนเดิม"
+    },
+    {
+     "s": 90.724,
+     "e": 98.18,
+     "en": "Is it a minimum? Put the constraint into the area: A of r equals two pi r squared plus two V over r.",
+     "th": "จุดนี้เป็นค่าต่ำสุดหรือไม่ แทนข้อจำกัดลงในพื้นที่ จะได้ A ของ r เท่ากับสองพาย r กำลังสอง บวกสอง"
+    },
+    {
+     "s": 98.18,
+     "e": 106.079,
+     "en": "Its second derivative, four pi plus four V over r cubed, is positive, so the stationary point is a minimum.",
+     "th": "V หาร r อนุพันธ์อันดับสองของมัน คือสี่พาย บวกสี่ V หาร r กำลังสาม เป็นบวก จุดคงตัวนั้นจึงเป็นค่าต่ำสุด"
+    },
+    {
+     "s": 106.079,
+     "e": 110.569,
+     "en": "Notice also how the best area scales: as V to the power two thirds.",
+     "th": "สังเกตด้วยว่าพื้นที่ที่ดีที่สุดเปลี่ยนตาม V ยกกำลังสองในสาม"
+    },
+    {
+     "s": 110.569,
+     "e": 120.408,
+     "en": "The plate per cubic meter falls as tanks grow, which is one reason equipment cost grows more slowly than capacity, as in Session 5's six-tenths rule.",
+     "th": "แผ่นโลหะต่อลูกบาศก์เมตรจึงลดลงเมื่อถังใหญ่ขึ้น ซึ่งเป็นเหตุผลหนึ่งที่ต้นทุนอุปกรณ์เพิ่มช้ากว่ากำลังการผลิต เหมือนกฎหกในสิบของคาบที่ 5"
+    },
+    {
+     "s": 120.408,
+     "e": 125.566,
+     "en": "Press D to see the numbers computed in Python, with the finite-difference check.",
+     "th": "กด D เพื่อดูตัวเลขที่คำนวณด้วย Python พร้อมการตรวจด้วย finite difference"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "file": "audio/slide-10.mp3",
+   "duration": 111.36,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.882,
+     "en": "Why is minus lambda the sensitivity? Here is the general argument.",
+     "th": "ทำไมลบ lambda จึงเป็นความไว นี่คือเหตุผลทั่วไป"
+    },
+    {
+     "s": 5.882,
+     "e": 16.865,
+     "en": "Let v star of b be the best value when the constraint is q of x equal to b. At the optimum, v star equals the Lagrangian, evaluated at x star of b and lambda of b.",
+     "th": "ให้ v star ของ b เป็นค่าที่ดีที่สุดเมื่อข้อจำกัดคือ q ของ x เท่ากับ b ที่จุดเหมาะสมที่สุด v star เท่ากับ Lagrangian ที่ประเมินที่ x star ของ b และ lambda ของ b"
+    },
+    {
+     "s": 16.865,
+     "e": 29.751,
+     "en": "Differentiate with respect to b by the chain rule. The term through x vanishes, because the gradient of L in x is zero. The term through lambda vanishes, because the constraint holds.",
+     "th": "หาอนุพันธ์เทียบ b ด้วยกฎลูกโซ่ พจน์ที่ผ่าน x หายไป เพราะ gradient ของ L เทียบ x เป็นศูนย์ พจน์ที่ผ่าน lambda หายไป เพราะข้อจำกัดเป็นจริง"
+    },
+    {
+     "s": 29.751,
+     "e": 34.303,
+     "en": "Only the explicit dependence on b remains, which is minus lambda.",
+     "th": "เหลือเพียงการขึ้นกับ b โดยตรง ซึ่งคือลบ lambda"
+    },
+    {
+     "s": 34.303,
+     "e": 44.579,
+     "en": "So dv star by db equals minus lambda. This is the envelope theorem, and it is the nonlinear version of Session 6's shadow price.",
+     "th": "ดังนั้น dv star ต่อ db เท่ากับลบ lambda นี่คือ envelope theorem และเป็นรูปแบบไม่เชิงเส้นของ shadow price ในคาบที่ 6"
+    },
+    {
+     "s": 44.579,
+     "e": 50.553,
+     "en": "Its unit follows: if f is in dollars and b in tonnes, lambda is in dollars per tonne.",
+     "th": "หน่วยของมันจึงตามมา ถ้า f มีหน่วยดอลลาร์ และ b มีหน่วยตัน lambda จะมีหน่วยดอลลาร์ต่อตัน"
+    },
+    {
+     "s": 50.553,
+     "e": 58.982,
+     "en": "The demo uses the simplest case: the squared distance to the point three, two, on the line x one plus x two equal to b.",
+     "th": "การสาธิตใช้กรณีที่ง่ายที่สุด คือระยะทางกำลังสองถึงจุดสาม สอง บนเส้นตรง x หนึ่ง บวก x สอง เท่ากับ b ที่นี่"
+    },
+    {
+     "s": 58.982,
+     "e": 64.25,
+     "en": "Here lambda is five minus b, and v star is five minus b, squared, over two.",
+     "th": "lambda เท่ากับห้าลบ b และ v star เท่ากับห้าลบ b ยกกำลังสอง หารสอง"
+    },
+    {
+     "s": 64.25,
+     "e": 75.934,
+     "en": "For example, at b equal to three, the optimum is two, one, lambda is two, and the best value is two. One more unit of b lowers the best value by about two.",
+     "th": "ตัวอย่าง ที่ b เท่ากับสาม จุดเหมาะสมที่สุดคือสอง หนึ่ง lambda เท่ากับสอง และค่าที่ดีที่สุดเท่ากับสอง การเพิ่ม b หนึ่งหน่วยลดค่าที่ดีที่สุดลงประมาณสอง"
+    },
+    {
+     "s": 75.934,
+     "e": 89.184,
+     "en": "Move b. On the left, the line moves, and the optimum slides along it. On the right, the dashed tangent to v star has slope minus lambda, and the finite difference in the table agrees.",
+     "th": "เลื่อน b ทางซ้าย เส้นตรงเคลื่อนที่ และจุดเหมาะสมที่สุดเลื่อนไปตามมัน ทางขวา เส้นสัมผัสแบบเส้นประของ v star มีความชันเท่ากับลบ lambda และ finite difference ในตารางก็ตรงกัน"
+    },
+    {
+     "s": 89.184,
+     "e": 101.25,
+     "en": "At b equal to five, the line passes through the unconstrained minimum. There the constraint costs nothing, and lambda is zero. Past five, lambda changes sign.",
+     "th": "ที่ b เท่ากับห้า เส้นตรงผ่านจุดต่ำสุดแบบไม่มีข้อจำกัด ที่นั่นข้อจำกัดไม่มีต้นทุน และ lambda เป็นศูนย์ เมื่อเกินห้า lambda เปลี่ยนเครื่องหมาย"
+    },
+    {
+     "s": 101.25,
+     "e": 111.276,
+     "en": "This is also how to check any multiplier a solver gives you: change b a little, solve again, and compare the change in the best value with minus lambda times the change in b.",
+     "th": "นี่ยังเป็นวิธีตรวจ multiplier ใด ๆ ที่ solver ให้มา คือเปลี่ยน b เล็กน้อย แก้ใหม่ แล้วเทียบการเปลี่ยนของค่าที่ดีที่สุดกับลบ lambda คูณการเปลี่ยนของ b"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "file": "audio/slide-11.mp3",
+   "duration": 91.8,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.589,
+     "en": "One of the most useful results of Lagrange in process engineering is the rule of equal marginal value.",
+     "th": "ผลลัพธ์ที่มีประโยชน์ที่สุดอย่างหนึ่งของ Lagrange ในวิศวกรรมกระบวนการ คือกฎมูลค่าส่วนเพิ่มที่เท่ากัน"
+    },
+    {
+     "s": 6.589,
+     "e": 21.474,
+     "en": "Several units share one resource: steam, power, feed or catalyst. Unit i turns x i of it into P i. We maximize the total, with the sum of the x i fixed at X, and each x i between its bounds.",
+     "th": "หลายหน่วยใช้ทรัพยากรร่วมกันหนึ่งชนิด เช่น ไอน้ำ ไฟฟ้า สารป้อน หรือตัวเร่งปฏิกิริยา หน่วย i เปลี่ยน x i ของทรัพยากรเป็น P i เราหาค่าสูงสุดของผลรวม โดยผลรวมของ x i คงที่เท่ากับ X และ x i แต่ละตัวอยู่ภายในขอบเขตของมัน"
+    },
+    {
+     "s": 21.474,
+     "e": 31.929,
+     "en": "Write it as a minimization, with lambda for the shared total and mu for the bounds. For a unit between its bounds, stationarity says P i prime equals lambda:",
+     "th": "เขียนเป็นการหาค่าต่ำสุด โดยมี lambda สำหรับผลรวมที่ใช้ร่วมกัน และ mu สำหรับขอบเขต สำหรับหน่วยที่อยู่ระหว่างขอบเขต เงื่อนไข stationarity บอกว่า P i prime เท่ากับ lambda"
+    },
+    {
+     "s": 31.929,
+     "e": 35.039,
+     "en": "its last unit of resource earns exactly lambda.",
+     "th": "คือทรัพยากรหน่วยสุดท้ายของมันให้ผลเท่ากับ lambda พอดี"
+    },
+    {
+     "s": 35.039,
+     "e": 44.299,
+     "en": "The reason is simple. If two free units had different marginal yields, moving a little resource from the lower to the higher would gain.",
+     "th": "เหตุผลนั้นง่าย ถ้าสองหน่วยที่เป็นอิสระมีผลได้ส่วนเพิ่มต่างกัน การย้ายทรัพยากรเล็กน้อยจากหน่วยที่ต่ำกว่าไปหน่วยที่สูงกว่าจะได้ผลเพิ่ม"
+    },
+    {
+     "s": 44.299,
+     "e": 48.895,
+     "en": "At the optimum no such move exists, so all free units earn the same.",
+     "th": "ที่จุดเหมาะสมที่สุดไม่มีการย้ายแบบนั้น หน่วยอิสระทั้งหมดจึงได้ผลเท่ากัน"
+    },
+    {
+     "s": 48.895,
+     "e": 58.123,
+     "en": "For example, if one unit earns three at the margin and another earns two, moving one unit of resource from the second to the first gains about one.",
+     "th": "ตัวอย่าง ถ้าหน่วยหนึ่งได้สามที่ส่วนเพิ่ม และอีกหน่วยได้สอง การย้ายทรัพยากรหนึ่งหน่วยจากหน่วยที่สองไปหน่วยแรกจะได้ผลเพิ่มประมาณหนึ่ง"
+    },
+    {
+     "s": 58.123,
+     "e": 61.303,
+     "en": "You keep moving until the two marginal yields meet.",
+     "th": "คุณย้ายต่อไปจนผลได้ส่วนเพิ่มทั้งสองเท่ากัน"
+    },
+    {
+     "s": 61.303,
+     "e": 72.75,
+     "en": "A unit at full capacity would still earn more than lambda at the margin. Its multiplier, mu u, is that excess, and it is the value of one more unit of its capacity.",
+     "th": "หน่วยที่ทำงานเต็มกำลังยังให้ผลส่วนเพิ่มมากกว่า lambda multiplier ของมัน mu u คือส่วนเกินนั้น และคือมูลค่าของกำลังการผลิตที่เพิ่มหนึ่งหน่วย"
+    },
+    {
+     "s": 72.75,
+     "e": 80.763,
+     "en": "A unit at its minimum earns less than lambda at the margin. Its mu l is the cost of being forced to run there.",
+     "th": "หน่วยที่ทำงานที่ค่าต่ำสุดให้ผลส่วนเพิ่มน้อยกว่า lambda ค่า mu l ของมันคือต้นทุนของการถูกบังคับให้ทำงานที่นั่น"
+    },
+    {
+     "s": 80.763,
+     "e": 91.711,
+     "en": "And lambda itself is dP star by dX: the value of one more unit of the shared resource. Lab 7 applies this rule to feed shared between reactors.",
+     "th": "และ lambda เองคือ dP star ต่อ dX คือมูลค่าของทรัพยากรที่ใช้ร่วมกันที่เพิ่มหนึ่งหน่วย Lab 7 ใช้กฎนี้กับสารป้อนที่แบ่งให้เครื่องปฏิกรณ์"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "file": "audio/slide-12.mp3",
+   "duration": 127.272,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.405,
+     "en": "Here is the rule at work: three electrolyzer stacks share the electric power.",
+     "th": "นี่คือกฎนั้นในการใช้งาน electrolyzer สาม stack ใช้ไฟฟ้าร่วมกัน"
+    },
+    {
+     "s": 5.405,
+     "e": 13.328,
+     "en": "Each stack makes hydrogen at a marginal yield that falls with load, from about 20 to about 16 kilograms per megawatt hour.",
+     "th": "แต่ละ stack ผลิตไฮโดรเจนด้วยผลได้ส่วนเพิ่มที่ลดลงตามภาระ จากประมาณ 20 ถึงประมาณ 16 กิโลกรัมต่อเมกะวัตต์ชั่วโมง"
+    },
+    {
+     "s": 13.328,
+     "e": 18.868,
+     "en": "The colored lines are those marginal yields, each ending at the stack's maximum power.",
+     "th": "เส้นสีต่าง ๆ คือผลได้ส่วนเพิ่มเหล่านั้น แต่ละเส้นสิ้นสุดที่กำลังสูงสุดของ stack"
+    },
+    {
+     "s": 18.868,
+     "e": 30.974,
+     "en": "Move the total power. The amber dashed line is lambda. Every stack that is between its limits sits where its line crosses lambda, so all of them earn the same at the margin.",
+     "th": "เลื่อนกำลังไฟฟ้ารวม เส้นประสีส้มคือ lambda ทุก stack ที่อยู่ระหว่างขีดจำกัดจะอยู่ตรงที่เส้นของมันตัดกับ lambda ทุกตัวจึงได้ผลส่วนเพิ่มเท่ากัน"
+    },
+    {
+     "s": 30.974,
+     "e": 44.187,
+     "en": "Start at 0.5 megawatts. Only Stack A runs, and lambda is 19.6. Stacks B and C sit at zero, because their first megawatt would earn less: 19.5 and 19.",
+     "th": "เริ่มที่ 0.5 เมกะวัตต์ มีเพียง Stack A ทำงาน และ lambda เท่ากับ 19.6 Stack B และ C อยู่ที่ศูนย์ เพราะเมกะวัตต์แรกของมันจะได้น้อยกว่า คือ 19.5 และ"
+    },
+    {
+     "s": 44.187,
+     "e": 52.908,
+     "en": "Their multipliers, 0.1 and 0.6, are the rust bars: the gap between lambda and what they could earn.",
+     "th": "19 multiplier ของมัน 0.1 และ 0.6 คือแท่งสีสนิม ซึ่งเป็นช่องว่างระหว่าง lambda กับสิ่งที่มันทำได้"
+    },
+    {
+     "s": 52.908,
+     "e": 67.918,
+     "en": "Now raise the power slowly. Stack B starts at 0.625 megawatts, when lambda falls to 19.5, its marginal yield at zero load. Stack C starts at 2.25 megawatts, when lambda falls to 19.",
+     "th": "ทีนี้ค่อย ๆ เพิ่มกำลังไฟฟ้า Stack B เริ่มทำงานที่ 0.625 เมกะวัตต์ เมื่อ lambda ลดลงถึง 19.5 ซึ่งเป็นผลได้ส่วนเพิ่มของมันที่ภาระศูนย์ Stack C เริ่มที่ 2.25 เมกะวัตต์ เมื่อ lambda"
+    },
+    {
+     "s": 67.918,
+     "e": 74.434,
+     "en": "Each start is a change of the active set: a lower-bound row stops being active.",
+     "th": "ลดลงถึง 19 การเริ่มแต่ละครั้งคือการเปลี่ยน active set คือแถวขอบล่างหยุด active"
+    },
+    {
+     "s": 74.434,
+     "e": 84.789,
+     "en": "At 12 megawatts all three run, at 3.1, 4.0 and 4.9 megawatts, with lambda equal to 17.52 kilograms per megawatt hour.",
+     "th": "ที่ 12 เมกะวัตต์ ทั้งสาม stack ทำงานที่ 3.1, 4.0 และ 4.9 เมกะวัตต์ โดย lambda เท่ากับ 17.52 กิโลกรัมต่อเมกะวัตต์ชั่วโมง"
+    },
+    {
+     "s": 84.789,
+     "e": 99.145,
+     "en": "Now go to 18.5 megawatts. Stacks B and C are at full load, and their capacity multipliers are 0.1 and 0.2. Stack A takes the rest, and lambda is 16.4.",
+     "th": "ทีนี้ไปที่ 18.5 เมกะวัตต์ Stack B และ C ทำงานเต็มกำลัง และ multiplier ของกำลังการผลิตคือ 0.1 และ 0.2 Stack A รับส่วนที่เหลือ และ lambda เท่ากับ 16.4"
+    },
+    {
+     "s": 99.145,
+     "e": 108.147,
+     "en": "Read those multipliers as values. One more megawatt of capacity on Stack C would let it take a megawatt from Stack A:",
+     "th": "อ่าน multiplier เหล่านี้เป็นมูลค่า กำลังการผลิตที่เพิ่มหนึ่งเมกะวัตต์ใน Stack C จะทำให้มันรับหนึ่งเมกะวัตต์จาก"
+    },
+    {
+     "s": 108.147,
+     "e": 113.868,
+     "en": "it would earn 16.6 on it instead of 16.4, a gain of 0.2 kilograms per hour.",
+     "th": "Stack A ได้ โดยได้ 16.6 แทน 16.4 เป็นผลเพิ่ม 0.2 กิโลกรัมต่อชั่วโมง"
+    },
+    {
+     "s": 113.868,
+     "e": 123.197,
+     "en": "The message below the table checks the meaning of lambda: the change in total hydrogen between neighboring settings, divided by the change in power, matches lambda.",
+     "th": "ข้อความใต้ตารางตรวจความหมายของ lambda คือการเปลี่ยนของไฮโดรเจนรวมระหว่างค่าที่ติดกัน หารด้วยการเปลี่ยนของกำลังไฟฟ้า ตรงกับ lambda"
+    },
+    {
+     "s": 123.197,
+     "e": 127.184,
+     "en": "Press D to see the three cases computed in Python.",
+     "th": "กด D เพื่อดูสามกรณีที่คำนวณด้วย Python"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "file": "audio/slide-13.mp3",
+   "duration": 37.392,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.487,
+     "en": "Check your understanding: Lagrange by hand. Four items, about five minutes.",
+     "th": "ตรวจความเข้าใจเรื่อง Lagrange ด้วยมือ สี่ข้อ ประมาณห้านาที"
+    },
+    {
+     "s": 6.487,
+     "e": 15.671,
+     "en": "Item one is a small problem to solve with the Lagrange conditions. Item two uses your lambda to predict a change without solving again.",
+     "th": "ข้อหนึ่งเป็นปัญหาเล็ก ๆ ที่ต้องแก้ด้วยเงื่อนไขของ Lagrange ข้อสองใช้ lambda ของคุณทำนายการเปลี่ยนแปลงโดยไม่ต้องแก้ใหม่"
+    },
+    {
+     "s": 15.671,
+     "e": 26.145,
+     "en": "Item three tests the picture: is a point stationary, and which way does f fall? Item four reads a capacity multiplier from the electrolyzer demo.",
+     "th": "ข้อสามทดสอบภาพ ว่าจุดหนึ่งเป็นจุดคงตัวหรือไม่ และ f ลดลงไปทางใด ข้อสี่อ่าน multiplier ของกำลังการผลิตจากการสาธิต electrolyzer"
+    },
+    {
+     "s": 26.145,
+     "e": 33.205,
+     "en": "For item two, use the sensitivity rule of slide 10: the change in the best value is about minus lambda times the change in b.",
+     "th": "สำหรับข้อสอง ให้ใช้กฎความไวในหน้า 10 การเปลี่ยนของค่าที่ดีที่สุดประมาณลบ lambda คูณการเปลี่ยนของ b"
+    },
+    {
+     "s": 33.205,
+     "e": 37.329,
+     "en": "Pause the narration, write your answers, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย เขียนคำตอบ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "file": "audio/slide-14.mp3",
+   "duration": 85.272,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.145,
+     "en": "Part two: the KKT conditions. Start with one inequality, in one variable.",
+     "th": "ส่วนที่สอง เงื่อนไข KKT เริ่มจากอสมการเดียวในตัวแปรเดียว"
+    },
+    {
+     "s": 7.145,
+     "e": 11.987,
+     "en": "Minimize x minus three, squared, subject to x at most b.",
+     "th": "หาค่าต่ำสุดของ x ลบสาม ยกกำลังสอง ภายใต้ x ไม่เกิน b"
+    },
+    {
+     "s": 11.987,
+     "e": 21.711,
+     "en": "If b is three or more, the unconstrained minimum, x equal to three, is feasible. The row is inactive, and its multiplier is zero.",
+     "th": "ถ้า b เท่ากับสามหรือมากกว่า จุดต่ำสุดแบบไม่มีข้อจำกัด x เท่ากับสาม เป็นไปได้ แถวนี้ไม่ active และ multiplier ของมันเป็นศูนย์"
+    },
+    {
+     "s": 21.711,
+     "e": 34.03,
+     "en": "If b is below three, the minimum sits on the bound: x star equals b. The slope of f there is two times b minus three, which is negative, so f would still fall if x could cross the bound.",
+     "th": "ถ้า b ต่ำกว่าสาม ค่าต่ำสุดอยู่บนขอบเขต x star เท่ากับ b ความชันของ f ที่นั่นคือสองคูณ b ลบสาม ซึ่งเป็นลบ f จึงยังลดลงได้ถ้า x ข้ามขอบเขตได้ เงื่อนไข"
+    },
+    {
+     "s": 34.03,
+     "e": 41.013,
+     "en": "Stationarity, f prime plus mu equal to zero, gives mu equal to two times three minus b, which is positive.",
+     "th": "stationarity คือ f prime บวก mu เท่ากับศูนย์ ให้ mu เท่ากับสองคูณสามลบ b ซึ่งเป็นบวก"
+    },
+    {
+     "s": 41.013,
+     "e": 53.316,
+     "en": "So mu is the force that holds x back at the bound. Its sign matters. A negative mu would mean that f falls when x moves back into the region, and then the point is not a minimum.",
+     "th": "ดังนั้น mu คือแรงที่ยึด x ไว้ที่ขอบเขต เครื่องหมายของมันสำคัญ mu ที่เป็นลบหมายความว่า f ลดลงเมื่อ x ถอยกลับเข้าไปในบริเวณ และแล้วจุดนั้นก็ไม่ใช่ค่าต่ำสุด"
+    },
+    {
+     "s": 53.316,
+     "e": 60.783,
+     "en": "Move the bound. In both cases, mu times g is zero: either the row is active, or its multiplier is zero.",
+     "th": "เลื่อนขอบเขต ในทั้งสองกรณี mu คูณ g เป็นศูนย์ คือแถวนั้น active หรือไม่ก็ multiplier"
+    },
+    {
+     "s": 60.783,
+     "e": 67.316,
+     "en": "And the slope of the best value with respect to b is minus mu, the same rule as for lambda.",
+     "th": "ของมันเป็นศูนย์ และความชันของค่าที่ดีที่สุดเทียบ b คือลบ mu ซึ่งเป็นกฎเดียวกับ lambda"
+    },
+    {
+     "s": 67.316,
+     "e": 79.789,
+     "en": "You can check that rule here. For b below three, the best value is three minus b, squared. Its slope is minus two times three minus b, which is exactly minus mu.",
+     "th": "คุณตรวจกฎนั้นได้ที่นี่ สำหรับ b ต่ำกว่าสาม ค่าที่ดีที่สุดคือสามลบ b ยกกำลังสอง ความชันของมันคือลบสองคูณสามลบ b ซึ่งเท่ากับลบ mu พอดี"
+    },
+    {
+     "s": 79.789,
+     "e": 85.197,
+     "en": "With b equal to two, the slope of f at the bound is minus two, and mu is two.",
+     "th": "เมื่อ b เท่ากับสอง ความชันของ f ที่ขอบเขตคือลบสอง และ mu เท่ากับสอง"
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "file": "audio/slide-15.mp3",
+   "duration": 94.656,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.997,
+     "en": "With several rows, the conditions become four, named after Karush, Kuhn and Tucker.",
+     "th": "เมื่อมีหลายแถว เงื่อนไขกลายเป็นสี่ข้อ ตั้งชื่อตาม Karush, Kuhn และ Tucker"
+    },
+    {
+     "s": 5.997,
+     "e": 15.618,
+     "en": "Stationarity: the gradient of f, plus mu times the gradients of the inequality rows, plus lambda times the gradients of the equality rows, is zero.",
+     "th": "stationarity คือ gradient ของ f บวก mu คูณ gradient ของแถวอสมการ บวก lambda คูณ gradient ของแถวสมการ เท่ากับศูนย์"
+    },
+    {
+     "s": 15.618,
+     "e": 20.842,
+     "en": "Primal feasibility: every g is at most zero, and every h is zero.",
+     "th": "primal feasibility คือ g ทุกตัวไม่เกินศูนย์ และ h ทุกตัวเป็นศูนย์"
+    },
+    {
+     "s": 20.842,
+     "e": 25.053,
+     "en": "Dual feasibility: every mu is zero or positive.",
+     "th": "dual feasibility คือ mu ทุกตัวเป็นศูนย์หรือบวก"
+    },
+    {
+     "s": 25.053,
+     "e": 34.303,
+     "en": "Complementarity: mu i times g i is zero for every row. A row with slack has a zero multiplier, as in Session 6.",
+     "th": "complementarity คือ mu i คูณ g i เป็นศูนย์สำหรับทุกแถว แถวที่มีส่วนเหลือมี multiplier เป็นศูนย์ เหมือนในคาบที่ 6"
+    },
+    {
+     "s": 34.303,
+     "e": 43.622,
+     "en": "Complementarity is an either-or condition. Each row contributes one of two equations: either g i equals zero, or mu i equals zero.",
+     "th": "complementarity เป็นเงื่อนไขแบบอย่างใดอย่างหนึ่ง แต่ละแถวให้สมการหนึ่งในสองสมการ คือ g i เท่ากับศูนย์ หรือ mu i"
+    },
+    {
+     "s": 43.622,
+     "e": 49.171,
+     "en": "That choice, row by row, is why there are up to two to the m cases to examine.",
+     "th": "เท่ากับศูนย์ การเลือกทีละแถวนี้คือเหตุที่มีได้ถึงสองยกกำลัง m กรณีให้ตรวจ"
+    },
+    {
+     "s": 49.171,
+     "e": 59.276,
+     "en": "The rows with g equal to zero form the active set. Inactive rows have zero multipliers, so only active rows enter the stationarity sum.",
+     "th": "แถวที่ g เท่ากับศูนย์รวมกันเป็น active set แถวที่ไม่ active มี multiplier เป็นศูนย์ จึงมีเพียงแถวที่ active เท่านั้นที่อยู่ในผลรวมของ stationarity"
+    },
+    {
+     "s": 59.276,
+     "e": 63.424,
+     "en": "On the right are four residuals that measure the four conditions:",
+     "th": "ทางขวาคือค่า residual สี่ตัวที่วัดเงื่อนไขทั้งสี่ ได้แก่"
+    },
+    {
+     "s": 63.424,
+     "e": 74.737,
+     "en": "the largest entry of the stationarity vector, the largest violation of the rows, the most negative multiplier, and the largest product mu times g. All four are zero at a KKT point.",
+     "th": "ค่าที่ใหญ่ที่สุดของเวกเตอร์ stationarity การละเมิดแถวที่มากที่สุด multiplier ที่ติดลบมากที่สุด และผลคูณ mu คูณ g ที่ใหญ่ที่สุด ทั้งสี่ตัวเป็นศูนย์ที่จุด KKT"
+    },
+    {
+     "s": 74.737,
+     "e": 86.5,
+     "en": "Solvers stop when scaled versions of these numbers fall below tolerances. In Lab 7, and in your final project, report these four numbers rather than the solver's word success.",
+     "th": "solver หยุดเมื่อตัวเลขเหล่านี้ที่ปรับสเกลแล้วต่ำกว่าค่าความคลาดเคลื่อนที่ยอมรับ ใน Lab 7 และในโครงงานสุดท้าย ให้รายงานตัวเลขสี่ตัวนี้ แทนคำว่า success ของ solver"
+    },
+    {
+     "s": 86.5,
+     "e": 94.592,
+     "en": "Scaled means divided by a typical size, such as the size of the gradients, so that the test does not depend on the units you chose.",
+     "th": "การปรับสเกลหมายถึงการหารด้วยขนาดปกติ เช่นขนาดของ gradient เพื่อให้การทดสอบไม่ขึ้นกับหน่วยที่คุณเลือก"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "file": "audio/slide-16.mp3",
+   "duration": 76.944,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.553,
+     "en": "What does stationarity with mu at least zero look like? This picture is the key to the whole of part two.",
+     "th": "stationarity ที่ mu ไม่ติดลบมีหน้าตาอย่างไร ภาพนี้คือกุญแจของส่วนที่สองทั้งหมด"
+    },
+    {
+     "s": 7.553,
+     "e": 18.132,
+     "en": "Each active row has a gradient that points out of the feasible region. All combinations of these gradients with non-negative weights form a cone, shaded in sand.",
+     "th": "แถวที่ active แต่ละแถวมี gradient ที่ชี้ออกจากบริเวณที่เป็นไปได้ การรวมกันของ gradient เหล่านี้ด้วยน้ำหนักที่ไม่ติดลบทั้งหมดเป็นกรวย ซึ่งแรเงาด้วยสีทราย"
+    },
+    {
+     "s": 18.132,
+     "e": 31.566,
+     "en": "Stationarity says minus grad f equals the sum of mu i times grad g i. With every mu non-negative, minus grad f, the downhill direction, lies inside that cone: it points out of the region.",
+     "th": "stationarity บอกว่าลบ grad f เท่ากับผลรวมของ mu i คูณ grad g i เมื่อ mu ทุกตัวไม่ติดลบ ลบ grad f ซึ่งเป็นทิศทางลงเขา อยู่ภายในกรวยนั้น คือชี้ออกจากบริเวณ"
+    },
+    {
+     "s": 31.566,
+     "e": 38.211,
+     "en": "Any step that stays in the region goes uphill or along a level. That is panel A, a KKT point.",
+     "th": "ก้าวใด ๆ ที่ยังอยู่ในบริเวณจะขึ้นเขาหรือไปตามระดับ นั่นคือภาพ A ซึ่งเป็นจุด KKT"
+    },
+    {
+     "s": 38.211,
+     "e": 47.384,
+     "en": "In panel B, minus grad f lies outside the cone. Writing it as a combination of the two gradients then needs a negative weight.",
+     "th": "ในภาพ B ลบ grad f อยู่นอกกรวย การเขียนมันเป็นการรวมของ gradient สองตัวจึงต้องใช้น้ำหนักที่เป็นลบ"
+    },
+    {
+     "s": 47.384,
+     "e": 55.618,
+     "en": "And there is a feasible direction d, along one edge, in which f falls: the rust arrow. The point is not a minimum.",
+     "th": "และมีทิศทาง d ที่เป็นไปได้ตามขอบหนึ่งซึ่ง f ลดลง คือลูกศรสีสนิม จุดนั้นจึงไม่ใช่ค่าต่ำสุด"
+    },
+    {
+     "s": 55.618,
+     "e": 59.657,
+     "en": "Farkas's lemma says that exactly one of two things is true.",
+     "th": "Farkas lemma บอกว่าจะเป็นจริงเพียงอย่างเดียวจากสองอย่าง"
+    },
+    {
+     "s": 59.657,
+     "e": 70.763,
+     "en": "Either minus grad f lies in the cone, or there is a direction d that keeps every active row satisfied to first order and makes f fall. Never both, and never neither.",
+     "th": "คือลบ grad f อยู่ในกรวย หรือมีทิศทาง d ที่รักษาแถวที่ active ทุกแถวไว้ในอันดับหนึ่งและทำให้ f ลดลง ไม่มีทางเป็นทั้งสองอย่าง และไม่มีทางไม่เป็นเลย"
+    },
+    {
+     "s": 70.763,
+     "e": 76.855,
+     "en": "This is the Farkas lemma of Session 1, applied at the point to the gradients of curved rows.",
+     "th": "นี่คือ Farkas lemma ของคาบที่ 1 ที่ใช้ที่จุดนั้นกับ gradient ของแถวที่โค้ง"
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "file": "audio/slide-17.mp3",
+   "duration": 116.952,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 8.667,
+     "en": "Now explore it. The region is the part of the disk of radius three that has x two at least 0.5 and x one at most two.",
+     "th": "ทีนี้ลองสำรวจ บริเวณคือส่วนของวงกลมรัศมีสามที่ x สองไม่น้อยกว่า 0.5 และ x หนึ่งไม่เกินสอง"
+    },
+    {
+     "s": 8.667,
+     "e": 14.039,
+     "en": "The objective is the squared distance to the cross, T, which you can drag.",
+     "th": "ฟังก์ชันเป้าหมายคือระยะทางกำลังสองถึงเครื่องหมายกากบาท T ซึ่งคุณลากได้"
+    },
+    {
+     "s": 14.039,
+     "e": 23.079,
+     "en": "Put T inside the region. Then x star equals T, no row is active, every mu is zero, and the gradient of f is zero.",
+     "th": "วาง T ไว้ในบริเวณ แล้ว x star เท่ากับ T ไม่มีแถวใด active mu ทุกตัวเป็นศูนย์ และ gradient ของ f เป็นศูนย์"
+    },
+    {
+     "s": 23.079,
+     "e": 33.628,
+     "en": "Drag T above the circle. Now x star sits on the circle, and minus grad f, in amber, points straight along the circle's gradient.",
+     "th": "ลาก T ไปเหนือวงกลม ตอนนี้ x star อยู่บนวงกลม และลบ grad f สีส้มชี้ตรงไปตาม gradient ของวงกลม มีหนึ่งแถวที่ active"
+    },
+    {
+     "s": 33.628,
+     "e": 42.868,
+     "en": "One row is active, and its mu is the ratio of the two gradient lengths. At T equal to 3.5 and 4, mu one is 0.772.",
+     "th": "และ mu ของมันคืออัตราส่วนของความยาว gradient ทั้งสอง ที่ T เท่ากับ 3.5 และ 4 mu หนึ่งเท่ากับ 0.772"
+    },
+    {
+     "s": 42.868,
+     "e": 51.469,
+     "en": "Drag T to the lower right, to 3.5 and minus 1. Now x star is the corner two, 0.5, where two straight rows meet.",
+     "th": "ลาก T ไปมุมขวาล่าง ที่ 3.5 และลบ 1 ตอนนี้ x star คือมุมสอง 0.5 ที่แถวเส้นตรงสองแถวมาบรรจบกัน"
+    },
+    {
+     "s": 51.469,
+     "e": 60.224,
+     "en": "The sand cone of the two gradients appears, and minus grad f lies inside it, with both multipliers equal to three.",
+     "th": "กรวยสีทรายของ gradient สองตัวปรากฏ และลบ grad f อยู่ภายในกรวย โดย multiplier ทั้งสองเท่ากับสาม"
+    },
+    {
+     "s": 60.224,
+     "e": 66.584,
+     "en": "Check it by hand. Minus grad f is two times T minus x, which is three, minus three.",
+     "th": "ตรวจด้วยมือ ลบ grad f คือสองคูณ T ลบ x ซึ่งเท่ากับสาม ลบสาม gradient ของ"
+    },
+    {
+     "s": 66.584,
+     "e": 79.456,
+     "en": "The gradient of x two at least 0.5 is zero, minus one, and the gradient of x one at most two is one, zero. So three equals mu three, and minus three equals minus mu two:",
+     "th": "x สองไม่น้อยกว่า 0.5 คือศูนย์ ลบหนึ่ง และ gradient ของ x หนึ่งไม่เกินสอง คือหนึ่ง ศูนย์ ดังนั้นสามเท่ากับ mu สาม และลบสามเท่ากับลบ mu สอง multiplier"
+    },
+    {
+     "s": 79.456,
+     "e": 81.5,
+     "en": "both multipliers are three.",
+     "th": "ทั้งสองจึงเท่ากับสาม"
+    },
+    {
+     "s": 81.5,
+     "e": 90.684,
+     "en": "Watch the table as you move. A row's mu becomes positive exactly when the row becomes active, and the four residuals stay at zero.",
+     "th": "ดูตารางขณะเลื่อน mu ของแถวหนึ่งเป็นบวกพอดีเมื่อแถวนั้น active และค่า residual ทั้งสี่ยังเป็นศูนย์"
+    },
+    {
+     "s": 90.684,
+     "e": 102.105,
+     "en": "This problem is convex: the region is the intersection of a disk and two half-planes, and f is a convex quadratic. So every KKT point you see is the global minimum.",
+     "th": "ปัญหานี้เป็น convex บริเวณคือส่วนร่วมของวงกลมกับครึ่งระนาบสองอัน และ f เป็นฟังก์ชันกำลังสองแบบ convex จุด KKT ทุกจุดที่คุณเห็นจึงเป็นค่าต่ำสุดวงกว้าง"
+    },
+    {
+     "s": 102.105,
+     "e": 112.947,
+     "en": "Try the lower left as well, at minus four and minus one. That is the corner of the circle and the line, with multipliers 0.35 and 3.35.",
+     "th": "ลองมุมซ้ายล่างด้วย ที่ลบสี่และลบหนึ่ง นั่นคือมุมระหว่างวงกลมกับเส้นตรง โดยมี multiplier 0.35 และ 3.35"
+    },
+    {
+     "s": 112.947,
+     "e": 116.868,
+     "en": "Press D for the seven targets computed in Python.",
+     "th": "กด D เพื่อดูเป้าหมายเจ็ดจุดที่คำนวณด้วย Python"
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "file": "audio/slide-18.mp3",
+   "duration": 94.536,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.987,
+     "en": "How do you find the active set by hand? By cases.",
+     "th": "หา active set ด้วยมืออย่างไร ใช้การแยกกรณี"
+    },
+    {
+     "s": 4.987,
+     "e": 16.763,
+     "en": "Minimize x one squared plus x two squared, subject to x one plus x two at least two. In the course form, g equals two minus x one minus x two, at most zero.",
+     "th": "หาค่าต่ำสุดของ x หนึ่งกำลังสอง บวก x สองกำลังสอง ภายใต้ x หนึ่งบวก x สองไม่น้อยกว่าสอง ในรูปแบบของวิชา g เท่ากับสองลบ x หนึ่งลบ x สอง ไม่เกินศูนย์"
+    },
+    {
+     "s": 16.763,
+     "e": 28.842,
+     "en": "Case one: the row is inactive, so mu is zero. Stationarity gives x equal to zero, zero, where g is two. The point is infeasible, so this case fails.",
+     "th": "กรณีที่หนึ่ง แถวไม่ active mu จึงเป็นศูนย์ stationarity ให้ x เท่ากับศูนย์ ศูนย์ ซึ่ง g เท่ากับสอง จุดนั้นเป็นไปไม่ได้ กรณีนี้จึงไม่ผ่าน"
+    },
+    {
+     "s": 28.842,
+     "e": 40.521,
+     "en": "Case two: the row is active. Stationarity gives two x one minus mu equal to zero, and two x two minus mu equal to zero, so x one equals x two equals mu over two.",
+     "th": "กรณีที่สอง แถว active stationarity ให้สอง x หนึ่งลบ mu เท่ากับศูนย์ และสอง x สองลบ mu เท่ากับศูนย์ x หนึ่งจึงเท่ากับ x สองเท่ากับ mu หารสอง"
+    },
+    {
+     "s": 40.521,
+     "e": 51.263,
+     "en": "The row gives x one plus x two equal to two, so mu is two, and x is one, one. Mu is non-negative and the point is feasible: all four conditions hold.",
+     "th": "แถวนั้นให้ x หนึ่งบวก x สองเท่ากับสอง mu จึงเท่ากับสอง และ x เท่ากับหนึ่ง หนึ่ง mu ไม่ติดลบและจุดนั้นเป็นไปได้ เงื่อนไขทั้งสี่ข้อเป็นจริง"
+    },
+    {
+     "s": 51.263,
+     "e": 55.441,
+     "en": "The picture shows it: at one, one, minus grad f points along grad g.",
+     "th": "ภาพแสดงสิ่งนี้ ที่หนึ่ง หนึ่ง ลบ grad f ชี้ไปตาม grad g"
+    },
+    {
+     "s": 55.441,
+     "e": 63.947,
+     "en": "Geometrically, the circle of radius square root of two around the origin just touches the line x one plus x two equal to two, at one, one.",
+     "th": "ในเชิงเรขาคณิต วงกลมรัศมีรากที่สองของสองรอบจุดกำเนิดแตะเส้นตรง x หนึ่งบวก x สองเท่ากับสองพอดี ที่หนึ่ง หนึ่ง"
+    },
+    {
+     "s": 63.947,
+     "e": 78.211,
+     "en": "The best value is two. If the requirement rises from two to 2.1, the best value rises by about mu times 0.1, which is 0.2. The exact value is 2.205.",
+     "th": "ค่าที่ดีที่สุดคือสอง ถ้าความต้องการเพิ่มจากสองเป็น 2.1 ค่าที่ดีที่สุดจะเพิ่มประมาณ mu คูณ 0.1 คือ 0.2 ค่าที่แท้จริงคือ 2.205"
+    },
+    {
+     "s": 78.211,
+     "e": 87.546,
+     "en": "With m inequality rows there are up to two to the m cases. Each case is a set of equations; then you test primal and dual feasibility.",
+     "th": "เมื่อมีแถวอสมการ m แถว จะมีได้ถึงสองยกกำลัง m กรณี แต่ละกรณีคือชุดสมการ แล้วจึงทดสอบ primal และ dual feasibility"
+    },
+    {
+     "s": 87.546,
+     "e": 94.461,
+     "en": "Because this problem is convex, the case that passes is the global minimum, as part three will show.",
+     "th": "เพราะปัญหานี้เป็น convex กรณีที่ผ่านจึงเป็นค่าต่ำสุดวงกว้าง ดังที่ส่วนที่สามจะแสดง"
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "file": "audio/slide-19.mp3",
+   "duration": 88.296,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.774,
+     "en": "This demo does the case method for you, and it says why a guess fails.",
+     "th": "การสาธิตนี้ทำการแยกกรณีให้คุณ และบอกว่าทำไมการเดาหนึ่งจึงไม่ผ่าน"
+    },
+    {
+     "s": 4.774,
+     "e": 16.579,
+     "en": "The problem has three rows: x one plus x two at most three, x one at most 1.5, and x two at least zero. The cross is the unconstrained minimum, at three, two.",
+     "th": "ปัญหามีสามแถว x หนึ่งบวก x สองไม่เกินสาม x หนึ่งไม่เกิน 1.5 และ x สองไม่น้อยกว่าศูนย์ เครื่องหมายกากบาทคือจุดต่ำสุดแบบไม่มีข้อจำกัด ที่สาม สอง"
+    },
+    {
+     "s": 16.579,
+     "e": 26.842,
+     "en": "Tick the rows you guess are active, and press Test this guess. The demo treats them as equalities, solves the stationarity equations, and then checks the rest.",
+     "th": "ติ๊กแถวที่คุณเดาว่า active แล้วกด Test this guess การสาธิตจะถือว่าแถวเหล่านั้นเป็นสมการ แก้สมการ stationarity แล้วตรวจเงื่อนไขที่เหลือ"
+    },
+    {
+     "s": 26.842,
+     "e": 35.461,
+     "en": "Start with no rows. The point is three, two, which violates g one and g two: primal feasibility fails.",
+     "th": "เริ่มจากไม่มีแถวใด จุดคือสาม สอง ซึ่งละเมิด g หนึ่งและ g สอง primal feasibility จึงไม่ผ่าน"
+    },
+    {
+     "s": 35.461,
+     "e": 41.447,
+     "en": "Try g one alone. You get two, one, which still breaks g two.",
+     "th": "ลอง g หนึ่งเพียงแถวเดียว ได้สอง หนึ่ง ซึ่งยังละเมิด g สอง"
+    },
+    {
+     "s": 41.447,
+     "e": 51.048,
+     "en": "Try g two and g three. The point 1.5, zero is feasible, but mu three comes out as minus four. Dual feasibility fails:",
+     "th": "ลอง g สองและ g สาม จุด 1.5 ศูนย์ เป็นไปได้ แต่ mu สามออกมาเป็นลบสี่ dual feasibility ไม่ผ่าน การปล่อย"
+    },
+    {
+     "s": 51.048,
+     "e": 56.987,
+     "en": "releasing g three, moving up from the line x two equal to zero, lowers f.",
+     "th": "g สาม คือเคลื่อนขึ้นจากเส้น x สองเท่ากับศูนย์ ทำให้ f ลดลง"
+    },
+    {
+     "s": 56.987,
+     "e": 68.829,
+     "en": "Now try g one and g two. The point is 1.5, 1.5, with mu equal to one and two. All four conditions hold: this is the optimum.",
+     "th": "ทีนี้ลอง g หนึ่งและ g สอง จุดคือ 1.5, 1.5 โดย mu เท่ากับหนึ่งและสอง เงื่อนไขทั้งสี่ข้อเป็นจริง นี่คือจุดเหมาะสมที่สุด"
+    },
+    {
+     "s": 68.829,
+     "e": 78.224,
+     "en": "Press Show all eight to see every guess and its verdict. Session 9's active-set method does this search with rules, instead of trying every guess.",
+     "th": "กด Show all eight เพื่อดูการเดาทุกแบบพร้อมผลตัดสิน วิธี active set ในคาบที่ 9 ทำการค้นหานี้ด้วยกฎ แทนการลองทุกการเดา"
+    },
+    {
+     "s": 78.224,
+     "e": 88.224,
+     "en": "Of the eight guesses, five fail primal feasibility, one fails dual feasibility, one is inconsistent because it asks three lines to meet in a point, and one passes.",
+     "th": "ในการเดาทั้งแปดแบบ ห้าแบบไม่ผ่าน primal feasibility หนึ่งแบบไม่ผ่าน dual feasibility หนึ่งแบบขัดแย้งในตัวเพราะต้องการให้เส้นตรงสามเส้นพบกันที่จุดเดียว และหนึ่งแบบผ่าน"
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "file": "audio/slide-20.mp3",
+   "duration": 84.816,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 10.224,
+     "en": "What does mu measure? The same argument as for lambda gives dv star by db equal to minus mu, for a row written as q of x minus b at most zero.",
+     "th": "mu วัดอะไร เหตุผลเดียวกับ lambda ให้ dv star ต่อ db เท่ากับลบ mu สำหรับแถวที่เขียนเป็น q ของ x ลบ b ไม่เกินศูนย์"
+    },
+    {
+     "s": 10.224,
+     "e": 17.105,
+     "en": "If the row is inactive, mu is zero, and a small change of b changes nothing: the row is not where the cost is.",
+     "th": "ถ้าแถวไม่ active mu เป็นศูนย์ และการเปลี่ยน b เล็กน้อยไม่เปลี่ยนอะไร แถวนั้นไม่ใช่ที่ที่ต้นทุนอยู่"
+    },
+    {
+     "s": 17.105,
+     "e": 24.25,
+     "en": "If the row is active with a positive mu, relaxing b by delta lowers the best value by about mu times delta.",
+     "th": "ถ้าแถว active และ mu เป็นบวก การผ่อน b ไปเดลตาจะลดค่าที่ดีที่สุดลงประมาณ mu คูณเดลตา"
+    },
+    {
+     "s": 24.25,
+     "e": 34.13,
+     "en": "In the electrolyzer demo at 18.5 megawatts, Stack C's capacity row has mu equal to 0.2 kilograms of hydrogen per hour per megawatt of capacity:",
+     "th": "ในการสาธิต electrolyzer ที่ 18.5 เมกะวัตต์ แถวกำลังการผลิตของ Stack C มี mu เท่ากับ 0.2 กิโลกรัมไฮโดรเจนต่อชั่วโมงต่อหนึ่งเมกะวัตต์ของกำลังการผลิต"
+    },
+    {
+     "s": 34.13,
+     "e": 37.355,
+     "en": "the value of relaxing that row by one megawatt.",
+     "th": "คือมูลค่าของการผ่อนแถวนั้นหนึ่งเมกะวัตต์"
+    },
+    {
+     "s": 37.355,
+     "e": 50.605,
+     "en": "The unit of mu is the unit of f per unit of the row. In the explorer, the circle's mu of 0.772 is per unit of x one squared plus x two squared, the radius squared, not the radius.",
+     "th": "หน่วยของ mu คือหน่วยของ f ต่อหนึ่งหน่วยของแถว ในการสำรวจ mu ของวงกลมที่ 0.772 เป็นค่าต่อหนึ่งหน่วยของ x หนึ่งกำลังสองบวก x สองกำลังสอง คือรัศมีกำลังสอง ไม่ใช่รัศมี"
+    },
+    {
+     "s": 50.605,
+     "e": 54.885,
+     "en": "A row can be active with mu equal to zero. It is weakly active:",
+     "th": "แถวหนึ่งอาจ active โดย mu เท่ากับศูนย์ได้ เรียกว่า active"
+    },
+    {
+     "s": 54.885,
+     "e": 63.711,
+     "en": "relaxing it changes nothing to first order, and the changes in the two directions can differ, as with Session 6's degenerate prices.",
+     "th": "แบบอ่อน การผ่อนมันไม่เปลี่ยนอะไรในอันดับหนึ่ง และการเปลี่ยนในสองทิศทางอาจต่างกัน เหมือนราคาแบบ degenerate ในคาบที่ 6"
+    },
+    {
+     "s": 63.711,
+     "e": 70.5,
+     "en": "And mu is a local slope. Lab 7 compares it with a re-solve after a finite change.",
+     "th": "และ mu คือความชันเฉพาะที่ Lab 7 เทียบมันกับการแก้ใหม่หลังการเปลี่ยนแปลงขนาดจำกัด"
+    },
+    {
+     "s": 70.5,
+     "e": 78.848,
+     "en": "The sign depends on the form. A solver that writes rows as q at least zero, or that maximizes, may report minus mu.",
+     "th": "เครื่องหมายขึ้นกับรูปแบบ solver ที่เขียนแถวเป็น q ไม่น้อยกว่าศูนย์ หรือที่หาค่าสูงสุด อาจรายงานลบ mu"
+    },
+    {
+     "s": 78.848,
+     "e": 84.75,
+     "en": "So before you quote a multiplier, check one by a small finite-difference re-solve.",
+     "th": "ดังนั้นก่อนอ้างค่า multiplier ให้ตรวจหนึ่งค่าด้วยการแก้ใหม่แบบ finite difference เล็ก ๆ"
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "file": "audio/slide-21.mp3",
+   "duration": 87.264,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.3,
+     "en": "Session 6's prices fit this framework exactly.",
+     "th": "ราคาของคาบที่ 6 เข้ากับกรอบนี้พอดี"
+    },
+    {
+     "s": 4.3,
+     "e": 15.039,
+     "en": "Write the LP as: minimize minus c transpose x, subject to A x minus b at most zero, with multipliers mu, and minus x at most zero, with multipliers nu.",
+     "th": "เขียน LP เป็น หาค่าต่ำสุดของลบ c transpose x ภายใต้ A x ลบ b ไม่เกินศูนย์ โดยมี multiplier mu และลบ x ไม่เกินศูนย์ โดยมี multiplier nu"
+    },
+    {
+     "s": 15.039,
+     "e": 27.026,
+     "en": "Stationarity says minus c, plus A transpose mu, minus nu, equals zero. So nu equals A transpose mu minus c, which is minus the reduced costs of Session 6.",
+     "th": "stationarity บอกว่าลบ c บวก A transpose mu ลบ nu เท่ากับศูนย์ nu จึงเท่ากับ A transpose mu ลบ c ซึ่งคือลบของ reduced cost ในคาบที่ 6"
+    },
+    {
+     "s": 27.026,
+     "e": 37.961,
+     "en": "Dual feasibility, mu and nu at least zero, is the dual of Session 6: A transpose mu at least c. Complementarity is complementary slackness, for the rows and for the bounds.",
+     "th": "dual feasibility คือ mu และ nu ไม่ติดลบ ซึ่งก็คือ dual ของคาบที่ 6 คือ A transpose mu ไม่น้อยกว่า c ส่วน complementarity คือ complementary slackness ทั้งของแถวและของขอบเขต"
+    },
+    {
+     "s": 37.961,
+     "e": 45.395,
+     "en": "At the optimum six, three, with mu equal to 100, zero and 100, all four residuals are zero.",
+     "th": "ที่จุดเหมาะสมที่สุดหก สาม โดย mu เท่ากับ 100 ศูนย์ และ 100 ค่า residual ทั้งสี่เป็นศูนย์"
+    },
+    {
+     "s": 45.395,
+     "e": 53.013,
+     "en": "There, nu is zero for both products, because both are made: complementarity requires nu j times x j to be zero.",
+     "th": "ที่จุดนั้น nu เป็นศูนย์สำหรับผลิตภัณฑ์ทั้งสอง เพราะผลิตทั้งคู่ complementarity กำหนดให้ nu j คูณ x j เป็นศูนย์"
+    },
+    {
+     "s": 53.013,
+     "e": 65.733,
+     "en": "At the vertex eight, zero, with its prices 133.3, zero, zero, nu two is minus 33.3. The dual residual is 33.3, exactly Binder's reduced cost.",
+     "th": "ที่ vertex แปด ศูนย์ ซึ่งมีราคา 133.3 ศูนย์ ศูนย์ nu สองเท่ากับลบ 33.3 ค่า dual residual คือ 33.3 ซึ่งเท่ากับ reduced cost ของ Binder"
+    },
+    {
+     "s": 65.733,
+     "e": 73.079,
+     "en": "The simplex method of Session 6 was driving this residual to zero, pivot by pivot.",
+     "th": "พอดี วิธี simplex ในคาบที่ 6 กำลังผลักค่า residual นี้ให้เป็นศูนย์ทีละ pivot"
+    },
+    {
+     "s": 73.079,
+     "e": 83.842,
+     "en": "For an LP, the KKT conditions are both necessary and sufficient. The rows are linear, so no qualification is needed, and the problem is convex.",
+     "th": "สำหรับ LP เงื่อนไข KKT เป็นทั้งเงื่อนไขจำเป็นและเงื่อนไขเพียงพอ แถวเป็นเชิงเส้นจึงไม่ต้องมี qualification และปัญหาเป็น convex"
+    },
+    {
+     "s": 83.842,
+     "e": 87.184,
+     "en": "Press D to see both points checked in Python.",
+     "th": "กด D เพื่อดูการตรวจทั้งสองจุดด้วย Python"
+    }
+   ]
+  },
+  {
+   "n": 22,
+   "file": "audio/slide-22.mp3",
+   "duration": 33.48,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.539,
+     "en": "Check your understanding: KKT by hand. Four items, about five minutes.",
+     "th": "ตรวจความเข้าใจเรื่อง KKT ด้วยมือ สี่ข้อ ประมาณห้านาที"
+    },
+    {
+     "s": 6.539,
+     "e": 15.171,
+     "en": "Item one is the one-variable example with two different bounds. Item two asks you to test a corner with the cone picture.",
+     "th": "ข้อหนึ่งคือตัวอย่างตัวแปรเดียวที่มีขอบเขตสองแบบ ข้อสองให้ทดสอบมุมหนึ่งด้วยภาพกรวย"
+    },
+    {
+     "s": 15.171,
+     "e": 21.934,
+     "en": "Item three is about a row that is active with a zero multiplier, and item four links back to Session 6.",
+     "th": "ข้อสามเป็นเรื่องแถวที่ active แต่ multiplier เป็นศูนย์ และข้อสี่เชื่อมกลับไปที่คาบที่ 6"
+    },
+    {
+     "s": 21.934,
+     "e": 28.934,
+     "en": "For item two, try to write minus grad f as a combination of the two gradients, and look at the sign of each weight.",
+     "th": "สำหรับข้อสอง ให้ลองเขียนลบ grad f เป็นการรวมของ gradient สองตัว แล้วดูเครื่องหมายของน้ำหนักแต่ละตัว"
+    },
+    {
+     "s": 28.934,
+     "e": 33.421,
+     "en": "Pause the narration, write your answers, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย เขียนคำตอบ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 23,
+   "file": "audio/slide-23.mp3",
+   "duration": 9.936,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.432,
+     "en": "Take a ten-minute break.",
+     "th": "พักสิบนาที"
+    },
+    {
+     "s": 2.432,
+     "e": 9.868,
+     "en": "When you come back, take out your card. You will write its Lagrangian and give each multiplier a unit.",
+     "th": "เมื่อกลับมา ให้หยิบการ์ดออกมา คุณจะเขียน Lagrangian ของมัน และให้หน่วยแก่ multiplier แต่ละตัว"
+    }
+   ]
+  },
+  {
+   "n": 24,
+   "file": "audio/slide-24.mp3",
+   "duration": 56.784,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.879,
+     "en": "Activity 2: your card with multipliers.",
+     "th": "กิจกรรมที่ 2 การ์ดของคุณพร้อม multiplier"
+    },
+    {
+     "s": 3.879,
+     "e": 13.671,
+     "en": "Write your card's model in the course form: minimize f, with rows g at most zero and h equal to zero. Include at least one nonlinear row.",
+     "th": "เขียนโมเดลบนการ์ดในรูปแบบของวิชา คือหาค่าต่ำสุดของ f โดยมีแถว g ไม่เกินศูนย์ และ h เท่ากับศูนย์ ให้มีแถวที่ไม่เชิงเส้นอย่างน้อยหนึ่งแถว"
+    },
+    {
+     "s": 13.671,
+     "e": 19.145,
+     "en": "Write the Lagrangian, and the stationarity condition for one decision variable.",
+     "th": "เขียน Lagrangian และเงื่อนไข stationarity สำหรับตัวแปรตัดสินใจหนึ่งตัว"
+    },
+    {
+     "s": 19.145,
+     "e": 24.079,
+     "en": "Say which rows you expect to be active at the optimum, and which inactive.",
+     "th": "บอกว่าแถวใดที่คุณคาดว่าจะ active ที่จุดเหมาะสมที่สุด และแถวใดไม่ active"
+    },
+    {
+     "s": 24.079,
+     "e": 30.895,
+     "en": "Then give the unit of each multiplier, and say in one sentence what the multiplier of your tightest row is worth.",
+     "th": "จากนั้นให้หน่วยของ multiplier แต่ละตัว และบอกในหนึ่งประโยคว่า multiplier ของแถวที่ตึงที่สุดมีค่าเท่าใด"
+    },
+    {
+     "s": 30.895,
+     "e": 42.145,
+     "en": "If your card maximizes something, write it as minimizing the negative. Then the multipliers come out in units of your objective per unit of the row, with this course's signs.",
+     "th": "ถ้าการ์ดของคุณหาค่าสูงสุดของบางอย่าง ให้เขียนเป็นการหาค่าต่ำสุดของค่าลบ แล้ว multiplier จะออกมาในหน่วยของฟังก์ชันเป้าหมายต่อหนึ่งหน่วยของแถว ด้วยเครื่องหมายของวิชานี้"
+    },
+    {
+     "s": 42.145,
+     "e": 50.066,
+     "en": "Swap with your partner, who checks the signs with the cone picture: is minus grad f in the cone of the gradients you expect to be active?",
+     "th": "แลกกับเพื่อน ซึ่งจะตรวจเครื่องหมายด้วยภาพกรวย ว่าลบ grad f อยู่ในกรวยของ gradient ที่คุณคาดว่าจะ active หรือไม่"
+    },
+    {
+     "s": 50.066,
+     "e": 56.724,
+     "en": "If your card has no nonlinear row, use the tank of slide 9 or the electrolyzers of slide 12.",
+     "th": "ถ้าการ์ดของคุณไม่มีแถวไม่เชิงเส้น ให้ใช้ถังในหน้า 9 หรือ electrolyzer ในหน้า 12"
+    }
+   ]
+  },
+  {
+   "n": 25,
+   "file": "audio/slide-25.mp3",
+   "duration": 119.664,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 9.132,
+     "en": "Part three: when do the KKT conditions work, and what do they prove? Start with a minimum that has no multipliers at all.",
+     "th": "ส่วนที่สาม เงื่อนไข KKT ใช้ได้เมื่อใด และพิสูจน์อะไร เริ่มจากค่าต่ำสุดที่ไม่มี multiplier เลย"
+    },
+    {
+     "s": 9.132,
+     "e": 18.253,
+     "en": "Minimize minus x one, so push x one as far right as you can, subject to x two at most one minus x one, cubed, and x two at least zero.",
+     "th": "หาค่าต่ำสุดของลบ x หนึ่ง คือดัน x หนึ่งไปทางขวาให้มากที่สุด ภายใต้ x สองไม่เกินหนึ่งลบ x หนึ่ง ยกกำลังสาม และ x สองไม่น้อยกว่าศูนย์"
+    },
+    {
+     "s": 18.253,
+     "e": 23.118,
+     "en": "The region narrows to a cusp at one, zero, and that cusp is the minimum.",
+     "th": "บริเวณแคบลงจนเป็นจุดแหลมที่หนึ่ง ศูนย์ และจุดแหลมนั้นคือค่าต่ำสุด"
+    },
+    {
+     "s": 23.118,
+     "e": 33.554,
+     "en": "At the cusp, the gradient of the first row is zero, one, and the gradient of the second row is zero, minus one. Minus grad f is one, zero.",
+     "th": "ที่จุดแหลม gradient ของแถวแรกคือศูนย์ หนึ่ง และ gradient ของแถวที่สองคือศูนย์ ลบหนึ่ง ลบ grad f คือหนึ่ง ศูนย์"
+    },
+    {
+     "s": 33.554,
+     "e": 44.066,
+     "en": "No non-negative combination of zero, one and zero, minus one gives one, zero. So no multipliers exist, even though the point is the minimum.",
+     "th": "ไม่มีการรวมที่ไม่ติดลบของศูนย์ หนึ่ง กับศูนย์ ลบหนึ่ง ที่ให้หนึ่ง ศูนย์ จึงไม่มี multiplier แม้ว่าจุดนั้นคือค่าต่ำสุด"
+    },
+    {
+     "s": 44.066,
+     "e": 55.763,
+     "en": "What went wrong? The linearized rows allow any step along x one, but the true region allows none to the right. The gradients misdescribe the region at the point.",
+     "th": "อะไรผิดพลาด แถวที่ทำให้เป็นเชิงเส้นยอมให้ก้าวไปตาม x หนึ่งได้ทุกทาง แต่บริเวณจริงไม่ยอมให้ไปทางขวาเลย gradient จึงอธิบายบริเวณที่จุดนั้นผิด"
+    },
+    {
+     "s": 55.763,
+     "e": 58.914,
+     "en": "A constraint qualification rules this out.",
+     "th": "constraint qualification ป้องกันกรณีนี้"
+    },
+    {
+     "s": 58.914,
+     "e": 69.833,
+     "en": "The linear independence constraint qualification, LICQ, asks that the gradients of the active rows, and of all equalities, are linearly independent.",
+     "th": "linear independence constraint qualification หรือ LICQ กำหนดให้ gradient ของแถวที่ active และของสมการทั้งหมดเป็นอิสระเชิงเส้น แล้ว"
+    },
+    {
+     "s": 69.833,
+     "e": 75.842,
+     "en": "Then multipliers exist, and they are unique. Here the two gradients are dependent.",
+     "th": "multiplier จะมีอยู่และมีค่าเดียว ที่นี่ gradient สองตัวไม่เป็นอิสระต่อกัน"
+    },
+    {
+     "s": 75.842,
+     "e": 87.109,
+     "en": "A weaker qualification, the Mangasarian–Fromovitz condition, asks only for a direction that strictly decreases every active inequality while keeping the equalities.",
+     "th": "qualification ที่อ่อนกว่า คือเงื่อนไข Mangasarian–Fromovitz ต้องการเพียงทิศทางที่ลดอสมการที่ active ทุกตัวอย่างเข้ม โดยรักษาสมการไว้ ภายใต้เงื่อนไขนี้"
+    },
+    {
+     "s": 87.109,
+     "e": 93.118,
+     "en": "Under it multipliers exist, though they may not be unique. At the cusp it fails as well.",
+     "th": "multiplier มีอยู่ แม้อาจไม่มีค่าเดียว ที่จุดแหลมเงื่อนไขนี้ก็ไม่เป็นจริงเช่นกัน"
+    },
+    {
+     "s": 93.118,
+     "e": 104.0,
+     "en": "For convex problems, Slater's condition is easier to check: some point satisfies every inequality strictly. Then the KKT conditions are necessary.",
+     "th": "สำหรับปัญหา convex เงื่อนไขของ Slater ตรวจได้ง่ายกว่า คือมีจุดหนึ่งที่ทำให้อสมการทุกตัวเป็นจริงอย่างเข้ม แล้วเงื่อนไข KKT จะเป็นเงื่อนไขจำเป็น"
+    },
+    {
+     "s": 104.0,
+     "e": 117.374,
+     "en": "One practical trap: writing an equality h equal to zero as h squared at most zero. That row's gradient is zero at every feasible point, so no qualification holds, and solvers stall.",
+     "th": "กับดักในทางปฏิบัติหนึ่งข้อ คือการเขียนสมการ h เท่ากับศูนย์ เป็น h กำลังสองไม่เกินศูนย์ gradient ของแถวนั้นเป็นศูนย์ที่ทุกจุดที่เป็นไปได้ จึงไม่มี qualification ใดเป็นจริง และ solver"
+    },
+    {
+     "s": 117.374,
+     "e": 119.579,
+     "en": "Keep equalities as equalities.",
+     "th": "จะติดขัด ให้เขียนสมการเป็นสมการ"
+    }
+   ]
+  },
+  {
+   "n": 26,
+   "file": "audio/slide-26.mp3",
+   "duration": 97.944,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.195,
+     "en": "Now the two directions of the theorem.",
+     "th": "ต่อไปคือสองทิศทางของทฤษฎีบท"
+    },
+    {
+     "s": 3.195,
+     "e": 14.803,
+     "en": "Necessary: if x star is a local minimum and a qualification holds, multipliers exist that satisfy the four conditions. This is what makes the conditions a search tool.",
+     "th": "เงื่อนไขจำเป็น ถ้า x star เป็นค่าต่ำสุดเฉพาะที่และ qualification เป็นจริง จะมี multiplier ที่ทำให้เงื่อนไขทั้งสี่เป็นจริง นี่คือสิ่งที่ทำให้เงื่อนไขเหล่านี้เป็นเครื่องมือค้นหา"
+    },
+    {
+     "s": 14.803,
+     "e": 24.605,
+     "en": "Sufficient: if f and every g are convex, and every h is affine, then a KKT point is a global minimum. The proof takes three lines.",
+     "th": "เงื่อนไขเพียงพอ ถ้า f และ g ทุกตัวเป็น convex และ h ทุกตัวเป็น affine จุด KKT จะเป็นค่าต่ำสุดวงกว้าง บทพิสูจน์ใช้สามบรรทัด"
+    },
+    {
+     "s": 24.605,
+     "e": 36.209,
+     "en": "For any feasible x, f of x is at least f of x plus the sum of mu times g, because each mu is non-negative and each g is non-positive; the equality terms are zero.",
+     "th": "สำหรับ x ใด ๆ ที่เป็นไปได้ f ของ x ไม่น้อยกว่า f ของ x บวกผลรวมของ mu คูณ g เพราะ mu แต่ละตัวไม่ติดลบ และ g แต่ละตัวไม่เป็นบวก ส่วนพจน์สมการเป็นศูนย์"
+    },
+    {
+     "s": 36.209,
+     "e": 38.487,
+     "en": "That sum is the Lagrangian at x.",
+     "th": "ผลรวมนั้นคือ Lagrangian ที่ x"
+    },
+    {
+     "s": 38.487,
+     "e": 46.816,
+     "en": "The Lagrangian is convex in x, and its gradient is zero at x star, so its value at x is at least its value at x star.",
+     "th": "Lagrangian เป็น convex ใน x และ gradient ของมันเป็นศูนย์ที่ x star ค่าของมันที่ x จึงไม่น้อยกว่าค่าที่ x star"
+    },
+    {
+     "s": 46.816,
+     "e": 57.447,
+     "en": "And at x star, complementarity makes the Lagrangian equal to f of x star. So f of x is at least f of x star, for every feasible x.",
+     "th": "และที่ x star complementarity ทำให้ Lagrangian เท่ากับ f ของ x star ดังนั้น f ของ x ไม่น้อยกว่า f ของ x star สำหรับทุก x ที่เป็นไปได้"
+    },
+    {
+     "s": 57.447,
+     "e": 65.985,
+     "en": "The table puts this in Session 5's map. For an LP, a KKT point is a global optimum, with no qualification needed.",
+     "th": "ตารางวางสิ่งนี้ลงในแผนที่ของคาบที่ 5 สำหรับ LP จุด KKT คือจุดเหมาะสมที่สุดวงกว้าง โดยไม่ต้องมี qualification"
+    },
+    {
+     "s": 65.985,
+     "e": 73.026,
+     "en": "For a convex problem with Slater's condition, KKT points and global optima are the same thing.",
+     "th": "สำหรับปัญหา convex ที่มีเงื่อนไขของ Slater จุด KKT กับจุดเหมาะสมที่สุดวงกว้างคือสิ่งเดียวกัน"
+    },
+    {
+     "s": 73.026,
+     "e": 82.171,
+     "en": "For a nonconvex problem, a KKT point is only a candidate: a local minimum, a saddle, or even a local maximum, as on the ellipse.",
+     "th": "สำหรับปัญหาที่ไม่ convex จุด KKT เป็นเพียงผู้สมัคร อาจเป็นค่าต่ำสุดเฉพาะที่ จุดอานม้า หรือแม้แต่ค่าสูงสุดเฉพาะที่ เหมือนบนวงรี"
+    },
+    {
+     "s": 82.171,
+     "e": 90.434,
+     "en": "The ellipse is not a convex set; it is a curve. That is why a local maximum can pass the first-order test there.",
+     "th": "วงรีไม่ใช่เซต convex แต่เป็นเส้นโค้ง นั่นคือเหตุที่ค่าสูงสุดเฉพาะที่ผ่านการทดสอบอันดับหนึ่งได้ที่นั่น"
+    },
+    {
+     "s": 90.434,
+     "e": 97.868,
+     "en": "The tank, the electrolyzers and Lab 7 are convex once written in the right form, so their KKT points are global.",
+     "th": "ถัง electrolyzer และ Lab 7 เป็น convex เมื่อเขียนในรูปที่เหมาะสม จุด KKT ของมันจึงเป็นจุดวงกว้าง"
+    }
+   ]
+  },
+  {
+   "n": 27,
+   "file": "audio/slide-27.mp3",
+   "duration": 102.432,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.8,
+     "en": "For nonconvex problems we need more: second-order conditions.",
+     "th": "สำหรับปัญหาที่ไม่ convex เราต้องการมากกว่านั้น คือเงื่อนไขอันดับสอง"
+    },
+    {
+     "s": 4.8,
+     "e": 13.178,
+     "en": "The right Hessian is the Hessian of the Lagrangian: the Hessian of f, plus mu times the Hessians of the g, plus lambda times the Hessians of the h.",
+     "th": "Hessian ที่ถูกต้องคือ Hessian ของ Lagrangian คือ Hessian ของ f บวก mu คูณ Hessian ของ g บวก lambda คูณ Hessian ของ h"
+    },
+    {
+     "s": 13.178,
+     "e": 22.526,
+     "en": "Test it only in directions that keep the active rows: directions d with grad h dot d equal to zero, and grad g dot d equal to zero for active rows with a positive mu.",
+     "th": "ทดสอบเฉพาะในทิศทางที่ยังรักษาแถวที่ active ไว้ คือทิศทาง d ที่ grad h dot d เท่ากับศูนย์ และ grad g dot d เท่ากับศูนย์สำหรับแถวที่ active และมี mu เป็นบวก"
+    },
+    {
+     "s": 22.526,
+     "e": 28.553,
+     "en": "In words: only the directions in which you can still move without leaving the active rows matter.",
+     "th": "พูดง่าย ๆ คือ เฉพาะทิศทางที่ยังเคลื่อนได้โดยไม่ออกจากแถวที่ active เท่านั้นที่สำคัญ"
+    },
+    {
+     "s": 28.553,
+     "e": 36.487,
+     "en": "Directions that leave an active row with a positive multiplier already raise f to first order, so they need no second-order test.",
+     "th": "ทิศทางที่ออกจากแถวที่ active และมี multiplier เป็นบวก ทำให้ f เพิ่มขึ้นในอันดับหนึ่งอยู่แล้ว จึงไม่ต้องทดสอบอันดับสอง"
+    },
+    {
+     "s": 36.487,
+     "e": 49.342,
+     "en": "If d transpose, times this Hessian, times d, is positive for every such nonzero d, the point is a strict local minimum. And if the point is a local minimum, that quantity cannot be negative.",
+     "th": "ถ้า d transpose คูณ Hessian นี้ คูณ d เป็นบวกสำหรับทุก d ที่ไม่เป็นศูนย์แบบนั้น จุดนั้นเป็นค่าต่ำสุดเฉพาะที่แบบเข้ม และถ้าจุดนั้นเป็นค่าต่ำสุดเฉพาะที่ ปริมาณนั้นจะเป็นลบไม่ได้"
+    },
+    {
+     "s": 49.342,
+     "e": 60.675,
+     "en": "The table shows the four stationary points of the ellipse. The Hessian of f alone is two times the identity, positive definite everywhere, so it cannot tell them apart.",
+     "th": "ตารางแสดงจุดคงตัวสี่จุดของวงรี Hessian ของ f เพียงอย่างเดียวคือสองคูณเมทริกซ์เอกลักษณ์ ซึ่งเป็นบวกแน่นอนทุกที่ จึงแยกจุดเหล่านี้ไม่ได้"
+    },
+    {
+     "s": 60.675,
+     "e": 63.961,
+     "en": "Yet two of the points are maxima along the curve.",
+     "th": "แต่สองจุดในนั้นเป็นค่าสูงสุดตามเส้นโค้ง"
+    },
+    {
+     "s": 63.961,
+     "e": 71.491,
+     "en": "The difference is the curvature of the constraint, which enters through lambda times the Hessian of h.",
+     "th": "ความแตกต่างคือความโค้งของข้อจำกัด ซึ่งเข้ามาผ่าน lambda คูณ Hessian ของ h ตามเส้นสัมผัส"
+    },
+    {
+     "s": 71.491,
+     "e": 80.921,
+     "en": "Along the tangent, the Lagrangian has curvature 1.65 and 1.17 at the two minima, and minus 2.97 and minus 8.20 at the two maxima.",
+     "th": "Lagrangian มีความโค้ง 1.65 และ 1.17 ที่ค่าต่ำสุดสองจุด และลบ 2.97 และลบ 8.20 ที่ค่าสูงสุดสองจุด"
+    },
+    {
+     "s": 80.921,
+     "e": 93.0,
+     "en": "With a row that is active but has a zero multiplier, the test needs more care, and solvers check a similar reduced Hessian. Session 5's Hessian test is the special case with no rows.",
+     "th": "เมื่อมีแถวที่ active แต่ multiplier เป็นศูนย์ การทดสอบต้องระวังมากขึ้น และ solver ตรวจ reduced Hessian ในลักษณะคล้ายกัน การทดสอบ Hessian ของคาบที่ 5 คือกรณีพิเศษที่ไม่มีแถว"
+    },
+    {
+     "s": 93.0,
+     "e": 102.355,
+     "en": "For the tank of slide 9, the same test along the volume constraint gives the positive second derivative you saw there, so h equal to two r is a minimum.",
+     "th": "สำหรับถังในหน้า 9 การทดสอบเดียวกันตามข้อจำกัดปริมาตรให้อนุพันธ์อันดับสองที่เป็นบวกที่คุณเห็นไปแล้ว h เท่ากับสอง r จึงเป็นค่าต่ำสุด"
+    }
+   ]
+  },
+  {
+   "n": 28,
+   "file": "audio/slide-28.mp3",
+   "duration": 29.208,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 8.132,
+     "en": "Check your understanding: qualifications, convexity and curvature. Four items, about five minutes.",
+     "th": "ตรวจความเข้าใจเรื่อง qualification, convexity และความโค้ง สี่ข้อ ประมาณห้านาที"
+    },
+    {
+     "s": 8.132,
+     "e": 15.289,
+     "en": "Item one returns to the cusp, item two to the convex case, and item three to the curvature along a constraint.",
+     "th": "ข้อหนึ่งกลับไปที่จุดแหลม ข้อสองที่กรณี convex และข้อสามที่ความโค้งตามข้อจำกัด"
+    },
+    {
+     "s": 15.289,
+     "e": 19.25,
+     "en": "Item four is a modeling trap you will meet in practice.",
+     "th": "ข้อสี่คือกับดักการสร้างโมเดลที่คุณจะพบในทางปฏิบัติ"
+    },
+    {
+     "s": 19.25,
+     "e": 24.658,
+     "en": "For item four, think about the gradient of the squared row at a feasible point.",
+     "th": "สำหรับข้อสี่ ให้คิดถึง gradient ของแถวที่ยกกำลังสองที่จุดที่เป็นไปได้"
+    },
+    {
+     "s": 24.658,
+     "e": 29.145,
+     "en": "Pause the narration, write your answers, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย เขียนคำตอบ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 29,
+   "file": "audio/slide-29.mp3",
+   "duration": 136.968,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 9.697,
+     "en": "Session 6 found the best bound on an LP by weighting the rows. The same construction works for any problem: it is the Lagrangian dual.",
+     "th": "คาบที่ 6 หาขอบที่ดีที่สุดของ LP ด้วยการถ่วงน้ำหนักแถว วิธีเดียวกันใช้ได้กับปัญหาทุกแบบ นั่นคือ Lagrangian dual"
+    },
+    {
+     "s": 9.697,
+     "e": 15.961,
+     "en": "For a fixed mu at least zero, minimize the Lagrangian over x. Call the result q of mu.",
+     "th": "สำหรับ mu ที่ไม่ติดลบค่าหนึ่ง หาค่าต่ำสุดของ Lagrangian เทียบ x เรียกผลลัพธ์ว่า q ของ mu"
+    },
+    {
+     "s": 15.961,
+     "e": 28.789,
+     "en": "For any feasible x, mu times g of x is at most zero, so the Lagrangian at x is at most f of x, and q of mu is at most f of x. Every mu gives a lower bound on the best value.",
+     "th": "สำหรับ x ใด ๆ ที่เป็นไปได้ mu คูณ g ของ x ไม่เกินศูนย์ Lagrangian ที่ x จึงไม่เกิน f ของ x และ q ของ mu ก็ไม่เกิน f ของ x mu ทุกค่าจึงให้ขอบล่างของค่าที่ดีที่สุด"
+    },
+    {
+     "s": 28.789,
+     "e": 41.684,
+     "en": "The dual problem maximizes q over mu at least zero. Its value, d star, is at most f star: weak duality. And q is always concave, even when f is not.",
+     "th": "ปัญหา dual หาค่าสูงสุดของ q บน mu ที่ไม่ติดลบ ค่าของมัน d star ไม่เกิน f star นั่นคือ weak duality และ q เป็น concave เสมอ แม้ f จะไม่เป็นก็ตาม"
+    },
+    {
+     "s": 41.684,
+     "e": 56.722,
+     "en": "In the convex example, minimize x squared subject to x at least one, q of mu is mu minus mu squared over four. Move mu. On the left, the amber Lagrangian tilts, and its minimum moves.",
+     "th": "ในตัวอย่าง convex คือหาค่าต่ำสุดของ x กำลังสองภายใต้ x ไม่น้อยกว่าหนึ่ง q ของ mu เท่ากับ mu ลบ mu กำลังสองหารสี่ เลื่อน mu ทางซ้าย Lagrangian สีส้มเอียง และจุดต่ำสุดของมันเคลื่อนที่"
+    },
+    {
+     "s": 56.722,
+     "e": 63.342,
+     "en": "On the right, q rises to one at mu equal to two, exactly f star. There is no gap.",
+     "th": "ทางขวา q ขึ้นไปถึงหนึ่งที่ mu เท่ากับสอง ซึ่งเท่ากับ f star พอดี ไม่มีช่องว่าง"
+    },
+    {
+     "s": 63.342,
+     "e": 73.816,
+     "en": "You can derive it in one line: the derivative of the Lagrangian, two x minus mu, is zero at x equal to mu over two, and putting that back gives mu minus mu squared over four.",
+     "th": "หาได้ในบรรทัดเดียว อนุพันธ์ของ Lagrangian คือสอง x ลบ mu เป็นศูนย์ที่ x เท่ากับ mu หารสอง แทนกลับไปจะได้ mu ลบ mu กำลังสองหารสี่"
+    },
+    {
+     "s": 73.816,
+     "e": 84.921,
+     "en": "Switch to the nonconvex example: minimize minus x squared on the interval from minus one to two, subject to x at most one. The best value is minus one.",
+     "th": "สลับไปที่ตัวอย่างที่ไม่ convex คือหาค่าต่ำสุดของลบ x กำลังสองบนช่วงลบหนึ่งถึงสอง ภายใต้ x ไม่เกินหนึ่ง ค่าที่ดีที่สุดคือลบหนึ่ง"
+    },
+    {
+     "s": 84.921,
+     "e": 97.012,
+     "en": "But the minimizer of the Lagrangian jumps between the ends of the interval, and q of mu is the smaller of two lines. Its best value is minus three, at mu equal to one.",
+     "th": "แต่จุดต่ำสุดของ Lagrangian กระโดดไปมาระหว่างปลายทั้งสองของช่วง และ q ของ mu คือค่าที่น้อยกว่าของเส้นตรงสองเส้น ค่าที่ดีที่สุดของมันคือลบสามที่ mu เท่ากับหนึ่ง"
+    },
+    {
+     "s": 97.012,
+     "e": 99.171,
+     "en": "There is a duality gap of two.",
+     "th": "จึงมี duality gap เท่ากับสอง"
+    },
+    {
+     "s": 99.171,
+     "e": 103.888,
+     "en": "So for convex problems with Slater's condition, the best bound is exact.",
+     "th": "ดังนั้นสำหรับปัญหา convex ที่มีเงื่อนไขของ Slater ขอบที่ดีที่สุดจะพอดี"
+    },
+    {
+     "s": 103.888,
+     "e": 114.355,
+     "en": "For nonconvex problems, the dual still gives a valid bound, the kind of bound that branch and bound needs, as in Sessions 3 and 5, but the bound may not be tight.",
+     "th": "สำหรับปัญหาที่ไม่ convex dual ยังให้ขอบที่ใช้ได้ ซึ่งเป็นขอบแบบที่ branch and bound ต้องการ เหมือนในคาบที่ 3 และ 5 แต่ขอบนั้นอาจไม่แนบสนิท"
+    },
+    {
+     "s": 114.355,
+     "e": 123.981,
+     "en": "The dual is also a practical tool. In large scheduling problems, the rows that couple the units are moved into the Lagrangian with multipliers.",
+     "th": "dual ยังเป็นเครื่องมือในทางปฏิบัติด้วย ในปัญหาการจัดตารางขนาดใหญ่ แถวที่เชื่อมหน่วยต่าง ๆ เข้าด้วยกันจะถูกย้ายเข้าไปใน Lagrangian"
+    },
+    {
+     "s": 123.981,
+     "e": 132.002,
+     "en": "The problem then splits into one small problem per unit, and the multipliers are adjusted until the coupling rows hold.",
+     "th": "พร้อม multiplier แล้วปัญหาจะแยกเป็นปัญหาเล็กหนึ่งปัญหาต่อหนึ่งหน่วย และปรับ multiplier จนแถวที่เชื่อมกันเป็นจริง"
+    },
+    {
+     "s": 132.002,
+     "e": 136.882,
+     "en": "This is Lagrangian relaxation, used for unit commitment in power systems.",
+     "th": "นี่คือ Lagrangian relaxation ที่ใช้กับ unit commitment ในระบบไฟฟ้า"
+    }
+   ]
+  },
+  {
+   "n": 30,
+   "file": "audio/slide-30.mp3",
+   "duration": 118.752,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.839,
+     "en": "What do solvers report, and how should you check it?",
+     "th": "solver รายงานอะไร และคุณควรตรวจอย่างไร"
+    },
+    {
+     "s": 3.839,
+     "e": 14.902,
+     "en": "SciPy's SLSQP writes inequalities as c of x at least zero. From SciPy 1.16 it returns multipliers in res dot multipliers, equalities first.",
+     "th": "SLSQP ของ SciPy เขียนอสมการเป็น c ของ x ไม่น้อยกว่าศูนย์ ตั้งแต่ SciPy 1.16 มันคืนค่า multiplier ใน res dot multipliers โดยเรียงสมการก่อน"
+    },
+    {
+     "s": 14.902,
+     "e": 21.303,
+     "en": "For rows written as c at least zero, they come out non-negative, matching our mu.",
+     "th": "สำหรับแถวที่เขียนเป็น c ไม่น้อยกว่าศูนย์ ค่าจะออกมาไม่ติดลบ ตรงกับ mu ของเรา"
+    },
+    {
+     "s": 21.303,
+     "e": 30.105,
+     "en": "SLSQP stops when the change in f is small and the rows are satisfied. It does not report KKT residuals.",
+     "th": "SLSQP หยุดเมื่อการเปลี่ยนของ f มีค่าน้อยและแถวต่าง ๆ เป็นจริง มันไม่รายงานค่า residual ของ KKT"
+    },
+    {
+     "s": 30.105,
+     "e": 36.717,
+     "en": "SciPy's trust-constr method takes rows as lower bound, at most c of x, at most upper bound.",
+     "th": "วิธี trust-constr ของ SciPy รับแถวในรูปขอบล่างไม่เกิน c ของ x ไม่เกินขอบบน"
+    },
+    {
+     "s": 36.717,
+     "e": 44.263,
+     "en": "It returns multipliers in res dot v, and it stops on its optimality measure and its constraint violation.",
+     "th": "คืนค่า multiplier ใน res dot v และหยุดตามค่าวัด optimality และการละเมิดข้อจำกัดของมัน"
+    },
+    {
+     "s": 44.263,
+     "e": 52.907,
+     "en": "Ipopt, used through Pyomo or cyipopt, returns multipliers for rows and for bounds, and Pyomo imports them through a dual suffix.",
+     "th": "Ipopt ที่ใช้ผ่าน Pyomo หรือ cyipopt คืนค่า multiplier ของแถวและของขอบเขต และ Pyomo นำเข้าผ่าน dual suffix ค่า overall"
+    },
+    {
+     "s": 52.907,
+     "e": 62.289,
+     "en": "Ipopt's overall NLP error combines scaled stationarity, which Ipopt calls dual infeasibility, the constraint violation, and complementarity.",
+     "th": "NLP error ของ Ipopt รวม stationarity ที่ปรับสเกลแล้ว ซึ่ง Ipopt เรียกว่า dual infeasibility การละเมิดข้อจำกัด และ complementarity"
+    },
+    {
+     "s": 62.289,
+     "e": 69.382,
+     "en": "Note the clash of names: our dual residual, mu at least zero, is kept by the interior-point method itself.",
+     "th": "สังเกตว่าชื่อซ้ำกัน dual residual ของเรา คือ mu ไม่ติดลบ ถูกรักษาไว้โดยวิธี interior point เอง"
+    },
+    {
+     "s": 69.382,
+     "e": 76.515,
+     "en": "Because sign conventions differ, convert every reported multiplier to the course form, then confirm one by a small re-solve:",
+     "th": "เพราะข้อตกลงเรื่องเครื่องหมายต่างกัน ให้แปลง multiplier ทุกตัวที่รายงานมาเป็นรูปแบบของวิชา แล้วยืนยันหนึ่งค่าด้วยการแก้ใหม่เล็กน้อย"
+    },
+    {
+     "s": 76.515,
+     "e": 80.395,
+     "en": "the change in v star should be about minus mu times the change in b.",
+     "th": "การเปลี่ยนของ v star ควรประมาณลบ mu คูณการเปลี่ยนของ b"
+    },
+    {
+     "s": 80.395,
+     "e": 93.978,
+     "en": "If a solver gives no multipliers, take the rows with g near zero and solve the stationarity condition for mu by least squares. The code on this slide does that for the problem of slide 19.",
+     "th": "ถ้า solver ไม่ให้ multiplier ให้เลือกแถวที่ g ใกล้ศูนย์ แล้วแก้เงื่อนไข stationarity หา mu ด้วยวิธีกำลังสองน้อยที่สุด โค้ดในหน้านี้ทำเช่นนั้นกับปัญหาในหน้า 19 SLSQP"
+    },
+    {
+     "s": 93.978,
+     "e": 101.237,
+     "en": "SLSQP returns 1.5, 1.5, and the multipliers come out as one and two, with all four residuals at zero.",
+     "th": "คืนค่า 1.5, 1.5 และ multiplier ออกมาเป็นหนึ่งและสอง โดยค่า residual ทั้งสี่เป็นศูนย์"
+    },
+    {
+     "s": 101.237,
+     "e": 109.118,
+     "en": "Very large multipliers, or multipliers that jump between nearby runs, signal a failing qualification or bad scaling.",
+     "th": "multiplier ที่ใหญ่มาก หรือที่กระโดดไปมาระหว่างการรันที่ใกล้เคียงกัน เป็นสัญญาณของ qualification ที่ไม่เป็นจริง หรือการปรับสเกลที่ไม่ดี"
+    },
+    {
+     "s": 109.118,
+     "e": 118.684,
+     "en": "A good habit for any study: report the solver and its version, the tolerances, the four residuals at the answer, and one multiplier checked by a re-solve.",
+     "th": "นิสัยที่ดีสำหรับทุกการศึกษา คือรายงาน solver และรุ่นของมัน ค่าความคลาดเคลื่อนที่ยอมรับ ค่า residual ทั้งสี่ที่คำตอบ และ multiplier หนึ่งตัวที่ตรวจด้วยการแก้ใหม่"
+    }
+   ]
+  },
+  {
+   "n": 31,
+   "file": "audio/slide-31.mp3",
+   "duration": 98.424,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.947,
+     "en": "What do the multipliers of a process model mean? The table collects the common cases.",
+     "th": "multiplier ของโมเดลกระบวนการหมายถึงอะไร ตารางรวบรวมกรณีที่พบบ่อย"
+    },
+    {
+     "s": 6.947,
+     "e": 17.11,
+     "en": "The multiplier of a component balance at a node is the marginal value of that component there, in dollars per kilomole. It can have either sign.",
+     "th": "multiplier ของสมดุลองค์ประกอบที่จุดหนึ่ง คือมูลค่าส่วนเพิ่มขององค์ประกอบนั้นที่จุดนั้น ในหน่วยดอลลาร์ต่อกิโลโมล อาจเป็นบวกหรือลบก็ได้"
+    },
+    {
+     "s": 17.11,
+     "e": 20.684,
+     "en": "Session 4's value of oil by month was exactly this.",
+     "th": "มูลค่าน้ำมันรายเดือนในคาบที่ 4 คือสิ่งนี้พอดี"
+    },
+    {
+     "s": 20.684,
+     "e": 29.684,
+     "en": "The multiplier of an energy balance or a utility limit is the value of one more kilowatt of steam or cooling, as for the cooling row of Lab 7.",
+     "th": "multiplier ของสมดุลพลังงานหรือขีดจำกัดสาธารณูปโภค คือมูลค่าของไอน้ำหรือการหล่อเย็นที่เพิ่มหนึ่งกิโลวัตต์ เหมือนแถวการหล่อเย็นใน Lab 7"
+    },
+    {
+     "s": 29.684,
+     "e": 38.368,
+     "en": "A capacity row has a non-negative multiplier: the value of debottlenecking. It is zero unless the unit is full.",
+     "th": "แถวกำลังการผลิตมี multiplier ที่ไม่ติดลบ คือมูลค่าของการขยายคอขวด ซึ่งเป็นศูนย์เว้นแต่หน่วยนั้นเต็ม"
+    },
+    {
+     "s": 38.368,
+     "e": 47.789,
+     "en": "A product specification has the cost of tightening it by one unit. Session 2's price of one octane number was such a multiplier.",
+     "th": "ข้อกำหนดผลิตภัณฑ์มีต้นทุนของการทำให้เข้มขึ้นหนึ่งหน่วย ราคาของค่าออกเทนหนึ่งหน่วยในคาบที่ 2 คือ multiplier แบบนี้"
+    },
+    {
+     "s": 47.789,
+     "e": 54.439,
+     "en": "In a Gibbs energy minimization, the multipliers of the element balances are element potentials.",
+     "th": "ในการหาค่าต่ำสุดของพลังงาน Gibbs multiplier ของสมดุลธาตุคือศักย์ของธาตุ"
+    },
+    {
+     "s": 54.439,
+     "e": 65.868,
+     "en": "At equilibrium, each species' chemical potential is the sum of the potentials of its elements, counted by atoms. Session 5's isomer equilibrium is the simplest case.",
+     "th": "ที่สมดุล ศักย์เคมีของแต่ละสปีชีส์เท่ากับผลรวมของศักย์ของธาตุที่ประกอบมัน นับตามจำนวนอะตอม สมดุลไอโซเมอร์ในคาบที่ 5 คือกรณีที่ง่ายที่สุด"
+    },
+    {
+     "s": 65.868,
+     "e": 75.25,
+     "en": "And in a dynamic model, the multipliers of the state equations are the costates of Session 11: the value of one more unit of a state at a given time.",
+     "th": "และในโมเดลพลวัต multiplier ของสมการสถานะคือ costate ของคาบที่ 11 คือมูลค่าของสถานะที่เพิ่มหนึ่งหน่วยในเวลาหนึ่ง"
+    },
+    {
+     "s": 75.25,
+     "e": 86.579,
+     "en": "In every case, the unit of the multiplier is the unit of the objective per unit of the row. If that unit does not make sense for your model, the form or the sign is wrong.",
+     "th": "ในทุกกรณี หน่วยของ multiplier คือหน่วยของฟังก์ชันเป้าหมายต่อหนึ่งหน่วยของแถว ถ้าหน่วยนั้นไม่สมเหตุสมผลสำหรับโมเดลของคุณ แสดงว่ารูปแบบหรือเครื่องหมายผิด"
+    },
+    {
+     "s": 86.579,
+     "e": 98.355,
+     "en": "A design rule follows. Spend money on the rows with large multipliers. A row with a zero multiplier has slack, and relaxing it buys nothing at the margin.",
+     "th": "จากนี้ได้กฎการออกแบบหนึ่งข้อ ใช้เงินกับแถวที่มี multiplier ใหญ่ แถวที่มี multiplier เป็นศูนย์มีส่วนเหลือ และการผ่อนมันไม่ได้อะไรเลยที่ส่วนเพิ่ม"
+    }
+   ]
+  },
+  {
+   "n": 32,
+   "file": "audio/slide-32.mp3",
+   "duration": 34.152,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.908,
+     "en": "Check your understanding: duals, solvers and meaning. Four items, about five minutes.",
+     "th": "ตรวจความเข้าใจเรื่อง dual, solver และความหมาย สี่ข้อ ประมาณห้านาที"
+    },
+    {
+     "s": 6.908,
+     "e": 16.316,
+     "en": "Item one finds the best bound of the convex dual example. Item two asks whether to accept a solver's answer from its residuals.",
+     "th": "ข้อหนึ่งหาขอบที่ดีที่สุดของตัวอย่าง dual แบบ convex ข้อสองถามว่าจะยอมรับคำตอบของ solver จากค่า residual หรือไม่"
+    },
+    {
+     "s": 16.316,
+     "e": 23.763,
+     "en": "Item three converts a solver's multiplier to the course form and uses it, and item four reads a zero multiplier.",
+     "th": "ข้อสามแปลง multiplier ของ solver เป็นรูปแบบของวิชาแล้วนำไปใช้ และข้อสี่อ่าน multiplier ที่เป็นศูนย์"
+    },
+    {
+     "s": 23.763,
+     "e": 29.605,
+     "en": "For item three, rewrite the row in the course form first, then use the rule of slide 20.",
+     "th": "สำหรับข้อสาม ให้เขียนแถวใหม่ในรูปแบบของวิชาก่อน แล้วใช้กฎในหน้า 20"
+    },
+    {
+     "s": 29.605,
+     "e": 34.092,
+     "en": "Pause the narration, write your answers, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย เขียนคำตอบ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 33,
+   "file": "audio/slide-33.mp3",
+   "duration": 60.984,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.629,
+     "en": "Multipliers run through the rest of the course.",
+     "th": "multiplier ปรากฏตลอดส่วนที่เหลือของวิชา"
+    },
+    {
+     "s": 3.629,
+     "e": 11.829,
+     "en": "Session 8's algorithms, gradient descent, Newton and BFGS, solve stationarity with no rows: grad f equal to zero.",
+     "th": "อัลกอริทึมในคาบที่ 8 ได้แก่ gradient descent, Newton และ BFGS แก้เงื่อนไข stationarity ที่ไม่มีแถว คือ grad f เท่ากับศูนย์"
+    },
+    {
+     "s": 11.829,
+     "e": 24.325,
+     "en": "Session 9's constrained solvers are built on today's conditions. SQP applies Newton's method to the KKT conditions. Active-set methods search guesses, as on slide 19, with rules.",
+     "th": "solver ที่มีข้อจำกัดในคาบที่ 9 สร้างบนเงื่อนไขของวันนี้ SQP ใช้วิธีของ Newton กับเงื่อนไข KKT วิธี active set ค้นหาการเดาแบบในหน้า 19 ด้วยกฎ และวิธี"
+    },
+    {
+     "s": 24.325,
+     "e": 35.355,
+     "en": "And interior-point methods relax complementarity, replacing mu times g equal to zero with mu times g equal to a small negative number that they drive to zero.",
+     "th": "interior point ผ่อน complementarity โดยแทน mu คูณ g เท่ากับศูนย์ ด้วย mu คูณ g เท่ากับจำนวนลบเล็ก ๆ ที่มันผลักให้เข้าใกล้ศูนย์"
+    },
+    {
+     "s": 35.355,
+     "e": 46.398,
+     "en": "In Session 10, the curvature test of today becomes the confidence region of a fitted model. In Session 11, the multipliers of the state equations are the costates.",
+     "th": "ในคาบที่ 10 การทดสอบความโค้งของวันนี้กลายเป็นบริเวณความเชื่อมั่นของโมเดลที่ฟิต ในคาบที่ 11 multiplier ของสมการสถานะคือ costate"
+    },
+    {
+     "s": 46.398,
+     "e": 53.737,
+     "en": "And in Session 13, the multiplier of an epsilon-constraint row is the trade-off price between two objectives.",
+     "th": "และในคาบที่ 13 multiplier ของแถว epsilon-constraint คือราคาแลกเปลี่ยนระหว่างวัตถุประสงค์สองตัว"
+    },
+    {
+     "s": 53.737,
+     "e": 60.908,
+     "en": "For your project, report the four KKT residuals, and one multiplier with its unit and a re-solve check.",
+     "th": "สำหรับโครงงาน ให้รายงานค่า residual ของ KKT ทั้งสี่ และ multiplier หนึ่งตัวพร้อมหน่วยและการตรวจด้วยการแก้ใหม่"
+    }
+   ]
+  },
+  {
+   "n": 34,
+   "file": "audio/slide-34.mp3",
+   "duration": 69.168,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.668,
+     "en": "Lab 7 applies today's tools to a plant: three CSTRs in parallel share fifteen cubic meters per hour of feed.",
+     "th": "Lab 7 ใช้เครื่องมือของวันนี้กับโรงงาน CSTR สามเครื่องที่ต่อขนานกันแบ่งสารป้อนสิบห้าลูกบาศก์เมตรต่อชั่วโมง"
+    },
+    {
+     "s": 7.668,
+     "e": 18.342,
+     "en": "Each reactor makes more product per cubic meter when it gets less feed, so the split matters. One reactor has a cooling limit, and another needs a minimum flow.",
+     "th": "เครื่องปฏิกรณ์แต่ละเครื่องผลิตได้มากขึ้นต่อลูกบาศก์เมตรเมื่อได้รับสารป้อนน้อยลง การแบ่งจึงสำคัญ เครื่องหนึ่งมีขีดจำกัดการหล่อเย็น และอีกเครื่องต้องการอัตราไหลขั้นต่ำ"
+    },
+    {
+     "s": 18.342,
+     "e": 30.808,
+     "en": "In each reactor, the product made is C A0 times F times k V, over F plus k V. It rises with F, but more and more slowly, so the marginal yield falls as a reactor gets more feed:",
+     "th": "ในเครื่องปฏิกรณ์แต่ละเครื่อง ผลิตภัณฑ์ที่ได้คือ C A0 คูณ F คูณ k V หารด้วย F บวก k V มันเพิ่มตาม F แต่เพิ่มช้าลงเรื่อย ๆ ผลได้ส่วนเพิ่มจึงลดลงเมื่อเครื่องปฏิกรณ์ได้รับสารป้อนมากขึ้น"
+    },
+    {
+     "s": 30.808,
+     "e": 33.329,
+     "en": "the same shape as the electrolyzers.",
+     "th": "ซึ่งเป็นรูปทรงเดียวกับ electrolyzer"
+    },
+    {
+     "s": 33.329,
+     "e": 41.868,
+     "en": "You will predict which rows are active, then solve, and check the four KKT conditions yourself, using the marginal yield of each reactor.",
+     "th": "คุณจะทำนายว่าแถวใด active แล้วแก้ปัญหา และตรวจเงื่อนไข KKT ทั้งสี่ด้วยตนเอง โดยใช้ผลได้ส่วนเพิ่มของเครื่องปฏิกรณ์แต่ละเครื่อง"
+    },
+    {
+     "s": 41.868,
+     "e": 51.408,
+     "en": "Then you will read lambda as the value of one more cubic meter per hour of feed, and mu of the cooling row as the value of more cooling, and test both by re-solving.",
+     "th": "จากนั้นคุณจะอ่าน lambda เป็นมูลค่าของสารป้อนที่เพิ่มหนึ่งลูกบาศก์เมตรต่อชั่วโมง และ mu ของแถวการหล่อเย็นเป็นมูลค่าของการหล่อเย็นที่เพิ่มขึ้น แล้วทดสอบทั้งสองด้วยการแก้ใหม่"
+    },
+    {
+     "s": 51.408,
+     "e": 56.579,
+     "en": "Finally, you will change the total feed and find where the active set changes.",
+     "th": "สุดท้าย คุณจะเปลี่ยนปริมาณสารป้อนรวม และหาจุดที่ active set เปลี่ยน"
+    },
+    {
+     "s": 56.579,
+     "e": 62.421,
+     "en": "Each step unlocks the next, and you get two tries for each number before the answer is shown.",
+     "th": "แต่ละขั้นจะเปิดขั้นถัดไป และตอบตัวเลขแต่ละตัวได้สองครั้งก่อนระบบจะแสดงคำตอบ"
+    },
+    {
+     "s": 62.421,
+     "e": 69.092,
+     "en": "You have forty minutes. If you are studying on your own, stop here and open the lab.",
+     "th": "คุณมีเวลาสี่สิบนาที ถ้าเรียนด้วยตนเอง ให้หยุดที่หน้านี้แล้วเปิด lab"
+    }
+   ]
+  },
+  {
+   "n": 35,
+   "file": "audio/slide-35.mp3",
+   "duration": 82.44,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.076,
+     "en": "To summarize.",
+     "th": "สรุป"
+    },
+    {
+     "s": 2.076,
+     "e": 14.026,
+     "en": "At a constrained optimum, the gradient of f is a combination of the gradients of the active rows: grad f, plus the sum of mu i grad g i, plus the sum of lambda j grad h j, is zero.",
+     "th": "ที่จุดเหมาะสมที่สุดภายใต้ข้อจำกัด gradient ของ f เป็นการรวมของ gradient ของแถวที่ active คือ grad f บวกผลรวมของ mu i grad g i บวกผลรวมของ lambda j grad h j เท่ากับศูนย์"
+    },
+    {
+     "s": 14.026,
+     "e": 26.724,
+     "en": "The four KKT conditions are stationarity, primal feasibility, dual feasibility with mu at least zero, and complementarity. Check them with four residuals, not with the solver's status.",
+     "th": "เงื่อนไข KKT สี่ข้อคือ stationarity, primal feasibility, dual feasibility ที่ mu ไม่ติดลบ และ complementarity ตรวจด้วยค่า residual สี่ตัว ไม่ใช่ด้วยสถานะของ solver"
+    },
+    {
+     "s": 26.724,
+     "e": 39.25,
+     "en": "Multipliers are slopes: dv star by db is minus lambda or minus mu, with units. In an allocation, every unit that is free to change runs at the same marginal value, lambda.",
+     "th": "multiplier คือความชัน dv star ต่อ db เท่ากับลบ lambda หรือลบ mu พร้อมหน่วย ในการจัดสรร ทุกหน่วยที่เปลี่ยนได้อย่างอิสระทำงานที่มูลค่าส่วนเพิ่มเดียวกัน คือ lambda"
+    },
+    {
+     "s": 39.25,
+     "e": 47.487,
+     "en": "Lambda, for an equality, can have either sign; mu, for an inequality, is never negative, and it is zero when its row has slack.",
+     "th": "lambda ของสมการเป็นบวกหรือลบก็ได้ ส่วน mu ของอสมการไม่เคยติดลบ และเป็นศูนย์เมื่อแถวของมันมีส่วนเหลือ"
+    },
+    {
+     "s": 47.487,
+     "e": 55.987,
+     "en": "Find the active set by testing guesses. At a KKT point, minus grad f lies in the cone of the active gradients.",
+     "th": "หา active set ด้วยการทดสอบการเดา ที่จุด KKT ลบ grad f อยู่ในกรวยของ gradient ที่ active"
+    },
+    {
+     "s": 55.987,
+     "e": 67.066,
+     "en": "The conditions are necessary when a qualification holds, and sufficient for convex problems. Otherwise, check the curvature of the Lagrangian along the active rows.",
+     "th": "เงื่อนไขเป็นเงื่อนไขจำเป็นเมื่อ qualification เป็นจริง และเป็นเงื่อนไขเพียงพอสำหรับปัญหา convex มิฉะนั้นให้ตรวจความโค้งของ Lagrangian ตามแถวที่ active"
+    },
+    {
+     "s": 67.066,
+     "e": 74.781,
+     "en": "And minimizing the Lagrangian over x always gives a lower bound. For convex problems the best bound equals the optimum;",
+     "th": "และการหาค่าต่ำสุดของ Lagrangian เทียบ x ให้ขอบล่างเสมอ สำหรับปัญหา convex ขอบที่ดีที่สุดเท่ากับค่าเหมาะสมที่สุด"
+    },
+    {
+     "s": 74.781,
+     "e": 82.368,
+     "en": "for nonconvex ones a gap can remain, as in the example with f star equal to minus one and d star equal to minus three.",
+     "th": "สำหรับปัญหาที่ไม่ convex อาจเหลือช่องว่าง เหมือนในตัวอย่างที่ f star เท่ากับลบหนึ่ง และ d star เท่ากับลบสาม"
+    }
+   ]
+  },
+  {
+   "n": 36,
+   "file": "audio/slide-36.mp3",
+   "duration": 37.632,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.103,
+     "en": "Before we meet again, finish Lab 7 if you did not finish it in class.",
+     "th": "ก่อนพบกันครั้งหน้า ทำ Lab 7 ให้เสร็จ ถ้ายังทำไม่เสร็จในห้อง"
+    },
+    {
+     "s": 5.103,
+     "e": 13.197,
+     "en": "Keep your card with its Lagrangian. Sessions 8 and 9 will solve it with gradient-based and constrained solvers.",
+     "th": "เก็บการ์ดที่มี Lagrangian ไว้ คาบที่ 8 และ 9 จะแก้มันด้วย solver แบบใช้ gradient และแบบมีข้อจำกัด"
+    },
+    {
+     "s": 13.197,
+     "e": 20.474,
+     "en": "Read Rao, Engineering Optimization, chapter 2, on Lagrange multipliers and the Kuhn–Tucker conditions.",
+     "th": "อ่านหนังสือ Engineering Optimization ของ Rao บทที่ 2 เรื่อง Lagrange multiplier และเงื่อนไข Kuhn–Tucker"
+    },
+    {
+     "s": 20.474,
+     "e": 31.013,
+     "en": "For more depth, read Edgar, Himmelblau and Lasdon, Optimization of Chemical Processes, chapter 8, or Nocedal and Wright, Numerical Optimization, chapter 12.",
+     "th": "ถ้าต้องการลึกขึ้น อ่าน Optimization of Chemical Processes ของ Edgar, Himmelblau และ Lasdon บทที่ 8 หรือ Numerical Optimization ของ Nocedal และ Wright บทที่ 12"
+    },
+    {
+     "s": 31.013,
+     "e": 37.566,
+     "en": "And if you want more on duality, read Boyd and Vandenberghe, Convex Optimization, chapter 5.",
+     "th": "และถ้าต้องการเรื่อง duality เพิ่มเติม อ่าน Convex Optimization ของ Boyd และ Vandenberghe บทที่ 5"
+    }
+   ]
+  },
+  {
+   "n": 37,
+   "file": "audio/slide-37.mp3",
+   "duration": 30.24,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.405,
+     "en": "Finally, the Exit Ticket and feedback.",
+     "th": "สุดท้ายคือ Exit Ticket และ feedback"
+    },
+    {
+     "s": 3.405,
+     "e": 9.197,
+     "en": "Scan the code, choose Session 7, and paste the answers that the lab page copies for you.",
+     "th": "สแกนโค้ด เลือก Session 7 แล้ววางคำตอบที่หน้า lab คัดลอกไว้ให้"
+    },
+    {
+     "s": 9.197,
+     "e": 15.526,
+     "en": "Then tell us about the pace, your confidence, how far you got in the lab, and what is still unclear.",
+     "th": "จากนั้นบอกเราเรื่องความเร็วในการสอน ความมั่นใจ ความคืบหน้าใน lab และสิ่งที่ยังไม่เข้าใจ"
+    },
+    {
+     "s": 15.526,
+     "e": 21.25,
+     "en": "If you studied on your own, choose On my own. The form is anonymous.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้เลือก On my own แบบฟอร์มนี้ไม่ระบุตัวตน"
+    },
+    {
+     "s": 21.25,
+     "e": 26.934,
+     "en": "Your answers are how the next session is adjusted, so short, honest answers help most.",
+     "th": "คำตอบของคุณใช้ปรับคาบถัดไป คำตอบสั้น ๆ ที่ตรงไปตรงมาจึงช่วยได้มากที่สุด"
+    },
+    {
+     "s": 26.934,
+     "e": 30.184,
+     "en": "Thank you, and see you in Session 8.",
+     "th": "ขอบคุณ แล้วพบกันในคาบที่ 8"
+    }
+   ]
+  }
+ ]
+}
