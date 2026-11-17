@@ -1,0 +1,2519 @@
+{
+ "voice": "en-US-GuyNeural",
+ "rate": "-5%",
+ "provider": "Microsoft Edge neural speech (edge-tts)",
+ "synthetic_voice": true,
+ "total_seconds": 2902.3,
+ "slides": [
+  {
+   "n": 1,
+   "file": "audio/slide-01.mp3",
+   "duration": 63.48,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.853,
+     "en": "Welcome to Session 11 of Optimization of Chemical Processes.",
+     "th": "ยินดีต้อนรับสู่คาบที่ 11 ของวิชา Optimization of Chemical Processes"
+    },
+    {
+     "s": 4.853,
+     "e": 8.493,
+     "en": "Session 10 fitted the rate constants of ODE models to data.",
+     "th": "คาบที่ 10 ปรับค่าคงที่อัตราเร็วของโมเดล ODE ให้เข้ากับข้อมูล"
+    },
+    {
+     "s": 8.493,
+     "e": 18.987,
+     "en": "Today those models get a control that can change with time, such as the temperature of a batch reactor or the opening of a valve, and we choose that control by optimization.",
+     "th": "วันนี้โมเดลเหล่านั้นจะมีตัวควบคุมที่เปลี่ยนตามเวลาได้ เช่น อุณหภูมิของเครื่องปฏิกรณ์แบบกะ หรือการเปิดวาล์ว และเราเลือกตัวควบคุมนั้นด้วย optimization"
+    },
+    {
+     "s": 18.987,
+     "e": 24.856,
+     "en": "The first two parts are about dynamic optimization: finding the best profile over a whole batch.",
+     "th": "สองส่วนแรกว่าด้วย dynamic optimization คือการหาโปรไฟล์ที่ดีที่สุดตลอดทั้งกะ"
+    },
+    {
+     "s": 24.856,
+     "e": 34.658,
+     "en": "We will turn a problem whose decision is a function of time into an ordinary NLP, by shooting and by collocation, and solve it with the tools of Sessions 8 and 9.",
+     "th": "เราจะเปลี่ยนปัญหาที่ตัวตัดสินใจเป็นฟังก์ชันของเวลาให้เป็น NLP ธรรมดา ด้วยวิธี shooting และ collocation แล้วแก้ด้วยเครื่องมือจากคาบที่ 8 และ 9"
+    },
+    {
+     "s": 34.658,
+     "e": 44.789,
+     "en": "The third part is model predictive control, or MPC: solving a short version of the same problem again at every sample, which turns an optimal plan into feedback.",
+     "th": "ส่วนที่สามคือ model predictive control หรือ MPC คือการแก้ปัญหาเดียวกันในฉบับสั้นซ้ำทุกครั้งที่สุ่มวัด ซึ่งเปลี่ยนแผนที่เหมาะสมที่สุดให้เป็นการควบคุมแบบป้อนกลับ"
+    },
+    {
+     "s": 44.789,
+     "e": 50.697,
+     "en": "The lab has a browser part and a Colab part, as in Lab 9, so a laptop helps.",
+     "th": "lab มีส่วนที่ทำในเบราว์เซอร์และส่วนที่ทำใน Colab เหมือน Lab 9 จึงควรใช้แล็ปท็อป"
+    },
+    {
+     "s": 50.697,
+     "e": 58.0,
+     "en": "On your own, the narration takes about fifty minutes; the activities, four checks and the lab fill the rest of the three hours.",
+     "th": "ถ้าเรียนเอง เสียงบรรยายใช้เวลาประมาณห้าสิบนาที ส่วนกิจกรรม แบบตรวจสี่ครั้ง และ lab จะใช้เวลาที่เหลือของสามชั่วโมง"
+    },
+    {
+     "s": 58.0,
+     "e": 63.408,
+     "en": "When the narration for a slide ends, press the right arrow key, or Next, to go on.",
+     "th": "เมื่อเสียงบรรยายของแต่ละหน้าจบ กดลูกศรขวาหรือปุ่ม Next เพื่อไปหน้าถัดไป"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "file": "audio/slide-02.mp3",
+   "duration": 60.456,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.05,
+     "en": "Here is the plan for the three hours.",
+     "th": "นี่คือแผนของสามชั่วโมง"
+    },
+    {
+     "s": 3.05,
+     "e": 12.388,
+     "en": "After a ten-minute retrieval check on Session 10, part one, thirty-five minutes, states dynamic optimization problems, introduces a batch reactor benchmark,",
+     "th": "หลังทบทวนความจำจากคาบที่ 10 สิบนาที ส่วนที่หนึ่ง สามสิบห้านาที กำหนดรูปแบบของปัญหา dynamic optimization แนะนำโจทย์มาตรฐานของเครื่องปฏิกรณ์แบบกะ"
+    },
+    {
+     "s": 12.388,
+     "e": 18.395,
+     "en": "looks briefly at the optimality conditions, and maps the direct methods, ending with single shooting.",
+     "th": "ดูเงื่อนไขความเหมาะสมโดยสังเขป และเปรียบเทียบวิธีแบบ direct โดยจบที่ single shooting"
+    },
+    {
+     "s": 18.395,
+     "e": 29.592,
+     "en": "Part two, forty minutes, covers multiple shooting and collocation: collocation by hand, the size and sparsity of the resulting NLP, CasADi with Ipopt, and what to check in practice.",
+     "th": "ส่วนที่สอง สี่สิบนาที ว่าด้วย multiple shooting และ collocation ได้แก่ collocation ด้วยมือ ขนาดและความ sparse ของ NLP ที่ได้ CasADi กับ Ipopt และสิ่งที่ต้องตรวจในทางปฏิบัติ"
+    },
+    {
+     "s": 29.592,
+     "e": 35.372,
+     "en": "After a break and a second activity, part three, thirty minutes, is model predictive control:",
+     "th": "หลังพักและกิจกรรมที่สอง ส่วนที่สาม สามสิบนาที คือ model predictive control ได้แก่ receding"
+    },
+    {
+     "s": 35.372,
+     "e": 44.842,
+     "en": "the receding horizon, MPC on two tanks as a bounded least-squares problem, tuning, offset and disturbance estimates, and what feedback can and cannot fix.",
+     "th": "horizon, MPC บนถังสองใบในรูปปัญหา bounded least squares การปรับจูน offset กับการประมาณ disturbance และสิ่งที่การป้อนกลับแก้ได้และแก้ไม่ได้"
+    },
+    {
+     "s": 44.842,
+     "e": 53.079,
+     "en": "The three parts use one batch reactor and one pair of tanks throughout, so that each new method can be compared with the last on the same problem.",
+     "th": "ทั้งสามส่วนใช้เครื่องปฏิกรณ์แบบกะหนึ่งเครื่องและถังหนึ่งคู่ตลอด เพื่อให้เปรียบเทียบวิธีใหม่แต่ละวิธีกับวิธีก่อนหน้าบนปัญหาเดียวกันได้"
+    },
+    {
+     "s": 53.079,
+     "e": 60.395,
+     "en": "Each part ends with a check of four questions. The session ends with Lab 11 and the Exit Ticket.",
+     "th": "แต่ละส่วนจบด้วยแบบตรวจสี่คำถาม คาบนี้จบด้วย Lab 11 และ Exit Ticket"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "file": "audio/slide-03.mp3",
+   "duration": 44.208,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.011,
+     "en": "Activity 1 is a retrieval check on Session 10.",
+     "th": "กิจกรรมที่ 1 คือการทบทวนความจำจากคาบที่ 10"
+    },
+    {
+     "s": 4.011,
+     "e": 6.369,
+     "en": "Answer the four questions without notes:",
+     "th": "ตอบคำถามสี่ข้อโดยไม่เปิดโน้ต ได้แก่"
+    },
+    {
+     "s": 6.369,
+     "e": 14.479,
+     "en": "the Gauss–Newton step and what Levenberg–Marquardt adds, standard errors and when they mislead, whether k two can be estimated from A alone,",
+     "th": "Gauss–Newton step และสิ่งที่ Levenberg–Marquardt เพิ่มเข้ามา standard error และเมื่อใดที่มันทำให้เข้าใจผิด ประมาณ k สอง จาก A"
+    },
+    {
+     "s": 14.479,
+     "e": 18.447,
+     "en": "and how to compute the sensitivity of an ODE solution to a parameter.",
+     "th": "อย่างเดียวได้หรือไม่ และวิธีคำนวณ sensitivity ของคำตอบ ODE ต่อพารามิเตอร์"
+    },
+    {
+     "s": 18.447,
+     "e": 28.408,
+     "en": "The last question matters today. Single shooting needs exactly these sensitivities, this time with respect to the control instead of a rate constant.",
+     "th": "คำถามสุดท้ายสำคัญสำหรับวันนี้ single shooting ต้องใช้ sensitivity แบบนี้พอดี แต่คราวนี้เทียบกับตัวควบคุมแทนค่าคงที่อัตราเร็ว"
+    },
+    {
+     "s": 28.408,
+     "e": 36.868,
+     "en": "For question two, think of the three situations of Session 10 in which the ellipse and the exact region disagreed or the formula did not apply.",
+     "th": "สำหรับข้อสอง ให้นึกถึงสามสถานการณ์ในคาบที่ 10 ที่วงรีกับ region แบบแม่นตรงไม่ตรงกัน หรือสูตรใช้ไม่ได้"
+    },
+    {
+     "s": 36.868,
+     "e": 44.145,
+     "en": "Write your answers alone first, then compare with a neighbour. When you are ready, press Show answers.",
+     "th": "เขียนคำตอบด้วยตัวเองก่อน แล้วเปรียบเทียบกับเพื่อนข้าง ๆ เมื่อพร้อมแล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "file": "audio/slide-04.mp3",
+   "duration": 50.496,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.866,
+     "en": "By the end of today you should be able to do six things.",
+     "th": "เมื่อจบวันนี้ คุณควรทำหกสิ่งต่อไปนี้ได้"
+    },
+    {
+     "s": 3.866,
+     "e": 10.282,
+     "en": "State a dynamic optimization problem with its states, controls, dynamics, constraints and objective.",
+     "th": "กำหนดปัญหา dynamic optimization พร้อม state ตัวควบคุม พลวัต ข้อจำกัด และฟังก์ชันเป้าหมาย"
+    },
+    {
+     "s": 10.282,
+     "e": 17.079,
+     "en": "And explain why the best temperature profile of a batch reactor with consecutive reactions falls with time.",
+     "th": "และอธิบายว่าทำไมโปรไฟล์อุณหภูมิที่ดีที่สุดของเครื่องปฏิกรณ์แบบกะที่มีปฏิกิริยาต่อเนื่องจึงลดลงตามเวลา"
+    },
+    {
+     "s": 17.079,
+     "e": 23.417,
+     "en": "Turn the problem into an NLP by single shooting, multiple shooting or collocation, and compare them.",
+     "th": "เปลี่ยนปัญหาเป็น NLP ด้วย single shooting, multiple shooting หรือ collocation และเปรียบเทียบกัน"
+    },
+    {
+     "s": 23.417,
+     "e": 30.132,
+     "en": "Write the Radau collocation equations for one element and say how accuracy grows with the number of points.",
+     "th": "เขียนสมการ Radau collocation ของหนึ่ง element และบอกได้ว่าความแม่นยำเพิ่มขึ้นอย่างไรตามจำนวนจุด"
+    },
+    {
+     "s": 30.132,
+     "e": 38.118,
+     "en": "Formulate linear MPC as bounded least squares, tune its horizon and weight, and remove offset with a disturbance estimate.",
+     "th": "เขียน linear MPC ในรูป bounded least squares ปรับ horizon และน้ำหนัก และกำจัด offset ด้วยการประมาณ disturbance"
+    },
+    {
+     "s": 38.118,
+     "e": 42.579,
+     "en": "And tell what feedback can and cannot fix when the model is wrong.",
+     "th": "และบอกได้ว่าการป้อนกลับแก้อะไรได้และแก้อะไรไม่ได้เมื่อโมเดลผิด"
+    },
+    {
+     "s": 42.579,
+     "e": 50.421,
+     "en": "The last outcome connects today with Sessions 10 and 12: a model is never exact, and an optimal decision has to live with that.",
+     "th": "ผลลัพธ์การเรียนรู้ข้อสุดท้ายเชื่อมวันนี้กับคาบที่ 10 และ 12 โมเดลไม่เคยแม่นตรง และการตัดสินใจที่เหมาะสมที่สุดต้องอยู่กับข้อเท็จจริงนั้นให้ได้"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "file": "audio/slide-05.mp3",
+   "duration": 69.168,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.695,
+     "en": "Today builds directly on the last four sessions.",
+     "th": "วันนี้ต่อยอดโดยตรงจากสี่คาบที่ผ่านมา"
+    },
+    {
+     "s": 3.695,
+     "e": 14.75,
+     "en": "From Session 10 you have ODE models with fitted rate constants and their sensitivities. Today the same kind of model gets a control u of t, and we optimize over time.",
+     "th": "จากคาบที่ 10 คุณมีโมเดล ODE ที่มีค่าคงที่อัตราเร็วจากการปรับ และ sensitivity ของมัน วันนี้โมเดลแบบเดียวกันจะมีตัวควบคุม u ของ t และเราหาค่าเหมาะสมที่สุดตามเวลา"
+    },
+    {
+     "s": 14.75,
+     "e": 26.632,
+     "en": "From Session 9 you have SQP, interior points, and Ipopt through CasADi in Colab. Collocation produces large sparse NLPs, which is where Ipopt is at its best.",
+     "th": "จากคาบที่ 9 คุณมี SQP, interior point และ Ipopt ผ่าน CasADi ใน Colab collocation สร้าง NLP ขนาดใหญ่แบบ sparse ซึ่งเป็นงานที่ Ipopt ทำได้ดีที่สุด"
+    },
+    {
+     "s": 26.632,
+     "e": 38.35,
+     "en": "From Session 7, the multipliers of equality rows. The model equations are equality rows too, and their multipliers, which change with time, are called costates.",
+     "th": "จากคาบที่ 7 คือ multiplier ของแถวสมการ สมการของโมเดลก็เป็นแถวสมการเช่นกัน และ multiplier ของมันซึ่งเปลี่ยนตามเวลาเรียกว่า costate"
+    },
+    {
+     "s": 38.35,
+     "e": 41.553,
+     "en": "In this course they are written lambda of t.",
+     "th": "ในวิชานี้เขียนเป็น lambda ของ t"
+    },
+    {
+     "s": 41.553,
+     "e": 54.25,
+     "en": "From Session 10, bounded least squares, which will solve linear MPC at every sample. And from Session 4, the rolling plan for the battery, which was a receding horizon with an LP.",
+     "th": "จากคาบที่ 10 คือ bounded least squares ซึ่งจะใช้แก้ linear MPC ทุกครั้งที่สุ่มวัด และจากคาบที่ 4 คือแผนแบบ rolling ของแบตเตอรี่ ซึ่งเป็น receding horizon ที่ใช้ LP"
+    },
+    {
+     "s": 54.25,
+     "e": 60.763,
+     "en": "In the notation, x is the state, u the control, and the MPC weight on valve moves is w.",
+     "th": "ในสัญลักษณ์ x คือ state, u คือตัวควบคุม และน้ำหนักของการขยับวาล์วใน MPC คือ w"
+    },
+    {
+     "s": 60.763,
+     "e": 69.105,
+     "en": "And looking ahead, Session 12 takes the uncertainty in the fitted parameters, which today we only test, and builds it into the decision.",
+     "th": "และมองไปข้างหน้า คาบที่ 12 นำความไม่แน่นอนของพารามิเตอร์ที่ได้จากการปรับ ซึ่งวันนี้เราแค่ทดสอบ มารวมไว้ในการตัดสินใจ"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "file": "audio/slide-06.mp3",
+   "duration": 111.0,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.405,
+     "en": "A dynamic optimization problem chooses a function of time.",
+     "th": "ปัญหา dynamic optimization เลือกฟังก์ชันของเวลา"
+    },
+    {
+     "s": 4.405,
+     "e": 12.244,
+     "en": "The objective can contain a final value, phi of x at t f, and an integral of a running cost L over the horizon.",
+     "th": "ฟังก์ชันเป้าหมายอาจมีค่าที่เวลาสุดท้าย คือ phi ของ x ที่ t f และปริพันธ์ของต้นทุน L ตลอดช่วงเวลา state"
+    },
+    {
+     "s": 12.244,
+     "e": 18.474,
+     "en": "The state obeys dx by dt equals f of x, u and the parameters, from a known initial state.",
+     "th": "เป็นไปตาม dx ส่วน dt เท่ากับ f ของ x, u และพารามิเตอร์ โดยเริ่มจาก state เริ่มต้นที่ทราบ"
+    },
+    {
+     "s": 18.474,
+     "e": 25.75,
+     "en": "Path constraints g must hold at all times, end-point constraints h at the final time, and the control has bounds.",
+     "th": "ข้อจำกัดตามเส้นทาง g ต้องเป็นจริงตลอดเวลา ข้อจำกัดที่จุดปลาย h ต้องเป็นจริงที่เวลาสุดท้าย และตัวควบคุมมีขอบเขต"
+    },
+    {
+     "s": 25.75,
+     "e": 35.207,
+     "en": "An integral term can always be turned into a final value: add a state z with dz by dt equal to L, and the integral is z at the final time.",
+     "th": "พจน์ปริพันธ์เปลี่ยนเป็นค่าที่เวลาสุดท้ายได้เสมอ โดยเพิ่ม state z ที่ dz ส่วน dt เท่ากับ L แล้วปริพันธ์ก็คือ z ที่เวลาสุดท้าย"
+    },
+    {
+     "s": 35.207,
+     "e": 39.697,
+     "en": "So the final-value form, called the Mayer form, is general enough.",
+     "th": "ดังนั้นรูปแบบค่าสุดท้ายซึ่งเรียกว่า Mayer form จึงครอบคลุมเพียงพอ"
+    },
+    {
+     "s": 39.697,
+     "e": 47.739,
+     "en": "Constraints at the end, such as a required conversion, and constraints along the way, such as a maximum temperature or pressure, are both common,",
+     "th": "ข้อจำกัดที่ปลาย เช่น ค่าการเปลี่ยนที่ต้องการ และข้อจำกัดระหว่างทาง เช่น อุณหภูมิหรือความดันสูงสุด พบได้บ่อยทั้งคู่"
+    },
+    {
+     "s": 47.739,
+     "e": 52.697,
+     "en": "and both are easier to handle in the direct methods of today than in the classical theory.",
+     "th": "และทั้งสองแบบจัดการได้ง่ายกว่าในวิธีแบบ direct ของวันนี้ เมื่อเทียบกับทฤษฎีแบบดั้งเดิม"
+    },
+    {
+     "s": 52.697,
+     "e": 63.226,
+     "en": "Where does this appear? Temperature, feed or pressure profiles of batch and semibatch reactors; grade transitions, start-ups and shutdowns of continuous plants;",
+     "th": "ปัญหานี้พบที่ใดบ้าง ได้แก่ โปรไฟล์อุณหภูมิ อัตราป้อน หรือความดัน ของเครื่องปฏิกรณ์แบบกะและกึ่งกะ การเปลี่ยนเกรดผลิตภัณฑ์ การเริ่มเดินเครื่องและการหยุดเครื่องของโรงงานแบบต่อเนื่อง"
+    },
+    {
+     "s": 63.226,
+     "e": 65.711,
+     "en": "and every sample of an MPC controller.",
+     "th": "และทุกครั้งที่สุ่มวัดในตัวควบคุม MPC"
+    },
+    {
+     "s": 65.711,
+     "e": 73.526,
+     "en": "Session 10 was one too: fitting an ODE model is a dynamic optimization with constant parameters in place of a control.",
+     "th": "คาบที่ 10 ก็เป็นปัญหาแบบนี้ การปรับโมเดล ODE คือ dynamic optimization ที่มีพารามิเตอร์คงที่แทนตัวควบคุม"
+    },
+    {
+     "s": 73.526,
+     "e": 83.276,
+     "en": "For the batch reactor of the next slide, x has two components, the fractions of A and B; u is the temperature; and phi is the fraction of B at the end of the batch.",
+     "th": "สำหรับเครื่องปฏิกรณ์แบบกะในหน้าถัดไป x มีสองส่วน คือสัดส่วนของ A และ B u คืออุณหภูมิ และ phi คือสัดส่วนของ B ที่ปลายกะ"
+    },
+    {
+     "s": 83.276,
+     "e": 92.618,
+     "en": "The decision is a function, which has infinitely many values. Every practical method begins by turning it into a finite NLP.",
+     "th": "ตัวตัดสินใจเป็นฟังก์ชันซึ่งมีค่าเป็นจำนวนอนันต์ ทุกวิธีที่ใช้ได้จริงเริ่มด้วยการเปลี่ยนมันให้เป็น NLP ที่มีขนาดจำกัด"
+    },
+    {
+     "s": 92.618,
+     "e": 100.462,
+     "en": "The usual first step is to choose how the control is represented, for example one constant value on each of twenty intervals.",
+     "th": "ขั้นแรกตามปกติคือเลือกว่าจะแทนตัวควบคุมอย่างไร เช่น ค่าคงที่หนึ่งค่าในแต่ละช่วงจากยี่สิบช่วง"
+    },
+    {
+     "s": 100.462,
+     "e": 110.921,
+     "en": "Then the infinite-dimensional problem becomes a problem in twenty numbers, and the question is only how to handle the model equations. That is where the methods differ.",
+     "th": "ปัญหาที่มีมิติอนันต์จึงกลายเป็นปัญหาของตัวเลขยี่สิบตัว และคำถามที่เหลือคือจะจัดการกับสมการของโมเดลอย่างไร ซึ่งเป็นจุดที่วิธีต่าง ๆ แตกต่างกัน"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "file": "audio/slide-07.mp3",
+   "duration": 92.4,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 9.629,
+     "en": "Our running example is a batch reactor with consecutive reactions, A to B to C, used as a test problem since Logsdon and Biegler in 1989.",
+     "th": "ตัวอย่างหลักของเราคือเครื่องปฏิกรณ์แบบกะที่มีปฏิกิริยาต่อเนื่อง A ไป B ไป C ซึ่งใช้เป็นโจทย์ทดสอบมาตั้งแต่ Logsdon และ Biegler ในปี 1989"
+    },
+    {
+     "s": 9.629,
+     "e": 18.243,
+     "en": "The first reaction is second order in A, the second is first order in B, and both rate constants follow Arrhenius laws.",
+     "th": "ปฏิกิริยาแรกเป็นอันดับสองใน A ปฏิกิริยาที่สองเป็นอันดับหนึ่งใน B และค่าคงที่อัตราเร็วทั้งสองเป็นไปตามกฎ Arrhenius"
+    },
+    {
+     "s": 18.243,
+     "e": 28.868,
+     "en": "The reactor starts with pure A, and we may choose the temperature between 298 and 398 kelvin at every moment. The goal is the most B after one hour.",
+     "th": "เครื่องปฏิกรณ์เริ่มด้วย A บริสุทธิ์ และเราเลือกอุณหภูมิได้ระหว่าง 298 ถึง 398 เคลวินในทุกขณะ เป้าหมายคือให้ได้ B มากที่สุดหลังหนึ่งชั่วโมง"
+    },
+    {
+     "s": 28.868,
+     "e": 39.461,
+     "en": "The key number is the activation energy. E two over R is 5,000 kelvin, twice E one over R. Heating speeds up the destruction of B more than its formation.",
+     "th": "ตัวเลขสำคัญคือพลังงานกระตุ้น E สองส่วน R เท่ากับ 5,000 เคลวิน ซึ่งเป็นสองเท่าของ E หนึ่งส่วน R การให้ความร้อนจึงเร่งการทำลาย B มากกว่าการสร้าง B"
+    },
+    {
+     "s": 39.461,
+     "e": 52.829,
+     "en": "The chart shows both rate constants on a log scale. k one stays above k two over the whole range, but the ratio falls from 28 at 298 kelvin to 3.4 at 398 kelvin.",
+     "th": "กราฟแสดงค่าคงที่อัตราเร็วทั้งสองบนสเกลลอการิทึม k หนึ่ง อยู่เหนือ k สอง ตลอดช่วง แต่อัตราส่วนลดจาก 28 ที่ 298 เคลวิน เหลือ 3.4 ที่ 398 เคลวิน"
+    },
+    {
+     "s": 52.829,
+     "e": 60.378,
+     "en": "So there is a trade-off that changes during the batch. Early on, A is plentiful, and fast formation pays.",
+     "th": "จึงมีการแลกเปลี่ยนที่เปลี่ยนไประหว่างกะ ช่วงต้น A มีมาก การสร้างที่เร็วจึงคุ้มค่า"
+    },
+    {
+     "s": 60.378,
+     "e": 66.645,
+     "en": "Late in the batch, most of the material is B, and a high temperature mainly destroys it.",
+     "th": "ช่วงท้าย วัสดุส่วนใหญ่เป็น B และอุณหภูมิสูงจะทำลายมันเป็นหลัก"
+    },
+    {
+     "s": 66.645,
+     "e": 76.658,
+     "en": "In a real reactor the bounds on temperature stand for something physical: the cooling capacity of the jacket, the boiling point of the solvent, or the stability of a catalyst.",
+     "th": "ในเครื่องปฏิกรณ์จริง ขอบเขตของอุณหภูมิแทนสิ่งที่มีความหมายทางกายภาพ เช่น ความสามารถในการระบายความร้อนของ jacket จุดเดือดของตัวทำละลาย หรือเสถียรภาพของตัวเร่งปฏิกิริยา"
+    },
+    {
+     "s": 76.658,
+     "e": 81.211,
+     "en": "Keep that argument in mind; the optimal profile will confirm it.",
+     "th": "จำเหตุผลนี้ไว้ โปรไฟล์ที่เหมาะสมที่สุดจะยืนยันมัน"
+    },
+    {
+     "s": 81.211,
+     "e": 92.329,
+     "en": "The final time is fixed at one hour here. If the batch time were free, the problem would also have to trade product against batch time, through an objective such as product per hour.",
+     "th": "ในที่นี้เวลาสุดท้ายถูกกำหนดไว้ที่หนึ่งชั่วโมง ถ้าเวลาของกะเป็นอิสระ ปัญหาจะต้องชั่งน้ำหนักระหว่างผลิตภัณฑ์กับเวลาของกะด้วย ผ่านฟังก์ชันเป้าหมาย เช่น ผลิตภัณฑ์ต่อชั่วโมง"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "file": "audio/slide-08.mp3",
+   "duration": 84.696,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.208,
+     "en": "Start with the simplest policy: one constant temperature for the whole batch.",
+     "th": "เริ่มจากนโยบายที่ง่ายที่สุด คืออุณหภูมิคงที่ค่าเดียวตลอดกะ"
+    },
+    {
+     "s": 5.208,
+     "e": 16.609,
+     "en": "The slider sets the temperature. The left chart shows the fractions of A, B and C over the hour, integrated in your browser by the same Runge–Kutta method as the Python module.",
+     "th": "แถบเลื่อนกำหนดอุณหภูมิ กราฟซ้ายแสดงสัดส่วนของ A, B และ C ตลอดหนึ่งชั่วโมง ซึ่งอินทิเกรตในเบราว์เซอร์ของคุณด้วยวิธี Runge–Kutta เดียวกับในโมดูล"
+    },
+    {
+     "s": 16.609,
+     "e": 21.118,
+     "en": "The right chart shows the final fraction of B against the temperature.",
+     "th": "Python กราฟขวาแสดงสัดส่วนสุดท้ายของ B เทียบกับอุณหภูมิ"
+    },
+    {
+     "s": 21.118,
+     "e": 36.661,
+     "en": "At 360 kelvin B peaks after about forty minutes and then declines, ending at 0.52. Move the slider to 398 kelvin: B forms fast and is destroyed faster, and only 0.18 remains.",
+     "th": "ที่ 360 เคลวิน B ขึ้นสูงสุดหลังประมาณสี่สิบนาทีแล้วลดลง จบที่ 0.52 เลื่อนไปที่ 398 เคลวิน B เกิดเร็วและถูกทำลายเร็วกว่า เหลือเพียง 0.18 ที่"
+    },
+    {
+     "s": 36.661,
+     "e": 41.724,
+     "en": "At 298 kelvin little A reacts at all, and B ends at 0.47.",
+     "th": "298 เคลวิน A ทำปฏิกิริยาน้อยมาก และ B จบที่ 0.47"
+    },
+    {
+     "s": 41.724,
+     "e": 53.697,
+     "en": "The best constant temperature is 335.3 kelvin, which gives 0.6059. This is our baseline: any profile must beat it to be worth the trouble.",
+     "th": "อุณหภูมิคงที่ที่ดีที่สุดคือ 335.3 เคลวิน ซึ่งให้ 0.6059 นี่คือค่าอ้างอิงของเรา โปรไฟล์ใด ๆ ต้องดีกว่านี้จึงจะคุ้มค่า"
+    },
+    {
+     "s": 53.697,
+     "e": 60.861,
+     "en": "Move the slider to a few temperatures and watch where the peak of B occurs: at 360 kelvin it comes after about forty minutes;",
+     "th": "ลองเลื่อนแถบเลื่อนไปที่อุณหภูมิต่าง ๆ แล้วดูว่า B ขึ้นสูงสุดเมื่อใด ที่ 360 เคลวิน มันเกิดหลังประมาณสี่สิบนาที"
+    },
+    {
+     "s": 60.861,
+     "e": 67.855,
+     "en": "at lower temperatures it comes later, and at the best constant temperature B is still rising slowly at the end of the hour.",
+     "th": "ที่อุณหภูมิต่ำกว่านั้นจะเกิดช้ากว่า และที่อุณหภูมิคงที่ที่ดีที่สุด B ยังเพิ่มขึ้นช้า ๆ อยู่เมื่อครบหนึ่งชั่วโมง"
+    },
+    {
+     "s": 67.855,
+     "e": 76.329,
+     "en": "The curve on the right has a single maximum and is flat near it: ten kelvin either side of the best temperature costs about two percent of the product.",
+     "th": "เส้นโค้งทางขวามีค่าสูงสุดเพียงค่าเดียวและแบนราบใกล้ค่านั้น การห่างจากอุณหภูมิที่ดีที่สุดสิบเคลวินไม่ว่าด้านใด ทำให้ผลิตภัณฑ์ลดลงประมาณสองเปอร์เซ็นต์"
+    },
+    {
+     "s": 76.329,
+     "e": 84.618,
+     "en": "Finding it is a one-variable problem, solved here by a bounded scalar minimization. Press D to see the code.",
+     "th": "การหาค่านี้เป็นปัญหาตัวแปรเดียว แก้ด้วยการหาค่าต่ำสุดแบบสเกลาร์ที่มีขอบเขต กด D เพื่อดูโค้ด"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "file": "audio/slide-09.mp3",
+   "duration": 111.936,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.524,
+     "en": "Before discretizing, a short look at the continuous optimality conditions.",
+     "th": "ก่อนแบ่งช่วง ขอดูเงื่อนไขความเหมาะสมแบบต่อเนื่องโดยสังเขป"
+    },
+    {
+     "s": 5.524,
+     "e": 17.374,
+     "en": "Define the Hamiltonian H as lambda transpose f. The costates lambda of t obey d lambda by dt equals minus the derivative of H with respect to x, with end values given by the objective:",
+     "th": "นิยาม Hamiltonian H เป็น lambda transpose f costate lambda ของ t เป็นไปตาม d lambda ส่วน dt เท่ากับลบอนุพันธ์ของ H เทียบกับ x โดยค่าที่ปลายกำหนดจากฟังก์ชันเป้าหมาย ในที่นี้ lambda"
+    },
+    {
+     "s": 17.374,
+     "e": 23.908,
+     "en": "here lambda one at the final time is zero and lambda two is one, because we maximize x two at the end.",
+     "th": "หนึ่ง ที่เวลาสุดท้ายเป็นศูนย์ และ lambda สอง เป็นหนึ่ง เพราะเราต้องการให้ x สอง ที่ปลายสูงที่สุด"
+    },
+    {
+     "s": 23.908,
+     "e": 31.579,
+     "en": "The control maximizes H at every moment, and where it is not at a bound, the derivative of H with respect to u is zero.",
+     "th": "ตัวควบคุมทำให้ H สูงที่สุดในทุกขณะ และในช่วงที่ไม่อยู่ที่ขอบเขต อนุพันธ์ของ H เทียบกับ u เป็นศูนย์"
+    },
+    {
+     "s": 31.579,
+     "e": 39.333,
+     "en": "The costates are multipliers of the ODE rows, just as lambda was the multiplier of an equality row in Session 7.",
+     "th": "costate คือ multiplier ของแถวสมการ ODE เช่นเดียวกับที่ lambda เป็น multiplier ของแถวสมการในคาบที่"
+    },
+    {
+     "s": 39.333,
+     "e": 45.303,
+     "en": "Lambda two of t is the value, at the end of the batch, of one more unit of B at time t.",
+     "th": "7 lambda สอง ของ t คือมูลค่าที่ปลายกะของ B ที่เพิ่มขึ้นหนึ่งหน่วย ณ เวลา t"
+    },
+    {
+     "s": 45.303,
+     "e": 55.105,
+     "en": "That interpretation is useful on its own: it tells you when in the batch an extra unit of product is worth most, which is where an improvement in the operation pays most.",
+     "th": "การตีความนี้มีประโยชน์ในตัวเอง เพราะบอกว่าผลิตภัณฑ์ที่เพิ่มขึ้นหนึ่งหน่วยมีค่ามากที่สุดในช่วงใดของกะ ซึ่งเป็นช่วงที่การปรับปรุงการเดินเครื่องคุ้มค่าที่สุด"
+    },
+    {
+     "s": 55.105,
+     "e": 65.956,
+     "en": "For this reactor, setting the derivative of H with respect to T to zero balances faster formation, weighted by lambda two minus lambda one, against faster destruction,",
+     "th": "สำหรับเครื่องปฏิกรณ์นี้ การตั้งอนุพันธ์ของ H เทียบกับ T เท่ากับศูนย์ เป็นการชั่งน้ำหนักระหว่างการสร้างที่เร็วขึ้น ซึ่งถ่วงด้วย lambda สอง ลบ lambda หนึ่ง กับการทำลายที่เร็วขึ้น"
+    },
+    {
+     "s": 65.956,
+     "e": 72.092,
+     "en": "weighted by lambda two. As A is used up, formation matters less, so the best temperature falls.",
+     "th": "ซึ่งถ่วงด้วย lambda สอง เมื่อ A ถูกใช้ไป การสร้างมีความสำคัญน้อยลง อุณหภูมิที่ดีที่สุดจึงลดลง"
+    },
+    {
+     "s": 72.092,
+     "e": 80.472,
+     "en": "When the control enters H linearly, the answer can switch between bounds, called bang-bang control, or follow a singular arc in between.",
+     "th": "เมื่อตัวควบคุมปรากฏใน H แบบเชิงเส้น คำตอบอาจสลับไปมาระหว่างขอบเขต เรียกว่า bang-bang control หรือเดินตาม singular arc ระหว่างขอบเขต"
+    },
+    {
+     "s": 80.472,
+     "e": 86.895,
+     "en": "Our reactor has a smooth interior profile, apart from a short time at the upper bound right at the start.",
+     "th": "เครื่องปฏิกรณ์ของเรามีโปรไฟล์ที่เรียบอยู่ภายในขอบเขต ยกเว้นช่วงสั้น ๆ ที่ขอบบนตอนเริ่มต้นพอดี"
+    },
+    {
+     "s": 86.895,
+     "e": 90.748,
+     "en": "Solving these conditions directly is called an indirect method.",
+     "th": "การแก้เงื่อนไขเหล่านี้โดยตรงเรียกว่าวิธีแบบ indirect"
+    },
+    {
+     "s": 90.748,
+     "e": 100.382,
+     "en": "It is a two-point boundary-value problem, with x known at the start and lambda known at the end, and it is hard to start and hard to extend to path constraints.",
+     "th": "ซึ่งเป็นปัญหาค่าขอบสองจุด โดยรู้ x ที่จุดเริ่มต้น และรู้ lambda ที่จุดปลาย มันเริ่มต้นได้ยาก และขยายไปสู่ข้อจำกัดตามเส้นทางได้ยาก"
+    },
+    {
+     "s": 100.382,
+     "e": 111.855,
+     "en": "Most process applications use direct methods instead: discretize first, then hand an NLP to a solver. The NLP multipliers then approximate the costates.",
+     "th": "งานด้านกระบวนการส่วนใหญ่จึงใช้วิธีแบบ direct แทน คือแบ่งช่วงก่อน แล้วส่ง NLP ให้ solver จากนั้น multiplier ของ NLP จะประมาณค่า costate"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "file": "audio/slide-10.mp3",
+   "duration": 101.88,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.063,
+     "en": "There are three ways to turn a profile into an NLP.",
+     "th": "มีสามวิธีที่จะเปลี่ยนโปรไฟล์ให้เป็น NLP"
+    },
+    {
+     "s": 4.063,
+     "e": 11.498,
+     "en": "In single shooting, the NLP variables are only the control values, for example one temperature per interval.",
+     "th": "ใน single shooting ตัวแปรของ NLP มีเพียงค่าของตัวควบคุม เช่น อุณหภูมิหนึ่งค่าต่อหนึ่งช่วง"
+    },
+    {
+     "s": 11.498,
+     "e": 17.5,
+     "en": "Every time the solver evaluates the objective, an ODE solver integrates the whole batch.",
+     "th": "ทุกครั้งที่ solver ประเมินฟังก์ชันเป้าหมาย ODE solver จะอินทิเกรตทั้งกะ"
+    },
+    {
+     "s": 17.5,
+     "e": 22.688,
+     "en": "In multiple shooting, the state at the start of each interval is also a variable.",
+     "th": "ใน multiple shooting state ที่จุดเริ่มของแต่ละช่วงก็เป็นตัวแปรด้วย"
+    },
+    {
+     "s": 22.688,
+     "e": 30.026,
+     "en": "Each interval is integrated from its own start, and continuity rows require each piece to end where the next begins.",
+     "th": "แต่ละช่วงถูกอินทิเกรตจากจุดเริ่มของตัวเอง และแถวความต่อเนื่องบังคับให้แต่ละท่อนจบตรงที่ท่อนถัดไปเริ่ม"
+    },
+    {
+     "s": 30.026,
+     "e": 42.395,
+     "en": "In collocation, the state at every collocation point inside every interval is a variable, and the model itself becomes equality rows of the NLP. There is no ODE solver at all.",
+     "th": "ใน collocation state ที่ทุกจุด collocation ภายในทุกช่วงเป็นตัวแปร และตัวโมเดลเองกลายเป็นแถวสมการของ NLP โดยไม่มี ODE solver เลย"
+    },
+    {
+     "s": 42.395,
+     "e": 52.181,
+     "en": "For the batch problem with fifty intervals, single shooting has fifty variables, multiple shooting about one hundred and fifty, and collocation four hundred and fifty-two,",
+     "th": "สำหรับโจทย์เครื่องปฏิกรณ์ที่มีห้าสิบช่วง single shooting มีห้าสิบตัวแปร multiple shooting ประมาณหนึ่งร้อยห้าสิบ และ collocation สี่ร้อยห้าสิบสอง โดยมีสมาชิกที่ไม่เป็นศูนย์ใน"
+    },
+    {
+     "s": 52.181,
+     "e": 54.855,
+     "en": "with about one percent of the Jacobian nonzero.",
+     "th": "Jacobian ประมาณหนึ่งเปอร์เซ็นต์"
+    },
+    {
+     "s": 54.855,
+     "e": 66.093,
+     "en": "Single shooting is small, and every iterate is a simulation, but each gradient costs N plus one simulations with finite differences, and unstable or long horizons can blow up.",
+     "th": "single shooting มีขนาดเล็ก และทุกรอบเป็นการจำลอง แต่ gradient แต่ละครั้งต้องจำลอง N บวกหนึ่งครั้งเมื่อใช้ finite difference และช่วงเวลาที่ไม่เสถียรหรือยาวอาจระเบิดได้"
+    },
+    {
+     "s": 66.093,
+     "e": 73.053,
+     "en": "Collocation is large, but sparse, with exact derivatives, and path constraints can be imposed at every point.",
+     "th": "collocation มีขนาดใหญ่แต่ sparse มีอนุพันธ์แบบแม่นตรง และกำหนดข้อจำกัดตามเส้นทางได้ทุกจุด"
+    },
+    {
+     "s": 73.053,
+     "e": 81.987,
+     "en": "All three need a choice of how the control is represented: piecewise constant on intervals, as today, or a low-order polynomial on each interval.",
+     "th": "ทั้งสามวิธีต้องเลือกว่าจะแทนตัวควบคุมอย่างไร คือคงที่เป็นช่วง ๆ อย่างที่ใช้วันนี้ หรือเป็นพหุนามอันดับต่ำในแต่ละช่วง"
+    },
+    {
+     "s": 81.987,
+     "e": 91.096,
+     "en": "A rule of thumb: few controls, a stable process and a moderate horizon suit single shooting; unstable or stiff dynamics suit multiple shooting or collocation;",
+     "th": "หลักง่าย ๆ คือ ตัวควบคุมน้อย กระบวนการเสถียร และช่วงเวลาไม่ยาว เหมาะกับ single shooting พลวัตที่ไม่เสถียรหรือ stiff เหมาะกับ multiple shooting หรือ collocation"
+    },
+    {
+     "s": 91.096,
+     "e": 94.763,
+     "en": "many states and path constraints at every time suit collocation.",
+     "th": "ส่วน state จำนวนมากและข้อจำกัดตามเส้นทางทุกเวลาเหมาะกับ collocation"
+    },
+    {
+     "s": 94.763,
+     "e": 101.803,
+     "en": "Today you will use single shooting in the browser with SciPy, and collocation in Colab with CasADi and Ipopt.",
+     "th": "วันนี้คุณจะใช้ single shooting ในเบราว์เซอร์ด้วย SciPy และ collocation ใน Colab ด้วย CasADi และ Ipopt"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "file": "audio/slide-11.mp3",
+   "duration": 102.984,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.537,
+     "en": "Here is single shooting on the batch reactor.",
+     "th": "นี่คือ single shooting บนโจทย์เครื่องปฏิกรณ์แบบกะ"
+    },
+    {
+     "s": 3.537,
+     "e": 15.252,
+     "en": "The temperature is held constant on each of N equal intervals. SLSQP chooses the N temperatures, scaled to between zero and one, with gradients by finite differences.",
+     "th": "อุณหภูมิคงที่ในแต่ละช่วงจาก N ช่วงที่เท่ากัน SLSQP เลือกอุณหภูมิ N ค่า ซึ่งปรับสเกลให้อยู่ระหว่างศูนย์ถึงหนึ่ง โดยหา gradient ด้วย finite difference"
+    },
+    {
+     "s": 15.252,
+     "e": 20.303,
+     "en": "Each evaluation integrates the batch with two hundred Runge–Kutta steps.",
+     "th": "การประเมินแต่ละครั้งอินทิเกรตทั้งกะด้วย Runge–Kutta สองร้อยก้าว"
+    },
+    {
+     "s": 20.303,
+     "e": 31.776,
+     "en": "With N equal to five, the profile starts at 352 kelvin and falls to 327, as the argument of the last slides predicted, and gives 0.6094.",
+     "th": "เมื่อ N เท่ากับห้า โปรไฟล์เริ่มที่ 352 เคลวิน และลดลงเหลือ 327 ตามที่เหตุผลในหน้าก่อน ๆ คาดไว้ และให้ 0.6094"
+    },
+    {
+     "s": 31.776,
+     "e": 40.817,
+     "en": "Press the other buttons. With twenty intervals the first temperature rises to 372 kelvin and x two reaches 0.6105.",
+     "th": "กดปุ่มอื่น ๆ เมื่อมียี่สิบช่วง อุณหภูมิแรกสูงขึ้นเป็น 372 เคลวิน และ x สอง ถึง 0.6105"
+    },
+    {
+     "s": 40.817,
+     "e": 50.329,
+     "en": "The gain over the best constant temperature grows with N but stays below one percent: 0.74 percent with twenty intervals.",
+     "th": "ผลได้เทียบกับอุณหภูมิคงที่ที่ดีที่สุดเพิ่มขึ้นตาม N แต่ยังต่ำกว่าหนึ่งเปอร์เซ็นต์ คือ 0.74 เปอร์เซ็นต์ที่ยี่สิบช่วง"
+    },
+    {
+     "s": 50.329,
+     "e": 61.434,
+     "en": "Notice how the first interval changes. With more intervals the first one is shorter, so it can afford a higher temperature for a short time while A is most plentiful.",
+     "th": "สังเกตว่าช่วงแรกเปลี่ยนอย่างไร เมื่อมีช่วงมากขึ้น ช่วงแรกจะสั้นลง จึงใช้อุณหภูมิสูงขึ้นได้ในเวลาสั้น ๆ ขณะที่ A มีมากที่สุด"
+    },
+    {
+     "s": 61.434,
+     "e": 63.895,
+     "en": "The rest of the profile hardly moves.",
+     "th": "ส่วนที่เหลือของโปรไฟล์แทบไม่เปลี่ยน"
+    },
+    {
+     "s": 63.895,
+     "e": 72.32,
+     "en": "Look at the cost. Five intervals need ninety-seven simulations; twenty intervals need six hundred and fifty-three.",
+     "th": "ดูที่ต้นทุน ห้าช่วงต้องจำลองเก้าสิบเจ็ดครั้ง ยี่สิบช่วงต้องจำลองหกร้อยห้าสิบสามครั้ง gradient"
+    },
+    {
+     "s": 72.32,
+     "e": 78.474,
+     "en": "Each gradient costs N plus one simulations, and more variables need more iterations.",
+     "th": "แต่ละครั้งต้องจำลอง N บวกหนึ่งครั้ง และตัวแปรที่มากขึ้นต้องการรอบมากขึ้น"
+    },
+    {
+     "s": 78.474,
+     "e": 91.158,
+     "en": "The table also shows the diminishing returns. Going from one to five intervals gains 0.57 percent; going from five to twenty gains only another 0.17 percent.",
+     "th": "ตารางยังแสดงผลได้ที่ลดลงเรื่อย ๆ การเพิ่มจากหนึ่งเป็นห้าช่วงได้เพิ่ม 0.57 เปอร์เซ็นต์ การเพิ่มจากห้าเป็นยี่สิบช่วงได้เพิ่มอีกเพียง 0.17 เปอร์เซ็นต์"
+    },
+    {
+     "s": 91.158,
+     "e": 102.908,
+     "en": "One advantage of shooting is worth noting. Every iterate is a simulation of the real model, so if the solver stops early, the current profile is still a feasible operating policy.",
+     "th": "ข้อดีหนึ่งของ shooting ที่ควรสังเกต ทุกรอบเป็นการจำลองของโมเดลจริง ดังนั้นถ้า solver หยุดก่อนกำหนด โปรไฟล์ปัจจุบันก็ยังเป็นนโยบายการเดินเครื่องที่ทำได้จริง"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "file": "audio/slide-12.mp3",
+   "duration": 36.864,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.05,
+     "en": "Check 1 covers dynamic problems and single shooting.",
+     "th": "แบบตรวจที่ 1 ครอบคลุมปัญหาเชิงพลวัตและ single shooting"
+    },
+    {
+     "s": 4.05,
+     "e": 16.757,
+     "en": "Question one asks you to write the batch problem in the general form. Question two asks why the profile falls. Question three asks for the cost of one gradient with twenty intervals.",
+     "th": "ข้อหนึ่งให้เขียนโจทย์เครื่องปฏิกรณ์ในรูปทั่วไป ข้อสองถามว่าทำไมโปรไฟล์จึงลดลง ข้อสามถามต้นทุนของ gradient หนึ่งครั้งเมื่อมียี่สิบช่วง"
+    },
+    {
+     "s": 16.757,
+     "e": 21.618,
+     "en": "Question four asks why every shooting iterate can be run on the plant.",
+     "th": "ข้อสี่ถามว่าทำไมทุกรอบของ shooting จึงนำไปเดินเครื่องจริงได้"
+    },
+    {
+     "s": 21.618,
+     "e": 26.803,
+     "en": "For question one, list x, u, f, phi and the bounds separately.",
+     "th": "สำหรับข้อหนึ่ง ให้เขียน x, u, f, phi และขอบเขต แยกกัน"
+    },
+    {
+     "s": 26.803,
+     "e": 31.908,
+     "en": "For question three, count the base simulation as well as the perturbed ones.",
+     "th": "สำหรับข้อสาม ให้นับการจำลองฐานรวมกับการจำลองที่รบกวนค่าแล้วด้วย"
+    },
+    {
+     "s": 31.908,
+     "e": 36.803,
+     "en": "Pause the narration, answer the four questions, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย ตอบคำถามสี่ข้อ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "file": "audio/slide-13.mp3",
+   "duration": 106.488,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.918,
+     "en": "Part two begins with the weakness of single shooting and its first remedy.",
+     "th": "ส่วนที่สองเริ่มจากจุดอ่อนของ single shooting และวิธีแก้วิธีแรก"
+    },
+    {
+     "s": 4.918,
+     "e": 13.498,
+     "en": "In single shooting, a change in an early control acts through everything that follows. For a stable batch like ours that is harmless.",
+     "th": "ใน single shooting การเปลี่ยนตัวควบคุมช่วงต้นส่งผลผ่านทุกอย่างที่ตามมา สำหรับเครื่องปฏิกรณ์แบบกะที่เสถียรอย่างของเรา เรื่องนี้ไม่เป็นปัญหา"
+    },
+    {
+     "s": 13.498,
+     "e": 22.974,
+     "en": "For an unstable reactor, or a long horizon, small changes early on grow into huge changes later, and the gradients and even the simulations blow up.",
+     "th": "แต่สำหรับเครื่องปฏิกรณ์ที่ไม่เสถียร หรือช่วงเวลาที่ยาว การเปลี่ยนเล็กน้อยช่วงต้นจะขยายเป็นการเปลี่ยนแปลงใหญ่ภายหลัง และ gradient หรือแม้แต่การจำลองก็ระเบิดได้"
+    },
+    {
+     "s": 22.974,
+     "e": 28.124,
+     "en": "Multiple shooting adds the state at the start of each interval as NLP variables.",
+     "th": "multiple shooting เพิ่ม state ที่จุดเริ่มของแต่ละช่วงเป็นตัวแปรของ NLP"
+    },
+    {
+     "s": 28.124,
+     "e": 36.263,
+     "en": "Each interval is integrated from its own start, and continuity rows require the end of one piece to equal the start of the next.",
+     "th": "แต่ละช่วงถูกอินทิเกรตจากจุดเริ่มของตัวเอง และแถวความต่อเนื่องบังคับให้ปลายของท่อนหนึ่งเท่ากับจุดเริ่มของท่อนถัดไป"
+    },
+    {
+     "s": 36.263,
+     "e": 45.502,
+     "en": "For the batch problem with twenty intervals, that adds forty variables, the two states at each interval start, and forty continuity rows.",
+     "th": "สำหรับโจทย์เครื่องปฏิกรณ์ที่มียี่สิบช่วง จะเพิ่มตัวแปรสี่สิบตัว คือ state สองตัวที่จุดเริ่มของแต่ละช่วง และแถวความต่อเนื่องสี่สิบแถว"
+    },
+    {
+     "s": 45.502,
+     "e": 49.987,
+     "en": "The NLP is larger, but each row involves only one short simulation.",
+     "th": "NLP ใหญ่ขึ้น แต่แต่ละแถวเกี่ยวข้องกับการจำลองสั้น ๆ เพียงครั้งเดียว"
+    },
+    {
+     "s": 49.987,
+     "e": 58.692,
+     "en": "The chart shows the batch at a constant 360 kelvin, cut into four intervals, with guessed starting states. The pieces do not join:",
+     "th": "กราฟแสดงเครื่องปฏิกรณ์ที่ 360 เคลวินคงที่ แบ่งเป็นสี่ช่วง โดยมี state เริ่มต้นที่เดาไว้ ท่อนต่าง ๆ ไม่ต่อกัน"
+    },
+    {
+     "s": 58.692,
+     "e": 68.526,
+     "en": "the rust lines are the gaps, which are the residuals of the continuity rows. The solver closes the gaps and improves the objective at the same time.",
+     "th": "เส้นสีสนิมคือช่องว่าง ซึ่งเป็น residual ของแถวความต่อเนื่อง solver จะปิดช่องว่างและปรับฟังก์ชันเป้าหมายไปพร้อมกัน"
+    },
+    {
+     "s": 68.526,
+     "e": 73.105,
+     "en": "Press After convergence: the pieces now form one trajectory.",
+     "th": "กด After convergence ท่อนทั้งหมดจะต่อกันเป็นวิถีเดียว"
+    },
+    {
+     "s": 73.105,
+     "e": 82.329,
+     "en": "In the converged picture each piece starts exactly where the previous one ended, and the four pieces together are the same trajectory that single shooting would compute.",
+     "th": "ในภาพที่ลู่เข้าแล้ว แต่ละท่อนเริ่มตรงที่ท่อนก่อนหน้าจบพอดี และทั้งสี่ท่อนรวมกันคือวิถีเดียวกับที่ single shooting คำนวณได้"
+    },
+    {
+     "s": 82.329,
+     "e": 92.579,
+     "en": "Because each interval is short, its sensitivities stay moderate, and the intervals can be integrated in parallel. Collocation takes the same idea to its limit:",
+     "th": "เพราะแต่ละช่วงสั้น sensitivity ของมันจึงมีขนาดพอเหมาะ และอินทิเกรตแต่ละช่วงแบบขนานได้ collocation นำแนวคิดเดียวกันไปถึงขีดสุด"
+    },
+    {
+     "s": 92.579,
+     "e": 95.974,
+     "en": "every point inside every interval becomes a variable.",
+     "th": "คือทุกจุดภายในทุกช่วงกลายเป็นตัวแปร"
+    },
+    {
+     "s": 95.974,
+     "e": 106.421,
+     "en": "Multiple shooting is the method behind many tools for dynamic optimization and nonlinear MPC, because it combines a standard ODE solver with a well-conditioned NLP.",
+     "th": "multiple shooting คือวิธีที่อยู่เบื้องหลังเครื่องมือหลายตัวสำหรับ dynamic optimization และ nonlinear MPC เพราะมันรวม ODE solver มาตรฐานเข้ากับ NLP ที่มี condition ดี"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "file": "audio/slide-14.mp3",
+   "duration": 100.824,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.971,
+     "en": "Here are the collocation equations.",
+     "th": "นี่คือสมการ collocation"
+    },
+    {
+     "s": 2.971,
+     "e": 14.612,
+     "en": "On each element, write time as the element start plus tau times its length h, with tau from zero to one. Approximate the state by a Lagrange polynomial through K plus one points:",
+     "th": "ในแต่ละ element ให้เขียนเวลาเป็นจุดเริ่มของ element บวก tau คูณความยาว h โดย tau อยู่ระหว่างศูนย์ถึงหนึ่ง แล้วประมาณ state ด้วยพหุนาม Lagrange ที่ผ่านจุด K บวกหนึ่งจุด"
+    },
+    {
+     "s": 14.612,
+     "e": 17.408,
+     "en": "the element start and K collocation points.",
+     "th": "คือจุดเริ่มของ element และจุด collocation K จุด"
+    },
+    {
+     "s": 17.408,
+     "e": 31.152,
+     "en": "Then require the polynomial to satisfy the ODE exactly at the K collocation points. Its derivative at point j, a fixed combination of the state values, must equal h times f at that point.",
+     "th": "จากนั้นบังคับให้พหุนามสอดคล้องกับ ODE พอดีที่จุด collocation ทั้ง K จุด อนุพันธ์ที่จุด j ซึ่งเป็นผลรวมเชิงเส้นคงที่ของค่า state ต้องเท่ากับ h คูณ f ที่จุดนั้น จึงได้ K แถวต่อหนึ่ง"
+    },
+    {
+     "s": 31.152,
+     "e": 37.658,
+     "en": "That gives K rows per state per element. A continuity row links each element to the next.",
+     "th": "state ต่อหนึ่ง element และแถวความต่อเนื่องเชื่อมแต่ละ element กับ element ถัดไป"
+    },
+    {
+     "s": 37.658,
+     "e": 44.289,
+     "en": "The derivative weights, l prime r at tau j, depend only on the points, so they are computed once.",
+     "th": "น้ำหนักของอนุพันธ์ คือ l prime r ที่ tau j ขึ้นกับตำแหน่งจุดเท่านั้น จึงคำนวณเพียงครั้งเดียว"
+    },
+    {
+     "s": 44.289,
+     "e": 52.255,
+     "en": "Where should the points be? At the roots of orthogonal polynomials, which give the highest accuracy for K points.",
+     "th": "จุดควรอยู่ที่ใด ควรอยู่ที่รากของพหุนามเชิงตั้งฉาก ซึ่งให้ความแม่นยำสูงที่สุดสำหรับ K จุด จุด Radau"
+    },
+    {
+     "s": 52.255,
+     "e": 58.754,
+     "en": "Radau points include the element end, so the end value is simply the last collocation point;",
+     "th": "รวมปลายของ element ไว้ด้วย ค่าที่ปลายจึงเป็นจุด collocation จุดสุดท้าย เมื่อ"
+    },
+    {
+     "s": 58.754,
+     "e": 67.908,
+     "en": "with K equal to three they sit at 0.155, 0.645 and 1, and the error at element ends falls as the step to the power two K minus one.",
+     "th": "K เท่ากับสาม จุดอยู่ที่ 0.155, 0.645 และ 1 และความคลาดเคลื่อนที่ปลาย element ลดลงตามขนาดก้าวยกกำลังสอง K ลบหนึ่ง"
+    },
+    {
+     "s": 67.908,
+     "e": 77.632,
+     "en": "With K equal to one, Radau collocation is the implicit Euler method. Radau points are also stiffly stable, which suits fast reactions.",
+     "th": "เมื่อ K เท่ากับหนึ่ง Radau collocation คือวิธี implicit Euler จุด Radau ยังมีเสถียรภาพสำหรับระบบ stiff ซึ่งเหมาะกับปฏิกิริยาที่เร็ว"
+    },
+    {
+     "s": 77.632,
+     "e": 89.25,
+     "en": "Note what changes for the solver: states, controls and model rows are solved together. This is called the simultaneous approach, and the model holds exactly only at convergence.",
+     "th": "สังเกตสิ่งที่เปลี่ยนไปสำหรับ solver คือ state ตัวควบคุม และแถวของโมเดลถูกแก้ไปพร้อมกัน เรียกว่า simultaneous approach และโมเดลเป็นจริงแบบแม่นตรงเฉพาะเมื่อลู่เข้าแล้ว"
+    },
+    {
+     "s": 89.25,
+     "e": 95.626,
+     "en": "In practice the matrix of derivative weights is computed once from the points, and every element reuses it;",
+     "th": "ในทางปฏิบัติ เมทริกซ์น้ำหนักของอนุพันธ์คำนวณครั้งเดียวจากตำแหน่งจุด และทุก element"
+    },
+    {
+     "s": 95.626,
+     "e": 100.763,
+     "en": "the module's collocation-matrix function does exactly that, and the next slide uses it.",
+     "th": "ใช้ซ้ำ ฟังก์ชัน colloc_matrices ในโมดูลทำสิ่งนี้พอดี และหน้าถัดไปใช้มัน"
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "file": "audio/slide-15.mp3",
+   "duration": 89.232,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 8.129,
+     "en": "Let us try collocation by hand on a problem with a known answer: dx by dt equals minus five x, from x equal to one.",
+     "th": "ลองทำ collocation ด้วยมือกับปัญหาที่รู้คำตอบ คือ dx ส่วน dt เท่ากับลบห้า x เริ่มจาก x เท่ากับหนึ่ง"
+    },
+    {
+     "s": 8.129,
+     "e": 24.295,
+     "en": "With K equal to one and one element, the collocation row is x one minus x zero equals minus five x one, so x one is one over six, 0.167, against the exact e to the minus five, 0.0067.",
+     "th": "เมื่อ K เท่ากับหนึ่งและมีหนึ่ง element แถว collocation คือ x หนึ่ง ลบ x ศูนย์ เท่ากับลบห้า x หนึ่ง ดังนั้น x หนึ่ง เท่ากับหนึ่งส่วนหก หรือ 0.167 เทียบกับค่าแม่นตรง e ยกกำลังลบห้า คือ 0.0067"
+    },
+    {
+     "s": 24.295,
+     "e": 25.789,
+     "en": "An error of 0.16.",
+     "th": "ความคลาดเคลื่อนเท่ากับ 0.16"
+    },
+    {
+     "s": 25.789,
+     "e": 36.553,
+     "en": "Use the buttons to change K and the number of elements. Amber dots are collocation points, teal dots the element ends, and the black curve is the exact solution.",
+     "th": "ใช้ปุ่มเปลี่ยน K และจำนวน element จุดสีอำพันคือจุด collocation จุดสีเขียวหัวเป็ดคือปลาย element และเส้นสีดำคือคำตอบแม่นตรง"
+    },
+    {
+     "s": 36.553,
+     "e": 48.448,
+     "en": "The table shows the error at t equal to one. Each doubling of the elements divides it by about two for K equal to one, eight for K equal to two, and thirty-two for K equal to three:",
+     "th": "ตารางแสดงความคลาดเคลื่อนที่ t เท่ากับหนึ่ง การเพิ่ม element เป็นสองเท่าทำให้ความคลาดเคลื่อนลดลงประมาณสองเท่าเมื่อ K เท่ากับหนึ่ง แปดเท่าเมื่อ K เท่ากับสอง และสามสิบสองเท่าเมื่อ K"
+    },
+    {
+     "s": 48.448,
+     "e": 50.605,
+     "en": "two to the power two K minus one.",
+     "th": "เท่ากับสาม คือสองยกกำลังสอง K ลบหนึ่ง"
+    },
+    {
+     "s": 50.605,
+     "e": 60.681,
+     "en": "With K equal to three, four elements already reach an error of about ten to the minus five. That is why three Radau points per element is the usual default:",
+     "th": "เมื่อ K เท่ากับสาม สี่ element ก็ให้ความคลาดเคลื่อนประมาณสิบยกกำลังลบห้าแล้ว นี่คือเหตุผลที่จุด Radau สามจุดต่อ element เป็นค่าตั้งต้นที่นิยม"
+    },
+    {
+     "s": 60.681,
+     "e": 63.697,
+     "en": "high accuracy for a modest number of variables.",
+     "th": "เพราะให้ความแม่นยำสูงด้วยจำนวนตัวแปรไม่มาก"
+    },
+    {
+     "s": 63.697,
+     "e": 71.805,
+     "en": "For our reactor, the same accuracy argument says that fifty elements of three points are far more accurate than the control discretization needs;",
+     "th": "สำหรับเครื่องปฏิกรณ์ของเรา เหตุผลเรื่องความแม่นยำเดียวกันบอกว่า ห้าสิบ element ที่มีสามจุดแม่นยำเกินกว่าที่การแบ่งช่วงของตัวควบคุมต้องการมาก"
+    },
+    {
+     "s": 71.805,
+     "e": 76.303,
+     "en": "the remaining differences between runs come from the control, not from the model.",
+     "th": "ความแตกต่างที่เหลือระหว่างการรันจึงมาจากตัวควบคุม ไม่ใช่จากโมเดล"
+    },
+    {
+     "s": 76.303,
+     "e": 81.724,
+     "en": "The D drawer computes the same table with the collocation matrices of the module.",
+     "th": "ลิ้นชัก D คำนวณตารางเดียวกันด้วยเมทริกซ์ collocation ของโมดูล"
+    },
+    {
+     "s": 81.724,
+     "e": 89.158,
+     "en": "The same rows, with f replaced by the reactor equations, are what CasADi builds for the batch problem on the next slides.",
+     "th": "แถวแบบเดียวกันนี้ เมื่อแทน f ด้วยสมการของเครื่องปฏิกรณ์ คือสิ่งที่ CasADi สร้างสำหรับโจทย์เครื่องปฏิกรณ์ในหน้าถัดไป"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "file": "audio/slide-16.mp3",
+   "duration": 83.904,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.603,
+     "en": "Collocation gives a large NLP, but almost all of its Jacobian is zero.",
+     "th": "collocation ให้ NLP ขนาดใหญ่ แต่ Jacobian เกือบทั้งหมดเป็นศูนย์"
+    },
+    {
+     "s": 5.603,
+     "e": 11.973,
+     "en": "The picture shows the nonzeros of the equality rows for the batch problem with four elements and three points each:",
+     "th": "ภาพแสดงสมาชิกที่ไม่เป็นศูนย์ของแถวสมการสำหรับโจทย์เครื่องปฏิกรณ์ที่มีสี่ element และสามจุดในแต่ละ element"
+    },
+    {
+     "s": 11.973,
+     "e": 17.684,
+     "en": "thirty-two rows, thirty-eight variables, and one hundred and forty-eight nonzeros, about twelve percent.",
+     "th": "คือสามสิบสองแถว สามสิบแปดตัวแปร และหนึ่งร้อยสี่สิบแปดสมาชิกที่ไม่เป็นศูนย์ ประมาณสิบสองเปอร์เซ็นต์"
+    },
+    {
+     "s": 17.684,
+     "e": 25.684,
+     "en": "Each element touches only its own variables and the start of the next element, so the nonzeros form a block band along the diagonal.",
+     "th": "แต่ละ element เกี่ยวข้องเฉพาะตัวแปรของตัวเองและจุดเริ่มของ element ถัดไป สมาชิกที่ไม่เป็นศูนย์จึงเรียงเป็นแถบบล็อกตามแนวทแยง"
+    },
+    {
+     "s": 25.684,
+     "e": 34.78,
+     "en": "With fifty elements, CasADi counts four hundred and fifty-two variables and the same number of rows, including the initial state and the bounds on temperature,",
+     "th": "เมื่อมีห้าสิบ element CasADi นับได้สี่ร้อยห้าสิบสองตัวแปร และจำนวนแถวเท่ากัน ซึ่งรวม state เริ่มต้นและขอบเขตของอุณหภูมิ และสมาชิกที่ไม่เป็นศูนย์ใน"
+    },
+    {
+     "s": 34.78,
+     "e": 37.566,
+     "en": "and about one percent of the Jacobian is nonzero.",
+     "th": "Jacobian มีประมาณหนึ่งเปอร์เซ็นต์"
+    },
+    {
+     "s": 37.566,
+     "e": 45.066,
+     "en": "Stored as a dense matrix, that Jacobian would have about two hundred thousand entries; stored sparsely, about two thousand.",
+     "th": "ถ้าเก็บเป็นเมทริกซ์ dense Jacobian นี้จะมีประมาณสองแสนสมาชิก ถ้าเก็บแบบ sparse จะมีประมาณสองพันสมาชิก"
+    },
+    {
+     "s": 45.066,
+     "e": 55.832,
+     "en": "Ipopt factorizes this sparse KKT matrix with a sparse linear solver, MUMPS in CasADi's build, so the work per iteration grows about linearly with the number of elements.",
+     "th": "Ipopt แยกตัวประกอบ KKT matrix ที่ sparse นี้ด้วย sparse linear solver ซึ่งคือ MUMPS ใน CasADi งานต่อรอบจึงเพิ่มขึ้นเกือบเป็นเชิงเส้นตามจำนวน element ส่วน"
+    },
+    {
+     "s": 55.832,
+     "e": 64.382,
+     "en": "SLSQP stores dense matrices, which is fine for twenty controls in single shooting, but not for collocation with thousands of variables.",
+     "th": "SLSQP เก็บเมทริกซ์แบบ dense ซึ่งใช้ได้กับตัวควบคุมยี่สิบตัวใน single shooting แต่ไม่เหมาะกับ collocation ที่มีตัวแปรนับพัน"
+    },
+    {
+     "s": 64.382,
+     "e": 72.355,
+     "en": "CasADi also supplies exact first and second derivatives of every row, which Ipopt uses, as you saw in Session 9.",
+     "th": "CasADi ยังให้อนุพันธ์อันดับหนึ่งและอันดับสองแบบแม่นตรงของทุกแถว ซึ่ง Ipopt นำไปใช้ ดังที่คุณเห็นในคาบที่ 9"
+    },
+    {
+     "s": 72.355,
+     "e": 75.459,
+     "en": "That is the main practical reason to learn collocation:",
+     "th": "นี่คือเหตุผลหลักในทางปฏิบัติที่ควรเรียน collocation"
+    },
+    {
+     "s": 75.459,
+     "e": 83.829,
+     "en": "it scales to plant-sized models with hundreds of states, where single shooting with finite differences would need hundreds of simulations per gradient.",
+     "th": "เพราะมันขยายไปถึงโมเดลขนาดโรงงานที่มี state หลายร้อยตัวได้ ขณะที่ single shooting ที่ใช้ finite difference จะต้องจำลองหลายร้อยครั้งต่อหนึ่ง gradient"
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "file": "audio/slide-17.mp3",
+   "duration": 121.272,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.326,
+     "en": "Here is how the collocation NLP is built in CasADi.",
+     "th": "นี่คือวิธีสร้าง NLP แบบ collocation ใน CasADi"
+    },
+    {
+     "s": 4.326,
+     "e": 14.365,
+     "en": "For each element, the code creates a temperature variable with its bounds, scaled to hundreds of kelvin, and K state variables at the collocation points.",
+     "th": "สำหรับแต่ละ element โค้ดสร้างตัวแปรอุณหภูมิพร้อมขอบเขต โดยปรับสเกลเป็นหน่วยร้อยเคลวิน และตัวแปร state K ตัวที่จุด collocation แล้วเพิ่มแถว"
+    },
+    {
+     "s": 14.365,
+     "e": 21.145,
+     "en": "It adds the collocation rows, then a new variable for the next element's start with its continuity row.",
+     "th": "collocation จากนั้นสร้างตัวแปรใหม่สำหรับจุดเริ่มของ element ถัดไปพร้อมแถวความต่อเนื่อง"
+    },
+    {
+     "s": 21.145,
+     "e": 26.947,
+     "en": "Finally it maximizes x two at the end, as a minimization of minus x two, and calls Ipopt.",
+     "th": "สุดท้ายทำให้ x สอง ที่ปลายสูงที่สุด ในรูปการหาค่าต่ำสุดของลบ x สอง แล้วเรียก Ipopt"
+    },
+    {
+     "s": 26.947,
+     "e": 45.605,
+     "en": "The table shows the recorded runs. With ten elements, x two is 0.610070; with twenty-five, 0.610536; with fifty, 0.610708; and with one hundred, 0.610792.",
+     "th": "ตารางแสดงผลที่บันทึกไว้ เมื่อมีสิบ element x สอง เท่ากับ 0.610070 ยี่สิบห้า element เท่ากับ 0.610536 ห้าสิบ element เท่ากับ 0.610708 และหนึ่งร้อย element เท่ากับ 0.610792"
+    },
+    {
+     "s": 45.605,
+     "e": 56.605,
+     "en": "The number of variables is nine per element, two states at the start, six at the collocation points and one temperature, plus the final state: four hundred and fifty-two for fifty elements.",
+     "th": "จำนวนตัวแปรคือเก้าตัวต่อหนึ่ง element ได้แก่ state สองตัวที่จุดเริ่ม หกตัวที่จุด collocation และอุณหภูมิหนึ่งตัว บวก state สุดท้าย จึงเป็นสี่ร้อยห้าสิบสองตัวสำหรับห้าสิบ element"
+    },
+    {
+     "s": 56.605,
+     "e": 63.303,
+     "en": "Ipopt needs eight to ten iterations whatever the size: the problem grows, but its difficulty does not.",
+     "th": "Ipopt ใช้แปดถึงสิบรอบไม่ว่าขนาดจะเท่าใด ปัญหาใหญ่ขึ้น แต่ความยากไม่เพิ่มขึ้น"
+    },
+    {
+     "s": 63.303,
+     "e": 72.013,
+     "en": "The run with fifty elements takes Ipopt about two hundredths of a second, so even the largest of these problems is small for an interior-point solver.",
+     "th": "การรันที่มีห้าสิบ element ใช้เวลา Ipopt ประมาณสองในร้อยวินาที ปัญหาที่ใหญ่ที่สุดในชุดนี้จึงยังเล็กสำหรับ solver แบบ interior point"
+    },
+    {
+     "s": 72.013,
+     "e": 80.096,
+     "en": "Now compare the first row with the last. Collocation with ten elements and single shooting with ten intervals agree to six digits.",
+     "th": "ตอนนี้เปรียบเทียบแถวแรกกับแถวสุดท้าย collocation ที่สิบ element และ single shooting ที่สิบช่วง ให้ผลตรงกันหกหลัก"
+    },
+    {
+     "s": 80.096,
+     "e": 91.263,
+     "en": "They solve the same discretized problem, with the temperature constant on ten intervals, in two different ways, so the agreement checks both the integrator and the collocation rows.",
+     "th": "ทั้งสองแก้ปัญหาที่แบ่งช่วงแบบเดียวกัน คืออุณหภูมิคงที่บนสิบช่วง ด้วยสองวิธีที่ต่างกัน ความสอดคล้องนี้จึงตรวจทั้งตัวอินทิเกรตและแถว collocation"
+    },
+    {
+     "s": 91.263,
+     "e": 99.539,
+     "en": "Finer control gives slightly more B, and with one hundred elements the first element reaches the upper bound, 398 kelvin.",
+     "th": "ตัวควบคุมที่ละเอียดขึ้นให้ B มากขึ้นเล็กน้อย และเมื่อมีหนึ่งร้อย element element แรกจะไปถึงขอบบน คือ 398 เคลวิน"
+    },
+    {
+     "s": 99.539,
+     "e": 107.958,
+     "en": "Compare the cost too. Shooting with ten intervals needed twenty-three SLSQP iterations and two hundred and fifty-four simulations;",
+     "th": "เปรียบเทียบต้นทุนด้วย shooting ที่สิบช่วงใช้ SLSQP ยี่สิบสามรอบและจำลองสองร้อยห้าสิบสี่ครั้ง ส่วน"
+    },
+    {
+     "s": 107.958,
+     "e": 113.421,
+     "en": "collocation with ten elements needed eight Ipopt iterations and no simulation at all.",
+     "th": "collocation ที่สิบ element ใช้ Ipopt แปดรอบโดยไม่ต้องจำลองเลย"
+    },
+    {
+     "s": 113.421,
+     "e": 121.197,
+     "en": "Lab 11 runs this code in Colab. If you cannot use Colab, the lab page shows the recorded run.",
+     "th": "Lab 11 รันโค้ดนี้ใน Colab ถ้าใช้ Colab ไม่ได้ หน้า lab แสดงผลที่บันทึกไว้"
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "file": "audio/slide-18.mp3",
+   "duration": 93.384,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.905,
+     "en": "How much is the best profile worth?",
+     "th": "โปรไฟล์ที่ดีที่สุดมีมูลค่าเท่าใด"
+    },
+    {
+     "s": 2.905,
+     "e": 12.474,
+     "en": "The chart overlays single shooting with twenty intervals, collocation with one hundred elements, and the best constant temperature. The profiles agree:",
+     "th": "กราฟซ้อน single shooting ที่ยี่สิบช่วง collocation ที่หนึ่งร้อย element และอุณหภูมิคงที่ที่ดีที่สุด โปรไฟล์สอดคล้องกัน"
+    },
+    {
+     "s": 12.474,
+     "e": 18.895,
+     "en": "they start at or near the upper bound and fall to about 326 kelvin, as the costate argument predicted.",
+     "th": "คือเริ่มที่หรือใกล้ขอบบนแล้วลดลงเหลือประมาณ 326 เคลวิน ตามที่เหตุผลเรื่อง costate คาดไว้"
+    },
+    {
+     "s": 18.895,
+     "e": 29.921,
+     "en": "The two staircases are hard to tell apart after the first tenth of an hour. Most of the difference between them, and most of the extra product, comes from the first few minutes.",
+     "th": "บันไดทั้งสองแทบแยกกันไม่ออกหลังหนึ่งในสิบของชั่วโมงแรก ความแตกต่างส่วนใหญ่ และผลิตภัณฑ์ที่เพิ่มขึ้นส่วนใหญ่ มาจากไม่กี่นาทีแรก"
+    },
+    {
+     "s": 29.921,
+     "e": 42.711,
+     "en": "In numbers, the best constant temperature gives 0.6059, and the best profile 0.6108: 0.8 percent more B. The optimum is flat in this problem.",
+     "th": "ในเชิงตัวเลข อุณหภูมิคงที่ที่ดีที่สุดให้ 0.6059 และโปรไฟล์ที่ดีที่สุดให้ 0.6108 คือ B มากขึ้น 0.8 เปอร์เซ็นต์ ค่าเหมาะสมที่สุดของปัญหานี้แบนราบ"
+    },
+    {
+     "s": 42.711,
+     "e": 54.816,
+     "en": "The dashed rust line adds a path constraint, temperature at most 370 kelvin. It costs only 0.0002: the high temperatures at the very start matter little.",
+     "th": "เส้นประสีสนิมเพิ่มข้อจำกัดตามเส้นทาง คืออุณหภูมิไม่เกิน 370 เคลวิน ซึ่งทำให้เสียเพียง 0.0002 อุณหภูมิสูงช่วงแรกสุดมีความสำคัญน้อย"
+    },
+    {
+     "s": 54.816,
+     "e": 63.501,
+     "en": "Is 0.8 percent worth the effort? In a large batch plant, a fraction of a percent of yield on every batch can pay for the work.",
+     "th": "0.8 เปอร์เซ็นต์คุ้มค่ากับความพยายามหรือไม่ ในโรงงานแบบกะขนาดใหญ่ ผลได้เพียงเศษเสี้ยวเปอร์เซ็นต์ในทุกกะก็คุ้มค่ากับงานได้"
+    },
+    {
+     "s": 63.501,
+     "e": 74.579,
+     "en": "And in other problems, such as selectivity to an unstable intermediate or the properties of a polymer grade, the profile matters far more. The method is the same.",
+     "th": "และในปัญหาอื่น เช่น selectivity ต่อสารมัธยันตร์ที่ไม่เสถียร หรือสมบัติของเกรดพอลิเมอร์ โปรไฟล์มีความสำคัญมากกว่านี้มาก วิธีการก็เหมือนเดิม"
+    },
+    {
+     "s": 74.579,
+     "e": 83.816,
+     "en": "A flat optimum has another consequence, which comes back at the end of part three: a profile computed with a slightly wrong model can still be nearly as good.",
+     "th": "ค่าเหมาะสมที่สุดที่แบนราบมีผลอีกอย่างหนึ่ง ซึ่งจะกลับมาตอนท้ายส่วนที่สาม คือโปรไฟล์ที่คำนวณจากโมเดลที่ผิดเล็กน้อยก็ยังดีได้เกือบเท่ากัน"
+    },
+    {
+     "s": 83.816,
+     "e": 93.316,
+     "en": "So the profile is a refinement, not a change of regime: the best constant temperature already captures most of the value, and the profile adds the last percent.",
+     "th": "ดังนั้นโปรไฟล์คือการปรับให้ดีขึ้น ไม่ใช่การเปลี่ยนรูปแบบการเดินเครื่อง อุณหภูมิคงที่ที่ดีที่สุดได้มูลค่าส่วนใหญ่ไปแล้ว และโปรไฟล์เพิ่มเปอร์เซ็นต์สุดท้าย"
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "file": "audio/slide-19.mp3",
+   "duration": 89.496,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.8,
+     "en": "What goes wrong in practice, and what should you check?",
+     "th": "อะไรผิดพลาดได้ในทางปฏิบัติ และควรตรวจอะไรบ้าง"
+    },
+    {
+     "s": 3.8,
+     "e": 13.684,
+     "en": "Initialization: simulate a reasonable constant policy and use its states as the initial guess for collocation. A flat guess can stall Ipopt.",
+     "th": "การกำหนดค่าเริ่มต้น ให้จำลองนโยบายคงที่ที่สมเหตุสมผล แล้วใช้ state ของมันเป็นค่าเดาเริ่มต้นสำหรับ collocation ค่าเดาที่แบนราบอาจทำให้ Ipopt ติดขัด"
+    },
+    {
+     "s": 13.684,
+     "e": 20.395,
+     "en": "Scaling: temperatures in hundreds of kelvin, times and states of order one, as in Sessions 8 and 9.",
+     "th": "การปรับสเกล อุณหภูมิในหน่วยร้อยเคลวิน เวลาและ state มีขนาดประมาณหนึ่ง เหมือนในคาบที่ 8 และ 9"
+    },
+    {
+     "s": 20.395,
+     "e": 35.531,
+     "en": "Control discretization: refine until the objective stops changing. Here it went 0.61007, 0.61054, 0.61071 and 0.61079. A bound reached on the first element is real;",
+     "th": "การแบ่งช่วงของตัวควบคุม ให้ทำให้ละเอียดขึ้นจนฟังก์ชันเป้าหมายหยุดเปลี่ยน ในที่นี้ได้ 0.61007, 0.61054, 0.61071 และ 0.61079 การไปถึงขอบเขตที่ element แรกเป็นของจริง"
+    },
+    {
+     "s": 35.531,
+     "e": 43.053,
+     "en": "a profile that chatters between the bounds from element to element usually is not.",
+     "th": "แต่โปรไฟล์ที่สลับไปมาระหว่างขอบเขตจาก element หนึ่งไปอีก element หนึ่งมักไม่ใช่"
+    },
+    {
+     "s": 43.053,
+     "e": 54.887,
+     "en": "Path constraints are enforced only at the collocation points, so check between them by simulation. A free final time is handled by scaling time by t f and making t f a variable.",
+     "th": "ข้อจำกัดตามเส้นทางถูกบังคับเฉพาะที่จุด collocation จึงต้องตรวจระหว่างจุดด้วยการจำลอง เวลาสุดท้ายที่เป็นอิสระจัดการได้โดยปรับสเกลเวลาด้วย t f และให้ t f เป็นตัวแปร"
+    },
+    {
+     "s": 54.887,
+     "e": 61.934,
+     "en": "Switching or sequencing decisions over time give mixed-integer dynamic optimization, which is much harder.",
+     "th": "การตัดสินใจเรื่องการสลับหรือลำดับตามเวลาทำให้เกิด mixed-integer dynamic optimization ซึ่งยากกว่ามาก"
+    },
+    {
+     "s": 61.934,
+     "e": 70.331,
+     "en": "For example, a temperature limit imposed at the collocation points can be exceeded slightly between them if the state is a polynomial of high order;",
+     "th": "ตัวอย่างเช่น ขีดจำกัดอุณหภูมิที่บังคับไว้ที่จุด collocation อาจถูกละเมิดเล็กน้อยระหว่างจุด ถ้า state เป็นพหุนามอันดับสูง"
+    },
+    {
+     "s": 70.331,
+     "e": 73.092,
+     "en": "simulating the answer shows whether that happens.",
+     "th": "การจำลองคำตอบจะแสดงว่าเกิดขึ้นหรือไม่"
+    },
+    {
+     "s": 73.092,
+     "e": 82.711,
+     "en": "And to trust the answer, simulate the optimal control with an independent integrator and compare, and read Ipopt's status and residuals, as in Session 9.",
+     "th": "และเพื่อเชื่อคำตอบ ให้จำลองตัวควบคุมที่เหมาะสมที่สุดด้วยตัวอินทิเกรตอิสระแล้วเปรียบเทียบ และอ่าน status กับ residual ของ Ipopt เหมือนในคาบที่ 9"
+    },
+    {
+     "s": 82.711,
+     "e": 89.434,
+     "en": "None of these checks is expensive. Skipping them is how a wrong profile reaches a plant.",
+     "th": "การตรวจเหล่านี้ไม่มีข้อใดมีต้นทุนสูง การข้ามไปคือทางที่โปรไฟล์ที่ผิดจะไปถึงโรงงาน"
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "file": "audio/slide-20.mp3",
+   "duration": 39.72,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.918,
+     "en": "Check 2 covers shooting, collocation and size.",
+     "th": "แบบตรวจที่ 2 ครอบคลุม shooting, collocation และขนาดของปัญหา"
+    },
+    {
+     "s": 3.918,
+     "e": 12.988,
+     "en": "Question one asks why single shooting can fail on an unstable reactor. Question two asks for the Radau collocation row with one point.",
+     "th": "ข้อหนึ่งถามว่าทำไม single shooting อาจล้มเหลวกับเครื่องปฏิกรณ์ที่ไม่เสถียร ข้อสองให้เขียนแถว Radau collocation"
+    },
+    {
+     "s": 12.988,
+     "e": 23.066,
+     "en": "Question three asks you to count the variables for fifty elements. Question four asks why the agreement of collocation and shooting is a useful check.",
+     "th": "ที่มีหนึ่งจุด ข้อสามให้นับตัวแปรเมื่อมีห้าสิบ element ข้อสี่ถามว่าทำไมความสอดคล้องของ collocation กับ shooting จึงเป็นการตรวจที่มีประโยชน์"
+    },
+    {
+     "s": 23.066,
+     "e": 29.934,
+     "en": "For question three, count per element first: the state at the start, the states at the points, and the control.",
+     "th": "สำหรับข้อสาม ให้นับต่อหนึ่ง element ก่อน คือ state ที่จุดเริ่ม state ที่จุด collocation และตัวควบคุม"
+    },
+    {
+     "s": 29.934,
+     "e": 34.763,
+     "en": "For question four, think about what each method could get wrong on its own.",
+     "th": "สำหรับข้อสี่ ให้คิดว่าแต่ละวิธีอาจผิดพลาดในเรื่องใดได้ด้วยตัวเอง"
+    },
+    {
+     "s": 34.763,
+     "e": 39.658,
+     "en": "Pause the narration, answer the four questions, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย ตอบคำถามสี่ข้อ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "file": "audio/slide-21.mp3",
+   "duration": 12.96,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.605,
+     "en": "Take a ten-minute break. After the break, take out your card again and think about what could change over time.",
+     "th": "พักสิบนาที หลังพักให้หยิบการ์ดออกมาอีกครั้ง และคิดว่าอะไรเปลี่ยนตามเวลาได้บ้าง"
+    },
+    {
+     "s": 7.605,
+     "e": 12.908,
+     "en": "When you come back, part three starts from the feedback question of Activity 2.",
+     "th": "เมื่อกลับมา ส่วนที่สามจะเริ่มจากคำถามเรื่องการป้อนกลับในกิจกรรมที่ 2"
+    }
+   ]
+  },
+  {
+   "n": 22,
+   "file": "audio/slide-22.mp3",
+   "duration": 61.512,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.155,
+     "en": "Activity 2 turns your card into a dynamic problem.",
+     "th": "กิจกรรมที่ 2 เปลี่ยนการ์ดของคุณให้เป็นปัญหาเชิงพลวัต"
+    },
+    {
+     "s": 4.155,
+     "e": 13.575,
+     "en": "Name the states and the controls of your card's process, and one control that could change over time. Even a steady-state card can have a dynamic question:",
+     "th": "ระบุ state และตัวควบคุมของกระบวนการในการ์ด และตัวควบคุมหนึ่งตัวที่เปลี่ยนตามเวลาได้ แม้การ์ดที่เป็นสถานะคงตัวก็มีคำถามเชิงพลวัตได้ เช่น"
+    },
+    {
+     "s": 13.575,
+     "e": 18.526,
+     "en": "a start-up, a grade change, a feed switch, or a batch version of the same reactor.",
+     "th": "การเริ่มเดินเครื่อง การเปลี่ยนเกรด การสลับสารป้อน หรือเครื่องปฏิกรณ์เดียวกันในแบบกะ"
+    },
+    {
+     "s": 18.526,
+     "e": 28.921,
+     "en": "Write the dynamics in words, the path constraints, and the objective over a horizon you choose. Then say whether you would use shooting or collocation, and why.",
+     "th": "เขียนพลวัตเป็นคำพูด ข้อจำกัดตามเส้นทาง และฟังก์ชันเป้าหมายบนช่วงเวลาที่คุณเลือก จากนั้นบอกว่าจะใช้ shooting หรือ collocation และเพราะอะไร"
+    },
+    {
+     "s": 28.921,
+     "e": 38.105,
+     "en": "Finally, think ahead to part three: for feedback, what would an MPC controller measure, what would it move, and which disturbance would it reject?",
+     "th": "สุดท้าย ให้คิดล่วงหน้าถึงส่วนที่สาม สำหรับการป้อนกลับ ตัวควบคุม MPC จะวัดอะไร จะขยับอะไร และจะต้านทาน disturbance ใด"
+    },
+    {
+     "s": 38.105,
+     "e": 43.75,
+     "en": "Keep it small: two or three states and one or two controls are enough to see which method fits.",
+     "th": "ทำให้เล็กไว้ สองหรือสาม state และตัวควบคุมหนึ่งหรือสองตัวก็เพียงพอที่จะเห็นว่าวิธีใดเหมาะสม"
+    },
+    {
+     "s": 43.75,
+     "e": 51.357,
+     "en": "Swap with your partner, who checks that there is at least one control and that each constraint can be measured or computed.",
+     "th": "แลกกับเพื่อน ซึ่งจะตรวจว่ามีตัวควบคุมอย่างน้อยหนึ่งตัว และข้อจำกัดแต่ละข้อวัดหรือคำนวณได้ ถ้าไม่มีการ์ด"
+    },
+    {
+     "s": 51.357,
+     "e": 57.921,
+     "en": "If you have no card, use the batch reactor run as a semibatch, with the feed rate of A as a second control.",
+     "th": "ให้ใช้เครื่องปฏิกรณ์แบบกะที่เดินแบบกึ่งกะ โดยมีอัตราป้อน A เป็นตัวควบคุมตัวที่สอง"
+    },
+    {
+     "s": 57.921,
+     "e": 61.447,
+     "en": "Pause the narration and work for about ten minutes.",
+     "th": "หยุดเสียงบรรยายและทำงานประมาณสิบนาที"
+    }
+   ]
+  },
+  {
+   "n": 23,
+   "file": "audio/slide-23.mp3",
+   "duration": 94.944,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.695,
+     "en": "Part three turns optimization into feedback.",
+     "th": "ส่วนที่สามเปลี่ยน optimization ให้เป็นการป้อนกลับ"
+    },
+    {
+     "s": 3.695,
+     "e": 14.602,
+     "en": "A dynamic optimization over a horizon of N samples gives a plan: N moves, starting from the current state. Model predictive control applies only the first move.",
+     "th": "dynamic optimization บนช่วง N ครั้งของการสุ่มวัดให้แผนการขยับ N ครั้ง โดยเริ่มจาก state ปัจจุบัน model predictive control ใช้เพียงการขยับครั้งแรก"
+    },
+    {
+     "s": 14.602,
+     "e": 24.697,
+     "en": "At the next sample it measures the plant, updates its state and any disturbance estimate, and solves again from there. The horizon recedes with time.",
+     "th": "ในการสุ่มวัดครั้งถัดไป มันวัดค่าจากโรงงาน ปรับ state และค่าประมาณ disturbance แล้วแก้ปัญหาใหม่จากตรงนั้น ช่วงเวลาที่มองไปข้างหน้าจึงเลื่อนไปตามเวลา"
+    },
+    {
+     "s": 24.697,
+     "e": 33.855,
+     "en": "Between samples, the plant runs with the applied move; what happens there, including disturbances the model does not know, shows up in the next measurement.",
+     "th": "ระหว่างการสุ่มวัด โรงงานทำงานด้วยการขยับที่ใช้ไป สิ่งที่เกิดขึ้นในช่วงนั้น รวมถึง disturbance ที่โมเดลไม่รู้ จะปรากฏในการวัดครั้งถัดไป"
+    },
+    {
+     "s": 33.855,
+     "e": 41.408,
+     "en": "Move the slider to see it. At each sample a new band is planned, and only its first square is applied.",
+     "th": "เลื่อนแถบเลื่อนเพื่อดู ในแต่ละครั้งที่สุ่มวัดจะมีการวางแผนแถบใหม่ และใช้เพียงช่องแรกของแถบนั้น"
+    },
+    {
+     "s": 41.408,
+     "e": 52.816,
+     "en": "Why compute the rest of the plan? Because a move is good or bad by its effect over the whole horizon. The rest of the plan is the justification for the first move.",
+     "th": "ทำไมต้องคำนวณแผนส่วนที่เหลือ เพราะการขยับหนึ่งครั้งดีหรือไม่ดีขึ้นกับผลของมันตลอดช่วงเวลา แผนส่วนที่เหลือคือเหตุผลรองรับการขยับครั้งแรก"
+    },
+    {
+     "s": 52.816,
+     "e": 63.092,
+     "en": "If the controller planned only one move ahead, it could not see that a large move now overshoots later, and it would behave much worse; part of the next demo shows this with a short horizon.",
+     "th": "ถ้าตัวควบคุมวางแผนเพียงการขยับเดียวล่วงหน้า มันจะไม่เห็นว่าการขยับมาก ๆ ตอนนี้จะทำให้พุ่งเกินในภายหลัง และจะทำงานได้แย่กว่ามาก demo ถัดไปส่วนหนึ่งแสดงเรื่องนี้ด้วย horizon ที่สั้น"
+    },
+    {
+     "s": 63.092,
+     "e": 70.155,
+     "en": "An open-loop plan cannot react to what it did not predict; re-solving with new measurements is what makes it feedback.",
+     "th": "แผนแบบ open loop ตอบสนองต่อสิ่งที่ไม่ได้ทำนายไว้ไม่ได้ การแก้ใหม่ด้วยค่าวัดใหม่คือสิ่งที่ทำให้เป็นการป้อนกลับ"
+    },
+    {
+     "s": 70.155,
+     "e": 79.474,
+     "en": "And because the valve and level limits are part of every solve, MPC handles constraints directly, which is why process plants use it where limits are active.",
+     "th": "และเพราะขีดจำกัดของวาล์วและระดับของเหลวเป็นส่วนหนึ่งของทุกการแก้ MPC จึงจัดการข้อจำกัดได้โดยตรง ซึ่งเป็นเหตุผลที่โรงงานใช้มันในจุดที่ขีดจำกัดมีผล"
+    },
+    {
+     "s": 79.474,
+     "e": 85.724,
+     "en": "Session 4's rolling plan for the battery was the same idea, with an LP and hourly samples.",
+     "th": "แผนแบบ rolling ของแบตเตอรี่ในคาบที่ 4 ก็คือแนวคิดเดียวกัน โดยใช้ LP และสุ่มวัดทุกชั่วโมง"
+    },
+    {
+     "s": 85.724,
+     "e": 94.868,
+     "en": "Industrial MPC began in refineries in the 1970s and 1980s, and today it runs on thousands of units in refining and chemicals.",
+     "th": "MPC ในอุตสาหกรรมเริ่มในโรงกลั่นในทศวรรษ 1970 และ 1980 และปัจจุบันทำงานอยู่ในหน่วยผลิตนับพันหน่วยในอุตสาหกรรมการกลั่นและเคมี"
+    }
+   ]
+  },
+  {
+   "n": 24,
+   "file": "audio/slide-24.mp3",
+   "duration": 88.272,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.3,
+     "en": "Our process is two tanks in series.",
+     "th": "กระบวนการของเราคือถังสองใบต่อกันแบบอนุกรม"
+    },
+    {
+     "s": 3.3,
+     "e": 14.747,
+     "en": "A valve sets the flow u into tank one. Tank one drains into tank two, and tank two drains out, each in proportion to its level. An unmeasured flow d enters tank two;",
+     "th": "วาล์วกำหนดอัตราการไหล u เข้าถังที่หนึ่ง ถังที่หนึ่งไหลลงถังที่สอง และถังที่สองไหลออก โดยแต่ละถังไหลออกตามสัดส่วนของระดับของเหลว มีการไหล d ที่ไม่ได้วัดเข้าสู่ถังที่สอง"
+    },
+    {
+     "s": 14.747,
+     "e": 22.539,
+     "en": "a negative d is a withdrawal. We control the level of tank two by moving the valve, and both levels are measured.",
+     "th": "ค่า d ที่ติดลบคือการดึงของเหลวออก เราควบคุมระดับของถังที่สองด้วยการขยับวาล์ว และวัดระดับได้ทั้งสองถัง"
+    },
+    {
+     "s": 22.539,
+     "e": 28.212,
+     "en": "The valve flow is limited to between zero and 0.5 cubic metres per minute.",
+     "th": "อัตราการไหลของวาล์วจำกัดอยู่ระหว่างศูนย์ถึง 0.5 ลูกบาศก์เมตรต่อนาที"
+    },
+    {
+     "s": 28.212,
+     "e": 40.921,
+     "en": "At steady state the level of tank two is R two times u plus d, so a setpoint of 1.6 metres needs u equal to 0.4 with no disturbance, and 0.45 with a withdrawal of 0.05.",
+     "th": "ที่สถานะคงตัว ระดับของถังที่สองเท่ากับ R สอง คูณ u บวก d ดังนั้นค่าเป้าหมาย 1.6 เมตรต้องใช้ u เท่ากับ 0.4 เมื่อไม่มี disturbance และ 0.45 เมื่อมีการดึงออก 0.05"
+    },
+    {
+     "s": 40.921,
+     "e": 52.526,
+     "en": "The time constants are A times R: two minutes for tank one and four minutes for tank two. Tank two responds to the valve only through tank one, so its level lags behind every move.",
+     "th": "ค่าคงที่เวลาคือ A คูณ R คือสองนาทีสำหรับถังที่หนึ่ง และสี่นาทีสำหรับถังที่สอง ถังที่สองตอบสนองต่อวาล์วผ่านถังที่หนึ่งเท่านั้น ระดับของมันจึงตามหลังการขยับทุกครั้ง"
+    },
+    {
+     "s": 52.526,
+     "e": 57.479,
+     "en": "For prediction, the model is discretized with a sample time of half a minute.",
+     "th": "สำหรับการทำนาย โมเดลถูกแบ่งเป็นช่วงด้วยเวลาสุ่มวัดครึ่งนาที"
+    },
+    {
+     "s": 57.479,
+     "e": 67.829,
+     "en": "With the inputs held constant over each sample, the discrete model is exact, and its matrix is the matrix exponential, as for the alpha-pinene model of Session 10.",
+     "th": "เมื่อตัวแปรนำเข้าคงที่ตลอดแต่ละช่วง โมเดลแบบไม่ต่อเนื่องจะแม่นตรง และเมทริกซ์ของมันคือ matrix exponential เช่นเดียวกับโมเดล alpha-pinene ในคาบที่ 10"
+    },
+    {
+     "s": 67.829,
+     "e": 78.553,
+     "en": "Stacking the next N levels gives y equals Phi x plus G U plus a disturbance term. G is lower triangular, because a move affects only later levels.",
+     "th": "เมื่อเรียงระดับของเหลว N ค่าถัดไปจะได้ y เท่ากับ Phi x บวก G U บวกพจน์ disturbance โดย G เป็นเมทริกซ์สามเหลี่ยมล่าง เพราะการขยับหนึ่งครั้งส่งผลต่อระดับในเวลาหลังจากนั้นเท่านั้น"
+    },
+    {
+     "s": 78.553,
+     "e": 88.197,
+     "en": "The model is deliberately simple, two states and one input, so that every number on the next slides can be checked by hand; the method does not change with forty states.",
+     "th": "โมเดลนี้ตั้งใจให้ง่าย มีสอง state และหนึ่งตัวแปรนำเข้า เพื่อให้ตัวเลขทุกตัวในหน้าถัดไปตรวจด้วยมือได้ วิธีการไม่เปลี่ยนแม้มีสี่สิบ state"
+    }
+   ]
+  },
+  {
+   "n": 25,
+   "file": "audio/slide-25.mp3",
+   "duration": 102.984,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.182,
+     "en": "Now the optimization problem solved at every sample.",
+     "th": "ต่อไปคือปัญหา optimization ที่แก้ทุกครั้งที่สุ่มวัด"
+    },
+    {
+     "s": 4.182,
+     "e": 15.408,
+     "en": "The objective is the sum of squared errors between predicted levels and the setpoint, plus w times the sum of squared valve moves. The only constraints are the valve limits.",
+     "th": "ฟังก์ชันเป้าหมายคือผลรวมกำลังสองของความคลาดเคลื่อนระหว่างระดับที่ทำนายกับค่าเป้าหมาย บวก w คูณผลรวมกำลังสองของการขยับวาล์ว ข้อจำกัดมีเพียงขีดจำกัดของวาล์ว"
+    },
+    {
+     "s": 15.408,
+     "e": 23.603,
+     "en": "Because the predicted levels are linear in U and the moves are differences of U, the whole objective is the squared norm of a linear function of U.",
+     "th": "เพราะระดับที่ทำนายเป็นเชิงเส้นใน U และการขยับคือผลต่างของ U ฟังก์ชันเป้าหมายทั้งหมดจึงเป็น norm กำลังสองของฟังก์ชันเชิงเส้นของ"
+    },
+    {
+     "s": 23.603,
+     "e": 31.079,
+     "en": "Stack G on top of root w times the difference matrix D, and the right-hand side accordingly, and you have bounded linear least squares.",
+     "th": "U ให้วาง G ซ้อนบนรากที่สองของ w คูณเมทริกซ์ผลต่าง D พร้อมด้านขวาที่สอดคล้องกัน ก็จะได้ bounded linear least squares"
+    },
+    {
+     "s": 31.079,
+     "e": 41.487,
+     "en": "SciPy's L S Q linear, with the bounded-variable least-squares method, solves it exactly. That is the same family of solvers as in Session 10.",
+     "th": "lsq_linear ของ SciPy ด้วยวิธี bounded-variable least squares แก้ได้แบบแม่นตรง ซึ่งเป็นตระกูล solver เดียวกับในคาบที่ 10"
+    },
+    {
+     "s": 41.487,
+     "e": 49.013,
+     "en": "With a horizon of twenty, there are twenty decisions and forty least-squares rows: twenty for tracking and twenty for the moves.",
+     "th": "เมื่อ horizon เท่ากับยี่สิบ จะมีตัวตัดสินใจยี่สิบตัว และแถว least squares สี่สิบแถว คือยี่สิบแถวสำหรับการติดตามค่าเป้าหมาย และยี่สิบแถวสำหรับการขยับ"
+    },
+    {
+     "s": 49.013,
+     "e": 56.073,
+     "en": "The weight w sets the character of the controller: small w is fast and nervous, large w smooth and slow.",
+     "th": "น้ำหนัก w กำหนดลักษณะของตัวควบคุม w เล็กให้การตอบสนองเร็วแต่กระตุก w ใหญ่ให้การตอบสนองนุ่มนวลแต่ช้า"
+    },
+    {
+     "s": 56.073,
+     "e": 64.276,
+     "en": "Limits on the levels, or on the size of each move, are linear rows, and turn the problem into a general quadratic program.",
+     "th": "ขีดจำกัดของระดับของเหลว หรือของขนาดการขยับแต่ละครั้ง เป็นแถวเชิงเส้น และทำให้ปัญหากลายเป็น quadratic program ทั่วไป"
+    },
+    {
+     "s": 64.276,
+     "e": 70.168,
+     "en": "Since w multiplies the squared moves and the tracking term has no weight, only the ratio matters;",
+     "th": "เนื่องจาก w คูณกับกำลังสองของการขยับ และพจน์การติดตามค่าเป้าหมายไม่มีน้ำหนัก สิ่งที่มีผลจึงเป็นอัตราส่วนเท่านั้น"
+    },
+    {
+     "s": 70.168,
+     "e": 76.421,
+     "en": "scaling the levels or the flows changes the meaning of a given w, so state its units when you report it.",
+     "th": "การเปลี่ยนสเกลของระดับหรืออัตราการไหลจะเปลี่ยนความหมายของ w ค่าหนึ่ง ๆ จึงควรระบุหน่วยเมื่อรายงาน"
+    },
+    {
+     "s": 76.421,
+     "e": 88.244,
+     "en": "The problem is convex, with one global minimum found in milliseconds. That is what makes MPC practical every thirty seconds. With a nonlinear model you get nonlinear MPC:",
+     "th": "ปัญหานี้เป็น convex มีค่าต่ำสุดแบบ global เพียงค่าเดียว ซึ่งหาได้ในระดับมิลลิวินาที นี่คือสิ่งที่ทำให้ MPC ใช้ได้จริงทุกสามสิบวินาที เมื่อใช้โมเดลไม่เชิงเส้นจะได้ nonlinear"
+    },
+    {
+     "s": 88.244,
+     "e": 94.882,
+     "en": "the collocation NLP of part two, re-solved every sample and warm-started from the last solution.",
+     "th": "MPC คือ NLP แบบ collocation ในส่วนที่สอง ที่แก้ใหม่ทุกครั้งที่สุ่มวัด และเริ่มจากคำตอบครั้งก่อน"
+    },
+    {
+     "s": 94.882,
+     "e": 102.908,
+     "en": "Press D and run the cell: the first moves of the plan sit on the 0.5 limit, then the plan eases back toward 0.4.",
+     "th": "กด D แล้วรันเซลล์ การขยับช่วงแรกของแผนจะอยู่ที่ขีดจำกัด 0.5 แล้วแผนจะผ่อนลงเข้าหา 0.4"
+    }
+   ]
+  },
+  {
+   "n": 26,
+   "file": "audio/slide-26.mp3",
+   "duration": 101.76,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.8,
+     "en": "This demo runs the controller in closed loop for one hour, for sixteen combinations of horizon and weight.",
+     "th": "demo นี้รันตัวควบคุมแบบวงปิดเป็นเวลาหนึ่งชั่วโมง สำหรับสิบหกชุดของ horizon และน้ำหนัก"
+    },
+    {
+     "s": 6.8,
+     "e": 19.079,
+     "en": "The setpoint steps from 1.2 to 1.6 metres at five minutes, and a withdrawal of 0.05 cubic metres per minute starts at thirty minutes. The disturbance estimate is on.",
+     "th": "ค่าเป้าหมายเปลี่ยนจาก 1.2 เป็น 1.6 เมตรที่นาทีที่ห้า และการดึงออก 0.05 ลูกบาศก์เมตรต่อนาทีเริ่มที่นาทีที่สามสิบ การประมาณ disturbance เปิดอยู่"
+    },
+    {
+     "s": 19.079,
+     "e": 26.275,
+     "en": "With N equal to twenty and w equal to one, the level overshoots by 3.2 percent and settles in five minutes.",
+     "th": "เมื่อ N เท่ากับยี่สิบ และ w เท่ากับหนึ่ง ระดับพุ่งเกิน 3.2 เปอร์เซ็นต์และเข้าที่ภายในห้านาที"
+    },
+    {
+     "s": 26.275,
+     "e": 34.803,
+     "en": "The valve sits on its limit for five samples, and the withdrawal moves the level by at most 0.048 metres before it is corrected.",
+     "th": "วาล์วอยู่ที่ขีดจำกัดห้าครั้งของการสุ่มวัด และการดึงออกทำให้ระดับเปลี่ยนไปไม่เกิน 0.048 เมตรก่อนจะถูกแก้"
+    },
+    {
+     "s": 34.803,
+     "e": 44.605,
+     "en": "Read the panel of numbers as you press the buttons: overshoot and settling describe the setpoint step, and the maximum deviation describes the response to the withdrawal.",
+     "th": "อ่านแผงตัวเลขขณะกดปุ่ม ค่าพุ่งเกินและเวลาเข้าที่อธิบายการเปลี่ยนค่าเป้าหมาย ส่วนค่าเบี่ยงเบนสูงสุดอธิบายการตอบสนองต่อการดึงออก"
+    },
+    {
+     "s": 44.605,
+     "e": 54.437,
+     "en": "Press w equal to 0.01: the valve opens fully at once, and the level settles in about two minutes. Then press N equal to five and w equal to ten:",
+     "th": "กด w เท่ากับ 0.01 วาล์วเปิดเต็มที่ทันที และระดับเข้าที่ในประมาณสองนาที จากนั้นกด N เท่ากับห้า และ w เท่ากับสิบ"
+    },
+    {
+     "s": 54.437,
+     "e": 66.711,
+     "en": "the controller cannot see far enough ahead to justify a large move, so it moves too little at first and then for too long. The overshoot is 22 percent and settling takes 21 minutes.",
+     "th": "ตัวควบคุมมองไปข้างหน้าได้ไม่ไกลพอที่จะเห็นเหตุผลของการขยับมาก ๆ จึงขยับน้อยเกินไปในช่วงแรกแล้วขยับนานเกินไป ระดับพุ่งเกิน 22 เปอร์เซ็นต์ และใช้เวลา 21 นาทีจึงเข้าที่"
+    },
+    {
+     "s": 66.711,
+     "e": 73.224,
+     "en": "Beyond N equal to twenty, which is ten minutes and about the settling time of the tanks, nothing changes.",
+     "th": "เมื่อ N เกินยี่สิบ ซึ่งคือสิบนาทีและประมาณเวลาเข้าที่ของถัง ผลก็ไม่เปลี่ยนอีก"
+    },
+    {
+     "s": 73.224,
+     "e": 84.152,
+     "en": "Notice also the valve trace in the lower chart. The controller knows the limit of 0.5 and plans around it, instead of asking for more than the valve can give.",
+     "th": "สังเกตกราฟของวาล์วด้านล่างด้วย ตัวควบคุมรู้ขีดจำกัด 0.5 และวางแผนโดยคำนึงถึงมัน แทนที่จะขอมากกว่าที่วาล์วให้ได้ ตัวควบคุม PI"
+    },
+    {
+     "s": 84.152,
+     "e": 88.895,
+     "en": "A PI controller in the same situation can wind up and overshoot more.",
+     "th": "ในสถานการณ์เดียวกันอาจเกิด windup และพุ่งเกินมากกว่านี้"
+    },
+    {
+     "s": 88.895,
+     "e": 95.934,
+     "en": "So choose the horizon from the process, at least its settling time, and then choose the weight for the behaviour you want.",
+     "th": "ดังนั้นให้เลือก horizon จากกระบวนการ คืออย่างน้อยเท่ากับเวลาเข้าที่ แล้วจึงเลือกน้ำหนักตามพฤติกรรมที่ต้องการ"
+    },
+    {
+     "s": 95.934,
+     "e": 101.697,
+     "en": "In the lab you will look for the smallest horizon that still settles quickly with a heavy move weight.",
+     "th": "ใน lab คุณจะหา horizon ที่เล็กที่สุดที่ยังเข้าที่ได้เร็วเมื่อใช้น้ำหนักของการขยับสูง"
+    }
+   ]
+  },
+  {
+   "n": 27,
+   "file": "audio/slide-27.mp3",
+   "duration": 121.296,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.866,
+     "en": "Now the same controller, N equal to twenty and w equal to one, run three ways.",
+     "th": "ต่อไปคือตัวควบคุมเดิม N เท่ากับยี่สิบ และ w เท่ากับหนึ่ง รันสามแบบ"
+    },
+    {
+     "s": 5.866,
+     "e": 16.802,
+     "en": "The dashed rust line is open loop: the whole hour is planned at time zero and applied without looking. It follows the setpoint perfectly while the model is right.",
+     "th": "เส้นประสีสนิมคือ open loop คือวางแผนทั้งชั่วโมงที่เวลาศูนย์แล้วใช้โดยไม่ดูผล มันตามค่าเป้าหมายได้พอดีขณะที่โมเดลถูกต้อง"
+    },
+    {
+     "s": 16.802,
+     "e": 24.316,
+     "en": "When the withdrawal starts, it has no way to know, and the level falls by R two times 0.05, which is 0.2 metres.",
+     "th": "เมื่อการดึงออกเริ่มขึ้น มันไม่มีทางรู้ และระดับลดลง R สอง คูณ 0.05 คือ 0.2 เมตร"
+    },
+    {
+     "s": 24.316,
+     "e": 35.312,
+     "en": "The grey line is MPC without a disturbance model. It re-solves from the measured levels every half minute, so it reacts, but its model still says d equals zero.",
+     "th": "เส้นสีเทาคือ MPC ที่ไม่มีโมเดล disturbance มันแก้ใหม่จากระดับที่วัดได้ทุกครึ่งนาที จึงตอบสนอง แต่โมเดลของมันยังบอกว่า d เท่ากับศูนย์"
+    },
+    {
+     "s": 35.312,
+     "e": 47.605,
+     "en": "At steady state the model predicts that the current valve opening holds the setpoint, so the optimizer sees nothing to correct, and the level stays 0.08 metres low. That is offset.",
+     "th": "ที่สถานะคงตัว โมเดลทำนายว่าการเปิดวาล์วปัจจุบันรักษาค่าเป้าหมายได้ optimizer จึงไม่เห็นสิ่งที่ต้องแก้ และระดับต่ำกว่าเป้าหมาย 0.08 เมตร นี่คือ offset"
+    },
+    {
+     "s": 47.605,
+     "e": 57.219,
+     "en": "You can check the size of the offset by hand. The controller settles where its model, with d equal to zero, predicts that the current valve holds the level;",
+     "th": "คุณตรวจขนาดของ offset ด้วยมือได้ ตัวควบคุมจะหยุดที่จุดที่โมเดลของมันซึ่ง d เท่ากับศูนย์ ทำนายว่าวาล์วปัจจุบันรักษาระดับไว้ได้"
+    },
+    {
+     "s": 57.219,
+     "e": 61.75,
+     "en": "the plant, with the withdrawal, holds a lower level at that valve opening.",
+     "th": "ส่วนโรงงานซึ่งมีการดึงออกจะรักษาระดับที่ต่ำกว่าเมื่อเปิดวาล์วเท่านั้น"
+    },
+    {
+     "s": 61.75,
+     "e": 72.754,
+     "en": "The teal line adds a disturbance estimate. After each sample, d hat is updated from the error between the predicted and the measured level of tank two.",
+     "th": "เส้นสีเขียวหัวเป็ดเพิ่มการประมาณ disturbance หลังการสุ่มวัดแต่ละครั้ง d hat ถูกปรับจากความคลาดเคลื่อนระหว่างระดับของถังที่สองที่ทำนายกับที่วัดได้"
+    },
+    {
+     "s": 72.754,
+     "e": 82.092,
+     "en": "The model then explains the withdrawal, and MPC opens the valve to 0.45, as the steady-state calculation said it must. No offset.",
+     "th": "โมเดลจึงอธิบายการดึงออกได้ และ MPC เปิดวาล์วเป็น 0.45 ตามที่การคำนวณสถานะคงตัวบอกไว้ ไม่มี offset"
+    },
+    {
+     "s": 82.092,
+     "e": 91.225,
+     "en": "The update used here is the simplest one: after each sample, d hat is changed by exactly the amount that would have made the last prediction of h two correct.",
+     "th": "การปรับค่าที่ใช้ในที่นี้ง่ายที่สุด คือหลังการสุ่มวัดแต่ละครั้ง d hat จะเปลี่ยนไปเท่ากับปริมาณที่ทำให้การทำนาย h สอง ครั้งล่าสุดถูกต้องพอดี Kalman"
+    },
+    {
+     "s": 91.225,
+     "e": 96.395,
+     "en": "A Kalman filter does the same with a gain that weighs the model against measurement noise.",
+     "th": "filter ทำสิ่งเดียวกันด้วย gain ที่ชั่งน้ำหนักระหว่างโมเดลกับสัญญาณรบกวนของการวัด"
+    },
+    {
+     "s": 96.395,
+     "e": 107.092,
+     "en": "The table on the right gives the numbers: 0.2 metres low in open loop, 0.08 metres low with feedback alone, and on the setpoint with the disturbance estimate.",
+     "th": "ตารางทางขวาให้ตัวเลข คือต่ำกว่าเป้าหมาย 0.2 เมตรเมื่อเป็น open loop ต่ำกว่า 0.08 เมตรเมื่อมีเพียงการป้อนกลับ และตรงเป้าหมายเมื่อมีการประมาณ disturbance"
+    },
+    {
+     "s": 107.092,
+     "e": 112.383,
+     "en": "The lesson: feedback on the state is not enough when the error lies in the model.",
+     "th": "บทเรียนคือ การป้อนกลับด้วย state ไม่เพียงพอเมื่อความผิดพลาดอยู่ที่โมเดล MPC"
+    },
+    {
+     "s": 112.383,
+     "e": 121.224,
+     "en": "Industrial MPC always includes a disturbance model, often an output bias or a Kalman filter, as the survey by Qin and Badgwell describes.",
+     "th": "ในอุตสาหกรรมจึงมีโมเดล disturbance เสมอ ซึ่งมักเป็น output bias หรือ Kalman filter ตามที่การสำรวจของ Qin และ Badgwell อธิบายไว้"
+    }
+   ]
+  },
+  {
+   "n": 28,
+   "file": "audio/slide-28.mp3",
+   "duration": 78.624,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.984,
+     "en": "Some rules of thumb for tuning and running MPC.",
+     "th": "หลักปฏิบัติบางข้อสำหรับการปรับจูนและการใช้งาน MPC"
+    },
+    {
+     "s": 3.984,
+     "e": 11.829,
+     "en": "The sample time is about a tenth of the dominant time constant; here half a minute, for tanks with time constants of two and four minutes.",
+     "th": "เวลาสุ่มวัดประมาณหนึ่งในสิบของค่าคงที่เวลาหลัก ในที่นี้คือครึ่งนาที สำหรับถังที่มีค่าคงที่เวลาสองและสี่นาที"
+    },
+    {
+     "s": 11.829,
+     "e": 18.771,
+     "en": "The prediction horizon should cover at least the settling time of the process; longer costs computation and changes little.",
+     "th": "horizon ของการทำนายควรครอบคลุมอย่างน้อยเวลาเข้าที่ของกระบวนการ ที่ยาวกว่านั้นเพิ่มการคำนวณแต่เปลี่ยนผลน้อย"
+    },
+    {
+     "s": 18.771,
+     "e": 26.553,
+     "en": "The move weight should keep the valve moving no faster than it can; raise it if the moves are nervous or if measurement noise is amplified.",
+     "th": "น้ำหนักของการขยับควรทำให้วาล์วขยับไม่เร็วเกินกว่าที่ทำได้ ให้เพิ่มน้ำหนักถ้าการขยับกระตุก หรือถ้าสัญญาณรบกวนจากการวัดถูกขยาย"
+    },
+    {
+     "s": 26.553,
+     "e": 34.566,
+     "en": "Always include a disturbance model, a constant bias at the output or at the input; without it, any model error leaves offset.",
+     "th": "ต้องมีโมเดล disturbance เสมอ เช่น bias คงที่ที่ตัวแปรขาออกหรือขาเข้า ถ้าไม่มี ความผิดพลาดของโมเดลใด ๆ จะทิ้ง offset ไว้"
+    },
+    {
+     "s": 34.566,
+     "e": 45.079,
+     "en": "Which one matters: a bias at the output removes offset for constant disturbances, but a disturbance at the input, as here, is rejected faster when the model places it there.",
+     "th": "ตำแหน่งมีผล bias ที่ตัวแปรขาออกกำจัด offset สำหรับ disturbance คงที่ได้ แต่ disturbance ที่ขาเข้า อย่างในกรณีนี้ ถูกต้านทานได้เร็วกว่าเมื่อโมเดลวางมันไว้ที่ตำแหน่งนั้น"
+    },
+    {
+     "s": 45.079,
+     "e": 54.684,
+     "en": "Estimate the states you cannot measure with a Kalman filter or with moving-horizon estimation, which is Session 10's least squares over a sliding window of recent data.",
+     "th": "ประมาณ state ที่วัดไม่ได้ด้วย Kalman filter หรือ moving-horizon estimation ซึ่งก็คือ least squares ของคาบที่ 10 บนหน้าต่างข้อมูลล่าสุดที่เลื่อนไปเรื่อย ๆ"
+    },
+    {
+     "s": 54.684,
+     "e": 62.191,
+     "en": "For nonlinear MPC, warm-start each solve from the previous solution and check the solve time against the sample time.",
+     "th": "สำหรับ nonlinear MPC ให้เริ่มการแก้แต่ละครั้งจากคำตอบครั้งก่อน และตรวจเวลาที่ใช้แก้เทียบกับเวลาสุ่มวัด"
+    },
+    {
+     "s": 62.191,
+     "e": 70.526,
+     "en": "And soften output limits with penalized slack variables, so that the solver always returns a move, even when a limit cannot be met.",
+     "th": "และผ่อนขีดจำกัดของตัวแปรขาออกด้วยตัวแปร slack ที่มีบทลงโทษ เพื่อให้ solver คืนค่าการขยับได้เสมอ แม้ขีดจำกัดจะทำไม่ได้"
+    },
+    {
+     "s": 70.526,
+     "e": 78.553,
+     "en": "None of these rules replaces a test on the plant or on a good simulator; they give a starting point that a test then confirms or corrects.",
+     "th": "หลักเหล่านี้ไม่ได้แทนการทดสอบในโรงงานหรือในแบบจำลองที่ดี แต่ให้จุดเริ่มต้นที่การทดสอบจะยืนยันหรือแก้ไข"
+    }
+   ]
+  },
+  {
+   "n": 29,
+   "file": "audio/slide-29.mp3",
+   "duration": 41.352,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.892,
+     "en": "Check 3 covers receding horizons and offset.",
+     "th": "แบบตรวจที่ 3 ครอบคลุม receding horizon และ offset"
+    },
+    {
+     "s": 3.892,
+     "e": 10.641,
+     "en": "Question one asks how many of the twenty planned moves are applied, and why the rest are computed.",
+     "th": "ข้อหนึ่งถามว่าการขยับที่วางแผนไว้ยี่สิบครั้งถูกใช้กี่ครั้ง และทำไมต้องคำนวณที่เหลือ"
+    },
+    {
+     "s": 10.641,
+     "e": 20.73,
+     "en": "Question two asks why this MPC is bounded least squares, and what would make it a general QP. Question three asks why feedback alone leaves offset.",
+     "th": "ข้อสองถามว่าทำไม MPC นี้จึงเป็น bounded least squares และอะไรจะทำให้มันเป็น QP ทั่วไป ข้อสามถามว่าทำไมการป้อนกลับอย่างเดียวจึงทิ้ง"
+    },
+    {
+     "s": 20.73,
+     "e": 23.934,
+     "en": "Question four compares short and long horizons.",
+     "th": "offset ข้อสี่เปรียบเทียบ horizon สั้นกับยาว"
+    },
+    {
+     "s": 23.934,
+     "e": 29.658,
+     "en": "For question three, ask what the model predicts at the steady state that the plant reaches.",
+     "th": "สำหรับข้อสาม ให้ถามว่าโมเดลทำนายอะไรที่สถานะคงตัวที่โรงงานไปถึง"
+    },
+    {
+     "s": 29.658,
+     "e": 36.382,
+     "en": "For question four, think about how far ahead each controller can see compared with the settling time of the tanks.",
+     "th": "สำหรับข้อสี่ ให้คิดว่าตัวควบคุมแต่ละตัวมองไปข้างหน้าได้ไกลแค่ไหนเมื่อเทียบกับเวลาเข้าที่ของถัง"
+    },
+    {
+     "s": 36.382,
+     "e": 41.276,
+     "en": "Pause the narration, answer the four questions, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย ตอบคำถามสี่ข้อ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 30,
+   "file": "audio/slide-30.mp3",
+   "duration": 120.528,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.458,
+     "en": "Back to the batch reactor, for one more comparison of open loop and closed loop.",
+     "th": "กลับมาที่เครื่องปฏิกรณ์แบบกะ เพื่อเปรียบเทียบ open loop กับ closed loop อีกครั้ง"
+    },
+    {
+     "s": 5.458,
+     "e": 15.605,
+     "en": "Suppose the true k two is ten percent higher than the model's, a plausible error after Session 10. The profile computed with the model is run anyway.",
+     "th": "สมมติว่า k สอง จริงสูงกว่าในโมเดลสิบเปอร์เซ็นต์ ซึ่งเป็นความผิดพลาดที่เป็นไปได้หลังคาบที่ 10 แล้วนำโปรไฟล์ที่คำนวณจากโมเดลไปใช้"
+    },
+    {
+     "s": 15.605,
+     "e": 24.711,
+     "en": "The test is simple to run: integrate the nominal profile with k two multiplied by 1.1, and compare with the profile optimized for that value.",
+     "th": "การทดสอบนี้ทำได้ง่าย คืออินทิเกรตโปรไฟล์เดิมโดยคูณ k สอง ด้วย 1.1 แล้วเปรียบเทียบกับโปรไฟล์ที่หาค่าเหมาะสมสำหรับค่านั้น"
+    },
+    {
+     "s": 24.711,
+     "e": 37.145,
+     "en": "The model predicts 0.6105. The plant gives 0.6022. The best profile for the true k two would give 0.6024.",
+     "th": "โมเดลทำนาย 0.6105 โรงงานให้ 0.6022 และโปรไฟล์ที่ดีที่สุดสำหรับ k สอง จริงจะให้ 0.6024"
+    },
+    {
+     "s": 37.145,
+     "e": 46.066,
+     "en": "Note that the plant result is not a simulation error: it is what the reactor would really produce with that profile, if its k two is the higher value.",
+     "th": "สังเกตว่าผลของโรงงานไม่ใช่ความคลาดเคลื่อนของการจำลอง แต่เป็นสิ่งที่เครื่องปฏิกรณ์จะผลิตได้จริงด้วยโปรไฟล์นั้น ถ้า k สอง ของมันมีค่าสูงกว่า"
+    },
+    {
+     "s": 46.066,
+     "e": 58.646,
+     "en": "So the decision loses only 0.0003: the profile is robust, because the optimum is flat. But the prediction is off by 0.0083, twenty-nine times the loss.",
+     "th": "การตัดสินใจจึงเสียไปเพียง 0.0003 โปรไฟล์มีความทนทาน เพราะค่าเหมาะสมที่สุดแบนราบ แต่การทำนายคลาดไป 0.0083 ซึ่งยี่สิบเก้าเท่าของสิ่งที่เสียไป"
+    },
+    {
+     "s": 58.646,
+     "e": 64.026,
+     "en": "What the model promises is the weak part, not what it recommends.",
+     "th": "สิ่งที่โมเดลสัญญาไว้คือจุดอ่อน ไม่ใช่สิ่งที่มันแนะนำ"
+    },
+    {
+     "s": 64.026,
+     "e": 75.412,
+     "en": "Now feedback. At each of the twenty intervals, re-optimize the rest of the batch from the measured state, still with the wrong k two. That gives 0.6021, no better.",
+     "th": "ต่อไปคือการป้อนกลับ ที่แต่ละช่วงจากยี่สิบช่วง ให้หาค่าเหมาะสมของส่วนที่เหลือของกะใหม่จาก state ที่วัดได้ โดยยังใช้ k สอง ที่ผิด ได้ 0.6021 ซึ่งไม่ดีขึ้น"
+    },
+    {
+     "s": 75.412,
+     "e": 85.618,
+     "en": "The state is now measured correctly, but the model that predicts its future is still wrong, and feedback on the state cannot fix a parameter error.",
+     "th": "ตอนนี้ state ถูกวัดได้ถูกต้อง แต่โมเดลที่ทำนายอนาคตของมันยังผิดอยู่ และการป้อนกลับด้วย state แก้ความผิดพลาดของพารามิเตอร์ไม่ได้"
+    },
+    {
+     "s": 85.618,
+     "e": 96.145,
+     "en": "The chart shows the three profiles. The best profile for the true k two is a few kelvin lower throughout, because the destruction of B is faster than the model thought.",
+     "th": "กราฟแสดงโปรไฟล์ทั้งสาม โปรไฟล์ที่ดีที่สุดสำหรับ k สอง จริงต่ำกว่าไม่กี่เคลวินตลอดช่วง เพราะการทำลาย B เร็วกว่าที่โมเดลคิด"
+    },
+    {
+     "s": 96.145,
+     "e": 105.035,
+     "en": "What would help is to re-estimate k two from the measured concentrations as the batch runs, Session 10 on a moving window, and then re-optimize.",
+     "th": "สิ่งที่ช่วยได้คือการประมาณ k สอง ใหม่จากความเข้มข้นที่วัดได้ระหว่างที่กะดำเนินไป คือคาบที่ 10 บนหน้าต่างที่เลื่อนไป แล้วจึงหาค่าเหมาะสมใหม่"
+    },
+    {
+     "s": 105.035,
+     "e": 111.105,
+     "en": "This is the same lesson as the offset of the tanks, and Session 12 treats the uncertainty directly.",
+     "th": "นี่คือบทเรียนเดียวกับ offset ของถัง และคาบที่ 12 จะจัดการกับความไม่แน่นอนโดยตรง"
+    },
+    {
+     "s": 111.105,
+     "e": 120.461,
+     "en": "Keep the two numbers apart in your reports: how good the decision is, and how good the prediction is. They can differ by a factor of thirty.",
+     "th": "ในรายงานของคุณ ให้แยกตัวเลขสองตัวนี้ออกจากกัน คือการตัดสินใจดีแค่ไหน และการทำนายดีแค่ไหน ซึ่งอาจต่างกันได้ถึงสามสิบเท่า"
+    }
+   ]
+  },
+  {
+   "n": 31,
+   "file": "audio/slide-31.mp3",
+   "duration": 79.8,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.642,
+     "en": "A short tour of the tools.",
+     "th": "แนะนำเครื่องมือโดยสังเขป"
+    },
+    {
+     "s": 2.642,
+     "e": 15.868,
+     "en": "SciPy is enough for single shooting with a few controls, using solve I V P inside minimize, and for linear MPC with bounds, using L S Q linear. That is what the browser parts of today use.",
+     "th": "SciPy เพียงพอสำหรับ single shooting ที่มีตัวควบคุมไม่กี่ตัว โดยใช้ solve_ivp ภายใน minimize และสำหรับ linear MPC ที่มีขอบเขต โดยใช้ lsq_linear ซึ่งเป็นสิ่งที่ส่วนในเบราว์เซอร์ของวันนี้ใช้"
+    },
+    {
+     "s": 15.868,
+     "e": 25.248,
+     "en": "CasADi gives automatic differentiation, integrators with sensitivities, and the building blocks for collocation and multiple shooting, with Ipopt.",
+     "th": "CasADi ให้ automatic differentiation ตัวอินทิเกรตที่มี sensitivity และองค์ประกอบสำหรับสร้าง collocation และ multiple shooting พร้อม"
+    },
+    {
+     "s": 25.248,
+     "e": 29.842,
+     "en": "Most research and prototype work uses it, and so does Part B of the lab.",
+     "th": "Ipopt งานวิจัยและงานต้นแบบส่วนใหญ่ใช้มัน และ Part B ของ lab ก็ใช้"
+    },
+    {
+     "s": 29.842,
+     "e": 43.303,
+     "en": "Pyomo D A E lets you write differential equations as they appear in the model, and discretizes them automatically. do M P C builds MPC and moving-horizon estimation on CasADi.",
+     "th": "Pyomo.DAE ให้เขียนสมการเชิงอนุพันธ์ตามที่ปรากฏในโมเดล และแบ่งช่วงให้อัตโนมัติ do-mpc สร้าง MPC และ moving-horizon estimation บน CasADi ส่วน acados มุ่งที่"
+    },
+    {
+     "s": 43.303,
+     "e": 46.592,
+     "en": "acados targets fast embedded nonlinear MPC.",
+     "th": "nonlinear MPC แบบฝังตัวที่ทำงานเร็ว"
+    },
+    {
+     "s": 46.592,
+     "e": 54.132,
+     "en": "GEKKO, from the APMonitor group, is another Python option that covers both dynamic optimization and MPC.",
+     "th": "GEKKO จากกลุ่ม APMonitor เป็นอีกทางเลือกใน Python ที่ครอบคลุมทั้ง dynamic optimization และ MPC"
+    },
+    {
+     "s": 54.132,
+     "e": 61.947,
+     "en": "Industrial MPC packages add models identified from plant tests, steady-state targets, and operator interfaces.",
+     "th": "แพ็กเกจ MPC สำหรับอุตสาหกรรมเพิ่มโมเดลที่ระบุจากการทดสอบในโรงงาน เป้าหมายที่สถานะคงตัว และส่วนติดต่อกับผู้ควบคุม"
+    },
+    {
+     "s": 61.947,
+     "e": 71.263,
+     "en": "Whatever the tool, check the discretization by simulating, read the solver status, and for MPC make sure the solve time stays well below the sample time.",
+     "th": "ไม่ว่าจะใช้เครื่องมือใด ให้ตรวจการแบ่งช่วงด้วยการจำลอง อ่าน status ของ solver และสำหรับ MPC ต้องแน่ใจว่าเวลาที่ใช้แก้น้อยกว่าเวลาสุ่มวัดมาก"
+    },
+    {
+     "s": 71.263,
+     "e": 79.737,
+     "en": "For your project, start with SciPy or CasADi in Colab, as in this lab; move to a specialized tool only when the problem needs it.",
+     "th": "สำหรับโครงงาน ให้เริ่มจาก SciPy หรือ CasADi ใน Colab อย่างใน lab นี้ และเปลี่ยนไปใช้เครื่องมือเฉพาะทางเมื่อปัญหาต้องการเท่านั้น"
+    }
+   ]
+  },
+  {
+   "n": 32,
+   "file": "audio/slide-32.mp3",
+   "duration": 39.168,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.168,
+     "en": "Check 4 is about choosing a method and judging a result.",
+     "th": "แบบตรวจที่ 4 เกี่ยวกับการเลือกวิธีและการตัดสินผลลัพธ์"
+    },
+    {
+     "s": 4.168,
+     "e": 16.671,
+     "en": "Question one asks shooting or collocation for a large grade change. Question two shows a chattering profile. Question three asks which number to trust less after a parameter error.",
+     "th": "ข้อหนึ่งถามว่าจะใช้ shooting หรือ collocation สำหรับการเปลี่ยนเกรดขนาดใหญ่ ข้อสองแสดงโปรไฟล์ที่สลับไปมา ข้อสามถามว่าตัวเลขใดควรเชื่อน้อยกว่าหลังพารามิเตอร์ผิด"
+    },
+    {
+     "s": 16.671,
+     "e": 22.75,
+     "en": "Question four asks what to do when a nonlinear MPC solve is slower than the sample time.",
+     "th": "ข้อสี่ถามว่าควรทำอย่างไรเมื่อการแก้ nonlinear MPC ช้ากว่าเวลาสุ่มวัด"
+    },
+    {
+     "s": 22.75,
+     "e": 27.382,
+     "en": "For question two, recall the practical issues slide of part two.",
+     "th": "สำหรับข้อสอง ให้นึกถึงหน้าปัญหาในทางปฏิบัติของส่วนที่สอง"
+    },
+    {
+     "s": 27.382,
+     "e": 34.197,
+     "en": "For question four, think about where the time in one solve goes, and what can be reused from the previous sample.",
+     "th": "สำหรับข้อสี่ ให้คิดว่าเวลาในการแก้หนึ่งครั้งใช้ไปกับอะไร และอะไรนำกลับมาใช้จากการสุ่มวัดครั้งก่อนได้"
+    },
+    {
+     "s": 34.197,
+     "e": 39.092,
+     "en": "Pause the narration, answer the four questions, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย ตอบคำถามสี่ข้อ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 33,
+   "file": "audio/slide-33.mp3",
+   "duration": 62.088,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.168,
+     "en": "Where does this go in the rest of the course?",
+     "th": "เนื้อหานี้ไปต่อที่ใดในส่วนที่เหลือของวิชา"
+    },
+    {
+     "s": 3.168,
+     "e": 14.789,
+     "en": "Session 12 treats uncertainty properly. The k two error of the last demo becomes a set of scenarios for the rate constants, and we look for a profile that is good for all of them.",
+     "th": "คาบที่ 12 จัดการกับความไม่แน่นอนอย่างเป็นระบบ ความผิดพลาดของ k สอง ใน demo ล่าสุดจะกลายเป็นชุด scenario ของค่าคงที่อัตราเร็ว และเราจะหาโปรไฟล์ที่ดีสำหรับทุก scenario"
+    },
+    {
+     "s": 14.789,
+     "e": 23.071,
+     "en": "Session 13 looks at several objectives, such as yield against energy or batch time, and at problems with several local optima.",
+     "th": "คาบที่ 13 ดูฟังก์ชันเป้าหมายหลายตัว เช่น ผลได้เทียบกับพลังงานหรือเวลาของกะ และปัญหาที่มีค่าเหมาะสมเฉพาะที่หลายค่า คาบที่"
+    },
+    {
+     "s": 23.071,
+     "e": 31.092,
+     "en": "Session 14 is about Bayesian optimization, for cases where each evaluation is an expensive experiment, as one batch run is.",
+     "th": "14 ว่าด้วย Bayesian optimization สำหรับกรณีที่การประเมินแต่ละครั้งเป็นการทดลองที่มีต้นทุนสูง เช่นการเดินเครื่องหนึ่งกะ"
+    },
+    {
+     "s": 31.092,
+     "e": 38.711,
+     "en": "The two tanks also come back in Session 12, where the demand on a plant, rather than a withdrawal, is the uncertain input.",
+     "th": "ถังสองใบจะกลับมาในคาบที่ 12 ด้วย โดยความต้องการของโรงงานแทนการดึงออก จะเป็นตัวแปรนำเข้าที่ไม่แน่นอน"
+    },
+    {
+     "s": 38.711,
+     "e": 48.263,
+     "en": "In your project, if your model is dynamic: state the problem, choose shooting or collocation, refine until the answer stops changing, and simulate to check.",
+     "th": "ในโครงงานของคุณ ถ้าโมเดลเป็นแบบพลวัต ให้กำหนดปัญหา เลือก shooting หรือ collocation ทำให้ละเอียดขึ้นจนคำตอบหยุดเปลี่ยน และจำลองเพื่อตรวจ"
+    },
+    {
+     "s": 48.263,
+     "e": 55.421,
+     "en": "And if your project has a controller, test it with a disturbance it was not designed for, as we did with the withdrawal.",
+     "th": "และถ้าโครงงานของคุณมีตัวควบคุม ให้ทดสอบด้วย disturbance ที่มันไม่ได้ออกแบบมารองรับ เหมือนที่เราทำกับการดึงออก"
+    },
+    {
+     "s": 55.421,
+     "e": 62.013,
+     "en": "Each of these sessions reuses today's model and today's checks, so the effort of this lab carries forward.",
+     "th": "คาบเหล่านี้แต่ละคาบใช้โมเดลและการตรวจของวันนี้ซ้ำ ความพยายามใน lab นี้จึงต่อยอดไปข้างหน้า"
+    }
+   ]
+  },
+  {
+   "n": 34,
+   "file": "audio/slide-34.mp3",
+   "duration": 74.064,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.434,
+     "en": "Now Lab 11. Scan the code for the lab page; the second code opens the Colab notebook.",
+     "th": "ต่อไปคือ Lab 11 สแกนโค้ดแรกเพื่อเปิดหน้า lab ส่วนโค้ดที่สองเปิด notebook ใน Colab"
+    },
+    {
+     "s": 7.434,
+     "e": 18.447,
+     "en": "Part A, in the browser, finds the best constant temperature and then runs single shooting with one to twenty intervals. Before you look, predict the shape of the best profile.",
+     "th": "Part A ในเบราว์เซอร์ หาอุณหภูมิคงที่ที่ดีที่สุด แล้วรัน single shooting ที่หนึ่งถึงยี่สิบช่วง ก่อนดูผล ให้ทำนายรูปร่างของโปรไฟล์ที่ดีที่สุด"
+    },
+    {
+     "s": 18.447,
+     "e": 25.934,
+     "en": "The isothermal step has a slider, so you can find the best constant temperature yourself before checking it against the table.",
+     "th": "ขั้นอุณหภูมิคงที่มีแถบเลื่อน คุณจึงหาอุณหภูมิคงที่ที่ดีที่สุดเองได้ก่อนตรวจกับตาราง"
+    },
+    {
+     "s": 25.934,
+     "e": 34.313,
+     "en": "Part B, in Colab, solves the same problem by collocation with CasADi and Ipopt, refines the elements, and compares with shooting.",
+     "th": "Part B ใน Colab แก้ปัญหาเดียวกันด้วย collocation กับ CasADi และ Ipopt เพิ่มจำนวน element และเปรียบเทียบกับ"
+    },
+    {
+     "s": 34.313,
+     "e": 40.822,
+     "en": "Start Colab's Run all at the beginning of the lab, so that CasADi installs while you work on Part A.",
+     "th": "shooting ให้กด Run all ใน Colab ตั้งแต่เริ่ม lab เพื่อให้ CasADi ติดตั้งระหว่างที่คุณทำ"
+    },
+    {
+     "s": 40.822,
+     "e": 47.461,
+     "en": "The lab page lists the Colab steps one by one, and shows a recorded run if Colab does not work for you.",
+     "th": "Part A หน้า lab มีขั้นตอนการใช้ Colab ทีละข้อ และแสดงผลที่บันทึกไว้ถ้า Colab ใช้ไม่ได้"
+    },
+    {
+     "s": 47.461,
+     "e": 59.355,
+     "en": "Part C, in the browser, runs the two-tank MPC with and without a disturbance estimate, and asks you to tune it. Part D returns to the batch profile with k two ten percent too low.",
+     "th": "Part C ในเบราว์เซอร์ รัน MPC ของถังสองใบทั้งแบบมีและไม่มีการประมาณ disturbance และให้คุณปรับจูน Part D กลับไปที่โปรไฟล์ของเครื่องปฏิกรณ์ เมื่อ k สอง ในโมเดลต่ำไปสิบเปอร์เซ็นต์"
+    },
+    {
+     "s": 59.355,
+     "e": 66.592,
+     "en": "If Colab does not start, do not wait: go on with Part C, and come back to Part B or use the recorded run.",
+     "th": "ถ้า Colab ไม่เริ่มทำงาน ไม่ต้องรอ ให้ทำ Part C ต่อไป แล้วค่อยกลับมาที่ Part B หรือใช้ผลที่บันทึกไว้"
+    },
+    {
+     "s": 66.592,
+     "e": 74.0,
+     "en": "Each step asks for a prediction or a number before you move on. In class you have about forty minutes.",
+     "th": "แต่ละขั้นต้องการคำทำนายหรือตัวเลขก่อนจะไปต่อ ในห้องเรียนคุณมีเวลาประมาณสี่สิบนาที"
+    }
+   ]
+  },
+  {
+   "n": 35,
+   "file": "audio/slide-35.mp3",
+   "duration": 89.184,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.076,
+     "en": "To summarize.",
+     "th": "สรุป"
+    },
+    {
+     "s": 2.076,
+     "e": 10.104,
+     "en": "A dynamic optimization chooses functions of time, and direct methods discretize them into an NLP.",
+     "th": "dynamic optimization เลือกฟังก์ชันของเวลา และวิธีแบบ direct แบ่งช่วงให้เป็น NLP"
+    },
+    {
+     "s": 10.104,
+     "e": 20.263,
+     "en": "For the batch reactor, the best constant temperature, 335.3 kelvin, gives 0.6059, and the best falling profile gives 0.6108.",
+     "th": "สำหรับเครื่องปฏิกรณ์แบบกะ อุณหภูมิคงที่ที่ดีที่สุด 335.3 เคลวิน ให้ 0.6059 และโปรไฟล์ที่ลดลงที่ดีที่สุดให้ 0.6108"
+    },
+    {
+     "s": 20.263,
+     "e": 32.583,
+     "en": "Single shooting is small and always simulates. Multiple shooting and collocation handle unstable, stiff and large problems, and collocation gives Ipopt a sparse NLP with exact derivatives.",
+     "th": "single shooting มีขนาดเล็กและจำลองเสมอ multiple shooting และ collocation รองรับปัญหาที่ไม่เสถียร stiff และมีขนาดใหญ่ และ collocation ให้ NLP แบบ sparse ที่มีอนุพันธ์แม่นตรงแก่ Ipopt"
+    },
+    {
+     "s": 32.583,
+     "e": 38.645,
+     "en": "With three Radau points, each doubling of the elements divides the error by about thirty-two.",
+     "th": "เมื่อใช้จุด Radau สามจุด การเพิ่ม element เป็นสองเท่าลดความคลาดเคลื่อนประมาณสามสิบสองเท่า"
+    },
+    {
+     "s": 38.645,
+     "e": 45.395,
+     "en": "Ipopt solved the collocation NLP in about ten iterations whether it had ninety or nine hundred variables.",
+     "th": "Ipopt แก้ NLP แบบ collocation ในประมาณสิบรอบ ไม่ว่าจะมีเก้าสิบหรือเก้าร้อยตัวแปร"
+    },
+    {
+     "s": 45.395,
+     "e": 52.816,
+     "en": "Refine the discretization until the answer stops changing, and check the result by simulation or by a second method.",
+     "th": "ทำให้การแบ่งช่วงละเอียดขึ้นจนคำตอบหยุดเปลี่ยน และตรวจผลด้วยการจำลองหรือด้วยวิธีที่สอง"
+    },
+    {
+     "s": 52.816,
+     "e": 60.829,
+     "en": "The browser and Colab results agree where they overlap, which is the same check by two methods that you should ask of any optimal profile.",
+     "th": "ผลในเบราว์เซอร์และใน Colab ตรงกันในส่วนที่ซ้อนทับกัน ซึ่งเป็นการตรวจด้วยสองวิธีแบบเดียวกับที่คุณควรทำกับโปรไฟล์ที่เหมาะสมที่สุดทุกครั้ง"
+    },
+    {
+     "s": 60.829,
+     "e": 74.329,
+     "en": "MPC re-solves a short problem at every sample; with a linear model and valve limits it is bounded least squares. Without a disturbance model it left an offset of 0.08 metres; with one, none.",
+     "th": "MPC แก้ปัญหาสั้น ๆ ใหม่ทุกครั้งที่สุ่มวัด เมื่อโมเดลเป็นเชิงเส้นและมีขีดจำกัดของวาล์ว มันคือ bounded least squares เมื่อไม่มีโมเดล disturbance ทิ้ง offset ไว้ 0.08 เมตร เมื่อมี ก็ไม่มี offset"
+    },
+    {
+     "s": 74.329,
+     "e": 89.118,
+     "en": "And feedback cannot fix a wrong parameter: with k two ten percent off, the profile lost only 0.0003, but the prediction was off by 0.0083. Estimation and robustness come next.",
+     "th": "และการป้อนกลับแก้พารามิเตอร์ที่ผิดไม่ได้ เมื่อ k สอง คลาดไปสิบเปอร์เซ็นต์ โปรไฟล์เสียไปเพียง 0.0003 แต่การทำนายคลาดไป 0.0083 การประมาณค่าและความทนทานจะเป็นเรื่องถัดไป"
+    }
+   ]
+  },
+  {
+   "n": 36,
+   "file": "audio/slide-36.mp3",
+   "duration": 48.12,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.563,
+     "en": "Before the next session, finish Lab 11 if you did not finish it in class, including the Colab part.",
+     "th": "ก่อนคาบหน้า ทำ Lab 11 ให้เสร็จถ้ายังทำไม่เสร็จในห้องเรียน รวมถึงส่วนที่ใช้ Colab"
+    },
+    {
+     "s": 6.563,
+     "e": 14.329,
+     "en": "Keep your card. Session 12 makes decisions when parameters such as demand or rate constants are uncertain.",
+     "th": "เก็บการ์ดไว้ คาบที่ 12 ตัดสินใจเมื่อพารามิเตอร์ เช่น ความต้องการสินค้า หรือค่าคงที่อัตราเร็ว มีความไม่แน่นอน"
+    },
+    {
+     "s": 14.329,
+     "e": 22.316,
+     "en": "Also keep the Colab notebook, or save a copy to your Drive: you can reuse its structure for any ODE model in your project.",
+     "th": "เก็บ notebook ใน Colab ไว้ด้วย หรือบันทึกสำเนาลง Drive คุณนำโครงสร้างของมันไปใช้กับโมเดล ODE ใด ๆ ในโครงงานได้"
+    },
+    {
+     "s": 22.316,
+     "e": 32.419,
+     "en": "For reading, chapters 8 to 10 of Biegler, Nonlinear Programming, cover dynamic optimization, shooting with embedded solvers, and simultaneous collocation.",
+     "th": "สำหรับการอ่าน บทที่ 8 ถึง 10 ของ Nonlinear Programming โดย Biegler ครอบคลุม dynamic optimization, shooting ที่ฝัง solver และ simultaneous collocation"
+    },
+    {
+     "s": 32.419,
+     "e": 40.566,
+     "en": "For MPC, chapter 1 of Rawlings, Mayne and Diehl, Model Predictive Control, which the authors make available on their website.",
+     "th": "สำหรับ MPC อ่านบทที่ 1 ของ Model Predictive Control โดย Rawlings, Mayne และ Diehl ซึ่งผู้เขียนเผยแพร่ไว้บนเว็บไซต์"
+    },
+    {
+     "s": 40.566,
+     "e": 48.066,
+     "en": "Optionally, read the 2003 survey of industrial MPC by Qin and Badgwell in Control Engineering Practice.",
+     "th": "ถ้าต้องการ อ่านบทความสำรวจ MPC ในอุตสาหกรรมของ Qin และ Badgwell ปี 2003 ใน Control Engineering Practice"
+    }
+   ]
+  },
+  {
+   "n": 37,
+   "file": "audio/slide-37.mp3",
+   "duration": 31.728,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.405,
+     "en": "Finally, the Exit Ticket and feedback.",
+     "th": "สุดท้ายคือ Exit Ticket และ feedback"
+    },
+    {
+     "s": 3.405,
+     "e": 9.25,
+     "en": "Scan the code, choose Session 11, and paste the answers that the lab page copies for you.",
+     "th": "สแกนโค้ด เลือก Session 11 แล้ววางคำตอบที่หน้า lab คัดลอกไว้ให้"
+    },
+    {
+     "s": 9.25,
+     "e": 16.882,
+     "en": "Then tell us about the pace, your confidence, how far you got in the lab, whether Colab worked for you, and what is still unclear.",
+     "th": "จากนั้นบอกเราเรื่องความเร็วในการสอน ความมั่นใจ ความคืบหน้าใน lab Colab ใช้งานได้หรือไม่ และสิ่งที่ยังไม่ชัดเจน"
+    },
+    {
+     "s": 16.882,
+     "e": 22.605,
+     "en": "If you studied on your own, choose On my own. The form is anonymous.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้เลือก On my own แบบฟอร์มนี้ไม่ระบุตัวตน"
+    },
+    {
+     "s": 22.605,
+     "e": 28.289,
+     "en": "Your answers are how the next session is adjusted, so short, honest answers help most.",
+     "th": "คำตอบของคุณใช้ปรับคาบถัดไป คำตอบสั้น ๆ ที่ตรงไปตรงมาจึงช่วยได้มากที่สุด"
+    },
+    {
+     "s": 28.289,
+     "e": 31.658,
+     "en": "Thank you, and see you in Session 12.",
+     "th": "ขอบคุณ แล้วพบกันในคาบที่ 12"
+    }
+   ]
+  }
+ ]
+}
