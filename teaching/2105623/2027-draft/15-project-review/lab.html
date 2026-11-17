@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Lab 15 · A practice review, and the review form · 2105623</title>
+<style>
+:root{--teal:#0F6E6B;--amber:#E29A2D;--rust:#BE654C;--graphite:#333F4A;--ink:#1C242B;--slate:#66727C;--mist:#B9C1C6;--paper:#F3F0EB;--sand:#DFC98F;--ok:#0F6E6B;--bad:#BE654C}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.55 "Helvetica Neue",Helvetica,Arial,sans-serif}
+main{max-width:820px;margin:0 auto;padding:18px 16px 80px}
+header h1{color:var(--teal);font-size:30px;margin:4px 0 2px}
+.kicker{color:var(--amber);font-weight:700;letter-spacing:.12em;font-size:13px;text-transform:uppercase}
+.sub{color:var(--slate);font-size:15px}
+.prog{position:sticky;top:0;background:var(--paper);padding:10px 0;z-index:3}
+.bar{height:8px;background:#e2ddd4;border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--teal);width:0;transition:width .3s}
+.prog span{font-size:13px;color:var(--slate)}
+.card{background:#fff;border-radius:14px;padding:18px 18px 16px;margin:14px 0;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.card h2{font-size:21px;margin:0 0 4px;color:var(--teal)}
+.card h3{font-size:17px;margin:16px 0 6px}
+.step{border-left:4px solid var(--mist);padding:2px 0 2px 14px;margin:14px 0}
+.step.done{border-color:var(--teal)}.step.locked{opacity:.45;pointer-events:none}
+.step.locked .chart,.step.locked .kpi,.step.locked .chk,.step.locked input[type=range],.step.locked .row{display:none}
+.step.locked::after{content:"Finish the step above to open this one.";display:block;font-size:13px;color:var(--slate)}
+.tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.08em;border-radius:6px;padding:2px 8px;margin-right:6px;color:#fff;background:var(--slate)}
+.tag.p{background:var(--amber)}.tag.r{background:var(--teal)}.tag.c{background:var(--graphite)}.tag.e{background:var(--rust)}
+textarea,input[type=text],select{font:inherit;font-size:16px;width:100%;border:1.5px solid var(--mist);border-radius:8px;padding:8px 10px;background:#fff}
+textarea{min-height:70px}
+button{font:inherit;font-size:15px;padding:8px 14px;border-radius:8px;border:none;background:var(--teal);color:#fff;cursor:pointer;margin:8px 8px 0 0}
+button.ghost{background:#fff;color:var(--teal);border:1.5px solid var(--teal)}
+button:disabled{opacity:.5;cursor:default}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.row label{flex:1 1 240px}
+.chk{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0}
+.chk input{width:150px}
+.fb{font-size:15px}.fb.ok{color:var(--ok);font-weight:700}.fb.bad{color:var(--bad)}
+.choices label{display:block;margin:4px 0}
+.kpi{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}.kpi div{background:var(--paper);border-radius:10px;padding:6px 12px;font-size:14px;color:var(--slate)}.kpi b{display:block;font-size:20px;color:var(--ink)}
+.chart{background:var(--paper);border-radius:12px;padding:6px;margin:8px 0}
+svg{width:100%;height:auto;display:block}
+input[type=range]{width:100%;accent-color:var(--teal)}
+.note{font-size:14px;color:var(--slate)}
+.hidden{display:none}
+pre.sum{white-space:pre-wrap;background:var(--paper);border-radius:10px;padding:12px;font-size:14px}
+a{color:var(--teal)}
+</style>
+<style>
+.step.locked > *:not(.tag){display:none}
+table.tb{border-collapse:collapse;width:100%;font-size:15px;margin:8px 0}
+table.tb th{background:var(--paper);text-align:left;padding:5px 8px;border-bottom:2px solid var(--mist)}
+table.tb td{padding:5px 8px;border-bottom:1px solid #e6e3dd}
+table.tb td.n,table.tb th.n{text-align:right;font-variant-numeric:tabular-nums}
+ol.rl{margin:4px 0 0;padding-left:22px;font-size:15px}
+.lights{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+.light{border-radius:999px;padding:3px 10px;font-size:14px;font-weight:700}
+.light.ok{background:#e3f0ef;color:var(--teal)}.light.bad{background:#f6e3de;color:var(--rust)}
+.code{background:#1f262d;color:#e8eef2;border-radius:10px;padding:10px 8px;font-family:Menlo,Consolas,monospace;font-size:13.5px;overflow-x:auto}
+.ln{display:flex;align-items:center;gap:8px;padding:3px 4px;border-radius:6px;white-space:pre}
+.ln.fixed{background:#24433f}
+.ln .no{color:#8a96a0;width:18px;text-align:right}
+.ln .tx{flex:1}
+.ln .okk{width:38px;color:#9fd6c9;font-size:12px;font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700}
+button.sm{width:38px;font-size:12px;padding:2px 9px;margin:0;background:transparent;color:#9fd6c9;border:1px solid #9fd6c9}
+.ctrlrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:8px 0;font-size:15px;color:var(--slate)}
+.ctrlrow input[type=range]{flex:1;min-width:160px;accent-color:var(--teal)}
+.wide{overflow-x:auto}.wide table.tb{font-size:12px}.wide table.tb td,.wide table.tb th{padding:3px 4px}
+@media (max-width:600px){table.tb{display:block;overflow-x:auto;font-size:13px}}
+.howto{background:#f6f3ee;border:1px solid var(--mist);border-radius:12px;padding:12px 16px;margin:4px 0 14px}
+.howto ol{margin:0 0 8px;padding-left:22px;font-size:15.5px;line-height:1.5}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+pre.log{background:#1f262d;color:#e8eef2;border-radius:10px;padding:10px 8px;font-family:Menlo,Consolas,monospace;font-size:11.5px;line-height:1.3;overflow-x:auto;max-height:420px}
+</style>
+
+</head>
+<body><main>
+<header><div class="kicker">2105623 · Session 15 · Lab</div><h1>A practice review, and the review form</h1>
+<div class="sub">About 40 minutes on your own, or alongside the presentations in class. Works on a laptop or a phone.</div></header>
+<div class="prog"><div class="bar"><i id="pbar"></i></div><span id="ptext"></span></div>
+
+<section class="card"><h2>How this lab works</h2>
+<p>Part A is a practice review of a short project report, Group 0's biodiesel feedstock blend (synthetic data). You mark the twelve checklist items, recompute three of the report's numbers, and write a short review. Part B is the review form you use for the presentations, or for your own project. Part C asks what you will fix first. Write each prediction before you look; the next step stays locked until you do. Numbers are accepted within about 1%; after two tries the expected value is shown.</p>
+<p class="note">Studying on your own? Watch the narrated slides for Session 15 first. The checks on this page come from <a href="project_checks.py">project_checks.py</a>, which you can reuse in your project.</p></section>
+
+<section class="card" id="rep"><h2>Group 0's report (practice; synthetic data)</h2>
+<div id="report"></div></section>
+
+<section class="card" id="t1"><h2>Part A · Review Group 0</h2>
+<div class="step" data-step="1a"><span class="tag p">PREDICT</span>Read the report once. Without computing anything, how many of the twelve checklist items do you expect it to pass?
+ <div class="chk"><span>Items passed (0 to 12)</span><input type="text" id="p1" inputmode="numeric"></div>
+ <button data-save="1a">Save prediction</button></div>
+<div class="step" data-step="1b"><span class="tag r">CHECK</span>Mark each item: pass, fail, not shown, or not applicable to this project.
+ <div id="cl1"></div><div class="fb" id="f1b"></div>
+ <button data-check="1b">Check</button></div>
+<div class="step" data-step="1c"><span class="tag r">RECOMPUTE</span>Three numbers, from the report itself.
+ <div class="chk"><span>The solver's plan (appendix) is palm 50, used cooking oil 40, soybean 10 t/d. Its cost at the prices of Table 1, USD/d</span><input type="text" id="c1a" inputmode="decimal"><span class="fb" id="f1a"></span></div>
+ <div class="chk"><span>The stream table in Results: oils in minus blend out, t/d</span><input type="text" id="c1b" inputmode="decimal"><span class="fb" id="f1c"></span></div>
+ <div class="chk"><span>The cloud-point row is Σ(cpᵢ − 10) xᵢ ≤ 0, in °C·t/d, with marginal −10.714 USD per °C·t. What is relaxing the limit by 1 °C worth, in USD/d?</span><input type="text" id="c1c" inputmode="decimal"><span class="fb" id="f1d"></span></div>
+ <button data-check="1c">Check</button>
+ <div id="after1c"></div></div>
+<div class="step" data-step="1d"><span class="tag e">EXPLAIN</span>Write Group 0's review: one strength, the most serious problem and why it matters, and one question they can answer with a number.
+ <textarea id="e1"></textarea><button data-save="1d">Save</button></div>
+</section>
+
+<section class="card" id="t2"><h2>Part B · The review form</h2>
+<div class="step" data-step="2a"><span class="tag c">REVIEW</span>In class: one form per group you review. On your own: review your own project. Name the group by its number only; write no names.
+ <div class="chk"><span>Reviewing</span><select id="rw"><option value="">choose</option><option value="group">a presenting group</option><option value="own">my own project</option></select><input type="text" id="rg" placeholder="group number" inputmode="numeric" style="width:120px"></div>
+ <div id="cl2"></div>
+ <div class="chk"><span>One strength</span><input type="text" id="rs" style="flex:1"></div>
+ <div class="chk"><span>One must-fix</span><input type="text" id="rm" style="flex:1"></div>
+ <div class="chk"><span>One question with a numerical answer</span><input type="text" id="rq" style="flex:1"></div>
+ <div class="btnrow"><button id="addRev" type="button">Save this review</button><button data-save="2a">Done with reviews</button></div>
+ <div id="revList"></div></div>
+</section>
+
+<section class="card" id="t3"><h2>Part C · Your own project</h2>
+<div class="step" data-step="3a"><span class="tag e">EXPLAIN</span>Which checklist item will you fix first in your own project, and exactly what will you add or change?
+ <textarea id="e3"></textarea><button data-save="3a">Save</button></div>
+</section>
+
+<section class="card" id="fin"><h2>Finish: Exit Ticket and end-of-course feedback</h2>
+<div class="step" data-step="fin"><p>Copy your answers and reviews, open the Exit Ticket, choose <b>Session 15</b>, paste them in the Exit Ticket box, and answer the feedback questions about the whole course. Choose "On my own" if you did this lab outside class.</p>
+<pre class="sum" id="sum"></pre>
+<button id="copy">Copy my answers</button><a id="exitlink" target="_blank" rel="noopener"><button class="ghost" type="button">Open Exit Ticket and feedback</button></a>
+<p class="note" id="copied"></p>
+<p class="note">Want the code? <a href="project_checks.py">project_checks.py</a> has <code>lp_certificate</code> (primal, dual, gap and residuals from HiGHS), <code>recompute</code>, <code>closure</code> and <code>per_unit_of_limit</code>, with Group 0's model as an example. Copy them into your project.</p>
+<button class="ghost" id="reset">Clear my answers on this device</button></div>
+</section>
+</main>
+<script>
+const R = {"spec":{"oils":["palm oil","used cooking oil","soybean oil"],"price":[900.0,650.0,1050.0],"cloud":[13.0,9.0,-1.0],"acid":[0.3,1.6,0.2],"iodine":[52.0,95.0,130.0],"limits":{"cloud":10.0,"acid":0.9,"iodine":110.0},"blend":100.0,"uco_max":40.0},"report":{"x":[50.0,40.0,12.0],"cost":80300.0,"price_used":[900.0,620.0,1050.0],"cloud_shadow_claim":10.7},"review":{"solution":{"status":0,"x":[50.0,40.0,10.0],"primal":81500.0,"dual":81500.0,"gap":0.0,"primal_residual":0.0,"dual_residual":0.0,"ineq_marginals":[-10.7142857143,0.0,0.0],"eq_marginals":[932.1428571429],"upper_marginals":[0.0,-292.8571428571,0.0]},"report_run":{"status":0,"x":[50.0,40.0,10.0],"primal":80300.0,"dual":80300.0,"gap":0.0,"primal_residual":0.0,"dual_residual":0.0,"ineq_marginals":[-10.7142857143,0.0,0.0],"eq_marginals":[932.1428571429],"upper_marginals":[0.0,-322.8571428571,0.0]},"recomputed_cost":81500.0,"report_cost_recomputed":81500.0,"report_balance":2.0,"cloud_value_per_degC":1071.4285714286,"uco_value_per_t":292.8571428571,"properties":{"cloud":10.0,"acid":0.81,"iodine":77.0},"gap":0.0,"sensitivity":[{"factor":0.8,"cost":76300.0,"x":[50.0,40.0,10.0]},{"factor":0.9,"cost":78900.0,"x":[50.0,40.0,10.0]},{"factor":1.0,"cost":81500.0,"x":[50.0,40.0,10.0]},{"factor":1.1,"cost":84100.0,"x":[50.0,40.0,10.0]},{"factor":1.2,"cost":86700.0,"x":[50.0,40.0,10.0]}]},"checklist":["Specification: sets, data and constraints, with units","Data: sources and dates","Model class stated and justified","Balances close in the stream table","Objective recomputed from the plan and the specification's data","A certificate, not only the solver status","Multipliers interpreted with units and sign","Global or local stated correctly","Uncertain data: sensitivity or scenarios","Several objectives: a front and a stated rule","Tests written from the specification","Reporting: code, versions and AI disclosure"],"key":["P","P","P","F","F","F","F","P","NS","NA","F","F"]};
+const EXIT_URL = "https://soorathep.github.io/course-2105623/teaching/2105623/exit.html?s=15";
+const C={teal:"#0F6E6B",amber:"#E29A2D",rust:"#BE654C",graphite:"#333F4A",mist:"#B9C1C6",sand:"#DFC98F",ink:"#1C242B",slate:"#66727C"};
+const $=id=>document.getElementById(id);
+const fmt=(x,d=0)=>x==null||!isFinite(x)?"–":Number(x).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d}).replace(/^-/,"−");
+const KEY="lab15-2027-v1"; let ST={};
+try{ST=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){ST={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(ST))}catch(e){}};
+const G=R.spec,RP=R.report,RV=R.review,RR=RV.report_run,CL=R.checklist,K=R.key;
+const LAB={P:"pass",F:"fail",NS:"not shown",NA:"not applicable"};
+
+/* the report */
+$("report").innerHTML=`<p><b>1. Problem.</b> Blend ${G.blend} t/d of feedstock for a biodiesel plant from palm oil, used cooking oil (UCO) and soybean oil at least cost. Limits on the blend: cloud point at most ${G.limits.cloud} °C, acid value after pretreatment at most ${G.limits.acid} mg KOH/g, iodine value at most ${G.limits.iodine} g I₂/100 g. UCO is available up to ${G.uco_max} t/d.</p>
+<p><b>2. Data.</b> Prices from a supplier quote, March 2026; properties from the literature (reference 3 of the report).</p>
+<div class="wide"><table class="tb"><tr><th>Table 1</th><th class="n">Price, USD/t</th><th class="n">Cloud point, °C</th><th class="n">Acid value</th><th class="n">Iodine value</th></tr>
+${G.oils.map((o,i)=>`<tr><td>${o}</td><td class="n">${fmt(G.price[i])}</td><td class="n">${G.cloud[i]}</td><td class="n">${G.acid[i]}</td><td class="n">${G.iodine[i]}</td></tr>`).join("")}</table></div>
+<p><b>3. Model.</b> A linear program; we assume that the properties blend linearly by mass, which is an approximation for the cloud point (as in reference 3). Rows: Σ(pᵢ − limit) xᵢ ≤ 0 for each property, Σxᵢ = ${G.blend}, 0 ≤ x<sub>UCO</sub> ≤ ${G.uco_max}.</p>
+<div class="code" style="font-size:12.5px">${["# blend model (drafted with an AI assistant)","price = [900, 620, 1050]          # USD/t: palm, UCO, soybean","rows = [[cp - 10 for cp in cloud], [a - 0.9 for a in acid], [v - 110 for v in iodine]]",
+ "res = linprog(price, A_ub=rows, b_ub=[0, 0, 0], A_eq=[[1, 1, 1]], b_eq=[100],","              bounds=[(0, None), (0, 40), (0, None)], method=\"highs\")"].map((l,i)=>`<div class="ln"><span class="no">${i+1}</span><span class="tx">${l.replace(/</g,"&lt;")}</span></div>`).join("")}</div>
+<p><b>4. Results.</b> HiGHS: "Optimization terminated successfully" (status 0). The optimal cost is <b>${fmt(RP.cost)} USD/d</b>, a global optimum because the model is an LP.</p>
+<div class="wide"><table class="tb"><tr><th>Stream table, t/d</th><th class="n">palm oil</th><th class="n">UCO</th><th class="n">soybean oil</th><th class="n">blend</th></tr>
+<tr><td>Flow</td>${RP.x.map(v=>`<td class="n">${fmt(v)}</td>`).join("")}<td class="n">${fmt(G.blend)}</td></tr></table></div>
+<p>Blend properties: cloud point ${fmt(RV.properties.cloud,1)} °C, acid value ${fmt(RV.properties.acid,2)}, iodine value ${fmt(RV.properties.iodine,0)}.</p>
+<p><b>5. Verification.</b> We verified the result: the solver status was optimal.</p>
+<p><b>6. Discussion.</b> The cloud-point limit is binding, with a shadow price of −10.7; relaxing the limit by 1 °C saves ${fmt(RP.cloud_shadow_claim,1)} USD/d. UCO is the cheapest oil and is used at its limit.</p>
+<p><b>Appendix: solver output.</b> x = (${RR.x.map(v=>fmt(v)).join(", ")}); ineqlin.marginals = (${RR.ineq_marginals.map(v=>fmt(v,3)).join(", ")}); eqlin.marginals = (${RR.eq_marginals.map(v=>fmt(v,2)).join(", ")}); upper.marginals = (${RR.upper_marginals.map(v=>fmt(v,2)).join(", ")}).</p>`;
+
+/* checklist selectors */
+const sel=(pre,i)=>`<select id="${pre}${i}"><option value="">choose</option>${Object.entries(LAB).map(([k,t])=>`<option value="${k}">${t}</option>`).join("")}</select>`;
+$("cl1").innerHTML=`<table class="tb">${CL.map((t,i)=>`<tr><td>${i+1}. ${t}</td><td>${sel("a",i)}</td><td class="fb" id="fa${i}"></td></tr>`).join("")}</table>`;
+$("cl2").innerHTML=`<table class="tb">${CL.map((t,i)=>`<tr><td>${i+1}. ${t}</td><td>${sel("b",i)}</td></tr>`).join("")}</table>`;
+
+/* steps */
+const ORDER=["1a","1b","1c","1d","2a","3a"];
+function refresh(){let open=true;ORDER.forEach(id=>{const el=document.querySelector(`[data-step="${id}"]`),done=!!ST["done_"+id];el.classList.toggle("done",done);el.classList.toggle("locked",!done&&!open);if(!done&&open)open=false});
+ document.querySelector('[data-step="fin"]').classList.toggle("locked",!ORDER.every(id=>ST["done_"+id]));
+ const n=ORDER.filter(id=>ST["done_"+id]).length;$("pbar").style.width=(100*n/ORDER.length)+"%";$("ptext").textContent=`${n} of ${ORDER.length} steps done`;
+ if(ST.done_1c)after1c();summary();save()}
+function need(id,msg){const st=document.querySelector(`[data-step="${id}"]`);let f=st.querySelector(".need");if(!f){f=document.createElement("div");f.className="fb bad need";st.appendChild(f)}f.textContent=msg;return false}
+function markDone(id){const nd=document.querySelector(`[data-step="${id}"] .need`);if(nd)nd.textContent="";ST["done_"+id]=true;refresh()}
+const num=s=>parseFloat(String(s).replace(/,/g,"").replace(/\s/g,"").replace("−","-").replace("%",""));
+function verdict(input,fb,ok,expected){ST["tries_"+input]=(ST["tries_"+input]||0)+(ok?0:1);const f=$(fb);f.className="fb "+(ok?"ok":"bad");
+ f.textContent=ok?"Correct":(ST["tries_"+input]>=2?`Not yet. Expected: ${expected}.`:"Not yet. Look again.");return ok||ST["tries_"+input]>=2}
+function checkNum(input,fb,target,rel,abs,shown){const v=num($(input).value);ST[input]=$(input).value;return verdict(input,fb,isFinite(v)&&Math.abs(v-target)<=Math.max(abs,rel*Math.abs(target)),shown)}
+const T15={cost:RV.recomputed_cost,bal:RV.report_balance,cloud:RV.cloud_value_per_degC};
+
+document.querySelectorAll("[data-save]").forEach(b=>b.onclick=()=>{const id=b.dataset.save;
+ if(id==="1a"){const v=num($("p1").value);if(!(v>=0&&v<=12))return need(id,"Enter a number from 0 to 12.");ST.p1=$("p1").value}
+ if(id==="1d"){if($("e1").value.trim().length<60)return need(id,"Write at least three sentences.");ST.e1=$("e1").value}
+ if(id==="2a"){if(!(ST.reviews||[]).length)return need(id,"Save at least one review first (your own project counts).")}
+ if(id==="3a"){if($("e3").value.trim().length<30)return need(id,"Write one or two sentences.");ST.e3=$("e3").value}
+ markDone(id)});
+document.querySelectorAll("[data-check]").forEach(b=>b.onclick=()=>{const id=b.dataset.check;let ok=false;
+ if(id==="1b"){const v=CL.map((t,i)=>$("a"+i).value);if(v.some(x=>!x))return need(id,"Mark all twelve items first.");ST.a=v;
+  const right=v.filter((x,i)=>x===K[i]).length;ST.tries_1b=(ST.tries_1b||0)+(right===12?0:1);const show=ST.tries_1b>=2;
+  CL.forEach((t,i)=>{const f=$("fa"+i);if(v[i]===K[i]){f.className="fb ok";f.textContent="✓"}else{f.className="fb bad";f.textContent=show?`key: ${LAB[K[i]]}`:"✗"}});
+  $("f1b").className="fb "+(right===12?"ok":"bad");$("f1b").textContent=right===12?"All twelve agree with the key.":`${right} of 12 agree with the key.`+(show?" The key is shown; read why under step 1c.":" Look again at the items marked ✗.");
+  ST.right=right;ok=right===12||show}
+ if(id==="1c")ok=[checkNum("c1a","f1a",T15.cost,0.002,1,fmt(T15.cost)),checkNum("c1b","f1c",T15.bal,0,0.05,fmt(T15.bal,0)),checkNum("c1c","f1d",T15.cloud,0.01,1,fmt(T15.cloud,0))].every(Boolean);
+ if(ok)markDone(id);else save()});
+function after1c(){const s=RV.sensitivity;$("after1c").innerHTML=`<div class="howto"><b>Why the key says what it says.</b><ol>
+<li>Items 1 to 3 pass: the specification, the data with sources and dates, and the model class are all stated. Item 8 passes: an LP is convex, so the global claim is right.</li>
+<li>Item 4 fails: the stream table has ${RP.x.join(" + ")} = ${RP.x.reduce((a,b)=>a+b,0)} t/d of oils for ${G.blend} t/d of blend; the solver's plan has 10, not 12, t/d of soybean oil.</li>
+<li>Item 5 fails: the code uses 620 USD/t for UCO, an older price than Table 1's 650, so the reported ${fmt(RP.cost)} USD/d is ${fmt(T15.cost-RP.cost)} below the cost of the same plan at the stated prices, ${fmt(T15.cost)} USD/d.</li>
+<li>Items 6 and 11 fail: the solver status is the only evidence. The dual value from the marginals would have certified the optimum; tests from the specification would have caught items 4 and 5.</li>
+<li>Item 7 fails: the cloud-point row is in °C·t/d, so its marginal −10.714 is per °C·t. Per °C of the limit it is 100 times larger: relaxing the limit by 1 °C saves ${fmt(T15.cloud)} USD/d, not 10.7. The UCO limit is worth ${fmt(RV.uco_value_per_t)} USD per extra t/d at the stated price.</li>
+<li>Item 9 is not shown: UCO's price is uncertain. At ±20% the plan does not change and the cost moves from ${fmt(s[0].cost)} to ${fmt(s[s.length-1].cost)} USD/d, which is worth one line in the report. Item 10 does not apply: there is one objective.</li>
+<li>Item 12 fails: the code says it was drafted with an AI assistant, but the report has no disclosure section.</li></ol></div>`}
+
+/* reviews */
+function drawRev(){const L=ST.reviews||[];$("revList").innerHTML=L.length?`<table class="tb"><tr><th>Saved review</th><th>Items (1 to 12)</th></tr>${L.map(r=>`<tr><td>${r.who}</td><td>${r.items.map(x=>x||"?").join(" ")}</td></tr>`).join("")}</table>`:""}
+$("addRev").onclick=()=>{const w=$("rw").value,g=$("rg").value.trim();if(!w)return need("2a","Choose whom you are reviewing.");if(w==="group"&&!/^\d{1,3}$/.test(g))return need("2a","Enter the group's number (digits only).");
+ const items=CL.map((t,i)=>$("b"+i).value);if(items.filter(Boolean).length<6)return need("2a","Mark at least six items.");
+ if(!$("rm").value.trim()&&!$("rs").value.trim())return need("2a","Write at least a strength or a must-fix.");
+ (ST.reviews=ST.reviews||[]).push({who:w==="own"?"own project":"group "+g,items,s:$("rs").value.trim(),m:$("rm").value.trim(),q:$("rq").value.trim()});
+ ["rg","rs","rm","rq"].forEach(id=>$(id).value="");CL.forEach((t,i)=>$("b"+i).value="");$("rw").value="";const nd=document.querySelector('[data-step="2a"] .need');if(nd)nd.textContent="";drawRev();summary();save()};
+
+/* summary */
+function summary(){const L=ST.reviews||[];
+ $("sum").textContent=[`Lab 15 answers`,
+ `A. Predicted passes: ${ST.p1||"?"}. Checklist agrees with key: ${ST.right!=null?ST.right:"?"} of 12. Recomputed cost ${ST.c1a||"?"} USD/d; stream-table gap ${ST.c1b||"?"} t/d; 1 degC of cloud point ${ST.c1c||"?"} USD/d`,
+ `A. Review of Group 0: ${ST.e1||"?"}`,
+ `B. Reviews (${L.length}):`].concat(L.map(r=>`  ${r.who}: ${r.items.map(x=>x||"-").join(" ")} | strength: ${r.s||"-"} | must-fix: ${r.m||"-"} | question: ${r.q||"-"}`)).concat([`C. Fix first: ${ST.e3||"?"}`]).join("\n")}
+$("copy").onclick=async()=>{try{await navigator.clipboard.writeText($("sum").textContent);$("copied").textContent="Copied. Paste it into the Exit Ticket box."}catch(e){$("copied").textContent="Copy did not work here. Select the text above and copy it."}};
+$("exitlink").href=EXIT_URL;
+$("reset").onclick=()=>{if(confirm("Clear all answers saved on this device?")){ST={};save();location.reload()}};
+
+/* restore */
+["p1","e1","e3","c1a","c1b","c1c"].forEach(id=>{if(ST[id]!=null)$(id).value=ST[id]});
+(ST.a||[]).forEach((v,i)=>{$("a"+i).value=v});
+drawRev();refresh();
+</script>
+</body></html>

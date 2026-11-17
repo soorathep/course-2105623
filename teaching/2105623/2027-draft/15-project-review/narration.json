@@ -1,0 +1,921 @@
+{
+ "voice": "en-US-GuyNeural",
+ "rate": "-5%",
+ "provider": "Microsoft Edge neural speech (edge-tts)",
+ "synthetic_voice": true,
+ "total_seconds": 941.5,
+ "slides": [
+  {
+   "n": 1,
+   "file": "audio/slide-01.mp3",
+   "duration": 35.832,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.879,
+     "en": "Welcome to Session 15, the last session of Optimization of Chemical Processes.",
+     "th": "ยินดีต้อนรับสู่คาบที่ 15 คาบสุดท้ายของวิชา Optimization of Chemical Processes"
+    },
+    {
+     "s": 5.879,
+     "e": 9.277,
+     "en": "Most of today belongs to you: the project presentations.",
+     "th": "เวลาส่วนใหญ่ของวันนี้เป็นของคุณ คือการนำเสนอโครงงาน"
+    },
+    {
+     "s": 9.277,
+     "e": 20.066,
+     "en": "These slides set up one checklist for every model in the course, show how to use it to review a project, yours or someone else's, and close with what the fifteen sessions add up to.",
+     "th": "สไลด์ชุดนี้วางรายการตรวจหนึ่งชุดสำหรับทุกโมเดลในรายวิชา แสดงวิธีใช้รายการนี้ทบทวนโครงงาน ทั้งของคุณเองและของผู้อื่น และปิดท้ายด้วยสิ่งที่สิบห้าคาบรวมกันแล้วให้คุณ"
+    },
+    {
+     "s": 20.066,
+     "e": 24.618,
+     "en": "The narration is shorter than in other sessions, about fifteen minutes.",
+     "th": "คำบรรยายสั้นกว่าคาบอื่น ประมาณสิบห้านาที"
+    },
+    {
+     "s": 24.618,
+     "e": 29.719,
+     "en": "If you are studying on your own because class was cancelled, everything here works for you too:",
+     "th": "ถ้าคุณเรียนเองเพราะงดชั้นเรียน ทุกอย่างในนี้ใช้ได้กับคุณเช่นกัน"
+    },
+    {
+     "s": 29.719,
+     "e": 35.776,
+     "en": "the practice review in the lab replaces the presentations, and you can review your own project with the same form.",
+     "th": "การฝึกทบทวนใน lab ใช้แทนการนำเสนอ และคุณทบทวนโครงงานของตัวเองได้ด้วยแบบเดียวกัน"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "file": "audio/slide-02.mp3",
+   "duration": 42.072,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.918,
+     "en": "Here is the plan for three hours.",
+     "th": "นี่คือแผนสำหรับสามชั่วโมง"
+    },
+    {
+     "s": 2.918,
+     "e": 9.421,
+     "en": "The first fifteen minutes set up the verification checklist, how to review, and a short practice review.",
+     "th": "สิบห้านาทีแรกเป็นการวางรายการตรวจ วิธีทบทวน และการฝึกทบทวนสั้น ๆ"
+    },
+    {
+     "s": 9.421,
+     "e": 21.184,
+     "en": "Then come two blocks of presentations, an hour each, with a break between them. Each group has twelve minutes, plus three for questions, and reviewers fill in a review form as they listen.",
+     "th": "จากนั้นเป็นการนำเสนอสองช่วง ช่วงละหนึ่งชั่วโมง โดยมีพักระหว่างกลาง แต่ละกลุ่มมีเวลาสิบสองนาที และอีกสามนาทีสำหรับคำถาม ผู้ทบทวนกรอกแบบทบทวนระหว่างฟัง"
+    },
+    {
+     "s": 21.184,
+     "e": 28.263,
+     "en": "The last part is a wrap-up of the course, then the reviews are submitted with the Exit Ticket and the end-of-course feedback.",
+     "th": "ส่วนสุดท้ายเป็นการสรุปรายวิชา แล้วส่งแบบทบทวนพร้อม Exit Ticket และ feedback ของทั้งรายวิชา"
+    },
+    {
+     "s": 28.263,
+     "e": 32.855,
+     "en": "The times for each group are set by the chair at the start of the session.",
+     "th": "เวลาของแต่ละกลุ่มจะกำหนดโดยประธานตอนเริ่มคาบ"
+    },
+    {
+     "s": 32.855,
+     "e": 42.0,
+     "en": "If you study on your own, listen to the narration, then do Lab 15, a practice review of a short report, and apply the same checklist to your own project.",
+     "th": "ถ้าเรียนเอง ให้ฟังคำบรรยาย แล้วทำ Lab 15 ซึ่งเป็นการฝึกทบทวนรายงานสั้น ๆ และใช้รายการตรวจเดียวกันกับโครงงานของคุณเอง"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "file": "audio/slide-03.mp3",
+   "duration": 75.408,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.642,
+     "en": "What must your project show?",
+     "th": "โครงงานของคุณต้องแสดงอะไรบ้าง"
+    },
+    {
+     "s": 2.642,
+     "e": 13.697,
+     "en": "There are five deliverables. The presentation: twelve minutes plus three for questions, covering the problem, the model, how you know it is right, the results and the limits.",
+     "th": "มีสิ่งที่ต้องส่งห้าอย่าง การนำเสนอ สิบสองนาทีบวกสามนาทีสำหรับคำถาม ครอบคลุมปัญหา โมเดล วิธีที่คุณรู้ว่ามันถูก ผลลัพธ์ และข้อจำกัด"
+    },
+    {
+     "s": 13.697,
+     "e": 22.632,
+     "en": "The report: the specification with units, the data and their sources, the model and its class, the results, the verification and a discussion.",
+     "th": "รายงาน ได้แก่ ข้อกำหนดพร้อมหน่วย ข้อมูลและแหล่งที่มา โมเดลและประเภทของมัน ผลลัพธ์ การตรวจสอบ และการอภิปราย"
+    },
+    {
+     "s": 22.632,
+     "e": 33.428,
+     "en": "The code, which runs from a clean start and prints the plan as a table. The tests, written from the specification, with their results. And the disclosure:",
+     "th": "โค้ดที่รันได้ตั้งแต่เริ่มใหม่และพิมพ์แผนเป็นตาราง การทดสอบที่เขียนจากข้อกำหนดพร้อมผล และการเปิดเผยว่าเครื่องมือ"
+    },
+    {
+     "s": 33.428,
+     "e": 36.632,
+     "en": "what an AI tool drafted, and what you checked.",
+     "th": "AI ร่างอะไรไว้ และคุณตรวจอะไร"
+    },
+    {
+     "s": 36.632,
+     "e": 46.934,
+     "en": "The question a reader asks of every result is the same: how do you know? The checklist turns that question into twelve items, each taught in an earlier session.",
+     "th": "คำถามที่ผู้อ่านถามกับทุกผลลัพธ์เหมือนกัน คือคุณรู้ได้อย่างไร รายการตรวจเปลี่ยนคำถามนั้นเป็นสิบสองข้อ แต่ละข้อสอนไว้ในคาบก่อนหน้า"
+    },
+    {
+     "s": 46.934,
+     "e": 57.316,
+     "en": "A project does not need every item. A deterministic L P has no front and no scenarios. Say which items apply, and why.",
+     "th": "โครงงานไม่จำเป็นต้องมีทุกข้อ LP ที่ไม่มีความไม่แน่นอนไม่มีแนวหน้าและไม่มีสถานการณ์ ให้บอกว่าข้อใดใช้ได้และเพราะอะไร"
+    },
+    {
+     "s": 57.316,
+     "e": 62.153,
+     "en": "A note on scope. A good project is small enough to verify completely.",
+     "th": "หมายเหตุเรื่องขอบเขต โครงงานที่ดีมีขนาดเล็กพอจะตรวจสอบได้ครบ"
+    },
+    {
+     "s": 62.153,
+     "e": 71.342,
+     "en": "A model with ten variables that is checked item by item teaches more, and convinces more, than a model with ten thousand that is not.",
+     "th": "โมเดลที่มีสิบตัวแปรซึ่งตรวจทีละข้อ สอนได้มากกว่าและน่าเชื่อกว่าโมเดลที่มีหนึ่งหมื่นตัวแปรที่ไม่ได้ตรวจ"
+    },
+    {
+     "s": 71.342,
+     "e": 75.342,
+     "en": "The deadline and the form of submission are on the course page.",
+     "th": "กำหนดส่งและรูปแบบการส่งอยู่ในหน้าเว็บของรายวิชา"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "file": "audio/slide-04.mp3",
+   "duration": 86.64,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.395,
+     "en": "Here is the checklist. Click an item to see what to show, where it was taught, and a typical failure.",
+     "th": "นี่คือรายการตรวจ คลิกแต่ละข้อเพื่อดูว่าต้องแสดงอะไร สอนไว้ที่ใด และความผิดพลาดที่พบบ่อย"
+    },
+    {
+     "s": 7.395,
+     "e": 16.697,
+     "en": "Items one to four are about the model: the specification with units, the data with sources and dates, the class of the model and why, and balances that close.",
+     "th": "ข้อหนึ่งถึงสี่เกี่ยวกับโมเดล ได้แก่ ข้อกำหนดพร้อมหน่วย ข้อมูลพร้อมแหล่งที่มาและวันที่ ประเภทของโมเดลและเหตุผล และสมดุลที่ปิดได้"
+    },
+    {
+     "s": 16.697,
+     "e": 19.096,
+     "en": "Items five to eight are about the answer:",
+     "th": "ข้อห้าถึงแปดเกี่ยวกับคำตอบ ได้แก่"
+    },
+    {
+     "s": 19.096,
+     "e": 29.947,
+     "en": "the objective recomputed from the plan with the specification's data, a certificate rather than a status message, multipliers with units and sign, and a correct statement of global or local.",
+     "th": "ค่าเป้าหมายที่คำนวณใหม่จากแผนด้วยข้อมูลในข้อกำหนด certificate แทนข้อความสถานะ ตัวคูณพร้อมหน่วยและเครื่องหมาย และการบอกอย่างถูกต้องว่าเป็นคำตอบแบบ global หรือ local"
+    },
+    {
+     "s": 29.947,
+     "e": 36.118,
+     "en": "Items nine and ten are about what the model leaves out: uncertain data, and several objectives.",
+     "th": "ข้อเก้าและสิบเกี่ยวกับสิ่งที่โมเดลไม่ได้รวมไว้ คือข้อมูลที่ไม่แน่นอน และการมีหลายเป้าหมาย"
+    },
+    {
+     "s": 36.118,
+     "e": 45.145,
+     "en": "Items eleven and twelve are about the evidence: tests written from the specification, and reporting, with code, versions and the AI disclosure.",
+     "th": "ข้อสิบเอ็ดและสิบสองเกี่ยวกับหลักฐาน ได้แก่ การทดสอบที่เขียนจากข้อกำหนด และการรายงานพร้อมโค้ด รุ่นของซอฟต์แวร์ และการเปิดเผยการใช้ AI"
+    },
+    {
+     "s": 45.145,
+     "e": 50.562,
+     "en": "Two items deserve a word. Item five, recomputing the objective, sounds trivial.",
+     "th": "มีสองข้อที่ควรพูดถึง ข้อห้า การคำนวณค่าเป้าหมายใหม่ ฟังดูง่าย"
+    },
+    {
+     "s": 50.562,
+     "e": 61.329,
+     "en": "It catches more errors than most other checks, because it compares the code's numbers with the specification's numbers, which is exactly where drafts go wrong.",
+     "th": "แต่จับข้อผิดพลาดได้มากกว่าการตรวจอื่นส่วนใหญ่ เพราะเปรียบเทียบตัวเลขในโค้ดกับตัวเลขในข้อกำหนด ซึ่งเป็นจุดที่ร่างมักผิดพอดี"
+    },
+    {
+     "s": 61.329,
+     "e": 73.605,
+     "en": "Item twelve asks for versions. Solvers change between releases, and a different version may stop at a different point. Recording the version lets a reader reproduce the run.",
+     "th": "ข้อสิบสองขอรุ่นของซอฟต์แวร์ solver เปลี่ยนไปตามรุ่น และรุ่นที่ต่างกันอาจหยุดที่จุดต่างกัน การบันทึกรุ่นทำให้ผู้อ่านทำซ้ำการรันได้"
+    },
+    {
+     "s": 73.605,
+     "e": 76.463,
+     "en": "Each failure listed here happened in this course:",
+     "th": "ความผิดพลาดที่แสดงไว้แต่ละข้อเกิดขึ้นจริงในรายวิชานี้"
+    },
+    {
+     "s": 76.463,
+     "e": 86.579,
+     "en": "the units in Session 14's shipping plan, the transposed cost matrix, Session 9's false successes, and a multiplier read in the wrong units, which you will meet again in the lab.",
+     "th": "เช่น หน่วยในแผนการขนส่งของคาบที่ 14 เมทริกซ์ต้นทุนที่ทรานสโพส การรายงานว่าสำเร็จอย่างผิด ๆ ในคาบที่ 9 และตัวคูณที่อ่านผิดหน่วย ซึ่งคุณจะพบอีกครั้งใน lab"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "file": "audio/slide-05.mp3",
+   "duration": 99.696,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.026,
+     "en": "Item six asks for a certificate. What counts as one depends on the class of the problem.",
+     "th": "ข้อหกขอ certificate สิ่งที่นับเป็น certificate ขึ้นกับประเภทของปัญหา"
+    },
+    {
+     "s": 7.026,
+     "e": 18.632,
+     "en": "For an L P, the primal and dual values are equal, and the residuals are near zero: Session 6. For a MILP, the MIP gap at the end: Session 3.",
+     "th": "สำหรับ LP ค่า primal และ dual เท่ากัน และ residual ใกล้ศูนย์ ตามคาบที่ 6 สำหรับ MILP คือ MIP gap ตอนจบ ตามคาบที่ 3"
+    },
+    {
+     "s": 18.632,
+     "e": 24.825,
+     "en": "For a smooth NLP, the KKT residuals and the multipliers at the answer: Sessions 7 and 9.",
+     "th": "สำหรับ NLP ที่เรียบ คือ residual ของ KKT และตัวคูณที่คำตอบ ตามคาบที่ 7 และ 9"
+    },
+    {
+     "s": 24.825,
+     "e": 35.053,
+     "en": "For a nonconvex problem, a global bound and its gap, or an honest statement that the answer is local, with the number of starts: Sessions 5 and 13.",
+     "th": "สำหรับปัญหา nonconvex คือขอบเขต global และช่องว่าง หรือการบอกตรง ๆ ว่าเป็นคำตอบเฉพาะที่ พร้อมจำนวนจุดเริ่มต้น ตามคาบที่ 5 และ 13"
+    },
+    {
+     "s": 35.053,
+     "e": 49.415,
+     "en": "For estimation, residuals, standard errors and correlations. For dynamic problems, an answer that stops changing as the grid is refined. Under uncertainty, an evaluation on fresh scenarios.",
+     "th": "สำหรับการประมาณค่าพารามิเตอร์ คือ residual ค่าคลาดเคลื่อนมาตรฐาน และสหสัมพันธ์ สำหรับปัญหาเชิงพลวัต คือคำตอบที่ไม่เปลี่ยนเมื่อทำ grid ละเอียดขึ้น ภายใต้ความไม่แน่นอน คือการประเมินกับสถานการณ์ใหม่"
+    },
+    {
+     "s": 49.415,
+     "e": 53.724,
+     "en": "And for a black box, replicates at the recommended point.",
+     "th": "และสำหรับ black box คือการทดลองซ้ำที่จุดที่แนะนำ"
+    },
+    {
+     "s": 53.724,
+     "e": 66.166,
+     "en": "A certificate is cheap. For an L P, it is one dot product of the marginals with the right-hand sides. For an NLP, it is the residuals you computed in Session 7.",
+     "th": "certificate มีต้นทุนต่ำ สำหรับ LP เป็นเพียงผลคูณจุดของ marginal กับค่าด้านขวา สำหรับ NLP คือ residual ที่คุณคำนวณในคาบที่ 7"
+    },
+    {
+     "s": 66.166,
+     "e": 70.184,
+     "en": "There is no reason to report a status message alone.",
+     "th": "จึงไม่มีเหตุผลที่จะรายงานเพียงข้อความสถานะ"
+    },
+    {
+     "s": 70.184,
+     "e": 82.93,
+     "en": "The panel shows the simplest case, a small L P. Its primal value is minus 1,000, written as a minimization, and the dual value built from the marginals is also minus 1,000.",
+     "th": "กรอบด้านขวาแสดงกรณีที่ง่ายที่สุด คือ LP ขนาดเล็ก ค่า primal เป็นลบ 1,000 เมื่อเขียนเป็นการหาค่าต่ำสุด และค่า dual ที่สร้างจาก marginal ก็เป็นลบ 1,000"
+    },
+    {
+     "s": 82.93,
+     "e": 89.855,
+     "en": "The gap is zero, so the plan, 20 and 20, is optimal, and both resources are worth 10 per unit.",
+     "th": "ช่องว่างเป็นศูนย์ แผน 20 และ 20 จึงเหมาะสมที่สุด และทรัพยากรทั้งสองมีมูลค่า 10 ต่อหน่วย"
+    },
+    {
+     "s": 89.855,
+     "e": 99.632,
+     "en": "Press D. The function lp certificate in today's Python file does this for any L P solved with HiGHS, and you can paste it into your project.",
+     "th": "กด D ฟังก์ชัน lp_certificate ในไฟล์ Python ของวันนี้ทำสิ่งนี้ได้กับ LP ใด ๆ ที่แก้ด้วย HiGHS และคุณนำไปใช้ในโครงงานได้เลย"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "file": "audio/slide-06.mp3",
+   "duration": 64.752,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.024,
+     "en": "How do you review a project well?",
+     "th": "จะทบทวนโครงงานให้ดีได้อย่างไร"
+    },
+    {
+     "s": 3.024,
+     "e": 13.961,
+     "en": "Be specific. Name the item, the slide or table, and the number. The stream table loses two tonnes a day is useful; check the balances is not.",
+     "th": "ให้เจาะจง ระบุข้อ สไลด์หรือตาราง และตัวเลข การบอกว่าตารางสายการไหลหายไปสองตันต่อวันมีประโยชน์ การบอกว่าให้ตรวจสมดุลไม่มีประโยชน์"
+    },
+    {
+     "s": 13.961,
+     "e": 19.461,
+     "en": "Give evidence. When you can, recompute one number yourself.",
+     "th": "ให้หลักฐาน ถ้าทำได้ ให้คำนวณตัวเลขหนึ่งตัวใหม่ด้วยตัวเอง"
+    },
+    {
+     "s": 19.461,
+     "e": 33.013,
+     "en": "Rank by severity. A must-fix is something that may make the answer wrong. A should-fix is missing evidence for an answer that may well be right. Minor points are about presentation.",
+     "th": "จัดลำดับตามความรุนแรง must-fix คือสิ่งที่อาจทำให้คำตอบผิด should-fix คือหลักฐานที่ขาดไปสำหรับคำตอบที่อาจถูกอยู่แล้ว ส่วนประเด็นเล็กน้อยเกี่ยวกับการนำเสนอ"
+    },
+    {
+     "s": 33.013,
+     "e": 41.529,
+     "en": "Start with a strength, and mean it. And ask one question the group can answer with a number. The panel gives examples that work:",
+     "th": "เริ่มด้วยจุดแข็ง และพูดอย่างจริงใจ และถามหนึ่งคำถามที่กลุ่มตอบได้ด้วยตัวเลข กรอบด้านขวามีตัวอย่างที่ใช้ได้ดี เช่น ค่า"
+    },
+    {
+     "s": 41.529,
+     "e": 48.526,
+     "en": "what is the dual value, how many starts reached this answer, what happens if a price rises twenty percent.",
+     "th": "dual เป็นเท่าใด มีจุดเริ่มต้นกี่จุดที่ได้คำตอบนี้ หรือถ้าราคาเพิ่มยี่สิบเปอร์เซ็นต์จะเกิดอะไรขึ้น"
+    },
+    {
+     "s": 48.526,
+     "e": 55.487,
+     "en": "Review the work, not the people. Reviews are passed to each group without reviewers' names.",
+     "th": "ทบทวนที่งาน ไม่ใช่ที่ตัวบุคคล แบบทบทวนจะส่งต่อให้แต่ละกลุ่มโดยไม่มีชื่อผู้ทบทวน"
+    },
+    {
+     "s": 55.487,
+     "e": 64.671,
+     "en": "Reviewing is also how you learn to check your own work. The errors you find in another group's model are the ones you will start to look for in yours.",
+     "th": "การทบทวนยังเป็นวิธีเรียนรู้การตรวจงานของตัวเองด้วย ข้อผิดพลาดที่คุณพบในโมเดลของกลุ่มอื่นคือสิ่งที่คุณจะเริ่มมองหาในโมเดลของคุณ"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "file": "audio/slide-07.mp3",
+   "duration": 46.176,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.274,
+     "en": "A word on the twelve minutes themselves.",
+     "th": "พูดถึงเวลาสิบสองนาทีสักเล็กน้อย"
+    },
+    {
+     "s": 3.274,
+     "e": 13.733,
+     "en": "A structure that works: two minutes on the problem, in words and units; three on the model, its variables, rows, class, size and data; three on verification; three on results;",
+     "th": "โครงสร้างที่ได้ผลคือ สองนาทีสำหรับปัญหาเป็นถ้อยคำพร้อมหน่วย สามนาทีสำหรับโมเดล ตัวแปร ข้อจำกัด ประเภท ขนาด และข้อมูล สามนาทีสำหรับการตรวจสอบ สามนาทีสำหรับผลลัพธ์"
+    },
+    {
+     "s": 13.733,
+     "e": 16.645,
+     "en": "and one on the limits and what you would do next.",
+     "th": "และหนึ่งนาทีสำหรับข้อจำกัดและสิ่งที่จะทำต่อ"
+    },
+    {
+     "s": 16.645,
+     "e": 24.5,
+     "en": "Put the verification before the results. An audience that has seen the certificate trusts the numbers that follow.",
+     "th": "ให้การตรวจสอบมาก่อนผลลัพธ์ ผู้ฟังที่เห็น certificate แล้วจะเชื่อตัวเลขที่ตามมามากขึ้น"
+    },
+    {
+     "s": 24.5,
+     "e": 32.079,
+     "en": "Show the plan as a table a manager can read, with units and a sensible number of digits, not the solver's raw output.",
+     "th": "แสดงแผนเป็นตารางที่ผู้จัดการอ่านได้ พร้อมหน่วยและจำนวนหลักที่เหมาะสม ไม่ใช่ผลดิบจาก solver"
+    },
+    {
+     "s": 32.079,
+     "e": 40.842,
+     "en": "For the questions, repeat the question before you answer it, answer with a number where you can, and if you do not know, say what you would compute to find out.",
+     "th": "สำหรับช่วงคำถาม ให้ทวนคำถามก่อนตอบ ตอบด้วยตัวเลขเมื่อทำได้ และถ้าไม่รู้ ให้บอกว่าจะคำนวณอะไรเพื่อหาคำตอบ"
+    },
+    {
+     "s": 40.842,
+     "e": 46.105,
+     "en": "And rehearse with a clock. The chair stops you at twelve minutes.",
+     "th": "และซ้อมโดยจับเวลา ประธานจะหยุดคุณที่สิบสองนาที"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "file": "audio/slide-08.mp3",
+   "duration": 55.8,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 12.013,
+     "en": "Now a practice review, before the real ones. Group A's report excerpt is on the left: steam from two boilers and a back-pressure turbine, a small nonlinear model with synthetic data.",
+     "th": "ต่อไปเป็นการฝึกทบทวนก่อนของจริง ตัวอย่างรายงานของกลุ่ม A อยู่ทางซ้าย เป็นไอน้ำจากหม้อไอน้ำสองเครื่องและกังหันแบบ back-pressure เป็นโมเดลไม่เชิงเส้นขนาดเล็กที่ใช้ข้อมูลสังเคราะห์"
+    },
+    {
+     "s": 12.013,
+     "e": 22.145,
+     "en": "Go through the twelve items. Which pass, which fail, and which are not shown? For each failure, decide whether it is a must-fix.",
+     "th": "ไล่ดูทั้งสิบสองข้อ ข้อใดผ่าน ข้อใดไม่ผ่าน และข้อใดไม่ได้แสดง สำหรับข้อที่ไม่ผ่าน ให้ตัดสินว่าเป็น must-fix หรือไม่"
+    },
+    {
+     "s": 22.145,
+     "e": 28.618,
+     "en": "Recompute what you can. The cost and the steam balance can be checked in your head.",
+     "th": "คำนวณใหม่ในส่วนที่ทำได้ ต้นทุนและสมดุลไอน้ำตรวจได้ในใจ"
+    },
+    {
+     "s": 28.618,
+     "e": 35.776,
+     "en": "Notice also what Group A did well. A review that lists only failures misses half of its job.",
+     "th": "สังเกตด้วยว่ากลุ่ม A ทำอะไรได้ดี การทบทวนที่ระบุเพียงข้อผิดพลาดทำหน้าที่ได้เพียงครึ่งเดียว"
+    },
+    {
+     "s": 35.776,
+     "e": 41.658,
+     "en": "Pause the narration now; take five minutes. Then press Show findings.",
+     "th": "หยุดคำบรรยายตอนนี้ ใช้เวลาห้านาที แล้วกด Show findings"
+    },
+    {
+     "s": 41.658,
+     "e": 50.957,
+     "en": "Group A's weak point is the evidence for optimality: a status message, one local solver on a nonconvex model, and a multiplier without units.",
+     "th": "จุดอ่อนของกลุ่ม A คือหลักฐานว่าคำตอบดีที่สุด มีเพียงข้อความสถานะ solver เฉพาะที่ตัวเดียวบนโมเดล nonconvex และตัวคูณที่ไม่มีหน่วย"
+    },
+    {
+     "s": 50.957,
+     "e": 55.737,
+     "en": "The arithmetic, the balance, the price sweep and the disclosure are fine.",
+     "th": "ส่วนการคำนวณ สมดุล การไล่ราคา และการเปิดเผยการใช้ AI ไม่มีปัญหา"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "file": "audio/slide-09.mp3",
+   "duration": 42.72,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.039,
+     "en": "Now the presentations. Open the lab page, Part B, and choose the group you review.",
+     "th": "ต่อไปเป็นการนำเสนอ เปิดหน้า lab ส่วน B และเลือกกลุ่มที่คุณทบทวน"
+    },
+    {
+     "s": 7.039,
+     "e": 12.303,
+     "en": "Mark each checklist item as you listen: pass, fail, not shown, or not applicable.",
+     "th": "ทำเครื่องหมายแต่ละข้อขณะฟัง ว่าผ่าน ไม่ผ่าน ไม่ได้แสดง หรือไม่เกี่ยวข้อง"
+    },
+    {
+     "s": 12.303,
+     "e": 20.263,
+     "en": "Then write one strength, one must-fix, and one question that can be answered with a number, and ask it in the three minutes.",
+     "th": "แล้วเขียนจุดแข็งหนึ่งข้อ must-fix หนึ่งข้อ และคำถามหนึ่งข้อที่ตอบได้ด้วยตัวเลข และถามในช่วงสามนาที"
+    },
+    {
+     "s": 20.263,
+     "e": 24.763,
+     "en": "Reviewers are assigned so that every group gets at least two reviews.",
+     "th": "ผู้ทบทวนถูกจัดให้ทุกกลุ่มได้รับการทบทวนอย่างน้อยสองฉบับ"
+    },
+    {
+     "s": 24.763,
+     "e": 32.684,
+     "en": "Chairs start each talk on time, give a one-minute warning, and keep the questions to three minutes, so that every group gets the same time.",
+     "th": "ประธานเริ่มแต่ละการนำเสนอตรงเวลา เตือนเมื่อเหลือหนึ่งนาที และจำกัดช่วงคำถามไว้สามนาที เพื่อให้ทุกกลุ่มได้เวลาเท่ากัน"
+    },
+    {
+     "s": 32.684,
+     "e": 40.25,
+     "en": "If you study on your own, use the practice report in Lab 15 instead, and then review your own project with the same form.",
+     "th": "ถ้าเรียนเอง ให้ใช้รายงานฝึกใน Lab 15 แทน แล้วทบทวนโครงงานของคุณเองด้วยแบบเดียวกัน"
+    },
+    {
+     "s": 40.25,
+     "e": 42.645,
+     "en": "Pause the narration now.",
+     "th": "หยุดคำบรรยายตอนนี้"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "file": "audio/slide-10.mp3",
+   "duration": 8.088,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.432,
+     "en": "Take a ten-minute break.",
+     "th": "พักสิบนาที"
+    },
+    {
+     "s": 2.432,
+     "e": 8.026,
+     "en": "Use the first minutes to finish the reviews of the first block, while the details are fresh.",
+     "th": "ใช้ช่วงแรกของเวลาพักเขียนแบบทบทวนของช่วงแรกให้เสร็จ ขณะที่รายละเอียดยังจำได้"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "file": "audio/slide-11.mp3",
+   "duration": 34.32,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.103,
+     "en": "The second block of presentations, with the same form.",
+     "th": "การนำเสนอช่วงที่สอง ใช้แบบทบทวนเดียวกัน"
+    },
+    {
+     "s": 4.103,
+     "e": 11.329,
+     "en": "Choose the next group on the lab page, mark the twelve items, and write one strength, one must-fix and one question.",
+     "th": "เลือกกลุ่มถัดไปในหน้า lab ทำเครื่องหมายทั้งสิบสองข้อ และเขียนจุดแข็ง must-fix และคำถามอย่างละหนึ่งข้อ"
+    },
+    {
+     "s": 11.329,
+     "e": 21.507,
+     "en": "Remember the distinction. A must-fix may make the answer wrong: a balance that does not close, a unit, a claim of global optimality without a bound.",
+     "th": "จำความแตกต่างไว้ must-fix อาจทำให้คำตอบผิด เช่น สมดุลที่ไม่ปิด หน่วย หรือการอ้างว่าเป็น global optimum โดยไม่มีขอบเขต"
+    },
+    {
+     "s": 21.507,
+     "e": 25.947,
+     "en": "A should-fix is missing evidence for an answer that may be right.",
+     "th": "should-fix คือหลักฐานที่ขาดสำหรับคำตอบที่อาจถูก"
+    },
+    {
+     "s": 25.947,
+     "e": 31.855,
+     "en": "After the last talk, finish your reviews before the wrap-up begins; it takes five minutes.",
+     "th": "หลังการนำเสนอสุดท้าย ให้เขียนแบบทบทวนให้เสร็จก่อนเริ่มการสรุป ใช้เวลาห้านาที"
+    },
+    {
+     "s": 31.855,
+     "e": 34.25,
+     "en": "Pause the narration now.",
+     "th": "หยุดคำบรรยายตอนนี้"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "file": "audio/slide-12.mp3",
+   "duration": 63.72,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 9.961,
+     "en": "Part four looks back. The table puts fourteen sessions on one page: the topic, the class of problem and method, and the evidence you learned to show.",
+     "th": "ส่วนที่สี่มองย้อนกลับ ตารางรวมสิบสี่คาบไว้ในหน้าเดียว ได้แก่ หัวข้อ ประเภทของปัญหาและวิธี และหลักฐานที่คุณได้เรียนรู้ที่จะแสดง"
+    },
+    {
+     "s": 9.961,
+     "e": 18.855,
+     "en": "Sessions 1 to 4 were about building models: from a specification to an L P, blending and stream tables, binaries and logic, and time.",
+     "th": "คาบที่ 1 ถึง 4 เกี่ยวกับการสร้างโมเดล ตั้งแต่ข้อกำหนดไปสู่ LP การผสมและตารางสายการไหล ตัวแปรไบนารีและตรรกะ และมิติของเวลา"
+    },
+    {
+     "s": 18.855,
+     "e": 30.803,
+     "en": "Sessions 5 to 9 opened the solvers: convexity, the simplex method and duality, Lagrange multipliers and the KKT conditions, and the algorithms for unconstrained and constrained problems.",
+     "th": "คาบที่ 5 ถึง 9 เปิดดูภายใน solver ได้แก่ ความเป็น convex วิธี simplex และ duality ตัวคูณ Lagrange และเงื่อนไข KKT และอัลกอริทึมสำหรับปัญหาที่ไม่มีและมีข้อจำกัด"
+    },
+    {
+     "s": 30.803,
+     "e": 42.145,
+     "en": "Sessions 10 to 14 met the data and the world: estimation, dynamics and control, uncertainty, several objectives and nonconvexity, and expensive experiments and AI tools.",
+     "th": "คาบที่ 10 ถึง 14 พบกับข้อมูลและโลกจริง ได้แก่ การประมาณค่า พลวัตและการควบคุม ความไม่แน่นอน หลายเป้าหมายและความเป็น nonconvex และการทดลองที่มีราคาแพงกับเครื่องมือ AI"
+    },
+    {
+     "s": 42.145,
+     "e": 49.303,
+     "en": "Read the last column from top to bottom. It is the checklist again, written session by session.",
+     "th": "อ่านคอลัมน์สุดท้ายจากบนลงล่าง นั่นคือรายการตรวจอีกครั้ง ที่เขียนทีละคาบ"
+    },
+    {
+     "s": 49.303,
+     "e": 58.194,
+     "en": "Notice also what the course did not do: it did not teach you to trust a solver. Every session paired a method with a way of checking it.",
+     "th": "สังเกตด้วยว่ารายวิชานี้ไม่ได้สอนให้คุณเชื่อ solver ทุกคาบจับคู่วิธีกับวิธีตรวจสอบ"
+    },
+    {
+     "s": 58.194,
+     "e": 63.645,
+     "en": "That pairing is what separates a model that someone can use from one that only runs.",
+     "th": "การจับคู่นี้คือสิ่งที่แยกโมเดลที่คนอื่นนำไปใช้ได้ ออกจากโมเดลที่เพียงแค่รันได้"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "file": "audio/slide-13.mp3",
+   "duration": 45.096,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.853,
+     "en": "If the course has to fit on one slide, these are the five habits to keep.",
+     "th": "ถ้ารายวิชานี้ต้องย่อให้เหลือสไลด์เดียว นี่คือนิสัยห้าข้อที่ควรเก็บไว้"
+    },
+    {
+     "s": 4.853,
+     "e": 8.605,
+     "en": "Write the model in words and units before you solve it.",
+     "th": "เขียนโมเดลเป็นถ้อยคำพร้อมหน่วยก่อนจะแก้"
+    },
+    {
+     "s": 8.605,
+     "e": 14.066,
+     "en": "Know what your solver can certify for your class of problem, and show that certificate.",
+     "th": "รู้ว่า solver ของคุณให้ certificate อะไรได้สำหรับปัญหาประเภทนั้น และแสดง certificate นั้น"
+    },
+    {
+     "s": 14.066,
+     "e": 21.382,
+     "en": "Read the multipliers: they answer the next question a manager will ask, what one more unit of a limit is worth.",
+     "th": "อ่านตัวคูณ เพราะมันตอบคำถามถัดไปที่ผู้จัดการจะถาม คือหนึ่งหน่วยของข้อจำกัดที่เพิ่มขึ้นมีมูลค่าเท่าใด"
+    },
+    {
+     "s": 21.382,
+     "e": 25.921,
+     "en": "Say whether an answer is global or local, and with what evidence.",
+     "th": "บอกว่าคำตอบเป็นแบบ global หรือ local และด้วยหลักฐานใด"
+    },
+    {
+     "s": 25.921,
+     "e": 33.039,
+     "en": "And test every model from its specification: the ones you wrote, the ones a colleague wrote, and the ones a tool wrote.",
+     "th": "และทดสอบทุกโมเดลจากข้อกำหนดของมัน ทั้งที่คุณเขียนเอง ที่เพื่อนร่วมงานเขียน และที่เครื่องมือเขียน"
+    },
+    {
+     "s": 33.039,
+     "e": 45.026,
+     "en": "None of these habits depends on a particular tool or language. They held in Excel in the first weeks, in Python with SciPy and Pyomo, and they will hold in whatever tools you use next.",
+     "th": "นิสัยเหล่านี้ไม่ขึ้นกับเครื่องมือหรือภาษาใด ใช้ได้กับ Excel ในสัปดาห์แรก ๆ กับ Python ที่ใช้ SciPy และ Pyomo และจะใช้ได้กับเครื่องมือใดก็ตามที่คุณใช้ต่อไป"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "file": "audio/slide-14.mp3",
+   "duration": 65.976,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.524,
+     "en": "Where to go after the course?",
+     "th": "หลังจบรายวิชาจะไปต่อที่ไหน"
+    },
+    {
+     "s": 2.524,
+     "e": 9.446,
+     "en": "For formulation, Williams's Model Building in Mathematical Programming, with its many case studies.",
+     "th": "สำหรับการสร้างแบบจำลอง Model Building in Mathematical Programming ของ Williams ซึ่งมีกรณีศึกษาจำนวนมาก"
+    },
+    {
+     "s": 9.446,
+     "e": 16.645,
+     "en": "For chemical processes, Biegler's Nonlinear Programming, which covers much of Sessions 7 to 11 in depth.",
+     "th": "สำหรับกระบวนการเคมี Nonlinear Programming ของ Biegler ซึ่งครอบคลุมเนื้อหาคาบที่ 7 ถึง 11 อย่างลึก"
+    },
+    {
+     "s": 16.645,
+     "e": 31.171,
+     "en": "For the algorithms, Nocedal and Wright. For convexity, Boyd and Vandenberghe. For uncertainty, Birge and Louveaux. And for Gaussian processes, Rasmussen and Williams.",
+     "th": "สำหรับอัลกอริทึม Nocedal และ Wright สำหรับความเป็น convex Boyd และ Vandenberghe สำหรับความไม่แน่นอน Birge และ Louveaux และสำหรับ Gaussian process Rasmussen และ Williams"
+    },
+    {
+     "s": 31.171,
+     "e": 41.794,
+     "en": "The table on the right lists tools by need: Pyomo, JuMP or GAMS for modeling; HiGHS and SCIP for linear and integer problems; Ipopt and CasADi for nonlinear and dynamic ones;",
+     "th": "ตารางทางขวาแสดงเครื่องมือตามความต้องการ Pyomo, JuMP หรือ GAMS สำหรับการสร้างโมเดล HiGHS และ SCIP สำหรับปัญหาเชิงเส้นและจำนวนเต็ม Ipopt และ CasADi สำหรับปัญหาไม่เชิงเส้นและเชิงพลวัต"
+    },
+    {
+     "s": 41.794,
+     "e": 47.5,
+     "en": "SCIP, BARON or Couenne for global optimization; and BoTorch with Ax for expensive experiments.",
+     "th": "SCIP, BARON หรือ Couenne สำหรับ global optimization และ BoTorch กับ Ax สำหรับการทดลองที่มีราคาแพง"
+    },
+    {
+     "s": 47.5,
+     "e": 58.118,
+     "en": "If your work involves experiments, the B O tools of Session 14 are worth learning properly; if it involves plant operation, the M P C and dynamic optimization of Session 11;",
+     "th": "ถ้างานของคุณเกี่ยวกับการทดลอง เครื่องมือ BO ของคาบที่ 14 คุ้มค่าที่จะเรียนให้ลึก ถ้าเกี่ยวกับการเดินเครื่องโรงงาน คือ MPC และ dynamic optimization ของคาบที่ 11"
+    },
+    {
+     "s": 58.118,
+     "e": 62.145,
+     "en": "if it involves planning, the stochastic programming of Session 12.",
+     "th": "ถ้าเกี่ยวกับการวางแผน คือ stochastic programming ของคาบที่ 12"
+    },
+    {
+     "s": 62.145,
+     "e": 65.908,
+     "en": "Whichever you use, the checklist does not change.",
+     "th": "ไม่ว่าจะใช้เครื่องมือใด รายการตรวจก็ยังเหมือนเดิม"
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "file": "audio/slide-15.mp3",
+   "duration": 41.904,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.247,
+     "en": "Before you submit your project, apply the checklist to it.",
+     "th": "ก่อนส่งโครงงาน ให้ใช้รายการตรวจกับโครงงานของคุณ"
+    },
+    {
+     "s": 4.247,
+     "e": 10.921,
+     "en": "Fill in Part B of Lab 15 for your own project, honestly, and fix the items marked fail first.",
+     "th": "กรอกส่วน B ของ Lab 15 สำหรับโครงงานของคุณเองอย่างตรงไปตรงมา และแก้ข้อที่ไม่ผ่านก่อน"
+    },
+    {
+     "s": 10.921,
+     "e": 18.224,
+     "en": "Read the reviews you receive. Answer each must-fix in the report, or say why it does not apply.",
+     "th": "อ่านแบบทบทวนที่ได้รับ ตอบ must-fix แต่ละข้อในรายงาน หรือบอกว่าทำไมไม่เกี่ยวข้อง"
+    },
+    {
+     "s": 18.224,
+     "e": 31.303,
+     "en": "Rerun all your tests after every change, and record the versions. Write the disclosure section. And submit the report, code and tests by the date and in the form given on the course page.",
+     "th": "รันการทดสอบทั้งหมดใหม่หลังทุกการเปลี่ยนแปลง และบันทึกรุ่นของซอฟต์แวร์ เขียนส่วนการเปิดเผยการใช้ AI และส่งรายงาน โค้ด และการทดสอบตามวันและรูปแบบที่ระบุในหน้าเว็บของรายวิชา"
+    },
+    {
+     "s": 31.303,
+     "e": 41.829,
+     "en": "A useful last step: give your report to someone outside the group, and ask them to find one number they cannot check. Whatever they find, fix it before you submit.",
+     "th": "ขั้นสุดท้ายที่มีประโยชน์ คือให้คนนอกกลุ่มอ่านรายงาน และขอให้เขาหาตัวเลขหนึ่งตัวที่เขาตรวจไม่ได้ ไม่ว่าเขาพบอะไร ให้แก้ก่อนส่ง"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "file": "audio/slide-16.mp3",
+   "duration": 57.936,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.076,
+     "en": "Lab 15 is for anyone studying on their own, and for practice before the real reviews.",
+     "th": "Lab 15 สำหรับผู้ที่เรียนเอง และสำหรับฝึกก่อนการทบทวนจริง"
+    },
+    {
+     "s": 6.076,
+     "e": 18.099,
+     "en": "Part A is a practice review of Group 0's short report, a biodiesel feedstock blend with synthetic data. You mark the twelve items, then recompute three numbers from the report itself:",
+     "th": "ส่วน A เป็นการฝึกทบทวนรายงานสั้นของกลุ่ม 0 เรื่องการผสมวัตถุดิบไบโอดีเซลด้วยข้อมูลสังเคราะห์ คุณทำเครื่องหมายสิบสองข้อ แล้วคำนวณตัวเลขสามตัวใหม่จากตัวรายงานเอง"
+    },
+    {
+     "s": 18.099,
+     "e": 20.974,
+     "en": "a cost, a balance, and the value of a limit.",
+     "th": "คือ ต้นทุน สมดุล และมูลค่าของข้อจำกัด"
+    },
+    {
+     "s": 20.974,
+     "e": 28.092,
+     "en": "Group 0's weak points are different from Group A's. Look closely at the arithmetic and the units.",
+     "th": "จุดอ่อนของกลุ่ม 0 ต่างจากของกลุ่ม A ให้ดูการคำนวณและหน่วยอย่างละเอียด"
+    },
+    {
+     "s": 28.092,
+     "e": 36.395,
+     "en": "Part B is the review form, for a presenting group or for your own project. Part C asks what you will fix first.",
+     "th": "ส่วน B คือแบบทบทวน สำหรับกลุ่มที่นำเสนอหรือโครงงานของคุณเอง ส่วน C ถามว่าคุณจะแก้อะไรก่อน"
+    },
+    {
+     "s": 36.395,
+     "e": 46.789,
+     "en": "The key to Part A is explained on the page after you check, so the lab teaches even when you get an item wrong. Read the explanation for every item you missed.",
+     "th": "คำเฉลยของส่วน A มีคำอธิบายบนหน้าเว็บหลังคุณกดตรวจ lab จึงสอนได้แม้คุณตอบผิด ให้อ่านคำอธิบายของทุกข้อที่คุณพลาด"
+    },
+    {
+     "s": 46.789,
+     "e": 51.921,
+     "en": "The Python file contains the checks as functions you can reuse in your project.",
+     "th": "ไฟล์ Python มีการตรวจเหล่านี้เป็นฟังก์ชันที่คุณนำไปใช้ในโครงงานได้"
+    },
+    {
+     "s": 51.921,
+     "e": 57.868,
+     "en": "Scan the code or open the link. Pause the narration now and do the lab.",
+     "th": "สแกนรหัสหรือเปิดลิงก์ หยุดคำบรรยายตอนนี้แล้วทำ lab"
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "file": "audio/slide-17.mp3",
+   "duration": 42.984,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.076,
+     "en": "To summarize.",
+     "th": "สรุป"
+    },
+    {
+     "s": 2.076,
+     "e": 9.526,
+     "en": "Every result needs an answer to the question: how do you know? The twelve items make that answer complete.",
+     "th": "ทุกผลลัพธ์ต้องตอบคำถามว่าคุณรู้ได้อย่างไร รายการตรวจสิบสองข้อทำให้คำตอบนั้นครบถ้วน"
+    },
+    {
+     "s": 9.526,
+     "e": 19.645,
+     "en": "The evidence depends on the problem: duality for an L P, KKT residuals for an NLP, gaps for integer and global problems, and replicates for experiments.",
+     "th": "หลักฐานขึ้นกับประเภทของปัญหา duality สำหรับ LP residual ของ KKT สำหรับ NLP ช่องว่างสำหรับปัญหาจำนวนเต็มและ global และการทดลองซ้ำสำหรับการทดลอง"
+    },
+    {
+     "s": 19.645,
+     "e": 30.539,
+     "en": "A good review is specific, ranked by severity, and recomputes at least one number. The same checklist applies to your own work, and to work drafted by a tool.",
+     "th": "การทบทวนที่ดีต้องเจาะจง จัดลำดับตามความรุนแรง และคำนวณตัวเลขใหม่อย่างน้อยหนึ่งตัว รายการตรวจเดียวกันใช้กับงานของคุณเอง และกับงานที่เครื่องมือร่างให้"
+    },
+    {
+     "s": 30.539,
+     "e": 39.816,
+     "en": "And keep the five habits: write the model in units, show the certificate, read the multipliers, say global or local, and test from the specification.",
+     "th": "และรักษานิสัยห้าข้อไว้ คือเขียนโมเดลพร้อมหน่วย แสดง certificate อ่านตัวคูณ บอกว่าเป็น global หรือ local และทดสอบจากข้อกำหนด"
+    },
+    {
+     "s": 39.816,
+     "e": 42.908,
+     "en": "Thank you for fifteen sessions of work.",
+     "th": "ขอบคุณสำหรับความตั้งใจตลอดสิบห้าคาบ"
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "file": "audio/slide-18.mp3",
+   "duration": 32.4,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 8.313,
+     "en": "To finish, open the Exit Ticket with the code, choose Session 15, and paste the answers and the reviews that the lab page copies for you.",
+     "th": "สุดท้าย เปิด Exit Ticket ด้วยรหัส เลือก Session 15 แล้ววางคำตอบและแบบทบทวนที่หน้า lab คัดลอกให้"
+    },
+    {
+     "s": 8.313,
+     "e": 19.566,
+     "en": "Then answer the feedback questions about the whole course: what helped you learn most, what should change next year, and what is still unclear. If you studied on your own, choose On my own.",
+     "th": "จากนั้นตอบคำถาม feedback เกี่ยวกับทั้งรายวิชา ว่าอะไรช่วยให้คุณเรียนรู้ได้มากที่สุด อะไรควรเปลี่ยนในปีหน้า และอะไรที่ยังไม่ชัด ถ้าเรียนเอง ให้เลือก On my own"
+    },
+    {
+     "s": 19.566,
+     "e": 24.013,
+     "en": "The form is anonymous, and reviews name the group number only.",
+     "th": "แบบฟอร์มไม่ระบุตัวตน และแบบทบทวนระบุเพียงหมายเลขกลุ่ม"
+    },
+    {
+     "s": 24.013,
+     "e": 28.987,
+     "en": "If the code does not scan, use the link Open the Exit Ticket under it.",
+     "th": "ถ้าสแกนรหัสไม่ได้ ให้ใช้ลิงก์ Open the Exit Ticket ที่อยู่ด้านล่าง"
+    },
+    {
+     "s": 28.987,
+     "e": 32.342,
+     "en": "Thank you, and good luck with your projects.",
+     "th": "ขอบคุณ และขอให้โครงงานของคุณประสบความสำเร็จ"
+    }
+   ]
+  }
+ ]
+}

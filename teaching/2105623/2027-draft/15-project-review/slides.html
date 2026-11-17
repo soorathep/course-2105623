@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>2105623 · Session 15 · Project review and course wrap-up</title>
+<style>
+:root{--teal:#0F6E6B;--amber:#E29A2D;--rust:#BE654C;--sky:#5A91BE;--sage:#83A462;--plum:#995A90;--graphite:#333F4A;--sand:#DFC98F;
+--ink:#1C242B;--slate:#66727C;--mist:#B9C1C6;--paper:#F3F0EB;--mono:Menlo,Consolas,"DejaVu Sans Mono",monospace}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#2b3138;font-family:"Helvetica Neue",Helvetica,Arial,"DejaVu Sans",sans-serif;color:var(--ink)}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#stage{width:1280px;height:720px;flex:0 0 auto;overflow:hidden;background:#fff;position:relative;transform-origin:center center;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.slide{position:absolute;inset:0;padding:40px 64px 58px;display:none;flex-direction:column}
+.slide.on{display:flex}
+.kicker{color:var(--amber);font-weight:700;letter-spacing:.14em;font-size:15px;text-transform:uppercase;margin:0}
+h1{color:var(--teal);font-size:42px;line-height:1.12;margin:6px 0 22px;font-weight:800}
+.body{flex:1;display:flex;gap:28px;min-height:0}
+.col{flex:1;min-width:0;display:flex;flex-direction:column}
+.w40{flex:0 0 40%}.w45{flex:0 0 45%}.w55{flex:0 0 55%}.w60{flex:0 0 60%}
+ul.b{list-style:none;margin:0;padding:0;font-size:24px;line-height:1.36}
+ul.b>li{position:relative;padding-left:30px;margin:0 0 16px}
+ul.b>li::before{content:"";position:absolute;left:2px;top:.5em;width:11px;height:11px;background:var(--amber)}
+ul.b.sm{font-size:21px}ul.b.sm>li{margin-bottom:11px}
+ul.b.xs{font-size:19px}ul.b.xs>li{margin-bottom:8px}
+.hl{color:var(--teal);font-weight:700}
+.panel{background:var(--paper);border-radius:14px;padding:16px 18px;min-height:0;display:flex;flex-direction:column}
+.panel.grow{flex:1}
+.math{font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:25px;line-height:1.75}
+.math .lbl{font-family:"Helvetica Neue",Arial,sans-serif;font-size:16px;color:var(--slate);display:inline-block;width:150px}
+.code{font-family:var(--mono);font-size:17px;line-height:1.5;white-space:pre;color:var(--graphite)}
+.note{font-size:18px;color:var(--slate);margin-top:10px;line-height:1.4}
+.big{font-size:56px;font-weight:800;color:var(--teal)}
+table.t{border-collapse:collapse;font-size:19px;width:100%}
+table.t th{background:var(--paper);text-align:left;padding:7px 10px;border-bottom:2px solid var(--mist);font-weight:700}
+table.t td{padding:6px 10px;border-bottom:1px solid #e3e6e8}
+table.t td.n,table.t th.n{text-align:right;font-variant-numeric:tabular-nums}
+.act{border:3px solid var(--amber);border-radius:16px;padding:22px 28px;background:#fdf6ea}
+.act .tag{display:inline-block;background:var(--amber);color:#fff;font-weight:800;letter-spacing:.1em;font-size:15px;padding:4px 10px;border-radius:6px;margin-bottom:12px}
+.ctrl{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 8px;align-items:center;font-size:16px;color:var(--slate)}
+.ctrl button{font:inherit;font-size:15px;padding:5px 11px;border-radius:8px;border:1.5px solid var(--teal);background:#fff;color:var(--teal);cursor:pointer}
+.ctrl button.on{background:var(--teal);color:#fff}
+.ctrl input[type=range]{width:220px;accent-color:var(--teal)}
+.kpi{display:flex;gap:14px;margin-top:8px}
+.kpi div{background:#fff;border-radius:10px;padding:8px 12px;font-size:15px;color:var(--slate);flex:1}
+.kpi b{display:block;font-size:24px;color:var(--ink)}
+.kpi b.a{color:var(--amber)}
+svg.ch{width:100%;height:100%;display:block}
+.chart{flex:1;min-height:0}
+footer{position:absolute;left:64px;right:64px;bottom:20px;border-top:1px solid var(--mist);padding-top:7px;display:flex;justify-content:space-between;font-size:13px;color:var(--slate)}
+.title-slide{justify-content:center}
+.title-slide h1{font-size:64px;margin-bottom:12px}
+.title-slide .sub{font-size:28px;color:var(--graphite);margin-bottom:40px}
+.title-slide .meta{font-size:19px;color:var(--slate);line-height:1.6}
+.pill{display:inline-block;border-radius:999px;padding:2px 10px;font-size:13px;font-weight:700;letter-spacing:.06em}
+.pill.rec{background:var(--paper);color:var(--slate)}.pill.live{background:var(--amber);color:#fff}
+.dhint{position:absolute;right:64px;top:42px;font-size:13px;color:var(--slate);border:1px solid var(--mist);border-radius:8px;padding:3px 8px}
+/* Python drawer */
+#drawer{position:absolute;top:0;right:0;bottom:0;width:47%;background:#fbfaf7;border-left:3px solid var(--teal);box-shadow:-8px 0 24px rgba(0,0,0,.15);
+ transform:translateX(102%);transition:transform .25s;display:flex;flex-direction:column;padding:22px 24px 18px;z-index:5}
+#drawer.open{transform:none}
+#drawer h2{margin:0 0 4px;color:var(--teal);font-size:22px}
+#drawer .sub{font-size:14px;color:var(--slate);margin-bottom:10px}
+#drawer textarea{width:100%;height:190px;resize:vertical;border:none;margin:0;background:var(--paper);border-radius:10px;padding:12px 14px;font-family:var(--mono);font-size:13px;line-height:1.45;color:var(--ink);white-space:pre-wrap;outline:none}
+#drawer pre{margin:0;background:var(--paper);border-radius:10px;padding:12px 14px;font-family:var(--mono);font-size:13.5px;line-height:1.45;overflow:auto;white-space:pre}
+#drawer .out{margin-top:10px;flex:1;min-height:0;display:flex;flex-direction:column}
+#drawer .out pre{flex:1;background:#1f262d;color:#e8eef2}
+#drawer .bar{display:flex;gap:8px;align-items:center;margin-top:10px;font-size:13px;color:var(--slate)}
+#drawer button{font:inherit;font-size:14px;padding:6px 12px;border-radius:8px;border:none;background:var(--teal);color:#fff;cursor:pointer}
+#drawer button.ghost{background:#fff;color:var(--teal);border:1.5px solid var(--teal)}
+#notes{position:fixed;left:12px;bottom:12px;max-width:520px;background:#fffef8;border:1px solid var(--mist);border-radius:10px;padding:10px 14px;font-size:14px;line-height:1.45;display:none;z-index:9}
+#help{position:fixed;right:12px;bottom:12px;color:#c9d1d6;font-size:12px}
+
+/* narration and captions */
+#dock{position:fixed;left:0;right:0;display:none;flex-direction:column;align-items:center;gap:6px;padding:0 8px;z-index:8}
+#cap{display:none;color:#F3F0EB;line-height:1.45;text-align:center;overflow:hidden;padding:2px 6px;font-family:"Helvetica Neue",Arial,"Sukhumvit Set","Thonburi","Noto Sans Thai","Sarabun",sans-serif}
+#nbar{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;align-items:center;background:rgba(28,36,43,.9);color:#e8eef2;padding:6px 10px;border-radius:12px;font:13px "Helvetica Neue",Arial,sans-serif;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+#nbar button,#nbar select{white-space:nowrap;font:inherit;font-size:14px;background:#2f3a44;color:#fff;border:1px solid #4a5763;border-radius:8px;padding:5px 10px;cursor:pointer}
+#nbar button.on{background:#0F6E6B;border-color:#0F6E6B}
+#nbar .t{min-width:88px;text-align:center;font-variant-numeric:tabular-nums;color:#c9d1d6}
+#nbar .msg{color:#E29A2D;max-width:330px;line-height:1.25}
+#startov{position:absolute;inset:0;background:rgba(243,240,235,.92);display:none;align-items:center;justify-content:center;flex-direction:column;z-index:6;gap:14px}
+#startov button{font:inherit;font-size:24px;padding:14px 28px;border-radius:12px;border:none;background:#0F6E6B;color:#fff;cursor:pointer}
+#startov p{color:#333F4A;font-size:18px;margin:0}
+@media print{#dock,#startov{display:none!important}}
+@media print{#viewport{position:static;display:block}#stage{transform:none!important;box-shadow:none}.slide{display:flex!important;position:relative;page-break-after:always;height:720px}#drawer,#help,#notes,.dhint{display:none}}
+</style>
+</head>
+<body>
+<div id="viewport"><div id="stage">
+<div id="slides"></div>
+<div id="startov"><button id="startBtn">▶ Start the narrated session</button><p>English narration with captions below the slide. You move to the next slide yourself.</p><p>→ or Next: next slide · P: pause · C: captions (English, ไทย, off)</p></div>
+<aside id="drawer" aria-label="Python for this slide">
+  <h2 id="dTitle">Python</h2>
+  <div class="sub" id="dSub"></div>
+  <textarea id="dCode" spellcheck="false"></textarea>
+  <div class="out"><div class="bar" style="margin:0 0 6px"><span>Output</span><span id="dMode" class="pill rec">RECORDED RUN</span></div><pre id="dOut"></pre></div>
+  <div class="bar"><button id="runCode">Run this code</button><button class="ghost" id="runLive">Recompute all slides</button><button class="ghost" id="useRec">Recorded run</button></div>
+  <div class="bar" id="liveMsg" style="min-height:18px"></div>
+</aside>
+</div></div>
+<div id="notes"></div>
+<div id="dock"><div id="cap" aria-live="polite"></div>
+<div id="nbar"><button id="nPrev" title="Previous slide (←)">‹ Back</button><button id="nPlay" title="Play or pause the narration (P)">▶ Play</button><button id="nStop" title="Stop and go back to the start of this slide">■ Stop</button><span class="t" id="nTime">0:00 / 0:00</span><select id="nSpeed" title="Speed"><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select><button id="nCC" title="Captions: off, English, Thai (C)">CC off</button><button id="nNext" title="Next slide (→)">Next ›</button><span class="msg" id="nMsg"></span></div></div>
+<audio id="narr" preload="none"></audio>
+<div id="help">← → move · P narration · C captions · D Python · F full screen · N notes</div>
+<script>
+const RECORDED = {"meta":{"numpy":"2.2.5","scipy":"1.14.1","python":"3.13.18"},"lecture":{"cert":{"status":0,"x":[20.0,20.0],"primal":-1000.0,"dual":-1000.0,"gap":0.0,"primal_residual":0.0,"dual_residual":0.0,"ineq_marginals":[-10.0,-10.0],"eq_marginals":[],"upper_marginals":[0.0,0.0]},"checklist":["Specification: sets, data and constraints, with units","Data: sources and dates","Model class stated and justified","Balances close in the stream table","Objective recomputed from the plan and the specification's data","A certificate, not only the solver status","Multipliers interpreted with units and sign","Global or local stated correctly","Uncertain data: sensitivity or scenarios","Several objectives: a front and a stated rule","Tests written from the specification","Reporting: code, versions and AI disclosure"]},"lab":{"spec":{"oils":["palm oil","used cooking oil","soybean oil"],"price":[900.0,650.0,1050.0],"cloud":[13.0,9.0,-1.0],"acid":[0.3,1.6,0.2],"iodine":[52.0,95.0,130.0],"limits":{"cloud":10.0,"acid":0.9,"iodine":110.0},"blend":100.0,"uco_max":40.0},"report":{"x":[50.0,40.0,12.0],"cost":80300.0,"price_used":[900.0,620.0,1050.0],"cloud_shadow_claim":10.7},"review":{"solution":{"status":0,"x":[50.0,40.0,10.0],"primal":81500.0,"dual":81500.0,"gap":0.0,"primal_residual":0.0,"dual_residual":0.0,"ineq_marginals":[-10.7142857143,0.0,0.0],"eq_marginals":[932.1428571429],"upper_marginals":[0.0,-292.8571428571,0.0]},"report_run":{"status":0,"x":[50.0,40.0,10.0],"primal":80300.0,"dual":80300.0,"gap":0.0,"primal_residual":0.0,"dual_residual":0.0,"ineq_marginals":[-10.7142857143,0.0,0.0],"eq_marginals":[932.1428571429],"upper_marginals":[0.0,-322.8571428571,0.0]},"recomputed_cost":81500.0,"report_cost_recomputed":81500.0,"report_balance":2.0,"cloud_value_per_degC":1071.4285714286,"uco_value_per_t":292.8571428571,"properties":{"cloud":10.0,"acid":0.81,"iodine":77.0},"gap":0.0,"sensitivity":[{"factor":0.8,"cost":76300.0,"x":[50.0,40.0,10.0]},{"factor":0.9,"cost":78900.0,"x":[50.0,40.0,10.0]},{"factor":1.0,"cost":81500.0,"x":[50.0,40.0,10.0]},{"factor":1.1,"cost":84100.0,"x":[50.0,40.0,10.0]},{"factor":1.2,"cost":86700.0,"x":[50.0,40.0,10.0]}]},"checklist":["Specification: sets, data and constraints, with units","Data: sources and dates","Model class stated and justified","Balances close in the stream table","Objective recomputed from the plan and the specification's data","A certificate, not only the solver status","Multipliers interpreted with units and sign","Global or local stated correctly","Uncertain data: sensitivity or scenarios","Several objectives: a front and a stated rule","Tests written from the specification","Reporting: code, versions and AI disclosure"],"key":["P","P","P","F","F","F","F","P","NS","NA","F","F"]}};
+const LAB_FILE = "project_checks.py?v=s15-6b53a880";
+const LAB_SRC = "\"\"\"2105623 Session 15: checks for a project model, and the practice review of Lab 15 (2027 draft).\n\nPart A  Reusable checks: an LP certificate from HiGHS (primal and dual residuals, duality gap), recomputing an\n        objective from the specification's data, closing a balance, and converting a multiplier to the units of\n        the decision maker\nLab 15  Group 0's report: a biodiesel feedstock blend (LP; synthetic data). The report's numbers are checked\n        against its own specification.\n\nRuns in desktop Python and in the browser (NumPy and SciPy only). Copy the functions into your project and call\nthem on your own model.\n\"\"\"\nimport json, math, sys\nimport numpy as np\nfrom scipy.optimize import linprog\n\n\ndef r6(v):\n    if isinstance(v, (list, tuple, np.ndarray)):\n        return [r6(u) for u in v]\n    v = round(float(v), 6)\n    return 0.0 if v == 0 else v\n\n\n# ---------------------------------------------------------------------------\n# Part A. Reusable checks\n# ---------------------------------------------------------------------------\ndef lp_certificate(c, A_ub=None, b_ub=None, A_eq=None, b_eq=None, bounds=None):\n    \"\"\"Solve min c'x with HiGHS and return the primal value, the dual value built from the marginals, the gap,\n    and the largest primal and dual residuals. A gap near zero with small residuals is a certificate of\n    optimality; the solver's status message is not.\"\"\"\n    c = np.asarray(c, float); n = len(c)\n    r = linprog(c, A_ub=A_ub, b_ub=b_ub, A_eq=A_eq, b_eq=b_eq, bounds=bounds, method=\"highs\")\n    if r.status != 0:\n        return {\"status\": int(r.status), \"message\": r.message}\n    x = r.x\n    lo = np.array([b[0] if b[0] is not None else -np.inf for b in (bounds or [(0, None)] * n)], float) if bounds is not None else np.zeros(n)\n    hi = np.array([b[1] if b[1] is not None else np.inf for b in (bounds or [(0, None)] * n)], float) if bounds is not None else np.full(n, np.inf)\n    if lo.shape == ():\n        lo, hi = np.full(n, lo), np.full(n, hi)\n    dual = 0.0; red = c.copy(); prim = 0.0\n    if A_ub is not None:\n        A, b, y = np.asarray(A_ub, float), np.asarray(b_ub, float), r.ineqlin.marginals\n        dual += b @ y; red -= A.T @ y; prim = max(prim, float(np.max(A @ x - b, initial=0.0)))\n    if A_eq is not None:\n        A, b, y = np.asarray(A_eq, float), np.asarray(b_eq, float), r.eqlin.marginals\n        dual += b @ y; red -= A.T @ y; prim = max(prim, float(np.max(np.abs(A @ x - b), initial=0.0)))\n    ml, mu = r.lower.marginals, r.upper.marginals\n    dual += sum(l * m for l, m in zip(lo, ml) if np.isfinite(l)) + sum(u * m for u, m in zip(hi, mu) if np.isfinite(u))\n    red -= ml + mu\n    return {\"status\": 0, \"x\": x.tolist(), \"primal\": float(r.fun), \"dual\": float(dual), \"gap\": float(r.fun - dual),\n            \"primal_residual\": prim, \"dual_residual\": float(np.max(np.abs(red))),\n            \"ineq_marginals\": [] if A_ub is None else r.ineqlin.marginals.tolist(),\n            \"eq_marginals\": [] if A_eq is None else r.eqlin.marginals.tolist(), \"upper_marginals\": mu.tolist()}\n\n\ndef recompute(x, prices):\n    \"\"\"The objective of a reported plan, recomputed from the specification's price table.\"\"\"\n    return float(np.dot(x, prices))\n\n\ndef closure(inputs, outputs):\n    \"\"\"Balance closure: total in minus total out (zero when the balance closes).\"\"\"\n    return float(np.sum(inputs) - np.sum(outputs))\n\n\ndef per_unit_of_limit(marginal, scale):\n    \"\"\"A multiplier of a row written as sum((p_i - limit) x_i) <= 0 is per unit of (property x mass).\n    Multiplying by the total mass gives the value per unit of the limit itself.\"\"\"\n    return float(marginal * scale)\n\n\n# a small LP for the lecture: max 30 x1 + 20 x2 with two shared resources\nLECTURE_LP = {\"c\": [-30.0, -20.0], \"A_ub\": [[1.0, 1.0], [2.0, 1.0]], \"b_ub\": [40.0, 60.0]}\n\n\ndef lecture_certificate():\n    return lp_certificate(LECTURE_LP[\"c\"], A_ub=LECTURE_LP[\"A_ub\"], b_ub=LECTURE_LP[\"b_ub\"])\n\n\n# ---------------------------------------------------------------------------\n# Lab 15. Group 0: a biodiesel feedstock blend (synthetic data)\n# ---------------------------------------------------------------------------\nG0 = {\"oils\": [\"palm oil\", \"used cooking oil\", \"soybean oil\"],\n      \"price\": [900.0, 650.0, 1050.0],          # USD/t, specification (supplier quote)\n      \"cloud\": [13.0, 9.0, -1.0],               # cloud point, deg C\n      \"acid\": [0.3, 1.6, 0.2],                  # acid value after pretreatment, mg KOH/g\n      \"iodine\": [52.0, 95.0, 130.0],            # iodine value, g I2/100 g\n      \"limits\": {\"cloud\": 10.0, \"acid\": 0.9, \"iodine\": 110.0},\n      \"blend\": 100.0,                           # t/d of blend\n      \"uco_max\": 40.0}                          # t/d of used cooking oil available\n\nREPORT = {\"x\": [50.0, 40.0, 12.0],              # the stream table in the report (t/d)\n          \"cost\": 80300.0,                      # USD/d, as reported\n          \"price_used\": [900.0, 620.0, 1050.0], # what the code used (an old quote for used cooking oil)\n          \"cloud_shadow_claim\": 10.7}           # \"relaxing the cloud point by 1 deg C saves 10.7 USD/d\"\n\n\ndef group0_model(price=None):\n    \"\"\"The blend LP: minimize cost; blend limits written as sum((p_i - limit) x_i) <= 0.\"\"\"\n    G = G0; p = np.array(price or G[\"price\"], float)\n    A = [np.array(G[k]) - G[\"limits\"][k] for k in (\"cloud\", \"acid\", \"iodine\")]\n    return lp_certificate(p, A_ub=A, b_ub=[0.0, 0.0, 0.0], A_eq=[[1.0, 1.0, 1.0]], b_eq=[G[\"blend\"]],\n                          bounds=[(0, None), (0, G[\"uco_max\"]), (0, None)])\n\n\ndef group0_review():\n    sol = group0_model(); rep = REPORT\n    cert = sol\n    out = {\"solution\": sol, \"report_run\": group0_model(rep[\"price_used\"]),\n           \"recomputed_cost\": recompute(sol[\"x\"], G0[\"price\"]),\n           \"report_cost_recomputed\": recompute([50.0, 40.0, 10.0], G0[\"price\"]),\n           \"report_balance\": closure(rep[\"x\"], [G0[\"blend\"]]),\n           \"cloud_value_per_degC\": -per_unit_of_limit(sol[\"ineq_marginals\"][0], G0[\"blend\"]),\n           \"uco_value_per_t\": -sol[\"upper_marginals\"][1],\n           \"properties\": {k: float(np.dot(G0[k], sol[\"x\"]) / G0[\"blend\"]) for k in (\"cloud\", \"acid\", \"iodine\")},\n           \"gap\": cert[\"gap\"]}\n    # sensitivity to the price of used cooking oil, plus or minus 20%\n    sens = []\n    for f in (0.8, 0.9, 1.0, 1.1, 1.2):\n        p = list(G0[\"price\"]); p[1] *= f; s = group0_model(p)\n        sens.append({\"factor\": f, \"cost\": s[\"primal\"], \"x\": s[\"x\"]})\n    out[\"sensitivity\"] = sens\n    return out\n\n\n# the twelve checklist items and the key for Group 0's report (P pass, F fail, NS not shown, NA not applicable)\nCHECKLIST = [\"Specification: sets, data and constraints, with units\",\n             \"Data: sources and dates\",\n             \"Model class stated and justified\",\n             \"Balances close in the stream table\",\n             \"Objective recomputed from the plan and the specification's data\",\n             \"A certificate, not only the solver status\",\n             \"Multipliers interpreted with units and sign\",\n             \"Global or local stated correctly\",\n             \"Uncertain data: sensitivity or scenarios\",\n             \"Several objectives: a front and a stated rule\",\n             \"Tests written from the specification\",\n             \"Reporting: code, versions and AI disclosure\"]\nKEY_G0 = [\"P\", \"P\", \"P\", \"F\", \"F\", \"F\", \"F\", \"P\", \"NS\", \"NA\", \"F\", \"F\"]\n\n\ndef clean(o):\n    if isinstance(o, dict):\n        return {str(k): clean(v) for k, v in o.items()}\n    if isinstance(o, (list, tuple)):\n        return [clean(v) for v in o]\n    if isinstance(o, np.ndarray):\n        return clean(o.tolist())\n    if isinstance(o, (float, np.floating)):\n        v = float(o)\n        return None if not math.isfinite(v) else round(v, 10) + 0.0\n    if isinstance(o, np.integer):\n        return int(o)\n    return o\n\n\ndef classroom_results():\n    import scipy\n    R = {\"meta\": {\"numpy\": np.__version__, \"scipy\": scipy.__version__, \"python\": sys.version.split()[0]},\n         \"lecture\": {\"cert\": lecture_certificate(), \"checklist\": CHECKLIST},\n         \"lab\": {\"spec\": G0, \"report\": REPORT, \"review\": group0_review(), \"checklist\": CHECKLIST, \"key\": KEY_G0}}\n    return clean(R)\n\n\nif __name__ == \"__main__\":\n    if \"--json\" in sys.argv:\n        R = classroom_results()\n        with open(\"checks-results.json\", \"w\") as fh:\n            json.dump(R, fh)\n        print(\"wrote checks-results.json\", R[\"meta\"]); sys.exit()\n    L = lecture_certificate(); print(\"lecture LP\", r6(L[\"x\"]), \"primal\", r6(L[\"primal\"]), \"dual\", r6(L[\"dual\"]), \"gap\", r6(L[\"gap\"]), \"marginals\", r6(L[\"ineq_marginals\"]))\n    G = group0_review(); s = G[\"solution\"]\n    print(\"Group 0 optimum\", r6(s[\"x\"]), r6(s[\"primal\"]), \"gap\", r6(s[\"gap\"]), \"residuals\", s[\"primal_residual\"], s[\"dual_residual\"])\n    print(\"  marginals\", r6(s[\"ineq_marginals\"]), r6(s[\"eq_marginals\"]), r6(s[\"upper_marginals\"]))\n    print(\"  report: balance\", G[\"report_balance\"], \"cost of its plan at spec prices\", G[\"report_cost_recomputed\"], \"vs reported\", REPORT[\"cost\"])\n    print(\"  value of 1 degC of cloud point\", r6(G[\"cloud_value_per_degC\"]), \"USD/d; UCO\", r6(G[\"uco_value_per_t\"]), \"USD/t\", \"properties\", {k: r6(v) for k, v in G[\"properties\"].items()})\n    print(\"  sensitivity\", [(q[\"factor\"], r6(q[\"cost\"]), r6(q[\"x\"])) for q in G[\"sensitivity\"]])\n";   // embedded copy, so live Python also works when the file is opened locally
+let R = RECORDED, MODE = "recorded";
+const C = {teal:"#0F6E6B",amber:"#E29A2D",rust:"#BE654C",sky:"#5A91BE",sage:"#83A462",plum:"#995A90",graphite:"#333F4A",sand:"#DFC98F",ink:"#1C242B",slate:"#66727C",mist:"#B9C1C6",paper:"#F3F0EB"};
+const fmt = (x,d=0)=>x==null?"–":Number(x).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});
+
+/* ---------- tiny SVG chart helpers ---------- */
+function svgEl(w,h){return `<svg class="ch" viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid meet" font-family="Helvetica Neue,Arial,sans-serif">`}
+function niceStep(r,n=5){const raw=r/n,p=Math.pow(10,Math.floor(Math.log10(raw||1)));for(const m of [1,2,2.5,5,10]){if(m*p>=raw-1e-12)return m*p}return 10*p}
+function scale(o,lo,hi){const st=niceStep(hi-lo);o.step=st;o.ymin=Math.floor(lo/st+1e-9)*st;o.ymax=Math.ceil(hi/st-1e-9)*st;o.ticks=Math.round((o.ymax-o.ymin)/st);return o}
+function niceMax(v){const p=Math.pow(10,Math.floor(Math.log10(v||1)));for(const m of [1,1.2,1.5,2,2.5,3,4,5,6,8,10]){if(m*p>=v)return m*p}return 10*p}
+function axes(o){ // o: w,h,l,r,t,b,ymin,ymax,xlabels,ylab,ticks
+  const {w,h,l,r,t,b,ymin,ymax}=o, X=w-l-r, Y=h-t-b, n=o.ticks||5; let s="";
+  for(let k=0;k<=n;k++){const v=ymin+(ymax-ymin)*k/n, y=t+Y-(v-ymin)/(ymax-ymin)*Y;
+    s+=`<line x1="${l}" x2="${w-r}" y1="${y}" y2="${y}" stroke="${C.mist}" stroke-width="0.8" opacity=".7"/><text x="${l-8}" y="${y+5}" font-size="16" text-anchor="end" fill="${C.ink}">${fmt(v, (o.step||1)<1?1:0)}</text>`}
+  s+=`<line x1="${l}" x2="${l}" y1="${t}" y2="${t+Y}" stroke="${C.graphite}" stroke-width="1.5"/>`;
+  const z=t+Y-(0-ymin)/(ymax-ymin)*Y; s+=`<line x1="${l}" x2="${w-r}" y1="${Math.min(t+Y,Math.max(t,z))}" y2="${Math.min(t+Y,Math.max(t,z))}" stroke="${C.graphite}" stroke-width="1.5"/>`;
+  if(o.ylab)s+=`<text transform="translate(${16},${t+Y/2}) rotate(-90)" font-size="17" text-anchor="middle" fill="${C.ink}">${o.ylab}</text>`;
+  return s}
+function ymap(o,v){const Y=o.h-o.t-o.b;return o.t+Y-(v-o.ymin)/(o.ymax-o.ymin)*Y}
+function legend(items,x,y){let s="";items.forEach((it,i)=>{const yy=y+i*22;s+=it.line?`<line x1="${x}" x2="${x+22}" y1="${yy}" y2="${yy}" stroke="${it.c}" stroke-width="3" ${it.dash?'stroke-dasharray="6 4"':''}/>`:`<rect x="${x}" y="${yy-8}" width="16" height="16" fill="${it.c}" ${it.op?`opacity="${it.op}"`:''}/>`;s+=`<text x="${x+28}" y="${yy+5}" font-size="16" fill="${C.ink}">${it.t}</text>`});return s}
+function legendRow(items,x,y){let s="",xx=x;items.forEach(it=>{s+=it.line?`<line x1="${xx}" x2="${xx+20}" y1="${y}" y2="${y}" stroke="${it.c}" stroke-width="3" ${it.dash?'stroke-dasharray="6 4"':''}/>`:`<rect x="${xx}" y="${y-7}" width="14" height="14" fill="${it.c}" ${it.op?`opacity="${it.op}"`:''}/>`;s+=`<text x="${xx+26}" y="${y+5}" font-size="16" fill="${C.ink}">${it.t}</text>`;xx+=38+it.t.length*8.2});return s}
+
+/* Food Manufacture: stacked bars of a [month][oil] matrix, optional line */
+function hbar(items,opt={}){ // items: {t,v,c}
+  const w=opt.w||640,h=opt.h||330,l=opt.l||250,r=90,t=16,rowh=(h-t-20)/items.length;
+  const mx=opt.max||niceMax(Math.max(...items.map(i=>i.v)));let s=svgEl(w,h);
+  items.forEach((it,i)=>{const y=t+i*rowh,bw=(w-l-r)*it.v/mx;
+    s+=`<text x="${l-12}" y="${y+rowh/2+5}" font-size="16" text-anchor="end" fill="${C.ink}">${it.t}</text><rect x="${l}" y="${y+rowh*0.18}" width="${Math.max(bw,1)}" height="${rowh*0.64}" fill="${it.c}" rx="3"/><text x="${l+bw+8}" y="${y+rowh/2+6}" font-size="17" font-weight="700" fill="${C.ink}">${opt.fmt?opt.fmt(it.v):fmt(it.v)}</text>`});
+  s+=`<line x1="${l}" x2="${l}" y1="${t}" y2="${h-20}" stroke="${C.graphite}" stroke-width="1.5"/>`;
+  return s+"</svg>"}
+
+/* ---------- shared helpers (Sessions 5 to 15) ---------- */
+const foot = "2105623 Optimization of Chemical Processes · Session 15 · Project review and course wrap-up · draft for 2027";
+const LC = () => R.lecture;
+const SEQ = ["#F6F6F6","#D2DFDE","#AFC7C5","#8BB0AE","#689A97","#428380","#0F6D6A","#005553","#003F3D"];
+const DIV = ["#086461","#46807D","#739D9A","#9EBAB8","#CAD8D7","#F6F6F6","#E5D2BE","#D1AF88","#B98D55","#A06C1F","#834D00"];
+const hexrgb = h => [1,3,5].map(i => parseInt(h.slice(i, i + 2), 16));
+function ramp(stops, t){t=Math.max(0,Math.min(1,t));const k=t*(stops.length-1),i=Math.min(stops.length-2,Math.floor(k)),f=k-i,a=hexrgb(stops[i]),b=hexrgb(stops[i+1]);
+ return `rgb(${a.map((v,j)=>Math.round(v+(b[j]-v)*f)).join(",")})`}
+const pyExp = (x, d) => x.toExponential(d).replace(/e([+-])(\d)$/, "e$10$2");
+const pyList = a => "[" + a.join(", ") + "]";
+
+/* a plotting plane: optional heat map, then overlays, then the frame */
+function plane(o){const w=o.w,h=o.h,l=o.l||62,r=o.r||14,t=o.t||14,b=o.b||52,X=w-l-r,Y=h-t-b;
+ const px=x=>l+X*(x-o.xr[0])/(o.xr[1]-o.xr[0]),py=y=>t+Y*(o.yr[1]-y)/(o.yr[1]-o.yr[0]);let s=svgEl(w,h);
+ if(o.val){const nx=o.nx||60,ny=o.ny||40,dx=X/nx,dy=Y/ny;for(let j=0;j<ny;j++)for(let i=0;i<nx;i++){
+  const x=o.xr[0]+(i+.5)*(o.xr[1]-o.xr[0])/nx,y=o.yr[1]-(j+.5)*(o.yr[1]-o.yr[0])/ny;
+  s+=`<rect x="${(l+i*dx).toFixed(1)}" y="${(t+j*dy).toFixed(1)}" width="${(dx+.7).toFixed(1)}" height="${(dy+.7).toFixed(1)}" fill="${o.col(o.val(x,y),x,y)}"/>`}}
+ const frame=()=>{let q=`<rect x="${l}" y="${t}" width="${X}" height="${Y}" fill="none" stroke="${C.graphite}" stroke-width="1.4"/>`;
+  (o.xt||[]).forEach(x=>q+=`<text x="${px(x)}" y="${t+Y+22}" font-size="15" text-anchor="middle" fill="${C.ink}">${(o.xfmt||mn)(x)}</text>`);
+  (o.yt||[]).forEach(y=>q+=`<text x="${l-8}" y="${py(y)+5}" font-size="15" text-anchor="end" fill="${C.ink}">${(o.yfmt||mn)(y)}</text>`);
+  if(o.xlab)q+=`<text x="${l+X/2}" y="${h-8}" font-size="16" text-anchor="middle" fill="${C.ink}">${o.xlab}</text>`;
+  if(o.ylab)q+=`<text transform="translate(16,${t+Y/2}) rotate(-90)" font-size="16" text-anchor="middle" fill="${C.ink}">${o.ylab}</text>`;return q};
+ return {s,px,py,frame,l,t,X,Y}}
+
+/* contour lines by marching squares */
+function contours(f,xr,yr,nx,ny,levels,px,py,stroke,sw,op){let s="";const xs=[],ys=[];
+ for(let i=0;i<=nx;i++)xs.push(xr[0]+(xr[1]-xr[0])*i/nx);for(let j=0;j<=ny;j++)ys.push(yr[0]+(yr[1]-yr[0])*j/ny);
+ const F=ys.map(y=>xs.map(x=>f(x,y)));
+ levels.forEach(c=>{let d="";for(let j=0;j<ny;j++)for(let i=0;i<nx;i++){const v=[F[j][i],F[j][i+1],F[j+1][i+1],F[j+1][i]],
+   P=[[xs[i],ys[j]],[xs[i+1],ys[j]],[xs[i+1],ys[j+1]],[xs[i],ys[j+1]]],pts=[];
+  for(let k=0;k<4;k++){const a=v[k],b=v[(k+1)%4];if((a<c)!==(b<c)){const q=(c-a)/(b-a),A=P[k],B=P[(k+1)%4];pts.push([A[0]+q*(B[0]-A[0]),A[1]+q*(B[1]-A[1])])}}
+  for(let k=0;k+1<pts.length;k+=2)d+=`M${px(pts[k][0]).toFixed(1)},${py(pts[k][1]).toFixed(1)}L${px(pts[k+1][0]).toFixed(1)},${py(pts[k+1][1]).toFixed(1)}`}
+  s+=`<path d="${d}" fill="none" stroke="${stroke}" stroke-width="${sw||1}" opacity="${op||1}"/>`});return s}
+
+/* a simple x-y line chart */
+function xyChart(o){const w=o.w||620,h=o.h||430,l=o.l||76,r=20,t=16,b=56,X=w-l-r,Y=h-t-b;let s=svgEl(w,h);
+ const px=x=>l+X*(x-o.xmin)/(o.xmax-o.xmin),py=y=>t+Y*(o.ymax-y)/(o.ymax-o.ymin);
+ for(let y=o.ymin;y<=o.ymax+1e-9;y+=o.ystep)s+=`<line x1="${l}" x2="${l+X}" y1="${py(y)}" y2="${py(y)}" stroke="${C.mist}" stroke-width=".8" opacity=".7"/><text x="${l-8}" y="${py(y)+5}" font-size="15" text-anchor="end" fill="${C.ink}">${o.yfmt?o.yfmt(y):mn(fmt(y))}</text>`;
+ for(let x=o.xmin;x<=o.xmax+1e-9;x+=o.xstep)s+=`<text x="${px(x)}" y="${t+Y+22}" font-size="15" text-anchor="middle" fill="${C.ink}">${o.xfmt?o.xfmt(x):mn(fmt(x))}</text>`;
+ s+=`<line x1="${l}" x2="${l}" y1="${t}" y2="${t+Y}" stroke="${C.graphite}" stroke-width="1.4"/><line x1="${l}" x2="${l+X}" y1="${t+Y}" y2="${t+Y}" stroke="${C.graphite}" stroke-width="1.4"/>`;
+ s+=`<text x="${l+X/2}" y="${h-8}" font-size="16" text-anchor="middle" fill="${C.ink}">${o.xlab}</text><text transform="translate(16,${t+Y/2}) rotate(-90)" font-size="16" text-anchor="middle" fill="${C.ink}">${o.ylab}</text>`;
+ if(o.under)s+=o.under(px,py);
+ o.series.forEach(se=>{s+=`<polyline fill="none" stroke="${se.c}" stroke-width="${se.w||3}" ${se.dash?'stroke-dasharray="8 6"':''} points="${se.pts.map(p=>`${px(p[0]).toFixed(1)},${py(p[1]).toFixed(1)}`).join(" ")}"/>`});
+ (o.marks||[]).forEach(m=>{s+=`<circle cx="${px(m.x)}" cy="${py(m.y)}" r="${m.r||7}" fill="${m.c||C.amber}" stroke="#fff" stroke-width="2"/>`+(m.t?`<text x="${px(m.x)+(m.dx||10)}" y="${py(m.y)+(m.dy||-12)}" font-size="15" font-weight="700" text-anchor="${m.anchor||"start"}" fill="${C.ink}">${m.t}</text>`:"")});
+ if(o.over)s+=o.over(px,py);
+ if(o.legend)s+=legend(o.legend,o.lx||l+16,o.ly||t+18);
+ return s+"</svg>"}
+const lin = (a, b, n) => Array.from({length: n}, (_, k) => a + (b - a) * k / (n - 1));
+function reveal(bid,aid){const b=document.getElementById(bid);b.onclick=()=>{const p=document.getElementById(aid),on=p.style.visibility==="hidden";p.style.visibility=on?"visible":"hidden";b.textContent=on?"Hide answers":"Show answers"}}
+const CHECK=(n,q,a)=>`<div class="body"><div class="col w55"><div class="act"><span class="tag">PAUSE AND ANSWER</span>${q}</div>
+<div class="ctrl" style="margin-top:12px"><button id="k${n}btn">Show answers</button></div></div>
+<div class="col"><div class="panel grow" id="k${n}ans" style="visibility:hidden"><ul class="b xs">${a}</ul></div></div></div>`;
+const OL=`<ol style="font-size:19px;line-height:1.5;margin:0;padding-left:26px">`;
+
+
+/* Python-style printing of a number rounded to 6 decimals (matches kkt_lab.r6 and print) */
+const py6 = v => {let r=Math.round(v*1e6)/1e6;if(Object.is(r,-0)||r===0)r=0;const s=String(r);return /[.e]/.test(s)?s:s+".0"};
+const py6l = a => pyList(a.map(py6));
+/* arrow from (x0, y0) to (x1, y1) in pixels, with an optional label */
+function arrow(x0,y0,x1,y1,col,w,lab,lx,ly,anchor){const a=Math.atan2(y1-y0,x1-x0),L=Math.hypot(x1-x0,y1-y0);if(L<2)return"";const hs=Math.min(12,L*.45);
+ const p1=[x1-hs*Math.cos(a-0.4),y1-hs*Math.sin(a-0.4)],p2=[x1-hs*Math.cos(a+0.4),y1-hs*Math.sin(a+0.4)];
+ let s=`<line x1="${x0.toFixed(1)}" y1="${y0.toFixed(1)}" x2="${(x1-0.8*hs*Math.cos(a)).toFixed(1)}" y2="${(y1-0.8*hs*Math.sin(a)).toFixed(1)}" stroke="${col}" stroke-width="${w||3}"/><polygon points="${x1.toFixed(1)},${y1.toFixed(1)} ${p1[0].toFixed(1)},${p1[1].toFixed(1)} ${p2[0].toFixed(1)},${p2[1].toFixed(1)}" fill="${col}"/>`;
+ if(lab){const tx=lx==null?x1+6:lx,ty=ly==null?y1-6:ly;s+=`<text x="${tx.toFixed(1)}" y="${ty.toFixed(1)}" font-size="15" font-weight="700" fill="${col}" text-anchor="${anchor||"start"}">${lab}</text>`}return s}
+const mn = s => String(s).replace(/^-/, "−").replace(/\/-/, "/−");
+/* Python's f"{v:.{d}g}" */
+const sigJS=(v,d=2)=>{v=Number(v);if(v===0)return "0";let e=Math.floor(Math.log10(Math.abs(v)));const r=Number(v.toPrecision(d));e=Math.floor(Math.log10(Math.abs(r)));
+ if(e<-4||e>=d){let [m,x]=r.toExponential(d-1).split("e");if(m.includes("."))m=m.replace(/0+$/,"").replace(/\.$/,"");const sg=x[0]==="-"?"-":"+",ex=x.replace(/^[+-]/,"");return `${m}e${sg}${ex.padStart(2,"0")}`}
+ let s=r.toFixed(Math.max(0,d-1-e));if(s.includes("."))s=s.replace(/0+$/,"").replace(/\.$/,"");return s};
+/* 2.5 × 10⁻⁸ as HTML */
+const supE=(v,d=1)=>{if(!isFinite(v)||v===0)return String(v);const e=Math.floor(Math.log10(Math.abs(v))+1e-12),m=v/10**e,ms=m.toFixed(d);if(e===0)return v.toFixed(d);return (d===0&&ms==="1"?"":`${ms} × `)+`10<sup>${e<0?"−":""}${Math.abs(e)}</sup>`};
+
+/* ---------- Gaussian processes in the browser (same formulas as bo_lab.gp_fit / gp_pred) ---------- */
+const SQ5 = Math.sqrt(5);
+const dot = (a, b) => a.reduce((s, v, i) => s + v * b[i], 0);
+function k52(a, b, ell){let d2=0;for(let i=0;i<a.length;i++){const q=(a[i]-b[i])/ell[i];d2+=q*q}const d=Math.sqrt(d2);return (1+SQ5*d+5/3*d*d)*Math.exp(-SQ5*d)}
+function chol(A){const n=A.length,L=A.map(r=>r.map(()=>0));for(let i=0;i<n;i++)for(let j=0;j<=i;j++){let s=A[i][j];for(let k=0;k<j;k++)s-=L[i][k]*L[j][k];
+ if(i===j)L[i][i]=Math.sqrt(Math.max(s,1e-300));else L[i][j]=s/L[j][j]}return L}
+function fsub(L,b){const n=b.length,x=new Array(n);for(let i=0;i<n;i++){let s=b[i];for(let k=0;k<i;k++)s-=L[i][k]*x[k];x[i]=s/L[i][i]}return x}
+function bsub(L,b){const n=b.length,x=new Array(n);for(let i=n-1;i>=0;i--){let s=b[i];for(let k=i+1;k<n;k++)s-=L[k][i]*x[k];x[i]=s/L[i][i]}return x}
+/* X: array of input vectors in [0,1]^d; y: values; ell: array of length-scales; g: noise variance / signal variance */
+function gpFit(X,y,ell,g){const n=y.length,yb=y.reduce((s,v)=>s+v,0)/n,ys=Math.sqrt(y.reduce((s,v)=>s+(v-yb)**2,0)/n)||1,z=y.map(v=>(v-yb)/ys);
+ const K=X.map((a,i)=>X.map((b,j)=>k52(a,b,ell)+(i===j?g+1e-10:0))),L=chol(K),a=fsub(L,z),sf2=dot(a,a)/n;
+ return {X,yb,ys,ell,g,L,alpha:bsub(L,a),sf2,ll:-0.5*n*Math.log(sf2)-L.reduce((s,r,i)=>s+Math.log(r[i]),0)-0.5*n*(1+Math.log(2*Math.PI))}}
+function gpPred(M,x){const ks=M.X.map(a=>k52(x,a,M.ell)),m=M.yb+M.ys*dot(ks,M.alpha),v=fsub(M.L,ks);return [m,Math.sqrt(Math.max(M.ys*M.ys*M.sf2*(1-dot(v,v)),0))]}
+/* standard normal pdf and cdf (cdf by erfc with a rational approximation, error below 1.2e-7) */
+const npdf = z => Math.exp(-0.5*z*z)/Math.sqrt(2*Math.PI);
+function ncdf(z){const x=Math.abs(z)/Math.SQRT2,t=1/(1+0.5*x),r=t*Math.exp(-x*x-1.26551223+t*(1.00002368+t*(0.37409196+t*(0.09678418+t*(-0.18628806+t*(0.27886807+t*(-1.13520398+t*(1.48851587+t*(-0.82215223+t*0.17087277)))))))));return z>=0?1-r/2:r/2}
+const eiJS = (m, s, best) => s > 1e-12 ? (m - best) * ncdf((m - best) / s) + s * npdf((m - best) / s) : Math.max(m - best, 0);
+/* Python's str(round(v, d)) for ordinary magnitudes */
+const pyr = (v, d) => {let r = Math.round(v * 10 ** d) / 10 ** d; if (Object.is(r, -0) || r === 0) r = 0; const s = String(r); return /[.e]/.test(s) ? s : s + ".0"};
+/* Python's f"{v:.{d}f}" */
+const pyf = (v, d) => v.toFixed(d);
+/* two or more SVG charts stacked in one .chart box, each with a share of the height */
+const stack = parts => `<div style="display:flex;flex-direction:column;height:100%;gap:2px">${parts.map(([svg, wgt]) => `<div style="flex:${wgt};min-height:0">${svg}</div>`).join("")}</div>`;
+const S = [];
+/* ---------- Session 15, part 1: the checklist and how to review ---------- */
+const CL=()=>LC().checklist;
+const MAP=[
+ {s:"Sessions 1, 2",show:"Sets, data and every constraint in words and symbols, each with units",fail:"A row that mixes t/d with t/week (Session 14's shipping plan)"},
+ {s:"Sessions 1, 4",show:"Where each number came from, and when",fail:"An old price quote left in the code"},
+ {s:"Sessions 1, 5",show:"LP, MILP, convex or nonconvex NLP, and why",fail:"Calling a model with a pool an LP"},
+ {s:"Sessions 1, 2",show:"A stream table whose columns close",fail:"A table that loses 2% of the mass"},
+ {s:"Session 14",show:"The objective recomputed from the plan with the specification's data",fail:"A cost matrix read transposed"},
+ {s:"Sessions 3, 6, 7, 9, 13",show:"Duality gap, KKT residuals, MIP gap or global bounds",fail:"“Status 0” as the only evidence; Session 9's false successes"},
+ {s:"Sessions 6, 7",show:"Each multiplier with its units, sign and range of validity",fail:"A price per °C·t read as a price per °C"},
+ {s:"Sessions 5, 13",show:"Global, local, or a bound with a gap",fail:"One SLSQP run reported as the global optimum"},
+ {s:"Session 12",show:"Scenarios, a price sweep, or a robust plan",fail:"A plan for the mean demand only"},
+ {s:"Session 13",show:"A front, its method and scaling, and the rule that picked a point",fail:"A weighted sum of unscaled objectives"},
+ {s:"Session 14",show:"Specification checks, known answers, limiting cases, metamorphic relations",fail:"Tests written by reading the code"},
+ {s:"Sessions 10, 14",show:"Code, data, versions, seeds; what an AI tool drafted and what you checked",fail:"No versions, and no disclosure section"}];
+
+S.push({cls:"title-slide", html:()=>`<p class="kicker">Session 15 · Lab 15</p><h1>Project review and course wrap-up</h1>
+<div class="sub">One checklist for every model in the course: how to apply it to your own project, how to review someone else's, and what the fifteen sessions add up to</div>
+<div class="meta">2105623 Optimization of Chemical Processes<br>Department of Chemical Engineering, Chulalongkorn University<br>Draft for the 2027 offering</div><p style="margin-top:28px;font-size:19px"><a href="?narrate=1#1">Studying on your own? Open the narrated version</a></p>`,
+notes:"Most of today is project presentations. The slides set up the checklist, the review form and the wrap-up; the narration is shorter than in other sessions."});
+
+S.push({kicker:"Plan for today", title:"Three hours: a checklist, presentations, and a wrap-up", html:()=>`<div class="body"><div class="col"><table class="t" style="font-size:18px">
+<tr><th>Part</th><th>Content</th><th class="n">Minutes</th></tr>
+<tr><td>1</td><td>The verification checklist; how to review; a practice review of a short report</td><td class="n">15</td></tr>
+<tr><td>2</td><td>Project presentations, first block: 12 minutes each plus 3 for questions; reviewers fill in the review form</td><td class="n">60</td></tr>
+<tr><td></td><td><i>Break</i></td><td class="n">10</td></tr>
+<tr><td>3</td><td>Project presentations, second block</td><td class="n">60</td></tr>
+<tr><td>4</td><td>Course wrap-up: what the fifteen sessions add up to, and where to go next</td><td class="n">20</td></tr>
+<tr><td></td><td>Reviews submitted; Exit Ticket and end-of-course feedback</td><td class="n">15</td></tr></table>
+<p class="note">Studying on your own: the narration takes about 15 minutes. Then do Lab 15, a practice review of a short project report, about 40 minutes, and apply the checklist to your own project.</p></div></div>`});
+
+S.push({kicker:"Part 1 · The project", title:"What your project must show", html:()=>`<div class="body"><div class="col w55"><table class="t" style="font-size:16.5px"><tr><th>Deliverable</th><th>Contents</th></tr>
+<tr><td>Presentation</td><td>12 minutes plus 3 for questions: the problem, the model, how you know it is right, the results, the limits</td></tr>
+<tr><td>Report</td><td>Specification with units, data and sources, model and its class, results, verification, discussion</td></tr>
+<tr><td>Code</td><td>Runs from a clean start; prints the plan as a table; versions recorded</td></tr>
+<tr><td>Tests</td><td>Written from the specification, with their results</td></tr>
+<tr><td>Disclosure</td><td>What an AI tool drafted, and what you checked</td></tr></table></div>
+<div class="col"><ul class="b xs"><li>The question a reader asks of every result is the same: how do you know?</li>
+<li>The checklist on the next slide turns that question into twelve items, each taught in an earlier session</li>
+<li>A project does not need every item: a deterministic LP has no front. Say which items apply, and why</li>
+<li>The deadline and the form of submission are on the course page</li></ul></div></div>`});
+
+S.push({kicker:"Part 1 · Demo", title:"One checklist for every model: click an item", html:()=>`<div class="body"><div class="col w55"><div id="clGrid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px"></div></div>
+<div class="col"><div class="panel grow" id="clInfo"></div></div></div>`,
+draw:()=>{const L=CL(),grid=document.getElementById("clGrid");let k=5;
+ const go=()=>{grid.innerHTML=L.map((t,i)=>`<button id="cl${i}" class="${i===k?"on":"ghost"}" style="text-align:left;font-size:14.5px;padding:8px 10px;white-space:normal;line-height:1.25">${i+1}. ${t}</button>`).join("");
+  L.forEach((t,i)=>document.getElementById("cl"+i).onclick=e=>{e.stopPropagation();k=i;go()});
+  const m=MAP[k];document.getElementById("clInfo").innerHTML=`<div style="font-size:15px;color:${C.slate}">Item ${k+1}</div><div style="font-size:22px;font-weight:700;color:${C.teal};margin:4px 0 12px">${L[k]}</div>
+  <ul class="b xs"><li><b>Show:</b> ${m.show}</li><li><b>Taught in:</b> ${m.s}</li><li><b>A typical failure:</b> ${m.fail}</li></ul>`};go()},
+notes:"Items 1 to 4 are about the model, 5 to 8 about the answer, 9 and 10 about what the model leaves out, and 11 and 12 about the evidence. Item 10 applies only when there are several objectives."});
+
+S.push({kicker:"Part 1 · Certificates", title:"What counts as evidence, by problem class", html:()=>{const R0=LC().cert;return `<div class="body"><div class="col w55"><table class="t" style="font-size:15.5px">
+<tr><th>Problem</th><th>Evidence</th><th>Session</th></tr>
+<tr><td>LP</td><td>Primal and dual values equal; primal and dual residuals near zero</td><td>6</td></tr>
+<tr><td>MILP</td><td>The MIP gap at the end</td><td>3</td></tr>
+<tr><td>Smooth NLP</td><td>KKT residuals and multipliers at the answer</td><td>7, 9</td></tr>
+<tr><td>Nonconvex NLP</td><td>A global bound and gap, or an honest "local" with the number of starts</td><td>5, 13</td></tr>
+<tr><td>Estimation</td><td>Residuals, standard errors and correlations</td><td>10</td></tr>
+<tr><td>Dynamic</td><td>The answer stops changing as the grid is refined</td><td>11</td></tr>
+<tr><td>Under uncertainty</td><td>Out-of-sample evaluation; VSS</td><td>12</td></tr>
+<tr><td>Black box</td><td>Replicates at the recommended point</td><td>14</td></tr></table></div>
+<div class="col"><div class="panel"><div style="font-size:16px;line-height:1.6">A small LP, max 30x₁ + 20x₂ with x₁ + x₂ ≤ 40 and 2x₁ + x₂ ≤ 60, written as a minimization:</div>
+<div class="kpi" style="margin-top:8px"><div>Primal<b class="a">${fmt(R0.primal,1)}</b></div><div>Dual<b>${fmt(R0.dual,1)}</b></div><div>Gap<b>${fmt(Math.abs(R0.gap),1)}</b></div></div>
+<p class="note" style="margin-top:8px">Plan (${R0.x.map(v=>fmt(v)).join(", ")}); both resources priced at ${fmt(-R0.ineq_marginals[0])} per unit. Press D: <code>project_checks.lp_certificate</code> works on any LP solved with HiGHS.</p></div></div></div>`},
+py:{title:"An LP certificate in a few lines", sub:"project_checks.lp_certificate(c, A_ub, b_ub, ...): HiGHS marginals give the dual value", code:
+`r = lecture_certificate()
+print("plan", r6(r["x"]), " primal", r6(r["primal"]), " dual", r6(r["dual"]), " gap", r6(r["gap"]))
+print("largest primal residual", r6(r["primal_residual"]), " dual residual", r6(r["dual_residual"]))`,
+out:()=>{const r=LC().cert;return `plan ${py6l(r.x)}  primal ${py6(r.primal)}  dual ${py6(r.dual)}  gap ${py6(r.gap)}\nlargest primal residual ${py6(r.primal_residual)}  dual residual ${py6(r.dual_residual)}`}},
+notes:"The function returns the dual value built from the marginals, so the certificate is a computed number, not a status message. Students can paste it into their projects."});
+
+S.push({kicker:"Part 1 · Reviewing", title:"How to review a project", html:()=>`<div class="body"><div class="col w55"><ul class="b xs">
+<li><b>Be specific.</b> Name the item, the slide or table, and the number: "the stream table loses 2 t/d", not "check the balances"</li>
+<li><b>Give evidence.</b> Recompute one number yourself when you can</li>
+<li><b>Rank by severity.</b> Must fix: the answer may be wrong. Should fix: the answer may be right, but the evidence is missing. Minor: presentation</li>
+<li><b>Start with a strength.</b> Say what the group did well, and mean it</li>
+<li><b>Ask one question</b> that the group can answer with a number</li>
+<li>Review the work, not the people. Reviews go to each group without reviewers' names</li></ul></div>
+<div class="col"><div class="act"><span class="tag">QUESTIONS THAT WORK</span><ul class="b xs">
+<li>"What is the dual value, and does it equal the cost?"</li><li>"How many starts reached this answer?"</li>
+<li>"What happens to the plan if the price of X rises 20%?"</li><li>"Which test would fail if the units of Y were wrong?"</li>
+<li>"What did the AI tool draft, and how did you check it?"</li></ul></div></div></div>`});
+
+S.push({kicker:"Part 1 · A good 12 minutes", title:"Structure of a project presentation", html:()=>`<div class="body"><div class="col w55"><table class="t" style="font-size:16.5px"><tr><th>Part</th><th class="n">Minutes</th><th>Contents</th></tr>
+<tr><td>Problem</td><td class="n">2</td><td>The decision, the objective, the constraints, in words and units</td></tr>
+<tr><td>Model</td><td class="n">3</td><td>Variables, rows, class; size; data sources</td></tr>
+<tr><td>Verification</td><td class="n">3</td><td>Certificate, tests, balances: how you know</td></tr>
+<tr><td>Results</td><td class="n">3</td><td>The plan, its value, the multipliers that matter, sensitivity</td></tr>
+<tr><td>Limits</td><td class="n">1</td><td>What the model leaves out, and what you would do next</td></tr></table></div>
+<div class="col"><ul class="b xs"><li>One idea per slide; numbers with units and a sensible number of digits</li>
+<li>Show the plan as a table a manager can read, not the solver's raw output</li>
+<li>Put the verification before the results: the audience trusts the results more</li>
+<li>Rehearse with a clock; the chair stops you at 12 minutes</li></ul></div></div>`});
+
+S.push({kicker:"Part 1 · Practice", title:"A practice review: Group A's report excerpt", html:()=>`<div class="body"><div class="col w55"><div class="panel" style="font-size:15.5px;line-height:1.5">
+<b style="color:${C.teal}">Group A: steam from two boilers and a back-pressure turbine (NLP, synthetic)</b>
+<ul class="b xs" style="margin-top:6px"><li>"Fuel use is 412 GJ/h; at 15 USD/GJ the cost is 6,180 USD/h."</li>
+<li>"Steam produced, 120 t/h, equals the process demand of 100 t/h plus 20 t/h to the turbine."</li>
+<li>"SLSQP converged (Optimization terminated successfully), so this is the global optimum." The boiler efficiency curves are concave in load.</li>
+<li>"The multiplier of the steam demand row is 0.8."</li>
+<li>"Three random starts gave the same answer."</li>
+<li>"A fuel price 10% higher raises the cost by 618 USD/h; the plan does not change."</li>
+<li>"Disclosure: the code was drafted with an AI assistant; the data, tests and stream table were checked by the group."</li></ul></div></div>
+<div class="col"><div class="act"><span class="tag">YOUR TURN · 5 MINUTES</span><div style="font-size:17px;line-height:1.5">Go through the twelve items. Which pass, which fail, which are not shown? Then press Show findings.</div></div>
+<div class="ctrl" style="margin-top:10px"><button id="gaBtn">Show findings</button></div><div id="gaOut" style="margin-top:8px"></div></div></div>`,
+draw:()=>{const F=[["Objective recomputed","412 × 15 = 6,180: passes",1],["Balance","120 = 100 + 20: passes",1],["Certificate","No KKT residuals; a status message only: fails",0],["Global or local","Concave efficiency makes the model nonconvex; one local solver cannot claim global: fails",0],["Multiplier","0.8 of what? USD per t/h of steam, presumably; and is it the cost of one more t/h? Fails",0],["Tests","Three starts agree: evidence, not a test from the specification. Should fix",0],["Uncertainty","A price sweep: passes",1],["Disclosure","Present and specific: passes",1]];
+ const b=document.getElementById("gaBtn");b.onclick=e=>{e.stopPropagation();const o=document.getElementById("gaOut"),on=!o.innerHTML;o.innerHTML=on?`<ul class="b xs">${F.map(f=>`<li><b style="color:${f[2]?C.teal:C.rust}">${f[0]}.</b> ${f[1]}</li>`).join("")}</ul>`:"";b.textContent=on?"Hide findings":"Show findings"}},
+notes:"Group A is different from Group 0 in the lab: here the evidence for optimality is the weak point; in the lab it is the arithmetic and the units."});
+/* ---------- Session 15, part 2: presentations ---------- */
+S.push({kicker:"Part 2 · Presentations · 60 minutes", title:"Presentations, first block", html:()=>`<div class="body"><div class="col w55"><div class="act"><span class="tag">WHILE YOU LISTEN</span><ol style="font-size:19px;line-height:1.5;margin:0;padding-left:26px">
+<li>Open the lab page, Part B, and choose the group you review</li><li>Mark each checklist item: pass, fail, not shown, or not applicable</li>
+<li>Write one strength, one must-fix, and one question that can be answered with a number</li><li>Ask your question in the 3 minutes</li></ol></div></div>
+<div class="col"><div class="panel grow"><ul class="b xs"><li>Each group: 12 minutes, then 3 for questions; the chair keeps time</li>
+<li>Reviewers are assigned so that every group gets at least two reviews</li><li>Reviews are passed to each group without reviewers' names</li>
+<li>Studying on your own? Use the practice report in Lab 15 instead, and then review your own project with the same form</li></ul></div></div></div>`,
+notes:"Assign reviewers before the first talk; two or three per group works."});
+
+S.push({kicker:"Break · 10 minutes", title:"Break", html:()=>`<div class="body"><div class="col" style="justify-content:center;align-items:center;text-align:center">
+<div class="big">10 minutes</div><p style="font-size:24px;color:${C.graphite};max-width:820px">Finish the reviews of the first block before the second block starts.</p></div></div>`});
+
+S.push({kicker:"Part 3 · Presentations · 60 minutes", title:"Presentations, second block", html:()=>`<div class="body"><div class="col w55"><div class="act"><span class="tag">SAME FORM</span><ol style="font-size:19px;line-height:1.5;margin:0;padding-left:26px">
+<li>Choose the next group you review on the lab page</li><li>Mark the twelve items as you listen</li><li>One strength, one must-fix, one question</li></ol></div></div>
+<div class="col"><div class="panel grow"><ul class="b xs"><li>A must-fix is something that may make the answer wrong: a balance that does not close, a unit, a claim of global optimality without a bound</li>
+<li>A should-fix is missing evidence for an answer that may well be right</li><li>Keep the tone of the questions on the work</li></ul></div></div></div>`});
+/* ---------- Session 15, part 4: wrap-up ---------- */
+S.push({kicker:"Part 4 · The course in one table", title:"Fifteen sessions: problems, methods and evidence", html:()=>`<div class="body"><div class="col"><table class="t" style="font-size:14.5px">
+<tr><th>#</th><th>Topic</th><th>Problem class and method</th><th>Evidence you learned to show</th></tr>
+<tr><td>1</td><td>Modeling workflow</td><td>Specification to model; LP</td><td>Units, conservation, a primal-dual certificate</td></tr>
+<tr><td>2</td><td>LP models</td><td>Blending, stream tables</td><td>Recomputed properties, column sums</td></tr>
+<tr><td>3</td><td>MILP logic</td><td>Binaries, big-M, branch and bound</td><td>Root gap and MIP gap</td></tr>
+<tr><td>4</td><td>Multiperiod</td><td>Stock balances, storage, rolling horizons</td><td>Balances by period; end effects</td></tr>
+<tr><td>5</td><td>Convexity</td><td>Convex and nonconvex sets and functions</td><td>Hessians; what a local solver can claim</td></tr>
+<tr><td>6</td><td>LP theory</td><td>Bases, simplex, duality, ranging</td><td>Strong duality; ranges checked by re-solve</td></tr>
+<tr><td>7</td><td>Lagrange and KKT</td><td>Multipliers λ and μ</td><td>KKT residuals; multipliers checked by re-solve</td></tr>
+<tr><td>8</td><td>Unconstrained algorithms</td><td>Steepest descent, Newton, BFGS; scaling</td><td>Gradient norms; condition numbers</td></tr>
+<tr><td>9</td><td>Constrained NLP solvers</td><td>Penalty, SQP, interior point</td><td>Residual audits beyond the status message</td></tr>
+<tr><td>10</td><td>Parameter estimation</td><td>Least squares, identifiability, design</td><td>Standard errors, correlations, residuals</td></tr>
+<tr><td>11</td><td>Dynamic optimization and MPC</td><td>Shooting, collocation, receding horizon</td><td>Refinement until the answer stops changing</td></tr>
+<tr><td>12</td><td>Uncertainty</td><td>Two-stage, SAA, CVaR, chance, robust</td><td>VSS, EVPI, out-of-sample evaluation</td></tr>
+<tr><td>13</td><td>Several objectives; nonconvexity</td><td>ε-constraint, McCormick, spatial branch and bound</td><td>Fronts with their method; global bounds and gaps</td></tr>
+<tr><td>14</td><td>BO; AI-assisted modeling</td><td>Gaussian processes, expected improvement</td><td>Replicates; tests from the specification</td></tr></table></div></div>`});
+
+S.push({kicker:"Part 4 · What it adds up to", title:"Five habits to keep", html:()=>`<div class="body"><div class="col"><ol style="font-size:22px;line-height:1.6;margin:0;padding-left:30px">
+<li>Write the model in words and units before you solve it</li>
+<li>Know what your solver can certify for your class of problem, and show that certificate</li>
+<li>Read the multipliers: they answer the next question a manager will ask</li>
+<li>Say whether an answer is global or local, and with what evidence</li>
+<li>Test every model from its specification, including the ones you wrote, and the ones a tool wrote</li></ol></div></div>`,
+notes:"These five habits are the course in one slide. Each maps to two or three items of the checklist."});
+
+S.push({kicker:"Part 4 · Where to go next", title:"Books and tools for after the course", html:()=>`<div class="body"><div class="col w55"><ul class="b xs">
+<li>Williams (2013), <i>Model Building in Mathematical Programming</i>, 5th ed., Wiley: formulation, with many case studies</li>
+<li>Biegler (2010), <i>Nonlinear Programming: Concepts, Algorithms, and Applications to Chemical Processes</i>, SIAM</li>
+<li>Nocedal and Wright (2006), <i>Numerical Optimization</i>, 2nd ed., Springer: the algorithms of Sessions 8 and 9</li>
+<li>Boyd and Vandenberghe (2004), <i>Convex Optimization</i>, Cambridge University Press</li>
+<li>Birge and Louveaux (2011), <i>Introduction to Stochastic Programming</i>, 2nd ed., Springer</li>
+<li>Rasmussen and Williams (2006), <i>Gaussian Processes for Machine Learning</i>, MIT Press</li></ul></div>
+<div class="col"><table class="t" style="font-size:15.5px"><tr><th>Need</th><th>Tools</th></tr>
+<tr><td>Algebraic modeling</td><td>Pyomo, JuMP, GAMS</td></tr><tr><td>LP and MILP</td><td>HiGHS, SCIP, commercial solvers</td></tr>
+<tr><td>NLP and dynamics</td><td>Ipopt, CasADi</td></tr><tr><td>Global</td><td>SCIP, BARON, Couenne</td></tr>
+<tr><td>Expensive experiments</td><td>BoTorch and Ax</td></tr></table></div></div>`});
+
+S.push({kicker:"Before you submit", title:"Your own project, against the checklist", html:()=>`<div class="body"><div class="col"><ul class="b sm">
+<li>Fill in Part B of Lab 15 for your own project, honestly; fix the items marked fail first</li>
+<li>Read the reviews you receive; answer each must-fix in the report, or say why it does not apply</li>
+<li>Rerun all your tests after every change, and record the versions</li>
+<li>Write the disclosure section: what any AI tool drafted, and what you checked</li>
+<li>Submit the report, code and tests by the date and in the form given on the course page</li></ul></div></div>`});
+
+S.push({kicker:"Lab 15 · 40 minutes on your own", title:"A practice review, and the review form", html:()=>`<div class="body"><div class="col w55"><ul class="b xs">
+<li>Part A: review Group 0's short report, a biodiesel feedstock blend (synthetic). Mark the twelve items, then recompute three numbers: a cost, a balance and the value of a limit</li>
+<li>Part B: the review form for a presenting group, or for your own project</li>
+<li>Part C: one sentence on what you will fix first</li></ul>
+<p class="note">Runs in the browser, on a laptop or a phone. The Python file has the checks as functions you can reuse.</p></div>
+<div class="col"><div class="panel grow" style="align-items:center;justify-content:center;text-align:center">
+<div style="width:250px"><svg style="width:100%;height:auto;background:#fff;border-radius:8px" width="45mm" height="45mm" version="1.1" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg"><path d="M2,2H3V3H2zM3,2H4V3H3zM4,2H5V3H4zM5,2H6V3H5zM6,2H7V3H6zM7,2H8V3H7zM8,2H9V3H8zM10,2H11V3H10zM11,2H12V3H11zM12,2H13V3H12zM14,2H15V3H14zM17,2H18V3H17zM19,2H20V3H19zM20,2H21V3H20zM21,2H22V3H21zM22,2H23V3H22zM23,2H24V3H23zM24,2H25V3H24zM25,2H26V3H25zM26,2H27V3H26zM27,2H28V3H27zM30,2H31V3H30zM31,2H32V3H31zM33,2H34V3H33zM36,2H37V3H36zM37,2H38V3H37zM38,2H39V3H38zM39,2H40V3H39zM40,2H41V3H40zM41,2H42V3H41zM42,2H43V3H42zM2,3H3V4H2zM8,3H9V4H8zM10,3H11V4H10zM11,3H12V4H11zM14,3H15V4H14zM15,3H16V4H15zM16,3H17V4H16zM18,3H19V4H18zM20,3H21V4H20zM25,3H26V4H25zM26,3H27V4H26zM28,3H29V4H28zM32,3H33V4H32zM34,3H35V4H34zM36,3H37V4H36zM42,3H43V4H42zM2,4H3V5H2zM4,4H5V5H4zM5,4H6V5H5zM6,4H7V5H6zM8,4H9V5H8zM11,4H12V5H11zM16,4H17V5H16zM19,4H20V5H19zM22,4H23V5H22zM27,4H28V5H27zM29,4H30V5H29zM30,4H31V5H30zM32,4H33V5H32zM33,4H34V5H33zM36,4H37V5H36zM38,4H39V5H38zM39,4H40V5H39zM40,4H41V5H40zM42,4H43V5H42zM2,5H3V6H2zM4,5H5V6H4zM5,5H6V6H5zM6,5H7V6H6zM8,5H9V6H8zM10,5H11V6H10zM13,5H14V6H13zM14,5H15V6H14zM15,5H16V6H15zM21,5H22V6H21zM23,5H24V6H23zM26,5H27V6H26zM27,5H28V6H27zM28,5H29V6H28zM29,5H30V6H29zM30,5H31V6H30zM31,5H32V6H31zM34,5H35V6H34zM36,5H37V6H36zM38,5H39V6H38zM39,5H40V6H39zM40,5H41V6H40zM42,5H43V6H42zM2,6H3V7H2zM4,6H5V7H4zM5,6H6V7H5zM6,6H7V7H6zM8,6H9V7H8zM12,6H13V7H12zM16,6H17V7H16zM17,6H18V7H17zM18,6H19V7H18zM19,6H20V7H19zM21,6H22V7H21zM24,6H25V7H24zM26,6H27V7H26zM29,6H30V7H29zM31,6H32V7H31zM33,6H34V7H33zM34,6H35V7H34zM36,6H37V7H36zM38,6H39V7H38zM39,6H40V7H39zM40,6H41V7H40zM42,6H43V7H42zM2,7H3V8H2zM8,7H9V8H8zM13,7H14V8H13zM15,7H16V8H15zM17,7H18V8H17zM19,7H20V8H19zM21,7H22V8H21zM23,7H24V8H23zM26,7H27V8H26zM27,7H28V8H27zM28,7H29V8H28zM30,7H31V8H30zM31,7H32V8H31zM33,7H34V8H33zM34,7H35V8H34zM36,7H37V8H36zM42,7H43V8H42zM2,8H3V9H2zM3,8H4V9H3zM4,8H5V9H4zM5,8H6V9H5zM6,8H7V9H6zM7,8H8V9H7zM8,8H9V9H8zM10,8H11V9H10zM12,8H13V9H12zM14,8H15V9H14zM16,8H17V9H16zM18,8H19V9H18zM20,8H21V9H20zM22,8H23V9H22zM24,8H25V9H24zM26,8H27V9H26zM28,8H29V9H28zM30,8H31V9H30zM32,8H33V9H32zM34,8H35V9H34zM36,8H37V9H36zM37,8H38V9H37zM38,8H39V9H38zM39,8H40V9H39zM40,8H41V9H40zM41,8H42V9H41zM42,8H43V9H42zM10,9H11V10H10zM12,9H13V10H12zM14,9H15V10H14zM16,9H17V10H16zM17,9H18V10H17zM18,9H19V10H18zM19,9H20V10H19zM21,9H22V10H21zM24,9H25V10H24zM25,9H26V10H25zM26,9H27V10H26zM28,9H29V10H28zM29,9H30V10H29zM30,9H31V10H30zM31,9H32V10H31zM32,9H33V10H32zM2,10H3V11H2zM4,10H5V11H4zM5,10H6V11H5zM7,10H8V11H7zM8,10H9V11H8zM9,10H10V11H9zM11,10H12V11H11zM13,10H14V11H13zM14,10H15V11H14zM15,10H16V11H15zM18,10H19V11H18zM19,10H20V11H19zM23,10H24V11H23zM28,10H29V11H28zM31,10H32V11H31zM32,10H33V11H32zM34,10H35V11H34zM36,10H37V11H36zM39,10H40V11H39zM41,10H42V11H41zM42,10H43V11H42zM4,11H5V12H4zM5,11H6V12H5zM6,11H7V12H6zM7,11H8V12H7zM9,11H10V12H9zM10,11H11V12H10zM11,11H12V12H11zM16,11H17V12H16zM17,11H18V12H17zM20,11H21V12H20zM21,11H22V12H21zM22,11H23V12H22zM23,11H24V12H23zM25,11H26V12H25zM30,11H31V12H30zM32,11H33V12H32zM33,11H34V12H33zM34,11H35V12H34zM36,11H37V12H36zM38,11H39V12H38zM40,11H41V12H40zM41,11H42V12H41zM42,11H43V12H42zM3,12H4V13H3zM4,12H5V13H4zM5,12H6V13H5zM7,12H8V13H7zM8,12H9V13H8zM9,12H10V13H9zM11,12H12V13H11zM14,12H15V13H14zM15,12H16V13H15zM17,12H18V13H17zM20,12H21V13H20zM25,12H26V13H25zM27,12H28V13H27zM28,12H29V13H28zM30,12H31V13H30zM35,12H36V13H35zM37,12H38V13H37zM38,12H39V13H38zM40,12H41V13H40zM3,13H4V14H3zM5,13H6V14H5zM6,13H7V14H6zM10,13H11V14H10zM12,13H13V14H12zM14,13H15V14H14zM18,13H19V14H18zM20,13H21V14H20zM21,13H22V14H21zM22,13H23V14H22zM25,13H26V14H25zM26,13H27V14H26zM27,13H28V14H27zM30,13H31V14H30zM34,13H35V14H34zM42,13H43V14H42zM2,14H3V15H2zM3,14H4V15H3zM6,14H7V15H6zM8,14H9V15H8zM9,14H10V15H9zM10,14H11V15H10zM11,14H12V15H11zM12,14H13V15H12zM13,14H14V15H13zM15,14H16V15H15zM17,14H18V15H17zM19,14H20V15H19zM20,14H21V15H20zM22,14H23V15H22zM24,14H25V15H24zM25,14H26V15H25zM26,14H27V15H26zM27,14H28V15H27zM29,14H30V15H29zM31,14H32V15H31zM32,14H33V15H32zM33,14H34V15H33zM37,14H38V15H37zM39,14H40V15H39zM40,14H41V15H40zM2,15H3V16H2zM3,15H4V16H3zM6,15H7V16H6zM12,15H13V16H12zM13,15H14V16H13zM14,15H15V16H14zM16,15H17V16H16zM17,15H18V16H17zM22,15H23V16H22zM25,15H26V16H25zM26,15H27V16H26zM29,15H30V16H29zM30,15H31V16H30zM31,15H32V16H31zM32,15H33V16H32zM33,15H34V16H33zM34,15H35V16H34zM36,15H37V16H36zM39,15H40V16H39zM41,15H42V16H41zM42,15H43V16H42zM2,16H3V17H2zM3,16H4V17H3zM4,16H5V17H4zM8,16H9V17H8zM13,16H14V17H13zM15,16H16V17H15zM17,16H18V17H17zM18,16H19V17H18zM19,16H20V17H19zM21,16H22V17H21zM22,16H23V17H22zM25,16H26V17H25zM27,16H28V17H27zM30,16H31V17H30zM31,16H32V17H31zM33,16H34V17H33zM34,16H35V17H34zM36,16H37V17H36zM37,16H38V17H37zM40,16H41V17H40zM42,16H43V17H42zM2,17H3V18H2zM4,17H5V18H4zM9,17H10V18H9zM11,17H12V18H11zM14,17H15V18H14zM17,17H18V18H17zM18,17H19V18H18zM20,17H21V18H20zM23,17H24V18H23zM24,17H25V18H24zM25,17H26V18H25zM28,17H29V18H28zM30,17H31V18H30zM32,17H33V18H32zM33,17H34V18H33zM34,17H35V18H34zM36,17H37V18H36zM37,17H38V18H37zM38,17H39V18H38zM39,17H40V18H39zM2,18H3V19H2zM4,18H5V19H4zM6,18H7V19H6zM7,18H8V19H7zM8,18H9V19H8zM9,18H10V19H9zM13,18H14V19H13zM14,18H15V19H14zM20,18H21V19H20zM22,18H23V19H22zM23,18H24V19H23zM26,18H27V19H26zM27,18H28V19H27zM29,18H30V19H29zM30,18H31V19H30zM38,18H39V19H38zM3,19H4V20H3zM4,19H5V20H4zM5,19H6V20H5zM6,19H7V20H6zM9,19H10V20H9zM11,19H12V20H11zM15,19H16V20H15zM18,19H19V20H18zM22,19H23V20H22zM23,19H24V20H23zM24,19H25V20H24zM25,19H26V20H25zM27,19H28V20H27zM29,19H30V20H29zM31,19H32V20H31zM32,19H33V20H32zM35,19H36V20H35zM37,19H38V20H37zM39,19H40V20H39zM2,20H3V21H2zM3,20H4V21H3zM4,20H5V21H4zM6,20H7V21H6zM7,20H8V21H7zM8,20H9V21H8zM12,20H13V21H12zM13,20H14V21H13zM14,20H15V21H14zM15,20H16V21H15zM17,20H18V21H17zM20,20H21V21H20zM24,20H25V21H24zM28,20H29V21H28zM29,20H30V21H29zM35,20H36V21H35zM38,20H39V21H38zM41,20H42V21H41zM2,21H3V22H2zM5,21H6V22H5zM7,21H8V22H7zM10,21H11V22H10zM13,21H14V22H13zM16,21H17V22H16zM17,21H18V22H17zM18,21H19V22H18zM19,21H20V22H19zM20,21H21V22H20zM21,21H22V22H21zM22,21H23V22H22zM23,21H24V22H23zM26,21H27V22H26zM28,21H29V22H28zM30,21H31V22H30zM31,21H32V22H31zM33,21H34V22H33zM34,21H35V22H34zM36,21H37V22H36zM37,21H38V22H37zM40,21H41V22H40zM41,21H42V22H41zM42,21H43V22H42zM2,22H3V23H2zM4,22H5V23H4zM5,22H6V23H5zM6,22H7V23H6zM8,22H9V23H8zM9,22H10V23H9zM10,22H11V23H10zM12,22H13V23H12zM13,22H14V23H13zM14,22H15V23H14zM18,22H19V23H18zM21,22H22V23H21zM25,22H26V23H25zM28,22H29V23H28zM31,22H32V23H31zM32,22H33V23H32zM33,22H34V23H33zM35,22H36V23H35zM36,22H37V23H36zM37,22H38V23H37zM38,22H39V23H38zM40,22H41V23H40zM41,22H42V23H41zM2,23H3V24H2zM3,23H4V24H3zM4,23H5V24H4zM6,23H7V24H6zM9,23H10V24H9zM10,23H11V24H10zM15,23H16V24H15zM16,23H17V24H16zM17,23H18V24H17zM18,23H19V24H18zM19,23H20V24H19zM21,23H22V24H21zM22,23H23V24H22zM25,23H26V24H25zM27,23H28V24H27zM31,23H32V24H31zM32,23H33V24H32zM33,23H34V24H33zM36,23H37V24H36zM37,23H38V24H37zM38,23H39V24H38zM39,23H40V24H39zM40,23H41V24H40zM41,23H42V24H41zM42,23H43V24H42zM4,24H5V25H4zM5,24H6V25H5zM6,24H7V25H6zM8,24H9V25H8zM10,24H11V25H10zM13,24H14V25H13zM14,24H15V25H14zM15,24H16V25H15zM20,24H21V25H20zM25,24H26V25H25zM28,24H29V25H28zM30,24H31V25H30zM32,24H33V25H32zM39,24H40V25H39zM40,24H41V25H40zM41,24H42V25H41zM3,25H4V26H3zM4,25H5V26H4zM6,25H7V26H6zM7,25H8V26H7zM9,25H10V26H9zM10,25H11V26H10zM17,25H18V26H17zM18,25H19V26H18zM21,25H22V26H21zM26,25H27V26H26zM27,25H28V26H27zM32,25H33V26H32zM33,25H34V26H33zM34,25H35V26H34zM35,25H36V26H35zM37,25H38V26H37zM41,25H42V26H41zM42,25H43V26H42zM7,26H8V27H7zM8,26H9V27H8zM11,26H12V27H11zM12,26H13V27H12zM14,26H15V27H14zM19,26H20V27H19zM21,26H22V27H21zM22,26H23V27H22zM24,26H25V27H24zM26,26H27V27H26zM27,26H28V27H27zM28,26H29V27H28zM29,26H30V27H29zM31,26H32V27H31zM35,26H36V27H35zM37,26H38V27H37zM39,26H40V27H39zM40,26H41V27H40zM41,26H42V27H41zM2,27H3V28H2zM6,27H7V28H6zM11,27H12V28H11zM17,27H18V28H17zM18,27H19V28H18zM21,27H22V28H21zM24,27H25V28H24zM28,27H29V28H28zM29,27H30V28H29zM30,27H31V28H30zM31,27H32V28H31zM33,27H34V28H33zM34,27H35V28H34zM36,27H37V28H36zM37,27H38V28H37zM39,27H40V28H39zM40,27H41V28H40zM41,27H42V28H41zM42,27H43V28H42zM2,28H3V29H2zM3,28H4V29H3zM5,28H6V29H5zM6,28H7V29H6zM7,28H8V29H7zM8,28H9V29H8zM9,28H10V29H9zM12,28H13V29H12zM13,28H14V29H13zM14,28H15V29H14zM16,28H17V29H16zM19,28H20V29H19zM20,28H21V29H20zM21,28H22V29H21zM23,28H24V29H23zM24,28H25V29H24zM30,28H31V29H30zM33,28H34V29H33zM34,28H35V29H34zM38,28H39V29H38zM39,28H40V29H39zM41,28H42V29H41zM42,28H43V29H42zM6,29H7V30H6zM7,29H8V30H7zM9,29H10V30H9zM10,29H11V30H10zM13,29H14V30H13zM23,29H24V30H23zM24,29H25V30H24zM26,29H27V30H26zM28,29H29V30H28zM33,29H34V30H33zM34,29H35V30H34zM37,29H38V30H37zM38,29H39V30H38zM39,29H40V30H39zM42,29H43V30H42zM2,30H3V31H2zM3,30H4V31H3zM4,30H5V31H4zM8,30H9V31H8zM9,30H10V31H9zM11,30H12V31H11zM12,30H13V31H12zM14,30H15V31H14zM15,30H16V31H15zM16,30H17V31H16zM17,30H18V31H17zM21,30H22V31H21zM22,30H23V31H22zM23,30H24V31H23zM24,30H25V31H24zM25,30H26V31H25zM27,30H28V31H27zM28,30H29V31H28zM33,30H34V31H33zM35,30H36V31H35zM38,30H39V31H38zM39,30H40V31H39zM3,31H4V32H3zM4,31H5V32H4zM5,31H6V32H5zM6,31H7V32H6zM9,31H10V32H9zM10,31H11V32H10zM12,31H13V32H12zM13,31H14V32H13zM16,31H17V32H16zM17,31H18V32H17zM18,31H19V32H18zM20,31H21V32H20zM21,31H22V32H21zM22,31H23V32H22zM23,31H24V32H23zM24,31H25V32H24zM27,31H28V32H27zM29,31H30V32H29zM30,31H31V32H30zM32,31H33V32H32zM34,31H35V32H34zM37,31H38V32H37zM39,31H40V32H39zM41,31H42V32H41zM2,32H3V33H2zM6,32H7V33H6zM7,32H8V33H7zM8,32H9V33H8zM9,32H10V33H9zM11,32H12V33H11zM12,32H13V33H12zM18,32H19V33H18zM21,32H22V33H21zM23,32H24V33H23zM24,32H25V33H24zM26,32H27V33H26zM27,32H28V33H27zM28,32H29V33H28zM29,32H30V33H29zM31,32H32V33H31zM34,32H35V33H34zM35,32H36V33H35zM36,32H37V33H36zM37,32H38V33H37zM39,32H40V33H39zM40,32H41V33H40zM41,32H42V33H41zM4,33H5V34H4zM6,33H7V34H6zM7,33H8V34H7zM9,33H10V34H9zM12,33H13V34H12zM13,33H14V34H13zM16,33H17V34H16zM17,33H18V34H17zM19,33H20V34H19zM20,33H21V34H20zM21,33H22V34H21zM24,33H25V34H24zM25,33H26V34H25zM26,33H27V34H26zM28,33H29V34H28zM29,33H30V34H29zM31,33H32V34H31zM32,33H33V34H32zM36,33H37V34H36zM38,33H39V34H38zM39,33H40V34H39zM40,33H41V34H40zM42,33H43V34H42zM3,34H4V35H3zM4,34H5V35H4zM7,34H8V35H7zM8,34H9V35H8zM10,34H11V35H10zM15,34H16V35H15zM17,34H18V35H17zM19,34H20V35H19zM20,34H21V35H20zM22,34H23V35H22zM23,34H24V35H23zM25,34H26V35H25zM28,34H29V35H28zM30,34H31V35H30zM31,34H32V35H31zM33,34H34V35H33zM34,34H35V35H34zM35,34H36V35H35zM36,34H37V35H36zM37,34H38V35H37zM38,34H39V35H38zM39,34H40V35H39zM40,34H41V35H40zM42,34H43V35H42zM10,35H11V36H10zM11,35H12V36H11zM12,35H13V36H12zM13,35H14V36H13zM14,35H15V36H14zM15,35H16V36H15zM17,35H18V36H17zM19,35H20V36H19zM20,35H21V36H20zM21,35H22V36H21zM22,35H23V36H22zM23,35H24V36H23zM24,35H25V36H24zM25,35H26V36H25zM26,35H27V36H26zM27,35H28V36H27zM28,35H29V36H28zM30,35H31V36H30zM32,35H33V36H32zM33,35H34V36H33zM34,35H35V36H34zM38,35H39V36H38zM39,35H40V36H39zM41,35H42V36H41zM42,35H43V36H42zM2,36H3V37H2zM3,36H4V37H3zM4,36H5V37H4zM5,36H6V37H5zM6,36H7V37H6zM7,36H8V37H7zM8,36H9V37H8zM10,36H11V37H10zM11,36H12V37H11zM12,36H13V37H12zM14,36H15V37H14zM18,36H19V37H18zM20,36H21V37H20zM22,36H23V37H22zM25,36H26V37H25zM30,36H31V37H30zM31,36H32V37H31zM33,36H34V37H33zM34,36H35V37H34zM36,36H37V37H36zM38,36H39V37H38zM39,36H40V37H39zM40,36H41V37H40zM41,36H42V37H41zM2,37H3V38H2zM8,37H9V38H8zM10,37H11V38H10zM13,37H14V38H13zM14,37H15V38H14zM15,37H16V38H15zM17,37H18V38H17zM19,37H20V38H19zM21,37H22V38H21zM26,37H27V38H26zM27,37H28V38H27zM28,37H29V38H28zM32,37H33V38H32zM33,37H34V38H33zM34,37H35V38H34zM38,37H39V38H38zM39,37H40V38H39zM41,37H42V38H41zM42,37H43V38H42zM2,38H3V39H2zM4,38H5V39H4zM5,38H6V39H5zM6,38H7V39H6zM8,38H9V39H8zM11,38H12V39H11zM12,38H13V39H12zM13,38H14V39H13zM14,38H15V39H14zM15,38H16V39H15zM17,38H18V39H17zM18,38H19V39H18zM23,38H24V39H23zM27,38H28V39H27zM28,38H29V39H28zM30,38H31V39H30zM31,38H32V39H31zM34,38H35V39H34zM35,38H36V39H35zM36,38H37V39H36zM37,38H38V39H37zM38,38H39V39H38zM39,38H40V39H39zM40,38H41V39H40zM41,38H42V39H41zM42,38H43V39H42zM2,39H3V40H2zM4,39H5V40H4zM5,39H6V40H5zM6,39H7V40H6zM8,39H9V40H8zM10,39H11V40H10zM12,39H13V40H12zM14,39H15V40H14zM15,39H16V40H15zM16,39H17V40H16zM18,39H19V40H18zM19,39H20V40H19zM21,39H22V40H21zM24,39H25V40H24zM26,39H27V40H26zM28,39H29V40H28zM29,39H30V40H29zM33,39H34V40H33zM38,39H39V40H38zM40,39H41V40H40zM42,39H43V40H42zM2,40H3V41H2zM4,40H5V41H4zM5,40H6V41H5zM6,40H7V41H6zM8,40H9V41H8zM10,40H11V41H10zM11,40H12V41H11zM13,40H14V41H13zM14,40H15V41H14zM17,40H18V41H17zM19,40H20V41H19zM20,40H21V41H20zM21,40H22V41H21zM26,40H27V41H26zM27,40H28V41H27zM28,40H29V41H28zM30,40H31V41H30zM31,40H32V41H31zM32,40H33V41H32zM34,40H35V41H34zM37,40H38V41H37zM39,40H40V41H39zM40,40H41V41H40zM41,40H42V41H41zM42,40H43V41H42zM2,41H3V42H2zM8,41H9V42H8zM12,41H13V42H12zM13,41H14V42H13zM14,41H15V42H14zM17,41H18V42H17zM19,41H20V42H19zM23,41H24V42H23zM25,41H26V42H25zM28,41H29V42H28zM29,41H30V42H29zM34,41H35V42H34zM35,41H36V42H35zM38,41H39V42H38zM39,41H40V42H39zM41,41H42V42H41zM2,42H3V43H2zM3,42H4V43H3zM4,42H5V43H4zM5,42H6V43H5zM6,42H7V43H6zM7,42H8V43H7zM8,42H9V43H8zM10,42H11V43H10zM11,42H12V43H11zM12,42H13V43H12zM14,42H15V43H14zM17,42H18V43H17zM18,42H19V43H18zM21,42H22V43H21zM22,42H23V43H22zM23,42H24V43H23zM24,42H25V43H24zM26,42H27V43H26zM27,42H28V43H27zM30,42H31V43H30zM32,42H33V43H32zM33,42H34V43H33zM34,42H35V43H34zM35,42H36V43H35zM36,42H37V43H36zM41,42H42V43H41z" id="qr-path" fill="#000000" fill-opacity="1" fill-rule="nonzero" stroke="none" /></svg></div><a href="lab.html" target="_blank" rel="noopener" style="color:${C.teal};font-size:18px;margin-top:8px">Open the lab page</a></div></div></div>`});
+
+S.push({kicker:"Summary", title:"What to take from today", html:()=>`<div class="body"><div class="col"><ul class="b sm">
+<li>Every result needs an answer to "how do you know?"; the twelve items make that answer complete</li>
+<li>The evidence depends on the problem class: duality for LP, KKT residuals for NLP, gaps for MILP and global problems, replicates for experiments</li>
+<li>A good review is specific, ranked by severity, and recomputes at least one number</li>
+<li>The same checklist applies to your own work, and to work drafted by a tool</li>
+<li>Thank you for fifteen sessions of work</li></ul></div></div>`});
+
+S.push({kicker:"Exit Ticket and feedback · 5 minutes", title:"Exit Ticket and end-of-course feedback", html:()=>`<div class="body"><div class="col w55"><ul class="b sm">
+<li>Scan the code and choose <b>Session 15</b></li><li>Exit Ticket: paste the answers and the reviews that the lab page copies for you</li>
+<li>Feedback: what helped you learn most in this course, what should change next year, and what is still unclear</li><li>Studying on your own? Choose "On my own"</li></ul>
+<p class="note">One form for both. Anonymous; no name or student ID. Reviews name the group number only.</p></div>
+<div class="col"><div class="panel grow" style="align-items:center;justify-content:center;text-align:center"><div style="width:270px"><svg style="width:100%;height:auto;background:#fff;border-radius:8px" width="41mm" height="41mm" version="1.1" viewBox="0 0 41 41" xmlns="http://www.w3.org/2000/svg"><path d="M2,2H3V3H2zM3,2H4V3H3zM4,2H5V3H4zM5,2H6V3H5zM6,2H7V3H6zM7,2H8V3H7zM8,2H9V3H8zM10,2H11V3H10zM13,2H14V3H13zM14,2H15V3H14zM17,2H18V3H17zM21,2H22V3H21zM22,2H23V3H22zM23,2H24V3H23zM25,2H26V3H25zM27,2H28V3H27zM29,2H30V3H29zM32,2H33V3H32zM33,2H34V3H33zM34,2H35V3H34zM35,2H36V3H35zM36,2H37V3H36zM37,2H38V3H37zM38,2H39V3H38zM2,3H3V4H2zM8,3H9V4H8zM12,3H13V4H12zM13,3H14V4H13zM16,3H17V4H16zM17,3H18V4H17zM18,3H19V4H18zM21,3H22V4H21zM23,3H24V4H23zM24,3H25V4H24zM26,3H27V4H26zM27,3H28V4H27zM32,3H33V4H32zM38,3H39V4H38zM2,4H3V5H2zM4,4H5V5H4zM5,4H6V5H5zM6,4H7V5H6zM8,4H9V5H8zM13,4H14V5H13zM14,4H15V5H14zM16,4H17V5H16zM17,4H18V5H17zM18,4H19V5H18zM19,4H20V5H19zM20,4H21V5H20zM23,4H24V5H23zM24,4H25V5H24zM25,4H26V5H25zM26,4H27V5H26zM28,4H29V5H28zM30,4H31V5H30zM32,4H33V5H32zM34,4H35V5H34zM35,4H36V5H35zM36,4H37V5H36zM38,4H39V5H38zM2,5H3V6H2zM4,5H5V6H4zM5,5H6V6H5zM6,5H7V6H6zM8,5H9V6H8zM10,5H11V6H10zM11,5H12V6H11zM12,5H13V6H12zM14,5H15V6H14zM18,5H19V6H18zM25,5H26V6H25zM27,5H28V6H27zM28,5H29V6H28zM29,5H30V6H29zM30,5H31V6H30zM32,5H33V6H32zM34,5H35V6H34zM35,5H36V6H35zM36,5H37V6H36zM38,5H39V6H38zM2,6H3V7H2zM4,6H5V7H4zM5,6H6V7H5zM6,6H7V7H6zM8,6H9V7H8zM10,6H11V7H10zM11,6H12V7H11zM13,6H14V7H13zM18,6H19V7H18zM19,6H20V7H19zM20,6H21V7H20zM23,6H24V7H23zM25,6H26V7H25zM26,6H27V7H26zM27,6H28V7H27zM29,6H30V7H29zM30,6H31V7H30zM32,6H33V7H32zM34,6H35V7H34zM35,6H36V7H35zM36,6H37V7H36zM38,6H39V7H38zM2,7H3V8H2zM8,7H9V8H8zM10,7H11V8H10zM12,7H13V8H12zM15,7H16V8H15zM19,7H20V8H19zM21,7H22V8H21zM24,7H25V8H24zM26,7H27V8H26zM28,7H29V8H28zM32,7H33V8H32zM38,7H39V8H38zM2,8H3V9H2zM3,8H4V9H3zM4,8H5V9H4zM5,8H6V9H5zM6,8H7V9H6zM7,8H8V9H7zM8,8H9V9H8zM10,8H11V9H10zM12,8H13V9H12zM14,8H15V9H14zM16,8H17V9H16zM18,8H19V9H18zM20,8H21V9H20zM22,8H23V9H22zM24,8H25V9H24zM26,8H27V9H26zM28,8H29V9H28zM30,8H31V9H30zM32,8H33V9H32zM33,8H34V9H33zM34,8H35V9H34zM35,8H36V9H35zM36,8H37V9H36zM37,8H38V9H37zM38,8H39V9H38zM10,9H11V10H10zM11,9H12V10H11zM13,9H14V10H13zM14,9H15V10H14zM16,9H17V10H16zM17,9H18V10H17zM21,9H22V10H21zM23,9H24V10H23zM28,9H29V10H28zM29,9H30V10H29zM30,9H31V10H30zM2,10H3V11H2zM6,10H7V11H6zM8,10H9V11H8zM9,10H10V11H9zM10,10H11V11H10zM11,10H12V11H11zM12,10H13V11H12zM13,10H14V11H13zM14,10H15V11H14zM17,10H18V11H17zM18,10H19V11H18zM21,10H22V11H21zM22,10H23V11H22zM23,10H24V11H23zM24,10H25V11H24zM28,10H29V11H28zM29,10H30V11H29zM30,10H31V11H30zM31,10H32V11H31zM32,10H33V11H32zM33,10H34V11H33zM34,10H35V11H34zM35,10H36V11H35zM38,10H39V11H38zM3,11H4V12H3zM4,11H5V12H4zM5,11H6V12H5zM12,11H13V12H12zM13,11H14V12H13zM14,11H15V12H14zM15,11H16V12H15zM19,11H20V12H19zM20,11H21V12H20zM21,11H22V12H21zM23,11H24V12H23zM25,11H26V12H25zM27,11H28V12H27zM28,11H29V12H28zM29,11H30V12H29zM33,11H34V12H33zM34,11H35V12H34zM35,11H36V12H35zM37,11H38V12H37zM2,12H3V13H2zM3,12H4V13H3zM5,12H6V13H5zM8,12H9V13H8zM14,12H15V13H14zM16,12H17V13H16zM17,12H18V13H17zM19,12H20V13H19zM20,12H21V13H20zM21,12H22V13H21zM23,12H24V13H23zM24,12H25V13H24zM25,12H26V13H25zM29,12H30V13H29zM30,12H31V13H30zM31,12H32V13H31zM33,12H34V13H33zM34,12H35V13H34zM36,12H37V13H36zM2,13H3V14H2zM4,13H5V14H4zM5,13H6V14H5zM6,13H7V14H6zM10,13H11V14H10zM14,13H15V14H14zM15,13H16V14H15zM17,13H18V14H17zM18,13H19V14H18zM19,13H20V14H19zM20,13H21V14H20zM21,13H22V14H21zM22,13H23V14H22zM23,13H24V14H23zM25,13H26V14H25zM32,13H33V14H32zM33,13H34V14H33zM36,13H37V14H36zM37,13H38V14H37zM2,14H3V15H2zM3,14H4V15H3zM4,14H5V15H4zM7,14H8V15H7zM8,14H9V15H8zM10,14H11V15H10zM12,14H13V15H12zM15,14H16V15H15zM16,14H17V15H16zM18,14H19V15H18zM19,14H20V15H19zM20,14H21V15H20zM23,14H24V15H23zM24,14H25V15H24zM25,14H26V15H25zM26,14H27V15H26zM28,14H29V15H28zM31,14H32V15H31zM32,14H33V15H32zM36,14H37V15H36zM37,14H38V15H37zM38,14H39V15H38zM2,15H3V16H2zM3,15H4V16H3zM4,15H5V16H4zM6,15H7V16H6zM9,15H10V16H9zM10,15H11V16H10zM14,15H15V16H14zM16,15H17V16H16zM17,15H18V16H17zM23,15H24V16H23zM25,15H26V16H25zM28,15H29V16H28zM29,15H30V16H29zM30,15H31V16H30zM34,15H35V16H34zM35,15H36V16H35zM6,16H7V17H6zM7,16H8V17H7zM8,16H9V17H8zM11,16H12V17H11zM12,16H13V17H12zM13,16H14V17H13zM14,16H15V17H14zM15,16H16V17H15zM16,16H17V17H16zM17,16H18V17H17zM18,16H19V17H18zM19,16H20V17H19zM23,16H24V17H23zM25,16H26V17H25zM26,16H27V17H26zM27,16H28V17H27zM28,16H29V17H28zM29,16H30V17H29zM30,16H31V17H30zM32,16H33V17H32zM33,16H34V17H33zM34,16H35V17H34zM35,16H36V17H35zM36,16H37V17H36zM5,17H6V18H5zM6,17H7V18H6zM10,17H11V18H10zM11,17H12V18H11zM13,17H14V18H13zM16,17H17V18H16zM18,17H19V18H18zM19,17H20V18H19zM20,17H21V18H20zM21,17H22V18H21zM23,17H24V18H23zM24,17H25V18H24zM25,17H26V18H25zM26,17H27V18H26zM28,17H29V18H28zM29,17H30V18H29zM32,17H33V18H32zM33,17H34V18H33zM34,17H35V18H34zM36,17H37V18H36zM37,17H38V18H37zM2,18H3V19H2zM5,18H6V19H5zM6,18H7V19H6zM7,18H8V19H7zM8,18H9V19H8zM10,18H11V19H10zM12,18H13V19H12zM13,18H14V19H13zM14,18H15V19H14zM15,18H16V19H15zM16,18H17V19H16zM20,18H21V19H20zM21,18H22V19H21zM22,18H23V19H22zM23,18H24V19H23zM26,18H27V19H26zM30,18H31V19H30zM32,18H33V19H32zM33,18H34V19H33zM35,18H36V19H35zM36,18H37V19H36zM37,18H38V19H37zM38,18H39V19H38zM4,19H5V20H4zM9,19H10V20H9zM12,19H13V20H12zM13,19H14V20H13zM14,19H15V20H14zM18,19H19V20H18zM21,19H22V20H21zM22,19H23V20H22zM23,19H24V20H23zM24,19H25V20H24zM25,19H26V20H25zM28,19H29V20H28zM29,19H30V20H29zM31,19H32V20H31zM34,19H35V20H34zM37,19H38V20H37zM4,20H5V21H4zM5,20H6V21H5zM8,20H9V21H8zM10,20H11V21H10zM11,20H12V21H11zM12,20H13V21H12zM13,20H14V21H13zM18,20H19V21H18zM22,20H23V21H22zM25,20H26V21H25zM27,20H28V21H27zM28,20H29V21H28zM29,20H30V21H29zM32,20H33V21H32zM34,20H35V21H34zM36,20H37V21H36zM3,21H4V22H3zM5,21H6V22H5zM7,21H8V22H7zM9,21H10V22H9zM12,21H13V22H12zM14,21H15V22H14zM16,21H17V22H16zM19,21H20V22H19zM22,21H23V22H22zM23,21H24V22H23zM26,21H27V22H26zM29,21H30V22H29zM32,21H33V22H32zM33,21H34V22H33zM34,21H35V22H34zM36,21H37V22H36zM37,21H38V22H37zM3,22H4V23H3zM8,22H9V23H8zM9,22H10V23H9zM10,22H11V23H10zM11,22H12V23H11zM12,22H13V23H12zM14,22H15V23H14zM17,22H18V23H17zM18,22H19V23H18zM19,22H20V23H19zM20,22H21V23H20zM21,22H22V23H21zM23,22H24V23H23zM25,22H26V23H25zM30,22H31V23H30zM31,22H32V23H31zM32,22H33V23H32zM33,22H34V23H33zM36,22H37V23H36zM2,23H3V24H2zM3,23H4V24H3zM10,23H11V24H10zM14,23H15V24H14zM15,23H16V24H15zM17,23H18V24H17zM19,23H20V24H19zM23,23H24V24H23zM25,23H26V24H25zM27,23H28V24H27zM28,23H29V24H28zM29,23H30V24H29zM30,23H31V24H30zM33,23H34V24H33zM34,23H35V24H34zM37,23H38V24H37zM4,24H5V25H4zM6,24H7V25H6zM7,24H8V25H7zM8,24H9V25H8zM9,24H10V25H9zM10,24H11V25H10zM12,24H13V25H12zM13,24H14V25H13zM15,24H16V25H15zM17,24H18V25H17zM18,24H19V25H18zM20,24H21V25H20zM22,24H23V25H22zM25,24H26V25H25zM28,24H29V25H28zM29,24H30V25H29zM31,24H32V25H31zM33,24H34V25H33zM34,24H35V25H34zM35,24H36V25H35zM36,24H37V25H36zM3,25H4V26H3zM4,25H5V26H4zM5,25H6V26H5zM7,25H8V26H7zM9,25H10V26H9zM10,25H11V26H10zM14,25H15V26H14zM15,25H16V26H15zM16,25H17V26H16zM22,25H23V26H22zM23,25H24V26H23zM25,25H26V26H25zM28,25H29V26H28zM29,25H30V26H29zM30,25H31V26H30zM31,25H32V26H31zM32,25H33V26H32zM33,25H34V26H33zM34,25H35V26H34zM36,25H37V26H36zM38,25H39V26H38zM4,26H5V27H4zM6,26H7V27H6zM8,26H9V27H8zM9,26H10V27H9zM10,26H11V27H10zM15,26H16V27H15zM18,26H19V27H18zM21,26H22V27H21zM23,26H24V27H23zM24,26H25V27H24zM25,26H26V27H25zM26,26H27V27H26zM30,26H31V27H30zM32,26H33V27H32zM33,26H34V27H33zM35,26H36V27H35zM36,26H37V27H36zM37,26H38V27H37zM2,27H3V28H2zM4,27H5V28H4zM6,27H7V28H6zM9,27H10V28H9zM10,27H11V28H10zM15,27H16V28H15zM16,27H17V28H16zM20,27H21V28H20zM22,27H23V28H22zM23,27H24V28H23zM24,27H25V28H24zM25,27H26V28H25zM26,27H27V28H26zM27,27H28V28H27zM29,27H30V28H29zM31,27H32V28H31zM34,27H35V28H34zM6,28H7V29H6zM7,28H8V29H7zM8,28H9V29H8zM11,28H12V29H11zM12,28H13V29H12zM13,28H14V29H13zM15,28H16V29H15zM16,28H17V29H16zM17,28H18V29H17zM19,28H20V29H19zM22,28H23V29H22zM25,28H26V29H25zM27,28H28V29H27zM28,28H29V29H28zM29,28H30V29H29zM30,28H31V29H30zM32,28H33V29H32zM33,28H34V29H33zM4,29H5V30H4zM5,29H6V30H5zM7,29H8V30H7zM13,29H14V30H13zM14,29H15V30H14zM16,29H17V30H16zM17,29H18V30H17zM18,29H19V30H18zM19,29H20V30H19zM20,29H21V30H20zM23,29H24V30H23zM25,29H26V30H25zM26,29H27V30H26zM28,29H29V30H28zM29,29H30V30H29zM30,29H31V30H30zM32,29H33V30H32zM34,29H35V30H34zM36,29H37V30H36zM37,29H38V30H37zM38,29H39V30H38zM2,30H3V31H2zM3,30H4V31H3zM4,30H5V31H4zM5,30H6V31H5zM7,30H8V31H7zM8,30H9V31H8zM11,30H12V31H11zM18,30H19V31H18zM19,30H20V31H19zM20,30H21V31H20zM21,30H22V31H21zM23,30H24V31H23zM24,30H25V31H24zM26,30H27V31H26zM30,30H31V31H30zM31,30H32V31H31zM32,30H33V31H32zM33,30H34V31H33zM34,30H35V31H34zM36,30H37V31H36zM10,31H11V32H10zM13,31H14V32H13zM15,31H16V32H15zM17,31H18V32H17zM25,31H26V32H25zM28,31H29V32H28zM30,31H31V32H30zM34,31H35V32H34zM2,32H3V33H2zM3,32H4V33H3zM4,32H5V33H4zM5,32H6V33H5zM6,32H7V33H6zM7,32H8V33H7zM8,32H9V33H8zM10,32H11V33H10zM11,32H12V33H11zM12,32H13V33H12zM17,32H18V33H17zM19,32H20V33H19zM22,32H23V33H22zM24,32H25V33H24zM25,32H26V33H25zM30,32H31V33H30zM32,32H33V33H32zM34,32H35V33H34zM37,32H38V33H37zM2,33H3V34H2zM8,33H9V34H8zM11,33H12V34H11zM13,33H14V34H13zM14,33H15V34H14zM15,33H16V34H15zM16,33H17V34H16zM17,33H18V34H17zM19,33H20V34H19zM20,33H21V34H20zM21,33H22V34H21zM22,33H23V34H22zM23,33H24V34H23zM25,33H26V34H25zM26,33H27V34H26zM30,33H31V34H30zM34,33H35V34H34zM35,33H36V34H35zM36,33H37V34H36zM38,33H39V34H38zM2,34H3V35H2zM4,34H5V35H4zM5,34H6V35H5zM6,34H7V35H6zM8,34H9V35H8zM10,34H11V35H10zM11,34H12V35H11zM13,34H14V35H13zM14,34H15V35H14zM20,34H21V35H20zM23,34H24V35H23zM30,34H31V35H30zM31,34H32V35H31zM32,34H33V35H32zM33,34H34V35H33zM34,34H35V35H34zM35,34H36V35H35zM36,34H37V35H36zM38,34H39V35H38zM2,35H3V36H2zM4,35H5V36H4zM5,35H6V36H5zM6,35H7V36H6zM8,35H9V36H8zM11,35H12V36H11zM14,35H15V36H14zM16,35H17V36H16zM18,35H19V36H18zM22,35H23V36H22zM24,35H25V36H24zM25,35H26V36H25zM28,35H29V36H28zM30,35H31V36H30zM31,35H32V36H31zM32,35H33V36H32zM33,35H34V36H33zM36,35H37V36H36zM38,35H39V36H38zM2,36H3V37H2zM4,36H5V37H4zM5,36H6V37H5zM6,36H7V37H6zM8,36H9V37H8zM11,36H12V37H11zM15,36H16V37H15zM18,36H19V37H18zM19,36H20V37H19zM22,36H23V37H22zM24,36H25V37H24zM25,36H26V37H25zM26,36H27V37H26zM29,36H30V37H29zM30,36H31V37H30zM32,36H33V37H32zM35,36H36V37H35zM36,36H37V37H36zM2,37H3V38H2zM8,37H9V38H8zM14,37H15V38H14zM19,37H20V38H19zM22,37H23V38H22zM23,37H24V38H23zM25,37H26V38H25zM28,37H29V38H28zM31,37H32V38H31zM34,37H35V38H34zM36,37H37V38H36zM37,37H38V38H37zM2,38H3V39H2zM3,38H4V39H3zM4,38H5V39H4zM5,38H6V39H5zM6,38H7V39H6zM7,38H8V39H7zM8,38H9V39H8zM10,38H11V39H10zM11,38H12V39H11zM15,38H16V39H15zM16,38H17V39H16zM17,38H18V39H17zM18,38H19V39H18zM19,38H20V39H19zM20,38H21V39H20zM22,38H23V39H22zM23,38H24V39H23zM24,38H25V39H24zM25,38H26V39H25zM31,38H32V39H31zM32,38H33V39H32zM33,38H34V39H33zM36,38H37V39H36zM37,38H38V39H37zM38,38H39V39H38z" id="qr-path" fill="#000000" fill-opacity="1" fill-rule="nonzero" stroke="none" /></svg></div><a href="https://soorathep.github.io/course-2105623/teaching/2105623/exit.html?s=15" target="_blank" rel="noopener" style="color:${C.teal};font-size:18px;margin-top:10px">Open the Exit Ticket</a></div></div></div>`,
+notes:"Leave this slide on screen for the last minutes. The end-of-course feedback is the most useful input for the next offering."});
+
+/* ---------- deck engine ---------- */
+const N=S.length; let cur=0;
+function build(){const host=document.getElementById("slides");host.innerHTML="";
+ S.forEach((s,i)=>{const d=document.createElement("section");d.className="slide"+(s.cls?" "+s.cls:"");d.id="s"+(i+1);
+  d.innerHTML=(s.kicker&&!s.cls?`<p class="kicker">${s.kicker}</p>`:"")+(s.title?`<h1>${s.title}</h1>`:"")+s.html()+(s.py?`<div class="dhint">D · Python</div>`:"")+`<footer><span>${foot}</span><span>${i+1} / ${N}</span></footer>`;host.appendChild(d)})}
+function drawAll(){S.forEach(s=>{if(s.draw)try{s.draw()}catch(e){console.error(e)}})}
+function show(i){cur=Math.max(0,Math.min(N-1,i));document.querySelectorAll(".slide").forEach((el,k)=>el.classList.toggle("on",k===cur));
+ history.replaceState(null,"",location.search+"#"+(cur+1));fillDrawer();if(window.onSlideChange)onSlideChange(cur);const n=document.getElementById("notes");n.textContent=S[cur].notes||"No notes for this slide."}
+let CAP_ON=false;   // set by the narration player; reserves a caption band under the slide
+function fit(){const W=innerWidth,H=innerHeight,vp=document.getElementById("viewport"),dock=document.getElementById("dock"),cap=document.getElementById("cap");
+ const hasDock=dock.style.display==="flex",barH=hasDock?document.getElementById("nbar").offsetHeight:0;
+ let k=Math.min(W/1280,H/720)*0.98,capH=0,fs=0,dockH=0;
+ for(let it=0;it<3;it++){if(hasDock&&CAP_ON){const lines=k<0.6?4:2;fs=Math.max(12,Math.min(22,24*k));capH=Math.ceil(lines*fs*1.45)+4}else capH=0;
+  dockH=hasDock?capH+barH+(capH?6:0)+14:0;k=Math.min(W/1280,Math.max(120,H-dockH)/720)*0.98}
+ const h=720*k,pad=10,top=Math.max(0,(H-h-dockH)/2);
+ vp.style.top=(top-pad)+"px";vp.style.bottom="auto";vp.style.height=(h+2*pad)+"px";
+ document.getElementById("stage").style.transform=`scale(${k})`;
+ if(hasDock){dock.style.top=(top+h+6)+"px";cap.style.display=CAP_ON?"block":"none";cap.style.width=Math.min(1280*k,W-16)+"px";cap.style.height=capH+"px";cap.dataset.fs=fs;if(window.capRefit)capRefit()}}
+function fillDrawer(){const p=S[cur].py,dr=document.getElementById("drawer");
+ if(!p){document.getElementById("dTitle").textContent="No Python on this slide";document.getElementById("dSub").textContent="Slides with a 'D · Python' tag have code and output.";document.getElementById("dCode").value="";document.getElementById("dOut").textContent="";return}
+ document.getElementById("dTitle").textContent=p.title;document.getElementById("dSub").textContent=p.sub||"";document.getElementById("dCode").value=p.code;
+ try{document.getElementById("dOut").textContent=p.out()}catch(e){document.getElementById("dOut").textContent=String(e)}
+ const m=document.getElementById("dMode");m.className="pill "+(MODE==="live"?"live":"rec");m.textContent=MODE==="live"?"LIVE RUN":"RECORDED RUN"}
+document.addEventListener("keydown",e=>{if(["INPUT","TEXTAREA"].includes(e.target.tagName)){if(e.key==="Escape")e.target.blur();return}const k=e.key;
+ if(["ArrowRight","PageDown"," "].includes(k)){e.preventDefault();show(cur+1)}else if(["ArrowLeft","PageUp"].includes(k)){e.preventDefault();show(cur-1)}
+ else if(k==="Home")show(0);else if(k==="End")show(N-1);else if(k==="d"||k==="D")document.getElementById("drawer").classList.toggle("open");
+ else if(k==="f"||k==="F"){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+ else if(k==="p"||k==="P"){if(window.narrToggle)narrToggle()}
+ else if(k==="c"||k==="C"){if(window.ccCycle)ccCycle()}
+ else if(k==="n"||k==="N"){const n=document.getElementById("notes");n.style.display=n.style.display==="block"?"none":"block"}});
+document.getElementById("stage").addEventListener("click",e=>{if(e.target.closest("button,input,select,#drawer,a,#startov"))return;const r=e.currentTarget.getBoundingClientRect();(e.clientX-r.left)>r.width*0.5?show(cur+1):show(cur-1)});
+addEventListener("resize",fit);
+
+/* ---------- live Python (Pyodide) ---------- */
+let py=null;
+async function ensurePy(msg){if(py)return py;msg.textContent="Loading Python in the browser (first time about 5–10 s) ...";
+ if(!window.loadPyodide){await new Promise((ok,bad)=>{const s=document.createElement("script");s.src="https://cdn.jsdelivr.net/pyodide/v0.29.3/full/pyodide.js";s.onload=ok;s.onerror=()=>bad(new Error("could not load Pyodide"));document.head.appendChild(s)})}
+ const p=await loadPyodide();await p.loadPackage(["numpy","scipy"]);
+ const src=LAB_SRC||await (await fetch(LAB_FILE)).text();p.FS.writeFile("project_checks.py",src);
+ await p.runPythonAsync('import sys\nsys.path.insert(0, ".")\nfrom project_checks import *');py=p;return p}
+async function runCode(){const msg=document.getElementById("liveMsg"),out=document.getElementById("dOut"),t0=performance.now();
+ try{const p=await ensurePy(msg);msg.textContent="Running ...";const buf=[];p.setStdout({batched:s=>buf.push(s)});p.setStderr({batched:s=>buf.push(s)});
+  try{await p.runPythonAsync(document.getElementById("dCode").value)}catch(e){buf.push(String(e.message||e).split("\n").slice(-4).join("\n"))}
+  out.textContent=buf.join("\n")||"(no output)";const m=document.getElementById("dMode");m.className="pill live";m.textContent="LIVE OUTPUT";
+  msg.textContent=`Ran in ${((performance.now()-t0)/1000).toFixed(1)} s in the browser`}
+ catch(e){msg.textContent="Python could not start: "+e.message+". The recorded output is still available."}}
+async function runLive(){const msg=document.getElementById("liveMsg"),t0=performance.now();
+ try{const p=await ensurePy(msg);msg.textContent="Solving every model ...";
+  const out=await p.runPythonAsync('import importlib, json\nimport project_checks as lab\nimportlib.reload(lab)\njson.dumps(lab.classroom_results())');
+  R=JSON.parse(out);MODE="live";drawAll();fillDrawer();msg.textContent=`All slides now show a live run (${((performance.now()-t0)/1000).toFixed(1)} s, SciPy ${R.meta.scipy})`}
+ catch(e){msg.textContent="Live run failed: "+e.message+". The recorded run is still shown."}}
+document.getElementById("runCode").onclick=runCode;
+document.getElementById("runLive").onclick=runLive;
+document.getElementById("useRec").onclick=()=>{R=RECORDED;MODE="recorded";drawAll();fillDrawer();document.getElementById("liveMsg").textContent="Showing the recorded run."};
+
+/* ---------- narration and captions ---------- */
+const NARR = {
+ "voice": "en-US-GuyNeural",
+ "rate": "-5%",
+ "provider": "Microsoft Edge neural speech (edge-tts)",
+ "synthetic_voice": true,
+ "total_seconds": 941.5,
+ "slides": [
+  {
+   "n": 1,
+   "file": "audio/slide-01.mp3",
+   "duration": 35.832,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.879,
+     "en": "Welcome to Session 15, the last session of Optimization of Chemical Processes.",
+     "th": "ยินดีต้อนรับสู่คาบที่ 15 คาบสุดท้ายของวิชา Optimization of Chemical Processes"
+    },
+    {
+     "s": 5.879,
+     "e": 9.277,
+     "en": "Most of today belongs to you: the project presentations.",
+     "th": "เวลาส่วนใหญ่ของวันนี้เป็นของคุณ คือการนำเสนอโครงงาน"
+    },
+    {
+     "s": 9.277,
+     "e": 20.066,
+     "en": "These slides set up one checklist for every model in the course, show how to use it to review a project, yours or someone else's, and close with what the fifteen sessions add up to.",
+     "th": "สไลด์ชุดนี้วางรายการตรวจหนึ่งชุดสำหรับทุกโมเดลในรายวิชา แสดงวิธีใช้รายการนี้ทบทวนโครงงาน ทั้งของคุณเองและของผู้อื่น และปิดท้ายด้วยสิ่งที่สิบห้าคาบรวมกันแล้วให้คุณ"
+    },
+    {
+     "s": 20.066,
+     "e": 24.618,
+     "en": "The narration is shorter than in other sessions, about fifteen minutes.",
+     "th": "คำบรรยายสั้นกว่าคาบอื่น ประมาณสิบห้านาที"
+    },
+    {
+     "s": 24.618,
+     "e": 29.719,
+     "en": "If you are studying on your own because class was cancelled, everything here works for you too:",
+     "th": "ถ้าคุณเรียนเองเพราะงดชั้นเรียน ทุกอย่างในนี้ใช้ได้กับคุณเช่นกัน"
+    },
+    {
+     "s": 29.719,
+     "e": 35.776,
+     "en": "the practice review in the lab replaces the presentations, and you can review your own project with the same form.",
+     "th": "การฝึกทบทวนใน lab ใช้แทนการนำเสนอ และคุณทบทวนโครงงานของตัวเองได้ด้วยแบบเดียวกัน"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "file": "audio/slide-02.mp3",
+   "duration": 42.072,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.918,
+     "en": "Here is the plan for three hours.",
+     "th": "นี่คือแผนสำหรับสามชั่วโมง"
+    },
+    {
+     "s": 2.918,
+     "e": 9.421,
+     "en": "The first fifteen minutes set up the verification checklist, how to review, and a short practice review.",
+     "th": "สิบห้านาทีแรกเป็นการวางรายการตรวจ วิธีทบทวน และการฝึกทบทวนสั้น ๆ"
+    },
+    {
+     "s": 9.421,
+     "e": 21.184,
+     "en": "Then come two blocks of presentations, an hour each, with a break between them. Each group has twelve minutes, plus three for questions, and reviewers fill in a review form as they listen.",
+     "th": "จากนั้นเป็นการนำเสนอสองช่วง ช่วงละหนึ่งชั่วโมง โดยมีพักระหว่างกลาง แต่ละกลุ่มมีเวลาสิบสองนาที และอีกสามนาทีสำหรับคำถาม ผู้ทบทวนกรอกแบบทบทวนระหว่างฟัง"
+    },
+    {
+     "s": 21.184,
+     "e": 28.263,
+     "en": "The last part is a wrap-up of the course, then the reviews are submitted with the Exit Ticket and the end-of-course feedback.",
+     "th": "ส่วนสุดท้ายเป็นการสรุปรายวิชา แล้วส่งแบบทบทวนพร้อม Exit Ticket และ feedback ของทั้งรายวิชา"
+    },
+    {
+     "s": 28.263,
+     "e": 32.855,
+     "en": "The times for each group are set by the chair at the start of the session.",
+     "th": "เวลาของแต่ละกลุ่มจะกำหนดโดยประธานตอนเริ่มคาบ"
+    },
+    {
+     "s": 32.855,
+     "e": 42.0,
+     "en": "If you study on your own, listen to the narration, then do Lab 15, a practice review of a short report, and apply the same checklist to your own project.",
+     "th": "ถ้าเรียนเอง ให้ฟังคำบรรยาย แล้วทำ Lab 15 ซึ่งเป็นการฝึกทบทวนรายงานสั้น ๆ และใช้รายการตรวจเดียวกันกับโครงงานของคุณเอง"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "file": "audio/slide-03.mp3",
+   "duration": 75.408,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.642,
+     "en": "What must your project show?",
+     "th": "โครงงานของคุณต้องแสดงอะไรบ้าง"
+    },
+    {
+     "s": 2.642,
+     "e": 13.697,
+     "en": "There are five deliverables. The presentation: twelve minutes plus three for questions, covering the problem, the model, how you know it is right, the results and the limits.",
+     "th": "มีสิ่งที่ต้องส่งห้าอย่าง การนำเสนอ สิบสองนาทีบวกสามนาทีสำหรับคำถาม ครอบคลุมปัญหา โมเดล วิธีที่คุณรู้ว่ามันถูก ผลลัพธ์ และข้อจำกัด"
+    },
+    {
+     "s": 13.697,
+     "e": 22.632,
+     "en": "The report: the specification with units, the data and their sources, the model and its class, the results, the verification and a discussion.",
+     "th": "รายงาน ได้แก่ ข้อกำหนดพร้อมหน่วย ข้อมูลและแหล่งที่มา โมเดลและประเภทของมัน ผลลัพธ์ การตรวจสอบ และการอภิปราย"
+    },
+    {
+     "s": 22.632,
+     "e": 33.428,
+     "en": "The code, which runs from a clean start and prints the plan as a table. The tests, written from the specification, with their results. And the disclosure:",
+     "th": "โค้ดที่รันได้ตั้งแต่เริ่มใหม่และพิมพ์แผนเป็นตาราง การทดสอบที่เขียนจากข้อกำหนดพร้อมผล และการเปิดเผยว่าเครื่องมือ"
+    },
+    {
+     "s": 33.428,
+     "e": 36.632,
+     "en": "what an AI tool drafted, and what you checked.",
+     "th": "AI ร่างอะไรไว้ และคุณตรวจอะไร"
+    },
+    {
+     "s": 36.632,
+     "e": 46.934,
+     "en": "The question a reader asks of every result is the same: how do you know? The checklist turns that question into twelve items, each taught in an earlier session.",
+     "th": "คำถามที่ผู้อ่านถามกับทุกผลลัพธ์เหมือนกัน คือคุณรู้ได้อย่างไร รายการตรวจเปลี่ยนคำถามนั้นเป็นสิบสองข้อ แต่ละข้อสอนไว้ในคาบก่อนหน้า"
+    },
+    {
+     "s": 46.934,
+     "e": 57.316,
+     "en": "A project does not need every item. A deterministic L P has no front and no scenarios. Say which items apply, and why.",
+     "th": "โครงงานไม่จำเป็นต้องมีทุกข้อ LP ที่ไม่มีความไม่แน่นอนไม่มีแนวหน้าและไม่มีสถานการณ์ ให้บอกว่าข้อใดใช้ได้และเพราะอะไร"
+    },
+    {
+     "s": 57.316,
+     "e": 62.153,
+     "en": "A note on scope. A good project is small enough to verify completely.",
+     "th": "หมายเหตุเรื่องขอบเขต โครงงานที่ดีมีขนาดเล็กพอจะตรวจสอบได้ครบ"
+    },
+    {
+     "s": 62.153,
+     "e": 71.342,
+     "en": "A model with ten variables that is checked item by item teaches more, and convinces more, than a model with ten thousand that is not.",
+     "th": "โมเดลที่มีสิบตัวแปรซึ่งตรวจทีละข้อ สอนได้มากกว่าและน่าเชื่อกว่าโมเดลที่มีหนึ่งหมื่นตัวแปรที่ไม่ได้ตรวจ"
+    },
+    {
+     "s": 71.342,
+     "e": 75.342,
+     "en": "The deadline and the form of submission are on the course page.",
+     "th": "กำหนดส่งและรูปแบบการส่งอยู่ในหน้าเว็บของรายวิชา"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "file": "audio/slide-04.mp3",
+   "duration": 86.64,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.395,
+     "en": "Here is the checklist. Click an item to see what to show, where it was taught, and a typical failure.",
+     "th": "นี่คือรายการตรวจ คลิกแต่ละข้อเพื่อดูว่าต้องแสดงอะไร สอนไว้ที่ใด และความผิดพลาดที่พบบ่อย"
+    },
+    {
+     "s": 7.395,
+     "e": 16.697,
+     "en": "Items one to four are about the model: the specification with units, the data with sources and dates, the class of the model and why, and balances that close.",
+     "th": "ข้อหนึ่งถึงสี่เกี่ยวกับโมเดล ได้แก่ ข้อกำหนดพร้อมหน่วย ข้อมูลพร้อมแหล่งที่มาและวันที่ ประเภทของโมเดลและเหตุผล และสมดุลที่ปิดได้"
+    },
+    {
+     "s": 16.697,
+     "e": 19.096,
+     "en": "Items five to eight are about the answer:",
+     "th": "ข้อห้าถึงแปดเกี่ยวกับคำตอบ ได้แก่"
+    },
+    {
+     "s": 19.096,
+     "e": 29.947,
+     "en": "the objective recomputed from the plan with the specification's data, a certificate rather than a status message, multipliers with units and sign, and a correct statement of global or local.",
+     "th": "ค่าเป้าหมายที่คำนวณใหม่จากแผนด้วยข้อมูลในข้อกำหนด certificate แทนข้อความสถานะ ตัวคูณพร้อมหน่วยและเครื่องหมาย และการบอกอย่างถูกต้องว่าเป็นคำตอบแบบ global หรือ local"
+    },
+    {
+     "s": 29.947,
+     "e": 36.118,
+     "en": "Items nine and ten are about what the model leaves out: uncertain data, and several objectives.",
+     "th": "ข้อเก้าและสิบเกี่ยวกับสิ่งที่โมเดลไม่ได้รวมไว้ คือข้อมูลที่ไม่แน่นอน และการมีหลายเป้าหมาย"
+    },
+    {
+     "s": 36.118,
+     "e": 45.145,
+     "en": "Items eleven and twelve are about the evidence: tests written from the specification, and reporting, with code, versions and the AI disclosure.",
+     "th": "ข้อสิบเอ็ดและสิบสองเกี่ยวกับหลักฐาน ได้แก่ การทดสอบที่เขียนจากข้อกำหนด และการรายงานพร้อมโค้ด รุ่นของซอฟต์แวร์ และการเปิดเผยการใช้ AI"
+    },
+    {
+     "s": 45.145,
+     "e": 50.562,
+     "en": "Two items deserve a word. Item five, recomputing the objective, sounds trivial.",
+     "th": "มีสองข้อที่ควรพูดถึง ข้อห้า การคำนวณค่าเป้าหมายใหม่ ฟังดูง่าย"
+    },
+    {
+     "s": 50.562,
+     "e": 61.329,
+     "en": "It catches more errors than most other checks, because it compares the code's numbers with the specification's numbers, which is exactly where drafts go wrong.",
+     "th": "แต่จับข้อผิดพลาดได้มากกว่าการตรวจอื่นส่วนใหญ่ เพราะเปรียบเทียบตัวเลขในโค้ดกับตัวเลขในข้อกำหนด ซึ่งเป็นจุดที่ร่างมักผิดพอดี"
+    },
+    {
+     "s": 61.329,
+     "e": 73.605,
+     "en": "Item twelve asks for versions. Solvers change between releases, and a different version may stop at a different point. Recording the version lets a reader reproduce the run.",
+     "th": "ข้อสิบสองขอรุ่นของซอฟต์แวร์ solver เปลี่ยนไปตามรุ่น และรุ่นที่ต่างกันอาจหยุดที่จุดต่างกัน การบันทึกรุ่นทำให้ผู้อ่านทำซ้ำการรันได้"
+    },
+    {
+     "s": 73.605,
+     "e": 76.463,
+     "en": "Each failure listed here happened in this course:",
+     "th": "ความผิดพลาดที่แสดงไว้แต่ละข้อเกิดขึ้นจริงในรายวิชานี้"
+    },
+    {
+     "s": 76.463,
+     "e": 86.579,
+     "en": "the units in Session 14's shipping plan, the transposed cost matrix, Session 9's false successes, and a multiplier read in the wrong units, which you will meet again in the lab.",
+     "th": "เช่น หน่วยในแผนการขนส่งของคาบที่ 14 เมทริกซ์ต้นทุนที่ทรานสโพส การรายงานว่าสำเร็จอย่างผิด ๆ ในคาบที่ 9 และตัวคูณที่อ่านผิดหน่วย ซึ่งคุณจะพบอีกครั้งใน lab"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "file": "audio/slide-05.mp3",
+   "duration": 99.696,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.026,
+     "en": "Item six asks for a certificate. What counts as one depends on the class of the problem.",
+     "th": "ข้อหกขอ certificate สิ่งที่นับเป็น certificate ขึ้นกับประเภทของปัญหา"
+    },
+    {
+     "s": 7.026,
+     "e": 18.632,
+     "en": "For an L P, the primal and dual values are equal, and the residuals are near zero: Session 6. For a MILP, the MIP gap at the end: Session 3.",
+     "th": "สำหรับ LP ค่า primal และ dual เท่ากัน และ residual ใกล้ศูนย์ ตามคาบที่ 6 สำหรับ MILP คือ MIP gap ตอนจบ ตามคาบที่ 3"
+    },
+    {
+     "s": 18.632,
+     "e": 24.825,
+     "en": "For a smooth NLP, the KKT residuals and the multipliers at the answer: Sessions 7 and 9.",
+     "th": "สำหรับ NLP ที่เรียบ คือ residual ของ KKT และตัวคูณที่คำตอบ ตามคาบที่ 7 และ 9"
+    },
+    {
+     "s": 24.825,
+     "e": 35.053,
+     "en": "For a nonconvex problem, a global bound and its gap, or an honest statement that the answer is local, with the number of starts: Sessions 5 and 13.",
+     "th": "สำหรับปัญหา nonconvex คือขอบเขต global และช่องว่าง หรือการบอกตรง ๆ ว่าเป็นคำตอบเฉพาะที่ พร้อมจำนวนจุดเริ่มต้น ตามคาบที่ 5 และ 13"
+    },
+    {
+     "s": 35.053,
+     "e": 49.415,
+     "en": "For estimation, residuals, standard errors and correlations. For dynamic problems, an answer that stops changing as the grid is refined. Under uncertainty, an evaluation on fresh scenarios.",
+     "th": "สำหรับการประมาณค่าพารามิเตอร์ คือ residual ค่าคลาดเคลื่อนมาตรฐาน และสหสัมพันธ์ สำหรับปัญหาเชิงพลวัต คือคำตอบที่ไม่เปลี่ยนเมื่อทำ grid ละเอียดขึ้น ภายใต้ความไม่แน่นอน คือการประเมินกับสถานการณ์ใหม่"
+    },
+    {
+     "s": 49.415,
+     "e": 53.724,
+     "en": "And for a black box, replicates at the recommended point.",
+     "th": "และสำหรับ black box คือการทดลองซ้ำที่จุดที่แนะนำ"
+    },
+    {
+     "s": 53.724,
+     "e": 66.166,
+     "en": "A certificate is cheap. For an L P, it is one dot product of the marginals with the right-hand sides. For an NLP, it is the residuals you computed in Session 7.",
+     "th": "certificate มีต้นทุนต่ำ สำหรับ LP เป็นเพียงผลคูณจุดของ marginal กับค่าด้านขวา สำหรับ NLP คือ residual ที่คุณคำนวณในคาบที่ 7"
+    },
+    {
+     "s": 66.166,
+     "e": 70.184,
+     "en": "There is no reason to report a status message alone.",
+     "th": "จึงไม่มีเหตุผลที่จะรายงานเพียงข้อความสถานะ"
+    },
+    {
+     "s": 70.184,
+     "e": 82.93,
+     "en": "The panel shows the simplest case, a small L P. Its primal value is minus 1,000, written as a minimization, and the dual value built from the marginals is also minus 1,000.",
+     "th": "กรอบด้านขวาแสดงกรณีที่ง่ายที่สุด คือ LP ขนาดเล็ก ค่า primal เป็นลบ 1,000 เมื่อเขียนเป็นการหาค่าต่ำสุด และค่า dual ที่สร้างจาก marginal ก็เป็นลบ 1,000"
+    },
+    {
+     "s": 82.93,
+     "e": 89.855,
+     "en": "The gap is zero, so the plan, 20 and 20, is optimal, and both resources are worth 10 per unit.",
+     "th": "ช่องว่างเป็นศูนย์ แผน 20 และ 20 จึงเหมาะสมที่สุด และทรัพยากรทั้งสองมีมูลค่า 10 ต่อหน่วย"
+    },
+    {
+     "s": 89.855,
+     "e": 99.632,
+     "en": "Press D. The function lp certificate in today's Python file does this for any L P solved with HiGHS, and you can paste it into your project.",
+     "th": "กด D ฟังก์ชัน lp_certificate ในไฟล์ Python ของวันนี้ทำสิ่งนี้ได้กับ LP ใด ๆ ที่แก้ด้วย HiGHS และคุณนำไปใช้ในโครงงานได้เลย"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "file": "audio/slide-06.mp3",
+   "duration": 64.752,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.024,
+     "en": "How do you review a project well?",
+     "th": "จะทบทวนโครงงานให้ดีได้อย่างไร"
+    },
+    {
+     "s": 3.024,
+     "e": 13.961,
+     "en": "Be specific. Name the item, the slide or table, and the number. The stream table loses two tonnes a day is useful; check the balances is not.",
+     "th": "ให้เจาะจง ระบุข้อ สไลด์หรือตาราง และตัวเลข การบอกว่าตารางสายการไหลหายไปสองตันต่อวันมีประโยชน์ การบอกว่าให้ตรวจสมดุลไม่มีประโยชน์"
+    },
+    {
+     "s": 13.961,
+     "e": 19.461,
+     "en": "Give evidence. When you can, recompute one number yourself.",
+     "th": "ให้หลักฐาน ถ้าทำได้ ให้คำนวณตัวเลขหนึ่งตัวใหม่ด้วยตัวเอง"
+    },
+    {
+     "s": 19.461,
+     "e": 33.013,
+     "en": "Rank by severity. A must-fix is something that may make the answer wrong. A should-fix is missing evidence for an answer that may well be right. Minor points are about presentation.",
+     "th": "จัดลำดับตามความรุนแรง must-fix คือสิ่งที่อาจทำให้คำตอบผิด should-fix คือหลักฐานที่ขาดไปสำหรับคำตอบที่อาจถูกอยู่แล้ว ส่วนประเด็นเล็กน้อยเกี่ยวกับการนำเสนอ"
+    },
+    {
+     "s": 33.013,
+     "e": 41.529,
+     "en": "Start with a strength, and mean it. And ask one question the group can answer with a number. The panel gives examples that work:",
+     "th": "เริ่มด้วยจุดแข็ง และพูดอย่างจริงใจ และถามหนึ่งคำถามที่กลุ่มตอบได้ด้วยตัวเลข กรอบด้านขวามีตัวอย่างที่ใช้ได้ดี เช่น ค่า"
+    },
+    {
+     "s": 41.529,
+     "e": 48.526,
+     "en": "what is the dual value, how many starts reached this answer, what happens if a price rises twenty percent.",
+     "th": "dual เป็นเท่าใด มีจุดเริ่มต้นกี่จุดที่ได้คำตอบนี้ หรือถ้าราคาเพิ่มยี่สิบเปอร์เซ็นต์จะเกิดอะไรขึ้น"
+    },
+    {
+     "s": 48.526,
+     "e": 55.487,
+     "en": "Review the work, not the people. Reviews are passed to each group without reviewers' names.",
+     "th": "ทบทวนที่งาน ไม่ใช่ที่ตัวบุคคล แบบทบทวนจะส่งต่อให้แต่ละกลุ่มโดยไม่มีชื่อผู้ทบทวน"
+    },
+    {
+     "s": 55.487,
+     "e": 64.671,
+     "en": "Reviewing is also how you learn to check your own work. The errors you find in another group's model are the ones you will start to look for in yours.",
+     "th": "การทบทวนยังเป็นวิธีเรียนรู้การตรวจงานของตัวเองด้วย ข้อผิดพลาดที่คุณพบในโมเดลของกลุ่มอื่นคือสิ่งที่คุณจะเริ่มมองหาในโมเดลของคุณ"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "file": "audio/slide-07.mp3",
+   "duration": 46.176,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.274,
+     "en": "A word on the twelve minutes themselves.",
+     "th": "พูดถึงเวลาสิบสองนาทีสักเล็กน้อย"
+    },
+    {
+     "s": 3.274,
+     "e": 13.733,
+     "en": "A structure that works: two minutes on the problem, in words and units; three on the model, its variables, rows, class, size and data; three on verification; three on results;",
+     "th": "โครงสร้างที่ได้ผลคือ สองนาทีสำหรับปัญหาเป็นถ้อยคำพร้อมหน่วย สามนาทีสำหรับโมเดล ตัวแปร ข้อจำกัด ประเภท ขนาด และข้อมูล สามนาทีสำหรับการตรวจสอบ สามนาทีสำหรับผลลัพธ์"
+    },
+    {
+     "s": 13.733,
+     "e": 16.645,
+     "en": "and one on the limits and what you would do next.",
+     "th": "และหนึ่งนาทีสำหรับข้อจำกัดและสิ่งที่จะทำต่อ"
+    },
+    {
+     "s": 16.645,
+     "e": 24.5,
+     "en": "Put the verification before the results. An audience that has seen the certificate trusts the numbers that follow.",
+     "th": "ให้การตรวจสอบมาก่อนผลลัพธ์ ผู้ฟังที่เห็น certificate แล้วจะเชื่อตัวเลขที่ตามมามากขึ้น"
+    },
+    {
+     "s": 24.5,
+     "e": 32.079,
+     "en": "Show the plan as a table a manager can read, with units and a sensible number of digits, not the solver's raw output.",
+     "th": "แสดงแผนเป็นตารางที่ผู้จัดการอ่านได้ พร้อมหน่วยและจำนวนหลักที่เหมาะสม ไม่ใช่ผลดิบจาก solver"
+    },
+    {
+     "s": 32.079,
+     "e": 40.842,
+     "en": "For the questions, repeat the question before you answer it, answer with a number where you can, and if you do not know, say what you would compute to find out.",
+     "th": "สำหรับช่วงคำถาม ให้ทวนคำถามก่อนตอบ ตอบด้วยตัวเลขเมื่อทำได้ และถ้าไม่รู้ ให้บอกว่าจะคำนวณอะไรเพื่อหาคำตอบ"
+    },
+    {
+     "s": 40.842,
+     "e": 46.105,
+     "en": "And rehearse with a clock. The chair stops you at twelve minutes.",
+     "th": "และซ้อมโดยจับเวลา ประธานจะหยุดคุณที่สิบสองนาที"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "file": "audio/slide-08.mp3",
+   "duration": 55.8,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 12.013,
+     "en": "Now a practice review, before the real ones. Group A's report excerpt is on the left: steam from two boilers and a back-pressure turbine, a small nonlinear model with synthetic data.",
+     "th": "ต่อไปเป็นการฝึกทบทวนก่อนของจริง ตัวอย่างรายงานของกลุ่ม A อยู่ทางซ้าย เป็นไอน้ำจากหม้อไอน้ำสองเครื่องและกังหันแบบ back-pressure เป็นโมเดลไม่เชิงเส้นขนาดเล็กที่ใช้ข้อมูลสังเคราะห์"
+    },
+    {
+     "s": 12.013,
+     "e": 22.145,
+     "en": "Go through the twelve items. Which pass, which fail, and which are not shown? For each failure, decide whether it is a must-fix.",
+     "th": "ไล่ดูทั้งสิบสองข้อ ข้อใดผ่าน ข้อใดไม่ผ่าน และข้อใดไม่ได้แสดง สำหรับข้อที่ไม่ผ่าน ให้ตัดสินว่าเป็น must-fix หรือไม่"
+    },
+    {
+     "s": 22.145,
+     "e": 28.618,
+     "en": "Recompute what you can. The cost and the steam balance can be checked in your head.",
+     "th": "คำนวณใหม่ในส่วนที่ทำได้ ต้นทุนและสมดุลไอน้ำตรวจได้ในใจ"
+    },
+    {
+     "s": 28.618,
+     "e": 35.776,
+     "en": "Notice also what Group A did well. A review that lists only failures misses half of its job.",
+     "th": "สังเกตด้วยว่ากลุ่ม A ทำอะไรได้ดี การทบทวนที่ระบุเพียงข้อผิดพลาดทำหน้าที่ได้เพียงครึ่งเดียว"
+    },
+    {
+     "s": 35.776,
+     "e": 41.658,
+     "en": "Pause the narration now; take five minutes. Then press Show findings.",
+     "th": "หยุดคำบรรยายตอนนี้ ใช้เวลาห้านาที แล้วกด Show findings"
+    },
+    {
+     "s": 41.658,
+     "e": 50.957,
+     "en": "Group A's weak point is the evidence for optimality: a status message, one local solver on a nonconvex model, and a multiplier without units.",
+     "th": "จุดอ่อนของกลุ่ม A คือหลักฐานว่าคำตอบดีที่สุด มีเพียงข้อความสถานะ solver เฉพาะที่ตัวเดียวบนโมเดล nonconvex และตัวคูณที่ไม่มีหน่วย"
+    },
+    {
+     "s": 50.957,
+     "e": 55.737,
+     "en": "The arithmetic, the balance, the price sweep and the disclosure are fine.",
+     "th": "ส่วนการคำนวณ สมดุล การไล่ราคา และการเปิดเผยการใช้ AI ไม่มีปัญหา"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "file": "audio/slide-09.mp3",
+   "duration": 42.72,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.039,
+     "en": "Now the presentations. Open the lab page, Part B, and choose the group you review.",
+     "th": "ต่อไปเป็นการนำเสนอ เปิดหน้า lab ส่วน B และเลือกกลุ่มที่คุณทบทวน"
+    },
+    {
+     "s": 7.039,
+     "e": 12.303,
+     "en": "Mark each checklist item as you listen: pass, fail, not shown, or not applicable.",
+     "th": "ทำเครื่องหมายแต่ละข้อขณะฟัง ว่าผ่าน ไม่ผ่าน ไม่ได้แสดง หรือไม่เกี่ยวข้อง"
+    },
+    {
+     "s": 12.303,
+     "e": 20.263,
+     "en": "Then write one strength, one must-fix, and one question that can be answered with a number, and ask it in the three minutes.",
+     "th": "แล้วเขียนจุดแข็งหนึ่งข้อ must-fix หนึ่งข้อ และคำถามหนึ่งข้อที่ตอบได้ด้วยตัวเลข และถามในช่วงสามนาที"
+    },
+    {
+     "s": 20.263,
+     "e": 24.763,
+     "en": "Reviewers are assigned so that every group gets at least two reviews.",
+     "th": "ผู้ทบทวนถูกจัดให้ทุกกลุ่มได้รับการทบทวนอย่างน้อยสองฉบับ"
+    },
+    {
+     "s": 24.763,
+     "e": 32.684,
+     "en": "Chairs start each talk on time, give a one-minute warning, and keep the questions to three minutes, so that every group gets the same time.",
+     "th": "ประธานเริ่มแต่ละการนำเสนอตรงเวลา เตือนเมื่อเหลือหนึ่งนาที และจำกัดช่วงคำถามไว้สามนาที เพื่อให้ทุกกลุ่มได้เวลาเท่ากัน"
+    },
+    {
+     "s": 32.684,
+     "e": 40.25,
+     "en": "If you study on your own, use the practice report in Lab 15 instead, and then review your own project with the same form.",
+     "th": "ถ้าเรียนเอง ให้ใช้รายงานฝึกใน Lab 15 แทน แล้วทบทวนโครงงานของคุณเองด้วยแบบเดียวกัน"
+    },
+    {
+     "s": 40.25,
+     "e": 42.645,
+     "en": "Pause the narration now.",
+     "th": "หยุดคำบรรยายตอนนี้"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "file": "audio/slide-10.mp3",
+   "duration": 8.088,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.432,
+     "en": "Take a ten-minute break.",
+     "th": "พักสิบนาที"
+    },
+    {
+     "s": 2.432,
+     "e": 8.026,
+     "en": "Use the first minutes to finish the reviews of the first block, while the details are fresh.",
+     "th": "ใช้ช่วงแรกของเวลาพักเขียนแบบทบทวนของช่วงแรกให้เสร็จ ขณะที่รายละเอียดยังจำได้"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "file": "audio/slide-11.mp3",
+   "duration": 34.32,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.103,
+     "en": "The second block of presentations, with the same form.",
+     "th": "การนำเสนอช่วงที่สอง ใช้แบบทบทวนเดียวกัน"
+    },
+    {
+     "s": 4.103,
+     "e": 11.329,
+     "en": "Choose the next group on the lab page, mark the twelve items, and write one strength, one must-fix and one question.",
+     "th": "เลือกกลุ่มถัดไปในหน้า lab ทำเครื่องหมายทั้งสิบสองข้อ และเขียนจุดแข็ง must-fix และคำถามอย่างละหนึ่งข้อ"
+    },
+    {
+     "s": 11.329,
+     "e": 21.507,
+     "en": "Remember the distinction. A must-fix may make the answer wrong: a balance that does not close, a unit, a claim of global optimality without a bound.",
+     "th": "จำความแตกต่างไว้ must-fix อาจทำให้คำตอบผิด เช่น สมดุลที่ไม่ปิด หน่วย หรือการอ้างว่าเป็น global optimum โดยไม่มีขอบเขต"
+    },
+    {
+     "s": 21.507,
+     "e": 25.947,
+     "en": "A should-fix is missing evidence for an answer that may be right.",
+     "th": "should-fix คือหลักฐานที่ขาดสำหรับคำตอบที่อาจถูก"
+    },
+    {
+     "s": 25.947,
+     "e": 31.855,
+     "en": "After the last talk, finish your reviews before the wrap-up begins; it takes five minutes.",
+     "th": "หลังการนำเสนอสุดท้าย ให้เขียนแบบทบทวนให้เสร็จก่อนเริ่มการสรุป ใช้เวลาห้านาที"
+    },
+    {
+     "s": 31.855,
+     "e": 34.25,
+     "en": "Pause the narration now.",
+     "th": "หยุดคำบรรยายตอนนี้"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "file": "audio/slide-12.mp3",
+   "duration": 63.72,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 9.961,
+     "en": "Part four looks back. The table puts fourteen sessions on one page: the topic, the class of problem and method, and the evidence you learned to show.",
+     "th": "ส่วนที่สี่มองย้อนกลับ ตารางรวมสิบสี่คาบไว้ในหน้าเดียว ได้แก่ หัวข้อ ประเภทของปัญหาและวิธี และหลักฐานที่คุณได้เรียนรู้ที่จะแสดง"
+    },
+    {
+     "s": 9.961,
+     "e": 18.855,
+     "en": "Sessions 1 to 4 were about building models: from a specification to an L P, blending and stream tables, binaries and logic, and time.",
+     "th": "คาบที่ 1 ถึง 4 เกี่ยวกับการสร้างโมเดล ตั้งแต่ข้อกำหนดไปสู่ LP การผสมและตารางสายการไหล ตัวแปรไบนารีและตรรกะ และมิติของเวลา"
+    },
+    {
+     "s": 18.855,
+     "e": 30.803,
+     "en": "Sessions 5 to 9 opened the solvers: convexity, the simplex method and duality, Lagrange multipliers and the KKT conditions, and the algorithms for unconstrained and constrained problems.",
+     "th": "คาบที่ 5 ถึง 9 เปิดดูภายใน solver ได้แก่ ความเป็น convex วิธี simplex และ duality ตัวคูณ Lagrange และเงื่อนไข KKT และอัลกอริทึมสำหรับปัญหาที่ไม่มีและมีข้อจำกัด"
+    },
+    {
+     "s": 30.803,
+     "e": 42.145,
+     "en": "Sessions 10 to 14 met the data and the world: estimation, dynamics and control, uncertainty, several objectives and nonconvexity, and expensive experiments and AI tools.",
+     "th": "คาบที่ 10 ถึง 14 พบกับข้อมูลและโลกจริง ได้แก่ การประมาณค่า พลวัตและการควบคุม ความไม่แน่นอน หลายเป้าหมายและความเป็น nonconvex และการทดลองที่มีราคาแพงกับเครื่องมือ AI"
+    },
+    {
+     "s": 42.145,
+     "e": 49.303,
+     "en": "Read the last column from top to bottom. It is the checklist again, written session by session.",
+     "th": "อ่านคอลัมน์สุดท้ายจากบนลงล่าง นั่นคือรายการตรวจอีกครั้ง ที่เขียนทีละคาบ"
+    },
+    {
+     "s": 49.303,
+     "e": 58.194,
+     "en": "Notice also what the course did not do: it did not teach you to trust a solver. Every session paired a method with a way of checking it.",
+     "th": "สังเกตด้วยว่ารายวิชานี้ไม่ได้สอนให้คุณเชื่อ solver ทุกคาบจับคู่วิธีกับวิธีตรวจสอบ"
+    },
+    {
+     "s": 58.194,
+     "e": 63.645,
+     "en": "That pairing is what separates a model that someone can use from one that only runs.",
+     "th": "การจับคู่นี้คือสิ่งที่แยกโมเดลที่คนอื่นนำไปใช้ได้ ออกจากโมเดลที่เพียงแค่รันได้"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "file": "audio/slide-13.mp3",
+   "duration": 45.096,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.853,
+     "en": "If the course has to fit on one slide, these are the five habits to keep.",
+     "th": "ถ้ารายวิชานี้ต้องย่อให้เหลือสไลด์เดียว นี่คือนิสัยห้าข้อที่ควรเก็บไว้"
+    },
+    {
+     "s": 4.853,
+     "e": 8.605,
+     "en": "Write the model in words and units before you solve it.",
+     "th": "เขียนโมเดลเป็นถ้อยคำพร้อมหน่วยก่อนจะแก้"
+    },
+    {
+     "s": 8.605,
+     "e": 14.066,
+     "en": "Know what your solver can certify for your class of problem, and show that certificate.",
+     "th": "รู้ว่า solver ของคุณให้ certificate อะไรได้สำหรับปัญหาประเภทนั้น และแสดง certificate นั้น"
+    },
+    {
+     "s": 14.066,
+     "e": 21.382,
+     "en": "Read the multipliers: they answer the next question a manager will ask, what one more unit of a limit is worth.",
+     "th": "อ่านตัวคูณ เพราะมันตอบคำถามถัดไปที่ผู้จัดการจะถาม คือหนึ่งหน่วยของข้อจำกัดที่เพิ่มขึ้นมีมูลค่าเท่าใด"
+    },
+    {
+     "s": 21.382,
+     "e": 25.921,
+     "en": "Say whether an answer is global or local, and with what evidence.",
+     "th": "บอกว่าคำตอบเป็นแบบ global หรือ local และด้วยหลักฐานใด"
+    },
+    {
+     "s": 25.921,
+     "e": 33.039,
+     "en": "And test every model from its specification: the ones you wrote, the ones a colleague wrote, and the ones a tool wrote.",
+     "th": "และทดสอบทุกโมเดลจากข้อกำหนดของมัน ทั้งที่คุณเขียนเอง ที่เพื่อนร่วมงานเขียน และที่เครื่องมือเขียน"
+    },
+    {
+     "s": 33.039,
+     "e": 45.026,
+     "en": "None of these habits depends on a particular tool or language. They held in Excel in the first weeks, in Python with SciPy and Pyomo, and they will hold in whatever tools you use next.",
+     "th": "นิสัยเหล่านี้ไม่ขึ้นกับเครื่องมือหรือภาษาใด ใช้ได้กับ Excel ในสัปดาห์แรก ๆ กับ Python ที่ใช้ SciPy และ Pyomo และจะใช้ได้กับเครื่องมือใดก็ตามที่คุณใช้ต่อไป"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "file": "audio/slide-14.mp3",
+   "duration": 65.976,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.524,
+     "en": "Where to go after the course?",
+     "th": "หลังจบรายวิชาจะไปต่อที่ไหน"
+    },
+    {
+     "s": 2.524,
+     "e": 9.446,
+     "en": "For formulation, Williams's Model Building in Mathematical Programming, with its many case studies.",
+     "th": "สำหรับการสร้างแบบจำลอง Model Building in Mathematical Programming ของ Williams ซึ่งมีกรณีศึกษาจำนวนมาก"
+    },
+    {
+     "s": 9.446,
+     "e": 16.645,
+     "en": "For chemical processes, Biegler's Nonlinear Programming, which covers much of Sessions 7 to 11 in depth.",
+     "th": "สำหรับกระบวนการเคมี Nonlinear Programming ของ Biegler ซึ่งครอบคลุมเนื้อหาคาบที่ 7 ถึง 11 อย่างลึก"
+    },
+    {
+     "s": 16.645,
+     "e": 31.171,
+     "en": "For the algorithms, Nocedal and Wright. For convexity, Boyd and Vandenberghe. For uncertainty, Birge and Louveaux. And for Gaussian processes, Rasmussen and Williams.",
+     "th": "สำหรับอัลกอริทึม Nocedal และ Wright สำหรับความเป็น convex Boyd และ Vandenberghe สำหรับความไม่แน่นอน Birge และ Louveaux และสำหรับ Gaussian process Rasmussen และ Williams"
+    },
+    {
+     "s": 31.171,
+     "e": 41.794,
+     "en": "The table on the right lists tools by need: Pyomo, JuMP or GAMS for modeling; HiGHS and SCIP for linear and integer problems; Ipopt and CasADi for nonlinear and dynamic ones;",
+     "th": "ตารางทางขวาแสดงเครื่องมือตามความต้องการ Pyomo, JuMP หรือ GAMS สำหรับการสร้างโมเดล HiGHS และ SCIP สำหรับปัญหาเชิงเส้นและจำนวนเต็ม Ipopt และ CasADi สำหรับปัญหาไม่เชิงเส้นและเชิงพลวัต"
+    },
+    {
+     "s": 41.794,
+     "e": 47.5,
+     "en": "SCIP, BARON or Couenne for global optimization; and BoTorch with Ax for expensive experiments.",
+     "th": "SCIP, BARON หรือ Couenne สำหรับ global optimization และ BoTorch กับ Ax สำหรับการทดลองที่มีราคาแพง"
+    },
+    {
+     "s": 47.5,
+     "e": 58.118,
+     "en": "If your work involves experiments, the B O tools of Session 14 are worth learning properly; if it involves plant operation, the M P C and dynamic optimization of Session 11;",
+     "th": "ถ้างานของคุณเกี่ยวกับการทดลอง เครื่องมือ BO ของคาบที่ 14 คุ้มค่าที่จะเรียนให้ลึก ถ้าเกี่ยวกับการเดินเครื่องโรงงาน คือ MPC และ dynamic optimization ของคาบที่ 11"
+    },
+    {
+     "s": 58.118,
+     "e": 62.145,
+     "en": "if it involves planning, the stochastic programming of Session 12.",
+     "th": "ถ้าเกี่ยวกับการวางแผน คือ stochastic programming ของคาบที่ 12"
+    },
+    {
+     "s": 62.145,
+     "e": 65.908,
+     "en": "Whichever you use, the checklist does not change.",
+     "th": "ไม่ว่าจะใช้เครื่องมือใด รายการตรวจก็ยังเหมือนเดิม"
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "file": "audio/slide-15.mp3",
+   "duration": 41.904,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.247,
+     "en": "Before you submit your project, apply the checklist to it.",
+     "th": "ก่อนส่งโครงงาน ให้ใช้รายการตรวจกับโครงงานของคุณ"
+    },
+    {
+     "s": 4.247,
+     "e": 10.921,
+     "en": "Fill in Part B of Lab 15 for your own project, honestly, and fix the items marked fail first.",
+     "th": "กรอกส่วน B ของ Lab 15 สำหรับโครงงานของคุณเองอย่างตรงไปตรงมา และแก้ข้อที่ไม่ผ่านก่อน"
+    },
+    {
+     "s": 10.921,
+     "e": 18.224,
+     "en": "Read the reviews you receive. Answer each must-fix in the report, or say why it does not apply.",
+     "th": "อ่านแบบทบทวนที่ได้รับ ตอบ must-fix แต่ละข้อในรายงาน หรือบอกว่าทำไมไม่เกี่ยวข้อง"
+    },
+    {
+     "s": 18.224,
+     "e": 31.303,
+     "en": "Rerun all your tests after every change, and record the versions. Write the disclosure section. And submit the report, code and tests by the date and in the form given on the course page.",
+     "th": "รันการทดสอบทั้งหมดใหม่หลังทุกการเปลี่ยนแปลง และบันทึกรุ่นของซอฟต์แวร์ เขียนส่วนการเปิดเผยการใช้ AI และส่งรายงาน โค้ด และการทดสอบตามวันและรูปแบบที่ระบุในหน้าเว็บของรายวิชา"
+    },
+    {
+     "s": 31.303,
+     "e": 41.829,
+     "en": "A useful last step: give your report to someone outside the group, and ask them to find one number they cannot check. Whatever they find, fix it before you submit.",
+     "th": "ขั้นสุดท้ายที่มีประโยชน์ คือให้คนนอกกลุ่มอ่านรายงาน และขอให้เขาหาตัวเลขหนึ่งตัวที่เขาตรวจไม่ได้ ไม่ว่าเขาพบอะไร ให้แก้ก่อนส่ง"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "file": "audio/slide-16.mp3",
+   "duration": 57.936,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.076,
+     "en": "Lab 15 is for anyone studying on their own, and for practice before the real reviews.",
+     "th": "Lab 15 สำหรับผู้ที่เรียนเอง และสำหรับฝึกก่อนการทบทวนจริง"
+    },
+    {
+     "s": 6.076,
+     "e": 18.099,
+     "en": "Part A is a practice review of Group 0's short report, a biodiesel feedstock blend with synthetic data. You mark the twelve items, then recompute three numbers from the report itself:",
+     "th": "ส่วน A เป็นการฝึกทบทวนรายงานสั้นของกลุ่ม 0 เรื่องการผสมวัตถุดิบไบโอดีเซลด้วยข้อมูลสังเคราะห์ คุณทำเครื่องหมายสิบสองข้อ แล้วคำนวณตัวเลขสามตัวใหม่จากตัวรายงานเอง"
+    },
+    {
+     "s": 18.099,
+     "e": 20.974,
+     "en": "a cost, a balance, and the value of a limit.",
+     "th": "คือ ต้นทุน สมดุล และมูลค่าของข้อจำกัด"
+    },
+    {
+     "s": 20.974,
+     "e": 28.092,
+     "en": "Group 0's weak points are different from Group A's. Look closely at the arithmetic and the units.",
+     "th": "จุดอ่อนของกลุ่ม 0 ต่างจากของกลุ่ม A ให้ดูการคำนวณและหน่วยอย่างละเอียด"
+    },
+    {
+     "s": 28.092,
+     "e": 36.395,
+     "en": "Part B is the review form, for a presenting group or for your own project. Part C asks what you will fix first.",
+     "th": "ส่วน B คือแบบทบทวน สำหรับกลุ่มที่นำเสนอหรือโครงงานของคุณเอง ส่วน C ถามว่าคุณจะแก้อะไรก่อน"
+    },
+    {
+     "s": 36.395,
+     "e": 46.789,
+     "en": "The key to Part A is explained on the page after you check, so the lab teaches even when you get an item wrong. Read the explanation for every item you missed.",
+     "th": "คำเฉลยของส่วน A มีคำอธิบายบนหน้าเว็บหลังคุณกดตรวจ lab จึงสอนได้แม้คุณตอบผิด ให้อ่านคำอธิบายของทุกข้อที่คุณพลาด"
+    },
+    {
+     "s": 46.789,
+     "e": 51.921,
+     "en": "The Python file contains the checks as functions you can reuse in your project.",
+     "th": "ไฟล์ Python มีการตรวจเหล่านี้เป็นฟังก์ชันที่คุณนำไปใช้ในโครงงานได้"
+    },
+    {
+     "s": 51.921,
+     "e": 57.868,
+     "en": "Scan the code or open the link. Pause the narration now and do the lab.",
+     "th": "สแกนรหัสหรือเปิดลิงก์ หยุดคำบรรยายตอนนี้แล้วทำ lab"
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "file": "audio/slide-17.mp3",
+   "duration": 42.984,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.076,
+     "en": "To summarize.",
+     "th": "สรุป"
+    },
+    {
+     "s": 2.076,
+     "e": 9.526,
+     "en": "Every result needs an answer to the question: how do you know? The twelve items make that answer complete.",
+     "th": "ทุกผลลัพธ์ต้องตอบคำถามว่าคุณรู้ได้อย่างไร รายการตรวจสิบสองข้อทำให้คำตอบนั้นครบถ้วน"
+    },
+    {
+     "s": 9.526,
+     "e": 19.645,
+     "en": "The evidence depends on the problem: duality for an L P, KKT residuals for an NLP, gaps for integer and global problems, and replicates for experiments.",
+     "th": "หลักฐานขึ้นกับประเภทของปัญหา duality สำหรับ LP residual ของ KKT สำหรับ NLP ช่องว่างสำหรับปัญหาจำนวนเต็มและ global และการทดลองซ้ำสำหรับการทดลอง"
+    },
+    {
+     "s": 19.645,
+     "e": 30.539,
+     "en": "A good review is specific, ranked by severity, and recomputes at least one number. The same checklist applies to your own work, and to work drafted by a tool.",
+     "th": "การทบทวนที่ดีต้องเจาะจง จัดลำดับตามความรุนแรง และคำนวณตัวเลขใหม่อย่างน้อยหนึ่งตัว รายการตรวจเดียวกันใช้กับงานของคุณเอง และกับงานที่เครื่องมือร่างให้"
+    },
+    {
+     "s": 30.539,
+     "e": 39.816,
+     "en": "And keep the five habits: write the model in units, show the certificate, read the multipliers, say global or local, and test from the specification.",
+     "th": "และรักษานิสัยห้าข้อไว้ คือเขียนโมเดลพร้อมหน่วย แสดง certificate อ่านตัวคูณ บอกว่าเป็น global หรือ local และทดสอบจากข้อกำหนด"
+    },
+    {
+     "s": 39.816,
+     "e": 42.908,
+     "en": "Thank you for fifteen sessions of work.",
+     "th": "ขอบคุณสำหรับความตั้งใจตลอดสิบห้าคาบ"
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "file": "audio/slide-18.mp3",
+   "duration": 32.4,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 8.313,
+     "en": "To finish, open the Exit Ticket with the code, choose Session 15, and paste the answers and the reviews that the lab page copies for you.",
+     "th": "สุดท้าย เปิด Exit Ticket ด้วยรหัส เลือก Session 15 แล้ววางคำตอบและแบบทบทวนที่หน้า lab คัดลอกให้"
+    },
+    {
+     "s": 8.313,
+     "e": 19.566,
+     "en": "Then answer the feedback questions about the whole course: what helped you learn most, what should change next year, and what is still unclear. If you studied on your own, choose On my own.",
+     "th": "จากนั้นตอบคำถาม feedback เกี่ยวกับทั้งรายวิชา ว่าอะไรช่วยให้คุณเรียนรู้ได้มากที่สุด อะไรควรเปลี่ยนในปีหน้า และอะไรที่ยังไม่ชัด ถ้าเรียนเอง ให้เลือก On my own"
+    },
+    {
+     "s": 19.566,
+     "e": 24.013,
+     "en": "The form is anonymous, and reviews name the group number only.",
+     "th": "แบบฟอร์มไม่ระบุตัวตน และแบบทบทวนระบุเพียงหมายเลขกลุ่ม"
+    },
+    {
+     "s": 24.013,
+     "e": 28.987,
+     "en": "If the code does not scan, use the link Open the Exit Ticket under it.",
+     "th": "ถ้าสแกนรหัสไม่ได้ ให้ใช้ลิงก์ Open the Exit Ticket ที่อยู่ด้านล่าง"
+    },
+    {
+     "s": 28.987,
+     "e": 32.342,
+     "en": "Thank you, and good luck with your projects.",
+     "th": "ขอบคุณ และขอให้โครงงานของคุณประสบความสำเร็จ"
+    }
+   ]
+  }
+ ]
+};
+(function(){if(!NARR)return;
+ const au=document.getElementById("narr"),bar=document.getElementById("nbar"),cap=document.getElementById("cap"),play=document.getElementById("nPlay"),tm=document.getElementById("nTime"),msg=document.getElementById("nMsg");
+ document.getElementById("dock").style.display="flex";document.getElementById("help").style.display="none";let on=false,lang="off",slideIdx=-1;
+ const ls=(k,v)=>{try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}};
+ lang=ls("cc-lang")||"off";const sp=ls("narr-speed");if(sp)document.getElementById("nSpeed").value=sp;
+ const fmtT=t=>isFinite(t)?`${Math.floor(t/60)}:${String(Math.floor(t%60)).padStart(2,"0")}`:"0:00";
+ const S_=i=>NARR.slides[i];
+ function load(i){slideIdx=i;const s=S_(i);if(!s){au.removeAttribute("src");return}au.src=s.file;au.playbackRate=+document.getElementById("nSpeed").value;tm.textContent=`0:00 / ${fmtT(s.duration)}`;showCap(0)}
+ function setPlayUI(){play.textContent=au.paused?"▶ Play":"❚❚ Pause";play.classList.toggle("on",!au.paused)}
+ // captions sit in their own band under the slide; long lines shrink to fit the band
+ window.capRefit=()=>{let f=parseFloat(cap.dataset.fs)||18;cap.style.fontSize=f+"px";while(cap.scrollHeight>cap.clientHeight+1&&f>11){f-=1;cap.style.fontSize=f+"px"}};
+ function showCap(t){const s=S_(slideIdx);let c=null;if(s&&lang!=="off"){for(const q of s.cues){if(t>=q.s-0.05)c=q;else break}}
+  const txt=(!c||(au.paused&&au.currentTime===0&&!on))?"":(lang==="th"?c.th:c.en);if(cap.textContent!==txt){cap.textContent=txt;capRefit()}}
+ function ccUI(){const b=document.getElementById("nCC");b.textContent=lang==="off"?"CC off":lang==="en"?"CC English":"CC ไทย";b.classList.toggle("on",lang!=="off");CAP_ON=lang!=="off";fit();showCap(au.currentTime||0)}
+ window.ccCycle=()=>{lang=lang==="off"?"en":lang==="en"?"th":"off";ls("cc-lang",lang);ccUI()};
+ // "on" means the student is listening: it starts with Play and ends with Pause or Stop.
+ // Slides change only when the student moves; the new slide's narration then starts if "on".
+ window.narrToggle=()=>{if(au.paused){on=true;if(slideIdx!==cur)load(cur);if(au.ended)au.currentTime=0;msg.textContent="";au.play().catch(()=>{msg.textContent="Press Play again to start audio."})}else{on=false;au.pause()}};
+ window.onSlideChange=i=>{au.pause();msg.textContent="";load(i);if(on)au.play().catch(()=>{})};
+ document.getElementById("nPlay").onclick=narrToggle;
+ document.getElementById("nStop").onclick=()=>{au.pause();au.currentTime=0;on=false;setPlayUI();showCap(0);tm.textContent=`0:00 / ${fmtT((S_(cur)||{}).duration)}`};
+ document.getElementById("nCC").onclick=ccCycle;
+ document.getElementById("nPrev").onclick=()=>show(cur-1);document.getElementById("nNext").onclick=()=>show(cur+1);
+ document.getElementById("nSpeed").onchange=e=>{au.playbackRate=+e.target.value;ls("narr-speed",e.target.value)};
+ au.addEventListener("play",setPlayUI);au.addEventListener("pause",setPlayUI);
+ au.addEventListener("timeupdate",()=>{tm.textContent=`${fmtT(au.currentTime)} / ${fmtT((S_(slideIdx)||{}).duration)}`;showCap(au.currentTime)});
+ au.addEventListener("ended",()=>{setPlayUI();const s=S_(slideIdx);msg.textContent=s&&s.hold?"Activity: do it now, then press Next ›":cur<N-1?"Press Next › or → for the next slide":"End of the session"});
+ const q=new URLSearchParams(location.search);
+ if(q.get("narrate")==="1"){const ov=document.getElementById("startov");ov.style.display="flex";document.getElementById("startBtn").onclick=()=>{ov.style.display="none";if(lang==="off"){lang="en";ls("cc-lang",lang)}ccUI();on=true;load(cur);au.play().catch(()=>{})}}
+ ccUI();setTimeout(()=>{if(slideIdx<0)load(cur)},0);
+})();
+
+build();drawAll();fit();show((parseInt(location.hash.slice(1))||1)-1);
+</script>
+</body>
+</html>
