@@ -1,0 +1,2445 @@
+{
+ "voice": "en-US-GuyNeural",
+ "rate": "-5%",
+ "provider": "Microsoft Edge neural speech (edge-tts)",
+ "synthetic_voice": true,
+ "total_seconds": 2881.0,
+ "slides": [
+  {
+   "n": 1,
+   "file": "audio/slide-01.mp3",
+   "duration": 71.16,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.642,
+     "en": "Welcome to Session 8 of Optimization of Chemical Processes.",
+     "th": "ยินดีต้อนรับสู่คาบที่ 8 ของวิชา Optimization of Chemical Processes"
+    },
+    {
+     "s": 4.642,
+     "e": 15.202,
+     "en": "Session 7 told us what a solution must satisfy. When a problem has no rows, the KKT conditions reduce to one equation: the gradient is zero.",
+     "th": "คาบที่ 7 บอกว่าคำตอบต้องสอดคล้องกับเงื่อนไขอะไร เมื่อปัญหาไม่มีแถวข้อจำกัด เงื่อนไข KKT จะเหลือสมการเดียว คือ gradient"
+    },
+    {
+     "s": 15.202,
+     "e": 19.171,
+     "en": "Today is about the algorithms that find such a point.",
+     "th": "เท่ากับศูนย์ วันนี้ว่าด้วย algorithm ที่หาจุดแบบนั้น"
+    },
+    {
+     "s": 19.171,
+     "e": 35.199,
+     "en": "We will study three methods: steepest descent, Newton's method and BFGS. For each one we ask four questions. Which direction does it take? How far does it step? How fast does it converge?",
+     "th": "เราจะศึกษาสามวิธี ได้แก่ steepest descent, Newton's method และ BFGS แต่ละวิธีเราถามสี่คำถาม วิธีนี้เลือกทิศทางใด ก้าวไกลเท่าใด ลู่เข้าเร็วเพียงใด"
+    },
+    {
+     "s": 35.199,
+     "e": 37.671,
+     "en": "And what does each step cost?",
+     "th": "และแต่ละก้าวมีต้นทุนเท่าใด"
+    },
+    {
+     "s": 37.671,
+     "e": 46.882,
+     "en": "We will also see why the units of your variables can decide whether a method finishes at all, where gradients come from, and how to read a solver's stopping test.",
+     "th": "เราจะดูด้วยว่าทำไมหน่วยของตัวแปรจึงอาจเป็นตัวตัดสินว่าวิธีหนึ่งจะทำงานจบหรือไม่ gradient ได้มาจากไหน และอ่านเกณฑ์การหยุดของ solver อย่างไร"
+    },
+    {
+     "s": 46.882,
+     "e": 58.368,
+     "en": "The examples are small, two variables at most, so that you can see every step. The same algorithms run inside the solvers you will use on models with thousands of variables.",
+     "th": "ตัวอย่างมีขนาดเล็ก ไม่เกินสองตัวแปร เพื่อให้คุณเห็นทุกก้าว algorithm เดียวกันนี้ทำงานอยู่ภายใน solver ที่คุณจะใช้กับโมเดลที่มีตัวแปรหลายพันตัว"
+    },
+    {
+     "s": 58.368,
+     "e": 65.671,
+     "en": "On your own, the narration takes about fifty minutes; the activities, four checks and the lab fill the rest of the three hours.",
+     "th": "ถ้าเรียนเอง เสียงบรรยายใช้เวลาประมาณห้าสิบนาที ส่วนกิจกรรม แบบตรวจสี่ครั้ง และ lab จะใช้เวลาที่เหลือของสามชั่วโมง"
+    },
+    {
+     "s": 65.671,
+     "e": 71.079,
+     "en": "When the narration for a slide ends, press the right arrow key, or Next, to go on.",
+     "th": "เมื่อเสียงบรรยายของแต่ละหน้าจบ กดลูกศรขวาหรือปุ่ม Next เพื่อไปหน้าถัดไป"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "file": "audio/slide-02.mp3",
+   "duration": 57.12,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.05,
+     "en": "Here is the plan for the three hours.",
+     "th": "นี่คือแผนของสามชั่วโมง"
+    },
+    {
+     "s": 3.05,
+     "e": 9.405,
+     "en": "After a ten-minute retrieval check on Session 7, part one, thirty-five minutes, covers descent and line searches:",
+     "th": "หลังทบทวนความจำจากคาบที่ 7 สิบนาที ส่วนที่หนึ่ง สามสิบห้านาที ว่าด้วย descent และ line search"
+    },
+    {
+     "s": 9.405,
+     "e": 16.039,
+     "en": "the template that every method follows, steepest descent and the condition number, and the Armijo and Wolfe conditions.",
+     "th": "ได้แก่ แม่แบบที่ทุกวิธีใช้ steepest descent กับ condition number และเงื่อนไข Armijo และ Wolfe"
+    },
+    {
+     "s": 16.039,
+     "e": 20.543,
+     "en": "Part two, forty minutes, covers Newton's method and quasi-Newton methods:",
+     "th": "ส่วนที่สอง สี่สิบนาที ว่าด้วย Newton's method และวิธี quasi-Newton"
+    },
+    {
+     "s": 20.543,
+     "e": 29.368,
+     "en": "the quadratic model, when Newton fails and how solvers repair it, convergence rates, BFGS and L-BFGS, and a race of four methods on one function.",
+     "th": "ได้แก่ แบบจำลองกำลังสอง เมื่อใด Newton ล้มเหลวและ solver ซ่อมอย่างไร อัตราการลู่เข้า BFGS และ L-BFGS และการแข่งขันของสี่วิธีบนฟังก์ชันเดียว"
+    },
+    {
+     "s": 29.368,
+     "e": 39.895,
+     "en": "After a break and a second activity, part three, thirty minutes, is about practice: scaling, derivatives, stopping tests, trust regions, and which method to choose.",
+     "th": "หลังพักและกิจกรรมที่สอง ส่วนที่สาม สามสิบนาที ว่าด้วยการใช้งานจริง ได้แก่ scaling อนุพันธ์ เกณฑ์การหยุด trust region และการเลือกวิธี"
+    },
+    {
+     "s": 39.895,
+     "e": 49.474,
+     "en": "Each part ends with a check of four questions. Treat the checks as part of the lesson, not as a test: they are where you find out what is still unclear.",
+     "th": "แต่ละส่วนจบด้วยแบบตรวจสี่คำถาม ให้ถือว่าแบบตรวจเป็นส่วนหนึ่งของบทเรียน ไม่ใช่การสอบ แบบตรวจคือจุดที่คุณจะรู้ว่าอะไรยังไม่ชัดเจน"
+    },
+    {
+     "s": 49.474,
+     "e": 57.066,
+     "en": "The session ends with Lab 8, where a compressor with an intercooler shows what units do to each method, and with the Exit Ticket.",
+     "th": "คาบนี้จบด้วย Lab 8 ซึ่งใช้ compressor ที่มี intercooler แสดงว่าหน่วยส่งผลต่อแต่ละวิธีอย่างไร และจบด้วย Exit Ticket"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "file": "audio/slide-03.mp3",
+   "duration": 48.288,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.037,
+     "en": "Activity 1 is a retrieval check on Session 7.",
+     "th": "กิจกรรมที่ 1 คือการทบทวนความจำจากคาบที่ 7"
+    },
+    {
+     "s": 4.037,
+     "e": 6.641,
+     "en": "Answer the four questions without notes.",
+     "th": "ตอบคำถามสี่ข้อโดยไม่เปิดโน้ต"
+    },
+    {
+     "s": 6.641,
+     "e": 17.882,
+     "en": "They cover the four KKT conditions, what a multiplier is worth, why convexity turns a KKT point into a global minimum, and what is left of the conditions when there are no rows.",
+     "th": "คำถามครอบคลุมเงื่อนไข KKT สี่ข้อ multiplier มีค่าเท่าใด ทำไมความเป็น convex จึงทำให้จุด KKT เป็นค่าต่ำสุดวงกว้าง และเงื่อนไขเหลืออะไรเมื่อไม่มีแถวข้อจำกัด"
+    },
+    {
+     "s": 17.882,
+     "e": 30.868,
+     "en": "Question four is today's starting point. With no rows, stationarity is the whole condition: the gradient must be zero. The Hessian then tells a minimum from a saddle or a maximum.",
+     "th": "ข้อสี่คือจุดเริ่มต้นของวันนี้ เมื่อไม่มีแถว stationarity คือเงื่อนไขทั้งหมด gradient ต้องเป็นศูนย์ จากนั้น Hessian จะแยกค่าต่ำสุดออกจากจุด saddle หรือค่าสูงสุด"
+    },
+    {
+     "s": 30.868,
+     "e": 38.289,
+     "en": "Everything today is a way to solve that one equation, the gradient equals zero, by taking steps that keep lowering f.",
+     "th": "ทุกอย่างในวันนี้คือวิธีแก้สมการเดียวนั้น คือ gradient เท่ากับศูนย์ โดยก้าวไปในทางที่ทำให้ f ลดลงเรื่อย ๆ"
+    },
+    {
+     "s": 38.289,
+     "e": 48.211,
+     "en": "In class, write alone for five minutes, then compare with a partner. On your own, pause the narration, write your answers, and then press Show answers.",
+     "th": "ในห้องเรียน เขียนคนเดียวห้านาที แล้วเทียบกับเพื่อน ถ้าเรียนเอง ให้หยุดเสียงบรรยาย เขียนคำตอบ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "file": "audio/slide-04.mp3",
+   "duration": 39.888,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.866,
+     "en": "By the end of today you should be able to do six things.",
+     "th": "เมื่อจบวันนี้ คุณควรทำหกอย่างต่อไปนี้ได้"
+    },
+    {
+     "s": 3.866,
+     "e": 10.447,
+     "en": "Write the descent template, and explain why steepest descent slows down as the condition number of the Hessian grows.",
+     "th": "เขียนแม่แบบของ descent ได้ และอธิบายได้ว่าทำไม steepest descent จึงช้าลงเมื่อ condition number ของ Hessian เพิ่มขึ้น"
+    },
+    {
+     "s": 10.447,
+     "e": 15.882,
+     "en": "Run a backtracking line search by hand, and state the Armijo and Wolfe conditions.",
+     "th": "ทำ backtracking line search ด้วยมือได้ และบอกเงื่อนไข Armijo และ Wolfe ได้"
+    },
+    {
+     "s": 15.882,
+     "e": 22.105,
+     "en": "Derive the Newton step from the quadratic model, say when it fails, and say how solvers repair it.",
+     "th": "หา Newton step จากแบบจำลองกำลังสองได้ บอกได้ว่าเมื่อใดมันล้มเหลว และ solver ซ่อมอย่างไร"
+    },
+    {
+     "s": 22.105,
+     "e": 28.539,
+     "en": "Explain the BFGS update and its secant condition, and why L-BFGS suits large problems.",
+     "th": "อธิบายการปรับ BFGS และ secant condition ของมันได้ และอธิบายว่าทำไม L-BFGS จึงเหมาะกับปัญหาขนาดใหญ่"
+    },
+    {
+     "s": 28.539,
+     "e": 33.868,
+     "en": "Recognize linear, superlinear and quadratic convergence from a log plot.",
+     "th": "แยกการลู่เข้าแบบ linear, superlinear และ quadratic ได้จากกราฟสเกล log"
+    },
+    {
+     "s": 33.868,
+     "e": 39.829,
+     "en": "And scale variables, choose how to compute derivatives, and read a solver's stopping test.",
+     "th": "และปรับสเกลตัวแปร เลือกวิธีคำนวณอนุพันธ์ และอ่านเกณฑ์การหยุดของ solver ได้"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "file": "audio/slide-05.mp3",
+   "duration": 82.56,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.918,
+     "en": "This table connects today with what you already have.",
+     "th": "ตารางนี้เชื่อมวันนี้กับสิ่งที่คุณมีอยู่แล้ว"
+    },
+    {
+     "s": 3.918,
+     "e": 14.592,
+     "en": "Session 5 gave the condition that the gradient is zero, and the Hessian test. Today adds the algorithms that drive the gradient to zero, and how fast they do it.",
+     "th": "คาบที่ 5 ให้เงื่อนไขว่า gradient เป็นศูนย์ และการทดสอบด้วย Hessian วันนี้เพิ่ม algorithm ที่ผลัก gradient ให้เป็นศูนย์ และความเร็วในการทำเช่นนั้น"
+    },
+    {
+     "s": 14.592,
+     "e": 25.513,
+     "en": "In Session 5 you also ran BFGS from many starts on the six-hump camel function. Today we open that black box and look at what BFGS does inside one run.",
+     "th": "ในคาบที่ 5 คุณรัน BFGS จากหลายจุดเริ่มต้นบนฟังก์ชัน six-hump camel วันนี้เราเปิดกล่องดำนั้น และดูว่า BFGS ทำอะไรภายในการรันหนึ่งครั้ง"
+    },
+    {
+     "s": 25.513,
+     "e": 37.57,
+     "en": "Session 7 had four KKT conditions. With no rows, only stationarity is left, so it is the whole problem. Session 7 also replaced the word success with residuals;",
+     "th": "คาบที่ 7 มีเงื่อนไข KKT สี่ข้อ เมื่อไม่มีแถว จะเหลือเพียง stationarity ซึ่งจึงเป็นปัญหาทั้งหมด คาบที่ 7 ยังใช้ residual แทนคำว่า success"
+    },
+    {
+     "s": 37.57,
+     "e": 41.539,
+     "en": "today we look at stopping tests and their tolerances.",
+     "th": "วันนี้เราดูเกณฑ์การหยุดและค่า tolerance ของมัน"
+    },
+    {
+     "s": 41.539,
+     "e": 54.25,
+     "en": "The vessel and the tank had only a few variables. Today we ask how the cost of one iteration grows with the number of variables, because that is what separates Newton, BFGS and L-BFGS.",
+     "th": "ภาชนะและถังมีตัวแปรไม่กี่ตัว วันนี้เราถามว่าต้นทุนของหนึ่งรอบเพิ่มขึ้นอย่างไรตามจำนวนตัวแปร เพราะสิ่งนี้คือสิ่งที่แยก Newton, BFGS และ L-BFGS ออกจากกัน"
+    },
+    {
+     "s": 54.25,
+     "e": 65.408,
+     "en": "A model of a whole flowsheet can have thousands of variables, and a dynamic model can have hundreds of thousands. For those, a method that stores a full matrix is not an option.",
+     "th": "โมเดลของ flowsheet ทั้งระบบอาจมีตัวแปรหลายพันตัว และโมเดลพลวัตอาจมีหลายแสนตัว สำหรับปัญหาเหล่านั้น วิธีที่ต้องเก็บเมทริกซ์เต็มจึงใช้ไม่ได้"
+    },
+    {
+     "s": 65.408,
+     "e": 73.711,
+     "en": "Next session the rows return. SQP and interior-point methods reuse today's Newton steps and line searches.",
+     "th": "คาบหน้าแถวข้อจำกัดจะกลับมา SQP และวิธี interior point ใช้ Newton step และ line search ของวันนี้ซ้ำ"
+    },
+    {
+     "s": 73.711,
+     "e": 82.5,
+     "en": "A note on notation: x k is the iterate, g k the gradient there, H k the Hessian, p k the search direction, and alpha k the step length.",
+     "th": "หมายเหตุเรื่องสัญลักษณ์ x k คือจุดในรอบที่ k, g k คือ gradient ที่จุดนั้น, H k คือ Hessian, p k คือทิศทางการค้นหา และ alpha k คือความยาวก้าว"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "file": "audio/slide-06.mp3",
+   "duration": 109.608,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 10.908,
+     "en": "Every method today follows one template. From the current point x k, pick a direction p k, pick a step length alpha k, move, and test whether to stop.",
+     "th": "ทุกวิธีในวันนี้ใช้แม่แบบเดียวกัน จากจุดปัจจุบัน x k เลือกทิศทาง p k เลือกความยาวก้าว alpha k เคลื่อนที่ แล้วทดสอบว่าจะหยุดหรือไม่"
+    },
+    {
+     "s": 10.908,
+     "e": 23.474,
+     "en": "The direction must be a descent direction: g k transpose p k must be negative. That product is the slope of f along p k, so if it is negative, f decreases for a small enough step.",
+     "th": "ทิศทางต้องเป็น descent direction คือ g k transpose p k ต้องเป็นลบ ผลคูณนี้คือความชันของ f ตามแนว p k ถ้าเป็นลบ f จะลดลงเมื่อก้าวเล็กพอ"
+    },
+    {
+     "s": 23.474,
+     "e": 32.313,
+     "en": "For example, if the gradient is three, minus four, the direction minus one, one has slope minus seven, so it is a descent direction.",
+     "th": "ตัวอย่างเช่น ถ้า gradient คือ สาม ลบสี่ ทิศทาง ลบหนึ่ง หนึ่ง มีความชันลบเจ็ด จึงเป็น descent direction"
+    },
+    {
+     "s": 32.313,
+     "e": 42.947,
+     "en": "The direction one, two has slope minus five, so it is one too, even though it is far from minus g. Any direction within ninety degrees of minus g goes downhill.",
+     "th": "ทิศทาง หนึ่ง สอง มีความชันลบห้า จึงเป็นเช่นกัน แม้จะห่างจากลบ g มาก ทิศทางใดที่ทำมุมไม่ถึงเก้าสิบองศากับลบ g จะลงเขา"
+    },
+    {
+     "s": 42.947,
+     "e": 47.211,
+     "en": "We stop when the norm of the gradient falls below a tolerance.",
+     "th": "เราหยุดเมื่อ norm ของ gradient ต่ำกว่าค่า tolerance"
+    },
+    {
+     "s": 47.211,
+     "e": 60.105,
+     "en": "The table lists the four directions we will meet. Steepest descent uses minus the gradient. It needs only f and the gradient, costs order n per step, and converges linearly.",
+     "th": "ตารางแสดงสี่ทิศทางที่เราจะพบ steepest descent ใช้ลบ gradient ต้องการเพียง f และ gradient ต้นทุนอันดับ n ต่อก้าว และลู่เข้าแบบ linear"
+    },
+    {
+     "s": 60.105,
+     "e": 71.395,
+     "en": "Newton uses minus the inverse Hessian times the gradient. It needs second derivatives and a linear solve of order n cubed, and it converges quadratically near a minimum.",
+     "th": "Newton ใช้ลบ inverse ของ Hessian คูณ gradient ต้องการอนุพันธ์อันดับสอง และการแก้ระบบสมการเชิงเส้นอันดับ n กำลังสาม และลู่เข้าแบบ quadratic ใกล้ค่าต่ำสุด"
+    },
+    {
+     "s": 71.395,
+     "e": 81.711,
+     "en": "BFGS replaces the Hessian with a matrix B k that it learns from gradients. It costs order n squared per step and converges superlinearly.",
+     "th": "BFGS แทน Hessian ด้วยเมทริกซ์ B k ที่เรียนรู้จาก gradient ต้นทุนอันดับ n กำลังสองต่อก้าว และลู่เข้าแบบ superlinear"
+    },
+    {
+     "s": 81.711,
+     "e": 92.487,
+     "en": "L-BFGS keeps only the last m pairs of steps and gradient changes, so its cost is order m times n. Its rate is linear in theory but fast in practice.",
+     "th": "L-BFGS เก็บเพียง m คู่ล่าสุดของก้าวและการเปลี่ยนแปลงของ gradient ต้นทุนจึงเป็นอันดับ m คูณ n อัตราลู่เข้าเป็น linear ในทางทฤษฎี แต่เร็วในทางปฏิบัติ"
+    },
+    {
+     "s": 92.487,
+     "e": 99.618,
+     "en": "Keep the three roles apart: the direction says where to go, the line search says how far, and the test says when to stop.",
+     "th": "แยกสามบทบาทให้ชัด ทิศทางบอกว่าไปทางไหน line search บอกว่าไปไกลเท่าใด และเกณฑ์บอกว่าเมื่อใดจะหยุด"
+    },
+    {
+     "s": 99.618,
+     "e": 109.526,
+     "en": "One caution: all of these find a stationary point near the start. They do not search the whole space, so the multistart of Session 5 still applies.",
+     "th": "ข้อควรระวัง ทุกวิธีนี้หาจุด stationary ที่อยู่ใกล้จุดเริ่มต้น ไม่ได้ค้นทั้งปริภูมิ ดังนั้น multistart จากคาบที่ 5 ยังจำเป็นอยู่"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "file": "audio/slide-07.mp3",
+   "duration": 102.024,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 10.579,
+     "en": "Steepest descent takes the direction minus g, the direction in which f falls fastest per unit step. It looks like the obvious choice, but it can be very slow.",
+     "th": "steepest descent ใช้ทิศทางลบ g ซึ่งเป็นทิศที่ f ลดลงเร็วที่สุดต่อหนึ่งหน่วยก้าว ดูเหมือนเป็นตัวเลือกที่ชัดเจน แต่อาจช้ามาก"
+    },
+    {
+     "s": 10.579,
+     "e": 19.174,
+     "en": "To see why, take a quadratic, f equals one half x transpose A x, where A has smallest eigenvalue m and largest eigenvalue M.",
+     "th": "เพื่อดูว่าทำไม ให้พิจารณาฟังก์ชันกำลังสอง f เท่ากับครึ่งหนึ่งของ x transpose A x โดย A มี eigenvalue เล็กสุด m และใหญ่สุด M"
+    },
+    {
+     "s": 19.174,
+     "e": 25.5,
+     "en": "The condition number kappa is M over m, the ratio of the steepest curvature to the flattest.",
+     "th": "condition number kappa คือ M หาร m ซึ่งเป็นอัตราส่วนของความโค้งที่ชันที่สุดต่อความโค้งที่แบนที่สุด"
+    },
+    {
+     "s": 25.5,
+     "e": 31.631,
+     "en": "On a quadratic the exact step length has a formula: g transpose g over g transpose A g.",
+     "th": "บนฟังก์ชันกำลังสอง ความยาวก้าวที่แม่นตรงมีสูตร คือ g transpose g หารด้วย g transpose A"
+    },
+    {
+     "s": 31.631,
+     "e": 40.618,
+     "en": "With exact steps, the Kantorovich bound says that each step multiplies f by at most kappa minus one over kappa plus one, squared.",
+     "th": "g เมื่อใช้ก้าวที่แม่นตรง ขอบเขตของ Kantorovich บอกว่าแต่ละก้าวคูณ f ด้วยค่าไม่เกิน kappa ลบหนึ่ง หารด้วย kappa บวกหนึ่ง ยกกำลังสอง"
+    },
+    {
+     "s": 40.618,
+     "e": 53.566,
+     "en": "When kappa is one, the factor is zero, and one step lands on the minimum. When kappa is a thousand, the factor is 0.996, so each step removes less than half a percent of what is left.",
+     "th": "เมื่อ kappa เท่ากับหนึ่ง ตัวคูณเป็นศูนย์ และก้าวเดียวก็ถึงค่าต่ำสุด เมื่อ kappa เท่ากับหนึ่งพัน ตัวคูณเท่ากับ 0.996 แต่ละก้าวจึงลดสิ่งที่เหลืออยู่ได้ไม่ถึงครึ่งเปอร์เซ็นต์"
+    },
+    {
+     "s": 53.566,
+     "e": 64.647,
+     "en": "The table shows the iterations needed from the worst start, until the gradient falls by a factor of a million. They grow about in proportion to kappa:",
+     "th": "ตารางแสดงจำนวนรอบที่ต้องใช้จากจุดเริ่มต้นที่แย่ที่สุด จน gradient ลดลงหนึ่งล้านเท่า จำนวนรอบเพิ่มขึ้นประมาณตามสัดส่วนของ kappa คือ 69 รอบเมื่อ kappa เท่ากับสิบ"
+    },
+    {
+     "s": 64.647,
+     "e": 69.197,
+     "en": "69 for kappa ten, 691 for a hundred, and 6,908 for a thousand.",
+     "th": "691 รอบเมื่อเท่ากับหนึ่งร้อย และ 6,908 รอบเมื่อเท่ากับหนึ่งพัน"
+    },
+    {
+     "s": 69.197,
+     "e": 74.205,
+     "en": "The geometry is simple. Minus g points across the valley, not along it.",
+     "th": "เรขาคณิตของเรื่องนี้ไม่ซับซ้อน ลบ g ชี้ข้ามหุบเขา ไม่ได้ชี้ไปตามหุบเขา"
+    },
+    {
+     "s": 74.205,
+     "e": 83.803,
+     "en": "Each exact step ends where the new gradient is perpendicular to the old one, so the path zigzags from one wall of the valley to the other.",
+     "th": "ก้าวที่แม่นตรงแต่ละก้าวจบตรงที่ gradient ใหม่ตั้งฉากกับ gradient เดิม เส้นทางจึงซิกแซกจากผนังหุบเขาด้านหนึ่งไปอีกด้านหนึ่ง"
+    },
+    {
+     "s": 83.803,
+     "e": 90.978,
+     "en": "Real problems are not quadratics, but near a minimum every smooth function looks like one, with the Hessian in place of A.",
+     "th": "ปัญหาจริงไม่ใช่ฟังก์ชันกำลังสอง แต่ใกล้ค่าต่ำสุด ฟังก์ชันที่เรียบทุกฟังก์ชันจะดูเหมือนฟังก์ชันกำลังสอง โดยมี Hessian"
+    },
+    {
+     "s": 90.978,
+     "e": 97.803,
+     "en": "So the condition number of the Hessian at the solution predicts how steepest descent will behave at the end of a run.",
+     "th": "แทน A ดังนั้น condition number ของ Hessian ที่คำตอบจึงทำนายพฤติกรรมของ steepest descent ในช่วงท้ายของการรันได้"
+    },
+    {
+     "s": 97.803,
+     "e": 101.947,
+     "en": "Press D to see the Python function that produced this table.",
+     "th": "กด D เพื่อดูฟังก์ชัน Python ที่สร้างตารางนี้"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "file": "audio/slide-08.mp3",
+   "duration": 94.536,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 9.618,
+     "en": "Here you can see the zigzag. The ellipses are contours of a quadratic with condition number kappa, and the path starts from the worst-case point.",
+     "th": "ตรงนี้คุณจะเห็นการซิกแซก วงรีคือเส้นชั้นของฟังก์ชันกำลังสองที่มี condition number เท่ากับ kappa และเส้นทางเริ่มจากจุดที่แย่ที่สุด"
+    },
+    {
+     "s": 9.618,
+     "e": 12.696,
+     "en": "Drag the kappa slider from one up to a thousand.",
+     "th": "ลากแถบเลื่อน kappa จากหนึ่งไปถึงหนึ่งพัน"
+    },
+    {
+     "s": 12.696,
+     "e": 22.118,
+     "en": "With steepest descent, the number of iterations follows the table on the previous slide, and the path turns into a long zigzag across a narrow valley.",
+     "th": "สำหรับ steepest descent จำนวนรอบจะเป็นไปตามตารางในหน้าก่อน และเส้นทางกลายเป็นการซิกแซกยาวข้ามหุบเขาแคบ"
+    },
+    {
+     "s": 22.118,
+     "e": 30.618,
+     "en": "Watch the right-hand table as you drag. The bound factor per step climbs towards one, and the iteration count climbs with it.",
+     "th": "ดูตารางด้านขวาขณะลาก ตัวคูณขอบเขตต่อก้าวเพิ่มขึ้นเข้าใกล้หนึ่ง และจำนวนรอบก็เพิ่มตามไปด้วย"
+    },
+    {
+     "s": 30.618,
+     "e": 43.168,
+     "en": "You can also click anywhere on the plot to choose your own start. A start on one of the axes of the ellipses converges in one step, because there minus g points straight at the minimum.",
+     "th": "คุณคลิกที่ใดก็ได้บนกราฟเพื่อเลือกจุดเริ่มต้นเอง จุดเริ่มต้นที่อยู่บนแกนของวงรีจะลู่เข้าในก้าวเดียว เพราะที่นั่นลบ g ชี้ตรงไปยังค่าต่ำสุด"
+    },
+    {
+     "s": 43.168,
+     "e": 44.855,
+     "en": "Most other starts zigzag.",
+     "th": "จุดเริ่มต้นอื่นส่วนใหญ่จะซิกแซก"
+    },
+    {
+     "s": 44.855,
+     "e": 54.408,
+     "en": "Now switch to Newton. On a quadratic, Newton's model is exact, so one step lands on the minimum for any kappa and any start.",
+     "th": "ตอนนี้เปลี่ยนเป็น Newton บนฟังก์ชันกำลังสอง แบบจำลองของ Newton แม่นตรง ก้าวเดียวจึงถึงค่าต่ำสุดสำหรับทุกค่า kappa และทุกจุดเริ่มต้น"
+    },
+    {
+     "s": 54.408,
+     "e": 62.236,
+     "en": "Then switch to BFGS. Its first step is a steepest-descent step, because its first matrix is the identity.",
+     "th": "จากนั้นเปลี่ยนเป็น BFGS ก้าวแรกของมันเป็นก้าวแบบ steepest descent เพราะเมทริกซ์แรกเป็นเมทริกซ์เอกลักษณ์"
+    },
+    {
+     "s": 62.236,
+     "e": 69.842,
+     "en": "After each exact step it updates the matrix, and after two steps in two dimensions the matrix equals A.",
+     "th": "หลังแต่ละก้าวที่แม่นตรง มันปรับเมทริกซ์ และหลังสองก้าวในสองมิติ เมทริกซ์จะเท่ากับ A"
+    },
+    {
+     "s": 69.842,
+     "e": 83.566,
+     "en": "The small panels below the plot draw the BFGS matrix as a dashed amber ellipse, next to A in teal. The first one is a circle, the identity. By the third panel the two ellipses coincide.",
+     "th": "แผงเล็กใต้กราฟวาดเมทริกซ์ของ BFGS เป็นวงรีเส้นประสีเหลืองอำพัน เทียบกับ A สีเขียวหัวเป็ด แผงแรกเป็นวงกลม คือเมทริกซ์เอกลักษณ์ พอถึงแผงที่สามวงรีทั้งสองทับกันพอดี"
+    },
+    {
+     "s": 83.566,
+     "e": 94.474,
+     "en": "Keep this picture in mind for the rest of the session. Bad conditioning hurts steepest descent, does not affect Newton, and costs BFGS only a few extra steps.",
+     "th": "จำภาพนี้ไว้ตลอดคาบ condition ที่แย่ทำร้าย steepest descent ไม่มีผลต่อ Newton และทำให้ BFGS เสียก้าวเพิ่มเพียงไม่กี่ก้าว"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "file": "audio/slide-09.mp3",
+   "duration": 109.248,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 7.801,
+     "en": "Real problems are not quadratics, and exact steps are not available. A line search decides how far to go along p.",
+     "th": "ปัญหาจริงไม่ใช่ฟังก์ชันกำลังสอง และไม่มีก้าวที่แม่นตรงให้ใช้ line search จึงเป็นตัวตัดสินว่าจะไปตามแนว p ไกลเท่าใด"
+    },
+    {
+     "s": 7.801,
+     "e": 16.039,
+     "en": "Write phi of alpha for f along the line. Its slope at zero is g transpose p, which is negative for a descent direction.",
+     "th": "ให้ phi ของ alpha แทน f ตามแนวเส้นนั้น ความชันที่ศูนย์คือ g transpose p ซึ่งเป็นลบสำหรับ descent direction"
+    },
+    {
+     "s": 16.039,
+     "e": 25.447,
+     "en": "The Armijo condition asks for enough decrease. Phi of alpha must lie below a line from phi of zero with slope c one times phi prime of zero.",
+     "th": "เงื่อนไข Armijo ต้องการการลดลงที่เพียงพอ phi ของ alpha ต้องอยู่ใต้เส้นที่เริ่มจาก phi ของศูนย์ และมีความชัน c หนึ่ง คูณ phi"
+    },
+    {
+     "s": 25.447,
+     "e": 33.987,
+     "en": "With c one equal to ten to the minus four, almost any decrease is enough, but a long step that gains almost nothing is rejected.",
+     "th": "prime ของศูนย์ เมื่อ c หนึ่ง เท่ากับสิบยกกำลังลบสี่ การลดลงเกือบทุกขนาดก็พอ แต่ก้าวยาวที่ได้ผลแทบไม่มีจะถูกปฏิเสธ"
+    },
+    {
+     "s": 33.987,
+     "e": 45.575,
+     "en": "The curvature condition, the second Wolfe condition, asks that the slope at alpha is no longer too steep: phi prime of alpha must be at least c two times phi prime of zero.",
+     "th": "เงื่อนไขความโค้ง ซึ่งเป็นเงื่อนไข Wolfe ข้อที่สอง ต้องการให้ความชันที่ alpha ไม่ชันเกินไปอีกแล้ว phi prime ของ alpha ต้องไม่น้อยกว่า c สอง คูณ phi prime ของศูนย์"
+    },
+    {
+     "s": 45.575,
+     "e": 52.408,
+     "en": "This rules out steps that are too short. Typical values are c one ten to the minus four and c two 0.9.",
+     "th": "เงื่อนไขนี้ตัดก้าวที่สั้นเกินไปออก ค่าทั่วไปคือ c หนึ่ง เท่ากับสิบยกกำลังลบสี่ และ c สอง เท่ากับ 0.9"
+    },
+    {
+     "s": 52.408,
+     "e": 58.095,
+     "en": "Backtracking is the simplest strategy: try a first alpha, then halve it until Armijo holds.",
+     "th": "backtracking เป็นกลยุทธ์ที่ง่ายที่สุด ลอง alpha แรก แล้วลดลงครึ่งหนึ่งไปเรื่อย ๆ"
+    },
+    {
+     "s": 58.095,
+     "e": 66.132,
+     "en": "It never checks the curvature condition, but because it starts long and shrinks, it does not accept steps that are much too short.",
+     "th": "จนเงื่อนไข Armijo เป็นจริง วิธีนี้ไม่ตรวจเงื่อนไขความโค้ง แต่เพราะเริ่มจากก้าวยาวแล้วหดลง จึงไม่ยอมรับก้าวที่สั้นเกินไปมาก"
+    },
+    {
+     "s": 66.132,
+     "e": 74.41,
+     "en": "The plot shows Himmelblau's function from the origin, along the normalized steepest-descent direction, so alpha is the distance moved.",
+     "th": "กราฟแสดงฟังก์ชันของ Himmelblau จากจุดกำเนิด ตามทิศ steepest descent ที่ปรับให้ยาวหนึ่งหน่วย alpha จึงเป็นระยะทางที่เคลื่อนที่"
+    },
+    {
+     "s": 74.41,
+     "e": 79.868,
+     "en": "The sand region is where Armijo holds, and the teal region is where both conditions hold.",
+     "th": "บริเวณสีทรายคือที่ที่ Armijo เป็นจริง และบริเวณสีเขียวหัวเป็ดคือที่ที่ทั้งสองเงื่อนไขเป็นจริง"
+    },
+    {
+     "s": 79.868,
+     "e": 84.954,
+     "en": "At alpha equal to zero the function value is 170 and the slope is steep.",
+     "th": "ที่ alpha เท่ากับศูนย์ ค่าฟังก์ชันคือ 170 และความชันมีค่ามาก"
+    },
+    {
+     "s": 84.954,
+     "e": 93.803,
+     "en": "The first trial, four units along the line, already gives 51.8, far below the Armijo line, so backtracking accepts it at once.",
+     "th": "การทดลองครั้งแรกที่ระยะสี่หน่วยตามเส้นให้ค่า 51.8 ซึ่งต่ำกว่าเส้น Armijo มาก backtracking จึงยอมรับทันที ถ้า c หนึ่ง"
+    },
+    {
+     "s": 93.803,
+     "e": 99.237,
+     "en": "With a stricter c one, the same trial can fail and the search halves the step.",
+     "th": "เข้มขึ้น การทดลองเดียวกันอาจไม่ผ่าน และการค้นหาจะลดก้าวลงครึ่งหนึ่ง"
+    },
+    {
+     "s": 99.237,
+     "e": 109.184,
+     "en": "Raise c one towards one half: the Armijo set shrinks and backtracking accepts shorter steps. Raise c two towards one: the Wolfe set widens.",
+     "th": "เพิ่ม c หนึ่ง ไปทางครึ่งหนึ่ง เซตของ Armijo จะหดลง และ backtracking จะยอมรับก้าวที่สั้นลง เพิ่ม c สอง ไปทางหนึ่ง เซตของ Wolfe จะกว้างขึ้น"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "file": "audio/slide-10.mp3",
+   "duration": 102.984,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.603,
+     "en": "Here is one backtracking line search by hand.",
+     "th": "นี่คือ backtracking line search หนึ่งครั้งด้วยมือ"
+    },
+    {
+     "s": 3.603,
+     "e": 13.263,
+     "en": "Take f equals x one squared plus ten x two squared, at the point one, one. The value is eleven and the gradient is two, twenty.",
+     "th": "ให้ f เท่ากับ x หนึ่ง ยกกำลังสอง บวกสิบเท่าของ x สอง ยกกำลังสอง ที่จุด หนึ่ง หนึ่ง ค่าฟังก์ชันคือสิบเอ็ด และ gradient คือ สอง ยี่สิบ"
+    },
+    {
+     "s": 13.263,
+     "e": 18.367,
+     "en": "The direction is minus g, and the slope g transpose p is minus 404.",
+     "th": "ทิศทางคือลบ g และความชัน g transpose p เท่ากับลบ 404"
+    },
+    {
+     "s": 18.367,
+     "e": 28.276,
+     "en": "With c one equal to ten to the minus four, the Armijo test accepts a step when the new f is at most eleven minus 0.0404 times alpha.",
+     "th": "เมื่อ c หนึ่ง เท่ากับสิบยกกำลังลบสี่ เงื่อนไข Armijo ยอมรับก้าวเมื่อ f ใหม่ไม่เกินสิบเอ็ด ลบ 0.0404 คูณ alpha"
+    },
+    {
+     "s": 28.276,
+     "e": 42.055,
+     "en": "Start with alpha equal to one. The trial point is minus one, minus nineteen, where f is 3,611: rejected. Halve to one half: f is 810, rejected.",
+     "th": "เริ่มด้วย alpha เท่ากับหนึ่ง จุดทดลองคือ ลบหนึ่ง ลบสิบเก้า ซึ่ง f เท่ากับ 3,611 ถูกปฏิเสธ ลดเป็นครึ่งหนึ่ง f เท่ากับ 810 ถูกปฏิเสธ"
+    },
+    {
+     "s": 42.055,
+     "e": 47.987,
+     "en": "One quarter gives 160, and one eighth gives 23: both rejected.",
+     "th": "หนึ่งในสี่ให้ 160 และหนึ่งในแปดให้ 23 ถูกปฏิเสธทั้งคู่"
+    },
+    {
+     "s": 47.987,
+     "e": 63.842,
+     "en": "At alpha equal to one sixteenth, the point is 0.875, minus 0.25, and f is 1.39. That is below the bound, so the step is accepted. This one step cost five function evaluations.",
+     "th": "ที่ alpha เท่ากับหนึ่งในสิบหก จุดคือ 0.875 ลบ 0.25 และ f เท่ากับ 1.39 ซึ่งต่ำกว่าขอบเขต ก้าวนี้จึงถูกยอมรับ ก้าวเดียวนี้ใช้การคำนวณฟังก์ชันห้าครั้ง"
+    },
+    {
+     "s": 63.842,
+     "e": 73.79,
+     "en": "For comparison, the exact step on this quadratic is g transpose g over g transpose A g, which is 404 over 8,008, or 0.0505.",
+     "th": "เพื่อเปรียบเทียบ ก้าวที่แม่นตรงบนฟังก์ชันกำลังสองนี้คือ g transpose g หารด้วย g transpose A g ซึ่งเท่ากับ 404 หาร 8,008"
+    },
+    {
+     "s": 73.79,
+     "e": 81.171,
+     "en": "Halving brackets the exact step within a factor of two, so the accepted step is close to it.",
+     "th": "หรือ 0.0505 การลดครึ่งจะล้อมก้าวที่แม่นตรงไว้ภายในตัวประกอบสอง ก้าวที่ยอมรับจึงใกล้กับมัน"
+    },
+    {
+     "s": 81.171,
+     "e": 93.592,
+     "en": "Notice the cost. Most of the work in steepest descent goes into function evaluations inside the line search, not into gradients. You will see this again in the race later today.",
+     "th": "สังเกตต้นทุน งานส่วนใหญ่ของ steepest descent อยู่ที่การคำนวณฟังก์ชันภายใน line search ไม่ใช่การคำนวณ gradient คุณจะเห็นเรื่องนี้อีกครั้งในการแข่งขันช่วงหลังของวันนี้"
+    },
+    {
+     "s": 93.592,
+     "e": 102.908,
+     "en": "This function has condition number ten, so steepest descent would still need dozens of such steps. Press D to run the same search in Python.",
+     "th": "ฟังก์ชันนี้มี condition number เท่ากับสิบ steepest descent จึงยังต้องใช้ก้าวแบบนี้หลายสิบก้าว กด D เพื่อรันการค้นหาเดียวกันใน Python"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "file": "audio/slide-11.mp3",
+   "duration": 39.912,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.932,
+     "en": "Check 1 covers descent directions and line searches.",
+     "th": "แบบตรวจที่ 1 ครอบคลุม descent direction และ line search"
+    },
+    {
+     "s": 3.932,
+     "e": 14.917,
+     "en": "Question one asks you to test two directions with the sign of g transpose p. Question two asks for kappa, and uses the rule that iterations grow in proportion to it.",
+     "th": "ข้อหนึ่งให้ทดสอบสองทิศทางด้วยเครื่องหมายของ g transpose p ข้อสองถามค่า kappa และใช้กฎว่าจำนวนรอบเพิ่มตามสัดส่วนของมัน"
+    },
+    {
+     "s": 14.917,
+     "e": 22.395,
+     "en": "Question three applies the Armijo test to two trial steps. And question four asks why Armijo alone is not enough.",
+     "th": "ข้อสามใช้เงื่อนไข Armijo กับก้าวทดลองสองก้าว และข้อสี่ถามว่าทำไม Armijo อย่างเดียวจึงไม่พอ"
+    },
+    {
+     "s": 22.395,
+     "e": 29.986,
+     "en": "A hint for question three: compute the Armijo bound for each trial step first, then compare. A hint for question four:",
+     "th": "คำใบ้ข้อสาม คำนวณขอบเขตของ Armijo สำหรับก้าวทดลองแต่ละก้าวก่อน แล้วจึงเปรียบเทียบ คำใบ้ข้อสี่"
+    },
+    {
+     "s": 29.986,
+     "e": 34.961,
+     "en": "think of a line search that accepts a step of ten to the minus ten every time.",
+     "th": "ลองนึกถึง line search ที่ยอมรับก้าวขนาดสิบยกกำลังลบสิบทุกครั้ง"
+    },
+    {
+     "s": 34.961,
+     "e": 39.855,
+     "en": "Pause the narration, answer the four questions, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย ตอบคำถามสี่ข้อ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "file": "audio/slide-12.mp3",
+   "duration": 118.968,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 8.259,
+     "en": "Part two starts with Newton's method. Instead of using only the slope, Newton builds a quadratic model of f around the current point:",
+     "th": "ส่วนที่สองเริ่มด้วย Newton's method แทนที่จะใช้เพียงความชัน Newton สร้างแบบจำลองกำลังสองของ f รอบจุดปัจจุบัน"
+    },
+    {
+     "s": 8.259,
+     "e": 14.408,
+     "en": "the value, plus the gradient times the step, plus one half the step times the Hessian times the step.",
+     "th": "คือค่าฟังก์ชัน บวก gradient คูณก้าว บวกครึ่งหนึ่งของก้าวคูณ Hessian คูณก้าว"
+    },
+    {
+     "s": 14.408,
+     "e": 25.974,
+     "en": "Setting the gradient of this model to zero gives the Newton equation: H k times p equals minus g k. So the Newton step is minus the inverse Hessian times the gradient.",
+     "th": "เมื่อให้ gradient ของแบบจำลองนี้เป็นศูนย์ จะได้สมการของ Newton คือ H k คูณ p เท่ากับลบ g k ดังนั้น Newton step คือลบ inverse ของ Hessian คูณ gradient"
+    },
+    {
+     "s": 25.974,
+     "e": 35.474,
+     "en": "If the Hessian is positive definite, this is a descent direction, because g transpose p equals minus g transpose H inverse g, which is negative.",
+     "th": "ถ้า Hessian เป็น positive definite ทิศนี้เป็น descent direction เพราะ g transpose p เท่ากับลบ g transpose H inverse g ซึ่งเป็นลบ"
+    },
+    {
+     "s": 35.474,
+     "e": 44.891,
+     "en": "Near a minimum where the Hessian is positive definite, Newton converges quadratically: the new error is bounded by a constant times the old error squared.",
+     "th": "ใกล้ค่าต่ำสุดที่ Hessian เป็น positive definite Newton ลู่เข้าแบบ quadratic ความคลาดเคลื่อนใหม่มีขอบเขตเป็นค่าคงที่คูณความคลาดเคลื่อนเดิมยกกำลังสอง"
+    },
+    {
+     "s": 44.891,
+     "e": 48.961,
+     "en": "In practice the number of correct digits roughly doubles each step.",
+     "th": "ในทางปฏิบัติจำนวนหลักที่ถูกต้องจะเพิ่มขึ้นประมาณเท่าตัวในแต่ละก้าว"
+    },
+    {
+     "s": 48.961,
+     "e": 55.671,
+     "en": "On a quadratic the model is exact, so one Newton step lands on the minimum, whatever kappa is.",
+     "th": "บนฟังก์ชันกำลังสอง แบบจำลองแม่นตรง Newton step เดียวจึงถึงค่าต่ำสุด ไม่ว่า kappa จะเป็นเท่าใด"
+    },
+    {
+     "s": 55.671,
+     "e": 65.4,
+     "en": "Try it on the function of the worked example. At one, one, the gradient is two, twenty, and the Hessian is diagonal with two and twenty.",
+     "th": "ลองใช้กับฟังก์ชันในตัวอย่างที่ทำด้วยมือ ที่ หนึ่ง หนึ่ง gradient คือ สอง ยี่สิบ และ Hessian เป็นเมทริกซ์ทแยงมุมที่มีค่าสองและยี่สิบ"
+    },
+    {
+     "s": 65.4,
+     "e": 76.053,
+     "en": "The Newton step is minus one, minus one, which lands exactly on the origin, the minimum. Backtracking needed five trials to get part of the way there.",
+     "th": "Newton step คือ ลบหนึ่ง ลบหนึ่ง ซึ่งไปถึงจุดกำเนิดซึ่งเป็นค่าต่ำสุดพอดี ขณะที่ backtracking ต้องทดลองห้าครั้งเพื่อไปได้เพียงบางส่วนของทาง"
+    },
+    {
+     "s": 76.053,
+     "e": 85.331,
+     "en": "Newton is also affine invariant. If we change units by writing x equals D z, the gradient in z is D g and the Hessian is D H D.",
+     "th": "Newton ยังเป็น affine invariant ถ้าเราเปลี่ยนหน่วยโดยเขียน x เท่ากับ D z gradient ใน z คือ D g และ Hessian คือ D H D"
+    },
+    {
+     "s": 85.331,
+     "e": 97.0,
+     "en": "The Newton step in z is then D inverse times the step in x, which is the same move in the plant. Steepest descent has no such property, and part three uses this.",
+     "th": "Newton step ใน z จึงเท่ากับ D inverse คูณก้าวใน x ซึ่งเป็นการเคลื่อนที่เดียวกันในโรงงาน steepest descent ไม่มีสมบัตินี้ และส่วนที่สามจะใช้เรื่องนี้"
+    },
+    {
+     "s": 97.0,
+     "e": 102.333,
+     "en": "The price is second derivatives, and a linear solve that costs order n cubed per step.",
+     "th": "ราคาที่ต้องจ่ายคืออนุพันธ์อันดับสอง และการแก้ระบบสมการเชิงเส้นที่มีต้นทุนอันดับ n"
+    },
+    {
+     "s": 102.333,
+     "e": 109.934,
+     "en": "The catch is that away from a minimum the Hessian need not be positive definite, and then the model has no minimum to go to.",
+     "th": "กำลังสามต่อก้าว ข้อติดขัดคือ ห่างจากค่าต่ำสุด Hessian ไม่จำเป็นต้องเป็น positive definite และเมื่อนั้นแบบจำลองก็ไม่มีค่าต่ำสุดให้ไป"
+    },
+    {
+     "s": 109.934,
+     "e": 118.895,
+     "en": "The rest of part two is about that catch: what goes wrong, how solvers repair it, and how quasi-Newton methods avoid second derivatives altogether.",
+     "th": "ส่วนที่เหลือของส่วนที่สองว่าด้วยข้อติดขัดนี้ ว่าอะไรผิดพลาด solver ซ่อมอย่างไร และวิธี quasi-Newton หลีกเลี่ยงอนุพันธ์อันดับสองได้อย่างไร"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "file": "audio/slide-13.mp3",
+   "duration": 100.08,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 11.763,
+     "en": "This demo shows Newton's model in one dimension, on f equals x to the fourth, minus four x squared, plus x. The function has two minima, with one maximum between them.",
+     "th": "ตัวอย่างนี้แสดงแบบจำลองของ Newton ในหนึ่งมิติ บน f เท่ากับ x ยกกำลังสี่ ลบสี่ x ยกกำลังสอง บวก x ฟังก์ชันนี้มีค่าต่ำสุดสองจุด และมีค่าสูงสุดหนึ่งจุดอยู่ระหว่างกลาง"
+    },
+    {
+     "s": 11.763,
+     "e": 23.895,
+     "en": "The dashed amber curve is Newton's quadratic model at the start. The shaded band is where the second derivative is negative. There the model is concave, and opens downward.",
+     "th": "เส้นประสีเหลืองอำพันคือแบบจำลองกำลังสองของ Newton ที่จุดเริ่มต้น แถบที่แรเงาคือบริเวณที่อนุพันธ์อันดับสองเป็นลบ ที่นั่นแบบจำลองเว้าลง และเปิดลงด้านล่าง"
+    },
+    {
+     "s": 23.895,
+     "e": 33.453,
+     "en": "Start at 0.3 with pure Newton. The model is concave, so its stationary point is a maximum, and pure Newton moves to it.",
+     "th": "เริ่มที่ 0.3 ด้วย pure Newton แบบจำลองเว้าลง จุด stationary ของมันจึงเป็นค่าสูงสุด และ pure Newton"
+    },
+    {
+     "s": 33.453,
+     "e": 44.763,
+     "en": "In three steps it converges to x equal to 0.126, the local maximum of f. The table shows the second derivative staying negative at every step.",
+     "th": "ก็เคลื่อนไปที่นั่น ในสามก้าวมันลู่เข้าสู่ x เท่ากับ 0.126 ซึ่งเป็นค่าสูงสุดเฉพาะที่ของ f ตารางแสดงว่าอนุพันธ์อันดับสองเป็นลบทุกก้าว"
+    },
+    {
+     "s": 44.763,
+     "e": 51.895,
+     "en": "Pure Newton only solves f prime equals zero. It does not know whether it is going up or down.",
+     "th": "pure Newton แก้เพียงสมการ f prime เท่ากับศูนย์ มันไม่รู้ว่ากำลังขึ้นหรือลง"
+    },
+    {
+     "s": 51.895,
+     "e": 64.593,
+     "en": "Now press Modified. The curvature is replaced by the absolute value of f double prime, with a floor of one, and a backtracking line search makes every step go downhill.",
+     "th": "ตอนนี้กด Modified ความโค้งถูกแทนด้วยค่าสัมบูรณ์ของ f double prime โดยมีค่าต่ำสุดเป็นหนึ่ง และ backtracking line search ทำให้ทุกก้าวลงเขา จาก"
+    },
+    {
+     "s": 64.593,
+     "e": 67.974,
+     "en": "From 0.3 it now reaches the minimum at 1.347.",
+     "th": "0.3 ตอนนี้มันไปถึงค่าต่ำสุดที่ 1.347"
+    },
+    {
+     "s": 67.974,
+     "e": 78.206,
+     "en": "Move the start. Outside the shaded band, both versions agree and converge in a few steps, with the derivative column falling quadratically.",
+     "th": "เลื่อนจุดเริ่มต้น นอกแถบที่แรเงา ทั้งสองแบบให้ผลตรงกันและลู่เข้าในไม่กี่ก้าว โดยคอลัมน์อนุพันธ์ลดลงแบบ quadratic"
+    },
+    {
+     "s": 78.206,
+     "e": 81.934,
+     "en": "Inside the band, only the modified version is safe.",
+     "th": "ภายในแถบ มีเพียงแบบ modified ที่ปลอดภัย"
+    },
+    {
+     "s": 81.934,
+     "e": 89.566,
+     "en": "Near the minima, pure Newton needs only three or four steps to reach four decimal places, which is the quadratic rate at work.",
+     "th": "ใกล้ค่าต่ำสุด pure Newton ใช้เพียงสามหรือสี่ก้าวเพื่อให้ถูกต้องถึงทศนิยมสี่ตำแหน่ง นี่คืออัตราแบบ quadratic ที่กำลังทำงาน"
+    },
+    {
+     "s": 89.566,
+     "e": 100.013,
+     "en": "The same thing happens in many dimensions, where the shaded band becomes the region where the Hessian is not positive definite. Press D to see both runs in Python.",
+     "th": "เรื่องเดียวกันเกิดในหลายมิติ ซึ่งแถบที่แรเงากลายเป็นบริเวณที่ Hessian ไม่เป็น positive definite กด D เพื่อดูการรันทั้งสองแบบใน Python"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "file": "audio/slide-14.mp3",
+   "duration": 94.584,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.103,
+     "en": "This table collects the ways Newton fails, and what solvers do about each.",
+     "th": "ตารางนี้รวบรวมวิธีที่ Newton ล้มเหลว และสิ่งที่ solver ทำในแต่ละกรณี"
+    },
+    {
+     "s": 5.103,
+     "e": 13.744,
+     "en": "If the Hessian is indefinite or negative definite, the step may point uphill, toward a maximum or a saddle. Solvers modify the Hessian:",
+     "th": "ถ้า Hessian เป็น indefinite หรือ negative definite ก้าวอาจชี้ขึ้นเขา ไปทางค่าสูงสุดหรือจุด saddle solver จะปรับ Hessian"
+    },
+    {
+     "s": 13.744,
+     "e": 20.224,
+     "en": "they add a multiple of the identity, or flip and floor its eigenvalues, until it is positive definite.",
+     "th": "โดยบวกผลคูณของเมทริกซ์เอกลักษณ์ หรือกลับเครื่องหมายและกำหนดค่าต่ำสุดให้ eigenvalue จนเป็น positive definite"
+    },
+    {
+     "s": 20.224,
+     "e": 28.44,
+     "en": "For example, at the origin of Himmelblau's function the Hessian is diagonal, with entries minus 42 and minus 26.",
+     "th": "ตัวอย่างเช่น ที่จุดกำเนิดของฟังก์ชันของ Himmelblau Hessian เป็นเมทริกซ์ทแยงมุมที่มีค่าลบ 42 และลบ"
+    },
+    {
+     "s": 28.44,
+     "e": 34.184,
+     "en": "Flipping the signs gives 42 and 26, and the modified step then points downhill.",
+     "th": "26 เมื่อกลับเครื่องหมายจะได้ 42 และ 26 และก้าวที่ปรับแล้วจะชี้ลงเขา"
+    },
+    {
+     "s": 34.184,
+     "e": 44.697,
+     "en": "Far from the solution, the model is poor and a full step overshoots. A line search on alpha, or a trust region that limits the step length, fixes this.",
+     "th": "เมื่ออยู่ห่างจากคำตอบ แบบจำลองไม่แม่น และก้าวเต็มจะเลยเป้า line search บน alpha หรือ trust region ที่จำกัดความยาวก้าวช่วยแก้เรื่องนี้"
+    },
+    {
+     "s": 44.697,
+     "e": 49.189,
+     "en": "If the Hessian is singular or nearly so, the linear solve blows up.",
+     "th": "ถ้า Hessian เป็น singular หรือเกือบเป็น การแก้ระบบสมการเชิงเส้นจะให้ค่าที่ใหญ่มาก"
+    },
+    {
+     "s": 49.189,
+     "e": 57.645,
+     "en": "The same modification helps, or a regularization such as Levenberg–Marquardt, which we will use for least squares in Session 10.",
+     "th": "การปรับแบบเดียวกันช่วยได้ หรือใช้ regularization เช่น Levenberg–Marquardt ซึ่งเราจะใช้กับ least squares ในคาบที่ 10"
+    },
+    {
+     "s": 57.645,
+     "e": 67.961,
+     "en": "If second derivatives are not available, quasi-Newton methods build an approximation from gradients. Finite differences of the gradient are another option.",
+     "th": "ถ้าไม่มีอนุพันธ์อันดับสอง วิธี quasi-Newton จะสร้างค่าประมาณจาก gradient finite difference ของ gradient เป็นอีกทางเลือกหนึ่ง"
+    },
+    {
+     "s": 67.961,
+     "e": 72.58,
+     "en": "And if n is large, forming and factoring the Hessian is too expensive.",
+     "th": "และถ้า n มีขนาดใหญ่ การสร้างและแยกตัวประกอบ Hessian มีต้นทุนสูงเกินไป"
+    },
+    {
+     "s": 72.58,
+     "e": 80.711,
+     "en": "Newton-CG solves the Newton equation approximately with conjugate gradients, using only products of the Hessian with vectors.",
+     "th": "Newton-CG แก้สมการของ Newton โดยประมาณด้วย conjugate gradient โดยใช้เพียงผลคูณของ Hessian กับเวกเตอร์"
+    },
+    {
+     "s": 80.711,
+     "e": 92.062,
+     "en": "In this course, modified Newton means one specific repair: replace each eigenvalue of the Hessian by its absolute value, with a small floor, and then do an Armijo line search.",
+     "th": "ในวิชานี้ modified Newton หมายถึงการซ่อมแบบหนึ่งโดยเฉพาะ คือแทน eigenvalue แต่ละตัวของ Hessian ด้วยค่าสัมบูรณ์ของมัน โดยมีค่าต่ำสุดเล็ก ๆ แล้วทำ Armijo line search"
+    },
+    {
+     "s": 92.062,
+     "e": 94.513,
+     "en": "That is what the race and the lab use.",
+     "th": "นี่คือสิ่งที่การแข่งขันและ lab ใช้"
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "file": "audio/slide-15.mp3",
+   "duration": 94.68,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 9.987,
+     "en": "We have used the words linear, superlinear and quadratic. Here they are precisely, in terms of the error e k, the distance from the solution.",
+     "th": "เราใช้คำว่า linear, superlinear และ quadratic มาแล้ว นี่คือนิยามที่แม่นยำ ในรูปของความคลาดเคลื่อน e k ซึ่งเป็นระยะห่างจากคำตอบ"
+    },
+    {
+     "s": 9.987,
+     "e": 19.97,
+     "en": "Linear convergence means the error shrinks by at least a fixed factor r each step. Superlinear means the ratio of successive errors goes to zero.",
+     "th": "การลู่เข้าแบบ linear หมายความว่าความคลาดเคลื่อนลดลงอย่างน้อยด้วยตัวคูณคงที่ r ในแต่ละก้าว superlinear หมายความว่าอัตราส่วนของความคลาดเคลื่อนที่ต่อเนื่องกันเข้าสู่ศูนย์"
+    },
+    {
+     "s": 19.97,
+     "e": 25.645,
+     "en": "Quadratic means the new error is bounded by a constant times the old error squared.",
+     "th": "quadratic หมายความว่าความคลาดเคลื่อนใหม่มีขอบเขตเป็นค่าคงที่คูณความคลาดเคลื่อนเดิมยกกำลังสอง"
+    },
+    {
+     "s": 25.645,
+     "e": 33.592,
+     "en": "On a log plot of the error, linear convergence is a straight line, superlinear bends down, and quadratic falls off a cliff.",
+     "th": "บนกราฟ log ของความคลาดเคลื่อน การลู่เข้าแบบ linear เป็นเส้นตรง superlinear โค้งลง และ quadratic ตกลงชันมาก"
+    },
+    {
+     "s": 33.592,
+     "e": 39.132,
+     "en": "With r equal to one half, linear convergence gains one binary digit per step.",
+     "th": "เมื่อ r เท่ากับครึ่งหนึ่ง การลู่เข้าแบบ linear ได้หนึ่งหลักฐานสองต่อก้าว"
+    },
+    {
+     "s": 39.132,
+     "e": 48.934,
+     "en": "With r equal to 0.99, it needs about 230 steps for each decimal digit, which is what steepest descent does on a badly conditioned problem.",
+     "th": "เมื่อ r เท่ากับ 0.99 ต้องใช้ประมาณ 230 ก้าวต่อหนึ่งหลักทศนิยม ซึ่งเป็นสิ่งที่ steepest descent ทำบนปัญหาที่ condition แย่"
+    },
+    {
+     "s": 48.934,
+     "e": 60.724,
+     "en": "Superlinear convergence sits between the two. Each step gains more digits than the last, but not twice as many. BFGS behaves like this near a minimum.",
+     "th": "การลู่เข้าแบบ superlinear อยู่ระหว่างสองแบบนั้น แต่ละก้าวได้หลักเพิ่มมากกว่าก้าวก่อน แต่ไม่ถึงสองเท่า BFGS มีพฤติกรรมแบบนี้ใกล้ค่าต่ำสุด"
+    },
+    {
+     "s": 60.724,
+     "e": 67.681,
+     "en": "Quadratic convergence doubles the digits: ten to the minus two, then minus four, minus eight, minus sixteen.",
+     "th": "การลู่เข้าแบบ quadratic เพิ่มจำนวนหลักเป็นเท่าตัว สิบยกกำลังลบสอง แล้วลบสี่ ลบแปด ลบสิบหก"
+    },
+    {
+     "s": 67.681,
+     "e": 73.553,
+     "en": "After that you reach machine precision, which is the flat line at minus sixteen in the plot.",
+     "th": "หลังจากนั้นคุณจะถึงความแม่นยำของเครื่อง ซึ่งคือเส้นแบนที่ลบสิบหกในกราฟ"
+    },
+    {
+     "s": 73.553,
+     "e": 84.487,
+     "en": "In practice you rarely know the solution, so solvers plot the gradient norm instead of the error. Near a minimum the two fall at the same rate, so the same shapes appear.",
+     "th": "ในทางปฏิบัติคุณแทบไม่รู้คำตอบ solver จึงพล็อต norm ของ gradient แทนความคลาดเคลื่อน ใกล้ค่าต่ำสุดทั้งสองลดลงในอัตราเดียวกัน จึงเห็นรูปแบบเดียวกัน"
+    },
+    {
+     "s": 84.487,
+     "e": 94.605,
+     "en": "Steepest descent is linear, BFGS is superlinear, and Newton is quadratic near a minimum. You will read these rates from real runs in Lab 8.",
+     "th": "steepest descent เป็นแบบ linear, BFGS เป็นแบบ superlinear และ Newton เป็นแบบ quadratic ใกล้ค่าต่ำสุด คุณจะอ่านอัตราเหล่านี้จากการรันจริงใน Lab 8"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "file": "audio/slide-16.mp3",
+   "duration": 119.976,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.997,
+     "en": "Quasi-Newton methods keep Newton's idea of a curvature matrix, but learn it from gradients you already have.",
+     "th": "วิธี quasi-Newton ยังใช้แนวคิดของ Newton เรื่องเมทริกซ์ความโค้ง แต่เรียนรู้มันจาก gradient ที่คุณมีอยู่แล้ว"
+    },
+    {
+     "s": 6.997,
+     "e": 16.172,
+     "en": "After a step, let s k be the change in x and y k the change in the gradient. For a quadratic, the Hessian times s equals y exactly.",
+     "th": "หลังหนึ่งก้าว ให้ s k เป็นการเปลี่ยนแปลงของ x และ y k เป็นการเปลี่ยนแปลงของ gradient สำหรับฟังก์ชันกำลังสอง Hessian คูณ s เท่ากับ y"
+    },
+    {
+     "s": 16.172,
+     "e": 22.566,
+     "en": "The secant condition asks the new matrix B to satisfy the same relation along the last step.",
+     "th": "พอดี secant condition ต้องการให้เมทริกซ์ใหม่ B สอดคล้องกับความสัมพันธ์เดียวกันตามแนวก้าวล่าสุด"
+    },
+    {
+     "s": 22.566,
+     "e": 32.493,
+     "en": "In one dimension, the secant condition says that the curvature is the change in slope divided by the change in x. That is the old secant method.",
+     "th": "ในหนึ่งมิติ secant condition บอกว่าความโค้งเท่ากับการเปลี่ยนแปลงของความชันหารด้วยการเปลี่ยนแปลงของ x ซึ่งก็คือ secant method"
+    },
+    {
+     "s": 32.493,
+     "e": 39.066,
+     "en": "BFGS extends it to many dimensions, where one step fixes the curvature along only one direction.",
+     "th": "แบบเดิม BFGS ขยายแนวคิดนี้ไปหลายมิติ ซึ่งหนึ่งก้าวกำหนดความโค้งได้เพียงตามทิศทางเดียว"
+    },
+    {
+     "s": 39.066,
+     "e": 42.824,
+     "en": "BFGS updates the inverse matrix, W, directly.",
+     "th": "BFGS ปรับเมทริกซ์ผกผัน W โดยตรง เมื่อ"
+    },
+    {
+     "s": 42.824,
+     "e": 55.567,
+     "en": "With rho equal to one over y transpose s, the new W is I minus rho s y transpose, times the old W, times I minus rho y s transpose, plus rho s s transpose.",
+     "th": "rho เท่ากับหนึ่งหารด้วย y transpose s W ใหม่คือ I ลบ rho s y transpose คูณ W เดิม คูณ I ลบ rho y s transpose บวก rho s s transpose"
+    },
+    {
+     "s": 55.567,
+     "e": 58.671,
+     "en": "The direction is then minus W times g.",
+     "th": "จากนั้นทิศทางคือลบ W คูณ g"
+    },
+    {
+     "s": 58.671,
+     "e": 66.67,
+     "en": "The update is a rank-two change. It keeps W symmetric and positive definite, provided y transpose s is positive.",
+     "th": "การปรับนี้เป็นการเปลี่ยนแปลงแบบ rank สอง มันรักษาให้ W สมมาตรและเป็น positive definite ตราบที่ y transpose"
+    },
+    {
+     "s": 66.67,
+     "e": 74.316,
+     "en": "The Wolfe curvature condition guarantees that, which is why BFGS is usually paired with a Wolfe line search.",
+     "th": "s เป็นบวก เงื่อนไขความโค้งของ Wolfe รับประกันเรื่องนี้ BFGS จึงมักใช้คู่กับ Wolfe line search"
+    },
+    {
+     "s": 74.316,
+     "e": 82.697,
+     "en": "BFGS needs no second derivatives, only one gradient per step, and costs order n squared per step for the matrix-vector work.",
+     "th": "BFGS ไม่ต้องใช้อนุพันธ์อันดับสอง ใช้เพียงหนึ่ง gradient ต่อก้าว และมีต้นทุนอันดับ n กำลังสองต่อก้าวสำหรับการคูณเมทริกซ์กับเวกเตอร์"
+    },
+    {
+     "s": 82.697,
+     "e": 92.763,
+     "en": "W zero is usually the identity, so the first step is a steepest-descent step. That is why BFGS also feels bad units at the start.",
+     "th": "W ศูนย์มักเป็นเมทริกซ์เอกลักษณ์ ก้าวแรกจึงเป็นก้าวแบบ steepest descent นี่คือเหตุผลที่ BFGS ก็รู้สึกถึงหน่วยที่แย่ในช่วงเริ่มต้นเช่นกัน"
+    },
+    {
+     "s": 92.763,
+     "e": 101.697,
+     "en": "Many codes scale W zero after the first step, using y transpose s over y transpose y, which removes much of that start-up cost.",
+     "th": "หลายโปรแกรมปรับสเกล W ศูนย์หลังก้าวแรก โดยใช้ y transpose s หารด้วย y transpose y ซึ่งช่วยลดต้นทุนในช่วงเริ่มต้นได้มาก"
+    },
+    {
+     "s": 101.697,
+     "e": 114.775,
+     "en": "On a quadratic with exact steps, BFGS finds the minimum in at most n steps, and its matrix then equals the Hessian, as you saw in the zigzag demo. In general it converges superlinearly.",
+     "th": "บนฟังก์ชันกำลังสองที่ใช้ก้าวแม่นตรง BFGS หาค่าต่ำสุดได้ภายในไม่เกิน n ก้าว และเมทริกซ์ของมันจะเท่ากับ Hessian อย่างที่คุณเห็นในตัวอย่างซิกแซก โดยทั่วไปมันลู่เข้าแบบ superlinear BFGS"
+    },
+    {
+     "s": 114.775,
+     "e": 119.908,
+     "en": "SciPy's BFGS is the default of minimize when there are no bounds or rows.",
+     "th": "ของ SciPy เป็นค่าเริ่มต้นของ minimize เมื่อไม่มีขอบเขตหรือแถวข้อจำกัด"
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "file": "audio/slide-17.mp3",
+   "duration": 99.336,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.537,
+     "en": "For large problems, memory and the kind of derivatives you have decide the method.",
+     "th": "สำหรับปัญหาขนาดใหญ่ หน่วยความจำและชนิดของอนุพันธ์ที่คุณมีเป็นตัวตัดสินวิธี"
+    },
+    {
+     "s": 5.537,
+     "e": 11.817,
+     "en": "Modified Newton needs the Hessian, memory of order n squared, and work of order n cubed per step.",
+     "th": "modified Newton ต้องใช้ Hessian หน่วยความจำอันดับ n กำลังสอง และงานอันดับ n กำลังสามต่อก้าว"
+    },
+    {
+     "s": 11.817,
+     "e": 17.776,
+     "en": "It suits up to a few thousand variables when the Hessian is cheap, or more when it is sparse.",
+     "th": "เหมาะกับตัวแปรไม่เกินสองสามพันตัวเมื่อ Hessian คำนวณได้ง่าย หรือมากกว่านั้นเมื่อ Hessian เป็นเมทริกซ์เบาบาง"
+    },
+    {
+     "s": 17.776,
+     "e": 28.317,
+     "en": "Newton-CG, also called truncated Newton, needs only Hessian-vector products, which automatic differentiation provides cheaply. Its memory is of order n.",
+     "th": "Newton-CG ซึ่งเรียกอีกชื่อว่า truncated Newton ต้องการเพียงผลคูณ Hessian กับเวกเตอร์ ซึ่ง automatic differentiation ให้ได้ในราคาถูก หน่วยความจำของมันเป็นอันดับ n"
+    },
+    {
+     "s": 28.317,
+     "e": 32.859,
+     "en": "BFGS needs only gradients, but it stores a dense n by n matrix.",
+     "th": "BFGS ต้องการเพียง gradient แต่เก็บเมทริกซ์หนาแน่นขนาด n"
+    },
+    {
+     "s": 32.859,
+     "e": 45.776,
+     "en": "L-BFGS keeps only the last m pairs of s and y, typically five to twenty, and applies the inverse approximation to the gradient by the two-loop recursion, without forming any matrix.",
+     "th": "คูณ n L-BFGS เก็บเพียง m คู่ล่าสุดของ s และ y โดยทั่วไปห้าถึงยี่สิบคู่ และคูณค่าประมาณผกผันกับ gradient ด้วย two-loop recursion โดยไม่ต้องสร้างเมทริกซ์ใด ๆ L-BFGS-B"
+    },
+    {
+     "s": 45.776,
+     "e": 47.763,
+     "en": "L-BFGS-B adds simple bounds.",
+     "th": "เพิ่มขอบเขตอย่างง่ายเข้าไป"
+    },
+    {
+     "s": 47.763,
+     "e": 55.671,
+     "en": "Nonlinear conjugate gradient methods need even less memory, of order n, and suit very large problems with cheap gradients.",
+     "th": "วิธี nonlinear conjugate gradient ใช้หน่วยความจำน้อยกว่านั้นอีก คืออันดับ n และเหมาะกับปัญหาขนาดใหญ่มากที่ gradient คำนวณได้ง่าย"
+    },
+    {
+     "s": 55.671,
+     "e": 66.753,
+     "en": "The work per step follows the same pattern. Newton's linear solve grows as n cubed, BFGS's matrix-vector product as n squared, and L-BFGS's two loops as m times n.",
+     "th": "งานต่อก้าวเป็นไปตามรูปแบบเดียวกัน การแก้ระบบเชิงเส้นของ Newton เพิ่มตาม n กำลังสาม การคูณเมทริกซ์กับเวกเตอร์ของ BFGS เพิ่มตาม n กำลังสอง และสองลูปของ L-BFGS"
+    },
+    {
+     "s": 66.753,
+     "e": 75.132,
+     "en": "For a thousand variables, that is the difference between about a billion, a million and twenty thousand operations per step.",
+     "th": "เพิ่มตาม m คูณ n สำหรับตัวแปรหนึ่งพันตัว นั่นคือความต่างระหว่างประมาณหนึ่งพันล้าน หนึ่งล้าน และสองหมื่นการคำนวณต่อก้าว"
+    },
+    {
+     "s": 75.132,
+     "e": 88.316,
+     "en": "Nelder–Mead and Powell's method use only function values. They suit a few variables with noisy or missing derivatives. Session 14 treats the case where each evaluation is expensive.",
+     "th": "Nelder–Mead และวิธีของ Powell ใช้เพียงค่าฟังก์ชัน เหมาะกับตัวแปรไม่กี่ตัวที่อนุพันธ์มีสัญญาณรบกวนหรือไม่มี คาบที่ 14 จะพูดถึงกรณีที่การคำนวณแต่ละครั้งมีต้นทุนสูง"
+    },
+    {
+     "s": 88.316,
+     "e": 99.263,
+     "en": "To put numbers on it: with a million variables, the BFGS matrix would need eight terabytes. L-BFGS with ten pairs needs a hundred and sixty megabytes.",
+     "th": "ให้เห็นเป็นตัวเลข เมื่อมีตัวแปรหนึ่งล้านตัว เมทริกซ์ของ BFGS จะต้องใช้แปดเทราไบต์ ขณะที่ L-BFGS ที่เก็บสิบคู่ใช้หนึ่งร้อยหกสิบเมกะไบต์"
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "file": "audio/slide-18.mp3",
+   "duration": 104.064,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 10.395,
+     "en": "Now a race of four methods on Himmelblau's function, which has four minima, one maximum and four saddle points. Click anywhere on the plot to choose a start.",
+     "th": "ตอนนี้คือการแข่งขันของสี่วิธีบนฟังก์ชันของ Himmelblau ซึ่งมีค่าต่ำสุดสี่จุด ค่าสูงสุดหนึ่งจุด และจุด saddle สี่จุด คลิกที่ใดก็ได้บนกราฟเพื่อเลือกจุดเริ่มต้น"
+    },
+    {
+     "s": 10.395,
+     "e": 15.423,
+     "en": "The four methods are steepest descent, pure Newton, modified Newton and BFGS.",
+     "th": "สี่วิธีคือ steepest descent, pure Newton, modified Newton และ BFGS"
+    },
+    {
+     "s": 15.423,
+     "e": 24.513,
+     "en": "All except pure Newton use the same Armijo backtracking, and all stop when the largest gradient component falls below ten to the minus eight.",
+     "th": "ทุกวิธียกเว้น pure Newton ใช้ Armijo backtracking แบบเดียวกัน และทุกวิธีหยุดเมื่อส่วนประกอบที่ใหญ่ที่สุดของ gradient ต่ำกว่าสิบยกกำลังลบแปด"
+    },
+    {
+     "s": 24.513,
+     "e": 37.711,
+     "en": "From the origin, steepest descent needs 29 iterations and 192 function evaluations to reach the minimum at three, two. Modified Newton needs eight iterations, and BFGS ten.",
+     "th": "จากจุดกำเนิด steepest descent ใช้ 29 รอบและคำนวณฟังก์ชัน 192 ครั้งเพื่อไปถึงค่าต่ำสุดที่ สาม สอง modified Newton ใช้แปดรอบ และ BFGS ใช้สิบรอบ"
+    },
+    {
+     "s": 37.711,
+     "e": 45.289,
+     "en": "Pure Newton is the fastest, four steps, but it ends at the local maximum near minus 0.27, minus 0.92.",
+     "th": "pure Newton เร็วที่สุด สี่ก้าว แต่จบที่ค่าสูงสุดเฉพาะที่ใกล้ ลบ 0.27 ลบ 0.92 ที่จุดกำเนิด"
+    },
+    {
+     "s": 45.289,
+     "e": 53.684,
+     "en": "At the origin the Hessian is negative definite, so Newton's model is a hill, and its stationary point is the top.",
+     "th": "Hessian เป็น negative definite แบบจำลองของ Newton จึงเป็นเนินเขา และจุด stationary ของมันคือยอดเนิน"
+    },
+    {
+     "s": 53.684,
+     "e": 63.232,
+     "en": "The table classifies each end point by the eigenvalues of the Hessian there. The lower plot shows the largest gradient component on a log scale.",
+     "th": "ตารางจำแนกจุดสิ้นสุดแต่ละจุดด้วย eigenvalue ของ Hessian ที่จุดนั้น กราฟด้านล่างแสดงส่วนประกอบที่ใหญ่ที่สุดของ gradient บนสเกล log"
+    },
+    {
+     "s": 63.232,
+     "e": 68.895,
+     "en": "You can see the straight slope of steepest descent, and the cliffs of Newton and BFGS.",
+     "th": "คุณจะเห็นความชันแบบเส้นตรงของ steepest descent และหน้าผาของ Newton และ BFGS"
+    },
+    {
+     "s": 68.895,
+     "e": 80.987,
+     "en": "Use the slider to replay the paths step by step. Then try starts near minus one, three and a half, or near one, minus four and a half: from there pure Newton stops at saddle points.",
+     "th": "ใช้แถบเลื่อนเพื่อเล่นเส้นทางซ้ำทีละก้าว แล้วลองจุดเริ่มต้นใกล้ ลบหนึ่ง สามจุดห้า หรือใกล้ หนึ่ง ลบสี่จุดห้า จากตรงนั้น pure Newton จะหยุดที่จุด saddle"
+    },
+    {
+     "s": 80.987,
+     "e": 86.064,
+     "en": "As you click around, count how often pure Newton ends somewhere other than a minimum.",
+     "th": "ขณะคลิกไปที่ต่าง ๆ ให้นับว่า pure Newton จบที่จุดที่ไม่ใช่ค่าต่ำสุดบ่อยเพียงใด"
+    },
+    {
+     "s": 86.064,
+     "e": 94.447,
+     "en": "It happens whenever the start lies in a region where the Hessian is not positive definite, and Himmelblau's function has several such regions.",
+     "th": "สิ่งนี้เกิดขึ้นเมื่อจุดเริ่มต้นอยู่ในบริเวณที่ Hessian ไม่เป็น positive definite และฟังก์ชันของ Himmelblau มีหลายบริเวณแบบนั้น"
+    },
+    {
+     "s": 94.447,
+     "e": 103.987,
+     "en": "Every number on this slide is computed in your browser by a JavaScript copy of the Python function run, so any start you click is a real run, not a recording.",
+     "th": "ตัวเลขทุกตัวในหน้านี้คำนวณในเบราว์เซอร์ของคุณ ด้วยฟังก์ชัน run ของ Python ที่แปลงเป็น JavaScript จุดเริ่มต้นใดที่คุณคลิกจึงเป็นการรันจริง ไม่ใช่ผลที่บันทึกไว้"
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "file": "audio/slide-19.mp3",
+   "duration": 80.784,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.037,
+     "en": "This table records three starts and four methods, so we can count the work.",
+     "th": "ตารางนี้บันทึกสามจุดเริ่มต้นและสี่วิธี เพื่อให้เรานับงานได้"
+    },
+    {
+     "s": 5.037,
+     "e": 17.566,
+     "en": "Pure Newton is the fastest to a stationary point, and wrong three times: a maximum from the origin, and saddle points from the other two starts. It solves gradient equals zero, nothing more.",
+     "th": "pure Newton ไปถึงจุด stationary เร็วที่สุด และผิดทั้งสามครั้ง คือค่าสูงสุดเมื่อเริ่มจากจุดกำเนิด และจุด saddle เมื่อเริ่มจากอีกสองจุด มันแก้สมการ gradient เท่ากับศูนย์ และไม่ทำอะไรมากกว่านั้น"
+    },
+    {
+     "s": 17.566,
+     "e": 23.092,
+     "en": "Modified Newton keeps the speed, four to eight iterations, and only goes downhill.",
+     "th": "modified Newton ยังเร็วอยู่ สี่ถึงแปดรอบ และไปทางลงเขาเท่านั้น"
+    },
+    {
+     "s": 23.092,
+     "e": 28.747,
+     "en": "BFGS needs more steps than Newton, ten to sixteen, but no Hessian, and one gradient per step.",
+     "th": "BFGS ใช้ก้าวมากกว่า Newton สิบถึงสิบหกก้าว แต่ไม่ต้องใช้ Hessian และใช้หนึ่ง"
+    },
+    {
+     "s": 28.747,
+     "e": 37.289,
+     "en": "From the third start it reaches a different minimum from the other methods, which is a reminder that the minimum you find depends on the path.",
+     "th": "gradient ต่อก้าว จากจุดเริ่มต้นที่สาม มันไปถึงค่าต่ำสุดคนละจุดกับวิธีอื่น ซึ่งเตือนว่าค่าต่ำสุดที่คุณได้ขึ้นกับเส้นทาง"
+    },
+    {
+     "s": 37.289,
+     "e": 48.026,
+     "en": "Steepest descent needs 19 to 61 steps, and between 132 and 421 function evaluations, because its line searches backtrack many times.",
+     "th": "steepest descent ใช้ 19 ถึง 61 ก้าว และคำนวณฟังก์ชัน 132 ถึง 421 ครั้ง เพราะ line search ของมันต้องถอยหลายครั้ง"
+    },
+    {
+     "s": 48.026,
+     "e": 54.08,
+     "en": "Count gradients as well. Newton evaluated the Hessian at every step; BFGS never did.",
+     "th": "นับ gradient ด้วย Newton คำนวณ Hessian ทุกก้าว ขณะที่ BFGS ไม่เคยคำนวณเลย"
+    },
+    {
+     "s": 54.08,
+     "e": 64.408,
+     "en": "When second derivatives are expensive or unavailable, BFGS's ten to sixteen cheap steps can cost less than Newton's four to eight expensive ones.",
+     "th": "เมื่ออนุพันธ์อันดับสองมีต้นทุนสูงหรือหาไม่ได้ สิบถึงสิบหกก้าวที่ราคาถูกของ BFGS อาจมีต้นทุนน้อยกว่าสี่ถึงแปดก้าวที่ราคาแพงของ Newton"
+    },
+    {
+     "s": 64.408,
+     "e": 74.229,
+     "en": "The lesson is to always classify the end point, with the Hessian test of Session 5. A solver that reports success has found a point where the gradient is small;",
+     "th": "บทเรียนคือต้องจำแนกจุดสิ้นสุดเสมอ ด้วยการทดสอบ Hessian จากคาบที่ 5 solver ที่รายงานว่าสำเร็จได้หาจุดที่ gradient เล็ก"
+    },
+    {
+     "s": 74.229,
+     "e": 76.974,
+     "en": "it has not told you what kind of point it is.",
+     "th": "แต่ยังไม่ได้บอกคุณว่าจุดนั้นเป็นจุดชนิดใด"
+    },
+    {
+     "s": 76.974,
+     "e": 80.711,
+     "en": "Press D to run the race from the origin in Python.",
+     "th": "กด D เพื่อรันการแข่งขันจากจุดกำเนิดใน Python"
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "file": "audio/slide-20.mp3",
+   "duration": 33.984,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.708,
+     "en": "Check 2 covers Newton and quasi-Newton methods.",
+     "th": "แบบตรวจที่ 2 ครอบคลุม Newton และวิธี quasi-Newton"
+    },
+    {
+     "s": 3.708,
+     "e": 13.156,
+     "en": "Question one asks how many steps Newton and BFGS need on a quadratic. Question two gives a Hessian with one negative eigenvalue.",
+     "th": "ข้อหนึ่งถามว่า Newton และ BFGS ต้องใช้กี่ก้าวบนฟังก์ชันกำลังสอง ข้อสองให้ Hessian ที่มี eigenvalue เป็นลบหนึ่งตัว"
+    },
+    {
+     "s": 13.156,
+     "e": 22.092,
+     "en": "Question three asks you to name a convergence rate from four errors. And question four asks why BFGS rejects some updates.",
+     "th": "ข้อสามให้คุณบอกอัตราการลู่เข้าจากความคลาดเคลื่อนสี่ค่า และข้อสี่ถามว่าทำไม BFGS จึงปฏิเสธการปรับบางครั้ง"
+    },
+    {
+     "s": 22.092,
+     "e": 29.026,
+     "en": "A hint for question two: the sign of each eigenvalue tells you whether the model curves up or down along that direction.",
+     "th": "คำใบ้ข้อสอง เครื่องหมายของ eigenvalue แต่ละตัวบอกว่าแบบจำลองโค้งขึ้นหรือโค้งลงตามทิศทางนั้น"
+    },
+    {
+     "s": 29.026,
+     "e": 33.921,
+     "en": "Pause the narration, answer the four questions, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย ตอบคำถามสี่ข้อ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "file": "audio/slide-21.mp3",
+   "duration": 9.048,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.734,
+     "en": "Time for a ten-minute break.",
+     "th": "ถึงเวลาพักสิบนาที"
+    },
+    {
+     "s": 2.734,
+     "e": 8.974,
+     "en": "After the break, take out your card. You will get its model ready for a solver.",
+     "th": "หลังพัก ให้หยิบการ์ดของคุณออกมา คุณจะเตรียมโมเดลของมันให้พร้อมสำหรับ solver"
+    }
+   ]
+  },
+  {
+   "n": 22,
+   "file": "audio/slide-22.mp3",
+   "duration": 88.296,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.763,
+     "en": "Activity 2 prepares your card for a solver. Work in pairs.",
+     "th": "กิจกรรมที่ 2 เตรียมการ์ดของคุณให้พร้อมสำหรับ solver ทำเป็นคู่"
+    },
+    {
+     "s": 5.763,
+     "e": 13.912,
+     "en": "First, list your card's decision variables with their units, and a typical value of each at the solution.",
+     "th": "ข้อแรก เขียนตัวแปรตัดสินใจของการ์ดพร้อมหน่วย และค่าโดยทั่วไปของแต่ละตัวที่คำตอบ"
+    },
+    {
+     "s": 13.912,
+     "e": 22.829,
+     "en": "A typical value is a guess at the size of the answer, such as 3 bar, 350 kelvin or 0.02 meters. It is not the bound.",
+     "th": "ค่าโดยทั่วไปคือการเดาขนาดของคำตอบ เช่น 3 bar, 350 เคลวิน หรือ 0.02 เมตร ไม่ใช่ขอบเขต"
+    },
+    {
+     "s": 22.829,
+     "e": 33.368,
+     "en": "Second, propose a scale for each variable, so that every scaled variable is of order one. Scale the objective as well, by a typical value of it.",
+     "th": "ข้อสอง เสนอสเกลของตัวแปรแต่ละตัว เพื่อให้ตัวแปรที่ปรับสเกลแล้วทุกตัวมีขนาดอันดับหนึ่ง ปรับสเกลฟังก์ชันเป้าหมายด้วย โดยใช้ค่าโดยทั่วไปของมัน"
+    },
+    {
+     "s": 33.368,
+     "e": 41.974,
+     "en": "Third, say how you will get the gradient: by hand, by automatic differentiation, by complex step, or by finite differences.",
+     "th": "ข้อสาม บอกว่าคุณจะได้ gradient อย่างไร ด้วยมือ ด้วย automatic differentiation ด้วย complex step หรือด้วย finite difference"
+    },
+    {
+     "s": 41.974,
+     "e": 48.566,
+     "en": "Fourth, choose a method, Newton, BFGS, L-BFGS or Nelder–Mead, and give one reason.",
+     "th": "ข้อสี่ เลือกวิธี Newton, BFGS, L-BFGS หรือ Nelder–Mead และให้เหตุผลหนึ่งข้อ"
+    },
+    {
+     "s": 48.566,
+     "e": 57.592,
+     "en": "Then swap with your partner. Your partner checks whether one unit of each scaled variable would change the objective by a similar amount.",
+     "th": "จากนั้นแลกกับเพื่อน เพื่อนตรวจว่าการเปลี่ยนตัวแปรที่ปรับสเกลแล้วไปหนึ่งหน่วย ทำให้ฟังก์ชันเป้าหมายเปลี่ยนในขนาดใกล้เคียงกันหรือไม่"
+    },
+    {
+     "s": 57.592,
+     "e": 67.5,
+     "en": "If the answer is no, adjust the scales. The aim is not exact equality, only that no variable is a thousand times more sensitive than another.",
+     "th": "ถ้าคำตอบคือไม่ ให้ปรับสเกล เป้าหมายไม่ใช่ให้เท่ากันพอดี เพียงแต่ไม่มีตัวแปรใดไวกว่าตัวอื่นเป็นพันเท่า"
+    },
+    {
+     "s": 67.5,
+     "e": 75.208,
+     "en": "Your card's rows still matter; Session 9 puts them back. For now, think about the variables and the objective.",
+     "th": "แถวข้อจำกัดในการ์ดยังสำคัญอยู่ คาบที่ 9 จะนำกลับมา ตอนนี้ให้คิดถึงตัวแปรและฟังก์ชันเป้าหมาย"
+    },
+    {
+     "s": 75.208,
+     "e": 82.013,
+     "en": "If you have no card, use the tank of Session 7, with the cost per square meter changing with size.",
+     "th": "ถ้าไม่มีการ์ด ให้ใช้ถังจากคาบที่ 7 โดยให้ต้นทุนต่อตารางเมตรเปลี่ยนไปตามขนาด"
+    },
+    {
+     "s": 82.013,
+     "e": 88.224,
+     "en": "On your own, pause the narration, write your four answers, and check them with the partner test yourself.",
+     "th": "ถ้าเรียนเอง ให้หยุดเสียงบรรยาย เขียนคำตอบสี่ข้อ แล้วตรวจด้วยการทดสอบของเพื่อนด้วยตัวเอง"
+    }
+   ]
+  },
+  {
+   "n": 23,
+   "file": "audio/slide-23.mp3",
+   "duration": 114.0,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.103,
+     "en": "Part three is about practice, and it starts with scaling.",
+     "th": "ส่วนที่สามว่าด้วยการใช้งานจริง และเริ่มด้วย scaling"
+    },
+    {
+     "s": 4.103,
+     "e": 14.666,
+     "en": "Suppose we write x equals D z, with D a diagonal matrix of scales. Then the gradient in z is D times the gradient in x, and the Hessian in z is D H D.",
+     "th": "สมมุติว่าเราเขียน x เท่ากับ D z โดย D เป็นเมทริกซ์ทแยงมุมของสเกล แล้ว gradient ใน z คือ D คูณ gradient ใน x และ Hessian ใน z คือ D H D"
+    },
+    {
+     "s": 14.666,
+     "e": 23.287,
+     "en": "Steepest descent in z moves x by minus D squared times the gradient. That is a different direction from steepest descent in x.",
+     "th": "steepest descent ใน z ทำให้ x เคลื่อนไป ลบ D ยกกำลังสอง คูณ gradient ซึ่งเป็นคนละทิศกับ steepest descent ใน"
+    },
+    {
+     "s": 23.287,
+     "e": 28.921,
+     "en": "So steepest descent's path, and its iteration count, depend on the units you chose.",
+     "th": "x ดังนั้นเส้นทางและจำนวนรอบของ steepest descent ขึ้นกับหน่วยที่คุณเลือก"
+    },
+    {
+     "s": 28.921,
+     "e": 34.415,
+     "en": "The condition number of D H D can differ from that of H by many orders of magnitude.",
+     "th": "condition number ของ D H D อาจต่างจากของ H หลายอันดับขนาด กฎที่ดีคือเลือกสเกล"
+    },
+    {
+     "s": 34.415,
+     "e": 42.882,
+     "en": "A good rule is to choose each scale d i near a typical value of x i at the solution, so that every scaled variable is of order one.",
+     "th": "d i แต่ละตัวให้ใกล้กับค่าโดยทั่วไปของ x i ที่คำตอบ เพื่อให้ตัวแปรที่ปรับสเกลแล้วทุกตัวมีขนาดอันดับหนึ่ง"
+    },
+    {
+     "s": 42.882,
+     "e": 53.268,
+     "en": "Think of a pressure in pascals, about ten to the fifth, next to a temperature in kelvin, about ten to the second. A change of one pascal does almost nothing;",
+     "th": "ลองนึกถึงความดันในหน่วยปาสคาล ประมาณสิบยกกำลังห้า คู่กับอุณหภูมิในหน่วยเคลวิน ประมาณสิบยกกำลังสอง การเปลี่ยนหนึ่งปาสคาลแทบไม่มีผล"
+    },
+    {
+     "s": 53.268,
+     "e": 60.368,
+     "en": "a change of one kelvin does a lot. The Hessian entries then differ by factors of ten to the seventh or more.",
+     "th": "แต่การเปลี่ยนหนึ่งเคลวินมีผลมาก ค่าใน Hessian จึงต่างกันสิบยกกำลังเจ็ดเท่าหรือมากกว่า"
+    },
+    {
+     "s": 60.368,
+     "e": 72.875,
+     "en": "In Lab 8 the Hessian at the optimum has an entry of about ten to the minus six for pressure in pascals, and about 29 for temperature in kelvin. Its condition number is about 29 million.",
+     "th": "ใน Lab 8 Hessian ที่จุดเหมาะสมที่สุดมีค่าประมาณสิบยกกำลังลบหกสำหรับความดันในหน่วยปาสคาล และประมาณ 29 สำหรับอุณหภูมิในหน่วยเคลวิน condition number ของมันประมาณ 29 ล้าน"
+    },
+    {
+     "s": 72.875,
+     "e": 78.658,
+     "en": "In bar and in units of ten kelvin, the same Hessian has a condition number below five.",
+     "th": "ในหน่วย bar และหน่วยสิบเคลวิน Hessian เดียวกันมี condition number ต่ำกว่าห้า"
+    },
+    {
+     "s": 78.658,
+     "e": 84.184,
+     "en": "Newton is invariant: it produces the same iterates in any units, up to rounding.",
+     "th": "Newton เป็น invariant มันให้จุดในแต่ละรอบเหมือนกันในทุกหน่วย ยกเว้นผลจากการปัดเศษ"
+    },
+    {
+     "s": 84.184,
+     "e": 94.145,
+     "en": "BFGS is invariant after its first steps, but it starts from the identity, which is a steepest-descent step, so bad units cost it extra iterations.",
+     "th": "BFGS เป็น invariant หลังจากก้าวแรก ๆ แต่มันเริ่มจากเมทริกซ์เอกลักษณ์ ซึ่งเป็นก้าวแบบ steepest descent หน่วยที่แย่จึงทำให้มันเสียรอบเพิ่ม"
+    },
+    {
+     "s": 94.145,
+     "e": 104.466,
+     "en": "Tolerances carry units too. A gradient below ten to the minus five means one thing in US dollars per pascal and another in US dollars per bar.",
+     "th": "tolerance ก็มีหน่วยเช่นกัน gradient ที่ต่ำกว่าสิบยกกำลังลบห้ามีความหมายหนึ่งในหน่วยดอลลาร์สหรัฐต่อปาสคาล และอีกความหมายในหน่วยดอลลาร์สหรัฐต่อ"
+    },
+    {
+     "s": 104.466,
+     "e": 113.921,
+     "en": "Scale the objective as well, by a typical value, so that the tolerances mean something. Lab 8 measures all of this on a real model.",
+     "th": "bar ปรับสเกลฟังก์ชันเป้าหมายด้วยค่าโดยทั่วไปของมัน เพื่อให้ tolerance มีความหมาย Lab 8 วัดเรื่องทั้งหมดนี้บนโมเดลจริง"
+    }
+   ]
+  },
+  {
+   "n": 24,
+   "file": "audio/slide-24.mp3",
+   "duration": 103.368,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 12.623,
+     "en": "Here one quadratic is written in worse and worse units. The second variable is measured in a unit s times smaller, so its number becomes s times larger: z two equals s times x two.",
+     "th": "ตรงนี้ฟังก์ชันกำลังสองเดียวกันถูกเขียนในหน่วยที่แย่ลงเรื่อย ๆ ตัวแปรที่สองวัดในหน่วยที่เล็กลง s เท่า ตัวเลขของมันจึงใหญ่ขึ้น s เท่า คือ z สอง เท่ากับ s คูณ x สอง"
+    },
+    {
+     "s": 12.623,
+     "e": 16.013,
+     "en": "The problem is the same; only the numbers change.",
+     "th": "ปัญหายังเหมือนเดิม มีเพียงตัวเลขที่เปลี่ยน"
+    },
+    {
+     "s": 16.013,
+     "e": 18.97,
+     "en": "Move the slider for s from one to ten thousand.",
+     "th": "เลื่อนแถบ s จากหนึ่งถึงหนึ่งหมื่น"
+    },
+    {
+     "s": 18.97,
+     "e": 28.026,
+     "en": "The table shows the condition number of the Hessian in the new units, and the iterations of each method, with the same stopping test in every unit.",
+     "th": "ตารางแสดง condition number ของ Hessian ในหน่วยใหม่ และจำนวนรอบของแต่ละวิธี โดยใช้เกณฑ์การหยุดเดียวกันในทุกหน่วย"
+    },
+    {
+     "s": 28.026,
+     "e": 36.197,
+     "en": "At s equal to one, all three methods finish quickly: 17 steps for steepest descent, five for BFGS, and one for Newton.",
+     "th": "เมื่อ s เท่ากับหนึ่ง ทั้งสามวิธีจบเร็ว steepest descent ใช้ 17 ก้าว BFGS ใช้ห้าก้าว และ Newton ใช้หนึ่งก้าว"
+    },
+    {
+     "s": 36.197,
+     "e": 43.187,
+     "en": "Each factor of ten in s multiplies kappa by about a hundred, and steepest descent's work with it.",
+     "th": "ทุกตัวประกอบสิบของ s คูณ kappa ประมาณหนึ่งร้อยเท่า และคูณงานของ steepest descent"
+    },
+    {
+     "s": 43.187,
+     "e": 55.171,
+     "en": "At s equal to ten it needs 1,739 iterations, and from s of about sixty it hits the limit of twenty thousand. On the plot, its line climbs and then runs along the limit.",
+     "th": "ไปด้วย เมื่อ s เท่ากับสิบ มันต้องใช้ 1,739 รอบ และตั้งแต่ s ประมาณหกสิบ มันชนขีดจำกัดสองหมื่นรอบ บนกราฟเส้นของมันไต่ขึ้นแล้ววิ่งไปตามเส้นขีดจำกัด"
+    },
+    {
+     "s": 55.171,
+     "e": 65.487,
+     "en": "Newton does not notice the units at all. BFGS barely does: five to nine iterations throughout, because it learns the scaling after its first step.",
+     "th": "Newton ไม่รับรู้หน่วยเลย BFGS รับรู้เพียงเล็กน้อย ใช้ห้าถึงเก้ารอบตลอดช่วง เพราะมันเรียนรู้สเกลหลังจากก้าวแรก"
+    },
+    {
+     "s": 65.487,
+     "e": 77.948,
+     "en": "Notice also that the stopping test is the same in every unit: a largest gradient component of ten to the minus six with respect to the original variables x. That keeps the comparison fair.",
+     "th": "สังเกตด้วยว่าเกณฑ์การหยุดเหมือนกันในทุกหน่วย คือส่วนประกอบที่ใหญ่ที่สุดของ gradient เทียบกับตัวแปรเดิม x ไม่เกินสิบยกกำลังลบหก ซึ่งทำให้การเปรียบเทียบยุติธรรม"
+    },
+    {
+     "s": 77.948,
+     "e": 83.947,
+     "en": "With a test on the gradient in z, a change of units would also change what converged means.",
+     "th": "ถ้าใช้เกณฑ์กับ gradient ใน z การเปลี่ยนหน่วยจะเปลี่ยนความหมายของคำว่าลู่เข้าไปด้วย"
+    },
+    {
+     "s": 83.947,
+     "e": 95.039,
+     "en": "Why does a factor of ten in s give a factor of a hundred in kappa? Because the Hessian entry for the second variable is divided by s squared, while the first is unchanged.",
+     "th": "ทำไมตัวประกอบสิบของ s จึงให้ตัวประกอบหนึ่งร้อยของ kappa เพราะค่าใน Hessian ของตัวแปรที่สองถูกหารด้วย s ยกกำลังสอง ขณะที่ของตัวแปรแรกไม่เปลี่ยน"
+    },
+    {
+     "s": 95.039,
+     "e": 103.303,
+     "en": "This is exactly what pascals and kelvins together do in Lab 8. Press D to run three of these cases in Python.",
+     "th": "นี่คือสิ่งที่ปาสคาลและเคลวินทำร่วมกันใน Lab 8 กด D เพื่อรันสามกรณีนี้ใน Python"
+    }
+   ]
+  },
+  {
+   "n": 25,
+   "file": "audio/slide-25.mp3",
+   "duration": 120.528,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.368,
+     "en": "Every method so far needs gradients. This slide compares four ways to get them.",
+     "th": "ทุกวิธีที่ผ่านมาต้องใช้ gradient หน้านี้เปรียบเทียบสี่วิธีในการหา gradient"
+    },
+    {
+     "s": 6.368,
+     "e": 16.704,
+     "en": "A forward difference costs n plus one function evaluations. Its error has two parts: truncation, which grows with h, and rounding, which grows as one over h.",
+     "th": "forward difference ใช้การคำนวณฟังก์ชัน n บวกหนึ่งครั้ง ความคลาดเคลื่อนมีสองส่วน คือ truncation ซึ่งเพิ่มตาม h และการปัดเศษ ซึ่งเพิ่มตามหนึ่งหาร"
+    },
+    {
+     "s": 16.704,
+     "e": 26.321,
+     "en": "The best h is about the square root of machine precision times x, near ten to the minus eight, and the error is then about ten to the minus eight.",
+     "th": "h ค่า h ที่ดีที่สุดประมาณรากที่สองของความแม่นยำของเครื่องคูณ x ใกล้สิบยกกำลังลบแปด และความคลาดเคลื่อนจะอยู่ราวสิบยกกำลังลบแปด"
+    },
+    {
+     "s": 26.321,
+     "e": 29.461,
+     "en": "A finite difference loses about half the digits.",
+     "th": "finite difference เสียหลักไปประมาณครึ่งหนึ่ง"
+    },
+    {
+     "s": 29.461,
+     "e": 41.368,
+     "en": "A central difference costs two n evaluations. Its truncation error falls as h squared, so the best h is larger, about ten to the minus five, and the error is smaller.",
+     "th": "central difference ใช้การคำนวณ สอง n ครั้ง ความคลาดเคลื่อนแบบ truncation ลดลงตาม h ยกกำลังสอง h ที่ดีที่สุดจึงใหญ่กว่า ประมาณสิบยกกำลังลบห้า และความคลาดเคลื่อนเล็กกว่า"
+    },
+    {
+     "s": 41.368,
+     "e": 53.644,
+     "en": "The complex step evaluates f at x plus i h, and takes the imaginary part divided by h. There is no subtraction, so no cancellation, and h can be as small as ten to the minus twenty.",
+     "th": "complex step คำนวณ f ที่ x บวก i h แล้วนำส่วนจินตภาพหารด้วย h ไม่มีการลบ จึงไม่มีการหักล้าง และ h เล็กได้ถึงสิบยกกำลังลบยี่สิบ"
+    },
+    {
+     "s": 53.644,
+     "e": 63.695,
+     "en": "The result is accurate to machine precision. The price is that the code must work with complex numbers, with no absolute values and no branches on x.",
+     "th": "ผลลัพธ์แม่นถึงระดับความแม่นยำของเครื่อง ราคาที่ต้องจ่ายคือโค้ดต้องทำงานกับจำนวนเชิงซ้อนได้ ไม่มีค่าสัมบูรณ์และไม่มีการแตกเงื่อนไขตาม x"
+    },
+    {
+     "s": 63.695,
+     "e": 74.542,
+     "en": "Automatic differentiation gives exact derivatives up to rounding. In reverse mode, the whole gradient costs a few function evaluations, whatever n is.",
+     "th": "automatic differentiation ให้อนุพันธ์ที่แม่นตรงยกเว้นผลจากการปัดเศษ ใน reverse mode gradient ทั้งหมดมีต้นทุนเท่ากับการคำนวณฟังก์ชันไม่กี่ครั้ง ไม่ว่า n เป็นเท่าใด"
+    },
+    {
+     "s": 74.542,
+     "e": 80.289,
+     "en": "CasADi, JAX and PyTorch provide it, and Pyomo passes exact derivatives to Ipopt.",
+     "th": "CasADi, JAX และ PyTorch มีความสามารถนี้ และ Pyomo ส่งอนุพันธ์ที่แม่นตรงให้ Ipopt"
+    },
+    {
+     "s": 80.289,
+     "e": 82.1,
+     "en": "A practical order of preference:",
+     "th": "ลำดับความชอบในทางปฏิบัติ ใช้"
+    },
+    {
+     "s": 82.1,
+     "e": 90.223,
+     "en": "automatic differentiation if your model is written in a tool that supports it, the complex step if your code is plain Python with smooth functions,",
+     "th": "automatic differentiation ถ้าโมเดลเขียนในเครื่องมือที่รองรับ ใช้ complex step ถ้าโค้ดเป็น Python ธรรมดาที่มีแต่ฟังก์ชันเรียบ และใช้"
+    },
+    {
+     "s": 90.223,
+     "e": 93.132,
+     "en": "and central differences only when nothing else works.",
+     "th": "central difference เมื่อไม่มีทางอื่นเท่านั้น"
+    },
+    {
+     "s": 93.132,
+     "e": 104.644,
+     "en": "The plot shows the relative error of each estimate against h, for a test function at x equal to 1.5. Move the slider. The forward and central differences trace a V shape:",
+     "th": "กราฟแสดงความคลาดเคลื่อนสัมพัทธ์ของแต่ละค่าประมาณเทียบกับ h สำหรับฟังก์ชันทดสอบที่ x เท่ากับ 1.5 เลื่อนแถบเลื่อน forward และ central difference เป็นรูปตัว V ด้านขวา"
+    },
+    {
+     "s": 104.644,
+     "e": 113.261,
+     "en": "on the right truncation dominates, and on the left rounding does. The complex step stays at machine precision for every small h.",
+     "th": "truncation มีผลมากกว่า และด้านซ้ายการปัดเศษมีผลมากกว่า complex step อยู่ที่ระดับความแม่นยำของเครื่องสำหรับทุกค่า h ที่เล็ก"
+    },
+    {
+     "s": 113.261,
+     "e": 120.461,
+     "en": "Lab 8 uses the complex step for its gradients. Press D to print the three errors for a few values of h.",
+     "th": "Lab 8 ใช้ complex step คำนวณ gradient กด D เพื่อพิมพ์ความคลาดเคลื่อนทั้งสามสำหรับค่า h บางค่า"
+    }
+   ]
+  },
+  {
+   "n": 26,
+   "file": "audio/slide-26.mp3",
+   "duration": 113.16,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.932,
+     "en": "When a solver says converged, what has it tested?",
+     "th": "เมื่อ solver บอกว่าลู่เข้าแล้ว มันทดสอบอะไร"
+    },
+    {
+     "s": 3.932,
+     "e": 11.514,
+     "en": "The gradient test checks that the gradient norm is small. That is stationarity, the condition that matters.",
+     "th": "เกณฑ์ gradient ตรวจว่า norm ของ gradient เล็ก นั่นคือ stationarity ซึ่งเป็นเงื่อนไขที่สำคัญ BFGS"
+    },
+    {
+     "s": 11.514,
+     "e": 20.5,
+     "en": "SciPy's BFGS uses a tolerance of ten to the minus five on the largest gradient component; L-BFGS-B tests the projected gradient.",
+     "th": "ของ SciPy ใช้ tolerance สิบยกกำลังลบห้ากับส่วนประกอบที่ใหญ่ที่สุดของ gradient ส่วน L-BFGS-B ทดสอบ projected gradient"
+    },
+    {
+     "s": 20.5,
+     "e": 33.471,
+     "en": "The function-change test checks that f has stopped falling, relative to its size; L-BFGS-B uses about 2.2 times ten to the minus nine. The step-size test checks that x has stopped moving;",
+     "th": "เกณฑ์การเปลี่ยนแปลงของฟังก์ชันตรวจว่า f หยุดลดลงแล้วเมื่อเทียบกับขนาดของมัน L-BFGS-B ใช้ประมาณ 2.2 คูณสิบยกกำลังลบเก้า เกณฑ์ขนาดก้าวตรวจว่า x หยุดเคลื่อนที่แล้ว Nelder–Mead"
+    },
+    {
+     "s": 33.471,
+     "e": 39.197,
+     "en": "Nelder–Mead uses this. An iteration or evaluation limit gives no conclusion at all.",
+     "th": "ใช้เกณฑ์นี้ ส่วนขีดจำกัดจำนวนรอบหรือจำนวนการคำนวณไม่ให้ข้อสรุปใด ๆ เลย"
+    },
+    {
+     "s": 39.197,
+     "e": 48.724,
+     "en": "A small change in f or x can also mean slow progress, as steepest descent shows. Only the gradient test speaks about stationarity.",
+     "th": "การเปลี่ยนแปลงเล็กน้อยของ f หรือ x อาจหมายถึงความคืบหน้าที่ช้าก็ได้ ดังที่ steepest descent แสดงให้เห็น มีเพียงเกณฑ์ gradient ที่บอกเรื่อง stationarity"
+    },
+    {
+     "s": 48.724,
+     "e": 59.08,
+     "en": "Steepest descent in Lab 8 is an example. After five thousand iterations its cost still falls by about a quarter of a cent per step, a relative change of six in a billion.",
+     "th": "steepest descent ใน Lab 8 เป็นตัวอย่าง หลังห้าพันรอบ ต้นทุนของมันยังลดลงประมาณหนึ่งในสี่เซ็นต์ต่อก้าว คิดเป็นการเปลี่ยนแปลงสัมพัทธ์หกในพันล้าน"
+    },
+    {
+     "s": 59.08,
+     "e": 69.618,
+     "en": "A function-change test with a relative tolerance of ten to the minus eight would call that converged, about twelve thousand five hundred dollars a year away from the optimum.",
+     "th": "เกณฑ์การเปลี่ยนแปลงของฟังก์ชันที่ใช้ tolerance สัมพัทธ์สิบยกกำลังลบแปดจะถือว่าลู่เข้าแล้ว ทั้งที่ยังห่างจากจุดเหมาะสมที่สุดประมาณหนึ่งหมื่นสองพันห้าร้อยดอลลาร์ต่อปี"
+    },
+    {
+     "s": 69.618,
+     "e": 81.395,
+     "en": "Gradient tolerances carry units. Scale the problem, or use a relative test, such as the gradient norm below ten to the minus six times one plus the absolute value of f.",
+     "th": "tolerance ของ gradient มีหน่วย ปรับสเกลปัญหา หรือใช้เกณฑ์แบบสัมพัทธ์ เช่น norm ของ gradient ต่ำกว่าสิบยกกำลังลบหก คูณ หนึ่งบวกค่าสัมบูรณ์ของ f"
+    },
+    {
+     "s": 81.395,
+     "e": 90.901,
+     "en": "A common SciPy message is: desired error not necessarily achieved due to precision loss. It means the line search could not decrease f.",
+     "th": "ข้อความที่พบบ่อยของ SciPy คือ desired error not necessarily achieved due to precision loss ซึ่งหมายความว่า line search ไม่สามารถลด"
+    },
+    {
+     "s": 90.901,
+     "e": 96.842,
+     "en": "The usual causes are an inaccurate gradient or bad scaling, not a bad starting point.",
+     "th": "f ได้ สาเหตุที่พบบ่อยคือ gradient ที่ไม่แม่น หรือสเกลที่แย่ ไม่ใช่จุดเริ่มต้นที่แย่"
+    },
+    {
+     "s": 96.842,
+     "e": 105.904,
+     "en": "Before trusting a hand-coded gradient, compare it with finite differences, for example with check grad from scipy dot optimize, at a few points.",
+     "th": "ก่อนเชื่อ gradient ที่เขียนโค้ดเอง ให้เปรียบเทียบกับ finite difference เช่นด้วย check grad จาก scipy dot optimize ที่จุดไม่กี่จุด"
+    },
+    {
+     "s": 105.904,
+     "e": 113.092,
+     "en": "And report the iterations, the function and gradient evaluations, and the final gradient norm, not only the status.",
+     "th": "และรายงานจำนวนรอบ จำนวนการคำนวณฟังก์ชันและ gradient และ norm ของ gradient สุดท้าย ไม่ใช่รายงานเพียงสถานะ"
+    }
+   ]
+  },
+  {
+   "n": 27,
+   "file": "audio/slide-27.mp3",
+   "duration": 35.544,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.997,
+     "en": "Check 3 covers scaling, derivatives and stopping.",
+     "th": "แบบตรวจที่ 3 ครอบคลุม scaling อนุพันธ์ และการหยุด"
+    },
+    {
+     "s": 3.997,
+     "e": 13.378,
+     "en": "Question one asks for a scaling of two variables with very different sizes. Question two asks how steepest descent's work changes with kappa.",
+     "th": "ข้อหนึ่งให้เสนอสเกลของสองตัวแปรที่มีขนาดต่างกันมาก ข้อสองถามว่างานของ steepest descent เปลี่ยนตาม kappa อย่างไร"
+    },
+    {
+     "s": 13.378,
+     "e": 23.882,
+     "en": "Question three asks what happens when the tolerance is tighter than the gradient's accuracy. And question four asks whether a reported success is a good point.",
+     "th": "ข้อสามถามว่าจะเกิดอะไรเมื่อ tolerance เข้มกว่าความแม่นของ gradient และข้อสี่ถามว่าความสำเร็จที่ solver รายงานเป็นจุดที่ดีหรือไม่"
+    },
+    {
+     "s": 23.882,
+     "e": 30.579,
+     "en": "A hint for question four: convert the gradient to US dollars per bar before you judge whether it is small.",
+     "th": "คำใบ้ข้อสี่ แปลง gradient เป็นดอลลาร์สหรัฐต่อ bar ก่อนตัดสินว่ามันเล็กหรือไม่"
+    },
+    {
+     "s": 30.579,
+     "e": 35.474,
+     "en": "Pause the narration, answer the four questions, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย ตอบคำถามสี่ข้อ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 28,
+   "file": "audio/slide-28.mp3",
+   "duration": 100.872,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 6.115,
+     "en": "Line searches choose a direction first and then a step length. Trust-region methods do the reverse:",
+     "th": "line search เลือกทิศทางก่อนแล้วจึงเลือกความยาวก้าว วิธี trust region ทำกลับกัน"
+    },
+    {
+     "s": 6.115,
+     "e": 11.829,
+     "en": "they first choose how far to trust the model, and then find the best step within that distance.",
+     "th": "คือเลือกก่อนว่าจะเชื่อแบบจำลองได้ไกลเท่าใด แล้วจึงหาก้าวที่ดีที่สุดภายในระยะนั้น"
+    },
+    {
+     "s": 11.829,
+     "e": 19.329,
+     "en": "The subproblem is to minimize the quadratic model subject to the step length being at most Delta, the trust-region radius.",
+     "th": "ปัญหาย่อยคือหาค่าต่ำสุดของแบบจำลองกำลังสอง ภายใต้เงื่อนไขว่าความยาวก้าวไม่เกิน Delta ซึ่งเป็นรัศมีของ trust region"
+    },
+    {
+     "s": 19.329,
+     "e": 23.979,
+     "en": "The dogleg method solves it approximately when B is positive definite.",
+     "th": "วิธี dogleg แก้ปัญหานี้โดยประมาณเมื่อ B เป็น positive definite"
+    },
+    {
+     "s": 23.979,
+     "e": 33.803,
+     "en": "It follows a path from zero to the Cauchy point, the minimizer of the model along minus g, and then turns toward the Newton point, minus B inverse g.",
+     "th": "มันเดินตามเส้นทางจากศูนย์ไปยัง Cauchy point ซึ่งเป็นจุดต่ำสุดของแบบจำลองตามแนวลบ g แล้วเลี้ยวไปทาง Newton point คือลบ B inverse g"
+    },
+    {
+     "s": 33.803,
+     "e": 36.816,
+     "en": "The step is where this path leaves the circle.",
+     "th": "ก้าวที่ได้คือจุดที่เส้นทางนี้ออกจากวงกลม"
+    },
+    {
+     "s": 36.816,
+     "e": 48.439,
+     "en": "After the step, rho compares the actual decrease of f with the decrease that the model predicted. If rho is above three quarters, the step is accepted and the radius grows.",
+     "th": "หลังก้าว rho เปรียบเทียบการลดลงจริงของ f กับการลดลงที่แบบจำลองทำนาย ถ้า rho มากกว่าสามในสี่ ก้าวถูกยอมรับและรัศมีขยาย ถ้า"
+    },
+    {
+     "s": 48.439,
+     "e": 53.276,
+     "en": "If rho is below one quarter, the model was poor, and the radius shrinks.",
+     "th": "rho น้อยกว่าหนึ่งในสี่ แบบจำลองไม่ดี และรัศมีหดลง"
+    },
+    {
+     "s": 53.276,
+     "e": 66.868,
+     "en": "For example, if the model predicts a decrease of ten and f falls by nine, rho is 0.9 and the radius grows. If f falls by only one, rho is 0.1, and the radius shrinks before the next try.",
+     "th": "ตัวอย่างเช่น ถ้าแบบจำลองทำนายว่าจะลดลงสิบ และ f ลดลงเก้า rho เท่ากับ 0.9 และรัศมีขยาย ถ้า f ลดลงเพียงหนึ่ง rho เท่ากับ 0.1 และรัศมีหดลงก่อนการลองครั้งถัดไป"
+    },
+    {
+     "s": 66.868,
+     "e": 76.008,
+     "en": "Move the radius slider. A small radius gives a short step close to steepest descent. A large radius gives the full Newton step.",
+     "th": "เลื่อนแถบรัศมี รัศมีเล็กให้ก้าวสั้นที่ใกล้กับ steepest descent รัศมีใหญ่ให้ Newton step เต็ม"
+    },
+    {
+     "s": 76.008,
+     "e": 84.434,
+     "en": "In between, the step bends from one toward the other, and the model decrease grows from zero to its full value of 4.1.",
+     "th": "ระหว่างนั้นก้าวจะโค้งจากแบบหนึ่งไปหาอีกแบบหนึ่ง และการลดลงของแบบจำลองเพิ่มจากศูนย์จนถึงค่าเต็ม 4.1"
+    },
+    {
+     "s": 84.434,
+     "e": 92.737,
+     "en": "Trust regions handle an indefinite Hessian more naturally than line searches, because the step is bounded even when the model has no minimum.",
+     "th": "trust region จัดการกับ Hessian ที่เป็น indefinite ได้เป็นธรรมชาติกว่า line search เพราะก้าวมีขอบเขตแม้แบบจำลองจะไม่มีค่าต่ำสุด"
+    },
+    {
+     "s": 92.737,
+     "e": 100.789,
+     "en": "SciPy's trust-constr and trust-ncg work this way, and so does Levenberg–Marquardt, which we will use in Session 10.",
+     "th": "trust-constr และ trust-ncg ของ SciPy ทำงานแบบนี้ และ Levenberg–Marquardt ที่เราจะใช้ในคาบที่ 10 ก็เช่นกัน"
+    }
+   ]
+  },
+  {
+   "n": 29,
+   "file": "audio/slide-29.mp3",
+   "duration": 95.448,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.721,
+     "en": "This table summarizes which method to use when.",
+     "th": "ตารางนี้สรุปว่าควรใช้วิธีใดเมื่อใด"
+    },
+    {
+     "s": 3.721,
+     "e": 13.579,
+     "en": "With a few smooth variables and an available Hessian, use Newton with a line search or a trust region; in SciPy, trust-exact, or Newton-CG with the Hessian.",
+     "th": "เมื่อมีตัวแปรที่เรียบไม่กี่ตัวและมี Hessian ให้ใช้ Newton กับ line search หรือ trust region ใน SciPy คือ trust-exact หรือ Newton-CG ที่ให้ Hessian"
+    },
+    {
+     "s": 13.579,
+     "e": 20.671,
+     "en": "With up to a few thousand variables and gradients, use BFGS, which is SciPy's default when there are no bounds.",
+     "th": "เมื่อมีตัวแปรไม่เกินสองสามพันตัวและมี gradient ให้ใช้ BFGS ซึ่งเป็นค่าเริ่มต้นของ SciPy เมื่อไม่มีขอบเขต"
+    },
+    {
+     "s": 20.671,
+     "e": 33.013,
+     "en": "If you are unsure, BFGS with an exact gradient is a sound first choice for a small smooth problem. Switch only when you have a reason: size, bounds, noise, or an available Hessian.",
+     "th": "ถ้าไม่แน่ใจ BFGS ที่ใช้ gradient แม่นตรงเป็นตัวเลือกแรกที่ดีสำหรับปัญหาเล็กที่เรียบ เปลี่ยนวิธีเมื่อมีเหตุผลเท่านั้น เช่น ขนาด ขอบเขต สัญญาณรบกวน หรือมี Hessian ให้ใช้"
+    },
+    {
+     "s": 33.013,
+     "e": 44.763,
+     "en": "With many variables, or with simple bounds, use L-BFGS or L-BFGS-B. With Hessian-vector products on a large problem, use Newton-CG or trust-krylov.",
+     "th": "เมื่อมีตัวแปรจำนวนมาก หรือมีขอบเขตอย่างง่าย ให้ใช้ L-BFGS หรือ L-BFGS-B เมื่อมีผลคูณ Hessian กับเวกเตอร์บนปัญหาขนาดใหญ่ ให้ใช้ Newton-CG หรือ trust-krylov"
+    },
+    {
+     "s": 44.763,
+     "e": 50.197,
+     "en": "With few variables, no derivatives, or noise, use Nelder–Mead or Powell.",
+     "th": "เมื่อมีตัวแปรไม่กี่ตัว ไม่มีอนุพันธ์ หรือมีสัญญาณรบกวน ให้ใช้ Nelder–Mead หรือ Powell"
+    },
+    {
+     "s": 50.197,
+     "e": 62.085,
+     "en": "Noise matters more than it seems. A model with an inner iterative solver, such as a flash calculation or a simulator, returns values that jump slightly when the inner tolerance is met.",
+     "th": "สัญญาณรบกวนมีผลมากกว่าที่คิด โมเดลที่มีตัวแก้ปัญหาแบบวนซ้ำอยู่ภายใน เช่นการคำนวณ flash หรือ simulator จะให้ค่าที่กระโดดเล็กน้อยเมื่อถึง tolerance ภายใน gradient แบบ"
+    },
+    {
+     "s": 62.085,
+     "e": 68.447,
+     "en": "Finite-difference gradients of such a function are mostly noise, and a gradient method then stalls.",
+     "th": "finite difference ของฟังก์ชันแบบนี้ส่วนใหญ่เป็นสัญญาณรบกวน และวิธีที่ใช้ gradient จะหยุดชะงัก"
+    },
+    {
+     "s": 68.447,
+     "e": 77.252,
+     "en": "A sum of squared residuals has its own methods, Gauss–Newton and Levenberg–Marquardt, in least squares; that is Session 10.",
+     "th": "ผลรวมกำลังสองของ residual มีวิธีเฉพาะของมัน คือ Gauss–Newton และ Levenberg–Marquardt ใน least squares ซึ่งเป็นคาบที่"
+    },
+    {
+     "s": 77.252,
+     "e": 86.342,
+     "en": "With equality and inequality rows, use SQP or an interior-point method, such as SLSQP, trust-constr or Ipopt; that is Session 9.",
+     "th": "10 เมื่อมีแถวสมการและอสมการ ให้ใช้ SQP หรือวิธี interior point เช่น SLSQP, trust-constr หรือ Ipopt ซึ่งเป็นคาบที่ 9"
+    },
+    {
+     "s": 86.342,
+     "e": 95.368,
+     "en": "Whatever the method: scale, supply exact gradients if you can, start from more than one point when the problem may be nonconvex, and check the end point.",
+     "th": "ไม่ว่าจะใช้วิธีใด ให้ปรับสเกล ใส่ gradient ที่แม่นตรงถ้าทำได้ เริ่มจากมากกว่าหนึ่งจุดเมื่อปัญหาอาจไม่เป็น convex และตรวจจุดสิ้นสุด"
+    }
+   ]
+  },
+  {
+   "n": 30,
+   "file": "audio/slide-30.mp3",
+   "duration": 76.416,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.629,
+     "en": "Here is a checklist to run before you trust an unconstrained solve.",
+     "th": "นี่คือรายการตรวจที่ควรทำก่อนเชื่อผลการแก้ปัญหาที่ไม่มีข้อจำกัด"
+    },
+    {
+     "s": 4.629,
+     "e": 10.553,
+     "en": "One: the variables and the objective are scaled to order one, with their units written down.",
+     "th": "หนึ่ง ตัวแปรและฟังก์ชันเป้าหมายถูกปรับสเกลให้มีขนาดอันดับหนึ่ง และเขียนหน่วยไว้"
+    },
+    {
+     "s": 10.553,
+     "e": 19.711,
+     "en": "Two: the gradient is exact, by hand, by automatic differentiation or by complex step, or it has been checked against finite differences.",
+     "th": "สอง gradient แม่นตรง ไม่ว่าจะได้ด้วยมือ ด้วย automatic differentiation หรือด้วย complex step หรือได้ตรวจเทียบกับ finite difference แล้ว"
+    },
+    {
+     "s": 19.711,
+     "e": 28.303,
+     "en": "Three: the method fits the number of variables, the cost of derivatives and the smoothness, and the tolerances are stated in scaled units.",
+     "th": "สาม วิธีที่เลือกเหมาะกับจำนวนตัวแปร ต้นทุนของอนุพันธ์ และความเรียบ และระบุ tolerance ในหน่วยที่ปรับสเกลแล้ว"
+    },
+    {
+     "s": 28.303,
+     "e": 32.671,
+     "en": "Four: more than one start, if the problem may be nonconvex.",
+     "th": "สี่ ใช้จุดเริ่มต้นมากกว่าหนึ่งจุด ถ้าปัญหาอาจไม่เป็น convex"
+    },
+    {
+     "s": 32.671,
+     "e": 40.276,
+     "en": "Five: the status, the iterations, the function and gradient evaluations, and the final gradient norm are recorded.",
+     "th": "ห้า บันทึกสถานะ จำนวนรอบ จำนวนการคำนวณฟังก์ชันและ gradient และ norm ของ gradient สุดท้าย"
+    },
+    {
+     "s": 40.276,
+     "e": 46.553,
+     "en": "Six: the end point is classified with the Hessian, as a minimum, a saddle or a maximum.",
+     "th": "หก จำแนกจุดสิ้นสุดด้วย Hessian ว่าเป็นค่าต่ำสุด จุด saddle หรือค่าสูงสุด"
+    },
+    {
+     "s": 46.553,
+     "e": 51.934,
+     "en": "And seven: the result is reproduced with a second method or a second solver.",
+     "th": "และเจ็ด ผลลัพธ์ได้ซ้ำด้วยวิธีที่สองหรือ solver ตัวที่สอง"
+    },
+    {
+     "s": 51.934,
+     "e": 63.224,
+     "en": "Item seven is cheap insurance. If BFGS and Newton, or SciPy and a second package, agree to several digits from the same start, a coding error is unlikely.",
+     "th": "ข้อเจ็ดเป็นประกันที่ราคาถูก ถ้า BFGS กับ Newton หรือ SciPy กับโปรแกรมที่สอง ให้ผลตรงกันหลายหลักจากจุดเริ่มต้นเดียวกัน ก็ไม่น่าจะมีข้อผิดพลาดในโค้ด"
+    },
+    {
+     "s": 63.224,
+     "e": 71.322,
+     "en": "The final project asks for items two, five and six in its report, plus the residuals of Session 7 when rows are present.",
+     "th": "โครงงานสุดท้ายต้องการข้อสอง ข้อห้า และข้อหกในรายงาน รวมถึง residual จากคาบที่ 7 เมื่อมีแถวข้อจำกัด"
+    },
+    {
+     "s": 71.322,
+     "e": 76.342,
+     "en": "None of these takes long, and each one catches a different kind of mistake.",
+     "th": "ไม่มีข้อใดใช้เวลานาน และแต่ละข้อจับข้อผิดพลาดคนละชนิด"
+    }
+   ]
+  },
+  {
+   "n": 31,
+   "file": "audio/slide-31.mp3",
+   "duration": 34.008,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.05,
+     "en": "Check 4 covers choosing a method and checking the result.",
+     "th": "แบบตรวจที่ 4 ครอบคลุมการเลือกวิธีและการตรวจผลลัพธ์"
+    },
+    {
+     "s": 4.05,
+     "e": 13.389,
+     "en": "Question one is about a model with fifty thousand variables. Question two is about a trust-region step that achieved much less than predicted.",
+     "th": "ข้อหนึ่งเกี่ยวกับโมเดลที่มีตัวแปรห้าหมื่นตัว ข้อสองเกี่ยวกับก้าวของ trust region ที่ลดได้น้อยกว่าที่ทำนายไว้มาก ข้อสามให้"
+    },
+    {
+     "s": 13.389,
+     "e": 23.447,
+     "en": "Question three gives the Hessian eigenvalues at a point where pure Newton converged. And question four asks how to make a hand-coded gradient trustworthy.",
+     "th": "eigenvalue ของ Hessian ที่จุดซึ่ง pure Newton ลู่เข้า และข้อสี่ถามว่าจะทำให้ gradient ที่เขียนโค้ดเองน่าเชื่อถือได้อย่างไร"
+    },
+    {
+     "s": 23.447,
+     "e": 29.039,
+     "en": "A hint for question one: compute how much memory a dense matrix of that size would need.",
+     "th": "คำใบ้ข้อหนึ่ง คำนวณว่าเมทริกซ์หนาแน่นขนาดนั้นต้องใช้หน่วยความจำเท่าใด"
+    },
+    {
+     "s": 29.039,
+     "e": 33.934,
+     "en": "Pause the narration, answer the four questions, and then press Show answers.",
+     "th": "หยุดเสียงบรรยาย ตอบคำถามสี่ข้อ แล้วกด Show answers"
+    }
+   ]
+  },
+  {
+   "n": 32,
+   "file": "audio/slide-32.mp3",
+   "duration": 56.832,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.142,
+     "en": "Today's algorithms appear again in the rest of the course.",
+     "th": "algorithm ของวันนี้จะปรากฏอีกในส่วนที่เหลือของวิชา"
+    },
+    {
+     "s": 4.142,
+     "e": 13.281,
+     "en": "In Session 9, SQP is Newton's method applied to the KKT conditions, with a quasi-Newton Hessian and a line search on a merit function.",
+     "th": "ในคาบที่ 9 SQP คือ Newton's method ที่ใช้กับเงื่อนไข KKT โดยมี Hessian แบบ quasi-Newton และ line search บน merit function วิธี"
+    },
+    {
+     "s": 13.281,
+     "e": 17.816,
+     "en": "Interior-point methods take Newton steps on relaxed KKT conditions.",
+     "th": "interior point ใช้ Newton step กับเงื่อนไข KKT ที่ผ่อนคลายแล้ว"
+    },
+    {
+     "s": 17.816,
+     "e": 26.092,
+     "en": "So the Newton step, the line search and the quasi-Newton update you learned today are inside the solvers you will use next week, with the rows added.",
+     "th": "ดังนั้น Newton step, line search และการปรับแบบ quasi-Newton ที่คุณเรียนวันนี้ อยู่ภายใน solver ที่คุณจะใช้สัปดาห์หน้า โดยเพิ่มแถวข้อจำกัดเข้าไป"
+    },
+    {
+     "s": 26.092,
+     "e": 32.684,
+     "en": "In Session 10, Gauss–Newton and Levenberg–Marquardt are Newton and trust regions for least squares.",
+     "th": "ในคาบที่ 10 Gauss–Newton และ Levenberg–Marquardt คือ Newton และ trust region สำหรับ least squares"
+    },
+    {
+     "s": 32.684,
+     "e": 41.803,
+     "en": "In Session 11, dynamic optimization produces large sparse problems, where exact derivatives, scaling and Newton-type solvers are essential.",
+     "th": "ในคาบที่ 11 dynamic optimization สร้างปัญหาขนาดใหญ่ที่เป็นเมทริกซ์เบาบาง ซึ่งอนุพันธ์ที่แม่นตรง การปรับสเกล และ solver แบบ Newton เป็นสิ่งจำเป็น"
+    },
+    {
+     "s": 41.803,
+     "e": 48.526,
+     "en": "In Session 14, when each evaluation costs hours, gradient-free and Bayesian methods take over.",
+     "th": "ในคาบที่ 14 เมื่อการคำนวณแต่ละครั้งใช้เวลาหลายชั่วโมง วิธีที่ไม่ใช้ gradient และวิธี Bayesian จะเข้ามาแทน"
+    },
+    {
+     "s": 48.526,
+     "e": 56.763,
+     "en": "And in the project, your report includes the scaling, a gradient check, the evaluation counts and the classification of the end point.",
+     "th": "และในโครงงาน รายงานของคุณต้องมีการปรับสเกล การตรวจ gradient จำนวนการคำนวณ และการจำแนกจุดสิ้นสุด"
+    }
+   ]
+  },
+  {
+   "n": 33,
+   "file": "audio/slide-33.mp3",
+   "duration": 75.12,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 5.368,
+     "en": "Now Lab 8. Scan the code, or open the lab page.",
+     "th": "ต่อไปคือ Lab 8 สแกนโค้ด หรือเปิดหน้า lab"
+    },
+    {
+     "s": 5.368,
+     "e": 13.733,
+     "en": "A two-stage compressor with an intercooler has two decisions: the intermediate pressure, and the gas temperature after the cooler.",
+     "th": "compressor สองขั้นที่มี intercooler มีการตัดสินใจสองอย่าง คือความดันระหว่างขั้น และอุณหภูมิของแก๊สหลังเครื่องทำความเย็น"
+    },
+    {
+     "s": 13.733,
+     "e": 18.395,
+     "en": "The objective is the annual cost of power, cooler area and cooling water.",
+     "th": "ฟังก์ชันเป้าหมายคือต้นทุนรายปีของไฟฟ้า พื้นที่เครื่องทำความเย็น และน้ำหล่อเย็น"
+    },
+    {
+     "s": 18.395,
+     "e": 29.145,
+     "en": "You run steepest descent, Newton and BFGS with the pressure in pascals and the temperature in kelvin. Then you find the condition number, rescale, and run again.",
+     "th": "คุณรัน steepest descent, Newton และ BFGS โดยใช้ความดันในหน่วยปาสคาล และอุณหภูมิในหน่วยเคลวิน จากนั้นหา condition number ปรับสเกล แล้วรันอีกครั้ง"
+    },
+    {
+     "s": 29.145,
+     "e": 40.816,
+     "en": "Before you run, predict which method will need the most iterations. The answer is not subtle, but the size of the effect may surprise you: one method gets stuck almost where it started.",
+     "th": "ก่อนรัน ให้ทำนายว่าวิธีใดจะใช้รอบมากที่สุด คำตอบไม่ได้ซับซ้อน แต่ขนาดของผลอาจทำให้คุณแปลกใจ วิธีหนึ่งติดอยู่เกือบที่จุดเริ่มต้น"
+    },
+    {
+     "s": 40.816,
+     "e": 52.079,
+     "en": "You explain why Newton did not notice the units, and why the optimum lies where it does. Then you count the work of each method on the Rosenbrock function, and read the convergence rates.",
+     "th": "คุณอธิบายว่าทำไม Newton จึงไม่รับรู้หน่วย และทำไมจุดเหมาะสมที่สุดจึงอยู่ตรงนั้น จากนั้นนับงานของแต่ละวิธีบนฟังก์ชัน Rosenbrock และอ่านอัตราการลู่เข้า"
+    },
+    {
+     "s": 52.079,
+     "e": 62.592,
+     "en": "You will also compare the optimum with the textbook rule of equal stage ratios, the square root of the inlet times the outlet pressure, and explain the difference from the parts of the cost.",
+     "th": "คุณจะเปรียบเทียบจุดเหมาะสมที่สุดกับกฎในตำราที่ให้อัตราส่วนความดันของแต่ละขั้นเท่ากัน คือรากที่สองของความดันขาเข้าคูณความดันขาออก และอธิบายความต่างจากส่วนประกอบของต้นทุน"
+    },
+    {
+     "s": 62.592,
+     "e": 75.053,
+     "en": "Each step asks for a prediction or a number before you move on. In class you have about forty minutes. If you finish early, open descent lab dot py and try a different start.",
+     "th": "แต่ละขั้นต้องการคำทำนายหรือตัวเลขก่อนจะไปต่อ ในห้องเรียนคุณมีเวลาประมาณสี่สิบนาที ถ้าทำเสร็จก่อน ให้เปิด descent lab dot py แล้วลองจุดเริ่มต้นอื่น"
+    }
+   ]
+  },
+  {
+   "n": 34,
+   "file": "audio/slide-34.mp3",
+   "duration": 78.576,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 2.076,
+     "en": "To summarize.",
+     "th": "สรุป"
+    },
+    {
+     "s": 2.076,
+     "e": 10.75,
+     "en": "Every method follows the descent template: a direction with negative slope, a step from a line search or a trust region, and a gradient test to stop.",
+     "th": "ทุกวิธีใช้แม่แบบของ descent คือทิศทางที่มีความชันเป็นลบ ก้าวที่ได้จาก line search หรือ trust region และเกณฑ์ gradient สำหรับการหยุด"
+    },
+    {
+     "s": 10.75,
+     "e": 23.316,
+     "en": "Steepest descent is cheap per step but converges linearly, and its work grows about in proportion to the condition number: 6,908 exact steps for kappa a thousand. It zigzags.",
+     "th": "steepest descent มีต้นทุนต่อก้าวต่ำ แต่ลู่เข้าแบบ linear และงานของมันเพิ่มประมาณตามสัดส่วนของ condition number คือ 6,908 ก้าวที่แม่นตรงเมื่อ kappa เท่ากับหนึ่งพัน และมันซิกแซก"
+    },
+    {
+     "s": 23.316,
+     "e": 30.329,
+     "en": "A backtracking line search by hand took five trials to accept a step of one sixteenth, close to the exact step.",
+     "th": "backtracking line search ด้วยมือใช้การทดลองห้าครั้งเพื่อยอมรับก้าวขนาดหนึ่งในสิบหก ซึ่งใกล้กับก้าวที่แม่นตรง"
+    },
+    {
+     "s": 30.329,
+     "e": 42.368,
+     "en": "Newton uses a quadratic model, converges quadratically and is affine invariant. One step solves any quadratic. But it needs repair where the Hessian is not positive definite:",
+     "th": "Newton ใช้แบบจำลองกำลังสอง ลู่เข้าแบบ quadratic และเป็น affine invariant ก้าวเดียวแก้ฟังก์ชันกำลังสองใด ๆ ได้ แต่ต้องซ่อมในบริเวณที่ Hessian ไม่เป็น positive definite"
+    },
+    {
+     "s": 42.368,
+     "e": 47.184,
+     "en": "from the origin of Himmelblau's function, pure Newton finds a maximum.",
+     "th": "จากจุดกำเนิดของฟังก์ชันของ Himmelblau pure Newton ไปพบค่าสูงสุด"
+    },
+    {
+     "s": 47.184,
+     "e": 59.816,
+     "en": "BFGS learns the curvature from gradients and converges superlinearly. L-BFGS does the same for large n with a few vectors: a hundred and sixty megabytes for a million variables.",
+     "th": "BFGS เรียนรู้ความโค้งจาก gradient และลู่เข้าแบบ superlinear L-BFGS ทำเช่นเดียวกันสำหรับ n ขนาดใหญ่ด้วยเวกเตอร์ไม่กี่ตัว คือหนึ่งร้อยหกสิบเมกะไบต์สำหรับตัวแปรหนึ่งล้านตัว"
+    },
+    {
+     "s": 59.816,
+     "e": 70.908,
+     "en": "Units change the problem for steepest descent and not for Newton: a quadratic in bad units took steepest descent from 17 iterations to more than twenty thousand, while Newton stayed at one.",
+     "th": "หน่วยเปลี่ยนปัญหาสำหรับ steepest descent แต่ไม่เปลี่ยนสำหรับ Newton ฟังก์ชันกำลังสองในหน่วยที่แย่ทำให้ steepest descent เปลี่ยนจาก 17 รอบเป็นมากกว่าสองหมื่นรอบ ขณะที่ Newton ยังคงใช้หนึ่งรอบ"
+    },
+    {
+     "s": 70.908,
+     "e": 78.5,
+     "en": "And in practice: scale the variables and the objective, get exact gradients, check the end point, and report the work.",
+     "th": "และในทางปฏิบัติ ปรับสเกลตัวแปรและฟังก์ชันเป้าหมาย หา gradient ที่แม่นตรง ตรวจจุดสิ้นสุด และรายงานงานที่ใช้"
+    }
+   ]
+  },
+  {
+   "n": 35,
+   "file": "audio/slide-35.mp3",
+   "duration": 45.792,
+   "hold": false,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 4.918,
+     "en": "Before the next session, finish Lab 8 if you did not finish it in class.",
+     "th": "ก่อนคาบหน้า ทำ Lab 8 ให้เสร็จถ้ายังทำไม่เสร็จในห้องเรียน"
+    },
+    {
+     "s": 4.918,
+     "e": 12.829,
+     "en": "Keep your card with its scaling. Session 9 puts the rows back, and solves it with SLSQP and Ipopt.",
+     "th": "เก็บการ์ดพร้อมการปรับสเกลไว้ คาบที่ 9 จะนำแถวข้อจำกัดกลับมา และแก้ด้วย SLSQP และ Ipopt"
+    },
+    {
+     "s": 12.829,
+     "e": 22.421,
+     "en": "Bring the scales you chose in Activity 2. A solver for constrained problems is just as sensitive to units, and the rows need scaling too.",
+     "th": "นำสเกลที่คุณเลือกในกิจกรรมที่ 2 มาด้วย solver สำหรับปัญหาที่มีข้อจำกัดก็ไวต่อหน่วยไม่น้อยกว่า และแถวข้อจำกัดก็ต้องปรับสเกลด้วย"
+    },
+    {
+     "s": 22.421,
+     "e": 31.835,
+     "en": "For reading, Nocedal and Wright, Numerical Optimization, chapters 2, 3 and 6 cover line searches, Newton's method and quasi-Newton methods.",
+     "th": "สำหรับการอ่าน Numerical Optimization ของ Nocedal และ Wright บทที่ 2, 3 และ 6 ครอบคลุม line search, Newton's method และวิธี quasi-Newton"
+    },
+    {
+     "s": 31.835,
+     "e": 38.829,
+     "en": "Or read Rao, Engineering Optimization, chapter 6, on indirect search methods for unconstrained problems.",
+     "th": "หรืออ่าน Engineering Optimization ของ Rao บทที่ 6 เรื่องวิธีค้นหาแบบ indirect สำหรับปัญหาที่ไม่มีข้อจำกัด"
+    },
+    {
+     "s": 38.829,
+     "e": 45.737,
+     "en": "Optionally, read Edgar, Himmelblau and Lasdon, Optimization of Chemical Processes, chapter 6.",
+     "th": "ถ้าต้องการ อ่าน Optimization of Chemical Processes ของ Edgar, Himmelblau และ Lasdon บทที่ 6"
+    }
+   ]
+  },
+  {
+   "n": 36,
+   "file": "audio/slide-36.mp3",
+   "duration": 30.168,
+   "hold": true,
+   "cues": [
+    {
+     "s": 0.1,
+     "e": 3.405,
+     "en": "Finally, the Exit Ticket and feedback.",
+     "th": "สุดท้ายคือ Exit Ticket และ feedback"
+    },
+    {
+     "s": 3.405,
+     "e": 9.145,
+     "en": "Scan the code, choose Session 8, and paste the answers that the lab page copies for you.",
+     "th": "สแกนโค้ด เลือก Session 8 แล้ววางคำตอบที่หน้า lab คัดลอกไว้ให้"
+    },
+    {
+     "s": 9.145,
+     "e": 15.474,
+     "en": "Then tell us about the pace, your confidence, how far you got in the lab, and what is still unclear.",
+     "th": "จากนั้นบอกเราเรื่องความเร็วในการสอน ความมั่นใจ ความคืบหน้าใน lab และสิ่งที่ยังไม่ชัดเจน"
+    },
+    {
+     "s": 15.474,
+     "e": 21.197,
+     "en": "If you studied on your own, choose On my own. The form is anonymous.",
+     "th": "ถ้าคุณเรียนด้วยตนเอง ให้เลือก On my own แบบฟอร์มนี้ไม่ระบุตัวตน"
+    },
+    {
+     "s": 21.197,
+     "e": 26.882,
+     "en": "Your answers are how the next session is adjusted, so short, honest answers help most.",
+     "th": "คำตอบของคุณใช้ปรับคาบถัดไป คำตอบสั้น ๆ ที่ตรงไปตรงมาจึงช่วยได้มากที่สุด"
+    },
+    {
+     "s": 26.882,
+     "e": 30.105,
+     "en": "Thank you, and see you in Session 9.",
+     "th": "ขอบคุณ แล้วพบกันในคาบที่ 9"
+    }
+   ]
+  }
+ ]
+}
