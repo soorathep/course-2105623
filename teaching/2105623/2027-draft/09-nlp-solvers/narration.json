@@ -448,7 +448,7 @@
     {
      "s": 2.925,
      "e": 13.303,
-     "en": "The teal arc is the circle, the grey curves are contours of Q, and the amber points are the minimizers x of rho for fifteen weights from 0.32 to one thousand.",
+     "en": "The teal arc is the circle, the gray curves are contours of Q, and the amber points are the minimizers x of rho for fifteen weights from 0.32 to one thousand.",
      "th": "เส้นโค้งสีเขียวหัวเป็ดคือวงกลม เส้นสีเทาคือเส้นชั้นของ Q และจุดสีเหลืองอำพันคือจุดต่ำสุด x ของ rho สำหรับน้ำหนักสิบห้าค่า ตั้งแต่ 0.32 ถึงหนึ่งพัน"
     },
     {
@@ -1102,7 +1102,7 @@
     {
      "s": 3.032,
      "e": 13.263,
-     "en": "The grey curves are contours of the barrier function, drawn only inside the feasible set, and the amber points are x of tau for tau from one down to ten to the minus four.",
+     "en": "The gray curves are contours of the barrier function, drawn only inside the feasible set, and the amber points are x of tau for tau from one down to ten to the minus four.",
      "th": "เส้นสีเทาคือเส้นชั้นของฟังก์ชัน barrier ซึ่งวาดเฉพาะภายในเซต feasible และจุดสีเหลืองอำพันคือ x ของ tau สำหรับ tau ตั้งแต่หนึ่งลงไปถึงสิบยกกำลังลบสี่"
     },
     {

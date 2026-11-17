@@ -293,7 +293,7 @@ h<sub>j</sub>(x(ρ)) ≈ λ<sub>j</sub>/ρ: the rows are met only as ρ → ∞<
 S.push({kicker:"Part 1 · Demo", title:"The penalty minimizer creeps toward the circle as ρ grows", html:()=>`<div class="body"><div class="col w55"><div class="panel grow"><div class="chart" id="ch-pen"></div></div>
 <div class="ctrl" style="margin-top:6px">penalty weight ρ <input type="range" id="pr" min="0" max="14" step="1" value="4"><b id="prv"></b></div></div>
 <div class="col"><table class="t" style="font-size:16px" id="penT"></table><p style="font-size:17px;margin:8px 0 0;font-weight:700" id="penM"></p>
-<p class="note">Teal: the circle h = 0. Grey: contours of Q(x; ρ). Amber: x(ρ) for all fifteen values of ρ, from 0.32 to 1,000.</p></div></div>`,
+<p class="note">Teal: the circle h = 0. Gray: contours of Q(x; ρ). Amber: x(ρ) for all fifteen values of ρ, from 0.32 to 1,000.</p></div></div>`,
 draw:()=>{const Pn=LC().penalty,P=plane({w:560,h:500,xr:[-1.4,-0.8],yr:[-1.4,-0.8],xt:[-1.4,-1.2,-1,-0.8],yt:[-1.4,-1.2,-1,-0.8],xlab:"x₁",ylab:"x₂",l:56,b:50});
  const go=()=>{const k=+document.getElementById("pr").value,q=Pn[k],rho=q.rho;document.getElementById("prv").textContent=fmt(rho,rho<10?2:0);
   const Q=(a,b)=>a+b+0.5*rho*(a*a+b*b-2)**2,qx=Q(q.x[0],q.x[1]),lev=[0.02,0.1,0.3,0.7,1.5,3].map(v=>qx+v);
@@ -477,7 +477,7 @@ f(x(τ)) − f* ≤ mτ for a convex problem with m rows</div></div>
 S.push({kicker:"Part 2 · Demo", title:"The central path: barrier minimizers approach the corner of the ellipse", html:()=>`<div class="body"><div class="col w55"><div class="panel grow"><div class="chart" id="ch-bar"></div></div>
 <div class="ctrl" style="margin-top:6px">barrier parameter τ <input type="range" id="bt" min="0" max="16" step="1" value="4"><b id="btv"></b></div></div>
 <div class="col"><table class="t" style="font-size:16px" id="barT"></table><p style="font-size:17px;margin:8px 0 0;font-weight:700" id="barM"></p>
-<p class="note">Grey: contours of φ<sub>τ</sub>, drawn only inside the feasible set. Amber: x(τ) for τ from 1 to 10⁻⁴. Teal dot: x* = (√2, √2/2).</p></div></div>`,
+<p class="note">Gray: contours of φ<sub>τ</sub>, drawn only inside the feasible set. Amber: x(τ) for τ from 1 to 10⁻⁴. Teal dot: x* = (√2, √2/2).</p></div></div>`,
 draw:()=>{const Bp=LC().barrier,P=plane({w:560,h:470,xr:[-0.1,2.2],yr:[-0.1,1.2],xt:[0,0.5,1,1.5,2],yt:[0,0.5,1],xlab:"x₁",ylab:"x₂",l:50,b:48});
  const go=()=>{const k=+document.getElementById("bt").value,q=Bp[k],tau=q.tau;document.getElementById("btv").innerHTML=supE(tau,0);
   const phi=(a,b)=>{const g1=a*a+4*b*b-4;return a<=0||b<=0||g1>=0?1e6:-a*b-tau*(Math.log(-g1)+Math.log(a)+Math.log(b))},v0=phi(q.x[0],q.x[1]),lev=[0.01,0.05,0.15,0.4,0.8,1.5,3].map(v=>v0+v*Math.max(tau,0.05)*3);
@@ -1206,7 +1206,7 @@ const NARR = {
     {
      "s": 2.925,
      "e": 13.303,
-     "en": "The teal arc is the circle, the grey curves are contours of Q, and the amber points are the minimizers x of rho for fifteen weights from 0.32 to one thousand.",
+     "en": "The teal arc is the circle, the gray curves are contours of Q, and the amber points are the minimizers x of rho for fifteen weights from 0.32 to one thousand.",
      "th": "เส้นโค้งสีเขียวหัวเป็ดคือวงกลม เส้นสีเทาคือเส้นชั้นของ Q และจุดสีเหลืองอำพันคือจุดต่ำสุด x ของ rho สำหรับน้ำหนักสิบห้าค่า ตั้งแต่ 0.32 ถึงหนึ่งพัน"
     },
     {
@@ -1860,7 +1860,7 @@ const NARR = {
     {
      "s": 3.032,
      "e": 13.263,
-     "en": "The grey curves are contours of the barrier function, drawn only inside the feasible set, and the amber points are x of tau for tau from one down to ten to the minus four.",
+     "en": "The gray curves are contours of the barrier function, drawn only inside the feasible set, and the amber points are x of tau for tau from one down to ten to the minus four.",
      "th": "เส้นสีเทาคือเส้นชั้นของฟังก์ชัน barrier ซึ่งวาดเฉพาะภายในเซต feasible และจุดสีเหลืองอำพันคือ x ของ tau สำหรับ tau ตั้งแต่หนึ่งลงไปถึงสิบยกกำลังลบสี่"
     },
     {

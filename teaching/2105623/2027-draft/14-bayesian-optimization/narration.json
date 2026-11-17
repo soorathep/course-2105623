@@ -3,7 +3,7 @@
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 2872.1,
+ "total_seconds": 2874.5,
  "slides": [
   {
    "n": 1,
@@ -2412,7 +2412,7 @@
   {
    "n": 36,
    "file": "audio/slide-36.mp3",
-   "duration": 49.056,
+   "duration": 51.528,
    "hold": false,
    "cues": [
     {
@@ -2423,37 +2423,37 @@
     },
     {
      "s": 5.089,
-     "e": 10.947,
-     "en": "Bring your project problem to Session 15, with its data, units and a first model.",
-     "th": "นำปัญหาโครงงานของคุณมาในคาบที่ 15 พร้อมข้อมูล หน่วย และโมเดลแรก"
+     "e": 13.408,
+     "en": "Prepare your project presentation for Session 15: twelve minutes plus three for questions, with the verification shown before the results.",
+     "th": "เตรียมการนำเสนอโครงงานสำหรับคาบที่ 15 ใช้เวลา 12 นาที และตอบคำถาม 3 นาที โดยแสดงการตรวจสอบความถูกต้องก่อนผลลัพธ์"
     },
     {
-     "s": 10.947,
-     "e": 20.222,
+     "s": 13.408,
+     "e": 22.683,
      "en": "For reading, take Jones, Schonlau and Welch, 1998, in the Journal of Global Optimization, which introduced the efficient global optimization method;",
      "th": "สำหรับการอ่าน ให้อ่าน Jones, Schonlau และ Welch ปี 1998 ใน Journal of Global Optimization ซึ่งเสนอวิธี efficient global optimization"
     },
     {
-     "s": 20.222,
-     "e": 25.327,
+     "s": 22.683,
+     "e": 27.788,
      "en": "or the review by Shahriari and coauthors, 2016, in the Proceedings of the I E E E.",
      "th": "หรือบทความปริทัศน์ของ Shahriari และคณะ ปี 2016 ใน Proceedings of the IEEE"
     },
     {
-     "s": 25.327,
-     "e": 36.224,
+     "s": 27.788,
+     "e": 38.684,
      "en": "Optional: Rasmussen and Williams, Gaussian Processes for Machine Learning, chapters two and five; and Shields and coauthors, 2021, in Nature, on B O for chemical synthesis.",
      "th": "อ่านเพิ่มเติม Rasmussen และ Williams, Gaussian Processes for Machine Learning บทที่สองและห้า และ Shields และคณะ ปี 2021 ใน Nature เรื่อง BO สำหรับการสังเคราะห์ทางเคมี"
     },
     {
-     "s": 36.224,
-     "e": 42.632,
+     "s": 38.684,
+     "e": 45.092,
      "en": "Shahriari's review is a good map of the field, including the acquisition functions we did not cover.",
      "th": "บทความปริทัศน์ของ Shahriari เป็นแผนที่ที่ดีของสาขานี้ รวมถึง acquisition function ที่เราไม่ได้ครอบคลุม"
     },
     {
-     "s": 42.632,
-     "e": 48.987,
+     "s": 45.092,
+     "e": 51.447,
      "en": "Jones and coauthors is long but clear; read the first sections and the description of expected improvement.",
      "th": "บทความของ Jones และคณะยาวแต่ชัดเจน ให้อ่านส่วนแรก ๆ และคำอธิบาย expected improvement"
     }

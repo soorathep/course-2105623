@@ -846,7 +846,7 @@
     {
      "s": 63.105,
      "e": 74.053,
-     "en": "The chart shows twenty-five random starts in grey and the SLSQP results in amber. Every run lands on the closed form, within less than one part in a million.",
+     "en": "The chart shows twenty-five random starts in gray and the SLSQP results in amber. Every run lands on the closed form, within less than one part in a million.",
      "th": "กราฟแสดงจุดเริ่มสุ่มยี่สิบห้าจุดเป็นสีเทา และผลจาก SLSQP เป็นสีส้ม ทุกรอบไปถึงรูปปิด คลาดเคลื่อนไม่ถึงหนึ่งในล้าน"
     },
     {
@@ -1650,7 +1650,7 @@
     {
      "s": 6.484,
      "e": 13.776,
-     "en": "The grey lines are contours of f. The six minima sit in the six humps that give the function its name.",
+     "en": "The gray lines are contours of f. The six minima sit in the six humps that give the function its name.",
      "th": "เส้นสีเทาคือเส้นชั้นของ f จุดต่ำสุดทั้งหกอยู่ในโหนกทั้งหกที่เป็นที่มาของชื่อฟังก์ชัน"
     },
     {

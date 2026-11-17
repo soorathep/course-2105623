@@ -440,7 +440,7 @@
     {
      "s": 29.526,
      "e": 42.632,
-     "en": "The chart shows forty candidate designs, both objectives to be minimized. The teal points are Pareto optimal; the teal staircase joins them into the front. The grey points are dominated.",
+     "en": "The chart shows forty candidate designs, both objectives to be minimized. The teal points are Pareto optimal; the teal staircase joins them into the front. The gray points are dominated.",
      "th": "กราฟแสดงแบบที่เป็นไปได้สี่สิบแบบ โดยทั้งสองเป้าหมายต้องการค่าน้อยที่สุด จุดสีเขียวหัวเป็ดคือ Pareto optimal และเส้นขั้นบันไดสีเขียวหัวเป็ดเชื่อมจุดเหล่านั้นเป็นแนวหน้า จุดสีเทาคือแบบที่ถูก dominate"
     },
     {
@@ -1260,7 +1260,7 @@
     {
      "s": 46.776,
      "e": 59.921,
-     "en": "Every interval is pruned after three nodes, so 400 is proven optimal, with a gap of zero. Notice that the grey curve V of q is drawn only for reference: the method never needed it.",
+     "en": "Every interval is pruned after three nodes, so 400 is proven optimal, with a gap of zero. Notice that the gray curve V of q is drawn only for reference: the method never needed it.",
      "th": "เมื่อครบสามโหนด ทุกช่วงถูกตัดทิ้งหมด จึงพิสูจน์ได้ว่า 400 เป็นค่าที่ดีที่สุด โดยมีช่องว่างเป็นศูนย์ สังเกตว่าเส้นโค้งสีเทา V(q) วาดไว้เพื่ออ้างอิงเท่านั้น วิธีนี้ไม่ได้ใช้มันเลย"
     },
     {

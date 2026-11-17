@@ -373,7 +373,7 @@ S.push({kicker:"Part 1 · In practice", title:"Making the ε-constraint method w
 <li>A cap that is not tight returns a weakly Pareto point: same f₂, possibly worse f₁. Mavrotas's augmented method (AUGMECON, 2009) adds the slack of the ε row to the objective with a small weight, so the answer is Pareto optimal and loops can stop early when the row is slack</li>
 <li>One objective to optimize, the others as caps: the method extends to three or more objectives, with a grid of caps</li>
 <li>It goes back to Haimes, Lasdon and Wismer (1971)</li></ul></div>
-<div class="col"><div class="panel"><div class="math" style="font-size:17.5px;line-height:1.75">AUGMECON:<br>max f₁(x) + δ s/r₂<br>s.t. f₂(x) + s = ε, &nbsp;s ≥ 0<br>δ small, for example 10⁻³</div></div>
+<div class="col"><div class="panel"><div class="math" style="font-size:17.5px;line-height:1.75">AUGMECON:<br>max f₁(x) + δ s/r₂<br>s.t. f₂(x) + s = ε, &nbsp;s ≥ 0<br>δ small, for example 10⁻³<br>r₂: the range of f₂ in the payoff table</div></div>
 <p class="note" style="margin-top:10px">With an LP, the ε-constraint answers between two vertices are exact points on the edge, and μ is the slope there. With binaries (Part 3) the answers jump, and μ is no longer a slope: the MILP has no duals.</p></div></div>`});
 
 S.push({kicker:"Part 1 · Check your understanding · 5 minutes", title:"Fronts, caps and weights", html:()=>CHECK(1,
@@ -1250,7 +1250,7 @@ const NARR = {
     {
      "s": 29.526,
      "e": 42.632,
-     "en": "The chart shows forty candidate designs, both objectives to be minimized. The teal points are Pareto optimal; the teal staircase joins them into the front. The grey points are dominated.",
+     "en": "The chart shows forty candidate designs, both objectives to be minimized. The teal points are Pareto optimal; the teal staircase joins them into the front. The gray points are dominated.",
      "th": "กราฟแสดงแบบที่เป็นไปได้สี่สิบแบบ โดยทั้งสองเป้าหมายต้องการค่าน้อยที่สุด จุดสีเขียวหัวเป็ดคือ Pareto optimal และเส้นขั้นบันไดสีเขียวหัวเป็ดเชื่อมจุดเหล่านั้นเป็นแนวหน้า จุดสีเทาคือแบบที่ถูก dominate"
     },
     {
@@ -2070,7 +2070,7 @@ const NARR = {
     {
      "s": 46.776,
      "e": 59.921,
-     "en": "Every interval is pruned after three nodes, so 400 is proven optimal, with a gap of zero. Notice that the grey curve V of q is drawn only for reference: the method never needed it.",
+     "en": "Every interval is pruned after three nodes, so 400 is proven optimal, with a gap of zero. Notice that the gray curve V of q is drawn only for reference: the method never needed it.",
      "th": "เมื่อครบสามโหนด ทุกช่วงถูกตัดทิ้งหมด จึงพิสูจน์ได้ว่า 400 เป็นค่าที่ดีที่สุด โดยมีช่องว่างเป็นศูนย์ สังเกตว่าเส้นโค้งสีเทา V(q) วาดไว้เพื่ออ้างอิงเท่านั้น วิธีนี้ไม่ได้ใช้มันเลย"
     },
     {

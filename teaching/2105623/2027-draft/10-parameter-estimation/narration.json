@@ -168,7 +168,7 @@
     {
      "s": 42.118,
      "e": 49.395,
-     "en": "Write your answers alone first, then compare with a neighbour. When you are ready, press Show answers.",
+     "en": "Write your answers alone first, then compare with a neighbor. When you are ready, press Show answers.",
      "th": "เขียนคำตอบด้วยตัวเองก่อน แล้วเปรียบเทียบกับเพื่อนข้าง ๆ เมื่อพร้อมแล้วกด Show answers"
     }
    ]
@@ -614,7 +614,7 @@
     {
      "s": 9.645,
      "e": 22.382,
-     "en": "The data are synthetic: eight samples from k equal to 0.6 and 0.25 per minute, with noise of 0.03 moles per litre. The right chart shows them, with the fitted curve.",
+     "en": "The data are synthetic: eight samples from k equal to 0.6 and 0.25 per minute, with noise of 0.03 moles per liter. The right chart shows them, with the fitted curve.",
      "th": "ข้อมูลเป็นข้อมูลสังเคราะห์ แปดตัวอย่างจาก k เท่ากับ 0.6 และ 0.25 ต่อนาที มีสัญญาณรบกวน 0.03 โมลต่อลิตร กราฟด้านขวาแสดงข้อมูลพร้อมเส้นโค้งที่ปรับได้"
     },
     {
@@ -872,7 +872,7 @@
     {
      "s": 84.618,
      "e": 94.526,
-     "en": "s is 0.0265 moles per litre, close to the 0.03 that was used. That agreement is itself a check on the model.",
+     "en": "s is 0.0265 moles per liter, close to the 0.03 that was used. That agreement is itself a check on the model.",
      "th": "s เท่ากับ 0.0265 โมลต่อลิตร ใกล้กับ 0.03 ที่ใช้สร้างข้อมูล ความสอดคล้องนี้เป็นการตรวจโมเดลอย่างหนึ่งในตัว"
     },
     {
@@ -1094,7 +1094,7 @@
     {
      "s": 3.945,
      "e": 11.722,
-     "en": "The data come from a second-order reaction, two A to products, starting at two moles per litre, with noise of 0.01.",
+     "en": "The data come from a second-order reaction, two A to products, starting at two moles per liter, with noise of 0.01.",
      "th": "ข้อมูลมาจากปฏิกิริยาอันดับสอง 2A ไปเป็นผลิตภัณฑ์ เริ่มที่สองโมลต่อลิตร มีสัญญาณรบกวน 0.01"
     },
     {
@@ -1564,7 +1564,7 @@
     {
      "s": 45.487,
      "e": 55.33,
-     "en": "The data were measured by Fuguitt and Hawkins in 1947, and analysed in a well-known paper by Box, Hunter, MacGregor and Erjavec in 1973.",
+     "en": "The data were measured by Fuguitt and Hawkins in 1947, and analyzed in a well-known paper by Box, Hunter, MacGregor and Erjavec in 1973.",
      "th": "ข้อมูลวัดโดย Fuguitt และ Hawkins ในปี 1947 และวิเคราะห์ในบทความที่มีชื่อเสียงของ Box, Hunter, MacGregor และ Erjavec ในปี 1973"
     },
     {
@@ -1860,7 +1860,7 @@
     {
      "s": 4.234,
      "e": 13.073,
-     "en": "Centre each column of the data, giving a matrix D, and compute the eigenvalues and eigenvectors of D transpose D, a five by five matrix.",
+     "en": "Center each column of the data, giving a matrix D, and compute the eigenvalues and eigenvectors of D transpose D, a five by five matrix.",
      "th": "ลบค่าเฉลี่ยของแต่ละคอลัมน์ในข้อมูล ได้เมทริกซ์ D แล้วหา eigenvalue และ eigenvector ของ D transpose D ซึ่งเป็นเมทริกซ์ห้าคูณห้า"
     },
     {

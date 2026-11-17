@@ -598,7 +598,7 @@ function pinNet(w,h){let s=svgEl(w,h);const box=(x,y,t,c)=>`<rect x="${x-78}" y=
 S.push({kicker:"Part 3 · A classic multiresponse problem", title:"Thermal isomerization of α-pinene: five responses, five rate constants", html:()=>`<div class="body"><div class="col w45"><div class="panel" style="padding:8px 10px">${pinNet(660,350)}</div>
 <div class="math" style="font-size:17px;line-height:1.6;margin-top:6px">dy₁/dt = −(θ₁ + θ₂)y₁, &nbsp;dy₂/dt = θ₁y₁, &nbsp;dy₄/dt = θ₃y₃<br>dy₃/dt = θ₂y₁ − (θ₃ + θ₄)y₃ + θ₅y₅, &nbsp;dy₅/dt = θ₄y₃ − θ₅y₅</div>
 <p class="note" style="margin-top:4px">y in weight %, y(0) = (100, 0, 0, 0, 0); θ in 1/min. The equations are linear, so y(t) = e<sup>Kt</sup>y(0).</p></div>
-<div class="col"><div class="panel grow"><div class="chart" id="ch-pd"></div></div><p class="note" style="margin-top:6px">Data: Fuguitt and Hawkins (1947); analysed by Box, Hunter, MacGregor and Erjavec (1973). 8 times × 5 responses = 40 numbers for 5 parameters.</p></div></div>`,
+<div class="col"><div class="panel grow"><div class="chart" id="ch-pd"></div></div><p class="note" style="margin-top:6px">Data: Fuguitt and Hawkins (1947); analyzed by Box, Hunter, MacGregor and Erjavec (1973). 8 times × 5 responses = 40 numbers for 5 parameters.</p></div></div>`,
 draw:()=>{const D=R.lab.data,col=PCOL();document.getElementById("ch-pd").innerHTML=xyChart({w:600,h:430,xmin:0,xmax:40,xstep:10,ymin:0,ymax:100,ystep:20,xlab:"t, 1000 min",ylab:"weight %",l:52,series:[0,1,2,3,4].map(j=>({pts:D.t.map((t,i)=>[t/1000,D.Y[i][j]]),c:col[j],w:1.6,dash:1})),
  marks:D.t.flatMap((t,i)=>[0,1,2,3,4].map(j=>({x:t/1000,y:D.Y[i][j],c:col[j],r:5}))),over:(px,py)=>legend(PNM.map((t,j)=>({t,c:col[j]})),px(26),py(96))})}});
 
@@ -653,7 +653,7 @@ Error covariance Σ known: min Σ<sub>u</sub> z<sub>u</sub>ᵀ Σ⁻¹ z<sub>u</
 <li>So first look for such relations. That is the next slide, and Task 2 of Lab 10</li></ul></div></div>`});
 
 S.push({kicker:"Part 3 · Dependencies in the data", title:"Two linear relations hidden in forty numbers", html:()=>{const E=R.lab.eigen;return `<div class="body"><div class="col w55"><div class="panel grow"><div class="chart" id="ch-eg"></div></div></div>
-<div class="col"><div class="math" style="font-size:18px;line-height:1.7">D = Y − ȳ (each response centred)<br>eigenvalues and vectors of DᵀD (5 × 5)</div>
+<div class="col"><div class="math" style="font-size:18px;line-height:1.7">D = Y − ȳ (each response centered)<br>eigenvalues and vectors of DᵀD (5 × 5)</div>
 <table class="t" style="font-size:16px;margin-top:6px"><tr><th>Eigenvalue</th><th class="n">This data</th><th class="n">Box et al. (1973)</th></tr>${E.eig.map((v,i)=>`<tr><td>${i+1}</td><td class="n">${v<1?fmt(v,4):fmt(v,v<100?2:0)}</td><td class="n">${["0.0013","0.0168","1.21","25.6","9,660"][i]}</td></tr>`).join("")}</table>
 <ul class="b xs" style="margin-top:8px"><li>An eigenvalue near zero means a vector a with Da ≈ 0: the combination aᵀy is the same in every sample</li>
 <li>Rounding the data to 0.1 weight % alone gives eigenvalues of order (n − 1) × 0.1²/12 ≈ 0.006</li>
@@ -663,7 +663,7 @@ draw:()=>{const E=R.lab.eigen.eig,host=document.getElementById("ch-eg"),w=560,h=
  E.forEach((v,i)=>{const x=l+X*(i+0.2)/5,bw=X*0.6/5;s+=`<rect x="${x}" y="${py(v)}" width="${bw}" height="${t+Y-py(v)}" fill="${i<2?C.amber:C.teal}"/><text x="${x+bw/2}" y="${t+Y+22}" font-size="15" text-anchor="middle" fill="${C.ink}">${i+1}</text><text x="${x+bw/2}" y="${py(v)-8}" font-size="14" text-anchor="middle" fill="${C.ink}">${sigJS(v,3)}</text>`});
  s+=`<line x1="${l}" x2="${l}" y1="${t}" y2="${t+Y}" stroke="${C.graphite}" stroke-width="1.4"/><line x1="${l}" x2="${l+X}" y1="${t+Y}" y2="${t+Y}" stroke="${C.graphite}" stroke-width="1.4"/><text x="${l+X/2}" y="${h-8}" font-size="16" text-anchor="middle" fill="${C.ink}">eigenvalue number</text><text transform="translate(16,${t+Y/2}) rotate(-90)" font-size="16" text-anchor="middle" fill="${C.ink}">eigenvalue of DᵀD, (weight %)²</text>`;
  host.innerHTML=s+"</svg>"},
-py:{title:"Eigen-analysis of the centred data", sub:"est_lab.pin_eigen()", code:
+py:{title:"Eigen-analysis of the centered data", sub:"est_lab.pin_eigen()", code:
 `from est_lab import pin_eigen
 import numpy as np
 E = pin_eigen()
@@ -1014,7 +1014,7 @@ const NARR = {
     {
      "s": 42.118,
      "e": 49.395,
-     "en": "Write your answers alone first, then compare with a neighbour. When you are ready, press Show answers.",
+     "en": "Write your answers alone first, then compare with a neighbor. When you are ready, press Show answers.",
      "th": "เขียนคำตอบด้วยตัวเองก่อน แล้วเปรียบเทียบกับเพื่อนข้าง ๆ เมื่อพร้อมแล้วกด Show answers"
     }
    ]
@@ -1460,7 +1460,7 @@ const NARR = {
     {
      "s": 9.645,
      "e": 22.382,
-     "en": "The data are synthetic: eight samples from k equal to 0.6 and 0.25 per minute, with noise of 0.03 moles per litre. The right chart shows them, with the fitted curve.",
+     "en": "The data are synthetic: eight samples from k equal to 0.6 and 0.25 per minute, with noise of 0.03 moles per liter. The right chart shows them, with the fitted curve.",
      "th": "ข้อมูลเป็นข้อมูลสังเคราะห์ แปดตัวอย่างจาก k เท่ากับ 0.6 และ 0.25 ต่อนาที มีสัญญาณรบกวน 0.03 โมลต่อลิตร กราฟด้านขวาแสดงข้อมูลพร้อมเส้นโค้งที่ปรับได้"
     },
     {
@@ -1718,7 +1718,7 @@ const NARR = {
     {
      "s": 84.618,
      "e": 94.526,
-     "en": "s is 0.0265 moles per litre, close to the 0.03 that was used. That agreement is itself a check on the model.",
+     "en": "s is 0.0265 moles per liter, close to the 0.03 that was used. That agreement is itself a check on the model.",
      "th": "s เท่ากับ 0.0265 โมลต่อลิตร ใกล้กับ 0.03 ที่ใช้สร้างข้อมูล ความสอดคล้องนี้เป็นการตรวจโมเดลอย่างหนึ่งในตัว"
     },
     {
@@ -1940,7 +1940,7 @@ const NARR = {
     {
      "s": 3.945,
      "e": 11.722,
-     "en": "The data come from a second-order reaction, two A to products, starting at two moles per litre, with noise of 0.01.",
+     "en": "The data come from a second-order reaction, two A to products, starting at two moles per liter, with noise of 0.01.",
      "th": "ข้อมูลมาจากปฏิกิริยาอันดับสอง 2A ไปเป็นผลิตภัณฑ์ เริ่มที่สองโมลต่อลิตร มีสัญญาณรบกวน 0.01"
     },
     {
@@ -2410,7 +2410,7 @@ const NARR = {
     {
      "s": 45.487,
      "e": 55.33,
-     "en": "The data were measured by Fuguitt and Hawkins in 1947, and analysed in a well-known paper by Box, Hunter, MacGregor and Erjavec in 1973.",
+     "en": "The data were measured by Fuguitt and Hawkins in 1947, and analyzed in a well-known paper by Box, Hunter, MacGregor and Erjavec in 1973.",
      "th": "ข้อมูลวัดโดย Fuguitt และ Hawkins ในปี 1947 และวิเคราะห์ในบทความที่มีชื่อเสียงของ Box, Hunter, MacGregor และ Erjavec ในปี 1973"
     },
     {
@@ -2706,7 +2706,7 @@ const NARR = {
     {
      "s": 4.234,
      "e": 13.073,
-     "en": "Centre each column of the data, giving a matrix D, and compute the eigenvalues and eigenvectors of D transpose D, a five by five matrix.",
+     "en": "Center each column of the data, giving a matrix D, and compute the eigenvalues and eigenvectors of D transpose D, a five by five matrix.",
      "th": "ลบค่าเฉลี่ยของแต่ละคอลัมน์ในข้อมูล ได้เมทริกซ์ D แล้วหา eigenvalue และ eigenvector ของ D transpose D ซึ่งเป็นเมทริกซ์ห้าคูณห้า"
     },
     {

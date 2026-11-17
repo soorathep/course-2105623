@@ -1166,7 +1166,7 @@
     {
      "s": 48.0,
      "e": 57.908,
-     "en": "Grey nodes are pruned by the bound and red nodes are infeasible. After 19 nodes no open node can beat 125, and the gap is zero.",
+     "en": "Gray nodes are pruned by the bound and red nodes are infeasible. After 19 nodes no open node can beat 125, and the gap is zero.",
      "th": "โหนดสีเทาถูกตัดด้วยขอบเขต และโหนดสีแดงไม่มีคำตอบ หลังจาก 19 โหนด ไม่มีโหนดใดที่ยังเปิดอยู่ชนะ 125 ได้ และ gap เป็นศูนย์"
     },
     {

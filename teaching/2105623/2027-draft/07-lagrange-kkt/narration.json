@@ -3,7 +3,7 @@
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 2919.1,
+ "total_seconds": 2926.2,
  "slides": [
   {
    "n": 1,
@@ -1410,7 +1410,7 @@
   {
    "n": 21,
    "file": "audio/slide-21.mp3",
-   "duration": 87.264,
+   "duration": 94.272,
    "hold": false,
    "cues": [
     {
@@ -1421,55 +1421,61 @@
     },
     {
      "s": 4.3,
-     "e": 15.039,
-     "en": "Write the LP as: minimize minus c transpose x, subject to A x minus b at most zero, with multipliers mu, and minus x at most zero, with multipliers nu.",
-     "th": "เขียน LP เป็น หาค่าต่ำสุดของลบ c transpose x ภายใต้ A x ลบ b ไม่เกินศูนย์ โดยมี multiplier mu และลบ x ไม่เกินศูนย์ โดยมี multiplier nu"
+     "e": 14.887,
+     "en": "Write the LP as: minimize minus c transpose x, subject to A x minus b at most zero, with multipliers mu, and minus x at most zero, with multipliers mu l.",
+     "th": "เขียน LP เป็น หาค่าต่ำสุดของลบ c transpose x ภายใต้ A x ลบ b ไม่เกินศูนย์ โดยมี multiplier mu และลบ x ไม่เกินศูนย์ โดยมี multiplier"
     },
     {
-     "s": 15.039,
-     "e": 27.026,
-     "en": "Stationarity says minus c, plus A transpose mu, minus nu, equals zero. So nu equals A transpose mu minus c, which is minus the reduced costs of Session 6.",
-     "th": "stationarity บอกว่าลบ c บวก A transpose mu ลบ nu เท่ากับศูนย์ nu จึงเท่ากับ A transpose mu ลบ c ซึ่งคือลบของ reduced cost ในคาบที่ 6"
+     "s": 14.887,
+     "e": 21.211,
+     "en": "These are the lower-bound multipliers of slide eleven, with the lower bound l equal to zero.",
+     "th": "mu l ซึ่งคือ multiplier ของขอบเขตล่างในสไลด์ที่ 11 เมื่อขอบเขตล่าง l เท่ากับศูนย์"
     },
     {
-     "s": 27.026,
-     "e": 37.961,
-     "en": "Dual feasibility, mu and nu at least zero, is the dual of Session 6: A transpose mu at least c. Complementarity is complementary slackness, for the rows and for the bounds.",
-     "th": "dual feasibility คือ mu และ nu ไม่ติดลบ ซึ่งก็คือ dual ของคาบที่ 6 คือ A transpose mu ไม่น้อยกว่า c ส่วน complementarity คือ complementary slackness ทั้งของแถวและของขอบเขต"
+     "s": 21.211,
+     "e": 33.474,
+     "en": "Stationarity says minus c, plus A transpose mu, minus mu l, equals zero. So mu l equals A transpose mu minus c, which is minus the reduced costs of Session 6.",
+     "th": "stationarity บอกว่าลบ c บวก A transpose mu ลบ mu l เท่ากับศูนย์ mu l จึงเท่ากับ A transpose mu ลบ c ซึ่งคือลบของ reduced cost ในคาบที่ 6"
     },
     {
-     "s": 37.961,
-     "e": 45.395,
+     "s": 33.474,
+     "e": 44.658,
+     "en": "Dual feasibility, mu and mu l at least zero, is the dual of Session 6: A transpose mu at least c. Complementarity is complementary slackness, for the rows and for the bounds.",
+     "th": "dual feasibility คือ mu และ mu l ไม่ติดลบ ซึ่งก็คือ dual ของคาบที่ 6 คือ A transpose mu ไม่น้อยกว่า c ส่วน complementarity คือ complementary slackness ทั้งของแถวและของขอบเขต"
+    },
+    {
+     "s": 44.658,
+     "e": 52.092,
      "en": "At the optimum six, three, with mu equal to 100, zero and 100, all four residuals are zero.",
      "th": "ที่จุดเหมาะสมที่สุดหก สาม โดย mu เท่ากับ 100 ศูนย์ และ 100 ค่า residual ทั้งสี่เป็นศูนย์"
     },
     {
-     "s": 45.395,
-     "e": 53.013,
-     "en": "There, nu is zero for both products, because both are made: complementarity requires nu j times x j to be zero.",
-     "th": "ที่จุดนั้น nu เป็นศูนย์สำหรับผลิตภัณฑ์ทั้งสอง เพราะผลิตทั้งคู่ complementarity กำหนดให้ nu j คูณ x j เป็นศูนย์"
+     "s": 52.092,
+     "e": 59.868,
+     "en": "There, mu l is zero for both products, because both are made: complementarity requires mu l j times x j to be zero.",
+     "th": "ที่จุดนั้น mu l เป็นศูนย์สำหรับผลิตภัณฑ์ทั้งสอง เพราะผลิตทั้งคู่ complementarity กำหนดให้ mu l j คูณ x j เป็นศูนย์"
     },
     {
-     "s": 53.013,
-     "e": 65.733,
-     "en": "At the vertex eight, zero, with its prices 133.3, zero, zero, nu two is minus 33.3. The dual residual is 33.3, exactly Binder's reduced cost.",
-     "th": "ที่ vertex แปด ศูนย์ ซึ่งมีราคา 133.3 ศูนย์ ศูนย์ nu สองเท่ากับลบ 33.3 ค่า dual residual คือ 33.3 ซึ่งเท่ากับ reduced cost ของ Binder"
+     "s": 59.868,
+     "e": 72.762,
+     "en": "At the vertex eight, zero, with its prices 133.3, zero, zero, mu l two is minus 33.3. The dual residual is 33.3, exactly Binder's reduced cost.",
+     "th": "ที่ vertex แปด ศูนย์ ซึ่งมีราคา 133.3 ศูนย์ ศูนย์ mu l สองเท่ากับลบ 33.3 ค่า dual residual คือ 33.3 ซึ่งเท่ากับ reduced cost ของ Binder"
     },
     {
-     "s": 65.733,
-     "e": 73.079,
+     "s": 72.762,
+     "e": 80.105,
      "en": "The simplex method of Session 6 was driving this residual to zero, pivot by pivot.",
      "th": "พอดี วิธี simplex ในคาบที่ 6 กำลังผลักค่า residual นี้ให้เป็นศูนย์ทีละ pivot"
     },
     {
-     "s": 73.079,
-     "e": 83.842,
+     "s": 80.105,
+     "e": 90.868,
      "en": "For an LP, the KKT conditions are both necessary and sufficient. The rows are linear, so no qualification is needed, and the problem is convex.",
      "th": "สำหรับ LP เงื่อนไข KKT เป็นทั้งเงื่อนไขจำเป็นและเงื่อนไขเพียงพอ แถวเป็นเชิงเส้นจึงไม่ต้องมี qualification และปัญหาเป็น convex"
     },
     {
-     "s": 83.842,
-     "e": 87.184,
+     "s": 90.868,
+     "e": 94.211,
      "en": "Press D to see both points checked in Python.",
      "th": "กด D เพื่อดูการตรวจทั้งสองจุดด้วย Python"
     }

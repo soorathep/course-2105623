@@ -326,7 +326,7 @@ max<sub>x</sub> −cᵀx + Σ<sub>s</sub> p<sub>s</sub> Q(x, ξ<sub>s</sub>)<br>
 Q(x, ξ<sub>s</sub>) = max<sub>y</sub> { q<sub>s</sub>ᵀy : W y ≤ h<sub>s</sub> − T<sub>s</sub>x, y ≥ 0 }<br>
 extensive form: max −cᵀx + Σ<sub>s</sub> p<sub>s</sub>q<sub>s</sub>ᵀy<sub>s</sub><br>
 &nbsp;&nbsp;s.t. T<sub>s</sub>x + W y<sub>s</sub> ≤ h<sub>s</sub>, &nbsp;s = 1, …, S</div></div>
-<ul class="b xs" style="margin-top:10px"><li>Capacity example: x = K; y<sub>s</sub> = own production and toll purchase in scenario s; rows y ≤ K and own + toll ≤ d<sub>s</sub></li>
+<ul class="b xs" style="margin-top:10px"><li>ξ<sub>s</sub> = (q<sub>s</sub>, h<sub>s</sub>, T<sub>s</sub>): the data of scenario s. W, the recourse matrix, is the same in every scenario; T<sub>s</sub> says how x enters scenario s</li><li>Capacity example: x = K; y<sub>s</sub> = own production and toll purchase in scenario s; rows y ≤ K and own + toll ≤ d<sub>s</sub></li>
 <li>One LP with 1 + 2S variables: an ordinary LP, solved here by HiGHS</li>
 <li>x appears once, so it cannot depend on the scenario: the extensive form enforces nonanticipativity by construction</li></ul></div>
 <div class="col"><div class="panel grow"><div class="chart" id="ch-blk"></div></div><p class="note" style="margin-top:6px">The rows couple only through x. Decomposition methods exploit this: L-shaped (Benders) cuts on x, or progressive hedging, which solves the scenarios separately and pulls their x together.</p></div></div>`,

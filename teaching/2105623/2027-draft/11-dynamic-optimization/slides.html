@@ -534,7 +534,7 @@ y = (h₂ at k+1, …, k+N) = Φx<sub>k</sub> + G U + G<sub>d</sub> d̂</div></d
 <li>d is an unmeasured flow into tank 2; a withdrawal is d &lt; 0</li>
 <li>With u held over each sample, the discrete model is exact: A<sub>d</sub> = e<sup>AΔt</sup>, as the matrix exponential gave the α-pinene model in Session 10</li>
 <li>Steady state: h₂ = R₂(u + d), so a setpoint of 1.6 m needs u = 0.4 m³/min with d = 0, and 0.45 with d = −0.05</li>
-<li>G is lower triangular: a move affects only later levels</li></ul></div></div>`,
+<li>Φ maps the current state, G the moves U = (u<sub>k</sub>, …, u<sub>k+N−1</sub>) and G<sub>d</sub> the disturbance estimate d̂ to the N predicted levels. G is lower triangular: a move affects only later levels</li></ul></div></div>`,
 draw:()=>{const w=520,h=230;let s=svgEl(w,h);const tank=(x,y,lv,lab)=>`<rect x="${x}" y="${y}" width="110" height="120" fill="#fff" stroke="${C.graphite}" stroke-width="2"/><rect x="${x+2}" y="${y+120-lv}" width="106" height="${lv-2}" fill="${C.sky}" opacity=".45"/><text x="${x+55}" y="${y+140}" font-size="15" text-anchor="middle" fill="${C.ink}">${lab}</text>`;
  s+=tank(80,40,70,"tank 1, h₁")+tank(290,80,90,"tank 2, h₂");s+=arrow(20,55,85,55,C.teal,3,"u (valve)",22,45)+arrow(190,150,295,150,C.graphite,2.5,"h₁/R₁",210,140)+arrow(400,190,480,190,C.graphite,2.5,"h₂/R₂",410,180)+arrow(470,100,405,100,C.rust,2.5,"d",470,92);
  s+=`<text x="345" y="72" font-size="14" text-anchor="middle" fill="${C.amber}" font-weight="700">LT: controlled</text>`;document.getElementById("tkD").innerHTML=s+"</svg>"}});
@@ -919,7 +919,7 @@ const NARR = {
     {
      "s": 36.868,
      "e": 44.145,
-     "en": "Write your answers alone first, then compare with a neighbour. When you are ready, press Show answers.",
+     "en": "Write your answers alone first, then compare with a neighbor. When you are ready, press Show answers.",
      "th": "เขียนคำตอบด้วยตัวเองก่อน แล้วเปรียบเทียบกับเพื่อนข้าง ๆ เมื่อพร้อมแล้วกด Show answers"
     }
    ]
@@ -2377,13 +2377,13 @@ const NARR = {
     {
      "s": 22.539,
      "e": 28.212,
-     "en": "The valve flow is limited to between zero and 0.5 cubic metres per minute.",
+     "en": "The valve flow is limited to between zero and 0.5 cubic meters per minute.",
      "th": "อัตราการไหลของวาล์วจำกัดอยู่ระหว่างศูนย์ถึง 0.5 ลูกบาศก์เมตรต่อนาที"
     },
     {
      "s": 28.212,
      "e": 40.921,
-     "en": "At steady state the level of tank two is R two times u plus d, so a setpoint of 1.6 metres needs u equal to 0.4 with no disturbance, and 0.45 with a withdrawal of 0.05.",
+     "en": "At steady state the level of tank two is R two times u plus d, so a setpoint of 1.6 meters needs u equal to 0.4 with no disturbance, and 0.45 with a withdrawal of 0.05.",
      "th": "ที่สถานะคงตัว ระดับของถังที่สองเท่ากับ R สอง คูณ u บวก d ดังนั้นค่าเป้าหมาย 1.6 เมตรต้องใช้ u เท่ากับ 0.4 เมื่อไม่มี disturbance และ 0.45 เมื่อมีการดึงออก 0.05"
     },
     {
@@ -2519,7 +2519,7 @@ const NARR = {
     {
      "s": 6.8,
      "e": 19.079,
-     "en": "The setpoint steps from 1.2 to 1.6 metres at five minutes, and a withdrawal of 0.05 cubic metres per minute starts at thirty minutes. The disturbance estimate is on.",
+     "en": "The setpoint steps from 1.2 to 1.6 meters at five minutes, and a withdrawal of 0.05 cubic meters per minute starts at thirty minutes. The disturbance estimate is on.",
      "th": "ค่าเป้าหมายเปลี่ยนจาก 1.2 เป็น 1.6 เมตรที่นาทีที่ห้า และการดึงออก 0.05 ลูกบาศก์เมตรต่อนาทีเริ่มที่นาทีที่สามสิบ การประมาณ disturbance เปิดอยู่"
     },
     {
@@ -2531,7 +2531,7 @@ const NARR = {
     {
      "s": 26.275,
      "e": 34.803,
-     "en": "The valve sits on its limit for five samples, and the withdrawal moves the level by at most 0.048 metres before it is corrected.",
+     "en": "The valve sits on its limit for five samples, and the withdrawal moves the level by at most 0.048 meters before it is corrected.",
      "th": "วาล์วอยู่ที่ขีดจำกัดห้าครั้งของการสุ่มวัด และการดึงออกทำให้ระดับเปลี่ยนไปไม่เกิน 0.048 เมตรก่อนจะถูกแก้"
     },
     {
@@ -2573,7 +2573,7 @@ const NARR = {
     {
      "s": 88.895,
      "e": 95.934,
-     "en": "So choose the horizon from the process, at least its settling time, and then choose the weight for the behaviour you want.",
+     "en": "So choose the horizon from the process, at least its settling time, and then choose the weight for the behavior you want.",
      "th": "ดังนั้นให้เลือก horizon จากกระบวนการ คืออย่างน้อยเท่ากับเวลาเข้าที่ แล้วจึงเลือกน้ำหนักตามพฤติกรรมที่ต้องการ"
     },
     {
@@ -2605,19 +2605,19 @@ const NARR = {
     {
      "s": 16.802,
      "e": 24.316,
-     "en": "When the withdrawal starts, it has no way to know, and the level falls by R two times 0.05, which is 0.2 metres.",
+     "en": "When the withdrawal starts, it has no way to know, and the level falls by R two times 0.05, which is 0.2 meters.",
      "th": "เมื่อการดึงออกเริ่มขึ้น มันไม่มีทางรู้ และระดับลดลง R สอง คูณ 0.05 คือ 0.2 เมตร"
     },
     {
      "s": 24.316,
      "e": 35.312,
-     "en": "The grey line is MPC without a disturbance model. It re-solves from the measured levels every half minute, so it reacts, but its model still says d equals zero.",
+     "en": "The gray line is MPC without a disturbance model. It re-solves from the measured levels every half minute, so it reacts, but its model still says d equals zero.",
      "th": "เส้นสีเทาคือ MPC ที่ไม่มีโมเดล disturbance มันแก้ใหม่จากระดับที่วัดได้ทุกครึ่งนาที จึงตอบสนอง แต่โมเดลของมันยังบอกว่า d เท่ากับศูนย์"
     },
     {
      "s": 35.312,
      "e": 47.605,
-     "en": "At steady state the model predicts that the current valve opening holds the setpoint, so the optimizer sees nothing to correct, and the level stays 0.08 metres low. That is offset.",
+     "en": "At steady state the model predicts that the current valve opening holds the setpoint, so the optimizer sees nothing to correct, and the level stays 0.08 meters low. That is offset.",
      "th": "ที่สถานะคงตัว โมเดลทำนายว่าการเปิดวาล์วปัจจุบันรักษาค่าเป้าหมายได้ optimizer จึงไม่เห็นสิ่งที่ต้องแก้ และระดับต่ำกว่าเป้าหมาย 0.08 เมตร นี่คือ offset"
     },
     {
@@ -2659,7 +2659,7 @@ const NARR = {
     {
      "s": 96.395,
      "e": 107.092,
-     "en": "The table on the right gives the numbers: 0.2 metres low in open loop, 0.08 metres low with feedback alone, and on the setpoint with the disturbance estimate.",
+     "en": "The table on the right gives the numbers: 0.2 meters low in open loop, 0.08 meters low with feedback alone, and on the setpoint with the disturbance estimate.",
      "th": "ตารางทางขวาให้ตัวเลข คือต่ำกว่าเป้าหมาย 0.2 เมตรเมื่อเป็น open loop ต่ำกว่า 0.08 เมตรเมื่อมีเพียงการป้อนกลับ และตรงเป้าหมายเมื่อมีการประมาณ disturbance"
     },
     {
@@ -3167,7 +3167,7 @@ const NARR = {
     {
      "s": 60.829,
      "e": 74.329,
-     "en": "MPC re-solves a short problem at every sample; with a linear model and valve limits it is bounded least squares. Without a disturbance model it left an offset of 0.08 metres; with one, none.",
+     "en": "MPC re-solves a short problem at every sample; with a linear model and valve limits it is bounded least squares. Without a disturbance model it left an offset of 0.08 meters; with one, none.",
      "th": "MPC แก้ปัญหาสั้น ๆ ใหม่ทุกครั้งที่สุ่มวัด เมื่อโมเดลเป็นเชิงเส้นและมีขีดจำกัดของวาล์ว มันคือ bounded least squares เมื่อไม่มีโมเดล disturbance ทิ้ง offset ไว้ 0.08 เมตร เมื่อมี ก็ไม่มี offset"
     },
     {

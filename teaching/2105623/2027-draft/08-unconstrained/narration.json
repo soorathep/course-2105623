@@ -3,7 +3,7 @@
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 2881.0,
+ "total_seconds": 2880.6,
  "slides": [
   {
    "n": 1,
@@ -442,7 +442,7 @@
   {
    "n": 8,
    "file": "audio/slide-08.mp3",
-   "duration": 94.536,
+   "duration": 94.392,
    "hold": false,
    "cues": [
     {
@@ -465,49 +465,49 @@
     },
     {
      "s": 22.118,
-     "e": 30.618,
-     "en": "Watch the right-hand table as you drag. The bound factor per step climbs towards one, and the iteration count climbs with it.",
+     "e": 30.461,
+     "en": "Watch the right-hand table as you drag. The bound factor per step climbs toward one, and the iteration count climbs with it.",
      "th": "ดูตารางด้านขวาขณะลาก ตัวคูณขอบเขตต่อก้าวเพิ่มขึ้นเข้าใกล้หนึ่ง และจำนวนรอบก็เพิ่มตามไปด้วย"
     },
     {
-     "s": 30.618,
-     "e": 43.168,
+     "s": 30.461,
+     "e": 43.01,
      "en": "You can also click anywhere on the plot to choose your own start. A start on one of the axes of the ellipses converges in one step, because there minus g points straight at the minimum.",
      "th": "คุณคลิกที่ใดก็ได้บนกราฟเพื่อเลือกจุดเริ่มต้นเอง จุดเริ่มต้นที่อยู่บนแกนของวงรีจะลู่เข้าในก้าวเดียว เพราะที่นั่นลบ g ชี้ตรงไปยังค่าต่ำสุด"
     },
     {
-     "s": 43.168,
-     "e": 44.855,
+     "s": 43.01,
+     "e": 44.697,
      "en": "Most other starts zigzag.",
      "th": "จุดเริ่มต้นอื่นส่วนใหญ่จะซิกแซก"
     },
     {
-     "s": 44.855,
-     "e": 54.408,
+     "s": 44.697,
+     "e": 54.25,
      "en": "Now switch to Newton. On a quadratic, Newton's model is exact, so one step lands on the minimum for any kappa and any start.",
      "th": "ตอนนี้เปลี่ยนเป็น Newton บนฟังก์ชันกำลังสอง แบบจำลองของ Newton แม่นตรง ก้าวเดียวจึงถึงค่าต่ำสุดสำหรับทุกค่า kappa และทุกจุดเริ่มต้น"
     },
     {
-     "s": 54.408,
-     "e": 62.236,
+     "s": 54.25,
+     "e": 62.078,
      "en": "Then switch to BFGS. Its first step is a steepest-descent step, because its first matrix is the identity.",
      "th": "จากนั้นเปลี่ยนเป็น BFGS ก้าวแรกของมันเป็นก้าวแบบ steepest descent เพราะเมทริกซ์แรกเป็นเมทริกซ์เอกลักษณ์"
     },
     {
-     "s": 62.236,
-     "e": 69.842,
+     "s": 62.078,
+     "e": 69.684,
      "en": "After each exact step it updates the matrix, and after two steps in two dimensions the matrix equals A.",
      "th": "หลังแต่ละก้าวที่แม่นตรง มันปรับเมทริกซ์ และหลังสองก้าวในสองมิติ เมทริกซ์จะเท่ากับ A"
     },
     {
-     "s": 69.842,
-     "e": 83.566,
+     "s": 69.684,
+     "e": 83.408,
      "en": "The small panels below the plot draw the BFGS matrix as a dashed amber ellipse, next to A in teal. The first one is a circle, the identity. By the third panel the two ellipses coincide.",
      "th": "แผงเล็กใต้กราฟวาดเมทริกซ์ของ BFGS เป็นวงรีเส้นประสีเหลืองอำพัน เทียบกับ A สีเขียวหัวเป็ด แผงแรกเป็นวงกลม คือเมทริกซ์เอกลักษณ์ พอถึงแผงที่สามวงรีทั้งสองทับกันพอดี"
     },
     {
-     "s": 83.566,
-     "e": 94.474,
+     "s": 83.408,
+     "e": 94.316,
      "en": "Keep this picture in mind for the rest of the session. Bad conditioning hurts steepest descent, does not affect Newton, and costs BFGS only a few extra steps.",
      "th": "จำภาพนี้ไว้ตลอดคาบ condition ที่แย่ทำร้าย steepest descent ไม่มีผลต่อ Newton และทำให้ BFGS เสียก้าวเพิ่มเพียงไม่กี่ก้าว"
     }
@@ -516,7 +516,7 @@
   {
    "n": 9,
    "file": "audio/slide-09.mp3",
-   "duration": 109.248,
+   "duration": 109.056,
    "hold": false,
    "cues": [
     {
@@ -599,8 +599,8 @@
     },
     {
      "s": 99.237,
-     "e": 109.184,
-     "en": "Raise c one towards one half: the Armijo set shrinks and backtracking accepts shorter steps. Raise c two towards one: the Wolfe set widens.",
+     "e": 108.987,
+     "en": "Raise c one toward one half: the Armijo set shrinks and backtracking accepts shorter steps. Raise c two toward one: the Wolfe set widens.",
      "th": "เพิ่ม c หนึ่ง ไปทางครึ่งหนึ่ง เซตของ Armijo จะหดลง และ backtracking จะยอมรับก้าวที่สั้นลง เพิ่ม c สอง ไปทางหนึ่ง เซตของ Wolfe จะกว้างขึ้น"
     }
    ]

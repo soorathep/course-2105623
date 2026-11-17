@@ -82,7 +82,7 @@ pre.log{background:#1f262d;color:#e8eef2;border-radius:10px;padding:10px 8px;fon
 <p>Heated α-pinene turns into four products. From eight samples of the five weight fractions you estimate five first-order rate constants by least squares, judge how well each is determined, look for dependencies in the data, and decide which measurements and which sampling times would help most. All fits were run in advance with SciPy (<code>least_squares</code>, Levenberg–Marquardt) on the model below; you read and test the results. Write each prediction before you look; the next step stays locked until you do. Numbers are accepted within about 2% unless stated; after two tries the expected value is shown.</p>
 <p class="note">Studying on your own because class was cancelled? Watch the narrated slides for Session 10 first, then come back here. The numbers on this page were made with SciPy 1.14.1, the version that runs in the slides' browser Python.</p></section>
 
-<section class="card" id="data"><h2>The data (Fuguitt and Hawkins, 1947; as analysed by Box, Hunter, MacGregor and Erjavec, 1973)</h2>
+<section class="card" id="data"><h2>The data (Fuguitt and Hawkins, 1947; as analyzed by Box, Hunter, MacGregor and Erjavec, 1973)</h2>
 <div id="net"></div>
 <p class="note">dy₁/dt = −(θ₁ + θ₂)y₁, dy₂/dt = θ₁y₁, dy₃/dt = θ₂y₁ − (θ₃ + θ₄)y₃ + θ₅y₅, dy₄/dt = θ₃y₃, dy₅/dt = θ₄y₃ − θ₅y₅, with y(0) = (100, 0, 0, 0, 0) weight % and θ in 1/min. The equations are linear, so y(t) = e<sup>Kt</sup>y(0), computed with scipy.linalg.expm. Rate constants are reported in 10⁻⁵ 1/min.</p>
 <div style="overflow-x:auto"><table class="tb" id="dtab"></table></div></section>
@@ -108,7 +108,7 @@ pre.log{background:#1f262d;color:#e8eef2;border-radius:10px;padding:10px 8px;fon
  <div class="chk"><span>Which response has residuals of one sign at seven of the eight times?</span><select id="c2a"><option value="">choose</option><option value="a">y₁ α-pinene</option><option value="b">y₂ dipentene</option><option value="c">y₃ allo-ocimene</option><option value="d">y₄ pyronene</option><option value="e">y₅ dimer</option></select><span class="fb" id="f2a"></span></div>
  <div class="chk"><span>Runs of sign in that response's residuals</span><input type="text" id="c2b" inputmode="numeric"><span class="fb" id="f2b"></span></div>
  <button data-check="2a">Check</button></div>
-<div class="step" data-step="2b"><span class="tag r">RUN</span>Eigen-analysis of the data. D is the 8 × 5 data matrix with each column centred; an eigenvalue of DᵀD near zero means a combination aᵀy that is the same in every sample.
+<div class="step" data-step="2b"><span class="tag r">RUN</span>Eigen-analysis of the data. D is the 8 × 5 data matrix with each column centered; an eigenvalue of DᵀD near zero means a combination aᵀy that is the same in every sample.
  <div id="run2b"></div>
  <p class="note" style="margin:10px 0 2px">Test a candidate relation: its value in each of the eight samples.</p>
  <div class="btnrow" id="relB"></div><div id="relOut"></div>
