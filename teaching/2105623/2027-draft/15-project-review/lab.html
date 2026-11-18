@@ -75,22 +75,22 @@ pre.log{background:#1f262d;color:#e8eef2;border-radius:10px;padding:10px 8px;fon
 </head>
 <body><main>
 <header><div class="kicker">2105623 · Session 15 · Lab</div><h1>A practice review, and the review form</h1>
-<div class="sub">About 40 minutes on your own, or alongside the presentations in class. Works on a laptop or a phone.</div></header>
+<div class="sub">About 40 minutes, in class or on your own. Works on a laptop or a phone.</div></header>
 <div class="prog"><div class="bar"><i id="pbar"></i></div><span id="ptext"></span></div>
 
 <section class="card"><h2>How this lab works</h2>
-<p>Part A is a practice review of a short project report, Group 0's biodiesel feedstock blend (synthetic data). You mark the twelve checklist items, recompute three of the report's numbers, and write a short review. Part B is the review form you use for the presentations, or for your own project. Part C asks what you will fix first. Write each prediction before you look; the next step stays locked until you do. Numbers are accepted within about 1%; after two tries the expected value is shown.</p>
-<p class="note"><b>What runs where.</b> This lab runs no Python: you check a short report by reading it and recomputing three numbers with a calculator. <a href="project_checks.py">project_checks.py</a> has the same checks in code, for your own project.</p>
-<p class="note">Studying on your own? Watch the narrated slides for Session 15 first. The checks on this page come from <a href="project_checks.py">project_checks.py</a>, which you can reuse in your project.</p></section>
+<p>Part A is a practice review of a short report, Report D, a biodiesel feedstock blend (synthetic data). You mark the twelve checklist items, recompute three of the report's numbers, and write a short review. Part B is the review form, which you use on your card, on one of your own lab results, or on a classmate's card. Part C asks which item your card fails first. Write each prediction before you look; the next step stays locked until you do. Numbers are accepted within about 1%; after two tries the expected value is shown.</p>
+<p class="note"><b>What runs where.</b> This lab runs no Python: you check a short report by reading it and recomputing three numbers with a calculator. <a href="review_checks.py">review_checks.py</a> has the same checks in code, for your own models.</p>
+<p class="note">Studying on your own? Watch the narrated slides for Session 15 first. The checks on this page come from <a href="review_checks.py">review_checks.py</a>, which you can reuse in your own work.</p></section>
 
-<section class="card" id="rep"><h2>Group 0's report (practice; synthetic data)</h2>
+<section class="card" id="rep"><h2>Report D (practice; synthetic data)</h2>
 <div id="report"></div></section>
 
-<section class="card" id="t1"><h2>Part A · Review Group 0</h2>
+<section class="card" id="t1"><h2>Part A · Review Report D</h2>
 <div class="step" data-step="1a"><span class="tag p">PREDICT</span>Read the report once. Without computing anything, how many of the twelve checklist items do you expect it to pass?
  <div class="chk"><span>Items passed (0 to 12)</span><input type="text" id="p1" inputmode="numeric"></div>
  <button data-save="1a">Save prediction</button></div>
-<div class="step" data-step="1b"><span class="tag r">CHECK</span>Mark each item: pass, fail, not shown, or not applicable to this project.
+<div class="step" data-step="1b"><span class="tag r">CHECK</span>Mark each item: pass, fail, not shown, or not applicable to this report.
  <div id="cl1"></div><div class="fb" id="f1b"></div>
  <button data-check="1b">Check</button></div>
 <div class="step" data-step="1c"><span class="tag r">RECOMPUTE</span>Three numbers, from the report itself.
@@ -99,13 +99,13 @@ pre.log{background:#1f262d;color:#e8eef2;border-radius:10px;padding:10px 8px;fon
  <div class="chk"><span>The cloud-point row is Σ(cpᵢ − 10) xᵢ ≤ 0, in °C·t/d, with marginal −10.714 USD per °C·t. What is relaxing the limit by 1 °C worth, in USD/d?</span><input type="text" id="c1c" inputmode="decimal"><span class="fb" id="f1d"></span></div>
  <button data-check="1c">Check</button>
  <div id="after1c"></div></div>
-<div class="step" data-step="1d"><span class="tag e">EXPLAIN</span>Write Group 0's review: one strength, the most serious problem and why it matters, and one question they can answer with a number.
+<div class="step" data-step="1d"><span class="tag e">EXPLAIN</span>Write your review of Report D: one strength, the most serious problem and why it matters, and one question its author can answer with a number.
  <textarea id="e1"></textarea><button data-save="1d">Save</button></div>
 </section>
 
 <section class="card" id="t2"><h2>Part B · The review form</h2>
-<div class="step" data-step="2a"><span class="tag c">REVIEW</span>In class: one form per group you review. On your own: review your own project. Name the group by its number only; write no names.
- <div class="chk"><span>Reviewing</span><select id="rw"><option value="">choose</option><option value="group">a presenting group</option><option value="own">my own project</option></select><input type="text" id="rg" placeholder="group number" inputmode="numeric" style="width:120px"></div>
+<div class="step" data-step="2a"><span class="tag c">REVIEW</span>Use the form on your card, on one of your own lab results, or on a classmate's card. For a lab result, give the session number. Write no names.
+ <div class="chk"><span>Reviewing</span><select id="rw"><option value="">choose</option><option value="card">my card</option><option value="lab">one of my lab results</option><option value="peer">a classmate's card</option></select><input type="text" id="rg" placeholder="session (1 to 14)" inputmode="numeric" style="width:150px"></div>
  <div id="cl2"></div>
  <div class="chk"><span>One strength</span><input type="text" id="rs" style="flex:1"></div>
  <div class="chk"><span>One must-fix</span><input type="text" id="rm" style="flex:1"></div>
@@ -114,8 +114,8 @@ pre.log{background:#1f262d;color:#e8eef2;border-radius:10px;padding:10px 8px;fon
  <div id="revList"></div></div>
 </section>
 
-<section class="card" id="t3"><h2>Part C · Your own project</h2>
-<div class="step" data-step="3a"><span class="tag e">EXPLAIN</span>Which checklist item will you fix first in your own project, and exactly what will you add or change?
+<section class="card" id="t3"><h2>Part C · Your card</h2>
+<div class="step" data-step="3a"><span class="tag e">EXPLAIN</span>Which checklist item does your card fail first, and exactly what evidence would you add to meet it?
  <textarea id="e3"></textarea><button data-save="3a">Save</button></div>
 </section>
 
@@ -124,7 +124,7 @@ pre.log{background:#1f262d;color:#e8eef2;border-radius:10px;padding:10px 8px;fon
 <pre class="sum" id="sum"></pre>
 <button id="copy">Copy my answers</button><a id="exitlink" target="_blank" rel="noopener"><button class="ghost" type="button">Open Exit Ticket and feedback</button></a>
 <p class="note" id="copied"></p>
-<p class="note">Want the code? <a href="project_checks.py">project_checks.py</a> has <code>lp_certificate</code> (primal, dual, gap and residuals from HiGHS), <code>recompute</code>, <code>closure</code> and <code>per_unit_of_limit</code>, with Group 0's model as an example. Copy them into your project.</p>
+<p class="note">Want the code? <a href="review_checks.py">review_checks.py</a> has <code>lp_certificate</code> (primal, dual, gap and residuals from HiGHS), <code>recompute</code>, <code>closure</code> and <code>per_unit_of_limit</code>, with Report D's model as an example. Copy them into your own code.</p>
 <button class="ghost" id="reset">Clear my answers on this device</button></div>
 </section>
 </main>
@@ -134,7 +134,7 @@ const EXIT_URL = "https://soorathep.github.io/course-2105623/teaching/2105623/20
 const C={teal:"#0F6E6B",amber:"#E29A2D",rust:"#BE654C",graphite:"#333F4A",mist:"#B9C1C6",sand:"#DFC98F",ink:"#1C242B",slate:"#66727C"};
 const $=id=>document.getElementById(id);
 const fmt=(x,d=0)=>x==null||!isFinite(x)?"–":Number(x).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d}).replace(/^-/,"−");
-const KEY="lab15-2027-v1"; let ST={};
+const KEY="lab15-2027-v2"; let ST={};
 try{ST=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){ST={}}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(ST))}catch(e){}};
 const G=R.spec,RP=R.report,RV=R.review,RR=RV.report_run,CL=R.checklist,K=R.key;
@@ -178,7 +178,7 @@ const T15={cost:RV.recomputed_cost,bal:RV.report_balance,cloud:RV.cloud_value_pe
 document.querySelectorAll("[data-save]").forEach(b=>b.onclick=()=>{const id=b.dataset.save;
  if(id==="1a"){const v=num($("p1").value);if(!(v>=0&&v<=12))return need(id,"Enter a number from 0 to 12.");ST.p1=$("p1").value}
  if(id==="1d"){if($("e1").value.trim().length<60)return need(id,"Write at least three sentences.");ST.e1=$("e1").value}
- if(id==="2a"){if(!(ST.reviews||[]).length)return need(id,"Save at least one review first (your own project counts).")}
+ if(id==="2a"){if(!(ST.reviews||[]).length)return need(id,"Save at least one review first (your card counts).")}
  if(id==="3a"){if($("e3").value.trim().length<30)return need(id,"Write one or two sentences.");ST.e3=$("e3").value}
  markDone(id)});
 document.querySelectorAll("[data-check]").forEach(b=>b.onclick=()=>{const id=b.dataset.check;let ok=false;
@@ -200,18 +200,18 @@ function after1c(){const s=RV.sensitivity;$("after1c").innerHTML=`<div class="ho
 
 /* reviews */
 function drawRev(){const L=ST.reviews||[];$("revList").innerHTML=L.length?`<table class="tb"><tr><th>Saved review</th><th>Items (1 to 12)</th></tr>${L.map(r=>`<tr><td>${r.who}</td><td>${r.items.map(x=>x||"?").join(" ")}</td></tr>`).join("")}</table>`:""}
-$("addRev").onclick=()=>{const w=$("rw").value,g=$("rg").value.trim();if(!w)return need("2a","Choose whom you are reviewing.");if(w==="group"&&!/^\d{1,3}$/.test(g))return need("2a","Enter the group's number (digits only).");
+$("addRev").onclick=()=>{const w=$("rw").value,g=$("rg").value.trim();if(!w)return need("2a","Choose what you are reviewing.");if(w==="lab"&&!(/^\d{1,2}$/.test(g)&&+g>=1&&+g<=14))return need("2a","Enter the session of the lab result (1 to 14).");
  const items=CL.map((t,i)=>$("b"+i).value);if(items.filter(Boolean).length<6)return need("2a","Mark at least six items.");
  if(!$("rm").value.trim()&&!$("rs").value.trim())return need("2a","Write at least a strength or a must-fix.");
- (ST.reviews=ST.reviews||[]).push({who:w==="own"?"own project":"group "+g,items,s:$("rs").value.trim(),m:$("rm").value.trim(),q:$("rq").value.trim()});
+ (ST.reviews=ST.reviews||[]).push({who:w==="card"?"my card":w==="lab"?"lab result, Session "+(+g):"a classmate's card",items,s:$("rs").value.trim(),m:$("rm").value.trim(),q:$("rq").value.trim()});
  ["rg","rs","rm","rq"].forEach(id=>$(id).value="");CL.forEach((t,i)=>$("b"+i).value="");$("rw").value="";const nd=document.querySelector('[data-step="2a"] .need');if(nd)nd.textContent="";drawRev();summary();save()};
 
 /* summary */
 function summary(){const L=ST.reviews||[];
  $("sum").textContent=[`Lab 15 answers`,
  `A. Predicted passes: ${ST.p1||"?"}. Checklist agrees with key: ${ST.right!=null?ST.right:"?"} of 12. Recomputed cost ${ST.c1a||"?"} USD/d; stream-table gap ${ST.c1b||"?"} t/d; 1 degC of cloud point ${ST.c1c||"?"} USD/d`,
- `A. Review of Group 0: ${ST.e1||"?"}`,
- `B. Reviews (${L.length}):`].concat(L.map(r=>`  ${r.who}: ${r.items.map(x=>x||"-").join(" ")} | strength: ${r.s||"-"} | must-fix: ${r.m||"-"} | question: ${r.q||"-"}`)).concat([`C. Fix first: ${ST.e3||"?"}`]).join("\n")}
+ `A. Review of Report D: ${ST.e1||"?"}`,
+ `B. Reviews (${L.length}):`].concat(L.map(r=>`  ${r.who}: ${r.items.map(x=>x||"-").join(" ")} | strength: ${r.s||"-"} | must-fix: ${r.m||"-"} | question: ${r.q||"-"}`)).concat([`C. Card, item to meet first: ${ST.e3||"?"}`]).join("\n")}
 $("copy").onclick=async()=>{try{await navigator.clipboard.writeText($("sum").textContent);$("copied").textContent="Copied. Paste it into the Exit Ticket box."}catch(e){$("copied").textContent="Copy did not work here. Select the text above and copy it."}};
 $("exitlink").href=EXIT_URL;
 $("reset").onclick=()=>{if(confirm("Clear all answers saved on this device?")){ST={};save();location.reload()}};

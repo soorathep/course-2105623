@@ -155,7 +155,7 @@ const COURSE = '2105623';
 const EDITION = '2027';
 const MIDTERM = 7;   // last session before the midterm: whole-course questions for Sessions 1-7
 const prompt = (n) => n === 15
-  ? 'Paste the answers that the Lab 15 page copied for you (button "Copy my answers"), and name one item of the checklist you will fix in your own project.'
+  ? 'Paste the answers that the Lab 15 page copied for you (button "Copy my answers"), and name one item of the checklist that your card does not yet meet.'
   : `Paste the answers that the Lab ${n} page copied for you (button "Copy my answers"). If you did not reach the lab, write in two or three sentences the main idea of Session ${n} and one check you would run.`;
 const TOTAL = 15;   // sessions 1-15 of the 2027 course; must not exceed the Worker's COURSES['2105623']
 const $ = (id) => document.getElementById(id);

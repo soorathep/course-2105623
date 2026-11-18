@@ -1,12 +1,12 @@
-"""2105623 Session 15: checks for a project model, and the practice review of Lab 15 (2027 draft).
+"""2105623 Session 15: checks for any optimization result, and the practice review of Lab 15 (2027 draft).
 
 Part A  Reusable checks: an LP certificate from HiGHS (primal and dual residuals, duality gap), recomputing an
         objective from the specification's data, closing a balance, and converting a multiplier to the units of
         the decision maker
-Lab 15  Group 0's report: a biodiesel feedstock blend (LP; synthetic data). The report's numbers are checked
+Lab 15  Report D: a biodiesel feedstock blend (LP; synthetic data). The report's numbers are checked
         against its own specification.
 
-Runs in desktop Python and in the browser (NumPy and SciPy only). Copy the functions into your project and call
+Runs in desktop Python and in the browser (NumPy and SciPy only). Copy the functions into your own code and call
 them on your own model.
 """
 import json, math, sys
@@ -78,9 +78,9 @@ def lecture_certificate():
 
 
 # ---------------------------------------------------------------------------
-# Lab 15. Group 0: a biodiesel feedstock blend (synthetic data)
+# Lab 15. Report D: a biodiesel feedstock blend (synthetic data)
 # ---------------------------------------------------------------------------
-G0 = {"oils": ["palm oil", "used cooking oil", "soybean oil"],
+SPEC_D = {"oils": ["palm oil", "used cooking oil", "soybean oil"],
       "price": [900.0, 650.0, 1050.0],          # USD/t, specification (supplier quote)
       "cloud": [13.0, 9.0, -1.0],               # cloud point, deg C
       "acid": [0.3, 1.6, 0.2],                  # acid value after pretreatment, mg KOH/g
@@ -95,35 +95,35 @@ REPORT = {"x": [50.0, 40.0, 12.0],              # the stream table in the report
           "cloud_shadow_claim": 10.7}           # "relaxing the cloud point by 1 deg C saves 10.7 USD/d"
 
 
-def group0_model(price=None):
+def report_d_model(price=None):
     """The blend LP: minimize cost; blend limits written as sum((p_i - limit) x_i) <= 0."""
-    G = G0; p = np.array(price or G["price"], float)
+    G = SPEC_D; p = np.array(price or G["price"], float)
     A = [np.array(G[k]) - G["limits"][k] for k in ("cloud", "acid", "iodine")]
     return lp_certificate(p, A_ub=A, b_ub=[0.0, 0.0, 0.0], A_eq=[[1.0, 1.0, 1.0]], b_eq=[G["blend"]],
                           bounds=[(0, None), (0, G["uco_max"]), (0, None)])
 
 
-def group0_review():
-    sol = group0_model(); rep = REPORT
+def report_d_review():
+    sol = report_d_model(); rep = REPORT
     cert = sol
-    out = {"solution": sol, "report_run": group0_model(rep["price_used"]),
-           "recomputed_cost": recompute(sol["x"], G0["price"]),
-           "report_cost_recomputed": recompute([50.0, 40.0, 10.0], G0["price"]),
-           "report_balance": closure(rep["x"], [G0["blend"]]),
-           "cloud_value_per_degC": -per_unit_of_limit(sol["ineq_marginals"][0], G0["blend"]),
+    out = {"solution": sol, "report_run": report_d_model(rep["price_used"]),
+           "recomputed_cost": recompute(sol["x"], SPEC_D["price"]),
+           "report_cost_recomputed": recompute([50.0, 40.0, 10.0], SPEC_D["price"]),
+           "report_balance": closure(rep["x"], [SPEC_D["blend"]]),
+           "cloud_value_per_degC": -per_unit_of_limit(sol["ineq_marginals"][0], SPEC_D["blend"]),
            "uco_value_per_t": -sol["upper_marginals"][1],
-           "properties": {k: float(np.dot(G0[k], sol["x"]) / G0["blend"]) for k in ("cloud", "acid", "iodine")},
+           "properties": {k: float(np.dot(SPEC_D[k], sol["x"]) / SPEC_D["blend"]) for k in ("cloud", "acid", "iodine")},
            "gap": cert["gap"]}
     # sensitivity to the price of used cooking oil, plus or minus 20%
     sens = []
     for f in (0.8, 0.9, 1.0, 1.1, 1.2):
-        p = list(G0["price"]); p[1] *= f; s = group0_model(p)
+        p = list(SPEC_D["price"]); p[1] *= f; s = report_d_model(p)
         sens.append({"factor": f, "cost": s["primal"], "x": s["x"]})
     out["sensitivity"] = sens
     return out
 
 
-# the twelve checklist items and the key for Group 0's report (P pass, F fail, NS not shown, NA not applicable)
+# the twelve checklist items and the key for Report D (P pass, F fail, NS not shown, NA not applicable)
 CHECKLIST = ["Specification: sets, data and constraints, with units",
              "Data: sources and dates",
              "Model class stated and justified",
@@ -136,7 +136,7 @@ CHECKLIST = ["Specification: sets, data and constraints, with units",
              "Several objectives: a front and a stated rule",
              "Tests written from the specification",
              "Reporting: code, versions and AI disclosure"]
-KEY_G0 = ["P", "P", "P", "F", "F", "F", "F", "P", "NS", "NA", "F", "F"]
+KEY_D = ["P", "P", "P", "F", "F", "F", "F", "P", "NS", "NA", "F", "F"]
 
 
 def clean(o):
@@ -158,7 +158,7 @@ def classroom_results():
     import scipy
     R = {"meta": {"numpy": np.__version__, "scipy": scipy.__version__, "python": sys.version.split()[0]},
          "lecture": {"cert": lecture_certificate(), "checklist": CHECKLIST},
-         "lab": {"spec": G0, "report": REPORT, "review": group0_review(), "checklist": CHECKLIST, "key": KEY_G0}}
+         "lab": {"spec": SPEC_D, "report": REPORT, "review": report_d_review(), "checklist": CHECKLIST, "key": KEY_D}}
     return clean(R)
 
 
@@ -169,8 +169,8 @@ if __name__ == "__main__":
             json.dump(R, fh)
         print("wrote checks-results.json", R["meta"]); sys.exit()
     L = lecture_certificate(); print("lecture LP", r6(L["x"]), "primal", r6(L["primal"]), "dual", r6(L["dual"]), "gap", r6(L["gap"]), "marginals", r6(L["ineq_marginals"]))
-    G = group0_review(); s = G["solution"]
-    print("Group 0 optimum", r6(s["x"]), r6(s["primal"]), "gap", r6(s["gap"]), "residuals", s["primal_residual"], s["dual_residual"])
+    G = report_d_review(); s = G["solution"]
+    print("Report D optimum", r6(s["x"]), r6(s["primal"]), "gap", r6(s["gap"]), "residuals", s["primal_residual"], s["dual_residual"])
     print("  marginals", r6(s["ineq_marginals"]), r6(s["eq_marginals"]), r6(s["upper_marginals"]))
     print("  report: balance", G["report_balance"], "cost of its plan at spec prices", G["report_cost_recomputed"], "vs reported", REPORT["cost"])
     print("  value of 1 degC of cloud point", r6(G["cloud_value_per_degC"]), "USD/d; UCO", r6(G["uco_value_per_t"]), "USD/t", "properties", {k: r6(v) for k, v in G["properties"].items()})
