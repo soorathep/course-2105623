@@ -3,7 +3,7 @@
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 2880.6,
+ "total_seconds": 2890.4,
  "slides": [
   {
    "n": 1,
@@ -1516,7 +1516,7 @@
   {
    "n": 23,
    "file": "audio/slide-23.mp3",
-   "duration": 114.0,
+   "duration": 123.792,
    "hold": false,
    "cues": [
     {
@@ -1581,25 +1581,31 @@
     },
     {
      "s": 78.658,
-     "e": 84.184,
-     "en": "Newton is invariant: it produces the same iterates in any units, up to rounding.",
-     "th": "Newton เป็น invariant มันให้จุดในแต่ละรอบเหมือนกันในทุกหน่วย ยกเว้นผลจากการปัดเศษ"
+     "e": 87.182,
+     "en": "Newton is invariant: it produces the same iterates in any units, up to rounding. BFGS started from the identity is not.",
+     "th": "Newton ไม่ขึ้นกับหน่วย ให้ลำดับจุดเดียวกันในทุกระบบหน่วย ยกเว้นความคลาดเคลื่อนจากการปัดเศษ BFGS"
     },
     {
-     "s": 84.184,
-     "e": 94.145,
-     "en": "BFGS is invariant after its first steps, but it starts from the identity, which is a steepest-descent step, so bad units cost it extra iterations.",
-     "th": "BFGS เป็น invariant หลังจากก้าวแรก ๆ แต่มันเริ่มจากเมทริกซ์เอกลักษณ์ ซึ่งเป็นก้าวแบบ steepest descent หน่วยที่แย่จึงทำให้มันเสียรอบเพิ่ม"
+     "s": 87.182,
+     "e": 97.625,
+     "en": "Its first step is a steepest-descent step, and the path differs from then on: in Lab 8, BFGS takes 23 iterations in SI units and 10 after scaling.",
+     "th": "ที่เริ่มจากเมทริกซ์เอกลักษณ์ไม่เป็นเช่นนั้น ก้าวแรกเป็นก้าวแบบ steepest descent และเส้นทางต่างกันตั้งแต่นั้น ใน Lab 8 BFGS ใช้ 23 รอบในหน่วย SI และ"
     },
     {
-     "s": 94.145,
-     "e": 104.466,
+     "s": 97.625,
+     "e": 103.947,
+     "en": "BFGS is invariant only if its starting matrix is transformed together with the variables.",
+     "th": "10 รอบหลังสเกล BFGS จะไม่ขึ้นกับหน่วยก็ต่อเมื่อแปลงเมทริกซ์เริ่มต้นไปพร้อมกับตัวแปร"
+    },
+    {
+     "s": 103.947,
+     "e": 114.269,
      "en": "Tolerances carry units too. A gradient below ten to the minus five means one thing in US dollars per pascal and another in US dollars per bar.",
      "th": "tolerance ก็มีหน่วยเช่นกัน gradient ที่ต่ำกว่าสิบยกกำลังลบห้ามีความหมายหนึ่งในหน่วยดอลลาร์สหรัฐต่อปาสคาล และอีกความหมายในหน่วยดอลลาร์สหรัฐต่อ"
     },
     {
-     "s": 104.466,
-     "e": 113.921,
+     "s": 114.269,
+     "e": 123.724,
      "en": "Scale the objective as well, by a typical value, so that the tolerances mean something. Lab 8 measures all of this on a real model.",
      "th": "bar ปรับสเกลฟังก์ชันเป้าหมายด้วยค่าโดยทั่วไปของมัน เพื่อให้ tolerance มีความหมาย Lab 8 วัดเรื่องทั้งหมดนี้บนโมเดลจริง"
     }

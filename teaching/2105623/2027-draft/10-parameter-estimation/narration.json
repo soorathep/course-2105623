@@ -3,7 +3,7 @@
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 2963.2,
+ "total_seconds": 2965.4,
  "slides": [
   {
    "n": 1,
@@ -442,7 +442,7 @@
   {
    "n": 8,
    "file": "audio/slide-08.mp3",
-   "duration": 110.232,
+   "duration": 112.368,
    "hold": false,
    "cues": [
     {
@@ -453,73 +453,73 @@
     },
     {
      "s": 5.589,
-     "e": 14.501,
-     "en": "With f equal to one half the squared norm of r, the gradient is J transpose r, and the Hessian is J transpose J plus a sum of r i times the Hessian of r i.",
-     "th": "เมื่อ f เท่ากับครึ่งหนึ่งของ norm กำลังสองของ r, gradient คือ J transpose r และ Hessian คือ J transpose J บวกผลรวมของ r i คูณ Hessian ของ r i"
+     "e": 16.537,
+     "en": "Call the objective S: one half the squared norm of r. Then, the gradient is J transpose r, and the Hessian is J transpose J plus a sum of r i times the Hessian of r i.",
+     "th": "เรียก objective ว่า S คือครึ่งหนึ่งของ norm กำลังสองของ r แล้ว gradient คือ J transpose r และ Hessian คือ J transpose J บวกผลรวมของ r i คูณ Hessian ของ r i"
     },
     {
-     "s": 14.501,
-     "e": 24.895,
+     "s": 16.537,
+     "e": 27.039,
      "en": "Gauss–Newton drops the second term. The step solves J transpose J p equals minus J transpose r. Only first derivatives are needed.",
      "th": "Gauss–Newton ตัดพจน์ที่สองทิ้ง ก้าว p หาจาก J transpose J p เท่ากับลบ J transpose r ต้องใช้เพียงอนุพันธ์อันดับหนึ่ง"
     },
     {
-     "s": 24.895,
-     "e": 32.196,
+     "s": 27.039,
+     "e": 34.341,
      "en": "Another way to see it: replace r by its linearization, r plus J p, and minimize the squared norm of that over p.",
      "th": "อีกมุมหนึ่ง ให้แทน r ด้วยรูปเชิงเส้นของมัน คือ r บวก J p แล้วทำให้ norm กำลังสองของมันต่ำที่สุดเทียบกับ"
     },
     {
-     "s": 32.196,
-     "e": 38.981,
+     "s": 34.341,
+     "e": 41.126,
      "en": "That is a linear least-squares problem, and its normal equations are exactly the Gauss–Newton equations.",
      "th": "p นี่คือปัญหา linear least squares และ normal equations ของมันคือสมการ Gauss–Newton"
     },
     {
-     "s": 38.981,
-     "e": 44.99,
+     "s": 41.126,
+     "e": 47.135,
      "en": "So good codes solve for the step with a QR factorization of J, without forming J transpose J.",
      "th": "พอดี โปรแกรมที่ดีจึงหาก้าวด้วยการแยก QR ของ J โดยไม่สร้าง J transpose J"
     },
     {
-     "s": 44.99,
-     "e": 56.053,
+     "s": 47.135,
+     "e": 58.197,
      "en": "Near a good fit the residuals are small, so the dropped term is small, and Gauss–Newton converges almost like Newton. With large residuals or a poor model it slows down.",
      "th": "ใกล้ผลการปรับที่ดี residual มีค่าเล็ก พจน์ที่ตัดทิ้งจึงเล็ก และ Gauss–Newton ลู่เข้าเกือบเหมือน Newton ถ้า residual ใหญ่หรือโมเดลไม่ดี มันจะช้าลง"
     },
     {
-     "s": 56.053,
-     "e": 62.442,
+     "s": 58.197,
+     "e": 64.587,
      "en": "J transpose J is positive semidefinite, so the step points downhill unless J is rank deficient.",
      "th": "J transpose J เป็น positive semidefinite ก้าวจึงชี้ลงเนินเสมอ ยกเว้นเมื่อ J ขาด rank"
     },
     {
-     "s": 62.442,
-     "e": 69.697,
+     "s": 64.587,
+     "e": 71.842,
      "en": "But a full step can overshoot, sometimes out of the physical region, for example to a negative rate constant.",
      "th": "แต่ก้าวเต็มอาจเลยเป้า บางครั้งออกนอกบริเวณที่มีความหมายทางกายภาพ เช่น ไปที่ค่าคงที่อัตราเร็วติดลบ"
     },
     {
-     "s": 69.697,
-     "e": 82.103,
+     "s": 71.842,
+     "e": 84.248,
      "en": "Levenberg–Marquardt adds nu times D to J transpose J, where D is the diagonal of J transpose J. If the step lowers SSE, it is accepted and nu is divided by three.",
      "th": "Levenberg–Marquardt เพิ่ม nu คูณ D เข้าไปใน J transpose J โดย D คือแนวทแยงของ J transpose J ถ้าก้าวทำให้ SSE ลดลง จะยอมรับก้าวและหาร nu ด้วยสาม"
     },
     {
-     "s": 82.103,
-     "e": 85.908,
+     "s": 84.248,
+     "e": 88.053,
      "en": "If not, nu is doubled and the step is tried again.",
      "th": "ถ้าไม่ลด จะเพิ่ม nu เป็นสองเท่าแล้วลองใหม่"
     },
     {
-     "s": 85.908,
-     "e": 98.105,
+     "s": 88.053,
+     "e": 100.25,
      "en": "Small nu gives the Gauss–Newton step; large nu gives a short step along minus J transpose r, scaled by D. So nu plays the role of the trust-region radius of Session 8, in reverse.",
      "th": "nu เล็กให้ Gauss–Newton step ส่วน nu ใหญ่ให้ก้าวสั้น ๆ ตามทิศลบ J transpose r ที่ปรับสเกลด้วย D ดังนั้น nu ทำหน้าที่เหมือนรัศมีของ trust region ในคาบที่ 8 แต่กลับทิศกัน"
     },
     {
-     "s": 98.105,
-     "e": 110.158,
+     "s": 100.25,
+     "e": 112.303,
      "en": "In SciPy, least squares with method L M calls the MINPACK implementation of Levenberg–Marquardt. The default method, T R F, is a trust-region method that also handles bounds.",
      "th": "ใน SciPy ฟังก์ชัน least_squares ที่ใช้ method lm เรียก Levenberg–Marquardt ของ MINPACK ส่วน method ค่าเริ่มต้นคือ trf เป็นวิธี trust region ที่รองรับขอบเขตด้วย"
     }

@@ -564,7 +564,7 @@ const stair12=(Ts,px,py,col,w,dash)=>{const N=Ts.length;let p=[];Ts.forEach((T,i
 S.push({kicker:"Part 3 · Robust optimization", title:"No probabilities: a constraint that must hold for every value in a set", html:()=>`<div class="body"><div class="col w55"><div class="panel"><div class="math" style="font-size:18px;line-height:1.75">
 aᵀx ≤ b for all a in U, &nbsp;a<sub>i</sub> = ā<sub>i</sub> + δ<sub>i</sub>ζ<sub>i</sub><br>
 box |ζ<sub>i</sub>| ≤ 1: &nbsp;āᵀx + Σ δ<sub>i</sub>|x<sub>i</sub>| ≤ b &nbsp;(Soyster, 1973)<br>
-ellipsoid ‖ζ‖ ≤ Ω: &nbsp;āᵀx + Ω‖Δx‖ ≤ b &nbsp;(a cone constraint)<br>
+ellipsoid ‖ζ‖ ≤ Ω: &nbsp;āᵀx + Ω‖Δx‖ ≤ b, &nbsp;Δ = diag(δ₁, …, δ<sub>n</sub>) &nbsp;(a cone constraint)<br>
 budget: |ζ<sub>i</sub>| ≤ 1 and Σ|ζ<sub>i</sub>| ≤ Γ &nbsp;(Bertsimas and Sim, 2004)</div></div>
 <ul class="b xs" style="margin-top:10px"><li>The set U says which data the decision must survive; its size is the only tuning knob</li>
 <li>The worst case is taken inside the constraint, so the problem stays deterministic: an LP for box and budget sets, a second-order cone program for ellipsoids</li>

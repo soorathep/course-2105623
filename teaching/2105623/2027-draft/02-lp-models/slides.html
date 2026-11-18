@@ -424,7 +424,7 @@ S.push({kicker:"Part 2 · Degrees of freedom", title:"How many decisions does th
 <p class="note">Degrees of freedom = columns − rank of the balance rows. Compute the rank rather than counting rows: a duplicated balance adds a row and no information.</p></div>
 <div class="col"><ul class="b xs"><li>The balances fix 8 combinations of the 17 activity levels; 9 can still be chosen</li>
 <li>The inequality rows (capacities, supplies, demands, specifications) decide where those 9 end up. At an optimal vertex enough of them are tight to pin the plan down</li>
-<li>If the degrees of freedom are zero, there is nothing to optimize; if they are negative, the balances are inconsistent or redundant: check the rank</li>
+<li>If the degrees of freedom are zero, there is nothing to optimize. Counted as n − rank(A), they are never negative</li><li>Check consistency separately: if rank [A | b] &gt; rank A, the balances contradict each other and no plan exists. Two copies of x₁ + x₂ = 10: rank 1, redundant. x₁ + x₂ = 10 with x₁ + x₂ = 12: rank A = 1, rank [A | b] = 2, inconsistent</li>
 <li>This is the same count as in a process simulator's degree-of-freedom analysis</li></ul></div></div>`,
 draw:()=>{const d=R.lecture.dof;document.getElementById("dofm").innerHTML=`Columns (activities): <b>${d.columns}</b><br>Balance rows: <b>${d.balance_rows}</b>, rank <b>${d.rank}</b><br>Degrees of freedom: ${d.columns} − ${d.rank} = <b>${d.dof}</b><br>Column audit: CDU sums to ${fmt(d.column_sums.CDU,2)}, reformer to ${fmt(Math.abs(d.column_sums.REF),2)}`}});
 
@@ -702,7 +702,7 @@ const NARR = {
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 2971.5,
+ "total_seconds": 2993.9,
  "slides": [
   {
    "n": 1,
@@ -2077,7 +2077,7 @@ const NARR = {
   {
    "n": 23,
    "file": "audio/slide-23.mp3",
-   "duration": 78.864,
+   "duration": 101.28,
    "hold": false,
    "cues": [
     {
@@ -2124,13 +2124,25 @@ const NARR = {
     },
     {
      "s": 62.355,
-     "e": 73.829,
-     "en": "If the degrees of freedom were zero, there would be nothing to optimize. If the count comes out negative, the balances are inconsistent or redundant, and the rank check tells you which.",
-     "th": "ถ้า degrees of freedom เป็นศูนย์ ก็ไม่มีอะไรให้ optimize ถ้านับได้ค่าติดลบ แสดงว่าสมดุลขัดแย้งกันหรือซ้ำซ้อน และการตรวจ rank จะบอกได้ว่าเป็นแบบใด"
+     "e": 72.879,
+     "en": "If the degrees of freedom were zero, there would be nothing to optimize. Counted with the rank, the number can never be negative. The second check is consistency:",
+     "th": "ถ้าระดับความเสรีเป็นศูนย์ ก็ไม่มีอะไรให้หาค่าเหมาะสม เมื่อนับด้วย rank จำนวนนี้จะไม่ติดลบ การตรวจข้อที่สองคือความสอดคล้อง"
     },
     {
-     "s": 73.829,
-     "e": 78.789,
+     "s": 72.879,
+     "e": 84.371,
+     "en": "if appending the right-hand side to the matrix raises its rank, the balances contradict each other and no plan exists. Two copies of x one plus x two equal to ten are redundant:",
+     "th": "ถ้าเติมค่าฝั่งขวาเข้าไปในเมทริกซ์แล้ว rank เพิ่มขึ้น แปลว่าสมการดุลขัดกันเองและไม่มีแผนที่เป็นไปได้ สมการ x หนึ่ง บวก x สอง เท่ากับสิบ สองชุดที่ซ้ำกันเป็นสมการซ้ำ"
+    },
+    {
+     "s": 84.371,
+     "e": 96.25,
+     "en": "the rank is one. x one plus x two equal to ten, together with x one plus x two equal to twelve, are inconsistent: the rank of A is one, but with the right-hand side appended it is two.",
+     "th": "rank เท่ากับหนึ่ง ส่วน x หนึ่ง บวก x สอง เท่ากับสิบ คู่กับ x หนึ่ง บวก x สอง เท่ากับสิบสอง ขัดกัน rank ของ A เท่ากับหนึ่ง แต่เมื่อเติมค่าฝั่งขวาเข้าไปเป็นสอง"
+    },
+    {
+     "s": 96.25,
+     "e": 101.211,
      "en": "This is the same count a process simulator makes before it solves a flowsheet.",
      "th": "นี่คือการนับแบบเดียวกับที่ process simulator ทำก่อนแก้ flowsheet"
     }

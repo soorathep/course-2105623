@@ -121,7 +121,7 @@ button.sm{width:38px;font-size:12px;padding:2px 9px;margin:0;background:transpar
  <div class="ctrlrow"><span>Reactor hours, h/week</span><input type="range" id="rh" min="0" max="100" step="1" value="40"><b id="rhv"></b></div>
  <div class="kpi"><div>Best margin, USD/week<b id="rhz"></b></div><div>Reactor price, USD/h<b id="rhy"></b></div><div>Plan, t/week<b id="rhx" style="font-size:15px"></b></div></div>
  <div id="chV"></div>
- <div class="chk"><span>Up to how many reactor hours does the price of 55 USD/h hold?</span><input type="text" id="c3b" inputmode="decimal"><span class="fb" id="f3b"></span></div>
+ <div class="chk"><span>The slider moves in steps of 5 h. Between which two settings does the price of 55 USD/h end?</span><select id="c3b"><option value="">choose</option><option value="a">between 400 and 405 h</option><option value="b">between 405 and 410 h</option><option value="c">between 410 and 415 h</option><option value="d">above 435 h</option></select><span class="fb" id="f3b"></span></div>
  <div class="chk"><span>What ends it?</span><select id="c3c"><option value="">choose</option><option value="a">The market for Plasticizer fills</option><option value="b">Feedstock becomes tight, and the basis changes</option><option value="c">Distillation gets slack</option></select><span class="fb" id="f3c"></span></div>
  <button data-check="3c">Check</button></div>
 </section>
@@ -220,7 +220,7 @@ document.querySelectorAll("[data-check]").forEach(b=>b.onclick=()=>{const id=b.d
  if(id==="1b")ok=[checkNum("c1a","f1a",B.v,0.01,1,0),checkSel("c1b","f1b","b","Solvent, Resin, feedstock slack, market slack: the positive variables, one per row")].every(Boolean);
  if(id==="2a")ok=[checkNum("c2a","f2a",B.y[0],0.01,0.05,2),checkNum("c2b","f2b",L.bty,0.01,1,0),checkSel("c2c","f2c","b","2.5 t are left over: a row with slack has price zero")].every(Boolean);
  if(id==="3b")ok=checkNum("c3a","f3a",L.plus1.v-B.v,0.01,0.05,2);
- if(id==="3c")ok=[checkNum("c3b","f3b",RH.hi,0.01,2.5,1),checkSel("c3c","f3c","b","Feedstock becomes tight, and the basis changes")].every(Boolean);
+ if(id==="3c"){const r1=checkSel("c3b","f3b","b","between 405 and 410 h");if(r1)$("f3b").textContent+=` The ranging formula of Session 6 gives the exact end: ${fmt(RH.hi,1)} h, ${fmt(RH.hi-D.b[0],1)} h above today's ${fmt(D.b[0],0)} h.`;ok=[r1,checkSel("c3c","f3c","b","Feedstock becomes tight, and the basis changes")].every(Boolean)}
  if(id==="4a")ok=checkNum("c4a","f4a",100*B.y[0]-100*RENT,0.01,1,0);
  if(id==="4b")ok=[checkNum("c4b","f4b",L.plus100.v-B.v,0.01,1,1),checkNum("c4c","f4c",rentHours,0.05,0.5,1)].every(Boolean);
  if(id==="5a")ok=checkNum("c5a","f5a",-AD.reduced_cost,0.01,0.1,1);
@@ -231,7 +231,7 @@ function summary(){const sel=(id,map)=>map[ST[id]]||ST[id]||"?";
  $("sum").textContent=[`Lab 6 answers`,
  `1. Predicted products: ${ST.p1||"?"}. Weekly margin ${ST.c1a||"?"} USD; basis: ${sel("c1b",{b:"Solvent, Resin, feedstock slack, market slack"})}`,
  `2. Reactor price ${ST.c2a||"?"} USD/h; b'y = ${ST.c2b||"?"} USD/week; feedstock price zero because: ${sel("c2c",{b:"2.5 t left over"})}`,
- `3. Predicted +1 h: ${ST.p3||"?"} USD; actual ${ST.c3a||"?"} USD. Price holds up to ${ST.c3b||"?"} h; ends because: ${sel("c3c",{b:"feedstock becomes tight"})}`,
+ `3. Predicted +1 h: ${ST.p3||"?"} USD; actual ${ST.c3a||"?"} USD. Price of 55 USD/h ends ${sel("c3b",{a:"between 400 and 405 h",b:"between 405 and 410 h",c:"between 410 and 415 h",d:"above 435 h"})}; ends because: ${sel("c3c",{b:"feedstock becomes tight"})}`,
  `4. Net gain predicted from the price for 100 h: ${ST.c4a||"?"} USD/week; actual rise ${ST.c4b||"?"} USD/week; hours worth renting at 25 USD/h: ${ST.c4c||"?"}`,
  `5. Additive margin must rise by ${ST.c5a||"?"} USD/t before it is made`,`6. ${ST.e6||"?"}`].join("\n")}
 $("copy").onclick=async()=>{try{await navigator.clipboard.writeText($("sum").textContent);$("copied").textContent="Copied. Paste it into the Exit Ticket box."}catch(e){$("copied").textContent="Copy did not work here. Select the text above and copy it."}};

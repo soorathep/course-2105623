@@ -236,7 +236,7 @@ S.push({kicker:"Part 1 · Existence", title:"When does an optimum exist?", html:
 <tr><td>max 400x₁ + 300x₂, today's plant</td><td>3,300</td><td>yes, at the vertex (6, 3)</td></tr></table></div>
 <div class="col"><ul class="b xs"><li><b>Weierstrass</b>: if f is continuous and F is nonempty, closed and bounded, a minimum is attained</li>
 <li><b>Linear programs</b>: if an LP is feasible and its value is finite, an optimum is attained, and at a vertex whenever the feasible set has one</li>
-<li>Give every physical variable a bound. It guarantees existence and turns a missing constraint into a visible bound instead of "unbounded"</li>
+<li>Give every physical variable a bound. Bounds make F bounded; with f continuous, every row closed (≤, ≥ or =, never &lt;) and at least one feasible point, a minimum then exists (Weierstrass). A missing constraint also shows up as a variable at its bound instead of "unbounded"</li>
 <li>"Unbounded" from a model of a real plant always means a constraint is missing</li></ul></div></div>`});
 
 S.push({kicker:"Part 1 · Check your understanding · 4 minutes", title:"What does each problem return?", html:()=>`<div class="body"><div class="col w55"><div class="act"><span class="tag">PAUSE AND ANSWER</span>
@@ -294,7 +294,7 @@ S.push({kicker:"Part 1 · Units, worked", title:"Three errors a units check find
 <tr><th>Row as a colleague wrote it</th><th>Units of each term</th><th>Fix</th></tr>
 <tr><td>max 0.40 x₁ + 0.30 x₂, margins quoted per kg, x in t/week</td><td>USD/kg × t/week: not USD/week</td><td>multiply by 1,000 kg/t, written as a parameter</td></tr>
 <tr><td>3x₁ + 2x₂ ≤ 24, hours per tonne, but 24 is h/day for a weekly plan</td><td>h/week on the left, h/day on the right</td><td>right side 24 h/day × days of operation per week</td></tr>
-<tr><td>x₁ + x₂ ≤ 9 in a storage row, x₁ in t and x₂ in m³ of solution</td><td>t + m³: the sum has no unit</td><td>convert with the density: x₁ + ρ₂ x₂ ≤ 9 t</td></tr></table>
+<tr><td>x₁ + x₂ ≤ 9 in a storage row, x₁ in t and x₂ in m³ of solution</td><td>t + m³: the sum has no unit</td><td>convert with the density ρ₂ (t/m³): x₁ + ρ₂ x₂ ≤ 9 t</td></tr></table>
 <ul class="b xs" style="margin-top:14px"><li>Write every conversion factor as a named parameter with its unit; never as a bare number inside a formula</li>
 <li>Check each row term by term: every term must carry the unit of the right-hand side</li><li>The first error is the one planted in Lab 1, in a flowsheet with flows in kmol/h and prices per kg</li></ul></div></div>`});
 
@@ -409,7 +409,7 @@ Convex set: x, y ∈ F ⇒ θx + (1 − θ)y ∈ F for θ ∈ [0, 1]<br>
 Convex function: f(θx + (1 − θ)y) ≤ θf(x) + (1 − θ)f(y)<br>
 Proof: let x be local and y ∈ F with f(y) &lt; f(x). Points z<sub>θ</sub> = (1 − θ)x + θy are feasible, and f(z<sub>θ</sub>) ≤ (1 − θ)f(x) + θf(y) &lt; f(x) for every small θ &gt; 0. So x is not local: contradiction.</div></div></div>
 <div class="col"><ul class="b xs"><li>Tests: f twice differentiable is convex if and only if its Hessian is positive semidefinite everywhere</li>
-<li>Convexity survives sums with positive weights, maxima, and composition with affine maps</li><li>g(x) ≤ 0 with g convex gives a convex set; g(x) ≥ 0 does not; equalities must be affine (linear plus a constant)</li>
+<li>Convexity survives sums with positive weights, maxima, and composition with affine maps</li><li>g(x) ≤ 0 with g convex gives a convex set; g(x) ≥ 0 in general does not. The standard convex form asks for affine equalities (linear plus a constant); a nonlinear equality usually gives a nonconvex set. These are sufficient conditions, not necessary ones</li>
 <li>Typical nonconvexities in chemical engineering: flow × composition, Arrhenius terms, cost ∝ size<sup>0.6</sup></li></ul></div></div>`});
 
 S.push({kicker:"Part 2 · Demo", title:"Same model, same solver, two answers", dhint:true, html:()=>`<div class="body"><div class="col w40">
@@ -517,7 +517,7 @@ for i, j in itertools.combinations(range(5), 2):
 
 S.push({kicker:"Part 2 · Formulation", title:"The same physics can be a hard or an easy problem", html:()=>`<div class="body"><div class="col"><table class="t" style="font-size:17px">
 <tr><th>Choice</th><th>Weak formulation</th><th>Better formulation</th></tr>
-<tr><td>Quality ratio</td><td>Σ h<sub>i</sub>u<sub>i</sub> / Σ u<sub>i</sub> ≤ 6 (nonlinear, undefined at zero flow)</td><td>Σ (h<sub>i</sub> − 6) u<sub>i</sub> ≤ 0 (linear, exact for Σ u<sub>i</sub> ≥ 0)</td></tr>
+<tr><td>Quality ratio</td><td>Σ h<sub>i</sub>u<sub>i</sub> / Σ u<sub>i</sub> ≤ 6 (nonlinear, undefined at zero flow)</td><td>Σ (h<sub>i</sub> − 6) u<sub>i</sub> ≤ 0 (linear, exact when Σ u<sub>i</sub> &gt; 0; at zero flow the ratio is undefined and the row holds trivially, so decide whether zero flow is allowed)</td></tr>
 <tr><td>On/off unit</td><td>x ≤ M y with M far too large: weak LP bound</td><td>x ≤ x<sup>max</sup> y with the tightest valid M (Session 3)</td></tr>
 <tr><td>Scaling</td><td>variables from 10⁻³ to 10⁶ in one model: tolerances lose meaning</td><td>choose units so most variables are near 1; report in physical units</td></tr>
 <tr><td>Mixing streams</td><td>flow × composition: bilinear, nonconvex</td><td>component flows where possible; when not, expect local optima (Session 13)</td></tr></table>
@@ -708,7 +708,7 @@ const NARR = {
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 3073.0,
+ "total_seconds": 3103.9,
  "slides": [
   {
    "n": 1,
@@ -1063,7 +1063,7 @@ const NARR = {
   {
    "n": 8,
    "file": "audio/slide-08.mp3",
-   "duration": 88.704,
+   "duration": 99.096,
    "hold": false,
    "cues": [
     {
@@ -1116,19 +1116,25 @@ const NARR = {
     },
     {
      "s": 69.829,
-     "e": 73.903,
-     "en": "The practical lesson is to give every physical variable a bound.",
-     "th": "บทเรียนเชิงปฏิบัติคือ ให้กำหนดขอบเขตแก่ทุกตัวแปรทางกายภาพ"
+     "e": 76.643,
+     "en": "The practical lesson is to give every physical variable a bound. Bounds make the feasible set bounded.",
+     "th": "บทเรียนเชิงปฏิบัติคือให้ใส่ขอบเขตให้ตัวแปรทางกายภาพทุกตัว ขอบเขตทำให้เซตที่เป็นไปได้มีขอบเขต"
     },
     {
-     "s": 73.903,
-     "e": 83.368,
-     "en": "It guarantees existence, and it turns a missing constraint into a variable sitting on its bound, which you will notice, instead of an unbounded status.",
-     "th": "วิธีนี้รับประกันการมีอยู่ของคำตอบ และเปลี่ยนข้อจำกัดที่หายไปให้เป็นตัวแปรที่ชนขอบเขต ซึ่งคุณจะสังเกตเห็นได้ แทนที่จะเป็นสถานะ unbounded"
+     "s": 76.643,
+     "e": 85.507,
+     "en": "With a continuous objective, rows that are closed, so no strict inequalities, and at least one feasible point, a minimum then exists.",
+     "th": "เมื่อฟังก์ชันเป้าหมายต่อเนื่อง ข้อจำกัดเป็นแบบปิดคือไม่มีอสมการแบบเข้ม และมีจุดที่เป็นไปได้อย่างน้อยหนึ่งจุด"
     },
     {
-     "s": 83.368,
-     "e": 88.632,
+     "s": 85.507,
+     "e": 93.776,
+     "en": "A missing constraint also shows up as a variable sitting on its bound, which you will notice, instead of an unbounded status.",
+     "th": "จะมีค่าต่ำสุดเสมอ ข้อจำกัดที่ขาดหายไปก็จะปรากฏเป็นตัวแปรที่ติดขอบเขต ซึ่งสังเกตได้ แทนที่จะได้สถานะ unbounded"
+    },
+    {
+     "s": 93.776,
+     "e": 99.039,
      "en": "In a model of a real plant, unbounded always means that a constraint is missing.",
      "th": "ในโมเดลของโรงงานจริง คำว่า unbounded หมายความว่ามีข้อจำกัดหายไปเสมอ"
     }
@@ -2141,7 +2147,7 @@ const NARR = {
   {
    "n": 25,
    "file": "audio/slide-25.mp3",
-   "duration": 116.544,
+   "duration": 128.544,
    "hold": false,
    "cues": [
     {
@@ -2218,13 +2224,25 @@ const NARR = {
     },
     {
      "s": 96.658,
-     "e": 105.355,
-     "en": "For constraints: g of x at most zero with g convex gives a convex set; g of x at least zero does not; and equalities must be affine.",
-     "th": "สำหรับข้อจำกัด g(x) ไม่เกินศูนย์โดยที่ g เป็น convex ให้เซตที่เป็น convex แต่ g(x) ไม่น้อยกว่าศูนย์ไม่ให้ และสมการต้องเป็น affine"
+     "e": 104.178,
+     "en": "For constraints: g of x at most zero with g convex gives a convex set; g of x at least zero in general does not.",
+     "th": "สำหรับข้อจำกัด g ของ x ไม่เกินศูนย์ เมื่อ g เป็น convex ให้เซตที่เป็น convex แต่ g ของ x ไม่น้อยกว่าศูนย์โดยทั่วไปไม่ใช่"
     },
     {
-     "s": 105.355,
-     "e": 116.474,
+     "s": 104.178,
+     "e": 114.626,
+     "en": "The standard convex form asks for affine equalities, and a nonlinear equality usually gives a nonconvex set. These conditions are sufficient, not necessary:",
+     "th": "รูปแบบ convex มาตรฐานกำหนดให้สมการเป็น affine และสมการไม่เชิงเส้นมักให้เซตที่ไม่ convex เงื่อนไขเหล่านี้เป็นเงื่อนไขเพียงพอ ไม่ใช่เงื่อนไขจำเป็น"
+    },
+    {
+     "s": 114.626,
+     "e": 117.355,
+     "en": "they are the form a solver can recognize.",
+     "th": "เป็นรูปแบบที่ solver ตรวจจับได้"
+    },
+    {
+     "s": 117.355,
+     "e": 128.474,
      "en": "In chemical engineering the usual sources of nonconvexity are products of flow and composition, Arrhenius terms, and equipment costs that scale with size to the power 0.6.",
      "th": "ในวิศวกรรมเคมี แหล่งที่มาของความไม่เป็น convex ที่พบบ่อย คือผลคูณของอัตราการไหลกับองค์ประกอบ พจน์ Arrhenius และต้นทุนอุปกรณ์ที่แปรตามขนาดยกกำลัง 0.6"
     }
@@ -2649,7 +2667,7 @@ const NARR = {
   {
    "n": 33,
    "file": "audio/slide-33.mp3",
-   "duration": 83.352,
+   "duration": 91.944,
    "hold": false,
    "cues": [
     {
@@ -2660,55 +2678,61 @@ const NARR = {
     },
     {
      "s": 7.316,
-     "e": 16.273,
+     "e": 16.033,
      "en": "A quality ratio, such as the average sulfur of a blend at most 6, is nonlinear and undefined at zero flow if written as a ratio.",
-     "th": "อัตราส่วนคุณภาพ เช่น ค่ากำมะถันเฉลี่ยของของผสมไม่เกิน 6 ถ้าเขียนเป็นอัตราส่วนจะไม่เป็นเชิงเส้น และไม่นิยามเมื่ออัตราการไหลเป็นศูนย์"
+     "th": "อัตราส่วนคุณภาพ เช่น กำมะถันเฉลี่ยของสารผสมไม่เกิน 6 ถ้าเขียนเป็นอัตราส่วนจะไม่เป็นเชิงเส้นและไม่นิยามที่อัตราการไหลศูนย์"
     },
     {
-     "s": 16.273,
-     "e": 24.605,
-     "en": "Multiplied through by the flow, it becomes linear, and exact whenever the flow is nonnegative. Session 2 builds on this.",
-     "th": "เมื่อคูณตลอดด้วยอัตราการไหล จะเป็นเชิงเส้นและถูกต้องเมื่ออัตราการไหลไม่ติดลบ คาบที่ 2 ต่อยอดจากเรื่องนี้"
+     "s": 16.033,
+     "e": 23.061,
+     "en": "Multiplied through by the total flow, it becomes linear, and exact whenever the total flow is positive.",
+     "th": "เมื่อคูณตลอดด้วยอัตราการไหลรวมจะเป็นเชิงเส้น และถูกต้องเมื่ออัตราการไหลรวมเป็นบวก ที่อัตราการไหลศูนย์"
     },
     {
-     "s": 24.605,
-     "e": 37.793,
+     "s": 23.061,
+     "e": 33.197,
+     "en": "At zero flow the linear row holds trivially, so decide whether a zero blend is allowed, with a minimum-flow row or a binary. Session 2 builds on this.",
+     "th": "แถวเชิงเส้นเป็นจริงเสมอ จึงต้องตัดสินใจว่ายอมให้ไม่ผสมเลยได้หรือไม่ ด้วยแถวอัตราการไหลขั้นต่ำหรือตัวแปร binary คาบที่ 2 ต่อยอดจากเรื่องนี้"
+    },
+    {
+     "s": 33.197,
+     "e": 46.385,
      "en": "A worked case: two streams with 4 and 9 percent sulfur, and a limit of 6. The ratio row becomes minus 2 u one plus 3 u two at most zero, so u two can be at most two thirds of u one.",
      "th": "ตัวอย่าง มีสองสายที่มีกำมะถัน 4 และ 9 เปอร์เซ็นต์ และขีดจำกัด 6 แถวอัตราส่วนจะกลายเป็น ลบ 2 u1 บวก 3 u2 ไม่เกินศูนย์ ดังนั้น u2 ไม่เกินสองในสามของ u1"
     },
     {
-     "s": 37.793,
-     "e": 40.474,
+     "s": 46.385,
+     "e": 49.066,
      "en": "That is a linear row anyone can read.",
      "th": "ซึ่งเป็นแถวเชิงเส้นที่ใครก็อ่านเข้าใจ"
     },
     {
-     "s": 40.474,
-     "e": 50.276,
+     "s": 49.066,
+     "e": 58.868,
      "en": "An on and off unit written with a very large constant M gives a weak bound; the tightest valid M gives a strong one. Session 3 is about this.",
      "th": "หน่วยผลิตแบบเปิดปิดที่เขียนด้วยค่าคงที่ M ขนาดใหญ่มาก ให้ขอบเขตที่อ่อน ส่วน M ที่แน่นที่สุดที่ยังถูกต้อง ให้ขอบเขตที่แข็งแรง คาบที่ 3 ว่าด้วยเรื่องนี้"
     },
     {
-     "s": 50.276,
-     "e": 57.772,
+     "s": 58.868,
+     "e": 66.364,
      "en": "Scaling: when variables range from a thousandth to a million in one model, absolute tolerances lose their meaning.",
      "th": "การปรับสเกล เมื่อตัวแปรในโมเดลเดียวมีค่าตั้งแต่หนึ่งในพันถึงหนึ่งล้าน ค่าความคลาดเคลื่อนแบบสัมบูรณ์จะหมดความหมาย"
     },
     {
-     "s": 57.772,
-     "e": 62.921,
+     "s": 66.364,
+     "e": 71.513,
      "en": "Choose units so that most variables are near one, and report in physical units.",
      "th": "ให้เลือกหน่วยที่ทำให้ตัวแปรส่วนใหญ่มีค่าใกล้หนึ่ง แล้วรายงานในหน่วยทางกายภาพ"
     },
     {
-     "s": 62.921,
-     "e": 75.724,
+     "s": 71.513,
+     "e": 84.316,
      "en": "Mixing streams written as flow times composition is bilinear and nonconvex. Writing component flows instead often removes the products. When it cannot, expect local optima.",
      "th": "การผสม stream ที่เขียนเป็นอัตราการไหลคูณองค์ประกอบ เป็น bilinear และไม่เป็น convex การเขียนเป็นอัตราการไหลของแต่ละองค์ประกอบมักกำจัดผลคูณได้ ถ้าทำไม่ได้ ให้คาดว่าจะมีคำตอบเฉพาะที่"
     },
     {
-     "s": 75.724,
-     "e": 83.276,
+     "s": 84.316,
+     "e": 91.868,
      "en": "Two formulations with the same feasible set can differ by orders of magnitude in solve time and in the quality of the bound.",
      "th": "รูปแบบโมเดลสองแบบที่มีเซตที่เป็นไปได้เดียวกัน อาจต่างกันหลายระดับขนาดในเวลาที่ใช้แก้และคุณภาพของขอบเขต"
     }

@@ -370,7 +370,7 @@ S.push({kicker:"Part 1 · In practice", title:"Making the ε-constraint method w
 <li>Build the payoff table first, lexicographically: optimize f₁, then f₂ with f₁ held at its optimum. Its entries give the range of ε</li>
 <li>Scale the objectives by their ranges before any weights or distances; a weight on raw USD and m³ means nothing</li>
 <li>Grid ε evenly between the payoff-table bounds; refine where the front bends</li>
-<li>A cap that is not tight returns a weakly Pareto point: same f₂, possibly worse f₁. Mavrotas's augmented method (AUGMECON, 2009) adds the slack of the ε row to the objective with a small weight, so the answer is Pareto optimal and loops can stop early when the row is slack</li>
+<li>Ties: several plans can reach the same best f₁ with different f₂, and the solver returns any one of them, which is only weakly Pareto optimal. Break the tie with a second solve: fix f₁ at its best value and minimize f₂. A slack ε row alone does not prove that a point is Pareto optimal. AUGMECON (Mavrotas, 2009) does both steps in one solve by adding the slack of the ε row to the objective with a small weight, and lets a loop over caps stop early when the row is slack</li>
 <li>One objective to optimize, the others as caps: the method extends to three or more objectives, with a grid of caps</li>
 <li>It goes back to Haimes, Lasdon and Wismer (1971)</li></ul></div>
 <div class="col"><div class="panel"><div class="math" style="font-size:17.5px;line-height:1.75">AUGMECON:<br>max f₁(x) + δ s/r₂<br>s.t. f₂(x) + s = ε, &nbsp;s ≥ 0<br>δ small, for example 10⁻³<br>r₂: the range of f₂ in the payoff table</div></div>
@@ -813,7 +813,7 @@ const NARR = {
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 2899.8,
+ "total_seconds": 2916.0,
  "slides": [
   {
    "n": 1,
@@ -1528,7 +1528,7 @@ const NARR = {
   {
    "n": 11,
    "file": "audio/slide-11.mp3",
-   "duration": 88.104,
+   "duration": 104.304,
    "hold": false,
    "cues": [
     {
@@ -1557,49 +1557,61 @@ const NARR = {
     },
     {
      "s": 23.711,
-     "e": 31.225,
-     "en": "A cap that is not tight returns a weakly Pareto point: the same second objective, and possibly a worse first one.",
-     "th": "เพดานที่ไม่ตึงจะให้จุด weakly Pareto คือเป้าหมายที่สองเท่าเดิม แต่เป้าหมายแรกอาจแย่กว่า วิธี augmented"
+     "e": 24.725,
+     "en": "Watch for ties.",
+     "th": "ระวังกรณีเสมอ"
     },
     {
-     "s": 31.225,
-     "e": 39.265,
-     "en": "Mavrotas's augmented method, AUGMECON, from 2009, adds the slack of the epsilon row to the objective with a small weight.",
-     "th": "ของ Mavrotas ที่เรียกว่า AUGMECON ในปี 2009 เพิ่มค่า slack ของแถว ε เข้าไปในฟังก์ชันเป้าหมายด้วยน้ำหนักเล็ก"
+     "s": 24.725,
+     "e": 36.194,
+     "en": "Several plans can reach the same best value of the first objective with different values of the second, and the solver returns any one of them, which is only weakly Pareto optimal.",
+     "th": "แผนหลายแผนอาจให้ค่าที่ดีที่สุดของ objective แรกเท่ากันแต่ objective ที่สองต่างกัน และ solver จะคืนแผนใดแผนหนึ่ง ซึ่งเป็นเพียง weakly Pareto optimal"
     },
     {
-     "s": 39.265,
-     "e": 45.395,
-     "en": "The answer is then Pareto optimal, and a loop over caps can stop early when the row is slack.",
-     "th": "ๆ คำตอบจึงเป็น Pareto optimal และ loop ของเพดานหยุดก่อนได้เมื่อแถวนั้นไม่ตึง"
+     "s": 36.194,
+     "e": 47.664,
+     "en": "Break the tie with a second solve: fix the first objective at its best value, and minimize the second. A slack epsilon row on its own does not prove that a point is Pareto optimal.",
+     "th": "ให้แก้ด้วยการแก้ปัญหาครั้งที่สอง ตรึง objective แรกไว้ที่ค่าที่ดีที่สุด แล้วหาค่าต่ำสุดของ objective ที่สอง การที่แถว epsilon มี slack อย่างเดียวพิสูจน์ไม่ได้ว่าจุดนั้นเป็น Pareto"
     },
     {
-     "s": 45.395,
-     "e": 56.684,
+     "s": 47.664,
+     "e": 57.613,
+     "en": "Mavrotas's augmented method, AUGMECON, from 2009, does both steps in one solve, by adding the slack of the epsilon row to the objective with a small weight,",
+     "th": "optimal วิธี AUGMECON ของ Mavrotas ปี 2009 ทำทั้งสองขั้นในการแก้ครั้งเดียว โดยเพิ่ม slack ของแถว epsilon เข้าไปใน objective ด้วยน้ำหนักเล็ก"
+    },
+    {
+     "s": 57.613,
+     "e": 61.605,
+     "en": "and a loop over caps can then stop early when the row is slack.",
+     "th": "ๆ และทำให้ loop ของค่า cap หยุดก่อนได้เมื่อแถวมี slack"
+    },
+    {
+     "s": 61.605,
+     "e": 72.895,
      "en": "With three or more objectives, keep one as the objective and put the others under caps, on a grid. The method goes back to Haimes, Lasdon and Wismer in 1971.",
      "th": "เมื่อมีเป้าหมายสามตัวหรือมากกว่า ให้เก็บตัวหนึ่งเป็นฟังก์ชันเป้าหมาย และกำหนดเพดานให้ตัวอื่นเป็นตาราง วิธีนี้ย้อนกลับไปถึง Haimes, Lasdon และ Wismer ในปี 1971"
     },
     {
-     "s": 56.684,
-     "e": 63.573,
+     "s": 72.895,
+     "e": 79.784,
      "en": "With an LP, the answers between two vertices are exact points on the edge, and mu is the slope there.",
      "th": "สำหรับ LP คำตอบระหว่างจุดยอดสองจุดคือจุดบนขอบพอดี และ μ คือความชันตรงนั้น สำหรับปัญหาที่มีตัวแปร"
     },
     {
-     "s": 63.573,
-     "e": 70.868,
+     "s": 79.784,
+     "e": 87.079,
      "en": "With binaries, as in part three, the answers jump, and mu is no longer a slope, because a MILP has no duals.",
      "th": "binary ดังในส่วนที่สาม คำตอบจะกระโดด และ μ ไม่ใช่ความชันอีกต่อไป เพราะ MILP ไม่มีตัวแปร dual"
     },
     {
-     "s": 70.868,
-     "e": 78.987,
+     "s": 87.079,
+     "e": 95.197,
      "en": "Choose the grid with the user in mind: ten to twenty points usually show the shape, with more points where a decision is likely to be made.",
      "th": "เลือกตารางของ ε โดยคำนึงถึงผู้ใช้ สิบถึงยี่สิบจุดมักแสดงรูปร่างได้เพียงพอ และเพิ่มจุดในบริเวณที่น่าจะมีการตัดสินใจ"
     },
     {
-     "s": 78.987,
-     "e": 88.026,
+     "s": 95.197,
+     "e": 104.237,
      "en": "In Python the whole method is a short loop: build the payoff table, make a grid of caps, solve once per cap, and keep each answer with its multiplier.",
      "th": "ใน Python วิธีนี้ทั้งหมดเป็น loop สั้น ๆ คือสร้างตาราง payoff สร้างตารางของเพดาน แก้ปัญหาหนึ่งครั้งต่อหนึ่งเพดาน และเก็บคำตอบแต่ละค่าพร้อมตัวคูณของมัน"
     }

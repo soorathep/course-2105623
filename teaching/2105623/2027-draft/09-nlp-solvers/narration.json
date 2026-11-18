@@ -3,7 +3,7 @@
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 2856.5,
+ "total_seconds": 2873.1,
  "slides": [
   {
    "n": 1,
@@ -1646,7 +1646,7 @@
   {
    "n": 25,
    "file": "audio/slide-25.mp3",
-   "duration": 124.032,
+   "duration": 132.528,
    "hold": false,
    "cues": [
     {
@@ -1687,43 +1687,49 @@
     },
     {
      "s": 57.868,
-     "e": 69.448,
-     "en": "Why? SLSQP stops when the change in f between iterations falls below ftol, with the rows met. A tiny objective hardly changes, so it stops at once.",
-     "th": "ทำไม SLSQP หยุดเมื่อการเปลี่ยนแปลงของ f ระหว่างรอบต่ำกว่า ftol และแถวเป็นจริง ฟังก์ชันเป้าหมายที่เล็กมากแทบไม่เปลี่ยน มันจึงหยุดทันที"
+     "e": 64.976,
+     "en": "Why? SLSQP stops when the rows are met within f tol and one of three small numbers falls below f tol:",
+     "th": "ทำไม SLSQP หยุดเมื่อข้อจำกัดเป็นจริงภายใน ftol และมีค่าเล็กหนึ่งในสามค่าต่ำกว่า ftol คือ"
     },
     {
-     "s": 69.448,
-     "e": 73.829,
-     "en": "The scale of the objective is part of the stopping test.",
-     "th": "สเกลของฟังก์ชันเป้าหมายจึงเป็นส่วนหนึ่งของเกณฑ์การหยุด"
+     "s": 64.976,
+     "e": 72.991,
+     "en": "the change in f, the length of the step, or a first-order measure built from the gradient. All three are absolute.",
+     "th": "การเปลี่ยนของ f ความยาวของก้าว หรือค่าวัดอันดับหนึ่งที่สร้างจาก gradient ทั้งสามค่าเป็นค่าสัมบูรณ์"
     },
     {
-     "s": 73.829,
-     "e": 83.408,
+     "s": 72.991,
+     "e": 82.329,
+     "en": "A tiny objective has a tiny gradient and hardly changes, so it stops at once. The scale of the objective is part of the stopping test.",
+     "th": "objective ที่เล็กมากมี gradient เล็กมากและแทบไม่เปลี่ยน จึงหยุดทันที สเกลของ objective จึงเป็นส่วนหนึ่งของเกณฑ์หยุด"
+    },
+    {
+     "s": 82.329,
+     "e": 91.908,
      "en": "With the objective multiplied by a million, the steps are large and the line search behaves badly, and the run stops at a point where the gradient is still far from zero.",
      "th": "เมื่อคูณฟังก์ชันเป้าหมายด้วยหนึ่งล้าน ก้าวมีขนาดใหญ่และ line search ทำงานได้ไม่ดี การรันจึงหยุดที่จุดซึ่ง gradient ยังห่างจากศูนย์มาก"
     },
     {
-     "s": 83.408,
-     "e": 90.774,
+     "s": 91.908,
+     "e": 99.274,
      "en": "The fifth run adds a row that cannot hold, x one plus x two at least three, together with the unit disk.",
      "th": "การรันครั้งที่ห้าเพิ่มแถวที่เป็นจริงไม่ได้ คือ x หนึ่ง บวก x สอง ไม่น้อยกว่าสาม ร่วมกับวงกลมหนึ่งหน่วย"
     },
     {
-     "s": 90.774,
-     "e": 100.526,
+     "s": 99.274,
+     "e": 109.026,
      "en": "SLSQP ends with mode eight, positive directional derivative for linesearch, and a violation of 1.6. Nothing in the message says infeasible.",
      "th": "SLSQP จบด้วย mode แปด positive directional derivative for linesearch และการละเมิด 1.6 ไม่มีส่วนใดในข้อความบอกว่า infeasible"
     },
     {
-     "s": 100.526,
-     "e": 112.355,
+     "s": 109.026,
+     "e": 120.855,
      "en": "So the status number alone does not separate an infeasible model from a hard one. The residual audit does: a primal residual of 1.6 that will not go down is the sign.",
      "th": "ดังนั้นหมายเลข status เพียงอย่างเดียวแยกโมเดลที่ infeasible ออกจากโมเดลที่ยากไม่ได้ แต่การตรวจด้วย residual ทำได้ residual ของ primal เท่ากับ 1.6 ที่ไม่ลดลงคือสัญญาณ"
     },
     {
-     "s": 112.355,
-     "e": 123.961,
+     "s": 120.855,
+     "e": 132.461,
      "en": "The residuals are computed in the problem's own units, as posed. That is the only defense against a false success. Press D to run the five cases.",
      "th": "residual ถูกคำนวณในหน่วยของปัญหาเอง ตามโจทย์ นี่คือการป้องกันเดียวต่อความสำเร็จที่ไม่จริง กด D เพื่อรันห้ากรณีนี้"
     }
@@ -1732,7 +1738,7 @@
   {
    "n": 26,
    "file": "audio/slide-26.mp3",
-   "duration": 97.992,
+   "duration": 105.912,
    "hold": false,
    "cues": [
     {
@@ -1743,67 +1749,73 @@
     },
     {
      "s": 9.908,
-     "e": 22.448,
-     "en": "Click a column name to see what it means. The two most important are inf pr, the largest violation of any row, and inf du, the largest component of the stationarity residual.",
-     "th": "คลิกชื่อคอลัมน์เพื่อดูความหมาย สองคอลัมน์ที่สำคัญที่สุดคือ inf pr ซึ่งคือการละเมิดที่ใหญ่ที่สุดของแถวใด ๆ และ inf du ซึ่งคือส่วนประกอบที่ใหญ่ที่สุดของ residual ของ"
+     "e": 12.794,
+     "en": "Click a column name to see what it means.",
+     "th": "คลิกชื่อคอลัมน์เพื่อดูความหมาย"
     },
     {
-     "s": 22.448,
-     "e": 25.816,
-     "en": "Both must fall to about ten to the minus eight.",
-     "th": "stationarity ทั้งสองต้องลดลงถึงประมาณสิบยกกำลังลบแปด"
+     "s": 12.794,
+     "e": 24.131,
+     "en": "The two most important are inf pr, the largest violation of any row in the problem as you passed it, and inf du, the largest component of the stationarity residual,",
+     "th": "สองคอลัมน์ที่สำคัญที่สุดคือ inf pr ค่าการละเมิดข้อจำกัดที่มากที่สุดของโจทย์ตามที่ส่งเข้าไป และ inf du ส่วนประกอบที่มากที่สุดของ stationarity residual"
     },
     {
-     "s": 25.816,
-     "e": 37.429,
+     "s": 24.131,
+     "e": 33.75,
+     "en": "in Ipopt's internally scaled units. The objective column is also unscaled. Both inf pr and inf du must fall to about ten to the minus eight.",
+     "th": "ในหน่วยที่ Ipopt สเกลภายในแล้ว คอลัมน์ objective ก็เป็นค่าที่ไม่สเกลเช่นกัน ทั้ง inf pr และ inf du ต้องลดลงถึงประมาณสิบยกกำลังลบแปด"
+    },
+    {
+     "s": 33.75,
+     "e": 45.363,
      "en": "lg mu is the log of the barrier parameter tau. It falls from minus one toward minus nine as the barrier problems are solved. alpha pr is the step length, with a letter:",
      "th": "lg mu คือ log ของ barrier parameter tau ลดลงจากลบหนึ่งไปทางลบเก้าเมื่อปัญหา barrier ถูกแก้ alpha pr คือความยาวก้าว พร้อมตัวอักษร f"
     },
     {
-     "s": 37.429,
-     "e": 43.408,
+     "s": 45.363,
+     "e": 51.342,
      "en": "f for a step accepted for reducing the barrier objective, h for reducing the violation.",
      "th": "สำหรับก้าวที่ยอมรับเพราะลด barrier objective และ h สำหรับก้าวที่ลดการละเมิด"
     },
     {
-     "s": 43.408,
-     "e": 50.566,
+     "s": 51.342,
+     "e": 58.5,
      "en": "In the first log, Ipopt reaches the answer in seven iterations, and ends with EXIT: Optimal Solution Found.",
      "th": "ใน log แรก Ipopt ไปถึงคำตอบในเจ็ดรอบ และจบด้วย EXIT: Optimal Solution Found"
     },
     {
-     "s": 50.566,
-     "e": 52.58,
+     "s": 58.5,
+     "e": 60.514,
      "en": "Read the columns together.",
      "th": "อ่านคอลัมน์ไปด้วยกัน"
     },
     {
-     "s": 52.58,
-     "e": 64.814,
+     "s": 60.514,
+     "e": 72.748,
      "en": "inf pr is zero from iteration four on, because the point is feasible, while inf du keeps falling by orders of magnitude as lg mu drops from minus 2.5 to minus 8.6.",
      "th": "inf pr เป็นศูนย์ตั้งแต่รอบที่สี่ เพราะจุดนั้น feasible ขณะที่ inf du ลดลงหลายอันดับขนาด เมื่อ lg mu ลดจากลบ 2.5 ไปถึงลบ 8.6"
     },
     {
-     "s": 64.814,
-     "e": 67.5,
+     "s": 72.748,
+     "e": 75.434,
      "en": "That is the barrier being tightened.",
      "th": "นั่นคือการบีบ barrier ให้แน่นขึ้น"
     },
     {
-     "s": 67.5,
-     "e": 80.624,
+     "s": 75.434,
+     "e": 88.558,
      "en": "Now press the second button. inf pr falls at first, then stalls near 0.76. The iterations are marked r: the restoration phase is minimizing the violation alone.",
      "th": "ตอนนี้กดปุ่มที่สอง inf pr ลดลงในช่วงแรก แล้วหยุดอยู่ใกล้ 0.76 รอบต่าง ๆ มีตัว r กำกับ คือขั้น restoration ที่ลดการละเมิดเพียงอย่างเดียว"
     },
     {
-     "s": 80.624,
-     "e": 90.079,
+     "s": 88.558,
+     "e": 98.013,
      "en": "After forty iterations Ipopt ends with EXIT: Converged to a point of local infeasibility. Problem may be infeasible.",
      "th": "หลังสี่สิบรอบ Ipopt จบด้วย EXIT: Converged to a point of local infeasibility. Problem may be infeasible"
     },
     {
-     "s": 90.079,
-     "e": 97.908,
+     "s": 98.013,
+     "e": 105.842,
      "en": "Unlike SLSQP's mode eight, that message names the problem. The EXIT line is the status to report.",
      "th": "ต่างจาก mode แปด ของ SLSQP ข้อความนี้ระบุปัญหาชัดเจน บรรทัด EXIT คือสถานะที่ควรรายงาน"
     }
@@ -1812,7 +1824,7 @@
   {
    "n": 27,
    "file": "audio/slide-27.mp3",
-   "duration": 85.2,
+   "duration": 85.416,
    "hold": false,
    "cues": [
     {
@@ -1847,37 +1859,37 @@
     },
     {
      "s": 40.618,
-     "e": 50.342,
-     "en": "SLSQP has no scaling of its own, and its stopping test is absolute, as the last slide showed. Scale everything before you call it.",
-     "th": "SLSQP ไม่มีการปรับสเกลของตัวเอง และเกณฑ์การหยุดเป็นแบบสัมบูรณ์ ดังที่หน้าก่อนแสดง ปรับสเกลทุกอย่างก่อนเรียกใช้"
+     "e": 50.553,
+     "en": "SLSQP has no scaling of its own, and its stopping tests are absolute, as slide 25 showed. Scale everything before you call it.",
+     "th": "SLSQP ไม่มีการสเกลในตัว และเกณฑ์หยุดเป็นค่าสัมบูรณ์ ดังที่เห็นในสไลด์ที่ 25 ให้สเกลทุกอย่างก่อนเรียกใช้"
     },
     {
-     "s": 50.342,
-     "e": 61.287,
+     "s": 50.553,
+     "e": 61.497,
      "en": "Ipopt scales automatically by default, using the gradients at the start so that no gradient exceeds one hundred, and it reports both scaled and unscaled errors at the end.",
      "th": "Ipopt ปรับสเกลอัตโนมัติโดยค่าเริ่มต้น โดยใช้ gradient ที่จุดเริ่มต้น เพื่อไม่ให้ gradient ใดเกินหนึ่งร้อย และรายงานความคลาดเคลื่อนทั้งแบบปรับสเกลและไม่ปรับสเกลในตอนจบ"
     },
     {
-     "s": 61.287,
-     "e": 63.132,
+     "s": 61.497,
+     "e": 63.342,
      "en": "Your own scaling still helps.",
      "th": "การปรับสเกลของคุณเองก็ยังช่วยได้"
     },
     {
-     "s": 63.132,
-     "e": 72.02,
+     "s": 63.342,
+     "e": 72.231,
      "en": "Multipliers come back in scaled units. To read them as prices, convert: lambda j equals the scaled lambda times f typical over c j.",
      "th": "multiplier ที่ได้กลับมาอยู่ในหน่วยที่ปรับสเกลแล้ว เพื่ออ่านเป็นราคา ให้แปลงกลับ lambda j เท่ากับ lambda ที่ปรับสเกลแล้ว คูณ f โดยทั่วไป หารด้วย c j"
     },
     {
-     "s": 72.02,
-     "e": 82.632,
+     "s": 72.231,
+     "e": 82.842,
      "en": "Lab 9 uses flows in ten thousand pounds per hour, volume in ten cubic feet, temperature in hundreds of degrees Rankine, divides each balance by ten thousand pounds per hour,",
      "th": "Lab 9 ใช้อัตราการไหลในหน่วยหนึ่งหมื่นปอนด์ต่อชั่วโมง ปริมาตรในหน่วยสิบลูกบาศก์ฟุต อุณหภูมิในหน่วยร้อยองศาแรงคิน หารแต่ละสมดุลด้วยหนึ่งหมื่นปอนด์ต่อชั่วโมง"
     },
     {
-     "s": 82.632,
-     "e": 85.132,
+     "s": 82.842,
+     "e": 85.342,
      "en": "and minimizes minus ROI over one hundred.",
      "th": "และหาค่าต่ำสุดของ ลบ ROI หารหนึ่งร้อย"
     }

@@ -415,7 +415,7 @@ draw:()=>{let pts=[0.15,0.5,0.85],truth=false;const go=()=>{const ell=10**(+docu
 notes:"The GP here uses standardized data, as the Python module does: y is shifted by its mean and divided by its standard deviation before fitting."});
 
 S.push({kicker:"Part 1 · Hyperparameters", title:"Choosing ℓ by the marginal likelihood", html:()=>`<div class="body"><div class="col w55"><div class="panel grow"><div class="chart" id="ch-ml"></div></div></div>
-<div class="col"><div class="panel"><div class="math" style="font-size:16.5px;line-height:1.75">log p(y | ℓ, σ<sub>n</sub>) = −½ zᵀ K̃⁻¹ z − ½ log |K̃| − (n/2) log 2π<br>K̃ = K + σ<sub>n</sub>² I &nbsp;(data fit) &nbsp;(complexity)</div></div>
+<div class="col"><div class="panel"><div class="math" style="font-size:16.5px;line-height:1.75">log p(y | ℓ, σ<sub>n</sub>) = −½ (y − m₀)ᵀ K̃⁻¹ (y − m₀) − ½ log |K̃| − (n/2) log 2π<br>m₀: prior mean; K̃ = K + σ<sub>n</sub>² I &nbsp;(data fit) &nbsp;(complexity)</div></div>
 <div class="chart" id="ch-ml3" style="margin-top:6px"></div>
 <ul class="b xs" style="margin-top:4px"><li>The fit term rewards a small ℓ; the complexity term penalizes it. The balance picks ℓ</li>
 <li>Here 10 noise-free points of the test function give ℓ = ${fmt(LC().hyper.best_ell,3)}</li>
@@ -474,12 +474,12 @@ S.push({kicker:"Part 2 · Acquisition functions", title:"Which experiment next? 
 <div class="col"><table class="t" style="font-size:15.5px"><tr><th>Rule</th><th>Formula, maximizing f</th></tr>
 <tr><td>Probability of improvement</td><td>PI = Φ(z), z = (m − y*)/s</td></tr>
 <tr><td>Expected improvement</td><td>EI = (m − y*) Φ(z) + s φ(z)</td></tr>
-<tr><td>Upper confidence bound</td><td>UCB = m + κ s</td></tr></table>
-<ul class="b xs" style="margin-top:8px"><li>All three are high where m is high (exploitation) or s is high (exploration); they differ in how they weigh the two</li>
+<tr><td>Upper confidence bound</td><td>UCB = m + κ s</td></tr><tr><td colspan="2" style="font-size:14px;color:#66727C">Φ, φ: CDF and PDF of the standard normal</td></tr></table>
+<ul class="b xs" style="margin-top:8px"><li>All three favor a high m (exploitation) or a high s (exploration); they weigh the two differently</li>
 <li>PI ignores how large the improvement is, so it tends to sample next to the best point</li>
 <li>EI weighs the size of the improvement by its probability; it needs no tuning</li>
 <li>UCB needs κ: about 2 is common; theory for its convergence uses a κ that grows slowly with n (Srinivas et al., 2010)</li>
-<li>The chart: the GP after the three starting runs, each rule scaled to its own maximum, with its choice marked</li></ul></div></div>`,
+<li>The chart: the GP after three starting runs; each rule is scaled to its maximum, with its choice marked</li></ul></div></div>`,
 draw:()=>{const {M,st}=bo1State("ei",0),pr=XS.map(x=>gpPred(M,[x])),ys=st.best;
  const PI=pr.map(([m,s])=>s>1e-12?ncdf((m-ys)/s):(m>ys?1:0)),EI=pr.map(([m,s])=>eiJS(m,s,ys)),UC=pr.map(([m,s])=>m+2*s);
  const nz=a=>{const lo=Math.min(...a),hi=Math.max(...a);return a.map(v=>(v-lo)/((hi-lo)||1))},cur=[[nz(PI),C.sky,"PI"],[nz(EI),C.amber,"EI"],[nz(UC),C.rust,"UCB, κ = 2"]];
@@ -518,7 +518,7 @@ out:()=>["ei","ucb"].map(a=>`${a.toUpperCase()} picks ${pyList(B1()[a].x.slice(3
 notes:"EI's first choice is x = 0.115, next to the best run: exploitation. Its second is x = 1.0, the edge where s is largest: exploration. The third lands on the high peak."});
 
 S.push({kicker:"Part 2 · Expected improvement", title:"Deriving EI, and why it explores", html:()=>`<div class="body"><div class="col w55"><div class="panel"><div class="math" style="font-size:16.5px;line-height:1.85">
-I(x) = max(f(x) − y*, 0), &nbsp;f(x) ~ N(m, s²)<br>EI = ∫<sub>y*</sub><sup>∞</sup> (f − y*) φ((f − m)/s)/s df<br>
+I(x) = max(f(x) − y*, 0), &nbsp;f(x) ~ N(m, s²); &nbsp;Φ, φ: standard normal CDF and PDF<br>EI = ∫<sub>y*</sub><sup>∞</sup> (f − y*) φ((f − m)/s)/s df<br>
 &nbsp;&nbsp;&nbsp;= (m − y*) Φ(z) + s φ(z), &nbsp;z = (m − y*)/s<br>∂EI/∂m = Φ(z) &gt; 0, &nbsp;∂EI/∂s = φ(z) &gt; 0</div></div>
 <div class="chart" id="ch-eis" style="margin-top:6px"></div></div>
 <div class="col"><table class="t" style="font-size:15.5px"><tr><th>Candidate</th><th class="n">m − y*</th><th class="n">s</th><th class="n">EI</th></tr>
@@ -840,7 +840,7 @@ const NARR = {
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 2874.5,
+ "total_seconds": 2878.8,
  "slides": [
   {
    "n": 1,
@@ -1605,7 +1605,7 @@ const NARR = {
   {
    "n": 12,
    "file": "audio/slide-12.mp3",
-   "duration": 108.384,
+   "duration": 112.704,
    "hold": false,
    "cues": [
     {
@@ -1622,73 +1622,79 @@ const NARR = {
     },
     {
      "s": 17.013,
-     "e": 27.408,
-     "en": "The first part, minus one half z transposed K tilde inverse z, measures the data fit. It favors small length-scales, which can follow every point.",
-     "th": "ส่วนแรก ลบครึ่งหนึ่งของ z ทรานสโพส K̃ อินเวอร์ส z วัดความเข้ากันกับข้อมูล ส่วนนี้ชอบ length-scale เล็ก ซึ่งตามได้ทุกจุด"
+     "e": 27.684,
+     "en": "The first part, minus one half times y minus m zero, transposed, times K tilde inverse, times y minus m zero, measures the data fit; m zero is the prior mean.",
+     "th": "พจน์แรก ลบครึ่งหนึ่งคูณ y ลบ m ศูนย์ transpose คูณ K tilde inverse คูณ y ลบ m ศูนย์ วัดความพอดีกับข้อมูล โดย m ศูนย์คือค่าเฉลี่ย prior"
     },
     {
-     "s": 27.408,
-     "e": 33.096,
+     "s": 27.684,
+     "e": 31.711,
+     "en": "It favors small length-scales, which can follow every point.",
+     "th": "พจน์นี้เอื้อต่อ length-scale ขนาดเล็กซึ่งตามข้อมูลได้ทุกจุด"
+    },
+    {
+     "s": 31.711,
+     "e": 37.398,
      "en": "The second part, minus one half the log determinant of K tilde, penalizes complexity.",
      "th": "ส่วนที่สอง ลบครึ่งหนึ่งของ log determinant ของ K̃ ลงโทษความซับซ้อน ℓ"
     },
     {
-     "s": 33.096,
-     "e": 42.553,
+     "s": 37.398,
+     "e": 46.855,
      "en": "A small ell makes the observations nearly independent, which spreads the probability over many possible data sets, and this term punishes that.",
      "th": "เล็กทำให้ค่าสังเกตเกือบเป็นอิสระต่อกัน ซึ่งกระจายความน่าจะเป็นไปบนชุดข้อมูลที่เป็นไปได้จำนวนมาก และพจน์นี้ลงโทษสิ่งนั้น"
     },
     {
-     "s": 42.553,
-     "e": 53.467,
+     "s": 46.855,
+     "e": 57.77,
      "en": "The balance chooses ell. The chart shows the log marginal likelihood for ten noise-free points of the test function, against ell on a log scale.",
      "th": "จุดสมดุลเป็นตัวเลือก ℓ กราฟแสดง log marginal likelihood ของจุดไม่มีสัญญาณรบกวนสิบจุดของฟังก์ชันทดสอบ เทียบกับ ℓ บนสเกลลอการิทึม"
     },
     {
-     "s": 53.467,
-     "e": 57.908,
+     "s": 57.77,
+     "e": 62.211,
      "en": "It peaks at ell equal to 0.294, with a value of minus 12.9.",
      "th": "ค่าสูงสุดอยู่ที่ ℓ เท่ากับ 0.294 มีค่า ลบ 12.9"
     },
     {
-     "s": 57.908,
-     "e": 63.789,
+     "s": 62.211,
+     "e": 68.092,
      "en": "The noise ratio is chosen the same way; with noise-free data it goes to its smallest value.",
      "th": "อัตราส่วนสัญญาณรบกวนเลือกด้วยวิธีเดียวกัน เมื่อข้อมูลไม่มีสัญญาณรบกวน มันจะไปที่ค่าที่เล็กที่สุด"
     },
     {
-     "s": 63.789,
-     "e": 75.539,
+     "s": 68.092,
+     "e": 79.842,
      "en": "The three small panels show the posterior at ell equal to 0.03, which spikes at the data, at the best value, and at 1.5, which cannot follow the steep part near x equal to 1.",
      "th": "กราฟเล็กสามรูปแสดง posterior ที่ ℓ เท่ากับ 0.03 ซึ่งมียอดแหลมที่จุดข้อมูล ที่ค่าดีที่สุด และที่ 1.5 ซึ่งตามส่วนที่ชันใกล้ x เท่ากับ 1 ไม่ได้"
     },
     {
-     "s": 75.539,
-     "e": 88.56,
+     "s": 79.842,
+     "e": 92.862,
      "en": "In today's module, the search over ell, one per input, and over the noise ratio, is done on a fixed grid of values. Every run, on the desktop or in the browser, then gives the same answer.",
      "th": "ในโมดูลวันนี้ การค้นหา ℓ หนึ่งค่าต่อตัวแปร และอัตราส่วนสัญญาณรบกวน ทำบนตารางค่าคงที่ ทุกการรันไม่ว่าบนเครื่องหรือในเบราว์เซอร์จึงได้คำตอบเดียวกัน"
     },
     {
-     "s": 88.56,
-     "e": 92.211,
+     "s": 92.862,
+     "e": 96.513,
      "en": "Libraries use gradients instead, with several starts.",
      "th": "ไลบรารีทั่วไปใช้ gradient แทน โดยเริ่มจากหลายจุด"
     },
     {
-     "s": 92.211,
-     "e": 96.446,
+     "s": 96.513,
+     "e": 100.748,
      "en": "In B O, the hyperparameters are refitted after every experiment.",
      "th": "ใน BO hyperparameter ถูก fit ใหม่หลังทุกการทดลอง"
     },
     {
-     "s": 96.446,
-     "e": 105.697,
+     "s": 100.748,
+     "e": 110.0,
      "en": "With very few points the marginal likelihood is flat and the fit is unreliable, which is one more reason to start with a space-filling design.",
      "th": "เมื่อมีจุดน้อยมาก marginal likelihood จะแบนและการ fit เชื่อถือไม่ได้ ซึ่งเป็นอีกเหตุผลหนึ่งที่ควรเริ่มด้วยการออกแบบที่เติมเต็มปริภูมิ"
     },
     {
-     "s": 105.697,
-     "e": 108.316,
+     "s": 110.0,
+     "e": 112.618,
      "en": "Press D to print the curve.",
      "th": "กด D เพื่อพิมพ์เส้นโค้งนี้"
     }

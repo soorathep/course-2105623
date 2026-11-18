@@ -449,9 +449,9 @@ function kktExplorer(T){const s1=Math.sqrt(XR**2-XY0**2),s2=Math.sqrt(XR**2-XX0*
 
 S.push({kicker:"Part 2 · One inequality", title:"An inequality is either active, or it does not matter", html:()=>`<div class="body"><div class="col w45"><div class="panel"><div class="math" style="font-size:18px;line-height:1.7">
 min (x − 3)² &nbsp;s.t. &nbsp;g = x − b ≤ 0<br>
-b ≥ 3: x* = 3, g &lt; 0, &nbsp;μ = 0 &nbsp;(inactive)<br>
+b &gt; 3: x* = 3, g &lt; 0, &nbsp;μ = 0 &nbsp;(inactive)<br>b = 3: x* = 3, g = 0, &nbsp;μ = 0 &nbsp;(active, yet μ = 0)<br>
 b &lt; 3: x* = b, &nbsp;f′(b) + μ·1 = 0 ⇒ μ = 2(3 − b) &gt; 0<br>
-In both cases μ·g = 0, and dv*/db = −μ</div></div>
+In all three cases μ·g = 0, and dv*/db = −μ</div></div>
 <ul class="b xs" style="margin-top:10px"><li>At an active bound, f would still fall if x could cross it. μ ≥ 0 is the force that holds x back</li>
 <li>μ &lt; 0 would mean f falls when x moves back into the region: then the point is not a minimum</li></ul></div>
 <div class="col"><div class="panel grow"><div class="chart" id="ch-1d"></div></div>
@@ -668,13 +668,13 @@ For any feasible x: f(x) ≥ f(x) + Σμ<sub>i</sub>g<sub>i</sub>(x) + Σλ<sub>
 
 S.push({kicker:"Part 3 · Second-order conditions", title:"Curvature on the constraint: the Hessian of the Lagrangian", html:()=>`<div class="body"><div class="col w55"><div class="panel"><div class="math" style="font-size:17.5px;line-height:1.7">
 ∇²<sub>xx</sub>L = ∇²f + Σ μ<sub>i</sub>∇²g<sub>i</sub> + Σ λ<sub>j</sub>∇²h<sub>j</sub><br>
-Directions that keep the active rows: ∇h<sub>j</sub>·d = 0, ∇g<sub>i</sub>·d = 0 (μ<sub>i</sub> &gt; 0)<br>
-Sufficient: dᵀ∇²<sub>xx</sub>L d &gt; 0 for every such d ≠ 0 ⇒ strict local minimum<br>
-Necessary: dᵀ∇²<sub>xx</sub>L d ≥ 0 for every such d</div></div>
+Critical cone C: ∇h<sub>j</sub>·d = 0; ∇g<sub>i</sub>·d = 0 for active rows with μ<sub>i</sub> &gt; 0; ∇g<sub>i</sub>·d ≤ 0 for active rows with μ<sub>i</sub> = 0<br>
+Sufficient: dᵀ∇²<sub>xx</sub>L d &gt; 0 for every d ∈ C, d ≠ 0 ⇒ strict local minimum<br>
+Necessary (at a local minimum with LICQ): dᵀ∇²<sub>xx</sub>L d ≥ 0 for every d ∈ C</div></div>
 <table class="t" style="font-size:15.5px;margin-top:8px" id="soT"></table></div>
 <div class="col"><ul class="b xs"><li>On the ellipse, ∇²f = 2I is positive definite everywhere, yet two of the four stationary points are maxima along the curve</li>
 <li>The constraint bends: λ∇²h adds its curvature. Only the Hessian of L, along the tangent d, gives the right sign</li>
-<li>With an inactive row or μ<sub>i</sub> = 0, the test needs more care (the critical cone); solvers check a similar reduced Hessian</li>
+<li>With equality rows only, as on the ellipse, C is the tangent space {d : ∇h·d = 0}. An active row with μ<sub>i</sub> = 0 adds a one-sided condition, so C becomes a cone; solvers check a reduced Hessian</li>
 <li>Session 5's test for problems without rows is the special case with no multipliers</li></ul></div></div>`,
 draw:()=>{const st=LC().ellipse.stationary.slice().sort((a,b)=>a.f-b.f);document.getElementById("soT").innerHTML=`<tr><th>Point x</th><th class="n">f</th><th class="n">λ</th><th class="n">dᵀ∇²L d</th><th>Kind</th></tr>`+
  st.map(q=>`<tr><td>(${mn(fmt(q.x[0],3))}, ${mn(fmt(q.x[1],3))})</td><td class="n">${fmt(q.f,3)}</td><td class="n">${mn(fmt(q.lam,3))}</td><td class="n" style="color:${q.curv>0?C.teal:C.rust};font-weight:700">${mn(fmt(q.curv,2))}</td><td>${q.kind}</td></tr>`).join("")}});
@@ -719,7 +719,7 @@ notes:"In the nonconvex case the minimizer of L jumps from x = −1 to x = 2 at 
 
 S.push({kicker:"Part 3 · Solvers", title:"What solvers report, and how to check it", html:()=>`<div class="body"><div class="col w60"><table class="t" style="font-size:15.5px">
 <tr><th>Tool</th><th>Row form</th><th>Multipliers</th><th>Stopping test</th></tr>
-<tr><td>SciPy SLSQP</td><td>eq: c(x) = 0; ineq: c(x) ≥ 0</td><td>res.multipliers from SciPy 1.16, equalities first; for c ≥ 0 they are ≥ 0, our μ</td><td>change in f below ftol, rows satisfied; no KKT residuals reported</td></tr>
+<tr><td>SciPy SLSQP</td><td>eq: c(x) = 0; ineq: c(x) ≥ 0</td><td>res.multipliers from SciPy 1.16: rows only, no bound multipliers, taken from the last QP subproblem; equalities first; for c ≥ 0 they are ≥ 0, our μ</td><td>rows met within ftol, and the change in f, the step length or a first-order measure below ftol (all absolute); no KKT residuals reported</td></tr>
 <tr><td>SciPy trust-constr</td><td>lb ≤ c(x) ≤ ub</td><td>res.v, one array per constraint object</td><td>res.optimality and res.constr_violation below gtol</td></tr>
 <tr><td>Ipopt (Pyomo, cyipopt)</td><td>g<sub>L</sub> ≤ g(x) ≤ g<sub>U</sub>, bounds</td><td>row and bound multipliers; Pyomo imports them through a dual Suffix</td><td>"Overall NLP error": scaled stationarity (Ipopt calls it dual infeasibility), violation, complementarity</td></tr></table>
 <p class="note">Sign conventions differ between tools and interfaces. Convert to the course form, then confirm one multiplier with a small re-solve: Δv* ≈ −μΔb.</p></div>
@@ -859,7 +859,7 @@ const NARR = {
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 2926.2,
+ "total_seconds": 2974.0,
  "slides": [
   {
    "n": 1,
@@ -1754,7 +1754,7 @@ const NARR = {
   {
    "n": 14,
    "file": "audio/slide-14.mp3",
-   "duration": 85.272,
+   "duration": 95.472,
    "hold": false,
    "cues": [
     {
@@ -1771,49 +1771,55 @@ const NARR = {
     },
     {
      "s": 11.987,
-     "e": 21.711,
-     "en": "If b is three or more, the unconstrained minimum, x equal to three, is feasible. The row is inactive, and its multiplier is zero.",
-     "th": "ถ้า b เท่ากับสามหรือมากกว่า จุดต่ำสุดแบบไม่มีข้อจำกัด x เท่ากับสาม เป็นไปได้ แถวนี้ไม่ active และ multiplier ของมันเป็นศูนย์"
+     "e": 21.311,
+     "en": "If b is above three, the unconstrained minimum, x equal to three, is strictly feasible. The row is inactive, and its multiplier is zero.",
+     "th": "ถ้า b มากกว่าสาม ค่าต่ำสุดเมื่อไม่มีข้อจำกัด คือ x เท่ากับสาม อยู่ภายในบริเวณที่เป็นไปได้ แถวนี้ไม่ active และ multiplier"
     },
     {
-     "s": 21.711,
-     "e": 34.03,
+     "s": 21.311,
+     "e": 31.724,
+     "en": "At b equal to three exactly, the row is active, since g is zero, but the multiplier is still zero: the bound touches the minimum without holding it back.",
+     "th": "เป็นศูนย์ เมื่อ b เท่ากับสามพอดี แถวนี้ active เพราะ g เป็นศูนย์ แต่ multiplier ยังเป็นศูนย์ ขอบเขตแตะจุดต่ำสุดพอดีโดยไม่ได้ดึง x ไว้"
+    },
+    {
+     "s": 31.724,
+     "e": 44.043,
      "en": "If b is below three, the minimum sits on the bound: x star equals b. The slope of f there is two times b minus three, which is negative, so f would still fall if x could cross the bound.",
      "th": "ถ้า b ต่ำกว่าสาม ค่าต่ำสุดอยู่บนขอบเขต x star เท่ากับ b ความชันของ f ที่นั่นคือสองคูณ b ลบสาม ซึ่งเป็นลบ f จึงยังลดลงได้ถ้า x ข้ามขอบเขตได้ เงื่อนไข"
     },
     {
-     "s": 34.03,
-     "e": 41.013,
+     "s": 44.043,
+     "e": 51.026,
      "en": "Stationarity, f prime plus mu equal to zero, gives mu equal to two times three minus b, which is positive.",
      "th": "stationarity คือ f prime บวก mu เท่ากับศูนย์ ให้ mu เท่ากับสองคูณสามลบ b ซึ่งเป็นบวก"
     },
     {
-     "s": 41.013,
-     "e": 53.316,
+     "s": 51.026,
+     "e": 63.329,
      "en": "So mu is the force that holds x back at the bound. Its sign matters. A negative mu would mean that f falls when x moves back into the region, and then the point is not a minimum.",
      "th": "ดังนั้น mu คือแรงที่ยึด x ไว้ที่ขอบเขต เครื่องหมายของมันสำคัญ mu ที่เป็นลบหมายความว่า f ลดลงเมื่อ x ถอยกลับเข้าไปในบริเวณ และแล้วจุดนั้นก็ไม่ใช่ค่าต่ำสุด"
     },
     {
-     "s": 53.316,
-     "e": 60.783,
-     "en": "Move the bound. In both cases, mu times g is zero: either the row is active, or its multiplier is zero.",
-     "th": "เลื่อนขอบเขต ในทั้งสองกรณี mu คูณ g เป็นศูนย์ คือแถวนั้น active หรือไม่ก็ multiplier"
+     "s": 63.329,
+     "e": 71.059,
+     "en": "Move the bound. In all three cases, mu times g is zero: either the row is active, or its multiplier is zero.",
+     "th": "เลื่อนขอบเขต ในทั้งสามกรณี mu คูณ g เป็นศูนย์ คือแถวนั้น active หรือไม่ก็ multiplier"
     },
     {
-     "s": 60.783,
-     "e": 67.316,
+     "s": 71.059,
+     "e": 77.513,
      "en": "And the slope of the best value with respect to b is minus mu, the same rule as for lambda.",
      "th": "ของมันเป็นศูนย์ และความชันของค่าที่ดีที่สุดเทียบ b คือลบ mu ซึ่งเป็นกฎเดียวกับ lambda"
     },
     {
-     "s": 67.316,
-     "e": 79.789,
+     "s": 77.513,
+     "e": 89.987,
      "en": "You can check that rule here. For b below three, the best value is three minus b, squared. Its slope is minus two times three minus b, which is exactly minus mu.",
      "th": "คุณตรวจกฎนั้นได้ที่นี่ สำหรับ b ต่ำกว่าสาม ค่าที่ดีที่สุดคือสามลบ b ยกกำลังสอง ความชันของมันคือลบสองคูณสามลบ b ซึ่งเท่ากับลบ mu พอดี"
     },
     {
-     "s": 79.789,
-     "e": 85.197,
+     "s": 89.987,
+     "e": 95.395,
      "en": "With b equal to two, the slope of f at the bound is minus two, and mu is two.",
      "th": "เมื่อ b เท่ากับสอง ความชันของ f ที่ขอบเขตคือลบสอง และ mu เท่ากับสอง"
     }
@@ -2626,7 +2632,7 @@ const NARR = {
   {
    "n": 27,
    "file": "audio/slide-27.mp3",
-   "duration": 102.432,
+   "duration": 123.0,
    "hold": false,
    "cues": [
     {
@@ -2637,67 +2643,91 @@ const NARR = {
     },
     {
      "s": 4.8,
-     "e": 13.178,
+     "e": 13.218,
      "en": "The right Hessian is the Hessian of the Lagrangian: the Hessian of f, plus mu times the Hessians of the g, plus lambda times the Hessians of the h.",
      "th": "Hessian ที่ถูกต้องคือ Hessian ของ Lagrangian คือ Hessian ของ f บวก mu คูณ Hessian ของ g บวก lambda คูณ Hessian ของ h"
     },
     {
-     "s": 13.178,
-     "e": 22.526,
-     "en": "Test it only in directions that keep the active rows: directions d with grad h dot d equal to zero, and grad g dot d equal to zero for active rows with a positive mu.",
-     "th": "ทดสอบเฉพาะในทิศทางที่ยังรักษาแถวที่ active ไว้ คือทิศทาง d ที่ grad h dot d เท่ากับศูนย์ และ grad g dot d เท่ากับศูนย์สำหรับแถวที่ active และมี mu เป็นบวก"
+     "s": 13.218,
+     "e": 26.329,
+     "en": "Test it only on the critical cone. For an equality row, d must be tangent: grad h dot d equal to zero. For an active inequality with a positive mu, grad g dot d equal to zero.",
+     "th": "ทดสอบเฉพาะบน critical cone สำหรับแถวสมการ d ต้องสัมผัสกับข้อจำกัด คือ grad h dot d เท่ากับศูนย์ สำหรับอสมการที่ active และ mu เป็นบวก grad g dot d เท่ากับศูนย์"
     },
     {
-     "s": 22.526,
-     "e": 28.553,
+     "s": 26.329,
+     "e": 31.842,
+     "en": "For an active inequality with mu equal to zero, grad g dot d at most zero.",
+     "th": "สำหรับอสมการที่ active แต่ mu เป็นศูนย์ grad g dot d ไม่เกินศูนย์"
+    },
+    {
+     "s": 31.842,
+     "e": 37.869,
      "en": "In words: only the directions in which you can still move without leaving the active rows matter.",
      "th": "พูดง่าย ๆ คือ เฉพาะทิศทางที่ยังเคลื่อนได้โดยไม่ออกจากแถวที่ active เท่านั้นที่สำคัญ"
     },
     {
-     "s": 28.553,
-     "e": 36.487,
+     "s": 37.869,
+     "e": 45.803,
      "en": "Directions that leave an active row with a positive multiplier already raise f to first order, so they need no second-order test.",
      "th": "ทิศทางที่ออกจากแถวที่ active และมี multiplier เป็นบวก ทำให้ f เพิ่มขึ้นในอันดับหนึ่งอยู่แล้ว จึงไม่ต้องทดสอบอันดับสอง"
     },
     {
-     "s": 36.487,
-     "e": 49.342,
-     "en": "If d transpose, times this Hessian, times d, is positive for every such nonzero d, the point is a strict local minimum. And if the point is a local minimum, that quantity cannot be negative.",
-     "th": "ถ้า d transpose คูณ Hessian นี้ คูณ d เป็นบวกสำหรับทุก d ที่ไม่เป็นศูนย์แบบนั้น จุดนั้นเป็นค่าต่ำสุดเฉพาะที่แบบเข้ม และถ้าจุดนั้นเป็นค่าต่ำสุดเฉพาะที่ ปริมาณนั้นจะเป็นลบไม่ได้"
+     "s": 45.803,
+     "e": 53.78,
+     "en": "If d transpose, times this Hessian, times d, is positive for every nonzero d in the cone, the point is a strict local minimum.",
+     "th": "ถ้า d transpose คูณ Hessian นี้ คูณ d เป็นบวกสำหรับทุก d ที่ไม่เป็นศูนย์ใน cone จุดนั้นเป็นจุดต่ำสุดเฉพาะที่แบบเข้ม"
     },
     {
-     "s": 49.342,
-     "e": 60.675,
+     "s": 53.78,
+     "e": 61.882,
+     "en": "Conversely, at a local minimum where the active gradients are linearly independent, that quantity cannot be negative on the cone.",
+     "th": "ในทางกลับกัน ที่จุดต่ำสุดเฉพาะที่ซึ่ง gradient ของแถวที่ active เป็นอิสระเชิงเส้นต่อกัน ค่านี้ติดลบบน cone ไม่ได้"
+    },
+    {
+     "s": 61.882,
+     "e": 73.214,
      "en": "The table shows the four stationary points of the ellipse. The Hessian of f alone is two times the identity, positive definite everywhere, so it cannot tell them apart.",
      "th": "ตารางแสดงจุดคงตัวสี่จุดของวงรี Hessian ของ f เพียงอย่างเดียวคือสองคูณเมทริกซ์เอกลักษณ์ ซึ่งเป็นบวกแน่นอนทุกที่ จึงแยกจุดเหล่านี้ไม่ได้"
     },
     {
-     "s": 60.675,
-     "e": 63.961,
+     "s": 73.214,
+     "e": 76.5,
      "en": "Yet two of the points are maxima along the curve.",
      "th": "แต่สองจุดในนั้นเป็นค่าสูงสุดตามเส้นโค้ง"
     },
     {
-     "s": 63.961,
-     "e": 71.491,
+     "s": 76.5,
+     "e": 84.03,
      "en": "The difference is the curvature of the constraint, which enters through lambda times the Hessian of h.",
      "th": "ความแตกต่างคือความโค้งของข้อจำกัด ซึ่งเข้ามาผ่าน lambda คูณ Hessian ของ h ตามเส้นสัมผัส"
     },
     {
-     "s": 71.491,
-     "e": 80.921,
+     "s": 84.03,
+     "e": 93.461,
      "en": "Along the tangent, the Lagrangian has curvature 1.65 and 1.17 at the two minima, and minus 2.97 and minus 8.20 at the two maxima.",
      "th": "Lagrangian มีความโค้ง 1.65 และ 1.17 ที่ค่าต่ำสุดสองจุด และลบ 2.97 และลบ 8.20 ที่ค่าสูงสุดสองจุด"
     },
     {
-     "s": 80.921,
-     "e": 93.0,
-     "en": "With a row that is active but has a zero multiplier, the test needs more care, and solvers check a similar reduced Hessian. Session 5's Hessian test is the special case with no rows.",
-     "th": "เมื่อมีแถวที่ active แต่ multiplier เป็นศูนย์ การทดสอบต้องระวังมากขึ้น และ solver ตรวจ reduced Hessian ในลักษณะคล้ายกัน การทดสอบ Hessian ของคาบที่ 5 คือกรณีพิเศษที่ไม่มีแถว"
+     "s": 93.461,
+     "e": 99.676,
+     "en": "With equality rows only, as on the ellipse, the cone is simply the tangent space, so start there.",
+     "th": "เมื่อมีแต่แถวสมการ เช่นบนวงรี cone ก็คือ tangent space ให้เริ่มจากกรณีนี้ แถวที่ active"
     },
     {
-     "s": 93.0,
-     "e": 102.355,
+     "s": 99.676,
+     "e": 109.887,
+     "en": "An active row with a zero multiplier adds a one-sided condition and turns the tangent space into a cone, which is why solvers check a reduced Hessian with care.",
+     "th": "แต่ multiplier เป็นศูนย์จะเพิ่มเงื่อนไขด้านเดียว ทำให้ tangent space กลายเป็น cone solver จึงต้องตรวจ reduced Hessian อย่างระวัง การทดสอบ"
+    },
+    {
+     "s": 109.887,
+     "e": 113.566,
+     "en": "Session 5's Hessian test is the special case with no rows.",
+     "th": "Hessian ของคาบที่ 5 เป็นกรณีพิเศษที่ไม่มีข้อจำกัด"
+    },
+    {
+     "s": 113.566,
+     "e": 122.921,
      "en": "For the tank of slide 9, the same test along the volume constraint gives the positive second derivative you saw there, so h equal to two r is a minimum.",
      "th": "สำหรับถังในหน้า 9 การทดสอบเดียวกันตามข้อจำกัดปริมาตรให้อนุพันธ์อันดับสองที่เป็นบวกที่คุณเห็นไปแล้ว h เท่ากับสอง r จึงเป็นค่าต่ำสุด"
     }
@@ -2842,7 +2872,7 @@ const NARR = {
   {
    "n": 30,
    "file": "audio/slide-30.mp3",
-   "duration": 118.752,
+   "duration": 135.792,
    "hold": false,
    "cues": [
     {
@@ -2853,85 +2883,91 @@ const NARR = {
     },
     {
      "s": 3.839,
-     "e": 14.902,
-     "en": "SciPy's SLSQP writes inequalities as c of x at least zero. From SciPy 1.16 it returns multipliers in res dot multipliers, equalities first.",
-     "th": "SLSQP ของ SciPy เขียนอสมการเป็น c ของ x ไม่น้อยกว่าศูนย์ ตั้งแต่ SciPy 1.16 มันคืนค่า multiplier ใน res dot multipliers โดยเรียงสมการก่อน"
+     "e": 16.887,
+     "en": "SciPy's SLSQP writes inequalities as c of x at least zero. From SciPy 1.16 it returns multipliers in res dot multipliers, equalities first, for the rows only: bounds get none.",
+     "th": "SLSQP ของ SciPy เขียนอสมการเป็น c ของ x ไม่น้อยกว่าศูนย์ ตั้งแต่ SciPy 1.16 จะคืน multiplier ใน res dot multipliers โดยเรียงสมการก่อน และคืนเฉพาะของแถว ไม่คืนของ"
     },
     {
-     "s": 14.902,
-     "e": 21.303,
-     "en": "For rows written as c at least zero, they come out non-negative, matching our mu.",
-     "th": "สำหรับแถวที่เขียนเป็น c ไม่น้อยกว่าศูนย์ ค่าจะออกมาไม่ติดลบ ตรงกับ mu ของเรา"
+     "s": 16.887,
+     "e": 29.934,
+     "en": "They come from the last QP subproblem, so they are estimates, not a KKT check of your problem. For rows written as c at least zero, they come out non-negative, matching our mu.",
+     "th": "bounds ค่าเหล่านี้มาจาก QP ย่อยรอบสุดท้าย จึงเป็นค่าประมาณ ไม่ใช่การตรวจ KKT ของโจทย์ สำหรับแถวที่เขียนเป็น c ไม่น้อยกว่าศูนย์ ค่าจะไม่ติดลบ ตรงกับ mu ของเรา"
     },
     {
-     "s": 21.303,
-     "e": 30.105,
-     "en": "SLSQP stops when the change in f is small and the rows are satisfied. It does not report KKT residuals.",
-     "th": "SLSQP หยุดเมื่อการเปลี่ยนของ f มีค่าน้อยและแถวต่าง ๆ เป็นจริง มันไม่รายงานค่า residual ของ KKT"
+     "s": 29.934,
+     "e": 43.147,
+     "en": "SLSQP stops when the rows are met within f tol, and one of three small numbers falls below f tol: the change in f, the length of the step, or a first-order measure built from the gradient.",
+     "th": "SLSQP หยุดเมื่อข้อจำกัดเป็นจริงภายใน ftol และมีค่าเล็กหนึ่งในสามค่าต่ำกว่า ftol คือ การเปลี่ยนของ f ความยาวของก้าว หรือค่าวัดอันดับหนึ่งที่สร้างจาก gradient"
     },
     {
-     "s": 30.105,
-     "e": 36.717,
+     "s": 43.147,
+     "e": 47.132,
+     "en": "All three are absolute. It does not report KKT residuals.",
+     "th": "ทั้งสามค่าเป็นค่าสัมบูรณ์ และ SLSQP ไม่รายงาน KKT residual"
+    },
+    {
+     "s": 47.132,
+     "e": 53.743,
      "en": "SciPy's trust-constr method takes rows as lower bound, at most c of x, at most upper bound.",
      "th": "วิธี trust-constr ของ SciPy รับแถวในรูปขอบล่างไม่เกิน c ของ x ไม่เกินขอบบน"
     },
     {
-     "s": 36.717,
-     "e": 44.263,
+     "s": 53.743,
+     "e": 61.289,
      "en": "It returns multipliers in res dot v, and it stops on its optimality measure and its constraint violation.",
      "th": "คืนค่า multiplier ใน res dot v และหยุดตามค่าวัด optimality และการละเมิดข้อจำกัดของมัน"
     },
     {
-     "s": 44.263,
-     "e": 52.907,
+     "s": 61.289,
+     "e": 69.934,
      "en": "Ipopt, used through Pyomo or cyipopt, returns multipliers for rows and for bounds, and Pyomo imports them through a dual suffix.",
      "th": "Ipopt ที่ใช้ผ่าน Pyomo หรือ cyipopt คืนค่า multiplier ของแถวและของขอบเขต และ Pyomo นำเข้าผ่าน dual suffix ค่า overall"
     },
     {
-     "s": 52.907,
-     "e": 62.289,
+     "s": 69.934,
+     "e": 79.316,
      "en": "Ipopt's overall NLP error combines scaled stationarity, which Ipopt calls dual infeasibility, the constraint violation, and complementarity.",
      "th": "NLP error ของ Ipopt รวม stationarity ที่ปรับสเกลแล้ว ซึ่ง Ipopt เรียกว่า dual infeasibility การละเมิดข้อจำกัด และ complementarity"
     },
     {
-     "s": 62.289,
-     "e": 69.382,
+     "s": 79.316,
+     "e": 86.408,
      "en": "Note the clash of names: our dual residual, mu at least zero, is kept by the interior-point method itself.",
      "th": "สังเกตว่าชื่อซ้ำกัน dual residual ของเรา คือ mu ไม่ติดลบ ถูกรักษาไว้โดยวิธี interior point เอง"
     },
     {
-     "s": 69.382,
-     "e": 76.515,
+     "s": 86.408,
+     "e": 93.541,
      "en": "Because sign conventions differ, convert every reported multiplier to the course form, then confirm one by a small re-solve:",
      "th": "เพราะข้อตกลงเรื่องเครื่องหมายต่างกัน ให้แปลง multiplier ทุกตัวที่รายงานมาเป็นรูปแบบของวิชา แล้วยืนยันหนึ่งค่าด้วยการแก้ใหม่เล็กน้อย"
     },
     {
-     "s": 76.515,
-     "e": 80.395,
+     "s": 93.541,
+     "e": 97.421,
      "en": "the change in v star should be about minus mu times the change in b.",
      "th": "การเปลี่ยนของ v star ควรประมาณลบ mu คูณการเปลี่ยนของ b"
     },
     {
-     "s": 80.395,
-     "e": 93.978,
+     "s": 97.421,
+     "e": 111.004,
      "en": "If a solver gives no multipliers, take the rows with g near zero and solve the stationarity condition for mu by least squares. The code on this slide does that for the problem of slide 19.",
      "th": "ถ้า solver ไม่ให้ multiplier ให้เลือกแถวที่ g ใกล้ศูนย์ แล้วแก้เงื่อนไข stationarity หา mu ด้วยวิธีกำลังสองน้อยที่สุด โค้ดในหน้านี้ทำเช่นนั้นกับปัญหาในหน้า 19 SLSQP"
     },
     {
-     "s": 93.978,
-     "e": 101.237,
+     "s": 111.004,
+     "e": 118.263,
      "en": "SLSQP returns 1.5, 1.5, and the multipliers come out as one and two, with all four residuals at zero.",
      "th": "คืนค่า 1.5, 1.5 และ multiplier ออกมาเป็นหนึ่งและสอง โดยค่า residual ทั้งสี่เป็นศูนย์"
     },
     {
-     "s": 101.237,
-     "e": 109.118,
+     "s": 118.263,
+     "e": 126.145,
      "en": "Very large multipliers, or multipliers that jump between nearby runs, signal a failing qualification or bad scaling.",
      "th": "multiplier ที่ใหญ่มาก หรือที่กระโดดไปมาระหว่างการรันที่ใกล้เคียงกัน เป็นสัญญาณของ qualification ที่ไม่เป็นจริง หรือการปรับสเกลที่ไม่ดี"
     },
     {
-     "s": 109.118,
-     "e": 118.684,
+     "s": 126.145,
+     "e": 135.711,
      "en": "A good habit for any study: report the solver and its version, the tolerances, the four residuals at the answer, and one multiplier checked by a re-solve.",
      "th": "นิสัยที่ดีสำหรับทุกการศึกษา คือรายงาน solver และรุ่นของมัน ค่าความคลาดเคลื่อนที่ยอมรับ ค่า residual ทั้งสี่ที่คำตอบ และ multiplier หนึ่งตัวที่ตรวจด้วยการแก้ใหม่"
     }

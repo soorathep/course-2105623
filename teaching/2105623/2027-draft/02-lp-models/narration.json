@@ -3,7 +3,7 @@
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 2971.5,
+ "total_seconds": 2993.9,
  "slides": [
   {
    "n": 1,
@@ -1378,7 +1378,7 @@
   {
    "n": 23,
    "file": "audio/slide-23.mp3",
-   "duration": 78.864,
+   "duration": 101.28,
    "hold": false,
    "cues": [
     {
@@ -1425,13 +1425,25 @@
     },
     {
      "s": 62.355,
-     "e": 73.829,
-     "en": "If the degrees of freedom were zero, there would be nothing to optimize. If the count comes out negative, the balances are inconsistent or redundant, and the rank check tells you which.",
-     "th": "ถ้า degrees of freedom เป็นศูนย์ ก็ไม่มีอะไรให้ optimize ถ้านับได้ค่าติดลบ แสดงว่าสมดุลขัดแย้งกันหรือซ้ำซ้อน และการตรวจ rank จะบอกได้ว่าเป็นแบบใด"
+     "e": 72.879,
+     "en": "If the degrees of freedom were zero, there would be nothing to optimize. Counted with the rank, the number can never be negative. The second check is consistency:",
+     "th": "ถ้าระดับความเสรีเป็นศูนย์ ก็ไม่มีอะไรให้หาค่าเหมาะสม เมื่อนับด้วย rank จำนวนนี้จะไม่ติดลบ การตรวจข้อที่สองคือความสอดคล้อง"
     },
     {
-     "s": 73.829,
-     "e": 78.789,
+     "s": 72.879,
+     "e": 84.371,
+     "en": "if appending the right-hand side to the matrix raises its rank, the balances contradict each other and no plan exists. Two copies of x one plus x two equal to ten are redundant:",
+     "th": "ถ้าเติมค่าฝั่งขวาเข้าไปในเมทริกซ์แล้ว rank เพิ่มขึ้น แปลว่าสมการดุลขัดกันเองและไม่มีแผนที่เป็นไปได้ สมการ x หนึ่ง บวก x สอง เท่ากับสิบ สองชุดที่ซ้ำกันเป็นสมการซ้ำ"
+    },
+    {
+     "s": 84.371,
+     "e": 96.25,
+     "en": "the rank is one. x one plus x two equal to ten, together with x one plus x two equal to twelve, are inconsistent: the rank of A is one, but with the right-hand side appended it is two.",
+     "th": "rank เท่ากับหนึ่ง ส่วน x หนึ่ง บวก x สอง เท่ากับสิบ คู่กับ x หนึ่ง บวก x สอง เท่ากับสิบสอง ขัดกัน rank ของ A เท่ากับหนึ่ง แต่เมื่อเติมค่าฝั่งขวาเข้าไปเป็นสอง"
+    },
+    {
+     "s": 96.25,
+     "e": 101.211,
      "en": "This is the same count a process simulator makes before it solves a flowsheet.",
      "th": "นี่คือการนับแบบเดียวกับที่ process simulator ทำก่อนแก้ flowsheet"
     }
