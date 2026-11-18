@@ -127,6 +127,10 @@ pre.log{background:#1f262d;color:#e8eef2;border-radius:10px;padding:10px 8px;fon
 <p class="note">Want the code? <a href="review_checks.py">review_checks.py</a> has <code>lp_certificate</code> (primal, dual, gap and residuals from HiGHS), <code>recompute</code>, <code>closure</code> and <code>per_unit_of_limit</code>, with Report D's model as an example. Copy them into your own code.</p>
 <button class="ghost" id="reset">Clear my answers on this device</button></div>
 </section>
+<section class="card" id="handin"><h2>Hand in: your answer file for myCourseVille</h2>
+<p>Download your answers as a file and upload it to this lab's assignment in myCourseVille. You can download at any point, and again after more steps; upload the latest file. The file records the steps you finished, your answers, and the checks where the expected value was shown after two tries. It holds no name or student ID: myCourseVille records who uploaded it.</p>
+<button id="dlJson" type="button">Download my answer file (.json)</button>
+<p class="note" id="dlNote"></p></section>
 </main>
 <script>
 const R = {"spec":{"oils":["palm oil","used cooking oil","soybean oil"],"price":[900.0,650.0,1050.0],"cloud":[13.0,9.0,-1.0],"acid":[0.3,1.6,0.2],"iodine":[52.0,95.0,130.0],"limits":{"cloud":10.0,"acid":0.9,"iodine":110.0},"blend":100.0,"uco_max":40.0},"report":{"x":[50.0,40.0,12.0],"cost":80300.0,"price_used":[900.0,620.0,1050.0],"cloud_shadow_claim":10.7},"review":{"solution":{"status":0,"x":[50.0,40.0,10.0],"primal":81500.0,"dual":81500.0,"gap":0.0,"primal_residual":0.0,"dual_residual":0.0,"ineq_marginals":[-10.7142857143,0.0,0.0],"eq_marginals":[932.1428571429],"upper_marginals":[0.0,-292.8571428571,0.0]},"report_run":{"status":0,"x":[50.0,40.0,10.0],"primal":80300.0,"dual":80300.0,"gap":0.0,"primal_residual":0.0,"dual_residual":0.0,"ineq_marginals":[-10.7142857143,0.0,0.0],"eq_marginals":[932.1428571429],"upper_marginals":[0.0,-322.8571428571,0.0]},"recomputed_cost":81500.0,"report_cost_recomputed":81500.0,"report_balance":2.0,"cloud_value_per_degC":1071.4285714286,"uco_value_per_t":292.8571428571,"properties":{"cloud":10.0,"acid":0.81,"iodine":77.0},"gap":0.0,"sensitivity":[{"factor":0.8,"cost":76300.0,"x":[50.0,40.0,10.0]},{"factor":0.9,"cost":78900.0,"x":[50.0,40.0,10.0]},{"factor":1.0,"cost":81500.0,"x":[50.0,40.0,10.0]},{"factor":1.1,"cost":84100.0,"x":[50.0,40.0,10.0]},{"factor":1.2,"cost":86700.0,"x":[50.0,40.0,10.0]}]},"checklist":["Specification: sets, data and constraints, with units","Data: sources and dates","Model class stated and justified","Balances close in the stream table","Objective recomputed from the plan and the specification's data","A certificate, not only the solver status","Multipliers interpreted with units and sign","Global or local stated correctly","Uncertain data: sensitivity or scenarios","Several objectives: a front and a stated rule","Tests written from the specification","Reporting: code, versions and AI disclosure"],"key":["P","P","P","F","F","F","F","P","NS","NA","F","F"]};
@@ -220,5 +224,21 @@ $("reset").onclick=()=>{if(confirm("Clear all answers saved on this device?")){S
 ["p1","e1","e3","c1a","c1b","c1c"].forEach(id=>{if(ST[id]!=null)$(id).value=ST[id]});
 (ST.a||[]).forEach((v,i)=>{$("a"+i).value=v});
 drawRev();refresh();
+
+/* hand-in: an answer file for myCourseVille (no name or ID in it) */
+async function handin(){summary();const lab=parseInt((KEY.match(/lab(\d+)/)||[0,0])[1],10);
+ const core={course:"2105623",edition:"2027",lab,lab_key:KEY,saved:new Date().toISOString(),
+  steps_done:ORDER.filter(id=>ST["done_"+id]).length,steps_total:ORDER.length,
+  steps:Object.fromEntries(ORDER.map(id=>[id,!!ST["done_"+id]])),
+  expected_shown:Object.keys(ST).filter(k=>k.startsWith("tries_")&&ST[k]>=2).map(k=>k.slice(6)),
+  summary:$("sum").textContent,state:ST};
+ const data=JSON.stringify(core);let check="";
+ try{const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode("2105623-lab-file-v1|"+data));check=[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}catch(e){}
+ const file={lab,steps_done:core.steps_done,steps_total:core.steps_total,expected_shown:core.expected_shown.length,saved:core.saved,data,check};
+ const name=`2105623-lab${String(lab).padStart(2,"0")}-answers.json`,a=document.createElement("a");
+ a.href=URL.createObjectURL(new Blob([JSON.stringify(file,null,1)],{type:"application/json"}));a.download=name;document.body.appendChild(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+ $("dlNote").textContent=`Saved ${name}: ${core.steps_done} of ${core.steps_total} steps done. Upload it to Lab ${lab} in myCourseVille.`}
+$("dlJson").onclick=()=>{handin()};
 </script>
 </body></html>
