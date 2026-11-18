@@ -3,7 +3,7 @@
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 2890.4,
+ "total_seconds": 2890.8,
  "slides": [
   {
    "n": 1,
@@ -2076,7 +2076,7 @@
   {
    "n": 30,
    "file": "audio/slide-30.mp3",
-   "duration": 76.416,
+   "duration": 76.728,
    "hold": false,
    "cues": [
     {
@@ -2135,13 +2135,13 @@
     },
     {
      "s": 63.224,
-     "e": 71.322,
-     "en": "The final project asks for items two, five and six in its report, plus the residuals of Session 7 when rows are present.",
-     "th": "โครงงานสุดท้ายต้องการข้อสอง ข้อห้า และข้อหกในรายงาน รวมถึง residual จากคาบที่ 7 เมื่อมีแถวข้อจำกัด"
+     "e": 71.86,
+     "en": "When you report a result in your own research, include items two, five and six, plus the residuals of Session 7 when rows are present.",
+     "th": "เมื่อคุณรายงานผลในงานวิจัยของคุณเอง ให้ใส่ข้อสอง ข้อห้า และข้อหก รวมถึง residual จากคาบที่ 7 เมื่อมีแถวข้อจำกัด"
     },
     {
-     "s": 71.322,
-     "e": 76.342,
+     "s": 71.86,
+     "e": 76.658,
      "en": "None of these takes long, and each one catches a different kind of mistake.",
      "th": "ไม่มีข้อใดใช้เวลานาน และแต่ละข้อจับข้อผิดพลาดคนละชนิด"
     }
@@ -2188,7 +2188,7 @@
   {
    "n": 32,
    "file": "audio/slide-32.mp3",
-   "duration": 56.832,
+   "duration": 56.856,
    "hold": false,
    "cues": [
     {
@@ -2235,9 +2235,9 @@
     },
     {
      "s": 48.526,
-     "e": 56.763,
-     "en": "And in the project, your report includes the scaling, a gradient check, the evaluation counts and the classification of the end point.",
-     "th": "และในโครงงาน รายงานของคุณต้องมีการปรับสเกล การตรวจ gradient จำนวนการคำนวณ และการจำแนกจุดสิ้นสุด"
+     "e": 56.789,
+     "en": "And in your own research, a report includes the scaling, a gradient check, the evaluation counts and the classification of the end point.",
+     "th": "และในงานวิจัยของคุณเอง รายงานควรมีการปรับสเกล การตรวจ gradient จำนวนการคำนวณ และการจำแนกจุดสิ้นสุด"
     }
    ]
   },

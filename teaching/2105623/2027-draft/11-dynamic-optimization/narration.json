@@ -3,7 +3,7 @@
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 2902.3,
+ "total_seconds": 2902.7,
  "slides": [
   {
    "n": 1,
@@ -2132,7 +2132,7 @@
   {
    "n": 31,
    "file": "audio/slide-31.mp3",
-   "duration": 79.8,
+   "duration": 80.016,
    "hold": false,
    "cues": [
     {
@@ -2191,9 +2191,9 @@
     },
     {
      "s": 71.263,
-     "e": 79.737,
-     "en": "For your project, start with SciPy or CasADi in Colab, as in this lab; move to a specialized tool only when the problem needs it.",
-     "th": "สำหรับโครงงาน ให้เริ่มจาก SciPy หรือ CasADi ใน Colab อย่างใน lab นี้ และเปลี่ยนไปใช้เครื่องมือเฉพาะทางเมื่อปัญหาต้องการเท่านั้น"
+     "e": 79.934,
+     "en": "For your own models, start with SciPy or CasADi in Colab, as in this lab; move to a specialized tool only when the problem needs it.",
+     "th": "สำหรับโมเดลของคุณเอง ให้เริ่มจาก SciPy หรือ CasADi ใน Colab อย่างใน lab นี้ และเปลี่ยนไปใช้เครื่องมือเฉพาะทางเมื่อปัญหาต้องการเท่านั้น"
     }
    ]
   },
@@ -2244,7 +2244,7 @@
   {
    "n": 33,
    "file": "audio/slide-33.mp3",
-   "duration": 62.088,
+   "duration": 62.184,
    "hold": false,
    "cues": [
     {
@@ -2279,19 +2279,19 @@
     },
     {
      "s": 38.711,
-     "e": 48.263,
-     "en": "In your project, if your model is dynamic: state the problem, choose shooting or collocation, refine until the answer stops changing, and simulate to check.",
-     "th": "ในโครงงานของคุณ ถ้าโมเดลเป็นแบบพลวัต ให้กำหนดปัญหา เลือก shooting หรือ collocation ทำให้ละเอียดขึ้นจนคำตอบหยุดเปลี่ยน และจำลองเพื่อตรวจ"
+     "e": 48.303,
+     "en": "In your own research, if your model is dynamic: state the problem, choose shooting or collocation, refine until the answer stops changing, and simulate to check.",
+     "th": "ในงานวิจัยของคุณเอง ถ้าโมเดลเป็นแบบพลวัต ให้กำหนดปัญหา เลือก shooting หรือ collocation ทำให้ละเอียดขึ้นจนคำตอบหยุดเปลี่ยน และจำลองเพื่อตรวจ"
     },
     {
-     "s": 48.263,
-     "e": 55.421,
-     "en": "And if your project has a controller, test it with a disturbance it was not designed for, as we did with the withdrawal.",
-     "th": "และถ้าโครงงานของคุณมีตัวควบคุม ให้ทดสอบด้วย disturbance ที่มันไม่ได้ออกแบบมารองรับ เหมือนที่เราทำกับการดึงออก"
+     "s": 48.303,
+     "e": 55.526,
+     "en": "And if your process has a controller, test it with a disturbance it was not designed for, as we did with the withdrawal.",
+     "th": "และถ้ากระบวนการของคุณมีตัวควบคุม ให้ทดสอบด้วย disturbance ที่มันไม่ได้ออกแบบมารองรับ เหมือนที่เราทำกับการดึงออก"
     },
     {
-     "s": 55.421,
-     "e": 62.013,
+     "s": 55.526,
+     "e": 62.118,
      "en": "Each of these sessions reuses today's model and today's checks, so the effort of this lab carries forward.",
      "th": "คาบเหล่านี้แต่ละคาบใช้โมเดลและการตรวจของวันนี้ซ้ำ ความพยายามใน lab นี้จึงต่อยอดไปข้างหน้า"
     }
@@ -2430,7 +2430,7 @@
   {
    "n": 36,
    "file": "audio/slide-36.mp3",
-   "duration": 48.12,
+   "duration": 48.24,
    "hold": false,
    "cues": [
     {
@@ -2447,25 +2447,25 @@
     },
     {
      "s": 14.329,
-     "e": 22.316,
-     "en": "Also keep the Colab notebook, or save a copy to your Drive: you can reuse its structure for any ODE model in your project.",
-     "th": "เก็บ notebook ใน Colab ไว้ด้วย หรือบันทึกสำเนาลง Drive คุณนำโครงสร้างของมันไปใช้กับโมเดล ODE ใด ๆ ในโครงงานได้"
+     "e": 22.434,
+     "en": "Also keep the Colab notebook, or save a copy to your Drive: you can reuse its structure for any ODE model in your own research.",
+     "th": "เก็บ notebook ใน Colab ไว้ด้วย หรือบันทึกสำเนาลง Drive คุณนำโครงสร้างของมันไปใช้กับโมเดล ODE ใด ๆ ในงานวิจัยของคุณเองได้"
     },
     {
-     "s": 22.316,
-     "e": 32.419,
+     "s": 22.434,
+     "e": 32.537,
      "en": "For reading, chapters 8 to 10 of Biegler, Nonlinear Programming, cover dynamic optimization, shooting with embedded solvers, and simultaneous collocation.",
      "th": "สำหรับการอ่าน บทที่ 8 ถึง 10 ของ Nonlinear Programming โดย Biegler ครอบคลุม dynamic optimization, shooting ที่ฝัง solver และ simultaneous collocation"
     },
     {
-     "s": 32.419,
-     "e": 40.566,
+     "s": 32.537,
+     "e": 40.684,
      "en": "For MPC, chapter 1 of Rawlings, Mayne and Diehl, Model Predictive Control, which the authors make available on their website.",
      "th": "สำหรับ MPC อ่านบทที่ 1 ของ Model Predictive Control โดย Rawlings, Mayne และ Diehl ซึ่งผู้เขียนเผยแพร่ไว้บนเว็บไซต์"
     },
     {
-     "s": 40.566,
-     "e": 48.066,
+     "s": 40.684,
+     "e": 48.184,
      "en": "Optionally, read the 2003 survey of industrial MPC by Qin and Badgwell in Control Engineering Practice.",
      "th": "ถ้าต้องการ อ่านบทความสำรวจ MPC ในอุตสาหกรรมของ Qin และ Badgwell ปี 2003 ใน Control Engineering Practice"
     }

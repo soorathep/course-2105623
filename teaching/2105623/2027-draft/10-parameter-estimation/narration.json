@@ -3,7 +3,7 @@
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 2965.4,
+ "total_seconds": 2965.5,
  "slides": [
   {
    "n": 1,
@@ -2232,7 +2232,7 @@
   {
    "n": 33,
    "file": "audio/slide-33.mp3",
-   "duration": 57.744,
+   "duration": 57.864,
    "hold": false,
    "cues": [
     {
@@ -2273,9 +2273,9 @@
     },
     {
      "s": 48.842,
-     "e": 57.671,
-     "en": "In your project, any parameter you fit should come with standard errors, residual plots, and a statement of what the data can and cannot determine.",
-     "th": "ในโครงงานของคุณ พารามิเตอร์ใดที่ปรับจากข้อมูลควรมาพร้อม standard error กราฟ residual และข้อความว่าข้อมูลกำหนดอะไรได้และไม่ได้"
+     "e": 57.789,
+     "en": "In your own research, any parameter you fit should come with standard errors, residual plots, and a statement of what the data can and cannot determine.",
+     "th": "ในงานวิจัยของคุณเอง พารามิเตอร์ใดที่ปรับจากข้อมูลควรมาพร้อม standard error กราฟ residual และข้อความว่าข้อมูลกำหนดอะไรได้และไม่ได้"
     }
    ]
   },

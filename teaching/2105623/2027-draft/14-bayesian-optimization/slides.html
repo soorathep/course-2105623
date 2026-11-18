@@ -725,7 +725,7 @@ S.push({kicker:"Part 3 · In practice", title:"Working with a language model on 
 <li>Record the tool, the version and the date: the same prompt can give different code next month</li></ul></div>
 <div class="col"><div class="panel"><ul class="b xs"><li>The lab's drafted schedule has three errors: a units error, an index error, and an invented data entry</li>
 <li>Four of the eight tests pass with all three errors present. The units error does not show in this week's plan at all; only a test with a heavier case finds it</li>
-<li>Expect the same in your project: no single test catches everything</li></ul></div></div></div>`});
+<li>Expect the same in your own models: no single test catches everything</li></ul></div></div></div>`});
 
 S.push({kicker:"Part 3 · Check your understanding · 5 minutes", title:"BO in practice", html:()=>CHECK(4,
 OL+`<li>After 20 runs, the best observed yield is 71.4%. The GP's mean at that run is 69.0% with s = 1.3. What do you report, and what do you do next?</li>
@@ -738,10 +738,11 @@ OL+`<li>After 20 runs, the best observed yield is 71.4%. The GP's mean at that r
 <li>4. When the best EI is small compared with the noise and the best mean has stopped improving for several rounds, or when a target is met</li>`),
 draw:()=>reveal("k4btn","k4ans")});
 
-S.push({kicker:"Where this goes next", title:"Today's tools inside your project", html:()=>`<div class="body"><div class="col"><table class="t" style="font-size:18px">
+S.push({kicker:"Where this goes next", title:"Today's tools in Session 15 and in your own research", html:()=>`<div class="body"><div class="col"><table class="t" style="font-size:18px">
 <tr><th>Session</th><th>Topic</th><th>What today gives it</th></tr>
-<tr><td>15</td><td>Project</td><td>If your objective comes from experiments or a slow simulation: a BO plan with a budget and an initial design. If you used a language model: the specification, the tests and what they found</td></tr>
-<tr><td>All</td><td>Verification</td><td>Units, balances, certificates and tests, applied to every model in the project, whoever wrote it</td></tr></table></div></div>`});
+<tr><td>15</td><td>Course review</td><td>Your card against the course checklist, including its BO plan if its objective is an experiment</td></tr>
+<tr><td>Your research</td><td></td><td>If your objective comes from experiments or a slow simulation: a BO plan with a budget and an initial design. If you used a language model: the specification, the tests and what they found</td></tr>
+<tr><td>All</td><td>Verification</td><td>Units, balances, certificates and tests, applied to every model you report, whoever wrote it</td></tr></table></div></div>`});
 
 S.push({kicker:"Lab 14 · 40 minutes", title:"A hidden reactor yield, and a schedule to test", html:()=>`<div class="body"><div class="col w55"><ul class="b xs">
 <li>Part A: a CSTR whose yield you can only measure, with noise. 20 experiments by a grid, by random search and by BO; EI by hand; BO step by step; change one condition</li>
@@ -767,7 +768,7 @@ S.push({kicker:"Summary", title:"What to take from today", html:()=>{const Cm=LC
 <li>A language model drafts a model quickly; tests written from the specification decide whether it is right</li></ul></div></div>`}});
 
 S.push({kicker:"Before the next session", title:"Before we meet again", html:()=>`<div class="body"><div class="col"><ul class="b sm">
-<li>Finish Lab 14 if you did not finish in class</li><li>Prepare your project presentation for Session 15: 12 minutes plus 3 for questions, with the verification shown before the results</li>
+<li>Finish Lab 14 if you did not finish in class</li><li>Bring your card: Session 15 reviews the course and checks the card against one checklist</li>
 <li>Read Jones, Schonlau and Welch (1998), "Efficient global optimization of expensive black-box functions", <i>Journal of Global Optimization</i> 13, 455–492</li>
 <li>Or Shahriari et al. (2016), "Taking the human out of the loop: a review of Bayesian optimization", <i>Proceedings of the IEEE</i> 104, 148–175</li>
 <li>Optional: Rasmussen and Williams (2006), <i>Gaussian Processes for Machine Learning</i>, MIT Press, Chapters 2 and 5; Shields et al. (2021), "Bayesian reaction optimization as a tool for chemical synthesis", <i>Nature</i> 590, 89–96</li></ul></div></div>`});
@@ -840,7 +841,7 @@ const NARR = {
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 2878.8,
+ "total_seconds": 2874.1,
  "slides": [
   {
    "n": 1,
@@ -3063,7 +3064,7 @@ const NARR = {
   {
    "n": 33,
    "file": "audio/slide-33.mp3",
-   "duration": 40.08,
+   "duration": 37.92,
    "hold": false,
    "cues": [
     {
@@ -3074,33 +3075,33 @@ const NARR = {
     },
     {
      "s": 2.353,
-     "e": 14.289,
-     "en": "Session 15 is project work. If your objective comes from experiments or from a slow simulation, write a B O plan: the inputs and ranges, the budget, and the initial design.",
-     "th": "คาบที่ 15 เป็นการทำโครงงาน ถ้าฟังก์ชันเป้าหมายของคุณมาจากการทดลองหรือจากการจำลองที่ช้า ให้เขียนแผน BO ได้แก่ ตัวแปรและช่วงค่า งบประมาณ และการออกแบบเริ่มต้น"
+     "e": 12.211,
+     "en": "In your own research, if your objective comes from experiments or from a slow simulation, write a B O plan: the inputs and ranges, the budget, and the initial design.",
+     "th": "ในงานวิจัยของคุณเอง ถ้าฟังก์ชันเป้าหมายมาจากการทดลองหรือจากการจำลองที่ช้า ให้เขียนแผน BO ได้แก่ ตัวแปรและช่วงค่า งบประมาณ และการออกแบบเริ่มต้น"
     },
     {
-     "s": 14.289,
-     "e": 22.855,
-     "en": "If you used a language model anywhere in your project, keep the specification, the tests and what they found, and include them in your report.",
-     "th": "ถ้าคุณใช้ language model ที่ใดในโครงงาน ให้เก็บข้อกำหนด การทดสอบ และสิ่งที่การทดสอบพบ และใส่ไว้ในรายงาน"
+     "s": 12.211,
+     "e": 20.605,
+     "en": "If you use a language model anywhere in your work, keep the specification, the tests and what they found, and include them in your report.",
+     "th": "ถ้าคุณใช้ language model ที่ใดในงาน ให้เก็บข้อกำหนด การทดสอบ และสิ่งที่การทดสอบพบ และใส่ไว้ในรายงาน"
     },
     {
-     "s": 22.855,
-     "e": 30.882,
-     "en": "And for every model in the project, whoever wrote it, apply the course's checks: units, balances, certificates and tests.",
-     "th": "และสำหรับทุกโมเดลในโครงงาน ไม่ว่าใครเป็นผู้เขียน ให้ใช้การตรวจของรายวิชา คือ หน่วย สมดุล certificate และการทดสอบ"
+     "s": 20.605,
+     "e": 28.447,
+     "en": "And for every model you report, whoever wrote it, apply the course's checks: units, balances, certificates and tests.",
+     "th": "และสำหรับทุกโมเดลที่คุณรายงาน ไม่ว่าใครเป็นผู้เขียน ให้ใช้การตรวจของรายวิชา คือ หน่วย สมดุล certificate และการทดสอบ"
     },
     {
-     "s": 30.882,
-     "e": 34.737,
-     "en": "The reporting checklist of today applies there directly.",
-     "th": "รายการตรวจสำหรับการรายงานของวันนี้ใช้ได้โดยตรงในโครงงาน"
+     "s": 28.447,
+     "e": 32.342,
+     "en": "The reporting checklist of today applies to them directly.",
+     "th": "รายการตรวจสำหรับการรายงานของวันนี้ใช้กับโมเดลเหล่านั้นได้โดยตรง"
     },
     {
-     "s": 34.737,
-     "e": 40.026,
-     "en": "Bring the problem, its data with units, and a first model to the next session.",
-     "th": "นำปัญหา ข้อมูลพร้อมหน่วย และโมเดลแรกมาในคาบถัดไป"
+     "s": 32.342,
+     "e": 37.868,
+     "en": "Bring your card to the next session: Session 15 checks it against the course checklist.",
+     "th": "นำการ์ดของคุณมาในคาบถัดไป คาบที่ 15 จะตรวจการ์ดกับ checklist ของรายวิชา"
     }
    ]
   },
@@ -3255,7 +3256,7 @@ const NARR = {
   {
    "n": 36,
    "file": "audio/slide-36.mp3",
-   "duration": 51.528,
+   "duration": 48.936,
    "hold": false,
    "cues": [
     {
@@ -3266,37 +3267,37 @@ const NARR = {
     },
     {
      "s": 5.089,
-     "e": 13.408,
-     "en": "Prepare your project presentation for Session 15: twelve minutes plus three for questions, with the verification shown before the results.",
-     "th": "เตรียมการนำเสนอโครงงานสำหรับคาบที่ 15 ใช้เวลา 12 นาที และตอบคำถาม 3 นาที โดยแสดงการตรวจสอบความถูกต้องก่อนผลลัพธ์"
+     "e": 10.829,
+     "en": "Bring your card: Session 15 reviews the course and checks the card against one checklist.",
+     "th": "นำการ์ดของคุณมา คาบที่ 15 ทบทวนทั้งรายวิชาและตรวจการ์ดกับ checklist เดียว"
     },
     {
-     "s": 13.408,
-     "e": 22.683,
+     "s": 10.829,
+     "e": 20.104,
      "en": "For reading, take Jones, Schonlau and Welch, 1998, in the Journal of Global Optimization, which introduced the efficient global optimization method;",
      "th": "สำหรับการอ่าน ให้อ่าน Jones, Schonlau และ Welch ปี 1998 ใน Journal of Global Optimization ซึ่งเสนอวิธี efficient global optimization"
     },
     {
-     "s": 22.683,
-     "e": 27.788,
+     "s": 20.104,
+     "e": 25.209,
      "en": "or the review by Shahriari and coauthors, 2016, in the Proceedings of the I E E E.",
      "th": "หรือบทความปริทัศน์ของ Shahriari และคณะ ปี 2016 ใน Proceedings of the IEEE"
     },
     {
-     "s": 27.788,
-     "e": 38.684,
+     "s": 25.209,
+     "e": 36.105,
      "en": "Optional: Rasmussen and Williams, Gaussian Processes for Machine Learning, chapters two and five; and Shields and coauthors, 2021, in Nature, on B O for chemical synthesis.",
      "th": "อ่านเพิ่มเติม Rasmussen และ Williams, Gaussian Processes for Machine Learning บทที่สองและห้า และ Shields และคณะ ปี 2021 ใน Nature เรื่อง BO สำหรับการสังเคราะห์ทางเคมี"
     },
     {
-     "s": 38.684,
-     "e": 45.092,
+     "s": 36.105,
+     "e": 42.513,
      "en": "Shahriari's review is a good map of the field, including the acquisition functions we did not cover.",
      "th": "บทความปริทัศน์ของ Shahriari เป็นแผนที่ที่ดีของสาขานี้ รวมถึง acquisition function ที่เราไม่ได้ครอบคลุม"
     },
     {
-     "s": 45.092,
-     "e": 51.447,
+     "s": 42.513,
+     "e": 48.868,
      "en": "Jones and coauthors is long but clear; read the first sections and the description of expected improvement.",
      "th": "บทความของ Jones และคณะยาวแต่ชัดเจน ให้อ่านส่วนแรก ๆ และคำอธิบาย expected improvement"
     }

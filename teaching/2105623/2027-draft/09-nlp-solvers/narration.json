@@ -3,7 +3,7 @@
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 2873.1,
+ "total_seconds": 2873.0,
  "slides": [
   {
    "n": 1,
@@ -2134,7 +2134,7 @@
   {
    "n": 32,
    "file": "audio/slide-32.mp3",
-   "duration": 56.568,
+   "duration": 56.52,
    "hold": false,
    "cues": [
     {
@@ -2175,9 +2175,9 @@
     },
     {
      "s": 47.618,
-     "e": 56.5,
-     "en": "For the project, your report includes the solver status, the iteration counts, the residual audit, and the active set with its multipliers.",
-     "th": "สำหรับโครงงาน รายงานของคุณต้องมีสถานะของ solver จำนวนรอบ การตรวจด้วย residual และ active set พร้อม multiplier"
+     "e": 56.447,
+     "en": "In your own research, a report includes the solver status, the iteration counts, the residual audit, and the active set with its multipliers.",
+     "th": "ในงานวิจัยของคุณเอง รายงานควรมีสถานะของ solver จำนวนรอบ การตรวจด้วย residual และ active set พร้อม multiplier"
     }
    ]
   },

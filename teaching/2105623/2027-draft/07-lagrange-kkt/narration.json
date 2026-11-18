@@ -3,7 +3,7 @@
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 2974.0,
+ "total_seconds": 2974.2,
  "slides": [
   {
    "n": 1,
@@ -972,7 +972,7 @@
   {
    "n": 15,
    "file": "audio/slide-15.mp3",
-   "duration": 94.656,
+   "duration": 94.92,
    "hold": false,
    "cues": [
     {
@@ -1037,13 +1037,13 @@
     },
     {
      "s": 74.737,
-     "e": 86.5,
-     "en": "Solvers stop when scaled versions of these numbers fall below tolerances. In Lab 7, and in your final project, report these four numbers rather than the solver's word success.",
-     "th": "solver หยุดเมื่อตัวเลขเหล่านี้ที่ปรับสเกลแล้วต่ำกว่าค่าความคลาดเคลื่อนที่ยอมรับ ใน Lab 7 และในโครงงานสุดท้าย ให้รายงานตัวเลขสี่ตัวนี้ แทนคำว่า success ของ solver"
+     "e": 86.763,
+     "en": "Solvers stop when scaled versions of these numbers fall below tolerances. In Lab 7, and in any optimum you publish, report these four numbers rather than the solver's word success.",
+     "th": "solver หยุดเมื่อตัวเลขเหล่านี้ที่ปรับสเกลแล้วต่ำกว่าค่าความคลาดเคลื่อนที่ยอมรับ ใน Lab 7 และในทุกคำตอบที่คุณตีพิมพ์ ให้รายงานตัวเลขสี่ตัวนี้ แทนคำว่า success ของ solver"
     },
     {
-     "s": 86.5,
-     "e": 94.592,
+     "s": 86.763,
+     "e": 94.855,
      "en": "Scaled means divided by a typical size, such as the size of the gradients, so that the test does not depend on the units you chose.",
      "th": "การปรับสเกลหมายถึงการหารด้วยขนาดปกติ เช่นขนาดของ gradient เพื่อให้การทดสอบไม่ขึ้นกับหน่วยที่คุณเลือก"
     }
@@ -2274,8 +2274,8 @@
     {
      "s": 53.737,
      "e": 60.908,
-     "en": "For your project, report the four KKT residuals, and one multiplier with its unit and a re-solve check.",
-     "th": "สำหรับโครงงาน ให้รายงานค่า residual ของ KKT ทั้งสี่ และ multiplier หนึ่งตัวพร้อมหน่วยและการตรวจด้วยการแก้ใหม่"
+     "en": "In your own research, report the four KKT residuals, and one multiplier with its unit and a re-solve check.",
+     "th": "ในงานวิจัยของคุณเอง ให้รายงานค่า residual ของ KKT ทั้งสี่ และ multiplier หนึ่งตัวพร้อมหน่วยและการตรวจด้วยการแก้ใหม่"
     }
    ]
   },

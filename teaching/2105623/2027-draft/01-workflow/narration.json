@@ -3,7 +3,7 @@
  "rate": "-5%",
  "provider": "Microsoft Edge neural speech (edge-tts)",
  "synthetic_voice": true,
- "total_seconds": 3103.9,
+ "total_seconds": 3104.5,
  "slides": [
   {
    "n": 1,
@@ -2160,60 +2160,60 @@
   {
    "n": 36,
    "file": "audio/slide-36.mp3",
-   "duration": 66.384,
+   "duration": 66.024,
    "hold": false,
    "cues": [
     {
      "s": 0.1,
-     "e": 9.039,
-     "en": "Results must be reported so that others can check them. This table is the standard for assignments, the project and your thesis.",
-     "th": "ผลลัพธ์ต้องรายงานให้คนอื่นตรวจได้ ตารางนี้คือมาตรฐานสำหรับการบ้าน โครงงาน และวิทยานิพนธ์ของคุณ"
+     "e": 8.658,
+     "en": "Results must be reported so that others can check them. This table is the standard for assignments, labs and your thesis.",
+     "th": "ผลลัพธ์ต้องรายงานให้คนอื่นตรวจได้ ตารางนี้คือมาตรฐานสำหรับการบ้าน lab และวิทยานิพนธ์ของคุณ"
     },
     {
-     "s": 9.039,
-     "e": 16.921,
+     "s": 8.658,
+     "e": 16.539,
      "en": "Report the problem class and its size, for example an LP with 12 variables, 10 equalities and 2 inequalities.",
      "th": "รายงานประเภทของปัญหาและขนาด เช่น LP ที่มี 12 ตัวแปร 10 สมการ และ 2 อสมการ"
     },
     {
-     "s": 16.921,
-     "e": 28.697,
+     "s": 16.539,
+     "e": 28.316,
      "en": "Report the data sources and units, the solver with its version and tolerances, and the status with its evidence: a duality gap, a mixed-integer gap, or a KKT residual with the word local.",
      "th": "รายงานแหล่งที่มาของข้อมูลและหน่วย solver พร้อมรุ่นและค่าความคลาดเคลื่อน และสถานะพร้อมหลักฐาน ได้แก่ ช่องว่าง duality ช่องว่างของ mixed-integer หรือค่าคลาดเคลื่อน KKT พร้อมคำว่าเฉพาะที่"
     },
     {
-     "s": 28.697,
-     "e": 36.711,
+     "s": 28.316,
+     "e": 36.329,
      "en": "Report the verification you did: units checked, balances closed to a stated tolerance, an independent route that agrees.",
      "th": "รายงานการตรวจสอบที่ทำ ได้แก่ ตรวจหน่วยแล้ว สมดุลปิดได้ภายในค่าความคลาดเคลื่อนที่ระบุ และมีวิธีอิสระอีกวิธีที่ให้ผลตรงกัน"
     },
     {
-     "s": 36.711,
-     "e": 42.132,
+     "s": 36.329,
+     "e": 41.75,
      "en": "And give the code and inputs: a script that reproduces every number in the report.",
      "th": "และให้โค้ดกับข้อมูลนำเข้า คือสคริปต์ที่สร้างตัวเลขทุกตัวในรายงานได้ซ้ำ"
     },
     {
-     "s": 42.132,
-     "e": 46.197,
+     "s": 41.75,
+     "e": 45.816,
      "en": "A number without its status and evidence is not a result.",
      "th": "ตัวเลขที่ไม่มีสถานะและหลักฐานกำกับ ไม่ใช่ผลลัพธ์"
     },
     {
-     "s": 46.197,
-     "e": 49.43,
+     "s": 45.816,
+     "e": 49.049,
      "en": "For today's plant, one complete sentence would read:",
      "th": "สำหรับโรงงานของวันนี้ ประโยคที่ครบถ้วนหนึ่งประโยคคือ"
     },
     {
-     "s": 49.43,
-     "e": 57.91,
+     "s": 49.049,
+     "e": 57.529,
      "en": "an LP with two variables and three inequalities, solved with HiGHS through SciPy, status optimal, duality gap below ten to the minus nine;",
      "th": "LP ที่มีสองตัวแปรและสามอสมการ แก้ด้วย HiGHS ผ่าน SciPy สถานะ optimal ช่องว่าง duality ต่ำกว่าสิบยกกำลังลบเก้า"
     },
     {
-     "s": 57.91,
-     "e": 66.329,
+     "s": 57.529,
+     "e": 65.947,
      "en": "the plan is 6 tonnes of additive and 3 tonnes of binder per week, for a margin of 3,300 dollars per week, confirmed by vertex enumeration.",
      "th": "แผนคือ additive 6 ตัน และ binder 3 ตันต่อสัปดาห์ ได้กำไรส่วนเกิน 3,300 ดอลลาร์ต่อสัปดาห์ ยืนยันด้วยการไล่จุดยอด"
     }
@@ -2286,7 +2286,7 @@
   {
    "n": 39,
    "file": "audio/slide-39.mp3",
-   "duration": 48.672,
+   "duration": 48.528,
    "hold": true,
    "cues": [
     {
@@ -2327,9 +2327,9 @@
     },
     {
      "s": 38.447,
-     "e": 48.605,
-     "en": "The cards become the starting list for the computational project. If you are studying on your own, stop here, write the card, and keep it for Session 2.",
-     "th": "การ์ดเหล่านี้จะเป็นรายการตั้งต้นของโครงงานคำนวณ ถ้าคุณเรียนด้วยตนเอง ให้หยุดที่หน้านี้ เขียนการ์ด แล้วเก็บไว้ใช้ในคาบที่ 2"
+     "e": 48.461,
+     "en": "Every session returns to this card in its second activity. If you are studying on your own, stop here, write the card, and keep it for Session 2.",
+     "th": "ทุกคาบจะกลับมาใช้การ์ดนี้ในกิจกรรมที่สอง ถ้าคุณเรียนด้วยตนเอง ให้หยุดที่หน้านี้ เขียนการ์ด แล้วเก็บไว้ใช้ในคาบที่ 2"
     }
    ]
   },
@@ -2486,7 +2486,7 @@
   {
    "n": 43,
    "file": "audio/slide-43.mp3",
-   "duration": 47.112,
+   "duration": 47.784,
    "hold": false,
    "cues": [
     {
@@ -2521,45 +2521,45 @@
     },
     {
      "s": 39.237,
-     "e": 47.053,
-     "en": "Session 15 is the project presentations. Exam dates and coverage are confirmed in the course outline.",
-     "th": "คาบที่ 15 คือการนำเสนอโครงงาน วันสอบและเนื้อหาที่ออกสอบระบุไว้ในเค้าโครงรายวิชา"
+     "e": 47.711,
+     "en": "Session 15 reviews the whole course and how to check a result. Exam dates and coverage are confirmed in the course outline.",
+     "th": "คาบที่ 15 ทบทวนทั้งรายวิชาและวิธีตรวจผลลัพธ์ วันสอบและเนื้อหาที่ออกสอบระบุไว้ในเค้าโครงรายวิชา"
     }
    ]
   },
   {
    "n": 44,
    "file": "audio/slide-44.mp3",
-   "duration": 43.704,
+   "duration": 44.088,
    "hold": false,
    "cues": [
     {
      "s": 0.1,
-     "e": 7.882,
-     "en": "This is how you are graded. The weights shown are from 2026 and will be confirmed for 2027.",
-     "th": "นี่คือการให้คะแนน น้ำหนักที่แสดงเป็นของปี 2026 และจะยืนยันอีกครั้งสำหรับปี 2027"
+     "e": 8.461,
+     "en": "This is how you are graded. The weights shown are a draft for 2027, and the course outline is the final reference.",
+     "th": "นี่คือการให้คะแนน น้ำหนักที่แสดงเป็นร่างสำหรับปี 2027 และให้ยึดเค้าโครงรายวิชาเป็นหลัก"
     },
     {
-     "s": 7.882,
-     "e": 16.184,
-     "en": "The final examination, the midterm, assignments, the computational project, and participation including labs and Exit Tickets.",
-     "th": "ได้แก่ การสอบปลายภาค การสอบกลางภาค การบ้าน โครงงานคำนวณ และการมีส่วนร่วม ซึ่งรวม lab และ Exit Ticket"
+     "s": 8.461,
+     "e": 16.868,
+     "en": "The final examination, the midterm, assignments, and participation including labs and Exit Tickets, which carry a quarter of the grade.",
+     "th": "ได้แก่ การสอบปลายภาค การสอบกลางภาค การบ้าน และการมีส่วนร่วม ซึ่งรวม lab และ Exit Ticket และคิดเป็นหนึ่งในสี่ของคะแนน"
     },
     {
-     "s": 16.184,
-     "e": 22.829,
-     "en": "Generative AI is permitted for assignments and the project, and using it to draft models is expected.",
-     "th": "อนุญาตให้ใช้ generative AI ในการบ้านและโครงงาน และคาดหวังให้ใช้ช่วยร่างโมเดล"
+     "s": 16.868,
+     "e": 23.197,
+     "en": "Generative AI is permitted for assignments and labs, and using it to draft models is expected.",
+     "th": "อนุญาตให้ใช้ generative AI ในการบ้านและ lab และคาดหวังให้ใช้ช่วยร่างโมเดล"
     },
     {
-     "s": 22.829,
-     "e": 35.368,
+     "s": 23.197,
+     "e": 35.737,
      "en": "You must disclose what was drafted by AI and which tests validated it. An unverified model earns no credit for correctness. AI is not permitted in examinations.",
      "th": "คุณต้องเปิดเผยว่าส่วนใดร่างโดย AI และการทดสอบใดยืนยันความถูกต้อง โมเดลที่ไม่ได้ตรวจสอบจะไม่ได้คะแนนในส่วนความถูกต้อง และไม่อนุญาตให้ใช้ AI ในการสอบ"
     },
     {
-     "s": 35.368,
-     "e": 43.645,
+     "s": 35.737,
+     "e": 44.013,
      "en": "A solver answers the question you asked, and so does a language model. Checking is your job, and it carries the marks.",
      "th": "solver ตอบคำถามที่คุณถาม language model ก็เช่นกัน การตรวจสอบเป็นหน้าที่ของคุณ และเป็นส่วนที่ได้คะแนน"
     }
